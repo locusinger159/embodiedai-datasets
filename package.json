@@ -1,0 +1,14 @@
+{
+  "name": "embodiedai-datasets",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "具身智能数据集导航 - 全球机器人数据集情报站",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.3.0"
+  }
+}
