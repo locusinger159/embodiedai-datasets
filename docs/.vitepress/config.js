@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   title: '具身智能数据集导航',
+  base: '/embodiedai-datasets/',
   titleTemplate: 'EmbodiedAI Datasets',
   description: '全球具身智能、机器人、人形机器人数据集情报站 | 只做信息汇总 & 申请导航',
   
