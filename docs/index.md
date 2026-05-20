@@ -8,7 +8,7 @@ hero:
   text: "具身智能数据集导航"
   tagline: "全球具身智能、机器人、人形机器人数据集情报站"
   image:
-    src: /embodiedai-datasets/logo-large.svg
+    src: [/embodiedai-datasets/logo-large.svg](https://locusinger159.github.io/embodiedai-datasets/logo-large.svg)
     alt: EmbodiedAI Datasets
   actions:
     - theme: brand
