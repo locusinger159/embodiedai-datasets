@@ -10,7 +10,7 @@ hero:
   image:
     src: https://locusinger159.github.io/embodiedai-datasets/logo-large.svg
     alt: EmbodiedAI Datasets
-    style:"width: 300px; height: 300px;"
+    style:"width:300px;height:300px;"
   actions:
     - theme: brand
       text: 查看全部数据集
