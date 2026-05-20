@@ -2,20 +2,20 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   title: '具身智能数据集导航',
-  base: '/embodiedai-datasets/',
+  base: '/',
   titleTemplate: 'EmbodiedAI Datasets',
   description: '全球具身智能、机器人、人形机器人数据集情报站 | 只做信息汇总 & 申请导航',
   
   ignoreDeadLinks: true,
   
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: 'https://locusinger159.github.io/embodiedai-datasets/favicon.svg' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     ['meta', { name: 'keywords', content: '具身智能,机器人数据集,人形机器人,机械臂,开源数据集,机器人学习' }],
     ['meta', { name: 'description', content: '收录全球具身智能、人形机器人、机械臂、移动机器人数据集，只做情报汇总 & 申请导航，助力算法研发' }]
   ],
 
   themeConfig: {
-    logo: 'https://locusinger159.github.io/embodiedai-datasets/logo-large.svg',
+    logo: '/logo-large.svg',
     siteTitle: 'EmbodiedAI Datasets',
     
     nav: [
