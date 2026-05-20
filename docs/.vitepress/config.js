@@ -9,13 +9,13 @@ export default defineConfig({
   ignoreDeadLinks: true,
   
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/embodiedai-datasets/favicon.svg' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: 'https://locusinger159.github.io/embodiedai-datasets/favicon.svg' }],
     ['meta', { name: 'keywords', content: '具身智能,机器人数据集,人形机器人,机械臂,开源数据集,机器人学习' }],
     ['meta', { name: 'description', content: '收录全球具身智能、人形机器人、机械臂、移动机器人数据集，只做情报汇总 & 申请导航，助力算法研发' }]
   ],
 
   themeConfig: {
-    logo: '/embodiedai-datasets/logo-large.svg',
+    logo: 'https://locusinger159.github.io/embodiedai-datasets/logo-large.svg',
     siteTitle: 'EmbodiedAI Datasets',
     
     nav: [
