@@ -6,12 +6,14 @@
 
 ## 目录
 
-- [人形机器人](#人形机器人)
-- [机械臂](#机械臂)
-- [移动机器人](#移动机器人)
-- [四足机器人](#四足机器人)
-- [仿真数据集](#仿真数据集)
-- [触觉传感](#触觉传感)
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0;">
+  <a href="#人形机器人" style="padding: 6px 12px; background: var(--vp-c-bg-soft); border-radius: 6px; text-decoration: none; color: var(--vp-c-text-1);">🤖 人形机器人</a>
+  <a href="#机械臂" style="padding: 6px 12px; background: var(--vp-c-bg-soft); border-radius: 6px; text-decoration: none; color: var(--vp-c-text-1);">🦾 机械臂</a>
+  <a href="#移动机器人" style="padding: 6px 12px; background: var(--vp-c-bg-soft); border-radius: 6px; text-decoration: none; color: var(--vp-c-text-1);">🚗 移动机器人</a>
+  <a href="#四足机器人" style="padding: 6px 12px; background: var(--vp-c-bg-soft); border-radius: 6px; text-decoration: none; color: var(--vp-c-text-1);">🦖 四足机器人</a>
+  <a href="#仿真数据集" style="padding: 6px 12px; background: var(--vp-c-bg-soft); border-radius: 6px; text-decoration: none; color: var(--vp-c-text-1);">🖥️ 仿真数据集</a>
+  <a href="#触觉传感" style="padding: 6px 12px; background: var(--vp-c-bg-soft); border-radius: 6px; text-decoration: none; color: var(--vp-c-text-1);">🖐️ 触觉传感</a>
+</div>
 
 ---
 

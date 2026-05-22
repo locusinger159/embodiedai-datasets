@@ -32,33 +32,34 @@ export default defineConfig({
           text: '数据集分类',
           items: [
             { text: '全部数据集', link: '/datasets/' },
-            { text: '🤖 人形机器人', link: '/categories/robot/humanoid' },
-            { text: '🦾 机械臂', link: '/categories/robot/manipulator' },
-            { text: '🚗 移动机器人', link: '/categories/robot/mobile' },
-            { text: '🦖 四足机器人', link: '/categories/robot/quadruped' },
-            { text: '🖥️ 仿真数据集', link: '/categories/robot/simulation' }
+            { text: '按机器人类型', link: '/categories/robot/' },
+            { text: '按任务类型', link: '/categories/task/' }
           ]
         }
       ],
       '/categories/': [
         {
           text: '按机器人类型',
+          link: '/categories/robot/',
           items: [
-            { text: '人形机器人', link: '/categories/robot/humanoid' },
-            { text: '机械臂', link: '/categories/robot/manipulator' },
-            { text: '移动机器人', link: '/categories/robot/mobile' },
-            { text: '四足机器人', link: '/categories/robot/quadruped' },
-            { text: '仿真数据集', link: '/categories/robot/simulation' }
+            { text: '人形机器人 🤖', link: '/categories/robot/#人形机器人-' },
+            { text: '机械臂 🦾', link: '/categories/robot/#机械臂-' },
+            { text: '移动机器人 🚗', link: '/categories/robot/#移动机器人-' },
+            { text: '四足机器人 🦖', link: '/categories/robot/#四足机器人-' },
+            { text: '仿真数据集 🖥️', link: '/categories/robot/#仿真数据集-' },
+            { text: '触觉传感 🖐️', link: '/categories/robot/#触觉传感-' }
           ]
         },
         {
           text: '按任务类型',
+          link: '/categories/task/',
           items: [
-            { text: '抓取', link: '/categories/task/grasp' },
-            { text: '操作', link: '/categories/task/manipulation' },
-            { text: '导航', link: '/categories/task/navigation' },
-            { text: '装配', link: '/categories/task/assembly' },
-            { text: '交互', link: '/categories/task/interaction' }
+            { text: '抓取 🤏', link: '/categories/task/#抓取-' },
+            { text: '操作 🤲', link: '/categories/task/#操作-' },
+            { text: '导航 🧭', link: '/categories/task/#导航-' },
+            { text: '装配 🔧', link: '/categories/task/#装配-' },
+            { text: '交互 💬', link: '/categories/task/#交互-' },
+            { text: '家居 🏠', link: '/categories/task/#家居-' }
           ]
         }
       ]

@@ -819,5 +819,5 @@ NVIDIA Isaac 仿真平台私有数据，商业合作可获取。
 
 ::: info 需要帮助？
 - 想提交新数据集？→ [提交页面](/submit/)
-- 需要更多数据集信息？→ 联系邮箱：submit@embodiedai-data.com
+- 需要更多数据集信息？→ 联系邮箱：embodisets@163.com
 :::

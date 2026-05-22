@@ -6,12 +6,14 @@
 
 ## 目录
 
-- [抓取](#抓取-grasp)
-- [操作](#操作-manipulation)
-- [导航](#导航-navigation)
-- [装配](#装配-assembly)
-- [交互](#交互-interaction)
-- [家居](#家居-household)
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0;">
+  <a href="#抓取" style="padding: 6px 12px; background: var(--vp-c-bg-soft); border-radius: 6px; text-decoration: none; color: var(--vp-c-text-1);">🤏 抓取</a>
+  <a href="#操作" style="padding: 6px 12px; background: var(--vp-c-bg-soft); border-radius: 6px; text-decoration: none; color: var(--vp-c-text-1);">🤲 操作</a>
+  <a href="#导航" style="padding: 6px 12px; background: var(--vp-c-bg-soft); border-radius: 6px; text-decoration: none; color: var(--vp-c-text-1);">🧭 导航</a>
+  <a href="#装配" style="padding: 6px 12px; background: var(--vp-c-bg-soft); border-radius: 6px; text-decoration: none; color: var(--vp-c-text-1);">🔧 装配</a>
+  <a href="#交互" style="padding: 6px 12px; background: var(--vp-c-bg-soft); border-radius: 6px; text-decoration: none; color: var(--vp-c-text-1);">💬 交互</a>
+  <a href="#家居" style="padding: 6px 12px; background: var(--vp-c-bg-soft); border-radius: 6px; text-decoration: none; color: var(--vp-c-text-1);">🏠 家居</a>
+</div>
 
 ---
 

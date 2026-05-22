@@ -41,7 +41,7 @@
 
 ### 方式一：邮件提交
 
-发送邮件至：**submit@embodiedai-data.com**
+发送邮件至：**embodisets@163.com**
 
 邮件格式：
 

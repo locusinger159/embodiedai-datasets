@@ -4,7 +4,7 @@ title: 具身智能数据集导航
 titleTemplate: 全球机器人数据集情报站
 
 hero:
-  name: "EmbodiedAI Datasets"
+  name: ""
   text: "具身智能数据集导航"
   tagline: "全球具身智能、机器人、人形机器人数据集情报站"
   image:
@@ -77,7 +77,7 @@ features:
 
 ### 联系我们
 
-- 📧 邮箱：submit@embodiedai-data.com
+- 📧 邮箱：embodisets@163.com
 - 💬 欢迎提交数据集，我们审核后收录
 - ⚠️ 声明：本站不提供任何数据集下载，仅做信息导航
 
