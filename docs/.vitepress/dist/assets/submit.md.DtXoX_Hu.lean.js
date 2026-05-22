@@ -1,1 +1,0 @@
-import{_ as a,H as e,f as o,i as l}from"./chunks/framework.Cvt1eIE0.js";const c=JSON.parse('{"title":"提交数据集","description":"","frontmatter":{},"headers":[],"relativePath":"submit.md","filePath":"submit.md"}'),i={name:"submit.md"};function n(s,t,r,d,p,h){return e(),o("div",null,[...t[0]||(t[0]=[l("",31)])])}const b=a(i,[["render",n]]);export{c as __pageData,b as default};
