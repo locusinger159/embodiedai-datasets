@@ -1,0 +1,997 @@
+[
+  {
+    "id": "open-x-embodiment",
+    "name": "Open X-Embodiment",
+    "institution": "Google DeepMind",
+    "scale": "15 种机器人，100W+ 轨迹",
+    "robotType": [
+      "多机型"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://robotics-transformer-x.github.io",
+      "paper": "https://arxiv.org/abs/2310.08864"
+    },
+    "notes": "跨具身最大开源数据集，RT-X 训练必备。覆盖多种机器人形态，适合泛化学习研究。"
+  },
+  {
+    "id": "bridge-data-v2",
+    "name": "BridgeData V2",
+    "institution": "UC Berkeley RAIL",
+    "scale": "85K 操纵轨迹",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://rail-berkeley.github.io/bridgedata",
+      "paper": "https://arxiv.org/abs/2403.03954"
+    },
+    "notes": "小样本学习、模仿学习常用。数据质量高，任务多样。"
+  },
+  {
+    "id": "rh20t",
+    "name": "RH20T",
+    "institution": "斯坦福大学、Google",
+    "scale": "20K 视频，120+ 任务",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "家居"
+    ],
+    "modality": [
+      "RGB",
+      "深度"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://rh20t.github.io",
+      "paper": "https://arxiv.org/abs/2307.11795"
+    },
+    "notes": "高质量居家机器人视频数据集，适合日常任务学习。"
+  },
+  {
+    "id": "roboset",
+    "name": "RoboSet (MobRob)",
+    "institution": "Carnegie Mellon University",
+    "scale": "220K 演示轨迹",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "装配"
+    ],
+    "modality": [
+      "多视角视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://roboset.github.io",
+      "paper": "https://arxiv.org/abs/2209.13053"
+    },
+    "notes": "适合策略学习、扩散模型研究。多视角数据便于3D理解。"
+  },
+  {
+    "id": "libero",
+    "name": "Libero",
+    "institution": "斯坦福大学",
+    "scale": "130+ 任务，240W+ 帧",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://libero-project.github.io",
+      "paper": "https://arxiv.org/abs/2306.08640"
+    },
+    "notes": "长程任务 benchmark，适合指令跟随和任务规划研究。"
+  },
+  {
+    "id": "meta-world",
+    "name": "MetaWorld",
+    "institution": "Meta AI、UC Berkeley",
+    "scale": "50+ 操纵任务",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "仿真状态"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://meta-world.github.io",
+      "paper": "https://arxiv.org/abs/1910.10897"
+    },
+    "notes": "最常用强化学习基准之一，适合元学习和多任务学习。"
+  },
+  {
+    "id": "rlbench",
+    "name": "RLBench",
+    "institution": "牛津大学",
+    "scale": "100+ 任务",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "操作",
+      "装配"
+    ],
+    "modality": [
+      "视觉",
+      "深度",
+      "点云"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://sites.google.com/view/rlbench",
+      "paper": "https://arxiv.org/abs/1909.12271"
+    },
+    "notes": "任务多样，视觉信息丰富，适合模仿学习研究。"
+  },
+  {
+    "id": "maniskill2",
+    "name": "ManiSkill2",
+    "institution": "斯坦福大学、清华大学",
+    "scale": "仿真大规模操纵",
+    "robotType": [
+      "机械臂",
+      "仿真"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "点云",
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://maniskill2.github.io",
+      "paper": "https://arxiv.org/abs/2304.04442"
+    },
+    "notes": "基于 SAPIEN 的高质量仿真数据，支持点云输入。"
+  },
+  {
+    "id": "robosuite",
+    "name": "RoboSuite",
+    "institution": "UC Berkeley",
+    "scale": "多个仿真环境",
+    "robotType": [
+      "机械臂",
+      "仿真"
+    ],
+    "task": [
+      "操作",
+      "装配"
+    ],
+    "modality": [
+      "仿真状态",
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://robosuite.ai",
+      "paper": "https://arxiv.org/abs/2209.12066"
+    },
+    "notes": "模块化仿真框架，适合算法开发和基准测试。"
+  },
+  {
+    "id": "calvin",
+    "name": "CALVIN",
+    "institution": "Bosch Center for AI、图宾根大学",
+    "scale": "居家长期操纵",
+    "robotType": [
+      "移动机器人"
+    ],
+    "task": [
+      "操作",
+      "交互"
+    ],
+    "modality": [
+      "视觉",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://ut-ras.github.io/CALVIN",
+      "paper": "https://arxiv.org/abs/2207.04744"
+    },
+    "notes": "语言条件 long-horizon 任务，适合指令理解和执行研究。"
+  },
+  {
+    "id": "ario",
+    "name": "ARIO",
+    "institution": "Carnegie Mellon University",
+    "scale": "居家场景操纵数据集",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "家居"
+    ],
+    "modality": [
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://ario-dataset.github.io"
+    },
+    "notes": "大规模日常操纵数据，适合泛化策略学习。"
+  },
+  {
+    "id": "ocrl",
+    "name": "OCRL",
+    "institution": "UC Berkeley",
+    "scale": "持续学习数据集",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "抓取"
+    ],
+    "modality": [
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://sites.google.com/view/oclr/",
+      "paper": "https://arxiv.org/abs/2110.13178"
+    },
+    "notes": "持续学习 benchmark，适合灾难性遗忘研究。"
+  },
+  {
+    "id": "rt-1-data",
+    "name": "RT-1 Data",
+    "institution": "Google DeepMind",
+    "scale": "130K 演示",
+    "robotType": [
+      "移动机器人"
+    ],
+    "task": [
+      "操作",
+      "家居"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://robotics-transformer.github.io",
+      "paper": "https://arxiv.org/abs/2212.05680"
+    },
+    "notes": "RT-1 训练数据，适合真实机器人策略学习。"
+  },
+  {
+    "id": "robocat-data",
+    "name": "RoboCat Data",
+    "institution": "Google DeepMind",
+    "scale": "多机器人操纵数据",
+    "robotType": [
+      "机械臂",
+      "移动机器人"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://deepmind.google/blog/robocat",
+      "paper": "https://arxiv.org/abs/2306.11706"
+    },
+    "notes": "自我提升的机器人智能体数据，适合多任务学习。"
+  },
+  {
+    "id": "t-diffusion-data",
+    "name": "T-Diffusion Data",
+    "institution": "Google DeepMind",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "交互"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://deepmind.google/blog/t-diffusion",
+      "paper": "https://arxiv.org/abs/2309.12664"
+    },
+    "notes": "扩散模型在机器人操纵中的应用，适合动作生成研究。"
+  },
+  {
+    "id": "agibot-world",
+    "name": "AgiBot World",
+    "institution": "智元机器人（AgiBot）",
+    "scale": "100W+ 轨迹，2976 小时",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作",
+      "家居"
+    ],
+    "modality": [
+      "视觉",
+      "力控",
+      "本体状态"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://agibot-world.com",
+      "paper": "https://arxiv.org/abs/2412.14154"
+    },
+    "notes": "国内最大人形开源数据集，覆盖真实场景丰富，规模化程度高。"
+  },
+  {
+    "id": "robomind",
+    "name": "RoboMIND",
+    "institution": "北京人形机器人创新中心",
+    "scale": "6W+ 分钟真机数据",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "力控",
+      "本体状态"
+    ],
+    "type": "open",
+    "links": {
+      "official": "http://www.robomind.cn/",
+      "paper": "https://arxiv.org/abs/2410.10000"
+    },
+    "notes": "国内统一人形数据协议基准，多构型机器人数据。"
+  },
+  {
+    "id": "damo-solo",
+    "name": "DAMO-SOLO",
+    "institution": "阿里达摩院",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://damo.alibaba.com/"
+    },
+    "notes": "阿里达摩院机器人数据集，适合工业操纵研究。"
+  },
+  {
+    "id": "gr-1-dataset",
+    "name": "GR-1 Dataset",
+    "institution": "傅利叶智能（Fourier Intelligence）",
+    "scale": "人形机器人数据集",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "力控",
+      "本体状态"
+    ],
+    "type": "partial",
+    "links": {
+      "official": "https://www.fourier-intelligence.com/"
+    },
+    "notes": "傅利叶 GR-1 人形机器人数据，适合双足运动和操纵研究。"
+  },
+  {
+    "id": "h1-dataset",
+    "name": "H1 Dataset",
+    "institution": "宇树科技（Unitree）",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "本体状态"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://www.unitree.com/"
+    },
+    "notes": "宇树 H1 人形机器人数据，适合运动控制研究。"
+  },
+  {
+    "id": "isaac-sim-dataset",
+    "name": "Isaac Sim Dataset",
+    "institution": "NVIDIA",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "点云",
+      "深度"
+    ],
+    "type": "partial",
+    "links": {
+      "official": "https://developer.nvidia.com/isaac-sim"
+    },
+    "notes": "NVIDIA 高保真仿真环境，适合 sim-to-real 研究。"
+  },
+  {
+    "id": "habitat",
+    "name": "Habitat",
+    "institution": "Meta AI",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "导航"
+    ],
+    "modality": [
+      "视觉",
+      "深度"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://aihabitat.org",
+      "paper": "https://arxiv.org/abs/1904.01201"
+    },
+    "notes": "大规模室内导航 benchmark，支持 Gibson、Matterport3D 等场景。"
+  },
+  {
+    "id": "igibson",
+    "name": "iGibson",
+    "institution": "斯坦福大学",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "导航",
+      "操作",
+      "家居"
+    ],
+    "modality": [
+      "视觉",
+      "深度",
+      "物理"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://stanfordvl.github.io/igibson",
+      "paper": "https://arxiv.org/abs/2010.08628"
+    },
+    "notes": "交互式家庭仿真环境，支持物理交互。"
+  },
+  {
+    "id": "sapien",
+    "name": "SAPIEN",
+    "institution": "斯坦福大学、上海交通大学",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "点云"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://sapien.ucsd.edu",
+      "paper": "https://arxiv.org/abs/2110.07115"
+    },
+    "notes": "PartNet-Mobility 物体模型，支持高质量部件级操纵。"
+  },
+  {
+    "id": "fmtc",
+    "name": "FMTC",
+    "institution": "Carnegie Mellon University",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://fmbench.github.io"
+    },
+    "notes": "基础模型 benchmark，适合评估 VLA 等模型。"
+  },
+  {
+    "id": "coppeliasim",
+    "name": "CoppeliaSim",
+    "institution": "Coppelia Robotics",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://www.coppeliarobotics.com/"
+    },
+    "notes": "跨平台机器人仿真器，适合教育和研究。"
+  },
+  {
+    "id": "tactile-toolbox",
+    "name": "TactileToolbox",
+    "institution": "多个高校联合",
+    "robotType": [
+      "触觉传感"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "触觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://tactile-toolbox.github.io"
+    },
+    "notes": "统一触觉数据格式工具箱，适合触觉学习研究。"
+  },
+  {
+    "id": "digit-dataset",
+    "name": "DIGIT Dataset",
+    "institution": "MIT",
+    "robotType": [
+      "触觉传感"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "触觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://digit.ml",
+      "paper": "https://arxiv.org/abs/1905.04128"
+    },
+    "notes": "DIGIT 触觉传感器数据集，适合视觉-触觉融合。"
+  },
+  {
+    "id": "tactip-datasets",
+    "name": "TacTip Datasets",
+    "institution": "布里斯托大学",
+    "robotType": [
+      "触觉传感"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "触觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "http://tactile.fandom.com/wiki/TacTip"
+    },
+    "notes": "TacTip GelTip 系列传感器数据，适合主动触觉研究。"
+  },
+  {
+    "id": "softmanip",
+    "name": "SoftManip",
+    "institution": "多个高校联合",
+    "robotType": [
+      "触觉传感"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "触觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "http://softmanipulation.com/"
+    },
+    "notes": "软体机器人操纵数据，适合柔性物体处理研究。"
+  },
+  {
+    "id": "tesla-optimus-data",
+    "name": "Tesla Optimus Data",
+    "institution": "特斯拉（Tesla）",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作",
+      "装配"
+    ],
+    "modality": [],
+    "type": "closed",
+    "links": {
+      "official": "https://www.tesla.com/optimus"
+    },
+    "notes": "特斯拉 Optimus 人形机器人数据，实际使用需联系特斯拉。"
+  },
+  {
+    "id": "boston-dynamics-data",
+    "name": "Boston Dynamics Data",
+    "institution": "Boston Dynamics",
+    "robotType": [
+      "四足机器人",
+      "人形机器人"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [],
+    "type": "closed",
+    "links": {
+      "official": "https://www.bostondynamics.com/"
+    },
+    "notes": "波士顿动力机器人数据，商业合作可获取。"
+  },
+  {
+    "id": "unitree-h1-internal",
+    "name": "Unitree H1 内部数据",
+    "institution": "宇树科技（Unitree）",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [],
+    "type": "closed",
+    "links": {
+      "official": "https://www.unitree.com/h1/"
+    },
+    "notes": "宇树 H1 人形机器人内部数据，合作可获取。"
+  },
+  {
+    "id": "ubtech-walker",
+    "name": "优必选 Walker 数据集",
+    "institution": "优必选（UBTech）",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作",
+      "交互"
+    ],
+    "modality": [],
+    "type": "closed",
+    "links": {
+      "official": "https://www.ubtrobot.com/"
+    },
+    "notes": "优必选 Walker 系列数据，商业合作可获取。"
+  },
+  {
+    "id": "xiaomi-cyberone",
+    "name": "小米 CyberOne 数据",
+    "institution": "小米",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "交互"
+    ],
+    "modality": [],
+    "type": "closed",
+    "links": {
+      "official": "https://www.mi.com/"
+    },
+    "notes": "小米 CyberOne 数据，实际使用需联系小米。"
+  },
+  {
+    "id": "narwal-navigation",
+    "name": "云鲸导航数据",
+    "institution": "云鲸智能",
+    "robotType": [
+      "移动机器人"
+    ],
+    "task": [
+      "导航"
+    ],
+    "modality": [],
+    "type": "closed",
+    "links": {
+      "official": "https://www.narwal.com/"
+    },
+    "notes": "云鲸扫地机器人 SLAM 和导航数据。"
+  },
+  {
+    "id": "ecovacs-slam",
+    "name": "科沃斯 SLAM 数据",
+    "institution": "科沃斯（Ecovacs）",
+    "robotType": [
+      "移动机器人"
+    ],
+    "task": [
+      "导航"
+    ],
+    "modality": [],
+    "type": "closed",
+    "links": {
+      "official": "https://www.ecovacs.com/"
+    },
+    "notes": "科沃斯家庭服务机器人 SLAM 数据。"
+  },
+  {
+    "id": "google-deepmind-robotics-internal",
+    "name": "Google DeepMind Robotics 内部数据",
+    "institution": "Google DeepMind",
+    "robotType": [
+      "多机型"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [],
+    "type": "closed",
+    "links": {
+      "official": "https://deepmind.google/robots/"
+    },
+    "notes": "DeepMind 机器人研究数据，部分通过学术合作可获取。"
+  },
+  {
+    "id": "microsoft-embodied-ai",
+    "name": "Microsoft Embodied AI Data",
+    "institution": "Microsoft",
+    "robotType": [
+      "多机型"
+    ],
+    "task": [
+      "交互"
+    ],
+    "modality": [],
+    "type": "closed",
+    "links": {
+      "official": "https://www.microsoft.com/"
+    },
+    "notes": "微软具身智能研究数据，学术合作可获取部分。"
+  },
+  {
+    "id": "nvidia-isaac-private",
+    "name": "NVIDIA Isaac 私有数据",
+    "institution": "NVIDIA",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [],
+    "type": "closed",
+    "links": {
+      "official": "https://www.nvidia.com/isaac"
+    },
+    "notes": "NVIDIA Isaac 仿真平台私有数据，商业合作可获取。"
+  },
+  {
+    "id": "huawei-embodied-ai",
+    "name": "华为具身智能数据",
+    "institution": "华为",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [],
+    "type": "closed",
+    "links": {
+      "official": "https://www.huawei.com/"
+    },
+    "notes": "华为具身智能研究数据，合作可获取。"
+  },
+  {
+    "id": "baidu-robot-learning",
+    "name": "百度机器人学习数据",
+    "institution": "百度",
+    "robotType": [
+      "机械臂",
+      "移动机器人"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [],
+    "type": "closed",
+    "links": {
+      "official": "https://www.baidu.com/"
+    },
+    "notes": "百度机器人学习研究数据。"
+  },
+  {
+    "id": "tencent-robotics-x",
+    "name": "腾讯 Robotics X 数据",
+    "institution": "腾讯",
+    "robotType": [
+      "多机型"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [],
+    "type": "closed",
+    "links": {
+      "official": "https://www.tencent.com/"
+    },
+    "notes": "腾讯 Robotics X 实验室数据。"
+  },
+  {
+    "id": "sensetime-robot",
+    "name": "商汤绝影机器人数据",
+    "institution": "商汤科技（SenseTime）",
+    "robotType": [
+      "人形机器人",
+      "移动机器人"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [],
+    "type": "closed",
+    "links": {
+      "official": "https://www.sensetime.com/"
+    },
+    "notes": "商汤绝影具身智能数据。"
+  },
+  {
+    "id": "graspnet-1billion",
+    "name": "GraspNet-1Billion",
+    "institution": "清华大学",
+    "scale": "10 亿+ 抓取标注",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "抓取"
+    ],
+    "modality": [
+      "视觉",
+      "深度",
+      "点云"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://graspnet.net"
+    },
+    "notes": "超大规模抓取检测数据集。"
+  },
+  {
+    "id": "dexnet-2-0",
+    "name": "DexNet 2.0",
+    "institution": "UC Berkeley",
+    "scale": "670 万抓取点云",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "抓取"
+    ],
+    "modality": [
+      "视觉",
+      "深度"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://berkeleyautomation.github.io/dex-net/"
+    },
+    "notes": "抓取姿态规划经典数据集。"
+  },
+  {
+    "id": "gibson",
+    "name": "Gibson",
+    "institution": "斯坦福大学",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "导航"
+    ],
+    "modality": [
+      "视觉",
+      "深度"
+    ],
+    "type": "open",
+    "links": {
+      "official": "http://gibsonenv.stanford.edu"
+    },
+    "notes": "真实场景导航仿真环境。"
+  },
+  {
+    "id": "matterport3d",
+    "name": "Matterport3D",
+    "institution": "Matterport",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "导航"
+    ],
+    "modality": [
+      "视觉",
+      "深度"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://niessner.github.io/Matterport/"
+    },
+    "notes": "大规模室内场景数据集，常用于导航研究。"
+  },
+  {
+    "id": "robonat",
+    "name": "RoboNat",
+    "institution": "上海交通大学",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "交互",
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://robonat.github.io"
+    },
+    "notes": "自然语言交互机器人数据集。"
+  }
+]
