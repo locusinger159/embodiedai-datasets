@@ -1,25 +1,45 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    <linearGradient id="ftop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
     </linearGradient>
+    <linearGradient id="fleft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6d28d9"/>
+      <stop offset="100%" stop-color="#4c1d95"/>
+    </linearGradient>
+    <linearGradient id="fright" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#5b21b6"/>
+    </linearGradient>
+    <radialGradient id="eglow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#67e8f9"/>
+      <stop offset="60%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </radialGradient>
   </defs>
-  <!-- Robot head -->
-  <circle cx="50" cy="35" r="25" fill="url(#grad)"/>
-  <!-- Eyes -->
-  <circle cx="42" cy="32" r="4" fill="white"/>
-  <circle cx="58" cy="32" r="4" fill="white"/>
+
+  <!-- Background -->
+  <circle cx="50" cy="50" r="48" fill="#f5f3ff"/>
+
+  <!-- 3D Isometric Cube -->
+  <!-- Top face -->
+  <polygon points="50,8 82,26 50,44 18,26" fill="url(#ftop)"/>
+  <!-- Left face -->
+  <polygon points="18,26 50,44 50,80 18,62" fill="url(#fleft)"/>
+  <!-- Right face -->
+  <polygon points="50,44 82,26 82,62 50,80" fill="url(#fright)"/>
+
+  <!-- Eyes on right face -->
+  <ellipse cx="58" cy="40" rx="5" ry="6" fill="#0f172a"/>
+  <ellipse cx="58" cy="39" rx="3.5" ry="4.5" fill="url(#eglow)"/>
+  <circle cx="57" cy="38" r="1.2" fill="white" opacity="0.9"/>
+
+  <ellipse cx="72" cy="40" rx="5" ry="6" fill="#0f172a"/>
+  <ellipse cx="72" cy="39" rx="3.5" ry="4.5" fill="url(#eglow)"/>
+  <circle cx="71" cy="38" r="1.2" fill="white" opacity="0.9"/>
+
   <!-- Antenna -->
-  <line x1="50" y1="10" x2="50" y2="20" stroke="url(#grad)" stroke-width="3"/>
-  <circle cx="50" cy="8" r="4" fill="#667eea"/>
-  <!-- Body -->
-  <rect x="35" y="60" width="30" height="35" rx="5" fill="url(#grad)"/>
-  <!-- Arms -->
-  <rect x="20" y="65" width="15" height="8" rx="4" fill="url(#grad)"/>
-  <rect x="65" y="65" width="15" height="8" rx="4" fill="url(#grad)"/>
-  <!-- Database icon on body -->
-  <ellipse cx="50" cy="72" rx="8" ry="4" fill="white" opacity="0.5"/>
-  <ellipse cx="50" cy="80" rx="8" ry="4" fill="white" opacity="0.5"/>
-  <ellipse cx="50" cy="88" rx="8" ry="4" fill="white" opacity="0.5"/>
+  <line x1="50" y1="8" x2="50" y2="2" stroke="#a78bfa" stroke-width="2"/>
+  <circle cx="50" cy="1.5" r="2.5" fill="#67e8f9"/>
 </svg>
