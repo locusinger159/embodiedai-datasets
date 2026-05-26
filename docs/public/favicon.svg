@@ -1,45 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <defs>
-    <linearGradient id="ftop" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#a78bfa"/>
-      <stop offset="100%" stop-color="#7c3aed"/>
-    </linearGradient>
-    <linearGradient id="fleft" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6d28d9"/>
-      <stop offset="100%" stop-color="#4c1d95"/>
-    </linearGradient>
-    <linearGradient id="fright" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#8b5cf6"/>
-      <stop offset="100%" stop-color="#5b21b6"/>
-    </linearGradient>
-    <radialGradient id="eglow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#67e8f9"/>
-      <stop offset="60%" stop-color="#06b6d4"/>
-      <stop offset="100%" stop-color="#0891b2"/>
-    </radialGradient>
-  </defs>
-
-  <!-- Background -->
-  <circle cx="50" cy="50" r="48" fill="#f5f3ff"/>
-
-  <!-- 3D Isometric Cube -->
-  <!-- Top face -->
-  <polygon points="50,8 82,26 50,44 18,26" fill="url(#ftop)"/>
-  <!-- Left face -->
-  <polygon points="18,26 50,44 50,80 18,62" fill="url(#fleft)"/>
-  <!-- Right face -->
-  <polygon points="50,44 82,26 82,62 50,80" fill="url(#fright)"/>
-
-  <!-- Eyes on right face -->
-  <ellipse cx="58" cy="40" rx="5" ry="6" fill="#0f172a"/>
-  <ellipse cx="58" cy="39" rx="3.5" ry="4.5" fill="url(#eglow)"/>
-  <circle cx="57" cy="38" r="1.2" fill="white" opacity="0.9"/>
-
-  <ellipse cx="72" cy="40" rx="5" ry="6" fill="#0f172a"/>
-  <ellipse cx="72" cy="39" rx="3.5" ry="4.5" fill="url(#eglow)"/>
-  <circle cx="71" cy="38" r="1.2" fill="white" opacity="0.9"/>
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
   <!-- Antenna -->
-  <line x1="50" y1="8" x2="50" y2="2" stroke="#a78bfa" stroke-width="2"/>
-  <circle cx="50" cy="1.5" r="2.5" fill="#67e8f9"/>
+  <line x1="100" y1="18" x2="100" y2="38" stroke="#888" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="100" cy="14" r="6" fill="#7cba6d" stroke="#5a9a4b" stroke-width="1.5"/>
+
+  <!-- Head -->
+  <rect x="52" y="40" width="96" height="82" rx="18" fill="#f0f4f8" stroke="#c8d4e0" stroke-width="2.5"/>
+
+  <!-- Eyes -->
+  <circle cx="80" cy="76" r="14" fill="#fff" stroke="#c8d4e0" stroke-width="1.5"/>
+  <circle cx="80" cy="76" r="7" fill="#5b8def"/>
+  <circle cx="78" cy="73" r="3" fill="#fff"/>
+
+  <circle cx="120" cy="76" r="14" fill="#fff" stroke="#c8d4e0" stroke-width="1.5"/>
+  <circle cx="120" cy="76" r="7" fill="#5b8def"/>
+  <circle cx="118" cy="73" r="3" fill="#fff"/>
+
+  <!-- Mouth (friendly smile) -->
+  <path d="M84 100 Q100 116 116 100" fill="none" stroke="#c8d4e0" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Neck -->
+  <rect x="82" y="122" width="36" height="14" rx="4" fill="#e8edf2" stroke="#c8d4e0" stroke-width="1.5"/>
+
+  <!-- Body -->
+  <rect x="44" y="134" width="112" height="52" rx="16" fill="#f0f4f8" stroke="#c8d4e0" stroke-width="2.5"/>
+
+  <!-- Arms -->
+  <rect x="14" y="144" width="30" height="12" rx="6" fill="#e8edf2" stroke="#c8d4e0" stroke-width="1.5"/>
+  <rect x="156" y="144" width="30" height="12" rx="6" fill="#e8edf2" stroke="#c8d4e0" stroke-width="1.5"/>
+
+  <!-- Body buttons -->
+  <circle cx="100" cy="150" r="5" fill="#7cba6d"/>
+  <circle cx="88" cy="166" r="3.5" fill="#5b8def"/>
+  <circle cx="100" cy="166" r="3.5" fill="#e8c84a"/>
+  <circle cx="112" cy="166" r="3.5" fill="#e8744a"/>
 </svg>
