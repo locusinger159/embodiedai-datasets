@@ -8,18 +8,15 @@ hero:
   text: "具身智能数据集导航"
   tagline: "全球具身智能、机器人、人形机器人数据集情报站"
   image:
-    src: /logo-large.svg
+    src: /logo.png
     alt: EmbodiedAI Datasets
   actions:
     - theme: brand
       text: 查看全部数据集
       link: /datasets/
     - theme: alt
-      text: 按机器人类型浏览
-      link: /categories/robot/
-    - theme: alt
-      text: 按任务类型浏览
-      link: /categories/task/
+      text: 提交数据集
+      link: /submit
 
 features:
   - icon: 📦
@@ -50,24 +47,6 @@ features:
 
 只做一件事：**信息汇总 & 申请导航**，助力算法研发。
 
-### 快速入口
-
-| 分类 | 说明 |
-|------|------|
-| [全部数据集](/datasets/) | 查看所有收录的数据集 |
-| [按机器人类型](/categories/robot/) | 人形 / 机械臂 / 移动 / 四足 / 仿真 |
-| [按任务类型](/categories/task/) | 抓取 / 操作 / 导航 / 装配 / 交互 |
-| [提交数据集](/submit) | 欢迎提交新数据集 |
-
-### 数据集统计
-
-::: tip 最新统计
-- **开源数据集**: 33 个
-- **闭源/可申请**: 16 个
-- **覆盖机器人类型**: 7 大类
-- **任务类型**: 6 种
-:::
-
 ### 收录标准
 
 1. **真实性**: 只收录真实存在的数据集
@@ -77,9 +56,9 @@ features:
 
 ### 联系我们
 
-- 📧 邮箱：embodisets@163.com
-- 💬 欢迎提交数据集，我们审核后收录
-- ⚠️ 声明：本站不提供任何数据集下载，仅做信息导航
+- 邮箱：embodisets@163.com
+- 欢迎提交数据集，我们审核后收录
+- 声明：本站不提供任何数据集下载，仅做信息导航
 
 </div>
 

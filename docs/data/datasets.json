@@ -335,7 +335,8 @@
       "official": "https://deepmind.google/blog/t-diffusion",
       "paper": "https://arxiv.org/abs/2309.12664"
     },
-    "notes": "扩散模型在机器人操纵中的应用，适合动作生成研究。"
+    "notes": "扩散模型在机器人操纵中的应用，适合动作生成研究。",
+    "scale": "多任务操纵数据"
   },
   {
     "id": "agibot-world",
@@ -359,7 +360,7 @@
       "official": "https://agibot-world.com",
       "paper": "https://arxiv.org/abs/2412.14154"
     },
-    "notes": "国内最大人形开源数据集，覆盖真实场景丰富，规模化程度高。"
+    "notes": "国内最大人形开源数据集。2026年更新AGIBOT WORLD 2026版，新增触觉和LiDAR模态。"
   },
   {
     "id": "robomind",
@@ -382,7 +383,7 @@
       "official": "http://www.robomind.cn/",
       "paper": "https://arxiv.org/abs/2410.10000"
     },
-    "notes": "国内统一人形数据协议基准，多构型机器人数据。"
+    "notes": "国内统一人形数据协议基准。RoboMIND 2.0已发布(2025.12)，新增31万+双臂轨迹、触觉增强。"
   },
   {
     "id": "damo-solo",
@@ -399,9 +400,10 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://damo.alibaba.com/"
+      "official": "https://damo.alibaba.com/labs/robot"
     },
-    "notes": "阿里达摩院机器人数据集，适合工业操纵研究。"
+    "notes": "阿里达摩院机器人数据集，适合工业操纵研究。",
+    "scale": "未公开"
   },
   {
     "id": "gr-1-dataset",
@@ -993,5 +995,150 @@
       "official": "https://robonat.github.io"
     },
     "notes": "自然语言交互机器人数据集。"
+  },
+  {
+    "id": "humanoid-everyday",
+    "name": "Humanoid Everyday",
+    "institution": "多所高校联合",
+    "scale": "10.3K 轨迹，300W+ 帧",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作",
+      "家居",
+      "交互"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "LiDAR",
+      "触觉",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://humanoid-everyday.github.io",
+      "paper": "https://arxiv.org/abs/2510.08807"
+    },
+    "notes": "2025年开源人形机器人日常操作数据集，含人机交互场景，支持云端评测。"
+  },
+  {
+    "id": "dexora",
+    "name": "Dexora",
+    "institution": "多所高校联合",
+    "scale": "12.2K 真机 + 100K 仿真",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "装配"
+    ],
+    "modality": [
+      "多视角视觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://github.com/ZZongzheng0918/Dexora"
+    },
+    "notes": "ICRA 2026，36-DoF双臂灵巧手操作数据集，HuggingFace开源，347种物体。"
+  },
+  {
+    "id": "realsource",
+    "name": "RealSource",
+    "institution": "睿尔曼（RealMan）",
+    "scale": "3000㎡训练中心，多场景",
+    "robotType": [
+      "机械臂",
+      "人形机器人"
+    ],
+    "task": [
+      "操作",
+      "装配"
+    ],
+    "modality": [
+      "RGB",
+      "力控",
+      "本体状态"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://www.realman-robotics.com/"
+    },
+    "notes": "2026年发布，北京人形机器人数据训练中心采集，多模态完整度100%。"
+  },
+  {
+    "id": "10kh-realomni",
+    "name": "10Kh RealOmni-Open",
+    "institution": "简智机器人（GenRobot）",
+    "scale": "10000+ 小时，近百万片段",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "家居"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://huggingface.co/datasets/genrobot2025/10Kh-RealOmin-OpenData"
+    },
+    "notes": "目前最大规模开源具身数据集，数据来自3000个真实家庭，HuggingFace可下载。"
+  },
+  {
+    "id": "robocoin",
+    "name": "RoboCOIN",
+    "institution": "多所高校联合",
+    "scale": "18W+ 演示，15 种机器人",
+    "robotType": [
+      "多机型"
+    ],
+    "task": [
+      "操作",
+      "装配"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://robocoin.github.io",
+      "paper": "https://arxiv.org/abs/2511.17441"
+    },
+    "notes": "2025年发布，跨具身双臂操作数据集，421个任务，支持层级能力标注。"
+  },
+  {
+    "id": "openlet",
+    "name": "OpenLET",
+    "institution": "乐聚机器人 + 上海交大等",
+    "scale": "60000+ 分钟，117 原子技能",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作",
+      "交互"
+    ],
+    "modality": [
+      "视觉",
+      "触觉",
+      "力控",
+      "本体状态"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://www.lejurobot.com/"
+    },
+    "notes": "2026年中国首个开源具身智能数据平台，含触觉灵巧操作+全身运动数据。"
   }
 ]

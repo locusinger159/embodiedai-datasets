@@ -1,13 +1,9 @@
 import DefaultTheme from 'vitepress/theme'
-import DatasetCard from './components/DatasetCard.vue'
-import DatasetList from './components/DatasetList.vue'
-import DatasetCategory from './components/DatasetCategory.vue'
+import DatasetTable from './components/DatasetTable.vue'
 
 export default {
   extends: DefaultTheme,
   enhanceApp({ app }) {
-    app.component('DatasetCard', DatasetCard)
-    app.component('DatasetList', DatasetList)
-    app.component('DatasetCategory', DatasetCategory)
+    app.component('DatasetTable', DatasetTable)
   }
 }
