@@ -1,0 +1,59 @@
+/* Wide screen layout - reduce side whitespace */
+:root {
+  --vp-layout-max-width: 100%;
+}
+
+/* Full-width content area */
+.VPDoc .container {
+  max-width: 100% !important;
+  padding: 0 32px !important;
+}
+
+.VPDoc.has-sidebar .container {
+  max-width: 100% !important;
+}
+
+/* Content wrapper */
+.VPContent {
+  padding: 0 !important;
+}
+
+/* Home page hero */
+.VPHero .container {
+  max-width: 100% !important;
+  padding: 0 48px !important;
+}
+
+.VPHomeFeatures .container {
+  max-width: 100% !important;
+  padding: 0 48px !important;
+}
+
+/* Nav bar - wider */
+.VPNavBar .wrapper {
+  max-width: 100% !important;
+  padding: 0 32px !important;
+}
+
+/* Nav content */
+.VPNavBar .container {
+  max-width: 100% !important;
+}
+
+/* Footer */
+.VPFooter .container {
+  max-width: 100% !important;
+  padding: 0 32px !important;
+}
+
+/* Main page content */
+.vp-doc.container {
+  max-width: 100% !important;
+  padding: 0 32px !important;
+}
+
+/* Home page intro */
+.intro-section {
+  max-width: 100%;
+  padding: 2rem 32px;
+}

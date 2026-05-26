@@ -203,29 +203,39 @@ function toggleFilter(set, value) {
   margin-bottom: 0.75rem;
 }
 
-.table-wrapper { overflow-x: auto; }
+.table-wrapper { }
 
 .dataset-table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
-  font-size: 0.85rem;
-  line-height: 1.5;
+  font-size: 0.82rem;
+  line-height: 1.45;
 }
 
 .dataset-table th {
   text-align: left;
-  padding: 0.6rem 0.6rem;
+  padding: 0.5rem 0.4rem;
   border-bottom: 2px solid var(--vp-c-divider);
   font-weight: 600;
   color: var(--vp-c-text-2);
-  white-space: nowrap;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
 }
 
+.dataset-table th:nth-child(1) { width: 22%; }
+.dataset-table th:nth-child(2) { width: 12%; }
+.dataset-table th:nth-child(3) { width: 13%; }
+.dataset-table th:nth-child(4) { width: 13%; }
+.dataset-table th:nth-child(5) { width: 10%; }
+.dataset-table th:nth-child(6) { width: 12%; }
+.dataset-table th:nth-child(7) { width: 8%; }
+.dataset-table th:nth-child(8) { width: 10%; }
+
 .dataset-table td {
-  padding: 0.55rem 0.6rem;
+  padding: 0.45rem 0.4rem;
   border-bottom: 1px solid var(--vp-c-divider-light, var(--vp-c-divider));
   vertical-align: top;
+  word-break: break-all;
 }
 
 .dataset-table tbody tr:hover { background: var(--vp-c-bg-soft); }
