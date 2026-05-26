@@ -21,7 +21,7 @@ export default defineConfig({
       { text: '全部数据集', link: '/datasets/' },
       { text: '按机器人类型', link: '/categories/robot/' },
       { text: '按任务类型', link: '/categories/task/' },
-      { text: '提交数据集', link: '/submit/' }
+      { text: '提交数据集', link: '/submit' }
     ],
 
     sidebar: {

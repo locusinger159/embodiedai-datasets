@@ -9,5 +9,5 @@
 ::: info 继续探索
 - [查看所有数据集](/datasets/)
 - [按机器人类型浏览](/categories/robot/)
-- [提交新数据集](/submit/)
+- [提交新数据集](/submit)
 :::
