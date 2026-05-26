@@ -95,7 +95,7 @@ vercel
 ### 提交数据集页面
 
 用户可以通过以下方式提交数据集：
-- 邮件：submit@embodiedai-data.com
+- 邮件：embodisets@163.com
 - GitHub Issues
 - 在线表单（`docs/submit.md`）
 
@@ -121,7 +121,7 @@ vercel
 
 ## 📧 联系方式
 
-- 邮箱：submit@embodiedai-data.com
+- 邮箱：embodisets@163.com
 - GitHub：[embodiedai-datasets](https://github.com/embodiedai-datasets)
 
 ---
