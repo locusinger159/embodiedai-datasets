@@ -28,7 +28,9 @@ export default defineConfig({
 
     footer: {
       message: '收录全球具身智能、机器人数据集情报，助力算法研发。',
-      copyright: 'Copyright © 2024 EmbodiedAI Datasets'
+      copyright: 'Copyright © 2026 EmbodiedAI Datasets'
     }
-  }
+  },
+
+  scrollOffset: 64
 })

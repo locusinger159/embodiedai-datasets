@@ -55,6 +55,17 @@ function toggleFilter(set, value) {
   if (set.has(value)) set.delete(value)
   else set.add(value)
 }
+
+const hasActiveFilters = computed(() =>
+  selectedRobotTypes.value.size > 0 || selectedTasks.value.size > 0 || selectedTypes.value.size > 0
+)
+
+function resetFilters() {
+  searchQuery.value = ''
+  selectedRobotTypes.value.clear()
+  selectedTasks.value.clear()
+  selectedTypes.value.clear()
+}
 </script>
 
 <template>
@@ -98,7 +109,10 @@ function toggleFilter(set, value) {
       </div>
     </div>
 
-    <div class="result-count">共 {{ filteredDatasets.length }} 个数据集</div>
+    <div class="result-row">
+      <span class="result-count">共 {{ filteredDatasets.length }} 个数据集</span>
+      <button v-if="hasActiveFilters" class="reset-btn" @click="resetFilters">清除筛选</button>
+    </div>
 
     <div class="table-wrapper">
       <table class="dataset-table">
@@ -197,13 +211,29 @@ function toggleFilter(set, value) {
 .filter-tag:hover { border-color: var(--vp-c-brand-1); color: var(--vp-c-brand-1); }
 .filter-tag.active { background: var(--vp-c-brand-1); border-color: var(--vp-c-brand-1); color: #fff; }
 
-.result-count {
-  font-size: 0.85rem;
-  color: var(--vp-c-text-2);
+.result-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 0.75rem;
 }
 
-.table-wrapper { }
+.result-count {
+  font-size: 0.85rem;
+  color: var(--vp-c-text-2);
+}
+
+.reset-btn {
+  padding: 2px 12px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-2);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.reset-btn:hover { border-color: var(--vp-c-brand-1); color: var(--vp-c-brand-1); }
 
 .dataset-table {
   width: 100%;
@@ -235,7 +265,7 @@ function toggleFilter(set, value) {
   padding: 0.45rem 0.4rem;
   border-bottom: 1px solid var(--vp-c-divider-light, var(--vp-c-divider));
   vertical-align: top;
-  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 .dataset-table tbody tr:hover { background: var(--vp-c-bg-soft); }

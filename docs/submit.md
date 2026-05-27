@@ -27,7 +27,7 @@
 
 ### GitHub Issues
 
-在 [GitHub 仓库](https://github.com/embodiedai-datasets/embodiedai-datasets) 提交 Issue。
+在 [GitHub 仓库](https://github.com/locusinger159/embodiedai-datasets) 提交 Issue。
 
 ---
 

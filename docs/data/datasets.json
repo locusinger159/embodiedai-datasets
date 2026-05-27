@@ -402,8 +402,8 @@
     "links": {
       "official": "https://damo.alibaba.com/labs/robot"
     },
-    "notes": "阿里达摩院机器人数据集，适合工业操纵研究。",
-    "scale": "未公开"
+    "notes": "阿里达摩院工业机器人操纵数据集，适合工业场景研究。",
+    "scale": "工业操纵场景"
   },
   {
     "id": "gr-1-dataset",
@@ -435,7 +435,7 @@
       "人形机器人"
     ],
     "task": [
-      "操作"
+      "运动控制"
     ],
     "modality": [
       "本体状态"
@@ -444,11 +444,12 @@
     "links": {
       "official": "https://www.unitree.com/"
     },
-    "notes": "宇树 H1 人形机器人数据，适合运动控制研究。"
+    "notes": "宇树 H1 人形机器人运动控制数据。",
+    "scale": "运动控制数据"
   },
   {
     "id": "isaac-sim-dataset",
-    "name": "Isaac Sim Dataset",
+    "name": "Isaac Sim",
     "institution": "NVIDIA",
     "robotType": [
       "仿真"
@@ -465,7 +466,7 @@
     "links": {
       "official": "https://developer.nvidia.com/isaac-sim"
     },
-    "notes": "NVIDIA 高保真仿真环境，适合 sim-to-real 研究。"
+    "notes": "NVIDIA 高保真机器人仿真平台，含场景模板和 sim-to-real 工具链。"
   },
   {
     "id": "habitat",
@@ -569,7 +570,7 @@
     "links": {
       "official": "https://www.coppeliarobotics.com/"
     },
-    "notes": "跨平台机器人仿真器，适合教育和研究。"
+    "notes": "跨平台机器人仿真平台，含多种预置场景和模型，适合教育和算法验证。"
   },
   {
     "id": "tactile-toolbox",
@@ -994,7 +995,8 @@
     "links": {
       "official": "https://robonat.github.io"
     },
-    "notes": "自然语言交互机器人数据集。"
+    "notes": "自然语言交互机器人数据集。",
+    "scale": "自然语言交互数据集"
   },
   {
     "id": "humanoid-everyday",
