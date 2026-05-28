@@ -1,12 +1,16 @@
-/* Wide screen layout - reduce side whitespace */
+/* Wide screen layout - minimal side whitespace */
 
 /* Full-width content area */
 .VPDoc .container {
   max-width: 100% !important;
-  padding: 0 24px !important;
+  padding: 0 16px !important;
 }
 
 .VPDoc.has-sidebar .container {
+  max-width: 100% !important;
+}
+
+.VPDoc .content-container {
   max-width: 100% !important;
 }
 
@@ -29,7 +33,7 @@
 /* Nav bar - wider */
 .VPNavBar .wrapper {
   max-width: 100% !important;
-  padding: 0 24px !important;
+  padding: 0 16px !important;
 }
 
 .VPNavBar .container {
@@ -39,22 +43,27 @@
 /* Footer */
 .VPFooter .container {
   max-width: 100% !important;
-  padding: 0 24px !important;
+  padding: 0 16px !important;
 }
 
 /* Main page content */
 .vp-doc.container {
   max-width: 100% !important;
-  padding: 0 24px !important;
+  padding: 0 16px !important;
 }
 
 /* Home page intro */
 .intro-section {
   max-width: 100%;
-  padding: 2rem 24px;
+  padding: 2rem 16px;
 }
 
-/* Fix anchor links hidden behind fixed navbar */
+/* Fix anchor links and page titles hidden behind fixed navbar */
 h1[id], h2[id], h3[id], h4[id] {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 96px;
+}
+
+/* Ensure page content starts below navbar */
+.vp-doc {
+  padding-top: 8px;
 }

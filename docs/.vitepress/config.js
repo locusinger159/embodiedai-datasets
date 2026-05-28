@@ -32,5 +32,5 @@ export default defineConfig({
     }
   },
 
-  scrollOffset: 64
+  scrollOffset: 80
 })
