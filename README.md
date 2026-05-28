@@ -2,128 +2,117 @@
 
 > EmbodiedAI Datasets — 全球具身智能、机器人、人形机器人数据集情报站
 
-## 🚀 快速开始
+🌐 **线上地址**: [superdata-robotai.com](https://superdata-robotai.com)
 
-### 方式一：本地开发
+## 项目简介
+
+专注收录全球具身智能、人形机器人、机械臂、移动机器人数据集情报。只做信息汇总与申请导航，助力算法研发。
+
+- 📊 收录 **55** 个数据集，覆盖 4 种开放类型
+- 🤖 覆盖 **7** 大机器人类型：人形、机械臂、移动、四足、仿真、触觉、多机型
+- 🎯 覆盖 **6** 种任务类型：抓取、操作、导航、装配、交互、家居
+- 🏛️ 数据来自 **40+** 全球顶级研究机构
+
+## 快速开始
 
 ```bash
 # 克隆项目
-git clone https://github.com/embodiedai-datasets/embodiedai-datasets.git
+git clone https://github.com/locusinger159/embodiedai-datasets.git
 cd embodiedai-datasets
 
-# 安装依赖
-npm install
+# 构建
+node build.cjs
 
-# 启动开发服务器
-npm run dev
+# 本地预览
+npx serve dist
 ```
 
-### 方式二：直接部署到 GitHub Pages
-
-1. Fork 本仓库
-2. 在仓库 Settings → Pages 中启用 GitHub Pages
-3. 选择 `gh-pages` 分支
-4. 访问 `https://yourusername.github.io/embodiedai-datasets`
-
-## 📁 项目结构
+## 项目结构
 
 ```
 embodiedai-datasets/
+├── src/
+│   ├── partials/              # 共享组件
+│   │   ├── head.html          #   页头（CSS、字体、SEO）
+│   │   ├── navbar.html        #   导航栏
+│   │   └── footer.html        #   页脚
+│   └── pages/                 # 页面模板
+│       ├── index.html         #   首页
+│       ├── datasets.html      #   数据集列表页
+│       └── submit.html        #   提交页面
 ├── docs/
-│   ├── .vitepress/
-│   │   └── config.js      # VitePress 配置
-│   ├── index.md           # 首页
-│   ├── datasets/
-│   │   └── index.md       # 数据集列表页
-│   ├── categories/
-│   │   ├── robot/         # 按机器人类型分类
-│   │   │   └── index.md
-│   │   └── task/          # 按任务类型分类
-│   │       └── index.md
-│   └── submit.md          # 提交页面
-├── public/
-│   ├── favicon.svg        # 网站图标
-│   └── logo-large.svg     # 大 logo
-├── package.json
-└── README.md
+│   ├── data/datasets.json     # 数据集数据（唯一数据源）
+│   └── public/                # 静态资源（logo、favicon、CNAME）
+├── build.cjs                  # 构建脚本
+├── dist/                      # 构建输出（部署到 gh-pages）
+└── .github/workflows/deploy.yml  # 自动部署
 ```
 
-## 🌐 部署到其他平台
+## 数据维护
 
-### Vercel
+所有数据集存储在 `docs/data/datasets.json`，格式如下：
 
-```bash
-npm i -g vercel
-vercel
+```json
+{
+  "id": "dataset-id",
+  "name": "数据集名称",
+  "institution": "机构名称",
+  "scale": "数据规模",
+  "robotType": ["人形机器人", "机械臂"],
+  "task": ["操作", "抓取"],
+  "modality": ["视觉", "深度"],
+  "type": "open",
+  "links": {
+    "official": "https://example.com",
+    "paper": "https://arxiv.org/abs/xxxx.xxxxx"
+  },
+  "notes": "一句话点评"
+}
 ```
 
-### Netlify
-
-在 Netlify 上创建新站点，连接到 GitHub 仓库即可。
-
-### 自定义域名
-
-1. 购买域名（如 `embodiedai-data.com`）
-2. 在 DNS 设置中添加 CNAME 记录指向你的托管平台
-3. 在 VitePress 配置中添加 `base` 路径（如果使用子路径）
-
-## 📝 内容更新
+- `type` 取值：`open`（开源）、`partial`（部分开源）、`apply`（可申请）、`closed`（闭源）
 
 ### 添加新数据集
 
-编辑 `docs/datasets/index.md`，按以下格式添加：
+编辑 `docs/data/datasets.json`，在数组末尾追加新条目，提交到 main 分支即可自动部署。
 
-```markdown
-### 新数据集名称
+## 提交数据集
 
-| 字段 | 内容 |
-|------|------|
-| **机构** | xxx |
-| **规模** | xxx |
-| **机器人类型** | xxx |
-| **任务** | xxx |
-| **数据模态** | xxx |
-| **类型** | 🟢 开源 / 🔴 闭源 |
-| **官方链接** | [链接](url) |
-| **论文** | [论文](url) |
+如需提交新数据集，可通过以下方式：
 
-::: tip 备注
-一句话点评
-:::
+- 📧 邮件：embodisets@163.com
+- 🐙 GitHub Issues：[提交 Issue](https://github.com/locusinger159/embodiedai-datasets/issues/new)
+
+## 部署
+
+push 到 main 分支后，GitHub Actions 自动执行：
+
+1. `node build.cjs` — 读取 JSON 数据，生成静态 HTML
+2. 将 `dist/` 目录推送到 `gh-pages` 分支
+3. GitHub Pages 从 `gh-pages` 分支 serve，绑定自定义域名 `superdata-robotai.com`
+
+## 技术栈
+
+- **构建**: Node.js 原生脚本，零外部依赖
+- **样式**: 原生 CSS（渐变蓝 + 深色 Hero + 全宽表格）
+- **字体**: Google Fonts（Noto Sans SC + Inter）
+- **托管**: GitHub Pages + 自定义域名
+
+## 历史版本
+
+v1 基于 VitePress 的版本保留在 `docs/.vitepress/`，可通过以下命令使用：
+
+```bash
+npm install
+npm run build:v1
+npm run preview:v1
 ```
 
-### 提交数据集页面
+## 许可证
 
-用户可以通过以下方式提交数据集：
-- 邮件：embodisets@163.com
-- GitHub Issues
-- 在线表单（`docs/submit.md`）
+本项目仅做信息导航，不提供任何数据集下载。数据集版权归原机构/作者所有。
 
-## 📊 数据集统计
+## 联系方式
 
-- 🟢 开源数据集：26+ 个
-- 🔴 闭源/可申请：14+ 个
-- 🤖 覆盖机器人类型：5 大类
-- 🎯 任务类型：10+ 种
-
-## 🤝 贡献
-
-欢迎提交新的数据集或改进建议！
-
-1. Fork 本仓库
-2. 创建新分支
-3. 提交更改
-4. 创建 Pull Request
-
-## 📄 许可证
-
-本项目仅做信息导航，内容版权归原数据集机构/作者所有。
-
-## 📧 联系方式
-
-- 邮箱：embodisets@163.com
-- GitHub：[embodiedai-datasets](https://github.com/embodiedai-datasets)
-
----
-
-**Made with ❤️ for the Embodied AI Community**
+- 📧 邮箱：embodisets@163.com
+- 🐙 GitHub：[locusinger159/embodiedai-datasets](https://github.com/locusinger159/embodiedai-datasets)
