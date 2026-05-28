@@ -62,6 +62,8 @@ features:
 
 </div>
 
+<PartnersSection />
+
 <style>
 .intro-section {
   padding: 2rem 0;

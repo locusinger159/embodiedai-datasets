@@ -1,5 +1,13 @@
 /* Wide screen layout */
 
+:root {
+  --vp-font-family-base: 'Noto Sans SC', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  font-family: var(--vp-font-family-base);
+}
+
 .VPDoc .container {
   max-width: 100% !important;
   padding: 0 16px !important;
