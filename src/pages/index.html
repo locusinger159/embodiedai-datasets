@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>{{HEAD}}</head>
+<body>
+{{NAVBAR}}
+<section class="hero">
+  <div class="particles"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge"><span>全球机器人数据集情报站</span></div>
+      <h1 class="hero-title"><span>具身智能</span>数据集导航<br>一站式情报汇总</h1>
+      <p class="hero-subtitle">收录全球具身智能、人形机器人、机械臂、移动机器人数据集<br>提供完整字段信息、官方链接和论文引用，助力算法研发</p>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-number"><span class="counter" data-target="{{STAT_TOTAL}}">0</span><span class="accent">+</span></div><div class="stat-label">收录数据集</div></div>
+        <div class="stat-item"><div class="stat-number"><span class="counter" data-target="{{STAT_ORGS}}">0</span><span class="accent">+</span></div><div class="stat-label">合作机构</div></div>
+        <div class="stat-item"><div class="stat-number"><span class="counter" data-target="{{STAT_TYPES}}">0</span><span class="accent">种</span></div><div class="stat-label">机器人类型</div></div>
+      </div>
+      <div class="hero-cta">
+        <a href="/datasets/" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          查看全部数据集
+        </a>
+        <a href="/submit/" class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          提交数据集
+        </a>
+      </div>
+    </div>
+    <div class="hero-mascot">
+      <div class="mascot-container">
+        <div class="mascot-glow"></div>
+        <div class="mascot-robot">
+          <img src="/学生bot.png" alt="Robot Mascot" style="width:280px;height:280px;filter:drop-shadow(0 20px 40px rgba(0,0,0,0.3));">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-light">
+  <div class="section-header scroll-animate">
+    <span class="section-tag">✨ 核心优势</span>
+    <h2 class="section-title">为什么选择我们</h2>
+    <p class="section-desc">专注收录全球具身智能数据集，助力算法研发</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card scroll-animate"><div class="feature-icon">📦</div><h3 class="feature-title">开源数据集</h3><p class="feature-desc">收录所有开源机器人数据集，提供完整字段信息、官方链接和论文引用</p></div>
+    <div class="feature-card scroll-animate"><div class="feature-icon">🔒</div><h3 class="feature-title">闭源 & 可申请</h3><p class="feature-desc">整理闭源数据集和学术合作渠道，助你快速获取所需数据</p></div>
+    <div class="feature-card scroll-animate"><div class="feature-icon">🤖</div><h3 class="feature-title">多机器人类型</h3><p class="feature-desc">覆盖人形机器人、机械臂、移动机器人、四足机器人、仿真环境</p></div>
+    <div class="feature-card scroll-animate"><div class="feature-icon">🎯</div><h3 class="feature-title">多任务场景</h3><p class="feature-desc">抓取、操作、导航、装配、家居、交互等全场景覆盖</p></div>
+    <div class="feature-card scroll-animate"><div class="feature-icon">📊</div><h3 class="feature-title">完整字段信息</h3><p class="feature-desc">机构、规模、模态、类型、备注，一目了然</p></div>
+    <div class="feature-card scroll-animate"><div class="feature-icon">🔗</div><h3 class="feature-title">申请入口导航</h3><p class="feature-desc">提供官方链接和申请渠道，只做导航不提供下载</p></div>
+  </div>
+</section>
+
+<section class="partners-wrap">
+  <h2 class="partners-title">数据来源机构</h2>
+  <div class="partners-grid">{{PARTNERS}}</div>
+</section>
+
+{{FOOTER}}
+
+<script>
+// Counter animation
+function animateCounter(el,target,d){var s=0,i=target/(d/16),c=setInterval(function(){s+=i;if(s>=target){el.textContent=target;clearInterval(c)}else{el.textContent=Math.floor(s)}},16)}
+window.addEventListener('load',function(){document.querySelectorAll('.counter').forEach(function(c,i){setTimeout(function(){animateCounter(c,parseInt(c.getAttribute('data-target')),2000)},500+i*200)})})
+
+// Scroll animation
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1})
+document.querySelectorAll('.scroll-animate').forEach(function(el){obs.observe(el)})
+
+// Navbar scroll effect
+var lastScrollY=window.scrollY
+window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>100?'rgba(15,23,42,0.98)':'rgba(15,23,42,0.95)';n.style.boxShadow=y>100?'0 4px 20px rgba(0,0,0,0.3)':'none';lastScrollY=y})
+</script>
+</body>
+</html>

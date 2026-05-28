@@ -19,18 +19,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
 
       - name: Build
-        run: npm run build
+        run: node build.cjs
 
       - name: Deploy to gh-pages
         run: |
-          touch docs/.vitepress/dist/.nojekyll
-          cd docs/.vitepress/dist
+          touch dist/.nojekyll
+          cd dist
           git init
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
