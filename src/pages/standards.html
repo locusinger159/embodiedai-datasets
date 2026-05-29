@@ -144,7 +144,8 @@ function update(){
 }
 
 function toggleSelect(id){
-  if(selectedIds.has(id))selectedIds.delete(id);else selectedIds.add(id);
+  if(selectedIds.has(id))selectedIds.delete(id);
+  else{if(selectedIds.size>=4)return alert('最多对比 4 个标准');selectedIds.add(id)}
   updateCompareBar();update();
 }
 
@@ -158,16 +159,18 @@ function updateCompareBar(){
 function clearCompare(){selectedIds.clear();updateCompareBar();update();document.getElementById('selectAll').checked=false}
 function openCompare(){
   var items=SS.filter(function(s){return selectedIds.has(s.id)});
-  if(items.length<2)return;
+  if(items.length<2)return;if(items.length>4)items=items.slice(0,4);
   var fields=[{key:'org',label:'发布组织'},{key:'type',label:'标准类型',fmt:lT},{key:'openness',label:'开放程度',fmt:lO},{key:'license',label:'许可证'},{key:'scene',label:'适用场景',fmt:function(v){return v.map(lS).join(', ')}},{key:'modalities',label:'数据模态',fmt:function(v){return v.join(', ')}},{key:'desc',label:'简介'}];
-  var h='<table class="compare-table"><thead><tr><th></th>';
+  var h='<div style="padding:16px 32px;display:flex;align-items:center;gap:8px"><label style="font-size:14px;cursor:pointer"><input type="checkbox" id="highlightDiff" onchange="toggleHighlight()" style="margin-right:6px">高亮不同</label></div>';
+  h+='<table class="compare-table" id="compareTable"><thead><tr><th></th>';
   items.forEach(function(s){h+='<th>'+s.name+'</th>'});
   h+='</tr></thead><tbody>';
-  fields.forEach(function(f){h+='<tr><td class="comp-field">'+f.label+'</td>';items.forEach(function(s){var v=f.fmt?f.fmt(s[f.key]):(s[f.key]||'-');h+='<td>'+v+'</td>'});h+='</tr>'});
+  fields.forEach(function(f){var values=items.map(function(s){var v=f.fmt?f.fmt(s[f.key]):(s[f.key]||'-');return String(v)});var allSame=values.every(function(v){return v===values[0]});h+='<tr><td class="comp-field">'+f.label+'</td>';items.forEach(function(s,i){h+='<td class="'+(allSame?'comp-same':'comp-diff')+'">'+values[i]+'</td>'});h+='</tr>'});
   h+='</tbody></table>';
   document.getElementById('compareContent').innerHTML=h;
   document.getElementById('compareModal').classList.add('visible');
 }
+function toggleHighlight(){var checked=document.getElementById('highlightDiff').checked;document.querySelectorAll('#compareTable .comp-same').forEach(function(td){td.style.opacity=checked?'0.25':'1'})}
 
 function closeCompare(){document.getElementById('compareModal').classList.remove('visible')}
 function handleSearch(){state.search=document.getElementById('searchInput').value;state.page=1;update()}
