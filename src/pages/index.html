@@ -14,14 +14,15 @@
         <div class="stat-item"><div class="stat-number"><span class="counter" data-target="{{STAT_TOTAL}}">0</span><span class="accent">+</span></div><div class="stat-label">收录数据集</div></div>
         <div class="stat-item"><div class="stat-number"><span class="counter" data-target="{{STAT_ORGS}}">0</span><span class="accent">+</span></div><div class="stat-label">合作机构</div></div>
         <div class="stat-item"><div class="stat-number"><span class="counter" data-target="{{STAT_TYPES}}">0</span><span class="accent">种</span></div><div class="stat-label">机器人类型</div></div>
+        <div class="stat-item"><div class="stat-number"><span class="counter" data-target="{{STAT_STANDARDS}}">0</span><span class="accent">+</span></div><div class="stat-label">数据标准</div></div>
       </div>
       <div class="hero-cta">
         <a href="/datasets/" class="btn btn-primary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           查看全部数据集
         </a>
-        <a href="/submit/" class="btn btn-secondary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        <a href="/submit/" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M12 5v14M5 12h14"/></svg>
           提交数据集
         </a>
       </div>
@@ -61,17 +62,13 @@
 {{FOOTER}}
 
 <script>
-// Counter animation
-function animateCounter(el,target,d){var s=0,i=target/(d/16),c=setInterval(function(){s+=i;if(s>=target){el.textContent=target;clearInterval(c)}else{el.textContent=Math.floor(s)}},16)}
-window.addEventListener('load',function(){document.querySelectorAll('.counter').forEach(function(c,i){setTimeout(function(){animateCounter(c,parseInt(c.getAttribute('data-target')),2000)},500+i*200)})})
-
-// Scroll animation
-var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1})
-document.querySelectorAll('.scroll-animate').forEach(function(el){obs.observe(el)})
-
-// Navbar scroll effect
-var lastScrollY=window.scrollY
-window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>100?'rgba(15,23,42,0.98)':'rgba(15,23,42,0.95)';n.style.boxShadow=y>100?'0 4px 20px rgba(0,0,0,0.3)':'none';lastScrollY=y})
+(function(){
+  function animateCounter(el,target,d){var s=0,i=target/(d/16),c=setInterval(function(){s+=i;if(s>=target){el.textContent=target;clearInterval(c)}else{el.textContent=Math.floor(s)}},16)}
+  window.addEventListener('load',function(){document.querySelectorAll('.counter').forEach(function(c,i){setTimeout(function(){animateCounter(c,parseInt(c.getAttribute('data-target')),2000)},500+i*200)})})
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1})
+  document.querySelectorAll('.scroll-animate').forEach(function(el){obs.observe(el)})
+  window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>50?'rgba(11,15,26,0.95)':'rgba(11,15,26,0.85)';n.style.boxShadow=y>50?'0 4px 20px rgba(0,0,0,0.3)':'none'})
+})();
 </script>
 </body>
 </html>

@@ -1,147 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>{{HEAD}}
-<style>
-.submit-layout { display:grid; grid-template-columns:1fr 280px; gap:48px; }
-.submit-section { background:var(--white); border-radius:16px; padding:32px; margin-bottom:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
-.section-title { font-size:22px; font-weight:700; margin-bottom:24px; padding-left:12px; border-left:4px solid var(--primary-start); }
-.welcome-banner { display:flex; align-items:center; gap:16px; padding:20px 24px; background:linear-gradient(135deg,rgba(91,124,255,0.08) 0%,rgba(0,210,255,0.04) 100%); border:1px solid rgba(91,124,255,0.15); border-radius:12px; margin-bottom:24px; }
-.welcome-banner h2 { font-size:1.2rem; margin-bottom:4px; }
-.welcome-banner p { font-size:0.9rem; color:var(--text-secondary); }
-.method-tabs { display:flex; gap:10px; margin-bottom:20px; }
-.method-tab { flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; padding:16px; border:2px solid var(--border); border-radius:10px; background:var(--light-bg); cursor:pointer; transition:all 0.2s; font-family:inherit; }
-.method-tab:hover { border-color:var(--primary-start); }
-.method-tab.active { border-color:var(--primary-start); background:rgba(91,124,255,0.05); }
-.method-tab-icon { font-size:28px; }
-.method-tab-title { font-weight:600; font-size:0.95rem; }
-.email-box { padding:16px; background:var(--light-bg); border-radius:8px; margin-bottom:16px; }
-.email-label { font-size:0.85rem; color:var(--text-secondary); }
-.email-row { display:flex; align-items:center; gap:12px; margin-top:4px; }
-.email-text { font-size:1.1rem; font-weight:600; color:var(--primary-start); }
-.copy-btn { padding:5px 14px; border:1px solid var(--border); border-radius:6px; background:var(--white); font-size:0.85rem; cursor:pointer; transition:all 0.2s; font-family:inherit; }
-.copy-btn:hover { border-color:var(--primary-start); color:var(--primary-start); }
-.copy-btn.copied { background:var(--success); border-color:var(--success); color:var(--white); }
-.fields-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
-.fields-table th { text-align:left; padding:10px 14px; font-size:0.8rem; color:var(--text-secondary); background:var(--light-bg); border-bottom:1px solid var(--border); }
-.fields-table td { padding:12px 14px; font-size:0.88rem; border-bottom:1px solid var(--border); }
-.badge-req { display:inline-block; padding:2px 7px; background:rgba(239,68,68,0.1); color:var(--error); border-radius:4px; font-size:0.7rem; font-weight:600; margin-left:6px; }
-.badge-opt { display:inline-block; padding:2px 7px; background:rgba(100,116,139,0.1); color:var(--text-secondary); border-radius:4px; font-size:0.7rem; font-weight:600; margin-left:6px; }
-.template-box { text-align:center; padding:20px; border:1px dashed var(--primary-start); border-radius:10px; background:rgba(91,124,255,0.03); }
-.template-title { font-size:0.9rem; color:var(--text-secondary); margin-bottom:10px; }
-.template-btn { padding:10px 22px; background:var(--gradient-primary); color:var(--white); border:none; border-radius:8px; font-size:0.9rem; cursor:pointer; font-family:inherit; }
-.template-btn.copied { background:var(--success); }
-.github-info { text-align:center; padding:40px 20px; }
-.github-info p { margin-bottom:16px; color:var(--text-secondary); }
-.github-btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; background:var(--dark-bg); color:var(--white); border-radius:10px; font-size:0.95rem; transition:all 0.3s; }
-.github-btn:hover { transform:translateY(-2px); }
-.faq-section { background:var(--white); border-radius:16px; padding:32px; margin-bottom:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
-.faq-item { border-bottom:1px solid var(--border); }
-.faq-item:last-child { border-bottom:none; }
-.faq-question { width:100%; padding:18px 0; background:none; border:none; display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:0.95rem; font-weight:500; font-family:inherit; color:var(--text-primary); text-align:left; }
-.faq-arrow { font-size:0.7rem; color:var(--text-light); transition:transform 0.2s; }
-.faq-arrow.open { transform:rotate(180deg); }
-.faq-answer { display:none; padding:0 0 18px; font-size:0.9rem; color:var(--text-secondary); line-height:1.7; }
-.faq-answer.open { display:block; }
-.disclaimer { padding:20px; background:rgba(245,158,11,0.05); border:1px solid rgba(245,158,11,0.15); border-radius:10px; }
-.disclaimer-title { font-weight:600; color:var(--warning); margin-bottom:8px; }
-.disclaimer ul { padding-left:18px; color:var(--text-secondary); font-size:0.9rem; }
-.disclaimer li { margin-bottom:4px; }
-.sidebar { position:sticky; top:100px; height:fit-content; }
-.sidebar-card { background:var(--white); border-radius:16px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04); margin-bottom:20px; }
-.sidebar-title { font-size:0.8rem; font-weight:600; color:var(--text-secondary); margin-bottom:14px; text-transform:uppercase; letter-spacing:0.5px; }
-.toc-link { display:block; padding:10px 14px; font-size:0.9rem; color:var(--text-secondary); border-radius:8px; transition:all 0.2s; border-left:3px solid transparent; }
-.toc-link:hover { background:var(--light-bg); color:var(--text-primary); }
-.toc-link.active { background:rgba(91,124,255,0.08); color:var(--primary-start); border-left-color:var(--primary-start); }
-.quick-link { display:flex; align-items:center; gap:8px; padding:10px 14px; background:var(--light-bg); border-radius:8px; font-size:0.9rem; color:var(--text-secondary); margin-bottom:8px; transition:all 0.2s; }
-.quick-link:hover { background:var(--gradient-primary); color:var(--white); }
-@media (max-width:1024px){ .submit-layout{grid-template-columns:1fr} .sidebar{display:none} }
-@media (max-width:768px){ .method-tabs{flex-direction:column} .welcome-banner{flex-direction:column;text-align:center} }
-</style>
-</head>
+<head>{{HEAD}}</head>
 <body>
 {{NAVBAR}}
-<main class="main-container">
-  <div class="submit-layout">
-    <div>
-      <div class="page-header"><h1 class="page-title">提交数据集</h1></div>
-      <div class="welcome-banner">
-        <span style="font-size:2.5rem;">📬</span>
-        <div><h2>欢迎提交</h2><p>感谢你为具身智能社区贡献数据集信息！我们会尽快审核并收录。</p></div>
-      </div>
+<section class="page-hero">
+  <div class="page-hero-content centered">
+    <h1 class="page-hero-title">提交数据集</h1>
+    <p class="page-hero-subtitle">帮助我们完善具身智能数据集情报站</p>
+  </div>
+</section>
 
-      <div class="submit-section" id="method">
-        <h2 class="section-title">提交方式</h2>
-        <div class="method-tabs">
-          <button class="method-tab active" onclick="switchMethod('email')"><span class="method-tab-icon">📧</span><span class="method-tab-title">邮件提交</span></button>
-          <button class="method-tab" onclick="switchMethod('github')"><span class="method-tab-icon">🐙</span><span class="method-tab-title">GitHub Issue</span></button>
-        </div>
-        <div id="emailContent">
-          <div class="email-box">
-            <div class="email-label">发送邮件至</div>
-            <div class="email-row"><span class="email-text">embodisets@163.com</span><button class="copy-btn" id="copyEmailBtn" onclick="copyEmail()">复制</button></div>
-          </div>
-          <p style="margin-bottom:12px;">请包含以下信息：</p>
-          <table class="fields-table">
-            <thead><tr><th>字段</th><th>说明</th></tr></thead>
-            <tbody>
-              <tr><td><strong>数据集名称</strong><span class="badge-req">必填</span></td><td>官方名称</td></tr>
-              <tr><td><strong>机构/作者</strong><span class="badge-req">必填</span></td><td>发布机构或研究团队</td></tr>
-              <tr><td><strong>官方链接</strong><span class="badge-req">必填</span></td><td>官网或 GitHub</td></tr>
-              <tr><td><strong>数据规模</strong><span class="badge-opt">选填</span></td><td>轨迹数/场景数等</td></tr>
-              <tr><td><strong>机器人类型</strong><span class="badge-opt">选填</span></td><td>人形/机械臂/移动等</td></tr>
-              <tr><td><strong>任务类型</strong><span class="badge-opt">选填</span></td><td>抓取/导航/操作等</td></tr>
-              <tr><td><strong>论文链接</strong><span class="badge-opt">选填</span></td><td>相关论文链接</td></tr>
-            </tbody>
-          </table>
-          <div class="template-box">
-            <div class="template-title">一键复制邮件模板</div>
-            <button class="template-btn" id="templateBtn" onclick="copyTemplate()">复制邮件模板</button>
-          </div>
-        </div>
-        <div id="githubContent" style="display:none;">
-          <div class="github-info">
-            <p>访问我们的 GitHub 仓库，创建新的 Issue 提交数据集信息</p>
-            <a href="https://github.com/locusinger159/embodiedai-datasets/issues/new" target="_blank" class="github-btn">前往 GitHub 仓库</a>
-          </div>
-        </div>
-      </div>
+<section class="submit-section">
+  <div class="method-tabs">
+    <button class="method-tab active" data-method="email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+      邮件提交
+    </button>
+    <button class="method-tab" data-method="github">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub 提交
+    </button>
+  </div>
 
-      <div class="faq-section" id="faq">
-        <h2 class="section-title">常见问题</h2>
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">提交后多久审核？<span class="faq-arrow">▾</span></button><div class="faq-answer"><p>我们会在 3-5 个工作日内审核并回复。审核通过后，数据集将立即收录到导航站。</p></div></div>
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">可以提交闭源数据集吗？<span class="faq-arrow">▾</span></button><div class="faq-answer"><p>可以，只要数据集真实存在且有获取渠道。我们会标注为闭源或可申请，并提供申请入口。</p></div></div>
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">如何更新已有数据集信息？<span class="faq-arrow">▾</span></button><div class="faq-answer"><p>通过同样的方式联系我们，说明需要更新的数据集和修改内容，我们会及时更新。</p></div></div>
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">我的数据集被收录了，如何删除？<span class="faq-arrow">▾</span></button><div class="faq-answer"><p>请通过邮件联系我们，说明删除原因，我们会在 24 小时内处理。</p></div></div>
-      </div>
+  <div class="method-content active" id="email-content">
+    <div class="email-card">
+      <div class="email-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg></div>
+      <h2 class="email-title">通过邮件提交</h2>
+      <p class="email-desc">发送数据集信息到我们的邮箱，审核后尽快添加到导航站</p>
+      <div class="email-address"><span>embodisets@163.com</span><button class="copy-btn" onclick="copyEmail()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg><span class="copy-text">复制邮箱</span></button></div>
+      <div class="email-template">
+        <div class="email-template-title">建议邮件模板</div>
+        <div class="email-template-content">主题：数据集提交 - [数据集名称]
 
-      <div class="disclaimer">
-        <p class="disclaimer-title">⚠️ 免责声明</p>
-        <ul><li>本网站仅做信息导航，不提供任何数据集下载</li><li>数据集版权归原机构/作者所有</li><li>如有版权问题，请联系删除</li></ul>
+数据集名称：
+发布机构：
+机器人类型：
+任务类型：
+开放程度：开源/可申请/闭源
+官方链接：
+论文链接：
+GitHub 链接：
+简介描述：
+
+感谢您的贡献！</div>
       </div>
     </div>
-
-    <aside class="sidebar">
-      <div class="sidebar-card">
-        <h3 class="sidebar-title">本页导航</h3>
-        <a href="#method" class="toc-link active">提交方式</a>
-        <a href="#faq" class="toc-link">常见问题</a>
-      </div>
-      <div class="sidebar-card">
-        <h3 class="sidebar-title">快速链接</h3>
-        <a href="/datasets/" class="quick-link">📂 浏览数据集</a>
-        <a href="mailto:embodisets@163.com" class="quick-link">📧 联系邮箱</a>
-        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" class="quick-link">🐙 GitHub 仓库</a>
-      </div>
-    </aside>
   </div>
-</main>
+
+  <div class="method-content" id="github-content">
+    <div class="github-card">
+      <div class="github-header">
+        <div class="github-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></div>
+        <div><h2 class="github-title">通过 GitHub 提交</h2><p class="github-desc">Fork 仓库，添加数据集信息后提交 Pull Request</p></div>
+      </div>
+      <div class="github-steps">
+        <div class="github-step">
+          <div class="step-number">1</div>
+          <div class="step-content"><div class="step-title">Fork 仓库</div><div class="step-desc">点击 Fork 按钮，将项目复制到您的 GitHub 账户</div><a href="https://github.com/locusinger159/embodiedai-datasets/fork" target="_blank" class="step-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>前往 Fork</a></div>
+        </div>
+        <div class="github-step">
+          <div class="step-number">2</div>
+          <div class="step-content"><div class="step-title">添加数据集</div><div class="step-desc">在 docs/data/datasets.json 文件中添加您的数据集信息，遵循现有 JSON 格式</div></div>
+        </div>
+        <div class="github-step">
+          <div class="step-number">3</div>
+          <div class="step-content"><div class="step-title">提交 Pull Request</div><div class="step-desc">提交 PR 后，我们会尽快审核并合并您的贡献</div><a href="https://github.com/locusinger159/embodiedai-datasets/pulls" target="_blank" class="step-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><path d="M11 18H8a2 2 0 01-2-2V9"/></svg>创建 Pull Request</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="faq-content">
+    <div class="section-header">
+      <span class="section-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常见问题</span>
+      <h2 class="section-title">提交指南</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item active"><div class="faq-question" onclick="this.parentElement.classList.toggle('active')">什么样的数据集可以被收录？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-answer"><div class="faq-answer-content">我们收录与具身智能、机器人相关的数据集，包括但不限于：人形机器人、机械臂、移动机器人、四足机器人等。数据集可以是开源的、可申请获取的，或者是闭源但有公开信息的。</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('active')">提交后多久会被审核？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-answer"><div class="faq-answer-content">通常情况下，我们会在 3-5 个工作日内完成审核。如果信息完整且符合收录标准，会尽快添加到导航站中。</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('active')">需要提供哪些信息？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-answer"><div class="faq-answer-content">建议提供：数据集名称、发布机构、机器人类型、任务类型、开放程度（开源/可申请/闭源）、官方链接、论文链接、GitHub 链接（如有）、以及简要描述。信息越完整，审核通过越快。</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('active')">可以更新已有数据集的信息吗？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-answer"><div class="faq-answer-content">当然可以！如果发现已有数据集的信息有误或需要更新，欢迎通过同样的方式提交更新。请在邮件主题或 PR 描述中注明是信息更新。</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('active')">网站会提供数据集下载吗？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-answer"><div class="faq-answer-content">本网站仅做信息导航，不提供任何数据集的直接下载。所有数据集的版权归原机构/作者所有。我们会提供官方链接，您可以通过这些链接申请或下载数据集。</div></div></div>
+    </div>
+  </div>
+</section>
 {{FOOTER}}
 
 <script>
-function switchMethod(m){ document.querySelectorAll('.method-tab').forEach(function(t,i){ t.classList.toggle('active',(m==='email'&&i===0)||(m==='github'&&i===1)); }); document.getElementById('emailContent').style.display=m==='email'?'block':'none'; document.getElementById('githubContent').style.display=m==='github'?'block':'none'; }
-function copyEmail(){ navigator.clipboard.writeText('embodisets@163.com').then(function(){ var b=document.getElementById('copyEmailBtn'); b.textContent='✓ 已复制'; b.classList.add('copied'); setTimeout(function(){ b.textContent='复制'; b.classList.remove('copied'); },2000); }); }
-function copyTemplate(){ var t='【数据集提交】\n\n数据集名称：[请填写]\n机构/作者：[请填写]\n官方链接：[请填写]\n数据规模：[选填]\n机器人类型：[选填]\n任务类型：[选填]\n论文链接：[选填]\n\n备注：[其他说明]'; navigator.clipboard.writeText(t).then(function(){ var b=document.getElementById('templateBtn'); b.textContent='✓ 已复制到剪贴板'; b.classList.add('copied'); setTimeout(function(){ b.textContent='复制邮件模板'; b.classList.remove('copied'); },2000); }); }
-function toggleFaq(btn){ var answer=btn.nextElementSibling; var arrow=btn.querySelector('.faq-arrow'); answer.classList.toggle('open'); arrow.classList.toggle('open'); }
+document.querySelectorAll('.method-tab').forEach(function(t){t.addEventListener('click',function(){var m=this.dataset.method;document.querySelectorAll('.method-tab').forEach(function(x){x.classList.remove('active')});this.classList.add('active');document.querySelectorAll('.method-content').forEach(function(x){x.classList.remove('active')});document.getElementById(m+'-content').classList.add('active')})});
+function copyEmail(){navigator.clipboard.writeText('embodisets@163.com').then(function(){var b=document.querySelector('.copy-btn');var t=b.querySelector('.copy-text');b.classList.add('copied');t.textContent='已复制';setTimeout(function(){b.classList.remove('copied');t.textContent='复制邮箱'},2000)})}
+window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>50?'rgba(11,15,26,0.95)':'rgba(11,15,26,0.85)';n.style.boxShadow=y>50?'0 4px 20px rgba(0,0,0,0.3)':'none'})
 </script>
 </body>
 </html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>{{HEAD}}</head>
+<body>
+{{NAVBAR}}
+<section class="page-hero">
+  <div class="page-hero-content">
+    <h1 class="page-hero-title">数据标准与评测基准</h1>
+    <p class="page-hero-subtitle">收录具身智能行业发布的数据格式标准、评测基准与行业标准</p>
+    <div class="search-bar">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" class="search-input" placeholder="搜索标准名称、发布组织、关键词..." id="searchInput">
+      </div>
+      <button class="search-btn" onclick="handleSearch()">搜索</button>
+    </div>
+  </div>
+</section>
+
+<section class="filter-section">
+  <div class="filter-content">
+    <div class="filter-row">
+      <div class="filter-group"><span class="filter-label">标准类型</span><div class="filter-chips" id="typeFilters"></div></div>
+      <div class="filter-group"><span class="filter-label">开放程度</span><div class="filter-chips" id="opennessFilters"></div></div>
+      <div class="filter-group"><span class="filter-label">适用场景</span><div class="filter-chips" id="sceneFilters"></div></div>
+      <div class="filter-actions">
+        <select class="sort-select" id="sortSelect"><option value="name">名称排序</option></select>
+        <div class="view-toggle">
+          <button class="view-btn active" data-view="table" title="表格视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></button>
+          <button class="view-btn" data-view="card" title="卡片视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></button>
+        </div>
+        <button class="clear-filters" onclick="clearFilters()">清除筛选</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="datasets-section">
+  <div class="table-view" id="tableView">
+    <table class="d-table">
+      <thead><tr><th style="width:40px"><input type="checkbox" class="std-checkbox" id="selectAll" title="全选"></th><th>标准名称</th><th>发布组织</th><th>类型</th><th>开放程度</th><th>适用场景</th><th>数据模态</th><th>相关链接</th></tr></thead>
+      <tbody id="stb"></tbody>
+    </table>
+  </div>
+  <div class="card-view" id="cardView"></div>
+  <div class="pagination" id="pagination"></div>
+</section>
+
+<div class="compare-bar" id="compareBar">
+  <span class="compare-bar-text">已选择 <span id="compareCount">0</span> 个标准</span>
+  <button class="compare-bar-btn" id="compareBtn" disabled onclick="openCompare()">开始对比</button>
+  <button class="compare-clear-btn" onclick="clearCompare()">清除</button>
+</div>
+
+<div class="compare-modal-overlay" id="compareModal">
+  <div class="compare-modal">
+    <div class="compare-modal-header"><span class="compare-modal-title">标准对比</span><button class="compare-close-btn" onclick="closeCompare()">✕</button></div>
+    <div id="compareContent"></div>
+  </div>
+</div>
+
+<section class="insights-section">
+  <div class="insights-content">
+    <div class="section-header">
+      <span class="section-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>行业趋势</span>
+      <h2 class="section-title">标准演进趋势</h2>
+      <p class="section-desc">具身智能数据标准化正处于关键窗口期</p>
+    </div>
+    <div class="insights-grid">
+      <div class="insight-card"><div class="insight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="insight-title">RLDS 已成为事实标准</div><div class="insight-desc">Google 提出的 RLDS 格式已被 Open X-Embodiment 等 60+ 数据集采用，成为机器人学习数据的主流标准格式，大多数 VLA 模型训练围绕 RLDS 展开。</div></div>
+      <div class="insight-card"><div class="insight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="insight-title">2025-2026 标准化关键窗口</div><div class="insight-desc">中国工信部成立标委会、上海发布数据集标准、ITU 推动标准化展望，全球标准争夺加速。具身智能首次写入 2026 年中国政府工作报告。</div></div>
+      <div class="insight-card"><div class="insight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="insight-title">开源与闭源并存格局</div><div class="insight-desc">Google/NVIDIA 在模型架构上开源但训练数据闭源；Hugging Face 走"开源 Schema + 服务"路线；开放格式与闭源数据并存成为常态。</div></div>
+      <div class="insight-card"><div class="insight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div><div class="insight-title">从 Trajectory 到 Task-Level</div><div class="insight-desc">标准正在从轨迹层（Open X-Embodiment）向任务级语义层演进，覆盖人类视频、VR、动捕、遥操作等异构数据源的统一描述。</div></div>
+      <div class="insight-card"><div class="insight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><div class="insight-title">仿真与真实数据标准并行</div><div class="insight-desc">OpenUSD/Isaac Sim 代表仿真数据标准，MCAP/ROS 2 代表真实数据记录标准，两者之间的转换和对齐是重要发展方向。</div></div>
+      <div class="insight-card"><div class="insight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></div><div class="insight-title">评测基准走向统一平台</div><div class="insight-desc">CALVIN/LIBERO 等传统基准侧重特定任务，新项目试图构建跨模拟器、跨任务的统一评测框架，提出多级泛化能力评测基准。</div></div>
+    </div>
+  </div>
+</section>
+{{FOOTER}}
+
+<script>
+var SS={{STANDARDS_JSON}};
+var state={search:'',type:[],openness:[],scene:[],page:1,ps:15,sort:'',view:'table'};
+var selectedIds=new Set();
+
+function lT(v){return{format:'数据格式',benchmark:'评测基准',industry:'行业标准'}[v]||v}
+function cT(v){return{format:'type-format',benchmark:'type-benchmark',industry:'type-industry'}[v]||''}
+function lO(v){return{open:'完全开源',partial:'部分开源',standard:'行业标准'}[v]||v}
+function cO(v){return{open:'type-open',partial:'type-partial',standard:'type-partial'}[v]||''}
+function dO(v){return{open:'●',partial:'◐',standard:'◆'}[v]||''}
+function lS(v){return{real:'真机',sim:'仿真',general:'通用'}[v]||v}
+
+function buildFilters(){
+  var types=[...new Set(SS.map(function(s){return s.type}))];
+  var opens=[...new Set(SS.map(function(s){return s.openness}))];
+  var scenes=[...new Set(SS.flatMap(function(s){return s.scene||[]}))];
+  document.getElementById('typeFilters').innerHTML=types.map(function(t){return '<button class="filter-chip'+(state.type.includes(t)?' active':'')+'" data-f="type" data-v="'+t+'">'+lT(t)+'</button>'}).join('');
+  document.getElementById('opennessFilters').innerHTML=opens.map(function(o){return '<button class="filter-chip'+(state.openness.includes(o)?' active':'')+'" data-f="openness" data-v="'+o+'">'+lO(o)+'</button>'}).join('');
+  document.getElementById('sceneFilters').innerHTML=scenes.map(function(s){return '<button class="filter-chip'+(state.scene.includes(s)?' active':'')+'" data-f="scene" data-v="'+s+'">'+lS(s)+'</button>'}).join('');
+  bindChips();
+}
+
+function bindChips(){
+  document.querySelectorAll('.filter-chip').forEach(function(c){c.onclick=function(){var f=this.dataset.f,v=this.dataset.v;var arr=state[f];var i=arr.indexOf(v);if(i>-1)arr.splice(i,1);else arr.push(v);state.page=1;update()}})
+}
+
+function filterData(){
+  var r=SS;
+  if(state.search){var q=state.search.toLowerCase();r=r.filter(function(s){return s.name.toLowerCase().indexOf(q)>-1||s.org.toLowerCase().indexOf(q)>-1||s.desc.toLowerCase().indexOf(q)>-1})}
+  if(state.type.length)r=r.filter(function(s){return state.type.indexOf(s.type)>-1});
+  if(state.openness.length)r=r.filter(function(s){return state.openness.indexOf(s.openness)>-1});
+  if(state.scene.length)r=r.filter(function(s){return s.scene.some(function(v){return state.scene.indexOf(v)>-1})});
+  return r;
+}
+
+function renderTable(data){
+  var start=(state.page-1)*state.ps,page=data.slice(start,start+state.ps);
+  document.getElementById('stb').innerHTML=page.map(function(s){
+    return '<tr class="'+(selectedIds.has(s.id)?'selected':'')+'"><td><input type="checkbox" class="std-checkbox" '+(selectedIds.has(s.id)?'checked':'')+' onchange="toggleSelect(\''+s.id+'\')"></td><td><a href="'+(s.links.site||s.links.github||'#')+'" target="_blank" class="data-name-cell">'+s.name+'</a></td><td class="data-org">'+s.org+'</td><td><span class="std-type-badge '+cT(s.type)+'">'+lT(s.type)+'</span></td><td><span class="type-badge '+cO(s.openness)+'">'+dO(s.openness)+' '+lO(s.openness)+'</span></td><td><div class="data-tags">'+(s.scene||[]).map(function(x){return '<span class="data-tag">'+lS(x)+'</span>'}).join('')+'</div></td><td><div class="data-tags">'+(s.modalities||[]).slice(0,3).map(function(m){return '<span class="data-tag">'+m+'</span>'}).join('')+(s.modalities&&s.modalities.length>3?'<span class="data-tag">+'+(s.modalities.length-3)+'</span>':'')+'</div></td><td><div class="data-links">'+(s.links.site?'<a href="'+s.links.site+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>官网</a>':'')+(s.links.github?'<a href="'+s.links.github+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>':'')+'</div></td></tr>';
+  }).join('');
+}
+
+function renderCards(data){
+  var start=(state.page-1)*state.ps,page=data.slice(start,start+state.ps);
+  document.getElementById('cardView').innerHTML=page.map(function(s){
+    return '<div class="data-card'+(selectedIds.has(s.id)?' selected':'')+'" style="position:relative"><input type="checkbox" class="std-card-checkbox" '+(selectedIds.has(s.id)?'checked':'')+' onchange="toggleSelect(\''+s.id+'\')"><div class="card-header"><div><div class="card-title">'+s.name+'</div><div class="card-org">'+s.org+'</div></div><span class="std-type-badge '+cT(s.type)+'">'+lT(s.type)+'</span></div><p class="card-desc">'+s.desc+'</p><div class="card-meta"><span class="type-badge '+cO(s.openness)+'">'+dO(s.openness)+' '+lO(s.openness)+'</span>'+(s.scene||[]).map(function(x){return '<span class="data-tag">'+lS(x)+'</span>'}).join('')+'</div><div class="card-footer"><div class="data-tags">'+(s.modalities||[]).slice(0,3).map(function(m){return '<span class="data-tag">'+m+'</span>'}).join('')+(s.modalities&&s.modalities.length>3?'<span class="data-tag">+'+(s.modalities.length-3)+'</span>':'')+'</div><a href="'+(s.links.site||s.links.github||'#')+'" target="_blank" class="link-btn">查看 →</a></div></div>';
+  }).join('');
+}
+
+function renderPagination(data){
+  var tp=Math.ceil(data.length/state.ps),p=document.getElementById('pagination');
+  if(tp<=1){p.innerHTML='';return}
+  var h='<button class="page-btn"'+(state.page===1?' disabled':'')+' onclick="goPage('+(state.page-1)+')">←</button>';
+  var s=Math.max(1,state.page-2),e=Math.min(tp,s+4);
+  for(var i=s;i<=e;i++)h+='<button class="page-btn'+(i===state.page?' active':'')+'" onclick="goPage('+i+')">'+i+'</button>';
+  h+='<button class="page-btn"'+(state.page===tp?' disabled':'')+' onclick="goPage('+(state.page+1)+')">→</button>';
+  p.innerHTML=h;
+}
+
+function update(){
+  var f=filterData();buildFilters();renderTable(f);renderCards(f);renderPagination(f);
+  document.getElementById('tableView').style.display=state.view==='table'?'block':'none';
+  document.getElementById('cardView').classList.toggle('active',state.view==='card');
+}
+
+function toggleSelect(id){
+  if(selectedIds.has(id))selectedIds.delete(id);else selectedIds.add(id);
+  updateCompareBar();update();
+}
+
+function updateCompareBar(){
+  var bar=document.getElementById('compareBar'),c=selectedIds.size;
+  document.getElementById('compareCount').textContent=c;
+  document.getElementById('compareBtn').disabled=c<2;
+  bar.classList.toggle('visible',c>0);
+}
+
+function clearCompare(){selectedIds.clear();updateCompareBar();update();document.getElementById('selectAll').checked=false}
+function openCompare(){
+  var items=SS.filter(function(s){return selectedIds.has(s.id)});
+  if(items.length<2)return;
+  var fields=[{key:'org',label:'发布组织'},{key:'type',label:'标准类型',fmt:lT},{key:'openness',label:'开放程度',fmt:lO},{key:'license',label:'许可证'},{key:'scene',label:'适用场景',fmt:function(v){return v.map(lS).join(', ')}},{key:'modalities',label:'数据模态',fmt:function(v){return v.join(', ')}},{key:'desc',label:'简介'}];
+  var h='<table class="compare-table"><thead><tr><th></th>';
+  items.forEach(function(s){h+='<th>'+s.name+'</th>'});
+  h+='</tr></thead><tbody>';
+  fields.forEach(function(f){h+='<tr><td class="comp-field">'+f.label+'</td>';items.forEach(function(s){var v=f.fmt?f.fmt(s[f.key]):(s[f.key]||'-');h+='<td>'+v+'</td>'});h+='</tr>'});
+  h+='</tbody></table>';
+  document.getElementById('compareContent').innerHTML=h;
+  document.getElementById('compareModal').classList.add('visible');
+}
+
+function closeCompare(){document.getElementById('compareModal').classList.remove('visible')}
+function handleSearch(){state.search=document.getElementById('searchInput').value;state.page=1;update()}
+function clearFilters(){state.search='';state.type=[];state.openness=[];state.scene=[];state.page=1;document.getElementById('searchInput').value='';update()}
+function goPage(p){state.page=p;update();window.scrollTo({top:400,behavior:'smooth'})}
+
+document.getElementById('searchInput').addEventListener('keypress',function(e){if(e.key==='Enter')handleSearch()});
+document.querySelectorAll('.view-btn').forEach(function(b){b.addEventListener('click',function(){state.view=this.dataset.view;document.querySelectorAll('.view-btn').forEach(function(x){x.classList.remove('active')});this.classList.add('active');update()})});
+document.getElementById('selectAll').addEventListener('change',function(){var f=filterData();if(this.checked)f.forEach(function(s){selectedIds.add(s.id)});else selectedIds.clear();updateCompareBar();update()});
+document.getElementById('compareModal').addEventListener('click',function(e){if(e.target===this)closeCompare()});
+window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>50?'rgba(11,15,26,0.95)':'rgba(11,15,26,0.85)';n.style.boxShadow=y>50?'0 4px 20px rgba(0,0,0,0.3)':'none'});
+
+update();
+</script>
+</body>
+</html>

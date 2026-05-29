@@ -1,260 +1,123 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>{{HEAD}}
-<style>
-.filter-section { background:var(--white); border-radius:16px; padding:24px; margin-bottom:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
-.search-wrap { position:relative; margin-bottom:20px; }
-.search-wrap svg { position:absolute; left:18px; top:50%; transform:translateY(-50%); color:var(--text-light); width:20px; height:20px; }
-.search-input { width:100%; padding:14px 20px 14px 50px; font-size:15px; border:2px solid var(--border); border-radius:12px; background:var(--light-bg); transition:all 0.3s; font-family:inherit; }
-.search-input:focus { outline:none; border-color:var(--primary-start); background:var(--white); box-shadow:0 0 0 4px rgba(91,124,255,0.1); }
-.active-filters { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:12px; min-height:32px; }
-.filter-chip { display:inline-flex; align-items:center; gap:6px; padding:6px 12px; background:var(--gradient-primary); color:var(--white); border-radius:50px; font-size:13px; font-weight:500; }
-.chip-remove { width:16px; height:16px; border-radius:50%; background:rgba(255,255,255,0.3); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:12px; transition:background 0.2s; }
-.chip-remove:hover { background:rgba(255,255,255,0.5); }
-.clear-all { padding:6px 12px; background:transparent; border:1px solid var(--border); border-radius:50px; font-size:13px; color:var(--text-secondary); cursor:pointer; transition:all 0.2s; font-family:inherit; }
-.clear-all:hover { border-color:var(--primary-start); color:var(--primary-start); }
-.filter-groups { display:flex; flex-direction:column; gap:14px; }
-.filter-row { display:flex; align-items:flex-start; gap:12px; }
-.filter-row-label { min-width:80px; padding-top:8px; font-size:14px; font-weight:600; }
-.filter-tags { display:flex; flex-wrap:wrap; gap:8px; }
-.filter-tag { display:inline-flex; align-items:center; gap:4px; padding:8px 14px; background:var(--light-bg); border:1px solid var(--border); border-radius:50px; font-size:13px; color:var(--text-secondary); cursor:pointer; transition:all 0.2s; font-family:inherit; }
-.filter-tag:hover { border-color:var(--primary-start); color:var(--primary-start); }
-.filter-tag.active { background:var(--gradient-primary); border-color:transparent; color:var(--white); }
-.filter-tag .count { padding:2px 6px; background:rgba(0,0,0,0.08); border-radius:50px; font-size:11px; }
-.filter-tag.active .count { background:rgba(255,255,255,0.3); }
-.toolbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:8px; }
-.results-count { font-size:15px; color:var(--text-secondary); }
-.view-toggle { display:flex; background:var(--light-bg); border-radius:10px; padding:4px; }
-.view-btn { padding:8px 16px; border:none; background:transparent; border-radius:8px; cursor:pointer; color:var(--text-secondary); font-size:14px; font-family:inherit; transition:all 0.2s; }
-.view-btn.active { background:var(--white); color:var(--primary-start); box-shadow:0 2px 4px rgba(0,0,0,0.05); }
-.table-wrap { background:var(--white); border-radius:16px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
-.d-table { width:100%; border-collapse:collapse; table-layout:fixed; font-size:0.84rem; }
-.d-table th { padding:14px 16px; text-align:left; font-size:13px; font-weight:600; color:var(--text-secondary); background:var(--light-bg); border-bottom:1px solid var(--border); cursor:pointer; white-space:nowrap; user-select:none; }
-.d-table th:hover,.d-table th.sorted { color:var(--primary-start); }
-.d-table th:nth-child(1){width:21%} .d-table th:nth-child(2){width:12%} .d-table th:nth-child(3){width:13%} .d-table th:nth-child(4){width:14%} .d-table th:nth-child(5){width:10%} .d-table th:nth-child(6){width:12%} .d-table th:nth-child(7){width:8%} .d-table th:nth-child(8){width:10%}
-.d-table td { padding:14px 16px; font-size:14px; border-bottom:1px solid var(--border); vertical-align:middle; }
-.d-table tr:hover { background:rgba(91,124,255,0.02); }
-.d-table tr:last-child td { border-bottom:none; }
-.dataset-name { font-weight:600; color:var(--primary-start); cursor:pointer; }
-.dataset-name:hover { color:var(--primary-end); text-decoration:underline; }
-.row-notes { font-size:0.75rem; color:var(--text-light); margin-top:2px; }
-.type-badge { display:inline-block; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600; }
-.type-open { background:rgba(16,185,129,0.1); color:var(--success); }
-.type-partial { background:rgba(245,158,11,0.1); color:var(--warning); }
-.type-closed { background:rgba(239,68,68,0.1); color:var(--error); }
-.link-btn { display:inline-flex; align-items:center; gap:4px; padding:6px 12px; background:var(--light-bg); border-radius:6px; font-size:13px; color:var(--text-secondary); transition:all 0.2s; margin-right:6px; text-decoration:none; }
-.link-btn:hover { background:var(--primary-start); color:var(--white); }
-.cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:20px; }
-.dataset-card { background:var(--white); border-radius:16px; padding:24px; border:1px solid var(--border); transition:all 0.3s; cursor:pointer; }
-.dataset-card:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(91,124,255,0.12); border-color:var(--primary-start); }
-.card-row { font-size:0.85rem; color:var(--text-secondary); margin-bottom:4px; }
-.card-row strong { color:var(--text-primary); }
-.card-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
-.card-tag { padding:3px 8px; background:var(--light-bg); border-radius:6px; font-size:0.75rem; color:var(--text-secondary); }
-.card-notes { margin-top:8px; padding:8px; background:var(--light-bg); border-left:3px solid var(--primary-start); border-radius:0 4px 4px 0; font-size:0.8rem; color:var(--text-secondary); }
-.card-links { display:flex; gap:8px; margin-top:10px; }
-.pagination { display:flex; justify-content:center; align-items:center; gap:8px; margin-top:32px; }
-.page-btn { min-width:40px; height:40px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border); border-radius:10px; background:var(--white); color:var(--text-secondary); font-size:14px; cursor:pointer; transition:all 0.2s; font-family:inherit; }
-.page-btn:hover:not(:disabled){ border-color:var(--primary-start); color:var(--primary-start); }
-.page-btn.active { background:var(--gradient-primary); border-color:transparent; color:var(--white); }
-.page-btn:disabled { opacity:0.5; cursor:not-allowed; }
-.empty-state { text-align:center; padding:80px; background:var(--white); border-radius:16px; }
-.empty-title { font-size:20px; font-weight:600; margin-bottom:8px; }
-.empty-desc { color:var(--text-secondary); margin-bottom:20px; }
-.empty-btn { display:inline-flex; padding:10px 24px; background:var(--gradient-primary); color:var(--white); border:none; border-radius:10px; font-weight:600; cursor:pointer; font-size:15px; font-family:inherit; }
-.help-banner { display:flex; justify-content:space-between; align-items:center; padding:20px 24px; background:linear-gradient(135deg,rgba(91,124,255,0.08) 0%,rgba(0,210,255,0.05) 100%); border-radius:12px; margin-top:32px; border:1px solid rgba(91,124,255,0.15); flex-wrap:wrap; gap:16px; }
-.help-content { display:flex; align-items:center; gap:16px; }
-.help-icon { width:48px; height:48px; background:var(--gradient-primary); border-radius:12px; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:24px; }
-.help-title { font-weight:600; }
-.help-text { font-size:14px; color:var(--text-secondary); }
-.help-links { display:flex; gap:16px; }
-.help-link { font-size:14px; color:var(--primary-start); font-weight:500; }
-.help-link:hover { text-decoration:underline; }
-@media (max-width:1024px) { .d-table { display:block; overflow-x:auto; } .filter-row { flex-direction:column; gap:8px; } .filter-row-label { padding-top:0; } }
-@media (max-width:768px) { .page-title { font-size:28px; } .cards-grid { grid-template-columns:1fr; } }
-</style>
-</head>
+<head>{{HEAD}}</head>
 <body>
 {{NAVBAR}}
-<main class="main-container">
-  <div class="page-header">
-    <h1 class="page-title">全部数据集</h1>
-    <div class="page-stats">
-      <span class="stat-badge">📂 共 <strong id="totalCount"></strong> 个数据集</span>
-      <span>收录全球具身智能/机器人数据集，包括开源、闭源等类型</span>
+<section class="page-hero">
+  <div class="page-hero-content">
+    <h1 class="page-hero-title">全部数据集</h1>
+    <p class="page-hero-subtitle">浏览全球具身智能、机器人、人形机器人数据集</p>
+    <div class="search-bar">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" class="search-input" placeholder="搜索数据集名称、机构、任务类型..." id="searchInput">
+      </div>
+      <button class="search-btn" onclick="handleSearch()">搜索</button>
     </div>
   </div>
+</section>
 
-  <div class="filter-section">
-    <div class="search-wrap">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" class="search-input" placeholder="搜索数据集名称、机构..." id="searchInput">
-    </div>
-    <div class="active-filters" id="activeFilters"></div>
-    <div class="filter-groups">
-      <div class="filter-row"><span class="filter-row-label">机器人类型</span><div class="filter-tags" id="robotTypeTags"></div></div>
-      <div class="filter-row"><span class="filter-row-label">任务类型</span><div class="filter-tags" id="taskTags"></div></div>
-      <div class="filter-row"><span class="filter-row-label">开放类型</span><div class="filter-tags" id="typeTags"></div></div>
-    </div>
-  </div>
-
-  <div class="toolbar">
-    <div class="results-count" id="resultsInfo"></div>
-    <div class="view-toggle">
-      <button class="view-btn active" onclick="setView('table')">📋 表格</button>
-      <button class="view-btn" onclick="setView('card')">🃏 卡片</button>
+<section class="filter-section">
+  <div class="filter-content">
+    <div class="filter-row">
+      <div class="filter-group"><span class="filter-label">机器人类型</span><div class="filter-chips" id="robotFilters"></div></div>
+      <div class="filter-group"><span class="filter-label">任务类型</span><div class="filter-chips" id="taskFilters"></div></div>
+      <div class="filter-group"><span class="filter-label">开放程度</span><div class="filter-chips" id="opennessFilters"></div></div>
+      <div class="filter-actions">
+        <select class="sort-select" id="sortSelect"><option value="name">名称排序</option><option value="org">机构排序</option></select>
+        <div class="view-toggle">
+          <button class="view-btn active" data-view="table" title="表格视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></button>
+          <button class="view-btn" data-view="card" title="卡片视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></button>
+        </div>
+        <button class="clear-filters" onclick="clearFilters()">清除筛选</button>
+      </div>
     </div>
   </div>
+</section>
 
-  <div id="tableView"></div>
-  <div id="cardView"></div>
+<section class="datasets-section">
+  <div class="table-view" id="tableView"><table class="d-table"><thead><tr><th>数据集名称</th><th>机构</th><th>机器人类型</th><th>任务类型</th><th>开放程度</th><th>相关链接</th></tr></thead><tbody id="datasetsTableBody"></tbody></table></div>
+  <div class="card-view" id="cardView"></div>
   <div class="pagination" id="pagination"></div>
-
-  <div class="help-banner">
-    <div class="help-content"><div class="help-icon">💡</div><div><div class="help-title">需要帮助？</div><div class="help-text">找不到想要的数据集？或者想提交新的数据集？</div></div></div>
-    <div class="help-links"><a href="/submit/" class="help-link">提交数据集 →</a><a href="mailto:embodisets@163.com" class="help-link">联系我们 →</a></div>
-  </div>
-</main>
+</section>
 {{FOOTER}}
 
 <script>
-const DATASETS = {{DATASETS_JSON}};
+const DS = {{DATASETS_JSON}};
+var state={search:'',robot:[],task:[],type:[],page:1,ps:15,sort:'',sortDir:'asc',view:'table'};
+var tL={open:'开源',partial:'部分开源',apply:'可申请',closed:'闭源'};
+var cL={open:'type-open',partial:'type-partial',apply:'type-partial',closed:'type-closed'};
 
-const state = { search:'', robotTypes:new Set(), tasks:new Set(), types:new Set(), page:1, pageSize:15, sort:'', sortDir:'asc', view:'table' };
+function rL(v){return {humanoid:'人形机器人',arm:'机械臂',mobile:'移动机器人',quadruped:'四足机器人',multi:'多机型','触觉传感':'触觉传感',仿真:'仿真'}[v]||v}
+function tL2(v){return {操作:'操作',抓取:'抓取',导航:'导航',装配:'装配',家居:'家居',交互:'交互',运动控制:'运动控制'}[v]||v}
 
-const typeLabel = { open:'开源', partial:'部分开源', apply:'可申请', closed:'闭源' };
-const typeClass = { open:'type-open', partial:'type-partial', apply:'type-apply', closed:'type-closed' };
+function buildFilters(){
+  var rts=[...new Set(DS.flatMap(function(d){return d.robotType||[]}))].sort();
+  var tks=[...new Set(DS.flatMap(function(d){return d.task||[]}))].sort();
+  var tps=[...new Set(DS.map(function(d){return d.type}))];
+  document.getElementById('robotFilters').innerHTML=rts.map(function(r){return '<button class="filter-chip'+(state.robot.includes(r)?' active':'')+'" data-f="robot" data-v="'+r+'">'+rL(r)+'</button>'}).join('');
+  document.getElementById('taskFilters').innerHTML=tks.map(function(t){return '<button class="filter-chip'+(state.task.includes(t)?' active':'')+'" data-f="task" data-v="'+t+'">'+tL2(t)+'</button>'}).join('');
+  document.getElementById('opennessFilters').innerHTML=tps.map(function(t){return '<button class="filter-chip'+(state.type.includes(t)?' active':'')+'" data-f="type" data-v="'+t+'">'+tL[t]+'</button>'}).join('');
+  bindFilterChips();
+}
 
-function getAllRobotTypes(){ return [...new Set(DATASETS.flatMap(d=>d.robotType||[]))].sort(); }
-function getAllTasks(){ return [...new Set(DATASETS.flatMap(d=>d.task||[]))].sort(); }
-function getAllTypes(){ return [...new Set(DATASETS.map(d=>d.type))]; }
-function countField(field,val){ return DATASETS.filter(d=>(d[field]||[]).includes(val)).length; }
-function countType(val){ return DATASETS.filter(d=>d.type===val).length; }
+function bindFilterChips(){
+  document.querySelectorAll('.filter-chip').forEach(function(c){
+    c.onclick=function(){var f=this.dataset.f,v=this.dataset.v;var arr=state[f];var i=arr.indexOf(v);if(i>-1)arr.splice(i,1);else arr.push(v);state.page=1;update()}
+  });
+}
 
 function filterData(){
-  var result = DATASETS.filter(function(d){
-    if(state.search){ var q=state.search.toLowerCase(); var h=[d.name,d.institution,d.notes||''].join(' ').toLowerCase(); if(!h.includes(q)) return false; }
-    if(state.robotTypes.size>0 && !d.robotType?.some(function(rt){return state.robotTypes.has(rt)})) return false;
-    if(state.tasks.size>0 && !d.task?.some(function(t){return state.tasks.has(t)})) return false;
-    if(state.types.size>0 && !state.types.has(d.type)) return false;
-    return true;
-  });
-  if(state.sort){ result.sort(function(a,b){
-    var va=a[state.sort]||'', vb=b[state.sort]||'';
-    if(Array.isArray(va)) va=va.join(',');
-    if(Array.isArray(vb)) vb=vb.join(',');
-    var cmp=String(va).localeCompare(String(vb),'zh');
-    return state.sortDir==='asc'?cmp:-cmp;
-  });}
-  return result;
+  var r=DS;
+  if(state.search){var q=state.search.toLowerCase();r=r.filter(function(d){return d.name.toLowerCase().indexOf(q)>-1||(d.institution||'').toLowerCase().indexOf(q)>-1||(d.notes||'').toLowerCase().indexOf(q)>-1})}
+  if(state.robot.length)r=r.filter(function(d){return state.robot.some(function(v){return (d.robotType||[]).indexOf(v)>-1})});
+  if(state.task.length)r=r.filter(function(d){return state.task.some(function(v){return (d.task||[]).indexOf(v)>-1})});
+  if(state.type.length)r=r.filter(function(d){return state.type.indexOf(d.type)>-1});
+  if(state.sort){r.sort(function(a,b){var va=a[state.sort]||'',vb=b[state.sort]||'';if(Array.isArray(va))va=va.join(',');if(Array.isArray(vb))vb=vb.join(',');var cmp=String(va).localeCompare(String(vb),'zh');return state.sortDir==='asc'?cmp:-cmp})}
+  return r;
 }
 
-function renderFilters(){
-  var robotHTML = getAllRobotTypes().map(function(rt){ return '<button class="filter-tag'+(state.robotTypes.has(rt)?' active':'')+'" onclick="toggleFilter(\'robotTypes\',\''+rt+'\')">'+rt+' <span class="count">'+countField('robotType',rt)+'</span></button>'; }).join('');
-  var taskHTML = getAllTasks().map(function(t){ return '<button class="filter-tag'+(state.tasks.has(t)?' active':'')+'" onclick="toggleFilter(\'tasks\',\''+t+'\')">'+t+' <span class="count">'+countField('task',t)+'</span></button>'; }).join('');
-  var typeHTML = getAllTypes().map(function(tp){ return '<button class="filter-tag'+(state.types.has(tp)?' active':'')+'" onclick="toggleFilter(\'types\',\''+tp+'\')">'+typeLabel[tp]+' <span class="count">'+countType(tp)+'</span></button>'; }).join('');
-  document.getElementById('robotTypeTags').innerHTML = robotHTML;
-  document.getElementById('taskTags').innerHTML = taskHTML;
-  document.getElementById('typeTags').innerHTML = typeHTML;
-  renderActiveFilters();
-}
-
-function renderActiveFilters(){
-  var chips=[];
-  state.robotTypes.forEach(function(v){ chips.push({cat:'robotTypes',val:v,label:v}); });
-  state.tasks.forEach(function(v){ chips.push({cat:'tasks',val:v,label:v}); });
-  state.types.forEach(function(v){ chips.push({cat:'types',val:v,label:typeLabel[v]}); });
-  var html = chips.length?'<span style="font-size:14px;color:var(--text-secondary);font-weight:500;">已选：</span>':'';
-  html += chips.map(function(f){ return '<span class="filter-chip">'+f.label+' <span class="chip-remove" onclick="removeFilter(\''+f.cat+'\',\''+f.val+'\')">×</span></span>'; }).join('');
-  if(chips.length) html += '<button class="clear-all" onclick="resetFilters()">清除全部</button>';
-  document.getElementById('activeFilters').innerHTML = html;
-}
-
-function toggleFilter(cat,val){
-  if(state[cat].has(val)) state[cat].delete(val); else state[cat].add(val);
-  state.page=1; renderAll();
-}
-
-function removeFilter(cat,val){ state[cat].delete(val); state.page=1; renderAll(); }
-function resetFilters(){ state.search=''; state.robotTypes.clear(); state.tasks.clear(); state.types.clear(); state.page=1; document.getElementById('searchInput').value=''; renderAll(); }
-
-function setSort(key){
-  if(state.sort===key) state.sortDir=state.sortDir==='asc'?'desc':'asc';
-  else { state.sort=key; state.sortDir='asc'; }
-  renderTable();
-}
-
-function sortInd(key){ return state.sort===key?(state.sortDir==='asc'?' ↑':' ↓'):''; }
-
-function setView(v){ state.view=v; document.querySelectorAll('.view-btn').forEach(function(b){b.classList.toggle('active',b.textContent.includes(v==='table'?'表格':'卡片'));}); renderAll(); }
-
-function goPage(p){ var filtered=filterData(); var tp=Math.ceil(filtered.length/state.pageSize); if(p>=1&&p<=tp){ state.page=p; renderAll(); } }
-
-function renderAll(){ renderFilters(); renderTable(); renderCards(); renderPagination(); document.getElementById('totalCount').textContent=DATASETS.length; }
-
-function renderTable(){
-  var filtered=filterData();
-  var start=(state.page-1)*state.pageSize;
-  var paged=filtered.slice(start,start+state.pageSize);
-  var html='<div class="table-wrap"><table class="d-table"><thead><tr>';
-  html+='<th onclick="setSort(\'name\')" class="'+(state.sort==='name'?'sorted':'')+'">名称'+sortInd('name')+'</th>';
-  html+='<th onclick="setSort(\'institution\')" class="'+(state.sort==='institution'?'sorted':'')+'">机构'+sortInd('institution')+'</th>';
-  html+='<th onclick="setSort(\'scale\')" class="'+(state.sort==='scale'?'sorted':'')+'">规模'+sortInd('scale')+'</th>';
-  html+='<th>机器人类型</th><th>任务</th><th>模态</th>';
-  html+='<th onclick="setSort(\'type\')" class="'+(state.sort==='type'?'sorted':'')+'">类型'+sortInd('type')+'</th><th>链接</th></tr></thead><tbody>';
-  if(paged.length===0){ html+='<tr><td colspan="8"><div class="empty-state"><p class="empty-title">没有匹配的数据集</p><p class="empty-desc">试试调整筛选条件</p><button class="empty-btn" onclick="resetFilters()">清除全部筛选</button></div></td></tr>'; }
-  else { html+=paged.map(function(d){
-    var row='<tr>';
-    row+='<td><a href="'+(d.links?.official||'#')+'" target="_blank" class="dataset-name">'+d.name+'</a>'+(d.notes?'<div class="row-notes">'+d.notes+'</div>':'')+'</td>';
-    row+='<td>'+(d.institution||'-')+'</td>';
-    row+='<td>'+(d.scale||'-')+'</td>';
-    row+='<td>'+(d.robotType?.map(function(rt){return '<span style="display:inline-block;background:var(--light-bg);padding:2px 8px;border-radius:4px;margin:0 2px 2px 0;font-size:0.75rem;">'+rt+'</span>';}).join('')||'-')+'</td>';
-    row+='<td>'+(d.task?.map(function(t){return '<span style="display:inline-block;background:var(--light-bg);padding:2px 8px;border-radius:4px;margin:0 2px 2px 0;font-size:0.75rem;">'+t+'</span>';}).join('')||'-')+'</td>';
-    row+='<td>'+(d.modality?.length?d.modality.join('、'):'-')+'</td>';
-    row+='<td><span class="type-badge '+typeClass[d.type]+'">'+typeLabel[d.type]+'</span></td>';
-    row+='<td>'+(d.links?.official?'<a href="'+d.links.official+'" target="_blank" class="link-btn" rel="noopener">官网</a>':'')+(d.links?.paper?'<a href="'+d.links.paper+'" target="_blank" class="link-btn" rel="noopener">论文</a>':'')+(d.links?.official||d.links?.paper?'':'-')+'</td>';
-    row+='</tr>'; return row;
-  }).join(''); }
-  html+='</tbody></table></div>';
-  document.getElementById('tableView').innerHTML=html;
-  document.getElementById('tableView').style.display=state.view==='table'?'block':'none';
-  document.getElementById('resultsInfo').innerHTML='显示 <strong>'+(paged.length)+'</strong> / 共 <strong>'+filtered.length+'</strong> 个数据集';
-}
-
-function renderCards(){
-  var filtered=filterData();
-  var start=(state.page-1)*state.pageSize;
-  var paged=filtered.slice(start,start+state.pageSize);
-  var html='<div class="cards-grid">';
-  html+=paged.map(function(d){
-    var c='<div class="dataset-card" onclick="window.open(\''+(d.links?.official||'#')+'\',\'_blank\')">';
-    c+='<div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px;"><strong style="font-size:1.05rem;">'+d.name+'</strong><span class="type-badge '+typeClass[d.type]+'">'+typeLabel[d.type]+'</span></div>';
-    c+='<div class="card-row"><strong>机构：</strong>'+(d.institution||'-')+'</div>';
-    c+='<div class="card-row"><strong>规模：</strong>'+(d.scale||'-')+'</div>';
-    c+='<div class="card-row"><strong>模态：</strong>'+(d.modality?.length?d.modality.join('、'):'-')+'</div>';
-    c+='<div class="card-tags">'+(d.robotType||[]).concat(d.task||[]).map(function(t){return '<span class="card-tag">'+t+'</span>';}).join('')+'</div>';
-    if(d.notes) c+='<div class="card-notes">'+d.notes+'</div>';
-    c+='<div class="card-links">'+(d.links?.official?'<a href="'+d.links.official+'" target="_blank" class="link-btn" onclick="event.stopPropagation()">官网</a>':'')+(d.links?.paper?'<a href="'+d.links.paper+'" target="_blank" class="link-btn" onclick="event.stopPropagation()">论文</a>':'')+'</div>';
-    c+='</div>'; return c;
+function renderTable(data){
+  var start=(state.page-1)*state.ps,page=data.slice(start,start+state.ps);
+  document.getElementById('datasetsTableBody').innerHTML=page.map(function(d){
+    return '<tr><td><a href="'+(d.links&&d.links.official?d.links.official:'#')+'" target="_blank" class="data-name-cell"><div class="data-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>'+d.name+'</a></td><td class="data-org">'+(d.institution||'-')+'</td><td><div class="data-tags">'+(d.robotType||[]).map(function(r){return '<span class="data-tag">'+rL(r)+'</span>'}).join('')+'</div></td><td><div class="data-tags">'+(d.task||[]).map(function(t){return '<span class="data-tag">'+tL2(t)+'</span>'}).join('')+'</div></td><td><span class="type-badge '+cL[d.type]+'">'+tL[d.type]+'</span></td><td><div class="data-links">'+(d.links&&d.links.official?'<a href="'+d.links.official+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>官网</a>':'')+(d.links&&d.links.paper?'<a href="'+d.links.paper+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>论文</a>':'')+'</div></td></tr>';
   }).join('');
-  html+='</div>';
-  document.getElementById('cardView').innerHTML=html;
-  document.getElementById('cardView').style.display=state.view==='card'?'block':'none';
 }
 
-function renderPagination(){
-  var filtered=filterData();
-  var tp=Math.ceil(filtered.length/state.pageSize);
-  if(tp<=1){ document.getElementById('pagination').innerHTML=''; return; }
-  var html='<button class="page-btn" '+(state.page===1?'disabled':'')+' onclick="goPage('+(state.page-1)+')">←</button>';
-  var start=Math.max(1,state.page-2), end=Math.min(tp,start+4);
-  for(var i=start;i<=end;i++) html+='<button class="page-btn'+(i===state.page?' active':'')+'" onclick="goPage('+i+')">'+i+'</button>';
-  html+='<button class="page-btn" '+(state.page===tp?'disabled':'')+' onclick="goPage('+(state.page+1)+')">→</button>';
-  document.getElementById('pagination').innerHTML=html;
+function renderCards(data){
+  var start=(state.page-1)*state.ps,page=data.slice(start,start+state.ps);
+  document.getElementById('cardView').innerHTML=page.map(function(d){
+    return '<div class="data-card"><div class="card-header"><div><div class="card-title">'+d.name+'</div><div class="card-org">'+(d.institution||'-')+'</div></div><span class="type-badge '+cL[d.type]+'">'+tL[d.type]+'</span></div>'+(d.notes?'<p class="card-desc">'+d.notes+'</p>':'')+'<div class="card-meta"><span class="card-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>'+(d.robotType||[]).map(function(r){return rL(r)}).join(', ')+'</span></div><div class="card-footer"><div class="data-tags">'+(d.task||[]).slice(0,2).map(function(t){return '<span class="data-tag">'+tL2(t)+'</span>'}).join('')+'</div><a href="'+(d.links&&d.links.official?d.links.official:'#')+'" target="_blank" class="link-btn">查看 →</a></div></div>';
+  }).join('');
 }
 
-document.getElementById('searchInput').addEventListener('input',function(){ state.search=this.value; state.page=1; renderAll(); });
-renderAll();
+function renderPagination(data){
+  var tp=Math.ceil(data.length/state.ps);
+  var p=document.getElementById('pagination');
+  if(tp<=1){p.innerHTML='';return}
+  var h='<button class="page-btn"'+(state.page===1?' disabled':'')+' onclick="goPage('+(state.page-1)+')">←</button>';
+  var s=Math.max(1,state.page-2),e=Math.min(tp,s+4);
+  for(var i=s;i<=e;i++)h+='<button class="page-btn'+(i===state.page?' active':'')+'" onclick="goPage('+i+')">'+i+'</button>';
+  h+='<button class="page-btn"'+(state.page===tp?' disabled':'')+' onclick="goPage('+(state.page+1)+')">→</button>';
+  p.innerHTML=h;
+}
+
+function update(){
+  var f=filterData();buildFilters();renderTable(f);renderCards(f);renderPagination(f);
+  document.getElementById('tableView').style.display=state.view==='table'?'block':'none';
+  document.getElementById('cardView').classList.toggle('active',state.view==='card');
+}
+
+function handleSearch(){state.search=document.getElementById('searchInput').value;state.page=1;update()}
+function clearFilters(){state.search='';state.robot=[];state.task=[];state.type=[];state.page=1;document.getElementById('searchInput').value='';update()}
+function goPage(p){state.page=p;update();window.scrollTo({top:400,behavior:'smooth'})}
+document.getElementById('searchInput').addEventListener('keypress',function(e){if(e.key==='Enter')handleSearch()});
+document.getElementById('sortSelect').addEventListener('change',function(){var v=this.value;state.sort=v==='name'?'name':'institution';update()});
+document.querySelectorAll('.view-btn').forEach(function(b){b.addEventListener('click',function(){state.view=this.dataset.view;document.querySelectorAll('.view-btn').forEach(function(x){x.classList.remove('active')});this.classList.add('active');update()})});
+
+window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>50?'rgba(11,15,26,0.95)':'rgba(11,15,26,0.85)';n.style.boxShadow=y>50?'0 4px 20px rgba(0,0,0,0.3)':'none'});
+
+update();
 </script>
 </body>
 </html>
