@@ -31,22 +31,124 @@ function buildPage(templateFile, replacements) {
   return html;
 }
 
-// Clean dist
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function buildSchemaTree(schema) {
+  if (!schema) return '';
+  const parts = schema.split('→').map(p => p.trim());
+  let html = '';
+  for (let i = 0; i < parts.length; i++) {
+    html += `<div class="tree-node" style="margin-left:${i * 24}px">`;
+    if (i > 0) html += '<span class="tree-line"></span>';
+    html += `<span class="tree-label">${esc(parts[i])}</span>`;
+    html += '</div>';
+  }
+  return html;
+}
+
+function buildDetailPage(ds) {
+  const typeLabel = { open:'开源', partial:'部分开源', apply:'可申请', closed:'闭源' };
+  const typeClass = { open:'type-open', partial:'type-partial', apply:'type-partial', closed:'type-closed' };
+  const df = ds.dataFormat || {};
+  const dc = ds.dataContent || {};
+  const cit = ds.citation || {};
+
+  // Schema
+  const schemaHTML = buildSchemaTree(df.schema || (ds.modality||[]).join(' → '));
+
+  // Sensors
+  let sensorsHTML = '';
+  const sensors = dc.sensors || ds.modality || [];
+  if (sensors.length) {
+    sensorsHTML = sensors.map(s => `<div class="content-stat"><span class="content-stat-value" style="font-weight:400">${esc(s)}</span></div>`).join('');
+  } else {
+    sensorsHTML = '<div class="empty-hint">暂无传感器规格信息</div>';
+  }
+
+  // Annotations
+  let annotationsHTML = '';
+  const anns = dc.annotations || [];
+  if (anns.length) {
+    annotationsHTML = '<div style="margin-top:16px"><div class="content-card"><h3>标注信息</h3><div class="data-tags">' + anns.map(a => `<span class="data-tag">${esc(a)}</span>`).join('') + '</div></div></div>';
+  }
+
+  // Links
+  let linksHTML = '<div class="section-block"><h2>相关链接</h2><div class="links-section">';
+  if (ds.links?.official) linksHTML += `<a href="${esc(ds.links.official)}" target="_blank" class="link-card" rel="noopener">🌐 官方网站</a>`;
+  if (ds.links?.paper) linksHTML += `<a href="${esc(ds.links.paper)}" target="_blank" class="link-card" rel="noopener">📄 论文</a>`;
+  if (ds.github) linksHTML += `<a href="${esc(ds.github)}" target="_blank" class="link-card" rel="noopener">💻 GitHub</a>`;
+  if (ds.huggingface) linksHTML += `<a href="${esc(ds.huggingface)}" target="_blank" class="link-card" rel="noopener">🤗 HuggingFace</a>`;
+  linksHTML += '</div></div>';
+  if (!ds.links?.official && !ds.links?.paper && !ds.github && !ds.huggingface) linksHTML = '';
+
+  // Citation
+  let citationHTML = '';
+  if (cit.bibtex) {
+    citationHTML = '<div class="section-block"><h2>引用信息</h2><div class="citation-box"><pre>' + esc(cit.bibtex) + '</pre></div></div>';
+  }
+
+  // Related datasets (same robot type or same task)
+  const related = datasets.filter(d => d.id !== ds.id && (
+    (d.robotType || []).some(r => (ds.robotType || []).includes(r)) ||
+    (d.task || []).some(t => (ds.task || []).includes(t))
+  )).slice(0, 4);
+  let relatedHTML = '';
+  if (related.length) {
+    relatedHTML = related.map(r => {
+      const rt = (r.robotType || []).slice(0, 2).map(t => `<span class="data-tag">${esc(t)}</span>`).join('');
+      return `<a href="/datasets/${esc(r.id)}/" class="related-card"><div class="related-name">${esc(r.name)}</div><div class="related-org">${esc(r.institution || '')}</div><div class="related-meta">${rt}</div></a>`;
+    }).join('');
+  } else {
+    relatedHTML = '<div class="empty-hint">暂无相关数据集</div>';
+  }
+
+  const robotTypesHTML = (ds.robotType || []).map(t => `<span class="data-tag">${esc(t)}</span>`).join(' ') || '-';
+  const taskTypesHTML = (ds.task || []).map(t => `<span class="data-tag">${esc(t)}</span>`).join(' ') || '-';
+  const modalitiesHTML = (ds.modality || []).length ? (ds.modality || []).join('、') : '-';
+
+  return buildPage('src/pages/dataset-detail.html', {
+    meta: `<title>${esc(ds.name)} | EmbodiedAI Datasets</title><meta name="description" content="${esc((ds.notes || ds.description || '').substring(0, 160))}">`,
+    nav: navbar.replace('{{NAV_HOME}}', '').replace('{{NAV_DATASETS}}', 'active').replace('{{NAV_STANDARDS}}', '').replace('{{NAV_SUBMIT}}', ''),
+    NAME: esc(ds.name),
+    TYPE_LABEL: typeLabel[ds.type] || ds.type,
+    TYPE_CLASS: typeClass[ds.type] || '',
+    INSTITUTION: esc(ds.institution || '未知机构'),
+    DESCRIPTION: esc(ds.description || ds.notes || '暂无详细描述'),
+    SCALE: esc(ds.scale || '暂无'),
+    LICENSE: esc(ds.license || '未知'),
+    ROBOT_TYPES: robotTypesHTML,
+    TASK_TYPES: taskTypesHTML,
+    MODALITIES: modalitiesHTML,
+    FORMAT_STORAGE: esc(df.storage || '未知'),
+    FORMAT_SIZE: esc(df.size || ds.scale || '未知'),
+    FORMAT_COMPRESSION: esc(df.compression || '未知'),
+    SCHEMA_ROOT: esc((df.schema || '').split('→')[0]?.trim() || '数据'),
+    SCHEMA_TREE: schemaHTML,
+    SENSORS: sensorsHTML,
+    CONTENT_SCENES: esc(dc.scenes || '未知'),
+    CONTENT_OBJECTS: esc(dc.objects || '未知'),
+    CONTENT_TASKS: esc(dc.tasks || '未知'),
+    CONTENT_EPISODES: esc(dc.episodes || ds.scale || '未知'),
+    ANNOTATIONS: annotationsHTML,
+    LINKS: linksHTML,
+    CITATION: citationHTML,
+    RELATED: relatedHTML
+  });
+}
+
+// ── Clean dist ───────────────────────────────────────────
 fs.rmSync('dist', { recursive: true, force: true });
 fs.mkdirSync('dist', { recursive: true });
 
-// Homepage
+// ── Homepage ─────────────────────────────────────────────
 fs.writeFileSync('dist/index.html', buildPage('src/pages/index.html', {
   meta: '<title>具身智能数据集导航 | EmbodiedAI Datasets</title><meta name="description" content="全球具身智能、机器人、人形机器人数据集情报站 | EmbodiedAI Datasets"><meta name="keywords" content="具身智能,机器人数据集,人形机器人,机械臂,开源数据集,机器人学习"><meta property="og:title" content="具身智能数据集导航 | EmbodiedAI Datasets"><meta property="og:description" content="全球机器人数据集情报站，助力算法研发"><meta property="og:type" content="website">',
   nav: navbar.replace('{{NAV_HOME}}', 'active').replace('{{NAV_DATASETS}}', '').replace('{{NAV_STANDARDS}}', '').replace('{{NAV_SUBMIT}}', ''),
-  STAT_TOTAL: String(totalDatasets),
-  STAT_ORGS: String(allOrgs.size),
-  STAT_TYPES: String(allRobotTypes.size),
-  STAT_STANDARDS: String(totalStandards),
+  STAT_TOTAL: String(totalDatasets), STAT_ORGS: String(allOrgs.size), STAT_TYPES: String(allRobotTypes.size), STAT_STANDARDS: String(totalStandards),
   PARTNERS: partnerNames.map(n => `<span class="partner-item">${n}</span>`).join('\n')
 }));
 
-// Datasets page
+// ── Datasets list page ───────────────────────────────────
 fs.mkdirSync('dist/datasets', { recursive: true });
 fs.writeFileSync('dist/datasets/index.html', buildPage('src/pages/datasets.html', {
   meta: '<title>全部数据集 | EmbodiedAI Datasets</title><meta name="description" content="浏览全部具身智能、机器人数据集">',
@@ -54,7 +156,15 @@ fs.writeFileSync('dist/datasets/index.html', buildPage('src/pages/datasets.html'
   DATASETS_JSON: JSON.stringify(datasets)
 }));
 
-// Standards page
+// ── Dataset detail pages ─────────────────────────────────
+fs.mkdirSync('dist/datasets', { recursive: true });
+for (const ds of datasets) {
+  const dir = `dist/datasets/${ds.id}`;
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(`${dir}/index.html`, buildDetailPage(ds));
+}
+
+// ── Standards page ───────────────────────────────────────
 fs.mkdirSync('dist/standards', { recursive: true });
 fs.writeFileSync('dist/standards/index.html', buildPage('src/pages/standards.html', {
   meta: '<title>数据标准 | EmbodiedAI Datasets</title><meta name="description" content="具身智能行业数据标准与评测基准">',
@@ -62,14 +172,14 @@ fs.writeFileSync('dist/standards/index.html', buildPage('src/pages/standards.htm
   STANDARDS_JSON: JSON.stringify(standards)
 }));
 
-// Submit page
+// ── Submit page ──────────────────────────────────────────
 fs.mkdirSync('dist/submit', { recursive: true });
 fs.writeFileSync('dist/submit/index.html', buildPage('src/pages/submit.html', {
   meta: '<title>提交数据集 | EmbodiedAI Datasets</title><meta name="description" content="提交新的具身智能数据集">',
   nav: navbar.replace('{{NAV_HOME}}', '').replace('{{NAV_DATASETS}}', '').replace('{{NAV_STANDARDS}}', '').replace('{{NAV_SUBMIT}}', 'active')
 }));
 
-// Copy static assets
+// ── Copy static assets ───────────────────────────────────
 const publicDir = 'docs/public';
 if (fs.existsSync(publicDir)) {
   for (const f of fs.readdirSync(publicDir)) {
@@ -79,9 +189,11 @@ if (fs.existsSync(publicDir)) {
 fs.writeFileSync('dist/.nojekyll', '');
 
 console.log(`Build complete: ${totalDatasets} datasets, ${totalStandards} standards, ${allOrgs.size} orgs`);
+console.log(`Generated ${datasets.length} dataset detail pages`);
 console.log('Output: dist/');
 console.log('  dist/index.html');
 console.log('  dist/datasets/index.html');
+console.log('  dist/datasets/{id}/index.html x' + datasets.length);
 console.log('  dist/standards/index.html');
 console.log('  dist/submit/index.html');
 console.log('\nPreview: npx serve dist');

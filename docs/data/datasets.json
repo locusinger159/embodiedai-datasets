@@ -20,7 +20,39 @@
       "official": "https://robotics-transformer-x.github.io",
       "paper": "https://arxiv.org/abs/2310.08864"
     },
-    "notes": "跨具身最大开源数据集，RT-X 训练必备。覆盖多种机器人形态，适合泛化学习研究。"
+    "notes": "跨具身最大开源数据集，RT-X 训练必备。覆盖多种机器人形态，适合泛化学习研究。",
+    "description": "Open X-Embodiment 是由 Google DeepMind 联合全球 34 家研究机构共同推出的跨具身机器人学习数据集。该数据集聚合了来自 22 种不同机器人形态的 60+ 个独立数据集，总计超过 100 万条真实机器人操作轨迹。所有数据基于 RLDS（Reinforcement Learning Datasets Standard）格式统一编码，涵盖视觉、本体状态和动作等多种模态。该数据集是训练 RT-1、RT-2、RT-X 等机器人基础模型的核心数据源，也是目前规模最大、最具影响力的开源机器人学习数据集之一。",
+    "license": "Apache 2.0",
+    "dataFormat": {
+      "storage": "RLDS / TFDS",
+      "size": "1TB+",
+      "compression": "gzip",
+      "schema": "episode → step → observation / action / reward / discount"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机",
+        "深度相机（部分）",
+        "关节编码器"
+      ],
+      "scenes": "多场景",
+      "objects": "数千种",
+      "tasks": "数百种操作任务",
+      "episodes": "1,000,000+",
+      "annotations": [
+        "自然语言指令",
+        "动作序列",
+        "奖励信号"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{openx2024,\n  title={Open X-Embodiment: Robotic Learning Datasets and RT-X Models},\n  author={Open X-Embodiment Collaboration},\n  journal={arXiv preprint arXiv:2310.08864},\n  year={2024}\n}",
+      "authors": "Open X-Embodiment Collaboration",
+      "year": 2024,
+      "venue": "ICRA 2024"
+    },
+    "github": "https://github.com/google-deepmind/open_x_embodiment",
+    "huggingface": ""
   },
   {
     "id": "bridge-data-v2",
@@ -42,7 +74,37 @@
       "official": "https://rail-berkeley.github.io/bridgedata",
       "paper": "https://arxiv.org/abs/2403.03954"
     },
-    "notes": "小样本学习、模仿学习常用。数据质量高，任务多样。"
+    "notes": "小样本学习、模仿学习常用。数据质量高，任务多样。",
+    "description": "BridgeData V2 是由 UC Berkeley RAIL 实验室发布的大规模机器人操作数据集，包含 85,000 条真实机器人操作轨迹。数据集通过低成本 WidowX 机械臂在多样化的桌面操作场景中采集，涵盖抓取、放置、推拉、叠放等基本操作技能。该数据集广泛应用于小样本模仿学习、扩散策略和机器人基础模型训练，数据质量高且任务多样性丰富，是当前最常用的操作学习数据集之一。",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "RLDS / TFDS",
+      "size": "200GB+",
+      "compression": "gzip",
+      "schema": "episode → step → observation (image/state) → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机 (640×480)",
+        "关节编码器"
+      ],
+      "scenes": "24 个桌面操作环境",
+      "objects": "100+ 种日常物品",
+      "tasks": "13 种基本操作技能",
+      "episodes": "85,000",
+      "annotations": [
+        "任务类型标签",
+        "成功/失败标记"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{walke2023bridgedata,\n  title={BridgeData V2: A Dataset for Robot Learning at Scale},\n  author={Walke, Homer and others},\n  journal={arXiv preprint arXiv:2308.12952},\n  year={2023}\n}",
+      "authors": "Homer Walke et al.",
+      "year": 2023,
+      "venue": "CoRL 2023"
+    },
+    "github": "https://github.com/rail-berkeley/bridge_data_v2",
+    "huggingface": ""
   },
   {
     "id": "rh20t",
@@ -65,7 +127,37 @@
       "official": "https://rh20t.github.io",
       "paper": "https://arxiv.org/abs/2307.11795"
     },
-    "notes": "高质量居家机器人视频数据集，适合日常任务学习。"
+    "notes": "高质量居家机器人视频数据集，适合日常任务学习。",
+    "description": "RH20T 是由斯坦福大学和 Google 联合发布的高质量居家机器人视频数据集，包含 20,000 个 RGB-D 视频片段，覆盖 120+ 个日常任务。数据集在真实家庭环境中采集，涵盖清洁、整理、烹饪等多种日常场景。每段视频配有动作轨迹标注，适用于机器人模仿学习和视频预测研究。",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "HDF5 / MP4",
+      "size": "500GB+",
+      "compression": "H.264",
+      "schema": "video → frame → RGB+Depth+action"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB-D 相机",
+        "关节编码器"
+      ],
+      "scenes": "真实家庭环境",
+      "objects": "日常家居物品",
+      "tasks": "120+",
+      "episodes": "20,000",
+      "annotations": [
+        "动作轨迹",
+        "任务类型标签"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{fang2023rh20t,\n  title={RH20T: A Robotic Dataset for Learning Diverse Skills in One Day},\n  author={Fang, Hao-Shu and others},\n  journal={arXiv preprint arXiv:2307.11795},\n  year={2023}\n}",
+      "authors": "Hao-Shu Fang et al.",
+      "year": 2023,
+      "venue": "RSS 2023"
+    },
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "roboset",
@@ -87,7 +179,28 @@
       "official": "https://roboset.github.io",
       "paper": "https://arxiv.org/abs/2209.13053"
     },
-    "notes": "适合策略学习、扩散模型研究。多视角数据便于3D理解。"
+    "notes": "适合策略学习、扩散模型研究。多视角数据便于3D理解。",
+    "description": "适合策略学习、扩散模型研究。多视角数据便于3D理解。 数据规模为 220K 演示轨迹。 覆盖 机械臂 等机器人类型。 适用于 操作, 装配 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "220K 演示轨迹",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "多视角视觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "220K 演示轨迹",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "libero",
@@ -108,7 +221,28 @@
       "official": "https://libero-project.github.io",
       "paper": "https://arxiv.org/abs/2306.08640"
     },
-    "notes": "长程任务 benchmark，适合指令跟随和任务规划研究。"
+    "notes": "长程任务 benchmark，适合指令跟随和任务规划研究。",
+    "description": "长程任务 benchmark，适合指令跟随和任务规划研究。 数据规模为 130+ 任务，240W+ 帧。 覆盖 机械臂 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "130+ 任务，240W+ 帧",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "130+ 任务，240W+ 帧",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "meta-world",
@@ -129,7 +263,28 @@
       "official": "https://meta-world.github.io",
       "paper": "https://arxiv.org/abs/1910.10897"
     },
-    "notes": "最常用强化学习基准之一，适合元学习和多任务学习。"
+    "notes": "最常用强化学习基准之一，适合元学习和多任务学习。",
+    "description": "最常用强化学习基准之一，适合元学习和多任务学习。 数据规模为 50+ 操纵任务。 覆盖 仿真 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "50+ 操纵任务",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "仿真状态"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "50+ 操纵任务",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "rlbench",
@@ -153,7 +308,30 @@
       "official": "https://sites.google.com/view/rlbench",
       "paper": "https://arxiv.org/abs/1909.12271"
     },
-    "notes": "任务多样，视觉信息丰富，适合模仿学习研究。"
+    "notes": "任务多样，视觉信息丰富，适合模仿学习研究。",
+    "description": "任务多样，视觉信息丰富，适合模仿学习研究。 数据规模为 100+ 任务。 覆盖 仿真 等机器人类型。 适用于 操作, 装配 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "100+ 任务",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "深度",
+        "点云"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "100+ 任务",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "maniskill2",
@@ -176,7 +354,29 @@
       "official": "https://maniskill2.github.io",
       "paper": "https://arxiv.org/abs/2304.04442"
     },
-    "notes": "基于 SAPIEN 的高质量仿真数据，支持点云输入。"
+    "notes": "基于 SAPIEN 的高质量仿真数据，支持点云输入。",
+    "description": "基于 SAPIEN 的高质量仿真数据，支持点云输入。 数据规模为 仿真大规模操纵。 覆盖 机械臂, 仿真 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "仿真大规模操纵",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "点云",
+        "视觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "仿真大规模操纵",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "robosuite",
@@ -200,7 +400,29 @@
       "official": "https://robosuite.ai",
       "paper": "https://arxiv.org/abs/2209.12066"
     },
-    "notes": "模块化仿真框架，适合算法开发和基准测试。"
+    "notes": "模块化仿真框架，适合算法开发和基准测试。",
+    "description": "模块化仿真框架，适合算法开发和基准测试。 数据规模为 多个仿真环境。 覆盖 机械臂, 仿真 等机器人类型。 适用于 操作, 装配 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "多个仿真环境",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "仿真状态",
+        "视觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "多个仿真环境",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "calvin",
@@ -223,7 +445,29 @@
       "official": "https://ut-ras.github.io/CALVIN",
       "paper": "https://arxiv.org/abs/2207.04744"
     },
-    "notes": "语言条件 long-horizon 任务，适合指令理解和执行研究。"
+    "notes": "语言条件 long-horizon 任务，适合指令理解和执行研究。",
+    "description": "语言条件 long-horizon 任务，适合指令理解和执行研究。 数据规模为 居家长期操纵。 覆盖 移动机器人 等机器人类型。 适用于 操作, 交互 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "居家长期操纵",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "语言"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "居家长期操纵",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "ario",
@@ -244,7 +488,28 @@
     "links": {
       "official": "https://ario-dataset.github.io"
     },
-    "notes": "大规模日常操纵数据，适合泛化策略学习。"
+    "notes": "大规模日常操纵数据，适合泛化策略学习。",
+    "description": "大规模日常操纵数据，适合泛化策略学习。 数据规模为 居家场景操纵数据集。 覆盖 机械臂 等机器人类型。 适用于 操作, 家居 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "居家场景操纵数据集",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "居家场景操纵数据集",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "ocrl",
@@ -266,7 +531,28 @@
       "official": "https://sites.google.com/view/oclr/",
       "paper": "https://arxiv.org/abs/2110.13178"
     },
-    "notes": "持续学习 benchmark，适合灾难性遗忘研究。"
+    "notes": "持续学习 benchmark，适合灾难性遗忘研究。",
+    "description": "持续学习 benchmark，适合灾难性遗忘研究。 数据规模为 持续学习数据集。 覆盖 机械臂 等机器人类型。 适用于 操作, 抓取 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "持续学习数据集",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "持续学习数据集",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "rt-1-data",
@@ -290,7 +576,30 @@
       "official": "https://robotics-transformer.github.io",
       "paper": "https://arxiv.org/abs/2212.05680"
     },
-    "notes": "RT-1 训练数据，适合真实机器人策略学习。"
+    "notes": "RT-1 训练数据，适合真实机器人策略学习。",
+    "description": "RT-1 训练数据，适合真实机器人策略学习。 数据规模为 130K 演示。 覆盖 移动机器人 等机器人类型。 适用于 操作, 家居 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "130K 演示",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "本体状态",
+        "动作"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "130K 演示",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "robocat-data",
@@ -313,7 +622,29 @@
       "official": "https://deepmind.google/blog/robocat",
       "paper": "https://arxiv.org/abs/2306.11706"
     },
-    "notes": "自我提升的机器人智能体数据，适合多任务学习。"
+    "notes": "自我提升的机器人智能体数据，适合多任务学习。",
+    "description": "自我提升的机器人智能体数据，适合多任务学习。 数据规模为 多机器人操纵数据。 覆盖 机械臂, 移动机器人 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "多机器人操纵数据",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "动作"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "多机器人操纵数据",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "t-diffusion-data",
@@ -336,7 +667,29 @@
       "paper": "https://arxiv.org/abs/2309.12664"
     },
     "notes": "扩散模型在机器人操纵中的应用，适合动作生成研究。",
-    "scale": "多任务操纵数据"
+    "scale": "多任务操纵数据",
+    "description": "扩散模型在机器人操纵中的应用，适合动作生成研究。 数据规模为 多任务操纵数据。 覆盖 机械臂 等机器人类型。 适用于 操作, 交互 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "多任务操纵数据",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "动作"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "多任务操纵数据",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "agibot-world",
@@ -360,7 +713,30 @@
       "official": "https://agibot-world.com",
       "paper": "https://arxiv.org/abs/2412.14154"
     },
-    "notes": "国内最大人形开源数据集。2026年更新AGIBOT WORLD 2026版，新增触觉和LiDAR模态。"
+    "notes": "国内最大人形开源数据集。2026年更新AGIBOT WORLD 2026版，新增触觉和LiDAR模态。",
+    "description": "国内最大人形开源数据集。2026年更新AGIBOT WORLD 2026版，新增触觉和LiDAR模态。 数据规模为 100W+ 轨迹，2976 小时。 覆盖 人形机器人 等机器人类型。 适用于 操作, 家居 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "100W+ 轨迹，2976 小时",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "力控",
+        "本体状态"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "100W+ 轨迹，2976 小时",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "robomind",
@@ -383,7 +759,30 @@
       "official": "http://www.robomind.cn/",
       "paper": "https://arxiv.org/abs/2410.10000"
     },
-    "notes": "国内统一人形数据协议基准。RoboMIND 2.0已发布(2025.12)，新增31万+双臂轨迹、触觉增强。"
+    "notes": "国内统一人形数据协议基准。RoboMIND 2.0已发布(2025.12)，新增31万+双臂轨迹、触觉增强。",
+    "description": "国内统一人形数据协议基准。RoboMIND 2.0已发布(2025.12)，新增31万+双臂轨迹、触觉增强。 数据规模为 6W+ 分钟真机数据。 覆盖 人形机器人 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "6W+ 分钟真机数据",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "力控",
+        "本体状态"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "6W+ 分钟真机数据",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "damo-solo",
@@ -403,7 +802,28 @@
       "official": "https://damo.alibaba.com/labs/robot"
     },
     "notes": "阿里达摩院工业机器人操纵数据集，适合工业场景研究。",
-    "scale": "工业操纵场景"
+    "scale": "工业操纵场景",
+    "description": "阿里达摩院工业机器人操纵数据集，适合工业场景研究。 数据规模为 工业操纵场景。 覆盖 机械臂 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "工业操纵场景",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "工业操纵场景",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "gr-1-dataset",
@@ -425,7 +845,30 @@
     "links": {
       "official": "https://www.fourier-intelligence.com/"
     },
-    "notes": "傅利叶 GR-1 人形机器人数据，适合双足运动和操纵研究。"
+    "notes": "傅利叶 GR-1 人形机器人数据，适合双足运动和操纵研究。",
+    "description": "傅利叶 GR-1 人形机器人数据，适合双足运动和操纵研究。 数据规模为 人形机器人数据集。 覆盖 人形机器人 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "部分开源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "人形机器人数据集",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "力控",
+        "本体状态"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "人形机器人数据集",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "h1-dataset",
@@ -445,7 +888,28 @@
       "official": "https://www.unitree.com/"
     },
     "notes": "宇树 H1 人形机器人运动控制数据。",
-    "scale": "运动控制数据"
+    "scale": "运动控制数据",
+    "description": "宇树 H1 人形机器人运动控制数据。 数据规模为 运动控制数据。 覆盖 人形机器人 等机器人类型。 适用于 运动控制 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "运动控制数据",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "本体状态"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "运动控制数据",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "isaac-sim-dataset",
@@ -466,7 +930,30 @@
     "links": {
       "official": "https://developer.nvidia.com/isaac-sim"
     },
-    "notes": "NVIDIA 高保真机器人仿真平台，含场景模板和 sim-to-real 工具链。"
+    "notes": "NVIDIA 高保真机器人仿真平台，含场景模板和 sim-to-real 工具链。",
+    "description": "NVIDIA 高保真机器人仿真平台，含场景模板和 sim-to-real 工具链。 覆盖 仿真 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "部分开源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "点云",
+        "深度"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "habitat",
@@ -487,7 +974,29 @@
       "official": "https://aihabitat.org",
       "paper": "https://arxiv.org/abs/1904.01201"
     },
-    "notes": "大规模室内导航 benchmark，支持 Gibson、Matterport3D 等场景。"
+    "notes": "大规模室内导航 benchmark，支持 Gibson、Matterport3D 等场景。",
+    "description": "大规模室内导航 benchmark，支持 Gibson、Matterport3D 等场景。 覆盖 仿真 等机器人类型。 适用于 导航 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "深度"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "igibson",
@@ -511,7 +1020,30 @@
       "official": "https://stanfordvl.github.io/igibson",
       "paper": "https://arxiv.org/abs/2010.08628"
     },
-    "notes": "交互式家庭仿真环境，支持物理交互。"
+    "notes": "交互式家庭仿真环境，支持物理交互。",
+    "description": "交互式家庭仿真环境，支持物理交互。 覆盖 仿真 等机器人类型。 适用于 导航, 操作, 家居 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "深度",
+        "物理"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "3 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "sapien",
@@ -532,7 +1064,29 @@
       "official": "https://sapien.ucsd.edu",
       "paper": "https://arxiv.org/abs/2110.07115"
     },
-    "notes": "PartNet-Mobility 物体模型，支持高质量部件级操纵。"
+    "notes": "PartNet-Mobility 物体模型，支持高质量部件级操纵。",
+    "description": "PartNet-Mobility 物体模型，支持高质量部件级操纵。 覆盖 仿真 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "点云"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "fmtc",
@@ -551,7 +1105,28 @@
     "links": {
       "official": "https://fmbench.github.io"
     },
-    "notes": "基础模型 benchmark，适合评估 VLA 等模型。"
+    "notes": "基础模型 benchmark，适合评估 VLA 等模型。",
+    "description": "基础模型 benchmark，适合评估 VLA 等模型。 覆盖 仿真 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "coppeliasim",
@@ -570,7 +1145,28 @@
     "links": {
       "official": "https://www.coppeliarobotics.com/"
     },
-    "notes": "跨平台机器人仿真平台，含多种预置场景和模型，适合教育和算法验证。"
+    "notes": "跨平台机器人仿真平台，含多种预置场景和模型，适合教育和算法验证。",
+    "description": "跨平台机器人仿真平台，含多种预置场景和模型，适合教育和算法验证。 覆盖 仿真 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "tactile-toolbox",
@@ -589,7 +1185,28 @@
     "links": {
       "official": "https://tactile-toolbox.github.io"
     },
-    "notes": "统一触觉数据格式工具箱，适合触觉学习研究。"
+    "notes": "统一触觉数据格式工具箱，适合触觉学习研究。",
+    "description": "统一触觉数据格式工具箱，适合触觉学习研究。 覆盖 触觉传感 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "触觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "digit-dataset",
@@ -609,7 +1226,28 @@
       "official": "https://digit.ml",
       "paper": "https://arxiv.org/abs/1905.04128"
     },
-    "notes": "DIGIT 触觉传感器数据集，适合视觉-触觉融合。"
+    "notes": "DIGIT 触觉传感器数据集，适合视觉-触觉融合。",
+    "description": "DIGIT 触觉传感器数据集，适合视觉-触觉融合。 覆盖 触觉传感 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "触觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "tactip-datasets",
@@ -628,7 +1266,28 @@
     "links": {
       "official": "http://tactile.fandom.com/wiki/TacTip"
     },
-    "notes": "TacTip GelTip 系列传感器数据，适合主动触觉研究。"
+    "notes": "TacTip GelTip 系列传感器数据，适合主动触觉研究。",
+    "description": "TacTip GelTip 系列传感器数据，适合主动触觉研究。 覆盖 触觉传感 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "触觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "softmanip",
@@ -648,7 +1307,29 @@
     "links": {
       "official": "http://softmanipulation.com/"
     },
-    "notes": "软体机器人操纵数据，适合柔性物体处理研究。"
+    "notes": "软体机器人操纵数据，适合柔性物体处理研究。",
+    "description": "软体机器人操纵数据，适合柔性物体处理研究。 覆盖 触觉传感 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "触觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "tesla-optimus-data",
@@ -666,7 +1347,26 @@
     "links": {
       "official": "https://www.tesla.com/optimus"
     },
-    "notes": "特斯拉 Optimus 人形机器人数据，实际使用需联系特斯拉。"
+    "notes": "特斯拉 Optimus 人形机器人数据，实际使用需联系特斯拉。",
+    "description": "特斯拉 Optimus 人形机器人数据，实际使用需联系特斯拉。 覆盖 人形机器人 等机器人类型。 适用于 操作, 装配 等任务场景。",
+    "license": "闭源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "boston-dynamics-data",
@@ -684,7 +1384,26 @@
     "links": {
       "official": "https://www.bostondynamics.com/"
     },
-    "notes": "波士顿动力机器人数据，商业合作可获取。"
+    "notes": "波士顿动力机器人数据，商业合作可获取。",
+    "description": "波士顿动力机器人数据，商业合作可获取。 覆盖 四足机器人, 人形机器人 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "闭源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "unitree-h1-internal",
@@ -701,7 +1420,26 @@
     "links": {
       "official": "https://www.unitree.com/h1/"
     },
-    "notes": "宇树 H1 人形机器人内部数据，合作可获取。"
+    "notes": "宇树 H1 人形机器人内部数据，合作可获取。",
+    "description": "宇树 H1 人形机器人内部数据，合作可获取。 覆盖 人形机器人 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "闭源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "ubtech-walker",
@@ -719,7 +1457,26 @@
     "links": {
       "official": "https://www.ubtrobot.com/"
     },
-    "notes": "优必选 Walker 系列数据，商业合作可获取。"
+    "notes": "优必选 Walker 系列数据，商业合作可获取。",
+    "description": "优必选 Walker 系列数据，商业合作可获取。 覆盖 人形机器人 等机器人类型。 适用于 操作, 交互 等任务场景。",
+    "license": "闭源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "xiaomi-cyberone",
@@ -736,7 +1493,26 @@
     "links": {
       "official": "https://www.mi.com/"
     },
-    "notes": "小米 CyberOne 数据，实际使用需联系小米。"
+    "notes": "小米 CyberOne 数据，实际使用需联系小米。",
+    "description": "小米 CyberOne 数据，实际使用需联系小米。 覆盖 人形机器人 等机器人类型。 适用于 交互 等任务场景。",
+    "license": "闭源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "narwal-navigation",
@@ -753,7 +1529,26 @@
     "links": {
       "official": "https://www.narwal.com/"
     },
-    "notes": "云鲸扫地机器人 SLAM 和导航数据。"
+    "notes": "云鲸扫地机器人 SLAM 和导航数据。",
+    "description": "云鲸扫地机器人 SLAM 和导航数据。 覆盖 移动机器人 等机器人类型。 适用于 导航 等任务场景。",
+    "license": "闭源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "ecovacs-slam",
@@ -770,7 +1565,26 @@
     "links": {
       "official": "https://www.ecovacs.com/"
     },
-    "notes": "科沃斯家庭服务机器人 SLAM 数据。"
+    "notes": "科沃斯家庭服务机器人 SLAM 数据。",
+    "description": "科沃斯家庭服务机器人 SLAM 数据。 覆盖 移动机器人 等机器人类型。 适用于 导航 等任务场景。",
+    "license": "闭源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "google-deepmind-robotics-internal",
@@ -787,7 +1601,26 @@
     "links": {
       "official": "https://deepmind.google/robots/"
     },
-    "notes": "DeepMind 机器人研究数据，部分通过学术合作可获取。"
+    "notes": "DeepMind 机器人研究数据，部分通过学术合作可获取。",
+    "description": "DeepMind 机器人研究数据，部分通过学术合作可获取。 覆盖 多机型 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "闭源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "microsoft-embodied-ai",
@@ -804,7 +1637,26 @@
     "links": {
       "official": "https://www.microsoft.com/"
     },
-    "notes": "微软具身智能研究数据，学术合作可获取部分。"
+    "notes": "微软具身智能研究数据，学术合作可获取部分。",
+    "description": "微软具身智能研究数据，学术合作可获取部分。 覆盖 多机型 等机器人类型。 适用于 交互 等任务场景。",
+    "license": "闭源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "nvidia-isaac-private",
@@ -821,7 +1673,26 @@
     "links": {
       "official": "https://www.nvidia.com/isaac"
     },
-    "notes": "NVIDIA Isaac 仿真平台私有数据，商业合作可获取。"
+    "notes": "NVIDIA Isaac 仿真平台私有数据，商业合作可获取。",
+    "description": "NVIDIA Isaac 仿真平台私有数据，商业合作可获取。 覆盖 仿真 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "闭源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "huawei-embodied-ai",
@@ -838,7 +1709,26 @@
     "links": {
       "official": "https://www.huawei.com/"
     },
-    "notes": "华为具身智能研究数据，合作可获取。"
+    "notes": "华为具身智能研究数据，合作可获取。",
+    "description": "华为具身智能研究数据，合作可获取。 覆盖 人形机器人 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "闭源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "baidu-robot-learning",
@@ -856,7 +1746,26 @@
     "links": {
       "official": "https://www.baidu.com/"
     },
-    "notes": "百度机器人学习研究数据。"
+    "notes": "百度机器人学习研究数据。",
+    "description": "百度机器人学习研究数据。 覆盖 机械臂, 移动机器人 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "闭源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "tencent-robotics-x",
@@ -873,7 +1782,26 @@
     "links": {
       "official": "https://www.tencent.com/"
     },
-    "notes": "腾讯 Robotics X 实验室数据。"
+    "notes": "腾讯 Robotics X 实验室数据。",
+    "description": "腾讯 Robotics X 实验室数据。 覆盖 多机型 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "闭源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "sensetime-robot",
@@ -891,7 +1819,26 @@
     "links": {
       "official": "https://www.sensetime.com/"
     },
-    "notes": "商汤绝影具身智能数据。"
+    "notes": "商汤绝影具身智能数据。",
+    "description": "商汤绝影具身智能数据。 覆盖 人形机器人, 移动机器人 等机器人类型。 适用于 操作 等任务场景。",
+    "license": "闭源",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "graspnet-1billion",
@@ -913,7 +1860,30 @@
     "links": {
       "official": "https://graspnet.net"
     },
-    "notes": "超大规模抓取检测数据集。"
+    "notes": "超大规模抓取检测数据集。",
+    "description": "超大规模抓取检测数据集。 数据规模为 10 亿+ 抓取标注。 覆盖 机械臂 等机器人类型。 适用于 抓取 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "10 亿+ 抓取标注",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "深度",
+        "点云"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "10 亿+ 抓取标注",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "dexnet-2-0",
@@ -934,7 +1904,29 @@
     "links": {
       "official": "https://berkeleyautomation.github.io/dex-net/"
     },
-    "notes": "抓取姿态规划经典数据集。"
+    "notes": "抓取姿态规划经典数据集。",
+    "description": "抓取姿态规划经典数据集。 数据规模为 670 万抓取点云。 覆盖 机械臂 等机器人类型。 适用于 抓取 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "670 万抓取点云",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "深度"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "670 万抓取点云",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "gibson",
@@ -954,7 +1946,29 @@
     "links": {
       "official": "http://gibsonenv.stanford.edu"
     },
-    "notes": "真实场景导航仿真环境。"
+    "notes": "真实场景导航仿真环境。",
+    "description": "真实场景导航仿真环境。 覆盖 仿真 等机器人类型。 适用于 导航 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "深度"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "matterport3d",
@@ -974,7 +1988,29 @@
     "links": {
       "official": "https://niessner.github.io/Matterport/"
     },
-    "notes": "大规模室内场景数据集，常用于导航研究。"
+    "notes": "大规模室内场景数据集，常用于导航研究。",
+    "description": "大规模室内场景数据集，常用于导航研究。 覆盖 仿真 等机器人类型。 适用于 导航 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "深度"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "robonat",
@@ -996,7 +2032,29 @@
       "official": "https://robonat.github.io"
     },
     "notes": "自然语言交互机器人数据集。",
-    "scale": "自然语言交互数据集"
+    "scale": "自然语言交互数据集",
+    "description": "自然语言交互机器人数据集。 数据规模为 自然语言交互数据集。 覆盖 机械臂 等机器人类型。 适用于 交互, 操作 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "自然语言交互数据集",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "语言"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "自然语言交互数据集",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "humanoid-everyday",
@@ -1023,7 +2081,32 @@
       "official": "https://humanoid-everyday.github.io",
       "paper": "https://arxiv.org/abs/2510.08807"
     },
-    "notes": "2025年开源人形机器人日常操作数据集，含人机交互场景，支持云端评测。"
+    "notes": "2025年开源人形机器人日常操作数据集，含人机交互场景，支持云端评测。",
+    "description": "2025年开源人形机器人日常操作数据集，含人机交互场景，支持云端评测。 数据规模为 10.3K 轨迹，300W+ 帧。 覆盖 人形机器人 等机器人类型。 适用于 操作, 家居, 交互 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "10.3K 轨迹，300W+ 帧",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB",
+        "深度",
+        "LiDAR",
+        "触觉",
+        "语言"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "3 种任务类型",
+      "episodes": "10.3K 轨迹，300W+ 帧",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "dexora",
@@ -1046,7 +2129,30 @@
     "links": {
       "official": "https://github.com/ZZongzheng0918/Dexora"
     },
-    "notes": "ICRA 2026，36-DoF双臂灵巧手操作数据集，HuggingFace开源，347种物体。"
+    "notes": "ICRA 2026，36-DoF双臂灵巧手操作数据集，HuggingFace开源，347种物体。",
+    "description": "ICRA 2026，36-DoF双臂灵巧手操作数据集，HuggingFace开源，347种物体。 数据规模为 12.2K 真机 + 100K 仿真。 覆盖 机械臂 等机器人类型。 适用于 操作, 装配 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "12.2K 真机 + 100K 仿真",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "多视角视觉",
+        "本体状态",
+        "动作"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "12.2K 真机 + 100K 仿真",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "realsource",
@@ -1070,7 +2176,30 @@
     "links": {
       "official": "https://www.realman-robotics.com/"
     },
-    "notes": "2026年发布，北京人形机器人数据训练中心采集，多模态完整度100%。"
+    "notes": "2026年发布，北京人形机器人数据训练中心采集，多模态完整度100%。",
+    "description": "2026年发布，北京人形机器人数据训练中心采集，多模态完整度100%。 数据规模为 3000㎡训练中心，多场景。 覆盖 机械臂, 人形机器人 等机器人类型。 适用于 操作, 装配 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "3000㎡训练中心，多场景",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB",
+        "力控",
+        "本体状态"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "3000㎡训练中心，多场景",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "10kh-realomni",
@@ -1093,7 +2222,30 @@
     "links": {
       "official": "https://huggingface.co/datasets/genrobot2025/10Kh-RealOmin-OpenData"
     },
-    "notes": "目前最大规模开源具身数据集，数据来自3000个真实家庭，HuggingFace可下载。"
+    "notes": "目前最大规模开源具身数据集，数据来自3000个真实家庭，HuggingFace可下载。",
+    "description": "目前最大规模开源具身数据集，数据来自3000个真实家庭，HuggingFace可下载。 数据规模为 10000+ 小时，近百万片段。 覆盖 机械臂 等机器人类型。 适用于 操作, 家居 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "10000+ 小时，近百万片段",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "本体状态",
+        "动作"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "10000+ 小时，近百万片段",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "robocoin",
@@ -1117,7 +2269,30 @@
       "official": "https://robocoin.github.io",
       "paper": "https://arxiv.org/abs/2511.17441"
     },
-    "notes": "2025年发布，跨具身双臂操作数据集，421个任务，支持层级能力标注。"
+    "notes": "2025年发布，跨具身双臂操作数据集，421个任务，支持层级能力标注。",
+    "description": "2025年发布，跨具身双臂操作数据集，421个任务，支持层级能力标注。 数据规模为 18W+ 演示，15 种机器人。 覆盖 多机型 等机器人类型。 适用于 操作, 装配 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "18W+ 演示，15 种机器人",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "本体状态",
+        "动作"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "18W+ 演示，15 种机器人",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   },
   {
     "id": "openlet",
@@ -1141,6 +2316,30 @@
     "links": {
       "official": "https://www.lejurobot.com/"
     },
-    "notes": "2026年中国首个开源具身智能数据平台，含触觉灵巧操作+全身运动数据。"
+    "notes": "2026年中国首个开源具身智能数据平台，含触觉灵巧操作+全身运动数据。",
+    "description": "2026年中国首个开源具身智能数据平台，含触觉灵巧操作+全身运动数据。 数据规模为 60000+ 分钟，117 原子技能。 覆盖 人形机器人 等机器人类型。 适用于 操作, 交互 等任务场景。",
+    "license": "开源（详见官方链接）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "60000+ 分钟，117 原子技能",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "触觉",
+        "力控",
+        "本体状态"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "60000+ 分钟，117 原子技能",
+      "annotations": []
+    },
+    "citation": {},
+    "github": "",
+    "huggingface": ""
   }
 ]
