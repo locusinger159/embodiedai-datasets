@@ -80,7 +80,7 @@
 
 <script>
 var SS={{STANDARDS_JSON}};
-var state={search:'',type:[],openness:[],scene:[],page:1,ps:15,sort:'',view:'table'};
+var isMobile=window.innerWidth<=768;var state={search:'',type:[],openness:[],scene:[],page:1,ps:15,sort:'',view:isMobile?'card':'table'};
 var selectedIds=new Set();
 
 function lT(v){return{format:'数据格式',benchmark:'评测基准',industry:'行业标准'}[v]||v}
@@ -178,7 +178,7 @@ function clearFilters(){state.search='';state.type=[];state.openness=[];state.sc
 function goPage(p){state.page=p;update();window.scrollTo({top:400,behavior:'smooth'})}
 
 document.getElementById('searchInput').addEventListener('keypress',function(e){if(e.key==='Enter')handleSearch()});
-document.querySelectorAll('.view-btn').forEach(function(b){b.addEventListener('click',function(){state.view=this.dataset.view;document.querySelectorAll('.view-btn').forEach(function(x){x.classList.remove('active')});this.classList.add('active');update()})});
+document.querySelectorAll('.view-btn').forEach(function(b){b.addEventListener('click',function(){state.view=this.dataset.view;document.querySelectorAll('.view-btn').forEach(function(x){x.classList.remove('active')});this.classList.add('active');update()});if(b.dataset.view===state.view){b.classList.add('active');b.parentElement.querySelectorAll('.view-btn').forEach(function(x){if(x!==b)x.classList.remove('active')})}});
 document.getElementById('selectAll').addEventListener('change',function(){var f=filterData();if(this.checked)f.forEach(function(s){selectedIds.add(s.id)});else selectedIds.clear();updateCompareBar();update()});
 document.getElementById('compareModal').addEventListener('click',function(e){if(e.target===this)closeCompare()});
 window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>50?'rgba(11,15,26,0.95)':'rgba(11,15,26,0.85)';n.style.boxShadow=y>50?'0 4px 20px rgba(0,0,0,0.3)':'none'});

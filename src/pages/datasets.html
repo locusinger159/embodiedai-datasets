@@ -57,7 +57,7 @@
 
 <script>
 const DS = {{DATASETS_JSON}};
-var state={search:'',robot:[],task:[],type:[],page:1,ps:15,sort:'',sortDir:'asc',view:'table'};
+var isMobile=window.innerWidth<=768;var state={search:'',robot:[],task:[],type:[],page:1,ps:15,sort:'',sortDir:'asc',view:isMobile?'card':'table'};
 var tL={open:'开源',partial:'部分开源',apply:'可申请',closed:'闭源'};
 var cL={open:'type-open',partial:'type-partial',apply:'type-partial',closed:'type-closed'};
 var selectedDS=new Set();
@@ -127,7 +127,7 @@ function clearFilters(){state.search='';state.robot=[];state.task=[];state.type=
 function goPage(p){state.page=p;update();window.scrollTo({top:400,behavior:'smooth'})}
 document.getElementById('searchInput').addEventListener('keypress',function(e){if(e.key==='Enter')handleSearch()});
 document.getElementById('sortSelect').addEventListener('change',function(){var v=this.value;state.sort=v==='name'?'name':'institution';update()});
-document.querySelectorAll('.view-btn').forEach(function(b){b.addEventListener('click',function(){state.view=this.dataset.view;document.querySelectorAll('.view-btn').forEach(function(x){x.classList.remove('active')});this.classList.add('active');update()})});
+document.querySelectorAll('.view-btn').forEach(function(b){b.addEventListener('click',function(){state.view=this.dataset.view;document.querySelectorAll('.view-btn').forEach(function(x){x.classList.remove('active')});this.classList.add('active');update()});if(b.dataset.view===state.view){b.classList.add('active');b.parentElement.querySelectorAll('.view-btn').forEach(function(x){if(x!==b)x.classList.remove('active')})}});
 
 function toggleDS(id){if(selectedDS.has(id))selectedDS.delete(id);else{if(selectedDS.size>=4)return alert('最多对比 4 个数据集');selectedDS.add(id)}updateCompareBarDS();update()}
 function updateCompareBarDS(){var bar=document.getElementById('compareBarDS'),c=selectedDS.size;document.getElementById('compareCountDS').textContent=c;document.getElementById('compareBtnDS').disabled=c<2;bar.classList.toggle('visible',c>0)}

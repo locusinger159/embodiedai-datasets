@@ -1,9 +1,9 @@
 <nav class="navbar">
   <a href="/" class="nav-logo">
     <img src="/学生bot.png" alt="Logo">
-    EmbodiedAI Datasets
+    <span class="nav-logo-text">EmbodiedAI Datasets</span>
   </a>
-  <div class="nav-menu">
+  <div class="nav-menu" id="navMenu">
     <a href="/" class="nav-link {{NAV_HOME}}">首页</a>
     <a href="/datasets/" class="nav-link {{NAV_DATASETS}}">全部数据集</a>
     <a href="/standards/" class="nav-link {{NAV_STANDARDS}}">数据标准</a>
@@ -15,4 +15,7 @@
       GitHub
     </a>
   </div>
+  <button class="hamburger-btn" id="hamburgerBtn" aria-label="菜单">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
