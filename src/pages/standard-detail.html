@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>{{HEAD}}
+<style>
+.detail-main { max-width:1400px; margin:0 auto; padding:120px 48px 60px; }
+.back-link { display:inline-flex; align-items:center; gap:6px; color:var(--text-secondary); font-size:14px; margin-bottom:24px; transition:color 0.2s; }
+.back-link:hover { color:var(--primary); }
+.detail-header { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:8px; flex-wrap:wrap; }
+.detail-name { font-size:36px; font-weight:800; color:var(--text-primary); }
+.detail-org { font-size:18px; color:var(--text-secondary); margin-bottom:24px; }
+.detail-fullname { font-size:14px; color:var(--text-light); margin-bottom:4px; }
+.detail-desc { font-size:16px; line-height:1.8; color:var(--text-primary); margin-bottom:40px; max-width:900px; }
+.info-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-bottom:40px; }
+.info-card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:20px; }
+.info-card-label { font-size:12px; font-weight:600; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px; }
+.info-card-value { font-size:16px; font-weight:600; color:var(--text-primary); }
+.section-block { margin-bottom:40px; }
+.section-block h2 { font-size:22px; font-weight:700; margin-bottom:20px; padding-left:12px; border-left:4px solid var(--primary); }
+.related-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:16px; }
+.related-card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:16px; transition:all 0.2s; display:block; }
+.related-card:hover { border-color:var(--primary); transform:translateY(-2px); box-shadow:0 4px 16px rgba(91,124,255,0.1); }
+.related-name { font-weight:600; font-size:15px; margin-bottom:4px; }
+.related-org { font-size:13px; color:var(--text-secondary); }
+.related-meta { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
+.empty-hint { color:var(--text-light); font-style:italic; font-size:14px; padding:16px 0; }
+</style>
+</head>
+<body>
+{{NAVBAR}}
+<main class="detail-main">
+  <a href="/standards/" class="back-link">← 返回数据标准</a>
+  <div class="detail-header">
+    <div><div class="detail-fullname">{{FULLNAME}}</div><h1 class="detail-name">{{NAME}}</h1></div>
+    <span class="std-type-badge {{TYPE_CLASS}}">{{TYPE_LABEL}}</span>
+  </div>
+  <p class="detail-org">{{ORGANIZATION}}</p>
+  <p class="detail-desc">{{DESCRIPTION}}</p>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="info-card-label">发布组织</div><div class="info-card-value">{{ORGANIZATION}}</div></div>
+    <div class="info-card"><div class="info-card-label">标准类型</div><div class="info-card-value"><span class="std-type-badge {{TYPE_CLASS}}">{{TYPE_LABEL}}</span></div></div>
+    <div class="info-card"><div class="info-card-label">开放程度</div><div class="info-card-value"><span class="type-badge {{OPENNESS_CLASS}}">{{OPENNESS_DOT}} {{OPENNESS_LABEL}}</span></div></div>
+    <div class="info-card"><div class="info-card-label">许可证</div><div class="info-card-value">{{LICENSE}}</div></div>
+    <div class="info-card"><div class="info-card-label">适用场景</div><div class="info-card-value">{{SCENES}}</div></div>
+    <div class="info-card"><div class="info-card-label">数据模态</div><div class="info-card-value">{{MODALITIES}}</div></div>
+  </div>
+
+  <!-- Links -->
+  {{LINKS}}
+
+  <!-- Related Datasets -->
+  <div class="section-block">
+    <h2>关联数据集</h2>
+    <div class="related-grid">{{RELATED_DATASETS}}</div>
+  </div>
+
+  <!-- Related Standards -->
+  <div class="section-block">
+    <h2>相关标准</h2>
+    <div class="related-grid">{{RELATED_STANDARDS}}</div>
+  </div>
+
+  <!-- Comments -->
+  <div class="section-block">
+    <h2>讨论</h2>
+    <script src="https://giscus.app/client.js"
+      data-repo="locusinger159/embodiedai-datasets"
+      data-repo-id="R_kgDOSiiGSw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOSiiGS84C-Eki"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+</main>
+{{FOOTER}}
+
+<script>
+window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>50?'rgba(11,15,26,0.95)':'rgba(11,15,26,0.85)';n.style.boxShadow=y>50?'0 4px 20px rgba(0,0,0,0.3)':'none'})
+</script>
+</body>
+</html>

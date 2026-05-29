@@ -185,7 +185,74 @@ for (const ds of datasets) {
   fs.writeFileSync(`${dir}/index.html`, buildDetailPage(ds));
 }
 
-// ── Standards page ───────────────────────────────────────
+// ── Standard detail pages ────────────────────────────────
+function buildStandardDetail(ss) {
+  const tL = {format:'数据格式',benchmark:'评测基准',industry:'行业标准',closed:'商业闭源'};
+  const tC = {format:'type-format',benchmark:'type-benchmark',industry:'type-industry',closed:'type-closed-std'};
+  const oL = {open:'完全开源',partial:'部分开源',standard:'行业标准',closed:'闭源'};
+  const oC = {open:'type-open',partial:'type-partial',standard:'type-partial',closed:'type-closed'};
+  const oD = {open:'●',partial:'◐',standard:'◆',closed:'○'};
+  const scL = {real:'真机',sim:'仿真',general:'通用'};
+
+  // Find related datasets (cross-reference by name mentions in notes, dataFormat, etc.)
+  const relatedDS = datasets.filter(d => {
+    const haystack = [d.notes || '', d.description || '', d.dataFormat?.storage || '', (d.name || '')].join(' ').toLowerCase();
+    const keywords = [ss.name.toLowerCase(), ss.fullName.toLowerCase()];
+    return d.id !== ss.id && keywords.some(k => haystack.includes(k));
+  }).slice(0, 4);
+
+  // Find related standards (same type or scene)
+  const relatedST = standards.filter(s => s.id !== ss.id && (s.type === ss.type || (s.scene || []).some(sc => (ss.scene || []).includes(sc)))).slice(0, 4);
+
+  // Links
+  let linksHTML = '';
+  if (ss.links?.site || ss.links?.github) {
+    linksHTML = '<div class="section-block"><h2>相关链接</h2><div class="links-section">';
+    if (ss.links?.site) linksHTML += `<a href="${esc(ss.links.site)}" target="_blank" class="link-card" rel="noopener">🌐 官方网站</a>`;
+    if (ss.links?.github) linksHTML += `<a href="${esc(ss.links.github)}" target="_blank" class="link-card" rel="noopener">💻 GitHub</a>`;
+    linksHTML += '</div></div>';
+  }
+
+  const relatedDSHTML = relatedDS.length
+    ? relatedDS.map(d => `<a href="/datasets/${esc(d.id)}/" class="related-card"><div class="related-name">${esc(d.name)}</div><div class="related-org">${esc(d.institution || '')}</div><div class="related-meta">${(d.robotType || []).slice(0, 2).map(t => `<span class="data-tag">${esc(t)}</span>`).join('')}</div></a>`).join('')
+    : '<div class="empty-hint">暂无关联数据集</div>';
+
+  const relatedSTHTML = relatedST.length
+    ? relatedST.map(s => `<a href="/standards/${esc(s.id)}/" class="related-card"><div class="related-name">${esc(s.name)}</div><div class="related-org">${esc(s.org)}</div><div class="related-meta"><span class="std-type-badge ${tC[s.type]||''}">${tL[s.type]||s.type}</span></div></div></a>`).join('')
+    : '<div class="empty-hint">暂无相关标准</div>';
+
+  const scenesHTML = (ss.scene || []).map(s => `<span class="data-tag">${scL[s] || s}</span>`).join(' ') || '-';
+  const modalitiesHTML = (ss.modalities || []).length ? (ss.modalities || []).join('、') : '-';
+
+  return buildPage('src/pages/standard-detail.html', {
+    meta: `<title>${esc(ss.name)} | EmbodiedAI Datasets</title><meta name="description" content="${esc(ss.desc.substring(0, 160))}">`,
+    nav: navbar.replace('{{NAV_HOME}}', '').replace('{{NAV_DATASETS}}', '').replace('{{NAV_STANDARDS}}', 'active').replace('{{NAV_SUBMIT}}', ''),
+    NAME: esc(ss.name),
+    FULLNAME: esc(ss.fullName || ''),
+    TYPE_LABEL: tL[ss.type] || ss.type,
+    TYPE_CLASS: tC[ss.type] || '',
+    ORGANIZATION: esc(ss.org),
+    DESCRIPTION: esc(ss.desc),
+    LICENSE: esc(ss.license || '未知'),
+    OPENNESS_CLASS: oC[ss.openness] || '',
+    OPENNESS_DOT: oD[ss.openness] || '',
+    OPENNESS_LABEL: oL[ss.openness] || ss.openness,
+    SCENES: scenesHTML,
+    MODALITIES: modalitiesHTML,
+    LINKS: linksHTML,
+    RELATED_DATASETS: relatedDSHTML,
+    RELATED_STANDARDS: relatedSTHTML
+  });
+}
+
+fs.mkdirSync('dist/standards', { recursive: true });
+for (const ss of standards) {
+  const dir = `dist/standards/${ss.id}`;
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(`${dir}/index.html`, buildStandardDetail(ss));
+}
+
+// ── Standards list page ───────────────────────────────────
 fs.mkdirSync('dist/standards', { recursive: true });
 fs.writeFileSync('dist/standards/index.html', buildPage('src/pages/standards.html', {
   meta: '<title>数据标准 | EmbodiedAI Datasets</title><meta name="description" content="具身智能行业数据标准与评测基准">',
