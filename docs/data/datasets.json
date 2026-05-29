@@ -52,7 +52,23 @@
       "venue": "ICRA 2024"
     },
     "github": "https://github.com/google-deepmind/open_x_embodiment",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [
+      {
+        "date": "2023-10",
+        "text": "首次发布，包含来自 22 种机器人形态的 60+ 数据集"
+      },
+      {
+        "date": "2024-01",
+        "text": "RT-X 模型发布，数据集扩展至 100万+ 轨迹"
+      }
+    ],
+    "quality": {
+      "collection": "多源聚合",
+      "annotation": "部分人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "bridge-data-v2",
@@ -104,7 +120,23 @@
       "venue": "CoRL 2023"
     },
     "github": "https://github.com/rail-berkeley/bridge_data_v2",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [
+      {
+        "date": "2023-08",
+        "text": "BridgeData V2 发布，包含 85K 操作轨迹"
+      },
+      {
+        "date": "2024-03",
+        "text": "论文更新至 arXiv 2403.03954"
+      }
+    ],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "rh20t",
@@ -157,7 +189,14 @@
       "venue": "RSS 2023"
     },
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "roboset",
@@ -200,7 +239,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "libero",
@@ -242,7 +288,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
   },
   {
     "id": "meta-world",
@@ -284,7 +337,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
   },
   {
     "id": "rlbench",
@@ -331,7 +391,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
   },
   {
     "id": "maniskill2",
@@ -376,7 +443,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
   },
   {
     "id": "robosuite",
@@ -422,7 +496,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
   },
   {
     "id": "calvin",
@@ -467,7 +548,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
   },
   {
     "id": "ario",
@@ -509,7 +597,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "ocrl",
@@ -552,7 +647,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "rt-1-data",
@@ -599,7 +701,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "robocat-data",
@@ -644,7 +753,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "t-diffusion-data",
@@ -689,7 +805,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "agibot-world",
@@ -736,7 +859,23 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [
+      {
+        "date": "2024-12",
+        "text": "首次发布，100万+轨迹、2976小时数据"
+      },
+      {
+        "date": "2026",
+        "text": "2026年更新版发布，新增触觉和LiDAR模态"
+      }
+    ],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "robomind",
@@ -782,7 +921,23 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [
+      {
+        "date": "2024-10",
+        "text": "首次发布，6万+分钟真机数据"
+      },
+      {
+        "date": "2025-12",
+        "text": "RoboMIND 2.0 发布，新增 31万+ 双臂轨迹和触觉增强数据"
+      }
+    ],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "damo-solo",
@@ -823,7 +978,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "gr-1-dataset",
@@ -868,7 +1030,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "未公开",
+      "annotation": "未公开",
+      "realWorld": "未公开",
+      "hasSplit": false
+    }
   },
   {
     "id": "h1-dataset",
@@ -909,7 +1078,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "isaac-sim-dataset",
@@ -953,7 +1129,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
   },
   {
     "id": "habitat",
@@ -996,7 +1179,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
   },
   {
     "id": "igibson",
@@ -1043,7 +1233,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
   },
   {
     "id": "sapien",
@@ -1086,7 +1283,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
   },
   {
     "id": "fmtc",
@@ -1126,7 +1330,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
   },
   {
     "id": "coppeliasim",
@@ -1166,7 +1377,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
   },
   {
     "id": "tactile-toolbox",
@@ -1206,7 +1424,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "digit-dataset",
@@ -1247,7 +1472,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "tactip-datasets",
@@ -1287,7 +1519,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "softmanip",
@@ -1329,7 +1568,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "tesla-optimus-data",
@@ -1366,7 +1612,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "未公开",
+      "annotation": "未公开",
+      "realWorld": "未公开",
+      "hasSplit": false
+    }
   },
   {
     "id": "boston-dynamics-data",
@@ -1403,7 +1656,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "未公开",
+      "annotation": "未公开",
+      "realWorld": "未公开",
+      "hasSplit": false
+    }
   },
   {
     "id": "unitree-h1-internal",
@@ -1439,7 +1699,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "未公开",
+      "annotation": "未公开",
+      "realWorld": "未公开",
+      "hasSplit": false
+    }
   },
   {
     "id": "ubtech-walker",
@@ -1476,7 +1743,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "未公开",
+      "annotation": "未公开",
+      "realWorld": "未公开",
+      "hasSplit": false
+    }
   },
   {
     "id": "xiaomi-cyberone",
@@ -1512,7 +1786,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "未公开",
+      "annotation": "未公开",
+      "realWorld": "未公开",
+      "hasSplit": false
+    }
   },
   {
     "id": "narwal-navigation",
@@ -1548,7 +1829,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "未公开",
+      "annotation": "未公开",
+      "realWorld": "未公开",
+      "hasSplit": false
+    }
   },
   {
     "id": "ecovacs-slam",
@@ -1584,7 +1872,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "未公开",
+      "annotation": "未公开",
+      "realWorld": "未公开",
+      "hasSplit": false
+    }
   },
   {
     "id": "google-deepmind-robotics-internal",
@@ -1620,7 +1915,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "未公开",
+      "annotation": "未公开",
+      "realWorld": "未公开",
+      "hasSplit": false
+    }
   },
   {
     "id": "microsoft-embodied-ai",
@@ -1656,7 +1958,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "未公开",
+      "annotation": "未公开",
+      "realWorld": "未公开",
+      "hasSplit": false
+    }
   },
   {
     "id": "nvidia-isaac-private",
@@ -1692,7 +2001,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": false
+    }
   },
   {
     "id": "huawei-embodied-ai",
@@ -1728,7 +2044,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "未公开",
+      "annotation": "未公开",
+      "realWorld": "未公开",
+      "hasSplit": false
+    }
   },
   {
     "id": "baidu-robot-learning",
@@ -1765,7 +2088,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "未公开",
+      "annotation": "未公开",
+      "realWorld": "未公开",
+      "hasSplit": false
+    }
   },
   {
     "id": "tencent-robotics-x",
@@ -1801,7 +2131,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "未公开",
+      "annotation": "未公开",
+      "realWorld": "未公开",
+      "hasSplit": false
+    }
   },
   {
     "id": "sensetime-robot",
@@ -1838,7 +2175,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "未公开",
+      "annotation": "未公开",
+      "realWorld": "未公开",
+      "hasSplit": false
+    }
   },
   {
     "id": "graspnet-1billion",
@@ -1883,7 +2227,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "dexnet-2-0",
@@ -1926,7 +2277,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "gibson",
@@ -1968,7 +2326,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
   },
   {
     "id": "matterport3d",
@@ -2010,7 +2375,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
   },
   {
     "id": "robonat",
@@ -2054,7 +2426,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "humanoid-everyday",
@@ -2106,7 +2485,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "dexora",
@@ -2152,7 +2538,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "realsource",
@@ -2199,7 +2592,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "10kh-realomni",
@@ -2245,7 +2645,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "robocoin",
@@ -2292,7 +2699,14 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   },
   {
     "id": "openlet",
@@ -2340,6 +2754,13 @@
     },
     "citation": {},
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   }
 ]

@@ -72,6 +72,25 @@ function buildDetailPage(ds) {
     annotationsHTML = '<div style="margin-top:16px"><div class="content-card"><h3>标注信息</h3><div class="data-tags">' + anns.map(a => `<span class="data-tag">${esc(a)}</span>`).join('') + '</div></div></div>';
   }
 
+  // Quality badges
+  const q = ds.quality || {};
+  const qb = [];
+  const collMap = {'遥操作采集':'good','人工遥操作采集':'good','多源聚合':'info','仿真生成':'info','未公开':'warn'};
+  const annoMap = {'人工标注':'good','部分人工标注':'good','自动标注':'info','未公开':'warn'};
+  const realMap = {'100%真机':'good','仿真':'info','未公开':'warn'};
+  if (q.collection) qb.push({label:'🤖 ' + q.collection, cls: collMap[q.collection] || 'info'});
+  if (q.annotation) qb.push({label:'✅ ' + q.annotation, cls: annoMap[q.annotation] || 'info'});
+  if (q.realWorld) qb.push({label:q.realWorld === '100%真机' ? '🏠 ' + q.realWorld : '💻 ' + q.realWorld, cls: realMap[q.realWorld] || 'info'});
+  if (q.hasSplit !== undefined) qb.push({label: q.hasSplit ? '📊 有数据划分' : '📊 无数据划分', cls: q.hasSplit ? 'good' : 'warn'});
+  const qualityHTML = qb.length ? '<div class="quality-badges">' + qb.map(b => `<span class="quality-badge ${b.cls}">${b.label}</span>`).join('') + '</div>' : '';
+
+  // Changelog
+  const cl = ds.changelog || [];
+  let changelogHTML = '';
+  if (cl.length) {
+    changelogHTML = '<div class="changelog section-block"><h2>更新历史</h2><div class="changelog-list">' + cl.map(c => `<div class="changelog-item"><div class="changelog-date">${esc(c.date)}</div><div class="changelog-text">${esc(c.text)}</div></div>`).join('') + '</div></div>';
+  }
+
   // Links
   let linksHTML = '<div class="section-block"><h2>相关链接</h2><div class="links-section">';
   if (ds.links?.official) linksHTML += `<a href="${esc(ds.links.official)}" target="_blank" class="link-card" rel="noopener">🌐 官方网站</a>`;
@@ -132,7 +151,9 @@ function buildDetailPage(ds) {
     ANNOTATIONS: annotationsHTML,
     LINKS: linksHTML,
     CITATION: citationHTML,
-    RELATED: relatedHTML
+    RELATED: relatedHTML,
+    QUALITY_BADGES: qualityHTML,
+    CHANGELOG: changelogHTML
   });
 }
 

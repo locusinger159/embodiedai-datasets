@@ -36,10 +36,23 @@
 </section>
 
 <section class="datasets-section">
-  <div class="table-view" id="tableView"><table class="d-table"><thead><tr><th>数据集名称</th><th>机构</th><th>机器人类型</th><th>任务类型</th><th>开放程度</th><th>相关链接</th></tr></thead><tbody id="datasetsTableBody"></tbody></table></div>
+  <div class="table-view" id="tableView"><table class="d-table"><thead><tr><th style="width:40px"><input type="checkbox" class="std-checkbox" id="selectAllDS" title="全选"></th><th>数据集名称</th><th>机构</th><th>机器人类型</th><th>任务类型</th><th>开放程度</th><th>相关链接</th></tr></thead><tbody id="datasetsTableBody"></tbody></table></div>
   <div class="card-view" id="cardView"></div>
   <div class="pagination" id="pagination"></div>
 </section>
+
+<div class="compare-bar" id="compareBarDS">
+  <span class="compare-bar-text">已选择 <span id="compareCountDS">0</span> 个数据集</span>
+  <button class="compare-bar-btn" id="compareBtnDS" disabled onclick="openCompareDS()">开始对比</button>
+  <button class="compare-clear-btn" onclick="clearCompareDS()">清除</button>
+</div>
+
+<div class="compare-modal-overlay" id="compareModalDS">
+  <div class="compare-modal">
+    <div class="compare-modal-header"><span class="compare-modal-title">数据集对比</span><button class="compare-close-btn" onclick="closeCompareDS()">✕</button></div>
+    <div id="compareContentDS"></div>
+  </div>
+</div>
 {{FOOTER}}
 
 <script>
@@ -47,6 +60,7 @@ const DS = {{DATASETS_JSON}};
 var state={search:'',robot:[],task:[],type:[],page:1,ps:15,sort:'',sortDir:'asc',view:'table'};
 var tL={open:'开源',partial:'部分开源',apply:'可申请',closed:'闭源'};
 var cL={open:'type-open',partial:'type-partial',apply:'type-partial',closed:'type-closed'};
+var selectedDS=new Set();
 
 function rL(v){return {humanoid:'人形机器人',arm:'机械臂',mobile:'移动机器人',quadruped:'四足机器人',multi:'多机型','触觉传感':'触觉传感',仿真:'仿真'}[v]||v}
 function tL2(v){return {操作:'操作',抓取:'抓取',导航:'导航',装配:'装配',家居:'家居',交互:'交互',运动控制:'运动控制'}[v]||v}
@@ -80,7 +94,7 @@ function filterData(){
 function renderTable(data){
   var start=(state.page-1)*state.ps,page=data.slice(start,start+state.ps);
   document.getElementById('datasetsTableBody').innerHTML=page.map(function(d){
-    return '<tr><td><a href="/datasets/'+d.id+'/" class="data-name-cell"><div class="data-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>'+d.name+'</a></td><td class="data-org">'+(d.institution||'-')+'</td><td><div class="data-tags">'+(d.robotType||[]).map(function(r){return '<span class="data-tag">'+rL(r)+'</span>'}).join('')+'</div></td><td><div class="data-tags">'+(d.task||[]).map(function(t){return '<span class="data-tag">'+tL2(t)+'</span>'}).join('')+'</div></td><td><span class="type-badge '+cL[d.type]+'">'+tL[d.type]+'</span></td><td><div class="data-links">'+(d.links&&d.links.official?'<a href="'+d.links.official+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>官网</a>':'')+(d.links&&d.links.paper?'<a href="'+d.links.paper+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>论文</a>':'')+'</div></td></tr>';
+    return '<tr class="'+(selectedDS.has(d.id)?'selected':'')+'"><td><input type="checkbox" class="std-checkbox" '+(selectedDS.has(d.id)?'checked':'')+' onchange="toggleDS(\''+d.id+'\')"></td><td><a href="/datasets/'+d.id+'/" class="data-name-cell"><div class="data-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>'+d.name+'</a></td><td class="data-org">'+(d.institution||'-')+'</td><td><div class="data-tags">'+(d.robotType||[]).map(function(r){return '<span class="data-tag">'+rL(r)+'</span>'}).join('')+'</div></td><td><div class="data-tags">'+(d.task||[]).map(function(t){return '<span class="data-tag">'+tL2(t)+'</span>'}).join('')+'</div></td><td><span class="type-badge '+cL[d.type]+'">'+tL[d.type]+'</span></td><td><div class="data-links">'+(d.links&&d.links.official?'<a href="'+d.links.official+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>官网</a>':'')+(d.links&&d.links.paper?'<a href="'+d.links.paper+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>论文</a>':'')+'</div></td></tr>';
   }).join('');
 }
 
@@ -114,6 +128,14 @@ function goPage(p){state.page=p;update();window.scrollTo({top:400,behavior:'smoo
 document.getElementById('searchInput').addEventListener('keypress',function(e){if(e.key==='Enter')handleSearch()});
 document.getElementById('sortSelect').addEventListener('change',function(){var v=this.value;state.sort=v==='name'?'name':'institution';update()});
 document.querySelectorAll('.view-btn').forEach(function(b){b.addEventListener('click',function(){state.view=this.dataset.view;document.querySelectorAll('.view-btn').forEach(function(x){x.classList.remove('active')});this.classList.add('active');update()})});
+
+function toggleDS(id){if(selectedDS.has(id))selectedDS.delete(id);else selectedDS.add(id);updateCompareBarDS();update()}
+function updateCompareBarDS(){var bar=document.getElementById('compareBarDS'),c=selectedDS.size;document.getElementById('compareCountDS').textContent=c;document.getElementById('compareBtnDS').disabled=c<2;bar.classList.toggle('visible',c>0)}
+function clearCompareDS(){selectedDS.clear();updateCompareBarDS();update();document.getElementById('selectAllDS').checked=false}
+function openCompareDS(){var items=DS.filter(function(d){return selectedDS.has(d.id)});if(items.length<2)return;var fields=[{key:'name',label:'名称'},{key:'institution',label:'机构'},{key:'scale',label:'规模'},{key:'robotType',label:'机器人类型',fmt:function(v){return v.join(', ')}},{key:'task',label:'任务类型',fmt:function(v){return v.join(', ')}},{key:'modality',label:'模态',fmt:function(v){return v.join('、')}},{key:'type',label:'类型',fmt:function(v){return tL[v]}},{key:'license',label:'许可证'}];var h='<table class="compare-table"><thead><tr><th></th>';items.forEach(function(d){h+='<th>'+d.name+'</th>'});h+='</tr></thead><tbody>';fields.forEach(function(f){h+='<tr><td class="comp-field">'+f.label+'</td>';items.forEach(function(d){var v=f.fmt?f.fmt(d[f.key]||''):((d[f.key]||d.quality||{})[f.key]||d[f.key]||'-');h+='<td>'+v+'</td>'});h+='</tr>'});h+='</tbody></table>';document.getElementById('compareContentDS').innerHTML=h;document.getElementById('compareModalDS').classList.add('visible')}
+function closeCompareDS(){document.getElementById('compareModalDS').classList.remove('visible')}
+document.getElementById('selectAllDS').addEventListener('change',function(){var f=filterData();if(this.checked)f.forEach(function(d){selectedDS.add(d.id)});else selectedDS.clear();updateCompareBarDS();update()});
+document.getElementById('compareModalDS').addEventListener('click',function(e){if(e.target===this)closeCompareDS()});
 
 window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>50?'rgba(11,15,26,0.95)':'rgba(11,15,26,0.85)';n.style.boxShadow=y>50?'0 4px 20px rgba(0,0,0,0.3)':'none'});
 
