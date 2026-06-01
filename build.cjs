@@ -323,6 +323,16 @@ function buildAll(lang) {
   compareClear: isEn ? 'Clear' : '清除',
   compareTitle: isEn ? 'Dataset Comparison' : '数据集对比',
   highlightDiff: isEn ? 'Highlight Differences' : '高亮不同',
+  formatStorage: isEn ? 'Storage Format' : '存储格式',
+  formatSize: isEn ? 'Data Size' : '数据大小',
+  formatCompression: isEn ? 'Compression' : '压缩方式',
+  formatSchema: isEn ? 'Schema' : 'Schema',
+  qualityCollection: isEn ? 'Collection Method' : '采集方式',
+  qualityAnnotation: isEn ? 'Annotation' : '标注方式',
+  qualityRealWorld: isEn ? 'Real-World Ratio' : '真机占比',
+  qualityHasSplit: isEn ? 'Data Split' : '数据划分',
+  hasSplitYes: isEn ? 'Yes' : '有',
+  hasSplitNo: isEn ? 'No' : '无',
   noResults: isEn ? 'No matching datasets found.' : '没有匹配的数据集。',
 })};`;
   fs.mkdirSync(`${outDir}/datasets`, { recursive: true });
