@@ -287,10 +287,30 @@ function buildAll(lang) {
   }));
 
   // ── Datasets list page ───────────────────────────────────
+  const i18nJS = `window.I18N = ${JSON.stringify({
+  typeLabels: ui.typeLabels,
+  robotLabels: ui.robotLabels,
+  taskLabels: ui.taskLabels,
+  searchPlaceholder: isEn ? 'Search dataset name, institution, task type...' : '搜索数据集名称、机构、任务类型...',
+  robotType: isEn ? 'Robot Type' : '机器人类型',
+  taskType: isEn ? 'Task Type' : '任务类型',
+  openness: isEn ? 'Access Level' : '开放程度',
+  sortName: isEn ? 'Name' : '名称排序',
+  sortOrg: isEn ? 'Institution' : '机构排序',
+  clearFilters: isEn ? 'Clear Filters' : '清除筛选',
+  compareTextPrefix: isEn ? 'Selected ' : '已选择 ',
+  compareTextSuffix: isEn ? ' datasets' : ' 个数据集',
+  compareBtn: isEn ? 'Compare' : '开始对比',
+  compareClear: isEn ? 'Clear' : '清除',
+  compareTitle: isEn ? 'Dataset Comparison' : '数据集对比',
+  highlightDiff: isEn ? 'Highlight Differences' : '高亮不同',
+  noResults: isEn ? 'No matching datasets found.' : '没有匹配的数据集。',
+})};`;
   fs.mkdirSync(`${outDir}/datasets`, { recursive: true });
   fs.writeFileSync(`${outDir}/datasets/index.html`, buildPage(`${templateDir}datasets.html`, {
     meta: `<title>${ui.datasets} | EmbodiedAI Datasets</title><meta name="description" content="${isEn ? 'Browse all embodied AI and robotics datasets' : '浏览全部具身智能、机器人数据集'}">`,
     nav: getActiveNav('datasets'),
+    I18N_JS: i18nJS,
     DATASETS_JSON: JSON.stringify(dataDatasets)
   }));
 

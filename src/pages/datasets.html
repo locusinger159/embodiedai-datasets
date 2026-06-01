@@ -20,16 +20,16 @@
 <section class="filter-section">
   <div class="filter-content">
     <div class="filter-row">
-      <div class="filter-group"><span class="filter-label">机器人类型</span><div class="filter-chips" id="robotFilters"></div></div>
-      <div class="filter-group"><span class="filter-label">任务类型</span><div class="filter-chips" id="taskFilters"></div></div>
-      <div class="filter-group"><span class="filter-label">开放程度</span><div class="filter-chips" id="opennessFilters"></div></div>
+      <div class="filter-group"><span class="filter-label" id="labelRobot">机器人类型</span><div class="filter-chips" id="robotFilters"></div></div>
+      <div class="filter-group"><span class="filter-label" id="labelTask">任务类型</span><div class="filter-chips" id="taskFilters"></div></div>
+      <div class="filter-group"><span class="filter-label" id="labelOpenness">开放程度</span><div class="filter-chips" id="opennessFilters"></div></div>
       <div class="filter-actions">
-        <select class="sort-select" id="sortSelect"><option value="name">名称排序</option><option value="org">机构排序</option></select>
+        <select class="sort-select" id="sortSelect"><option value="name" id="sortOptionName">名称排序</option><option value="org" id="sortOptionOrg">机构排序</option></select>
         <div class="view-toggle">
           <button class="view-btn active" data-view="table" title="表格视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></button>
           <button class="view-btn" data-view="card" title="卡片视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></button>
         </div>
-        <button class="clear-filters" onclick="clearFilters()">清除筛选</button>
+        <button class="clear-filters" onclick="clearFilters()" id="clearFiltersBtn">清除筛选</button>
       </div>
     </div>
   </div>
@@ -42,28 +42,30 @@
 </section>
 
 <div class="compare-bar" id="compareBarDS">
-  <span class="compare-bar-text">已选择 <span id="compareCountDS">0</span> 个数据集</span>
+  <span class="compare-bar-text"><span id="compareTextPrefix">已选择 </span><span id="compareCountDS">0</span><span id="compareTextSuffix"> 个数据集</span></span>
   <button class="compare-bar-btn" id="compareBtnDS" disabled onclick="openCompareDS()">开始对比</button>
-  <button class="compare-clear-btn" onclick="clearCompareDS()">清除</button>
+  <button class="compare-clear-btn" onclick="clearCompareDS()" id="compareClearBtn">清除</button>
 </div>
 
 <div class="compare-modal-overlay" id="compareModalDS">
   <div class="compare-modal">
-    <div class="compare-modal-header"><span class="compare-modal-title">数据集对比</span><button class="compare-close-btn" onclick="closeCompareDS()">✕</button></div>
+    <div class="compare-modal-header"><span class="compare-modal-title" id="compareModalTitle">数据集对比</span><button class="compare-close-btn" onclick="closeCompareDS()">✕</button></div>
     <div id="compareContentDS"></div>
   </div>
 </div>
 {{FOOTER}}
 
 <script>
+{{I18N_JS}}
 const DS = {{DATASETS_JSON}};
 var isMobile=window.innerWidth<=768;var state={search:'',robot:[],task:[],type:[],page:1,ps:15,sort:'',sortDir:'asc',view:isMobile?'card':'table'};
-var tL={open:'开源',partial:'部分开源',apply:'可申请',closed:'闭源'};
+var I=window.I18N||{};var tL=I.typeLabels||{open:'开源',partial:'部分开源',apply:'可申请',closed:'闭源'};
+document.addEventListener('DOMContentLoaded',function(){var a=document.getElementById('labelRobot'),b=document.getElementById('labelTask'),c=document.getElementById('labelOpenness');if(a)a.textContent=I.robotType||a.textContent;if(b)b.textContent=I.taskType||b.textContent;if(c)c.textContent=I.openness||c.textContent;var d=document.getElementById('searchInput');if(d)d.placeholder=I.searchPlaceholder||d.placeholder;var e=document.getElementById('sortOptionName'),f=document.getElementById('sortOptionOrg');if(e)e.textContent=I.sortName||e.textContent;if(f)f.textContent=I.sortOrg||f.textContent;var g=document.getElementById('clearFiltersBtn');if(g)g.textContent=I.clearFilters||g.textContent;var h=document.getElementById('compareModalTitle');if(h)h.textContent=I.compareTitle||h.textContent});
 var cL={open:'type-open',partial:'type-partial',apply:'type-partial',closed:'type-closed'};
 var selectedDS=new Set();
 
-function rL(v){return {humanoid:'人形机器人',arm:'机械臂',mobile:'移动机器人',quadruped:'四足机器人',multi:'多机型','触觉传感':'触觉传感',仿真:'仿真'}[v]||v}
-function tL2(v){return {操作:'操作',抓取:'抓取',导航:'导航',装配:'装配',家居:'家居',交互:'交互',运动控制:'运动控制'}[v]||v}
+function rL(v){return (I.robotLabels||{})[v]||v}
+function tL2(v){return (I.taskLabels||{})[v]||v}
 
 function buildFilters(){
   var rts=[...new Set(DS.flatMap(function(d){return d.robotType||[]}))].sort();
@@ -130,9 +132,9 @@ document.getElementById('sortSelect').addEventListener('change',function(){var v
 document.querySelectorAll('.view-btn').forEach(function(b){b.addEventListener('click',function(){state.view=this.dataset.view;document.querySelectorAll('.view-btn').forEach(function(x){x.classList.remove('active')});this.classList.add('active');update()});if(b.dataset.view===state.view){b.classList.add('active');b.parentElement.querySelectorAll('.view-btn').forEach(function(x){if(x!==b)x.classList.remove('active')})}});
 
 function toggleDS(id){if(selectedDS.has(id))selectedDS.delete(id);else{if(selectedDS.size>=4)return alert('最多对比 4 个数据集');selectedDS.add(id)}updateCompareBarDS();update()}
-function updateCompareBarDS(){var bar=document.getElementById('compareBarDS'),c=selectedDS.size;document.getElementById('compareCountDS').textContent=c;document.getElementById('compareBtnDS').disabled=c<2;bar.classList.toggle('visible',c>0)}
+function updateCompareBarDS(){var bar=document.getElementById('compareBarDS'),c=selectedDS.size;document.getElementById('compareCountDS').textContent=c;document.getElementById('compareBtnDS').disabled=c<2;bar.classList.toggle('visible',c>0);var cp=document.getElementById('compareTextPrefix');if(cp)cp.textContent=I.compareTextPrefix||cp.textContent;var cs=document.getElementById('compareTextSuffix');if(cs)cs.textContent=I.compareTextSuffix||cs.textContent;var cb=document.getElementById('compareBtnDS');if(cb)cb.textContent=I.compareBtn||cb.textContent;var cc=document.getElementById('compareClearBtn');if(cc)cc.textContent=I.compareClear||cc.textContent}
 function clearCompareDS(){selectedDS.clear();updateCompareBarDS();update();document.getElementById('selectAllDS').checked=false}
-function openCompareDS(){var items=DS.filter(function(d){return selectedDS.has(d.id)});if(items.length<2)return;if(items.length>4)items=items.slice(0,4);var fields=[{key:'name',label:'名称'},{key:'institution',label:'机构'},{key:'scale',label:'规模'},{key:'robotType',label:'机器人类型',fmt:function(v){return v.join(', ')}},{key:'task',label:'任务类型',fmt:function(v){return v.join(', ')}},{key:'modality',label:'模态',fmt:function(v){return v.join('、')}},{key:'type',label:'类型',fmt:function(v){return tL[v]}},{key:'license',label:'许可证'}];var h='<div style="padding:16px 32px;display:flex;align-items:center;gap:8px"><label style="font-size:14px;cursor:pointer"><input type="checkbox" id="highlightDiffDS" onchange="toggleHighlightDS()" style="margin-right:6px">高亮不同</label></div>';h+='<table class="compare-table" id="compareTableDS"><thead><tr><th></th>';items.forEach(function(d){h+='<th>'+d.name+'</th>'});h+='</tr></thead><tbody>';fields.forEach(function(f){var values=items.map(function(d){var v=f.fmt?f.fmt(d[f.key]||''):((d[f.key]||d.quality||{})[f.key]||d[f.key]||'-');return String(v)});var allSame=values.every(function(v){return v===values[0]});h+='<tr><td class="comp-field">'+f.label+'</td>';items.forEach(function(d,i){var v=values[i];h+='<td class="'+(allSame?'comp-same':'comp-diff')+'">'+v+'</td>'});h+='</tr>'});h+='</tbody></table>';document.getElementById('compareContentDS').innerHTML=h;document.getElementById('compareModalDS').classList.add('visible');document.getElementById('highlightDiffDS').checked=false}
+function openCompareDS(){var items=DS.filter(function(d){return selectedDS.has(d.id)});if(items.length<2)return;if(items.length>4)items=items.slice(0,4);var fields=[{key:'name',label:'名称'},{key:'institution',label:'机构'},{key:'scale',label:'规模'},{key:'robotType',label:'机器人类型',fmt:function(v){return v.join(', ')}},{key:'task',label:'任务类型',fmt:function(v){return v.join(', ')}},{key:'modality',label:'模态',fmt:function(v){return v.join('、')}},{key:'type',label:'类型',fmt:function(v){return tL[v]}},{key:'license',label:'许可证'}];var h='<div style="padding:16px 32px;display:flex;align-items:center;gap:8px"><label style="font-size:14px;cursor:pointer"><input type="checkbox" id="highlightDiffDS" onchange="toggleHighlightDS()" style="margin-right:6px">'+(I.highlightDiff||'高亮不同')+'</label></div>';h+='<table class="compare-table" id="compareTableDS"><thead><tr><th></th>';items.forEach(function(d){h+='<th>'+d.name+'</th>'});h+='</tr></thead><tbody>';fields.forEach(function(f){var values=items.map(function(d){var v=f.fmt?f.fmt(d[f.key]||''):((d[f.key]||d.quality||{})[f.key]||d[f.key]||'-');return String(v)});var allSame=values.every(function(v){return v===values[0]});h+='<tr><td class="comp-field">'+f.label+'</td>';items.forEach(function(d,i){var v=values[i];h+='<td class="'+(allSame?'comp-same':'comp-diff')+'">'+v+'</td>'});h+='</tr>'});h+='</tbody></table>';document.getElementById('compareContentDS').innerHTML=h;document.getElementById('compareModalDS').classList.add('visible');document.getElementById('highlightDiffDS').checked=false}
 function toggleHighlightDS(){var checked=document.getElementById('highlightDiffDS').checked;document.querySelectorAll('#compareTableDS .comp-same').forEach(function(td){td.style.opacity=checked?'0.25':'1'})}
 function closeCompareDS(){document.getElementById('compareModalDS').classList.remove('visible')}
 document.getElementById('selectAllDS').addEventListener('change',function(){var f=filterData();if(this.checked)f.forEach(function(d){selectedDS.add(d.id)});else selectedDS.clear();updateCompareBarDS();update()});
