@@ -1,0 +1,15 @@
+[
+  {
+    "id": "hello-world",
+    "title": "欢迎来到 EmbodiedAI Datasets 博客",
+    "titleEn": "Welcome to the EmbodiedAI Datasets Blog",
+    "date": "2026-06-01",
+    "tags": ["公告"],
+    "tagsEn": ["Announcement"],
+    "summary": "这是第一篇博客文章，介绍具身智能数据集导航站的博客板块。",
+    "summaryEn": "The first blog post introducing the EmbodiedAI Datasets blog section.",
+    "contentHtml": "<p>这是 EmbodiedAI Datasets 博客的第一篇文章。在这里，我们将分享具身智能数据集的最新动态、技术分析和行业洞察。</p>",
+    "contentHtmlEn": "<p>This is the first post of the EmbodiedAI Datasets blog. Here we'll share the latest news, technical analysis, and industry insights on embodied AI datasets.</p>",
+    "author": "EmbodiedAI Datasets"
+  }
+]

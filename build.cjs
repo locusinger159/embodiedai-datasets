@@ -362,6 +362,64 @@ function buildAll(lang) {
     nav: getActiveNav('submit')
   }));
 
+  // ── Blog ────────────────────────────────────────────────
+  const blogFile = 'docs/data/blog.json';
+  let blogPosts = [];
+  if (fs.existsSync(blogFile)) {
+    blogPosts = JSON.parse(fs.readFileSync(blogFile, 'utf8'));
+    blogPosts.sort((a, b) => b.date.localeCompare(a.date));
+  }
+
+  if (blogPosts.length > 0) {
+    const blogDir = outDir + '/blog';
+    fs.mkdirSync(blogDir, { recursive: true });
+
+    // Blog cards for list page
+    const blogCardsHTML = blogPosts.map(p => {
+      const title = isEn ? (p.titleEn || p.title) : p.title;
+      const summary = isEn ? (p.summaryEn || p.summary) : p.summary;
+      const tags = isEn ? (p.tagsEn || p.tags) : p.tags;
+      return '<article class="blog-card"><a href="/' + (isEn ? 'en/' : '') + 'blog/' + esc(p.id) + '/" class="blog-card-link"><h2 class="blog-card-title">' + esc(title) + '</h2><time class="blog-card-date">' + esc(p.date) + '</time><p class="blog-card-summary">' + esc(summary) + '</p><div class="blog-card-tags">' + (tags || []).map(t => '<span class="blog-tag">' + esc(t) + '</span>').join('') + '</div></a></article>';
+    }).join('');
+
+    // Blog list page
+    fs.writeFileSync(blogDir + '/index.html', buildPage('src/pages/blog.html', {
+      meta: '<title>' + ui.blog + ' | EmbodiedAI Datasets</title><meta name="description" content="' + (isEn ? 'Technical blog on embodied AI datasets and data standards' : '具身智能数据集技术博客') + '">',
+      nav: getActiveNav('blog'),
+      BLOG_CARDS: blogCardsHTML,
+      BLOG_PAGE_TITLE: isEn ? 'Technical Blog' : '技术博客',
+      BLOG_PAGE_SUBTITLE: isEn ? 'Deep dives into embodied AI datasets, data standards, and industry trends' : '深入分析具身智能数据集、数据标准与行业趋势',
+    }));
+
+    // Blog detail pages
+    for (const post of blogPosts) {
+      const detailDir = blogDir + '/' + post.id;
+      fs.mkdirSync(detailDir, { recursive: true });
+      const title = isEn ? (post.titleEn || post.title) : post.title;
+      const content = isEn ? (post.contentHtmlEn || post.contentHtml) : post.contentHtml;
+      const tags = isEn ? (post.tagsEn || post.tags) : post.tags;
+
+      fs.writeFileSync(detailDir + '/index.html', buildPage('src/pages/blog-detail.html', {
+        meta: '<title>' + esc(title) + ' | EmbodiedAI Datasets</title><meta name="description" content="' + esc((isEn ? (post.summaryEn || post.summary) : post.summary).substring(0, 160)) + '">',
+        nav: getActiveNav('blog'),
+        BLOG_TITLE: esc(title),
+        BLOG_DATE: esc(post.date),
+        BLOG_AUTHOR: esc(post.author || 'EmbodiedAI Datasets'),
+        BLOG_AUTHOR_LABEL: isEn ? 'By' : '作者',
+        BLOG_TAGS: (tags || []).map(t => '<span class="blog-tag">' + esc(t) + '</span>').join(''),
+        BLOG_CONTENT: content,
+        BACK_TO_BLOG: isEn ? '← Back to Blog' : '← 返回博客',
+      }));
+    }
+
+    // RSS feed (only for Chinese build, placed at dist root)
+    if (!isEn) {
+      const rssItems = blogPosts.map(p => '<item><title>' + esc(p.title) + '</title><link>https://superdata-robotai.com/blog/' + esc(p.id) + '/</link><description>' + esc(p.summary) + '</description><pubDate>' + new Date(p.date).toUTCString() + '</pubDate><guid>https://superdata-robotai.com/blog/' + esc(p.id) + '/</guid></item>').join('\n');
+      const rss = '<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n<channel>\n  <title>EmbodiedAI Datasets Blog</title>\n  <link>https://superdata-robotai.com/blog/</link>\n  <description>具身智能数据集技术博客</description>\n  <language>zh-CN</language>\n' + rssItems + '\n</channel>\n</rss>';
+      fs.writeFileSync('dist/rss.xml', rss);
+    }
+  }
+
   console.log(`${isEn ? 'English' : 'Chinese'} build: ${totalDatasets} datasets, ${totalStandards} standards, ${allOrgs.size} orgs`);
 }
 

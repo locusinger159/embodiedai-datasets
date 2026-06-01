@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>{{HEAD}}
+<style>
+.blog-section { max-width:900px; margin:0 auto; }
+.blog-card { background:var(--white); border:1px solid var(--border); border-radius:16px; margin-bottom:24px; transition:all 0.3s; overflow:hidden; }
+.blog-card:hover { border-color:rgba(91,124,255,0.3); box-shadow:0 8px 24px rgba(0,0,0,0.06); transform:translateY(-2px); }
+.blog-card-link { display:block; padding:32px; color:inherit; }
+.blog-card-title { font-size:24px; font-weight:700; margin-bottom:8px; color:var(--text-primary); }
+.blog-card-date { display:block; font-size:14px; color:var(--text-secondary); font-family:'Inter',monospace; margin-bottom:12px; }
+.blog-card-summary { font-size:15px; color:var(--text-secondary); line-height:1.7; margin-bottom:16px; }
+.blog-card-tags { display:flex; gap:8px; flex-wrap:wrap; }
+.blog-tag { padding:4px 12px; background:rgba(91,124,255,0.08); color:var(--primary); border-radius:20px; font-size:12px; font-weight:500; }
+.blog-rss { text-align:center; margin-top:32px; }
+@media (max-width:768px) { .blog-card-link{padding:20px} .blog-card-title{font-size:18px} }
+</style>
+</head>
+<body>
+{{NAVBAR}}
+<section class="page-hero">
+  <div class="page-hero-content centered">
+    <h1 class="page-hero-title">{{BLOG_PAGE_TITLE}}</h1>
+    <p class="page-hero-subtitle">{{BLOG_PAGE_SUBTITLE}}</p>
+  </div>
+</section>
+<section class="section">
+  <div class="blog-section">{{BLOG_CARDS}}</div>
+  <div class="blog-rss">
+    <a href="/rss.xml" class="link-btn" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--white);border:1px solid var(--border);border-radius:10px;font-size:14px;">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56z"/><path d="M4 10.1v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+      RSS Feed
+    </a>
+  </div>
+</section>
+{{FOOTER}}
+<script>
+window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>50?'rgba(11,15,26,0.95)':'rgba(11,15,26,0.85)';n.style.boxShadow=y>50?'0 4px 20px rgba(0,0,0,0.3)':'none'})
+</script>
+</body>
+</html>

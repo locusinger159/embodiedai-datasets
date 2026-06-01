@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>{{HEAD}}
+<style>
+.blog-detail { max-width:800px; margin:0 auto; }
+.blog-detail-header { margin-bottom:40px; }
+.blog-detail-title { font-size:36px; font-weight:800; margin-bottom:12px; }
+.blog-detail-meta { display:flex; align-items:center; gap:16px; color:var(--text-secondary); font-size:14px; margin-bottom:16px; }
+.blog-detail-tags { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px; }
+.blog-detail-content { font-size:16px; line-height:1.9; color:var(--text-primary); }
+.blog-detail-content h2 { font-size:24px; font-weight:700; margin:40px 0 16px; padding-left:12px; border-left:4px solid var(--primary); }
+.blog-detail-content h3 { font-size:20px; font-weight:600; margin:32px 0 12px; }
+.blog-detail-content p { margin-bottom:20px; }
+.blog-detail-content ul, .blog-detail-content ol { margin-bottom:20px; padding-left:24px; }
+.blog-detail-content li { margin-bottom:8px; }
+.blog-detail-content code { padding:2px 6px; background:var(--light-bg); border-radius:4px; font-size:0.9em; }
+.blog-detail-content pre { background:var(--light-bg); border-radius:8px; padding:16px; overflow-x:auto; margin-bottom:20px; }
+.blog-detail-content blockquote { border-left:4px solid var(--primary); padding:12px 20px; margin:20px 0; background:rgba(91,124,255,0.04); border-radius:0 8px 8px 0; }
+@media (max-width:768px) { .blog-detail-title{font-size:24px} .blog-detail-content{font-size:15px} }
+</style>
+</head>
+<body>
+{{NAVBAR}}
+<main class="detail-main">
+  <a href="/blog/" class="back-link">{{BACK_TO_BLOG}}</a>
+  <div class="blog-detail">
+    <div class="blog-detail-header">
+      <h1 class="blog-detail-title">{{BLOG_TITLE}}</h1>
+      <div class="blog-detail-meta">
+        <span>{{BLOG_DATE}}</span>
+        <span>{{BLOG_AUTHOR_LABEL}} {{BLOG_AUTHOR}}</span>
+      </div>
+      <div class="blog-detail-tags">{{BLOG_TAGS}}</div>
+    </div>
+    <div class="blog-detail-content">{{BLOG_CONTENT}}</div>
+  </div>
+</main>
+{{FOOTER}}
+<script>
+window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>50?'rgba(11,15,26,0.95)':'rgba(11,15,26,0.85)';n.style.boxShadow=y>50?'0 4px 20px rgba(0,0,0,0.3)':'none'})
+</script>
+</body>
+</html>
