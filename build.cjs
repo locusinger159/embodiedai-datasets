@@ -475,6 +475,115 @@ function buildAll(lang) {
     STAT_STANDARD_RATIO: isEn ? 'Standard Format %' : '标准格式占比',
   }));
 
+  // ── Standard Proposal ────────────────────────────────────
+  const proposalContent = isEn ? `
+    <div class="disclaimer-box">
+      <p><strong>⚠️ This is a community draft — not an authoritative standard.</strong> Based on analysis of ` + dataDatasets.length + ` embodied AI datasets, we propose a unified data format. Feedback is welcome.</p>
+    </div>
+    <h2>1. Proposed Schema Structure</h2>
+    <p>The recommended data hierarchy follows a nested episode-step structure, consistent with 90%+ of current datasets:</p>
+    <div class="schema-box"><div class="schema-code">episode
+  └── step (timestamp, scene_id)
+       ├── observation
+       │    ├── image (RGB, depth, etc.)
+       │    ├── state (joint positions, velocities)
+       │    └── language (instruction text)
+       ├── action
+       │    ├── pose (end-effector pose)
+       │    ├── gripper (open/close)
+       │    └── joints (target joint positions)
+       └── info
+            ├── reward
+            ├── discount
+            └── success (task completion flag)</div></div>
+    <h2>2. Recommended Storage Format</h2>
+    <p>We recommend <strong>RLDS (Reinforcement Learning Datasets)</strong> based on TFDS as the primary storage format, with HDF5 as a lightweight alternative for smaller datasets.</p>
+    <table class="comparison-table">
+      <thead><tr><th>Format</th><th>Pros</th><th>Cons</th><th>Recommendation</th></tr></thead>
+      <tbody>
+        <tr><td>RLDS / TFDS</td><td>Streaming, sharding, rich ecosystem</td><td>Heavy dependency, steep learning curve</td><td>✅ Primary standard</td></tr>
+        <tr><td>HDF5</td><td>Lightweight, widely supported</td><td>No built-in streaming</td><td>⚡ Lightweight alternative</td></tr>
+        <tr><td>Custom JSONL</td><td>Human-readable</td><td>No schema enforcement, slow I/O</td><td>❌ Not recommended</td></tr>
+      </tbody>
+    </table>
+    <h2>3. Required Metadata Fields</h2>
+    <ul>
+      <li><strong>camera_intrinsics</strong> — Camera intrinsic matrix (fx, fy, cx, cy)</li>
+      <li><strong>camera_extrinsics</strong> — Camera pose in world frame</li>
+      <li><strong>joint_names</strong> — Ordered list of joint names</li>
+      <li><strong>language_instruction</strong> — Natural language task description</li>
+      <li><strong>episode_id</strong> — Unique episode identifier</li>
+      <li><strong>robot_type</strong> — Robot morphology identifier</li>
+      <li><strong>scene_description</strong> — Textual scene context</li>
+    </ul>
+    <h2>4. Relationship to Existing Standards</h2>
+    <p>This proposal draws from and is compatible with:</p>
+    <ul>
+      <li><strong>RLDS</strong> — Adopts the episode-step hierarchy</li>
+      <li><strong>LeRobot Format</strong> — Compatible metadata schema</li>
+      <li><strong>Open X-Embodiment</strong> — Extension of the OXE format</li>
+      <li><strong>ROS 2 Bag</strong> — Mapping to ROS ecosystem</li>
+    </ul>
+  ` : `
+    <div class="disclaimer-box">
+      <p><strong>⚠️ 这是一份社区草案，并非权威标准。</strong>基于对 ` + dataDatasets.length + ` 个具身智能数据集的分析，我们提出一个统一数据格式建议。欢迎提供反馈。</p>
+    </div>
+    <h2>1. 推荐 Schema 结构</h2>
+    <p>推荐采用嵌套的 episode-step 层级结构，与 90%+ 现有数据集的设计模式一致：</p>
+    <div class="schema-box"><div class="schema-code">episode
+  └── step (timestamp, scene_id)
+       ├── observation
+       │    ├── image (RGB, 深度图等)
+       │    ├── state (关节位置、速度)
+       │    └── language (任务指令文本)
+       ├── action
+       │    ├── pose (末端执行器位姿)
+       │    ├── gripper (开合状态)
+       │    └── joints (目标关节位置)
+       └── info
+            ├── reward
+            ├── discount
+            └── success (任务完成标志)</div></div>
+    <h2>2. 推荐存储格式</h2>
+    <p>建议以 <strong>RLDS (Reinforcement Learning Datasets)</strong> 基于 TFDS 为主要存储格式，HDF5 为轻量替代方案。</p>
+    <table class="comparison-table">
+      <thead><tr><th>格式</th><th>优点</th><th>缺点</th><th>建议</th></tr></thead>
+      <tbody>
+        <tr><td>RLDS / TFDS</td><td>流式读取、分片、生态成熟</td><td>依赖较重、学习曲线陡</td><td>✅ 主要标准</td></tr>
+        <tr><td>HDF5</td><td>轻量、广泛支持</td><td>无内置流式支持</td><td>⚡ 轻量替代</td></tr>
+        <tr><td>自定义 JSONL</td><td>人类可读</td><td>无 schema 约束、I/O 慢</td><td>❌ 不推荐</td></tr>
+      </tbody>
+    </table>
+    <h2>3. 必需元数据字段</h2>
+    <ul>
+      <li><strong>camera_intrinsics</strong> — 相机内参矩阵 (fx, fy, cx, cy)</li>
+      <li><strong>camera_extrinsics</strong> — 相机在世界坐标系中的位姿</li>
+      <li><strong>joint_names</strong> — 关节名称有序列表</li>
+      <li><strong>language_instruction</strong> — 自然语言任务描述</li>
+      <li><strong>episode_id</strong> — 唯一 episode 标识符</li>
+      <li><strong>robot_type</strong> — 机器人形态标识符</li>
+      <li><strong>scene_description</strong> — 场景文本描述</li>
+    </ul>
+    <h2>4. 与现有标准的关系</h2>
+    <p>此草案兼容并汲取以下标准的设计思路：</p>
+    <ul>
+      <li><strong>RLDS</strong> — 采用 episode-step 层级结构</li>
+      <li><strong>LeRobot Format</strong> — 兼容的元数据 schema</li>
+      <li><strong>Open X-Embodiment</strong> — OXE 数据格式的扩展</li>
+      <li><strong>ROS 2 Bag</strong> — 可映射到 ROS 生态</li>
+    </ul>
+  `;
+
+  const proposalDir = outDir + '/standard-proposal';
+  fs.mkdirSync(proposalDir, { recursive: true });
+  fs.writeFileSync(proposalDir + '/index.html', buildPage('src/pages/standard-proposal.html', {
+    meta: '<title>' + (isEn ? 'Data Standard Proposal' : '数据标准草案') + ' | EmbodiedAI Datasets</title><meta name="description" content="' + (isEn ? 'A community draft for unified embodied AI data format' : '具身智能统一数据格式社区草案') + '">',
+    nav: getActiveNav('standards'),
+    PROPOSAL_TITLE: isEn ? 'Embodied AI Data Standard Proposal' : '具身智能数据标准草案',
+    PROPOSAL_SUBTITLE: isEn ? 'A community draft for unified embodied AI data format — based on analysis of ' + dataDatasets.length + ' datasets' : '基于 ' + dataDatasets.length + ' 个数据集的分析 — 统一数据格式社区草案',
+    PROPOSAL_CONTENT: proposalContent,
+  }));
+
   console.log(`${isEn ? 'English' : 'Chinese'} build: ${totalDatasets} datasets, ${totalStandards} standards, ${allOrgs.size} orgs`);
 }
 
