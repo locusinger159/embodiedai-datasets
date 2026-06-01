@@ -58,7 +58,7 @@
 <body>
 {{NAVBAR}}
 <main class="detail-main">
-  <a href="/datasets/" class="back-link">← 返回全部数据集</a>
+  <a href="/datasets/" class="back-link">{{BACK_TO_DATASETS}}</a>
   <div class="detail-header">
     <div><h1 class="detail-name">{{NAME}}</h1></div>
     <span class="type-badge {{TYPE_CLASS}}">{{TYPE_LABEL}}</span>
@@ -67,12 +67,12 @@
   <p class="detail-desc">{{DESCRIPTION}}</p>
 
   <div class="info-grid">
-    <div class="info-card"><div class="info-card-label">机构</div><div class="info-card-value">{{INSTITUTION}}</div></div>
-    <div class="info-card"><div class="info-card-label">规模</div><div class="info-card-value">{{SCALE}}</div></div>
-    <div class="info-card"><div class="info-card-label">许可证</div><div class="info-card-value">{{LICENSE}}</div></div>
-    <div class="info-card"><div class="info-card-label">机器人类型</div><div class="info-card-value">{{ROBOT_TYPES}}</div></div>
-    <div class="info-card"><div class="info-card-label">任务类型</div><div class="info-card-value">{{TASK_TYPES}}</div></div>
-    <div class="info-card"><div class="info-card-label">数据模态</div><div class="info-card-value">{{MODALITIES}}</div></div>
+    <div class="info-card"><div class="info-card-label">{{LABEL_INSTITUTION}}</div><div class="info-card-value">{{INSTITUTION}}</div></div>
+    <div class="info-card"><div class="info-card-label">{{LABEL_SCALE}}</div><div class="info-card-value">{{SCALE}}</div></div>
+    <div class="info-card"><div class="info-card-label">{{LABEL_LICENSE}}</div><div class="info-card-value">{{LICENSE}}</div></div>
+    <div class="info-card"><div class="info-card-label">{{LABEL_ROBOT_TYPE}}</div><div class="info-card-value">{{ROBOT_TYPES}}</div></div>
+    <div class="info-card"><div class="info-card-label">{{LABEL_TASK_TYPE}}</div><div class="info-card-value">{{TASK_TYPES}}</div></div>
+    <div class="info-card"><div class="info-card-label">{{LABEL_MODALITY}}</div><div class="info-card-value">{{MODALITIES}}</div></div>
   </div>
 
   <!-- Quality Labels -->
@@ -80,7 +80,7 @@
 
   <!-- Data Format Schema -->
   <div class="section-block">
-    <h2>数据格式</h2>
+    <h2>{{SECTION_DATA_FORMAT}}</h2>
     <div class="content-card">
       <div class="content-stat"><span class="content-stat-label">存储格式</span><span class="content-stat-value">{{FORMAT_STORAGE}}</span></div>
       <div class="content-stat"><span class="content-stat-label">数据规模</span><span class="content-stat-value">{{FORMAT_SIZE}}</span></div>
@@ -91,14 +91,14 @@
 
   <!-- Data Content -->
   <div class="section-block">
-    <h2>数据内容</h2>
+    <h2>{{SECTION_DATA_CONTENT}}</h2>
     <div class="data-content-grid">
       <div class="content-card">
-        <h3>传感器规格</h3>
+        <h3>{{SECTION_SENSORS}}</h3>
         {{SENSORS}}
       </div>
       <div class="content-card">
-        <h3>数据统计</h3>
+        <h3>{{SECTION_DATA_STATS}}</h3>
         <div class="content-stat"><span class="content-stat-label">场景数</span><span class="content-stat-value">{{CONTENT_SCENES}}</span></div>
         <div class="content-stat"><span class="content-stat-label">物体数</span><span class="content-stat-value">{{CONTENT_OBJECTS}}</span></div>
         <div class="content-stat"><span class="content-stat-label">任务数</span><span class="content-stat-value">{{CONTENT_TASKS}}</span></div>
@@ -119,13 +119,13 @@
 
   <!-- Related Datasets -->
   <div class="section-block">
-    <h2>相关数据集</h2>
+    <h2>{{SECTION_RELATED}}</h2>
     <div class="related-grid">{{RELATED}}</div>
   </div>
 
   <!-- Comments -->
   <div class="section-block">
-    <h2>讨论</h2>
+    <h2>{{SECTION_DISCUSSION}}</h2>
     <script src="https://giscus.app/client.js"
       data-repo="locusinger159/embodiedai-datasets"
       data-repo-id="R_kgDOSiiGSw"

@@ -123,14 +123,14 @@ function buildAll(lang) {
     if (sensors.length) {
       sensorsHTML = sensors.map(s => `<div class="content-stat"><span class="content-stat-value" style="font-weight:400">${esc(s)}</span></div>`).join('');
     } else {
-      sensorsHTML = '<div class="empty-hint">暂无传感器规格信息</div>';
+      sensorsHTML = '<div class="empty-hint">{{EMPTY_SENSORS}}</div>';
     }
 
     // Annotations
     let annotationsHTML = '';
     const anns = dc.annotations || [];
     if (anns.length) {
-      annotationsHTML = '<div style="margin-top:16px"><div class="content-card"><h3>标注信息</h3><div class="data-tags">' + anns.map(a => `<span class="data-tag">${esc(a)}</span>`).join('') + '</div></div></div>';
+      annotationsHTML = '<div style="margin-top:16px"><div class="content-card"><h3>{{SECTION_ANNOTATIONS}}</h3><div class="data-tags">' + anns.map(a => `<span class="data-tag">${esc(a)}</span>`).join('') + '</div></div></div>';
     }
 
     // Quality badges
@@ -149,11 +149,11 @@ function buildAll(lang) {
     const cl = ds.changelog || [];
     let changelogHTML = '';
     if (cl.length) {
-      changelogHTML = '<div class="changelog section-block"><h2>更新历史</h2><div class="changelog-list">' + cl.map(c => `<div class="changelog-item"><div class="changelog-date">${esc(c.date)}</div><div class="changelog-text">${esc(c.text)}</div></div>`).join('') + '</div></div>';
+      changelogHTML = '<div class="changelog section-block"><h2>{{SECTION_CHANGELOG}}</h2><div class="changelog-list">' + cl.map(c => `<div class="changelog-item"><div class="changelog-date">${esc(c.date)}</div><div class="changelog-text">${esc(c.text)}</div></div>`).join('') + '</div></div>';
     }
 
     // Links
-    let linksHTML = '<div class="section-block"><h2>相关链接</h2><div class="links-section">';
+    let linksHTML = '<div class="section-block"><h2>{{SECTION_LINKS}}</h2><div class="links-section">';
     if (ds.links?.official) linksHTML += `<a href="${esc(ds.links.official)}" target="_blank" class="link-card" rel="noopener">🌐 官方网站</a>`;
     if (ds.links?.paper) linksHTML += `<a href="${esc(ds.links.paper)}" target="_blank" class="link-card" rel="noopener">📄 论文</a>`;
     if (ds.github) linksHTML += `<a href="${esc(ds.github)}" target="_blank" class="link-card" rel="noopener">💻 GitHub</a>`;
@@ -164,7 +164,7 @@ function buildAll(lang) {
     // Citation
     let citationHTML = '';
     if (cit.bibtex) {
-      citationHTML = '<div class="section-block"><h2>引用信息</h2><div class="citation-box"><pre>' + esc(cit.bibtex) + '</pre></div></div>';
+      citationHTML = '<div class="section-block"><h2>{{SECTION_CITATION}}</h2><div class="citation-box"><pre>' + esc(cit.bibtex) + '</pre></div></div>';
     }
 
     // Related datasets (same robot type or same task)
@@ -179,7 +179,7 @@ function buildAll(lang) {
         return `<a href="/datasets/${esc(r.id)}/" class="related-card"><div class="related-name">${esc(r.name)}</div><div class="related-org">${esc(r.institution || '')}</div><div class="related-meta">${rt}</div></a>`;
       }).join('');
     } else {
-      relatedHTML = '<div class="empty-hint">暂无相关数据集</div>';
+      relatedHTML = '<div class="empty-hint">{{EMPTY_RELATED}}</div>';
     }
 
     const robotTypesHTML = (ds.robotType || []).map(t => `<span class="data-tag">${esc(t)}</span>`).join(' ') || '-';
@@ -214,7 +214,26 @@ function buildAll(lang) {
       CITATION: citationHTML,
       RELATED: relatedHTML,
       QUALITY_BADGES: qualityHTML,
-      CHANGELOG: changelogHTML
+      CHANGELOG: changelogHTML,
+      BACK_TO_DATASETS: isEn ? '← Back to Datasets' : '← 返回全部数据集',
+      SECTION_DATA_FORMAT: isEn ? 'Data Format' : '数据格式',
+      SECTION_DATA_CONTENT: isEn ? 'Data Content' : '数据内容',
+      SECTION_SENSORS: isEn ? 'Sensor Specifications' : '传感器规格',
+      SECTION_DATA_STATS: isEn ? 'Data Statistics' : '数据统计',
+      SECTION_ANNOTATIONS: isEn ? 'Annotations' : '标注信息',
+      SECTION_LINKS: isEn ? 'Links' : '相关链接',
+      SECTION_CITATION: isEn ? 'Citation' : '引用信息',
+      SECTION_RELATED: isEn ? 'Related Datasets' : '相关数据集',
+      SECTION_DISCUSSION: isEn ? 'Discussion' : '讨论',
+      SECTION_CHANGELOG: isEn ? 'Changelog' : '更新历史',
+      EMPTY_SENSORS: isEn ? 'No sensor specifications available' : '暂无传感器规格信息',
+      EMPTY_RELATED: isEn ? 'No related datasets' : '暂无相关数据集',
+      LABEL_INSTITUTION: isEn ? 'Institution' : '机构',
+      LABEL_SCALE: isEn ? 'Scale' : '规模',
+      LABEL_LICENSE: isEn ? 'License' : '许可证',
+      LABEL_ROBOT_TYPE: isEn ? 'Robot Type' : '机器人类型',
+      LABEL_TASK_TYPE: isEn ? 'Task Type' : '任务类型',
+      LABEL_MODALITY: isEn ? 'Modality' : '数据模态'
     });
   }
 
