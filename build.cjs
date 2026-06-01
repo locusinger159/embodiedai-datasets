@@ -26,6 +26,9 @@ const UI = {
     typeLabels: { open: '开源', partial: '部分开源', apply: '可申请', closed: '闭源' },
     robotLabels: { humanoid: '人形机器人', arm: '机械臂', mobile: '移动机器人', quadruped: '四足机器人', multi: '多机型', '触觉传感': '触觉传感', '仿真': '仿真' },
     taskLabels: { '操作': '操作', '抓取': '抓取', '导航': '导航', '装配': '装配', '家居': '家居', '交互': '交互', '运动控制': '运动控制' },
+    standardTypeLabels: { format: '数据格式', benchmark: '评测基准', industry: '行业标准', closed: '商业闭源' },
+    opennessLabels: { open: '完全开源', partial: '部分开源', standard: '行业标准', closed: '闭源' },
+    sceneLabels: { real: '真机', sim: '仿真', general: '通用' },
   },
   en: {
     siteTitle: 'EmbodiedAI Datasets | Robotics Dataset Navigator',
@@ -34,6 +37,9 @@ const UI = {
     typeLabels: { open: 'Open', partial: 'Partial', apply: 'Apply', closed: 'Closed' },
     robotLabels: { humanoid: 'Humanoid', arm: 'Arm', mobile: 'Mobile', quadruped: 'Quadruped', multi: 'Multi-Type', '触觉传感': 'Tactile', '仿真': 'Simulation' },
     taskLabels: { '操作': 'Manipulation', '抓取': 'Grasping', '导航': 'Navigation', '装配': 'Assembly', '家居': 'Household', '交互': 'Interaction', '运动控制': 'Locomotion' },
+    standardTypeLabels: { format: 'Data Format', benchmark: 'Benchmark', industry: 'Industry Standard', closed: 'Proprietary' },
+    opennessLabels: { open: 'Fully Open', partial: 'Partially Open', standard: 'Industry Standard', closed: 'Proprietary' },
+    sceneLabels: { real: 'Real', sim: 'Simulation', general: 'General' },
   }
 };
 
@@ -213,12 +219,12 @@ function buildAll(lang) {
   }
 
   function buildStandardDetail(ss) {
-    const tL = {format:'数据格式',benchmark:'评测基准',industry:'行业标准',closed:'商业闭源'};
+    const tL = ui.standardTypeLabels;
     const tC = {format:'type-format',benchmark:'type-benchmark',industry:'type-industry',closed:'type-closed-std'};
-    const oL = {open:'完全开源',partial:'部分开源',standard:'行业标准',closed:'闭源'};
+    const oL = ui.opennessLabels;
     const oC = {open:'type-open',partial:'type-partial',standard:'type-partial',closed:'type-closed'};
     const oD = {open:'●',partial:'◐',standard:'◆',closed:'○'};
-    const scL = {real:'真机',sim:'仿真',general:'通用'};
+    const scL = ui.sceneLabels;
 
     // Find related datasets (cross-reference by name mentions in notes, dataFormat, etc.)
     const relatedDS = dataDatasets.filter(d => {
