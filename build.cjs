@@ -430,6 +430,51 @@ function buildAll(lang) {
     }
   }
 
+  // ── Format panorama ──────────────────────────────────────
+  function buildFormatData(dss) {
+    const storageCounts = {};
+    const sensorCounts = {};
+    let standardCount = 0;
+    const schemaDepths = {};
+
+    dss.forEach(d => {
+      const df = d.dataFormat || {};
+      const dc = d.dataContent || {};
+      const storage = df.storage || 'Unknown';
+      storageCounts[storage] = (storageCounts[storage] || 0) + 1;
+      const schema = df.schema || '';
+      const depth = schema.split('→').length;
+      schemaDepths[depth] = (schemaDepths[depth] || 0) + 1;
+      if (['RLDS', 'TFDS', 'HDF5'].some(s => (df.storage || '').includes(s))) standardCount++;
+      (dc.sensors || d.modality || []).forEach(s => { sensorCounts[s] = (sensorCounts[s] || 0) + 1; });
+    });
+
+    return {
+      totalDatasets: dss.length,
+      storageCounts,
+      sensorCounts,
+      standardFormatRatio: Math.round(standardCount / dss.length * 100),
+      schemaDepths
+    };
+  }
+
+  const formatsDir = outDir + '/formats';
+  fs.mkdirSync(formatsDir, { recursive: true });
+  fs.writeFileSync(formatsDir + '/index.html', buildPage('src/pages/formats.html', {
+    meta: '<title>' + (isEn ? 'Data Format Panorama' : '数据格式全景图') + ' | EmbodiedAI Datasets</title>',
+    nav: getActiveNav('datasets'),
+    FORMATS_JSON: JSON.stringify(buildFormatData(dataDatasets)),
+    FORMATS_PAGE_TITLE: isEn ? 'Data Format Panorama' : '数据格式全景图',
+    FORMATS_PAGE_SUBTITLE: isEn ? 'Global view of dataset format distribution, schema structures, and sensor coverage' : '全局视角查看数据集格式分布、Schema 结构与传感器覆盖',
+    FORMATS_STORAGE_TITLE: isEn ? 'Storage Format Distribution' : '存储格式分布',
+    FORMATS_SCHEMA_TITLE: isEn ? 'Schema Depth Distribution' : 'Schema 层级分布',
+    FORMATS_SENSOR_TITLE: isEn ? 'Top Sensor Types' : '传感器类型 Top 15',
+    STAT_TOTAL_DATASETS: isEn ? 'Total Datasets' : '数据集总数',
+    STAT_STORAGE_FORMATS: isEn ? 'Storage Formats' : '存储格式种类',
+    STAT_SENSOR_TYPES: isEn ? 'Sensor Types' : '传感器类型数',
+    STAT_STANDARD_RATIO: isEn ? 'Standard Format %' : '标准格式占比',
+  }));
+
   console.log(`${isEn ? 'English' : 'Chinese'} build: ${totalDatasets} datasets, ${totalStandards} standards, ${allOrgs.size} orgs`);
 }
 
