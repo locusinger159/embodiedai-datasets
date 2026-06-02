@@ -19,9 +19,9 @@
 .related-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:16px; }
 .related-card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:16px; transition:all 0.2s; display:flex; flex-direction:column; height:100%; }
 .related-card:hover { border-color:var(--primary); transform:translateY(-2px); box-shadow:0 4px 16px rgba(91,124,255,0.1); }
-.related-name { font-weight:600; font-size:15px; margin-bottom:4px; }
-.related-org { font-size:13px; color:var(--text-secondary); }
-.related-meta { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
+.related-name { font-weight:600; font-size:15px; margin-bottom:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.related-org { font-size:13px; color:var(--text-secondary); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.related-meta { display:flex; gap:6px; margin-top:auto; padding-top:8px; flex-wrap:wrap; }
 .empty-hint { color:var(--text-light); font-style:italic; font-size:14px; padding:16px 0; }
 </style>
 </head>
