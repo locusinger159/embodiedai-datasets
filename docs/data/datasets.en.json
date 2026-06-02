@@ -2298,9 +2298,10 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://www.lejurobot.com/"
+      "official": "https://openlet.openatom.tech/",
+      "download": "https://openlet.openatom.tech/ (Home → LET Dataset section)"
     },
-    "notes": "2026年中国首个开源具身智能数据平台，含触觉灵巧操作+全身运动数据。",
+    "notes": "2026年中国首个开源具身智能数据平台，含触觉灵巧操作+全身运动数据。 Official site provides dataset documentation, SDK code, and annotation docs.",
     "description": "2026年中国首个开源具身智能数据平台，含触觉灵巧操作+全身运动数据。 数据规模为 60000+ 分钟，117 原子技能。 覆盖 人形机器人 等机器人类型。 适用于 操作, 交互 等任务场景。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
