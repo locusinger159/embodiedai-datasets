@@ -2908,5 +2908,73 @@
       "realWorld": "100%真机（非实验室开放场景）",
       "hasSplit": true
     }
+  },
+  {
+    "id": "oxe-auge",
+    "name": "OXE-AugE",
+    "institution": "独立研究团队",
+    "scale": "440 万+ 轨迹，9 种机器人形态",
+    "robotType": [
+      "多机型"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "动作",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://oxe-auge.github.io/",
+      "paper": "https://arxiv.org/abs/2512.13100"
+    },
+    "notes": "基于 OXE 的跨机体数据增强衍生集。Cross-Painting 技术将真实轨迹重绘到 9 种虚拟机器人，视觉+运动学双保真，专为跨机体泛化设计。",
+    "description": "OXE-AugE（Open X-Embodiment Augmented Embodiments）是 2025 年底发布的、对谷歌 Open X-Embodiment（OXE）做跨机器人形态数据增强的大规模衍生数据集。数据集从原始 OXE（100 万轨迹）中精选 16 个主流子集，通过 Cross-Painting + AugE-Toolkit 技术将一台机器人的轨迹迁移渲染到其他机器人上，保证运动学合法且视觉真实。每条原始轨迹生成 8 条跨机体虚拟轨迹 + 1 条原始轨迹，总计 440 万+ 轨迹，覆盖 Franka、UR5、xArm、WidowX、Google Robot、Jaco、Sawyer、Kinova Gen3、KUKA iiwa 共 9 种机器人形态。原始 OXE 中前 4 种机器人占 85% 轨迹，AugE 强制均衡分布，大幅提升多样性。统一 RLDS 格式，可直接用 TFDS 加载，与 OXE 共用代码及模型（如 RT-1-X、Octo）。实验表明用 AugE 训练的策略对未见机器人的泛化性能显著优于纯真实数据。",
+    "license": "Apache 2.0",
+    "dataFormat": {
+      "storage": "RLDS / TFDS",
+      "size": "未知",
+      "compression": "TFDS 自动缓存/压缩",
+      "schema": "兼容 OXE — episode → step → observation / action / reward / discount"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机",
+        "深度相机（部分）",
+        "关节编码器"
+      ],
+      "scenes": "311 个（同 OXE，家居/办公/餐饮等）",
+      "objects": "同 OXE（数千种）",
+      "tasks": "527 种操作技能",
+      "episodes": "4,400,000+",
+      "annotations": [
+        "自然语言指令",
+        "动作序列",
+        "机器人形态标签",
+        "增强元数据"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{oxeauge2025,\n  title={OXE-AugE: A Large-Scale Robot Augmentation of OXE},\n  author={OXE-AugE Team},\n  journal={arXiv preprint arXiv:2512.13100},\n  year={2025}\n}",
+      "authors": "OXE-AugE Team",
+      "year": 2025,
+      "venue": "arXiv:2512.13100"
+    },
+    "github": "",
+    "huggingface": "https://huggingface.co/datasets/oxe-aug-e",
+    "changelog": [
+      {
+        "date": "2025-12-20",
+        "text": "首次发布，440 万+ 轨迹，9 种机器人形态，Cross-Painting 增强"
+      }
+    ],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "基于 OXE 原始标注",
+      "realWorld": "真实数据增强（视觉+运动学保真）",
+      "hasSplit": true
+    }
   }
 ]

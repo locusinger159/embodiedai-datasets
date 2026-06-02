@@ -2908,5 +2908,73 @@
       "realWorld": "100%真机（非实验室开放场景）",
       "hasSplit": true
     }
+  },
+  {
+    "id": "oxe-auge",
+    "name": "OXE-AugE",
+    "institution": "Independent Research Team",
+    "scale": "4.4M+ trajectories, 9 robot embodiments",
+    "robotType": [
+      "多机型"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "动作",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://oxe-auge.github.io/",
+      "paper": "https://arxiv.org/abs/2512.13100"
+    },
+    "notes": "Large-scale cross-embodiment augmentation of OXE. Cross-Painting renders real trajectories onto 9 virtual robots with visual + kinematic fidelity, designed for cross-embodiment generalization.",
+    "description": "OXE-AugE (Open X-Embodiment Augmented Embodiments) is a large-scale derivative dataset released in late 2025 that augments Google's Open X-Embodiment (OXE) across multiple robot embodiments. The dataset selects 16 mainstream subsets from the original OXE (1M trajectories) and uses Cross-Painting + AugE-Toolkit to transfer and re-render trajectories from one robot onto others, ensuring kinematically valid and visually realistic results. Each original trajectory generates 8 cross-embodiment virtual trajectories + 1 original, totaling 4.4M+ trajectories across 9 robot embodiments: Franka, UR5, xArm, WidowX, Google Robot, Jaco, Sawyer, Kinova Gen3, and KUKA iiwa. In the original OXE, the top 4 robots account for 85% of trajectories; AugE enforces balanced distribution across all 9 embodiments, significantly improving diversity. Unified RLDS format with direct TFDS loading, sharing code and models (e.g., RT-1-X, Octo) with OXE. Experiments show policies trained on AugE achieve significantly better generalization to unseen robots than those trained on real data alone.",
+    "license": "Apache 2.0",
+    "dataFormat": {
+      "storage": "RLDS / TFDS",
+      "size": "Unknown",
+      "compression": "TFDS auto cache/compress",
+      "schema": "OXE-compatible — episode → step → observation / action / reward / discount"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB Cameras",
+        "Depth Cameras (partial)",
+        "Joint Encoders"
+      ],
+      "scenes": "311 (same as OXE: household/office/catering etc.)",
+      "objects": "Same as OXE (thousands)",
+      "tasks": "527 manipulation skills",
+      "episodes": "4,400,000+",
+      "annotations": [
+        "Natural language instructions",
+        "Action sequences",
+        "Embodiment labels",
+        "Augmentation metadata"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{oxeauge2025,\n  title={OXE-AugE: A Large-Scale Robot Augmentation of OXE},\n  author={OXE-AugE Team},\n  journal={arXiv preprint arXiv:2512.13100},\n  year={2025}\n}",
+      "authors": "OXE-AugE Team",
+      "year": 2025,
+      "venue": "arXiv:2512.13100"
+    },
+    "github": "",
+    "huggingface": "https://huggingface.co/datasets/oxe-aug-e",
+    "changelog": [
+      {
+        "date": "2025-12-20",
+        "text": "Initial release: 4.4M+ trajectories, 9 robot embodiments, Cross-Painting augmentation"
+      }
+    ],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "基于 OXE 原始标注",
+      "realWorld": "真实数据增强（视觉+运动学保真）",
+      "hasSplit": true
+    }
   }
 ]
