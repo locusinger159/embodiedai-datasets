@@ -284,7 +284,7 @@ function buildAll(lang) {
       : '<div class="empty-hint">暂无关联数据集</div>';
 
     const relatedSTHTML = relatedST.length
-      ? relatedST.map(s => `<a href="/standards/${esc(s.id)}/" class="related-card"><div class="related-name">${esc(s.name)}</div><div class="related-org">${esc(s.org)}</div><div class="related-meta"><span class="std-type-badge ${tC[s.type]||''}">${tL[s.type]||s.type}</span>${(s.scene||[]).slice(0,2).map(x => `<span class="data-tag card-tag">${scL[x]||x}</span>`).join('')}${(s.modalities||[]).slice(0,2).map(m => `<span class="data-tag">${esc(m)}</span>`).join('')}</div></div></a>`).join('')
+      ? relatedST.map(s => `<a href="/standards/${esc(s.id)}/" class="related-card"><div class="related-name">${esc(s.name)}</div><div class="related-org">${esc(s.org)}</div><div class="related-meta"><span class="std-type-badge ${tC[s.type]||''}">${tL[s.type]||s.type}</span></div></div></a>`).join('')
       : '<div class="empty-hint">暂无相关标准</div>';
 
     const scenesHTML = (ss.scene || []).map(s => `<span class="data-tag">${scL[s] || s}</span>`).join(' ') || '-';
