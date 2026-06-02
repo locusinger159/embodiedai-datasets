@@ -23,6 +23,11 @@ img { max-width:100%; display:block; }
 .navbar { position:fixed; top:0; left:0; right:0; height:72px; background:rgba(11,15,26,0.85); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.08); z-index:1000; display:flex; align-items:center; justify-content:space-between; padding:0 48px; transition:all 0.3s; }
 .nav-logo { display:flex; align-items:center; gap:12px; font-weight:700; font-size:18px; color:var(--white); }
 .nav-logo img { width:40px; height:40px; border-radius:8px; }
+.nav-lang { display:flex; align-items:center; gap:4px; margin-right:16px; }
+.nav-lang-link { color:rgba(255,255,255,0.5); font-size:13px; font-weight:600; padding:4px 6px; border-radius:4px; transition:all 0.2s; }
+.nav-lang-link:hover { color:var(--white); }
+.nav-lang-link.active { color:var(--accent); background:rgba(0,210,255,0.15); }
+.nav-lang-sep { color:rgba(255,255,255,0.2); font-size:13px; }
 .nav-menu { display:flex; align-items:center; gap:40px; }
 .nav-link { color:rgba(255,255,255,0.7); font-weight:500; font-size:15px; transition:all 0.3s; position:relative; padding:8px 0; }
 .nav-link:hover { color:var(--white); }
@@ -322,6 +327,7 @@ img { max-width:100%; display:block; }
   .nav-menu.open{display:flex}
   .hamburger-btn{display:flex}
   .nav-cta .btn-ghost{display:none}
+  .nav-lang{display:none}
 
   /* Hero */
   .hero{padding:100px 20px 60px;min-height:auto}
