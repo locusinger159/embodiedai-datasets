@@ -2768,9 +2768,17 @@
     "name": "UniACT",
     "institution": "AMAP CV Lab (AutoNavi/Amap)",
     "scale": "6M+ trajectories, 9,500+ hours, 20+ robot embodiments",
-    "robotType": ["multi"],
-    "task": ["操作"],
-    "modality": ["视觉", "本体状态", "动作"],
+    "robotType": [
+      "multi"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
     "type": "open",
     "links": {
       "official": "https://amap-cvlab.github.io/ABot-Manipulation",
@@ -2786,12 +2794,21 @@
       "schema": "episode → step → observation → action (delta pose + rotation vector, dual-arm padded)"
     },
     "dataContent": {
-      "sensors": ["RGB Camera", "Depth Camera", "Joint Encoders", "Tactile Sensors (partial)"],
+      "sensors": [
+        "RGB Camera",
+        "Depth Camera",
+        "Joint Encoders",
+        "Tactile Sensors (partial)"
+      ],
       "scenes": "Multi-scene (aggregated from 6 source datasets)",
       "objects": "Thousands",
       "tasks": "数百种操作任务",
       "episodes": "6,000,000+",
-      "annotations": ["自然语言指令", "标准化动作序列", "双臂格式填充"]
+      "annotations": [
+        "自然语言指令",
+        "标准化动作序列",
+        "双臂格式填充"
+      ]
     },
     "citation": {
       "bibtex": "@article{uniact2026,\n  title={ABot-M0: A Generalist Robot Manipulation Model with UniACT Dataset},\n  author={AMAP CV Lab},\n  journal={arXiv preprint arXiv:2602.11236},\n  year={2026}\n}",
@@ -2811,6 +2828,84 @@
       "collection": "多源聚合",
       "annotation": "部分人工标注",
       "realWorld": "100%真机",
+      "hasSplit": true
+    }
+  },
+  {
+    "id": "galaxea-open-world",
+    "name": "Galaxea Open-World Dataset (GOD)",
+    "institution": "Galaxea (星海图)",
+    "scale": "500 hours, 100K+ trajectories",
+    "robotType": [
+      "移动机器人"
+    ],
+    "task": [
+      "操作",
+      "抓取",
+      "导航",
+      "家居"
+    ],
+    "modality": [
+      "视觉",
+      "动作",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://opengalaxea.github.io/G0/",
+      "paper": "https://arxiv.org/abs/2509.00576",
+      "huggingface": "https://huggingface.co/datasets/OpenGalaxea/Galaxea-Open-World-Dataset",
+      "mirror": "https://hf-mirror.com/datasets/OpenGalaxea/Galaxea-Open-World-Dataset"
+    },
+    "notes": "Unified hardware collection, real open-world scenes, fine-grained language annotations. 400K+ downloads in two months, one of the most-watched embodied AI datasets globally. Accompanied by G0 dual-system VLA model.",
+    "description": "Galaxea Open-World Dataset (GOD) is a real-robot embodied AI dataset released by Galaxea on August 31, 2025. All data is collected from the self-developed R1 Lite mobile dual-arm robot (23 DoF), ensuring consistent action space and perception input across all trajectories. The dataset contains 500 hours of real-world manipulation data (>10TB), 100K+ trajectories, covering 150 task types across 50 real-world scenes (residential 50.8%, catering 33.2%, retail 8.7%, office 7.4%), 1600+ unique objects, and 58 manipulation skills (from fine-grained grasping to full-body coordination). Data is collected in non-lab environments with dynamic lighting, occlusions, and distractions, featuring sub-task-level natural language annotations supporting hierarchical robot learning (tabletop manipulation, few-shot, long-horizon mobile manipulation). Standardized in RLDS/LeRobot format with complete metadata; a small sample set is provided for quick testing. The accompanying open-source G0 dual-system VLA model (VLM multimodal planning + VLA fine-grained execution) has already supported external research projects including NVIDIA EgoScale and Ant Lingbot-VLA.",
+    "license": "Apache 2.0",
+    "dataFormat": {
+      "storage": "RLDS / LeRobot",
+      "size": "10TB+",
+      "compression": "Raw + Compressed",
+      "schema": "episode → step → observation (RGB + depth + proprioception) / action (23-DoF) / language_instruction"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB-D Cameras",
+        "Joint Encoders",
+        "IMU",
+        "Wrist Force Sensors"
+      ],
+      "scenes": "50 real scenes (Residential/Catering/Retail/Office)",
+      "objects": "1600+ types",
+      "tasks": "150 manipulation task types",
+      "episodes": "100,000+",
+      "annotations": [
+        "Sub-task natural language instructions",
+        "Action sequences",
+        "Scene labels",
+        "Object categories"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{galaxea2025,\n  title={Galaxea Open-World Dataset and G0 Dual-System VLA Model},\n  author={Galaxea Team},\n  journal={arXiv preprint arXiv:2509.00576},\n  year={2025}\n}",
+      "authors": "Galaxea Team",
+      "year": 2025,
+      "venue": "arXiv:2509.00576"
+    },
+    "github": "https://github.com/OpenGalaxea",
+    "huggingface": "https://huggingface.co/datasets/OpenGalaxea/Galaxea-Open-World-Dataset",
+    "changelog": [
+      {
+        "date": "2025-08-31",
+        "text": "Initial release: 500 hours of real-world manipulation data, 100K+ trajectories, with G0 model"
+      },
+      {
+        "date": "2025-10",
+        "text": "Surpassed 400K downloads, becoming one of the most-watched embodied AI datasets globally"
+      }
+    ],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "细粒度人工标注",
+      "realWorld": "100%真机（非实验室开放场景）",
       "hasSplit": true
     }
   }

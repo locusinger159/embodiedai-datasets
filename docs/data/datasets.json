@@ -2768,9 +2768,17 @@
     "name": "UniACT",
     "institution": "AMAP CV Lab (高德)",
     "scale": "600万+ 轨迹，9500+ 小时，20+ 机器人形态",
-    "robotType": ["多机型"],
-    "task": ["操作"],
-    "modality": ["视觉", "本体状态", "动作"],
+    "robotType": [
+      "多机型"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
     "type": "open",
     "links": {
       "official": "https://amap-cvlab.github.io/ABot-Manipulation",
@@ -2786,12 +2794,21 @@
       "schema": "episode → step → observation → action (delta pose + rotation vector, dual-arm padded)"
     },
     "dataContent": {
-      "sensors": ["RGB 相机", "深度相机", "关节编码器", "触觉传感器（部分）"],
+      "sensors": [
+        "RGB 相机",
+        "深度相机",
+        "关节编码器",
+        "触觉传感器（部分）"
+      ],
       "scenes": "多场景（整合自 6 个源数据集）",
       "objects": "数千种",
       "tasks": "数百种操作任务",
       "episodes": "6,000,000+",
-      "annotations": ["自然语言指令", "标准化动作序列", "双臂格式填充"]
+      "annotations": [
+        "自然语言指令",
+        "标准化动作序列",
+        "双臂格式填充"
+      ]
     },
     "citation": {
       "bibtex": "@article{uniact2026,\n  title={ABot-M0: A Generalist Robot Manipulation Model with UniACT Dataset},\n  author={AMAP CV Lab},\n  journal={arXiv preprint arXiv:2602.11236},\n  year={2026}\n}",
@@ -2811,6 +2828,84 @@
       "collection": "多源聚合",
       "annotation": "部分人工标注",
       "realWorld": "100%真机",
+      "hasSplit": true
+    }
+  },
+  {
+    "id": "galaxea-open-world",
+    "name": "Galaxea Open-World Dataset (GOD)",
+    "institution": "星海图 (Galaxea)",
+    "scale": "500 小时，10万+ 轨迹",
+    "robotType": [
+      "移动机器人"
+    ],
+    "task": [
+      "操作",
+      "抓取",
+      "导航",
+      "家居"
+    ],
+    "modality": [
+      "视觉",
+      "动作",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://opengalaxea.github.io/G0/",
+      "paper": "https://arxiv.org/abs/2509.00576",
+      "huggingface": "https://huggingface.co/datasets/OpenGalaxea/Galaxea-Open-World-Dataset",
+      "mirror": "https://hf-mirror.com/datasets/OpenGalaxea/Galaxea-Open-World-Dataset"
+    },
+    "notes": "统一硬件采集、真实开放场景、细粒度语言标注。两个月下载量破 40 万次，全球同类数据集关注度最高之一。配套 G0 双系统 VLA 模型。",
+    "description": "Galaxea Open-World Dataset（GOD）是由星海图（Galaxea）于 2025 年 8 月 31 日发布的具身智能真机数据集。全部数据来自自研 R1 Lite 移动双手机器人（23 自由度），统一硬件采集确保动作空间与感知输入一致。数据集包含 500 小时真实操作数据（>10TB），10 万+ 轨迹，覆盖 150 类任务、50 种真实场景（住宅 50.8%、餐饮 33.2%、零售 8.7%、办公 7.4%）、1600+ 独特物体及 58 项操作技能（从精细抓取到全身协调）。数据在非实验室环境采集，含动态光照、遮挡与干扰，提供子任务级自然语言注释，支持分层机器人学习（桌面操控、少样本、长时域移动）。标准化 RLDS/LeRobot 格式，含完整元数据；另提供小样本集便于快速测试。配套开源 G0 双系统 VLA 模型（VLM 多模态规划 + VLA 细粒度执行），已支持 NVIDIA EgoScale、蚂蚁 Lingbot-VLA 等外部研究项目。",
+    "license": "Apache 2.0",
+    "dataFormat": {
+      "storage": "RLDS / LeRobot",
+      "size": "10TB+",
+      "compression": "原始 + 压缩",
+      "schema": "episode → step → observation (RGB + depth + proprioception) / action (23-DoF) / language_instruction"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB-D 相机",
+        "关节编码器",
+        "IMU",
+        "腕部力传感器"
+      ],
+      "scenes": "50 种真实场景（住宅/餐饮/零售/办公）",
+      "objects": "1600+ 种",
+      "tasks": "150 类操作任务",
+      "episodes": "100,000+",
+      "annotations": [
+        "子任务级自然语言指令",
+        "动作序列",
+        "场景标签",
+        "物体类别"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{galaxea2025,\n  title={Galaxea Open-World Dataset and G0 Dual-System VLA Model},\n  author={Galaxea Team},\n  journal={arXiv preprint arXiv:2509.00576},\n  year={2025}\n}",
+      "authors": "Galaxea Team",
+      "year": 2025,
+      "venue": "arXiv:2509.00576"
+    },
+    "github": "https://github.com/OpenGalaxea",
+    "huggingface": "https://huggingface.co/datasets/OpenGalaxea/Galaxea-Open-World-Dataset",
+    "changelog": [
+      {
+        "date": "2025-08-31",
+        "text": "首次发布，500 小时真实操作数据，10 万+ 轨迹，配套 G0 模型"
+      },
+      {
+        "date": "2025-10",
+        "text": "下载量突破 40 万次，成为全球关注度最高的具身智能数据集之一"
+      }
+    ],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "细粒度人工标注",
+      "realWorld": "100%真机（非实验室开放场景）",
       "hasSplit": true
     }
   }
