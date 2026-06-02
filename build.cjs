@@ -314,6 +314,7 @@ function buildAll(lang) {
   robotType: isEn ? 'Robot Type' : '机器人类型',
   taskType: isEn ? 'Task Type' : '任务类型',
   openness: isEn ? 'Access Level' : '开放程度',
+  sortYear: isEn ? 'Time ↓' : '时间排序 ↓',
   sortName: isEn ? 'Name' : '名称排序',
   sortOrg: isEn ? 'Institution' : '机构排序',
   clearFilters: isEn ? 'Clear Filters' : '清除筛选',
