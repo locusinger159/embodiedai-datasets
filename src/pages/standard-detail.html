@@ -10,6 +10,8 @@
 .detail-org { font-size:18px; color:var(--text-secondary); margin-bottom:24px; }
 .detail-fullname { font-size:14px; color:var(--text-light); margin-bottom:4px; }
 .detail-desc { font-size:16px; line-height:1.8; color:var(--text-primary); margin-bottom:40px; max-width:900px; }
+.detail-desc p { margin-bottom:16px; }
+.detail-desc p:last-child { margin-bottom:0; }
 .info-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-bottom:40px; }
 .info-card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:20px; }
 .info-card-label { font-size:12px; font-weight:600; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px; }
@@ -34,7 +36,7 @@
     <span class="std-type-badge {{TYPE_CLASS}}">{{TYPE_LABEL}}</span>
   </div>
   <p class="detail-org">{{ORGANIZATION}}</p>
-  <p class="detail-desc">{{DESCRIPTION}}</p>
+  <div class="detail-desc">{{DESCRIPTION}}</div>
 
   <div class="info-grid">
     <div class="info-card"><div class="info-card-label">发布组织</div><div class="info-card-value">{{ORGANIZATION}}</div></div>

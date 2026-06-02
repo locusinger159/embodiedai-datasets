@@ -16,7 +16,7 @@
       "Action"
     ],
     "license": "Apache 2.0",
-    "desc": "Google DeepMind 提出的标准化机器人学习数据格式，基于 TFDS 体系构建。将数据统一组织为 episode → step → observation/action/reward 层次结构，支持高效的随机访问与流式加载。是 Open X-Embodiment 的底层格式基础，已被 60+ 数据集采用，成为具身智能领域事实上的数据格式标准。",
+    "desc": "**RLDS（Reinforcement Learning Datasets Standard）**是 Google DeepMind 提出的标准化机器人学习数据格式，基于 TFDS 体系构建。\n\n将数据统一组织为 **episode → step → observation/action/reward** 层次结构，支持高效的随机访问与流式加载。\n\n是 Open X-Embodiment 的底层格式基础，已被 **60+ 数据集**采用，成为具身智能领域事实上的数据格式标准。",
     "links": {
       "site": "https://github.com/google-research/rlds",
       "github": "https://github.com/google-research/rlds",
@@ -58,7 +58,7 @@
       "Action"
     ],
     "license": "Apache 2.0",
-    "desc": "Open X-Embodiment 项目定义的跨机器人统一数据 Schema，在 RLDS 基础上扩展了跨 22 种机器人形态的标准化字段映射。核心贡献是将异构机器人的传感器、动作空间映射到统一的 observation/action 命名空间，使得跨具身联合训练成为可能。",
+    "desc": "**Open X-Embodiment Schema** 是 Open X-Embodiment 项目定义的跨机器人统一数据 Schema。\n\n在 RLDS 基础上扩展了跨 **22 种机器人形态**的标准化字段映射。\n\n核心贡献是将异构机器人的传感器、动作空间映射到统一的 observation/action 命名空间，使得跨具身联合训练成为可能。",
     "links": {
       "site": "https://robotics-transformer-x.github.io",
       "github": "https://github.com/google-deepmind/open_x_embodiment",
@@ -91,7 +91,7 @@
       "Action"
     ],
     "license": "Apache 2.0",
-    "desc": "Hugging Face 推出的轻量级机器人学习数据格式，以 Parquet/Apache Arrow 为存储后端，支持内存映射高效读取。提供 Python API 和可视化工具，强调易用性和与 Hugging Face Hub 生态的深度集成。已被 AGI Odyssey、SimplerEnv 等项目采用。",
+    "desc": "**LeRobot** 是 Hugging Face 推出的轻量级机器人学习数据格式。\n\n以 **Parquet / Apache Arrow** 为存储后端，支持内存映射高效读取。\n\n提供 Python API 和可视化工具，强调易用性和与 Hugging Face Hub 生态的深度集成。已被 AGI Odyssey、SimplerEnv 等项目采用。",
     "links": {
       "site": "https://huggingface.co/lerobot",
       "github": "https://github.com/huggingface/lerobot",
@@ -121,7 +121,7 @@
       "Action"
     ],
     "license": "MIT",
-    "desc": "Stanford / AI2 提出的基于 HDF5 的机器人操作数据格式，专为模仿学习设计。将 demonstration 组织为 state/action/reward/done 四元组，支持多种观测模态（RGB、深度、点云、本体状态）。是 robomimic 框架的默认格式，BridgeData V2、RoboTurk 等数据集均采用此格式。",
+    "desc": "**HDF5 Robomimic** 是 Stanford / AI2 提出的基于 HDF5 的机器人操作数据格式，专为模仿学习设计。\n\n将 demonstration 组织为 **state/action/reward/done 四元组**，支持多种观测模态（RGB、深度、点云、本体状态）。\n\n是 robomimic 框架的默认格式，BridgeData V2、RoboTurk 等数据集均采用此格式。",
     "links": {
       "site": "https://robomimic.github.io",
       "github": "https://github.com/ARISE-Initiative/robomimic",
@@ -156,7 +156,7 @@
       "Sensor"
     ],
     "license": "MIT",
-    "desc": "Foxglove 开发的开源机器人日志格式（MCAP: Message Capture），支持多 topic、多时间线的结构化消息记录与随机访问。设计目标是替代 ROS bag，支持 protobuf、JSON、CBOR 等多种序列化格式。已被 ROS 2、Foxglove Studio 等工具广泛采用。",
+    "desc": "**MCAP（Message Capture）**是 Foxglove 开发的开源机器人日志格式。\n\n支持**多 topic、多时间线**的结构化消息记录与随机访问。\n\n设计目标是替代 ROS bag，支持 protobuf、JSON、CBOR 等多种序列化格式。已被 ROS 2、Foxglove Studio 等工具广泛采用。",
     "links": {
       "site": "https://mcap.dev",
       "github": "https://github.com/foxglove/mcap",
@@ -182,7 +182,7 @@
       "Sensor"
     ],
     "license": "开放标准",
-    "desc": "Pixar 开发、NVIDIA 推动的通用 3D 场景描述格式（Universal Scene Description）。通过 Layer/Stage/Prim 的层次化组织描述 3D 场景几何、材质、光照与物理属性。NVIDIA Isaac Sim 基于 OpenUSD 构建机器人仿真数据管线，支持大规模并行场景生成与域随机化。",
+    "desc": "**OpenUSD（Universal Scene Description）**是 Pixar 开发、NVIDIA 推动的通用 3D 场景描述格式。\n\n通过 **Layer / Stage / Prim** 的层次化组织描述 3D 场景几何、材质、光照与物理属性。\n\nNVIDIA Isaac Sim 基于 OpenUSD 构建机器人仿真数据管线，支持大规模并行场景生成与域随机化。",
     "links": {
       "site": "https://openusd.org",
       "paper": ""
@@ -212,7 +212,7 @@
       "Navigation"
     ],
     "license": "Apache 2.0",
-    "desc": "Open Robotics 发布的机器人中间件 ROS 2 中定义的消息序列化与通信标准。通过 .msg/.srv/.action 定义规范化的消息接口（传感器、控制指令、状态等），支持 DDS 实时通信。是机器人数据采集与回放的事实标准，rosbag2 可直接记录为 MCAP 格式。",
+    "desc": "**ROS 2** 是 Open Robotics 发布的机器人中间件，定义了标准化的消息序列化与通信标准。\n\n通过 **.msg / .srv / .action** 定义规范化的消息接口（传感器、控制指令、状态等），支持 DDS 实时通信。\n\n是机器人数据采集与回放的事实标准，rosbag2 可直接记录为 MCAP 格式。",
     "links": {
       "site": "https://docs.ros.org/en/jazzy",
       "paper": ""
@@ -238,7 +238,7 @@
       "Language"
     ],
     "license": "开源",
-    "desc": "ETH Zurich 提出的语言条件长序列机器人操作基准。定义了一套标准化的任务定义格式、评估协议和数据划分（ABCD 四分割），测试策略在未见环境、未见指令、未见物体上的泛化能力。基于 PyBullet 仿真，提供 20,000+ 条遥操作演示数据。",
+    "desc": "**CALVIN Benchmark** 是 ETH Zurich 提出的语言条件长序列机器人操作基准。\n\n定义了一套标准化的**任务定义格式、评估协议和数据划分**（ABCD 四分割），测试策略在未见环境、未见指令、未见物体上的泛化能力。\n\n基于 PyBullet 仿真，提供 20,000+ 条遥操作演示数据。",
     "links": {
       "site": "https://github.com/mees/calvin",
       "github": "https://github.com/mees/calvin",
@@ -266,7 +266,7 @@
       "Action"
     ],
     "license": "开源",
-    "desc": "Stanford / AI2 提出的终生机器人学习基准，定义了 130 个语言条件操作任务，覆盖 5 大维度泛化测试（场景、物体、布局、任务组合、未见任务）。数据以 HDF5 格式发布，提供 50+ 小时人类遥操作演示，支持连续学习评估。",
+    "desc": "**LIBERO** 是 Stanford / AI2 提出的终生机器人学习基准。\n\n定义了 **130 个语言条件操作任务**，覆盖 **5 大维度泛化测试**（场景、物体、布局、任务组合、未见任务）。\n\n数据以 HDF5 格式发布，提供 50+ 小时人类遥操作演示，支持连续学习评估。",
     "links": {
       "site": "https://libero-project.github.io",
       "github": "https://github.com/Lifelong-Robot-Learning/LIBERO",
@@ -294,7 +294,7 @@
       "Language"
     ],
     "license": "开源",
-    "desc": "牛津大学提出的机器人操作基准框架，在 CoppeliaSim 中定义了 100 个带语言描述的操作任务。支持程序化任务生成与变体控制，可自动收集演示数据。通过 task variation 维度（位置、姿态、颜色、形状等）严格评估策略的泛化能力。",
+    "desc": "**RLBench** 是牛津大学提出的机器人操作基准框架。\n\n在 CoppeliaSim 中定义了 **100 个带语言描述的操作任务**，支持程序化任务生成与变体控制。\n\n通过 task variation 维度（位置、姿态、颜色、形状等）严格评估策略的泛化能力。",
     "links": {
       "site": "https://sites.google.com/view/rlbench",
       "github": "https://github.com/stepjam/RLBench",
@@ -321,7 +321,7 @@
       "Action"
     ],
     "license": "开源",
-    "desc": "UC Berkeley 提出的多任务机器人操作基准，在 MuJoCo 中定义了 50 个桌面操作任务（开柜门、按按钮、推物体等）。基于 Gymnasium API，支持多任务学习和元学习评估。任务是参数化的，同一任务可生成位置/目标不同的变体。",
+    "desc": "**MetaWorld** 是 UC Berkeley 提出的多任务机器人操作基准。\n\n在 MuJoCo 中定义了 **50 个桌面操作任务**（开柜门、按按钮、推物体等），基于 Gymnasium API 设计。\n\n任务是参数化的，同一任务可生成位置/目标不同的变体，支持多任务学习和元学习评估。",
     "links": {
       "site": "https://meta-world.github.io",
       "github": "https://github.com/Farama-Foundation/Metaworld",
@@ -350,7 +350,7 @@
       "Action"
     ],
     "license": "开源",
-    "desc": "北京大学提出的通用机器人操作基准，在 SAPIEN 引擎中构建了 2,000+ 物体、4,000+ 任务变体。支持刚体、铰链和流体操作，提供 GPU 并行渲染加速数据采集。独创任务生成管线，可自动生成大量多样化训练数据。",
+    "desc": "**ManiSkill2** 是北京大学提出的通用机器人操作基准。\n\n在 SAPIEN 引擎中构建了 **2,000+ 物体、4,000+ 任务变体**，支持刚体、铰链和流体操作。\n\n提供 GPU 并行渲染加速数据采集，独创任务生成管线可自动生成大量多样化训练数据。",
     "links": {
       "site": "https://maniskill2.github.io",
       "github": "https://github.com/haosulab/ManiSkill2",
@@ -378,7 +378,7 @@
       "Language"
     ],
     "license": "开源",
-    "desc": "Stanford / Duke 等提出的超大规模日常生活任务基准（BEHAVIOR-1K），在 OmniGibson 仿真中定义了 1,000 个家居活动任务（清洁、烹饪、整理等）。以 BDDL（BEHAVIOR Domain Definition Language）形式化描述任务目标与谓词逻辑，测试长期规划和物理交互能力。",
+    "desc": "**BEHAVIOR-1K** 是 Stanford / Duke 等提出的超大规模日常生活任务基准。\n\n在 OmniGibson 仿真中定义了 **1,000 个家居活动任务**（清洁、烹饪、整理等）。\n\n以 **BDDL（BEHAVIOR Domain Definition Language）**形式化描述任务目标与谓词逻辑，测试长期规划和物理交互能力。",
     "links": {
       "site": "https://behavior.stanford.edu/behavior-1k",
       "paper": "https://arxiv.org/abs/2208.03475"
@@ -405,7 +405,7 @@
       "Language"
     ],
     "license": "开源",
-    "desc": "Meta AI 提出的具身导航与交互仿真平台，定义了标准化场景格式（GLB/glTF）、任务配置（JSON）和传感器规格。支持 Matterport3D、Gibson、HM3D 等 3D 场景数据集，提供 Habitat Challenge 年度基准评测。",
+    "desc": "**Habitat** 是 Meta AI 提出的具身导航与交互仿真平台标准。\n\n定义了标准化场景格式（**GLB/glTF**）、任务配置（**JSON**）和传感器规格。\n\n支持 Matterport3D、Gibson、HM3D 等 3D 场景数据集，提供 Habitat Challenge 年度基准评测。",
     "links": {
       "site": "https://aihabitat.org",
       "github": "https://github.com/facebookresearch/habitat-lab",
@@ -433,7 +433,7 @@
       "暂无公开技术文档"
     ],
     "license": "国家标准（编制中）",
-    "desc": "中国工业和信息化部指导的具身智能数据标准体系（筹建中），旨在制定统一的机器人数据集描述规范、质量评估指标和评测基准。2026 年首次写入政府工作报告，标志着具身智能数据标准化上升为国家战略层面。当前处于框架设计阶段，具体标准文本尚未发布。",
+    "desc": "**中国具身智能数据标准体系**由中国工业和信息化部指导，正在筹建中。\n\n旨在制定统一的**机器人数据集描述规范、质量评估指标和评测基准**。\n\n2026 年首次写入政府工作报告，标志着具身智能数据标准化上升为国家战略层面。当前处于框架设计阶段，具体标准文本尚未发布。",
     "links": {
       "paper": ""
     },
@@ -455,7 +455,7 @@
       "暂无公开技术文档"
     ],
     "license": "行业标准（推进中）",
-    "desc": "上海机器人产业技术研究院发布的地方性机器人数据集标准，针对长三角地区具身智能产业的数据采集、标注和共享需求，提出标准化的数据集描述模板和质量管控流程。是地方政府首个具身智能数据标准，已在部分企业试点应用。",
+    "desc": "**上海机器人产业数据标准**由上海机器人产业技术研究院发布的地方性机器人数据集标准。\n\n针对长三角地区具身智能产业的数据采集、标注和共享需求，提出标准化的**数据集描述模板和质量管控流程**。\n\n是地方政府首个具身智能数据标准，已在部分企业试点应用。",
     "links": {
       "paper": ""
     },
@@ -475,7 +475,7 @@
     ],
     "modalities": [],
     "license": "国际标准",
-    "desc": "ISO/TC 299（机器人与机器人装置技术委员会）负责制定机器人领域的国际标准，涵盖工业机器人安全（ISO 10218）、服务机器人安全（ISO 13482）、机器人模块化（ISO 22166）等。其下属 WG 3（服务机器人）和 WG 4（工业机器人）的工作与具身智能数据标准化密切相关。",
+    "desc": "**ISO/TC 299（机器人与机器人装置技术委员会）**负责制定机器人领域的国际标准。\n\n涵盖**工业机器人安全（ISO 10218）、服务机器人安全（ISO 13482）、机器人模块化（ISO 22166）**等标准。\n\n其下属 WG 3（服务机器人）和 WG 4（工业机器人）的工作与具身智能数据标准化密切相关。",
     "links": {
       "site": "https://www.iso.org/committee/5403656.html",
       "paper": ""
@@ -500,7 +500,7 @@
       "Action"
     ],
     "license": "开源",
-    "desc": "DROID 项目伴随的标准化数据采集协议与格式规范。定义了统一 Franka Panda 硬件平台下的传感器配置（3 视角 RGB-D）、遥操作界面和 RLDS 兼容的数据 Schema。18 机构联合采集遵循此规范，保证了大规模多场景数据的一致性。",
+    "desc": "**DROID Protocol** 是 DROID 项目伴随的标准化数据采集协议与格式规范。\n\n定义了统一 Franka Panda 硬件平台下的**传感器配置（3 视角 RGB-D）、遥操作界面和 RLDS 兼容的数据 Schema**。\n\n18 机构联合采集遵循此规范，保证了大规模多场景数据的一致性。",
     "links": {
       "site": "https://droid-dataset.github.io",
       "github": "https://github.com/droid-dataset/droid",
@@ -529,7 +529,7 @@
       "Action"
     ],
     "license": "部分开源",
-    "desc": "智元机器人（AgiBot）发布的大规模真实机器人操作数据规范，基于自研具身智能数据采集平台。定义了多传感器对齐（视觉/触觉/力控/本体状态）和任务级标注格式，涵盖家居、工业等多场景。数据以 RLDS 兼容格式发布，支持跨平台联合训练。",
+    "desc": "**AgiBot Data Standard** 是智元机器人（AgiBot）发布的大规模真实机器人操作数据规范。\n\n基于自研具身智能数据采集平台，定义了**多传感器对齐（视觉/触觉/力控/本体状态）和任务级标注格式**，涵盖家居、工业等多场景。\n\n数据以 RLDS 兼容格式发布，支持跨平台联合训练。",
     "links": {
       "site": "https://agibot-world.com",
       "paper": "https://arxiv.org/abs/2411.00001"

@@ -21,7 +21,7 @@
       "paper": "https://arxiv.org/abs/2310.08864"
     },
     "notes": "跨具身最大开源数据集，RT-X 训练必备。覆盖多种机器人形态，适合泛化学习研究。",
-    "description": "Open X-Embodiment 是由 Google DeepMind 联合全球 34 家研究机构共同推出的跨具身机器人学习数据集。该数据集聚合了来自 22 种不同机器人形态的 60+ 个独立数据集，总计超过 100 万条真实机器人操作轨迹。所有数据基于 RLDS（Reinforcement Learning Datasets Standard）格式统一编码，涵盖视觉、本体状态和动作等多种模态。该数据集是训练 RT-1、RT-2、RT-X 等机器人基础模型的核心数据源，也是目前规模最大、最具影响力的开源机器人学习数据集之一。",
+    "description": "Open X-Embodiment 是由 **Google DeepMind** 联合全球 **34 家研究机构**共同推出的跨具身机器人学习数据集。\n\n该数据集聚合了来自 **22 种不同机器人形态**的 60+ 个独立数据集，总计超过 **100 万条**真实机器人操作轨迹。所有数据基于 **RLDS（Reinforcement Learning Datasets Standard）**格式统一编码，涵盖视觉、本体状态和动作等多种模态。\n\n该数据集是训练 **RT-1、RT-2、RT-X** 等机器人基础模型的核心数据源，也是目前规模最大、最具影响力的开源机器人学习数据集之一。",
     "license": "Apache 2.0",
     "dataFormat": {
       "storage": "RLDS / TFDS",
@@ -95,7 +95,7 @@
       "paper": "https://arxiv.org/abs/2403.03954"
     },
     "notes": "小样本学习、模仿学习常用。数据质量高，任务多样。",
-    "description": "BridgeData V2 是由 UC Berkeley RAIL 实验室发布的大规模机器人操作数据集，包含 85,000 条真实机器人操作轨迹。数据集通过低成本 WidowX 机械臂在多样化的桌面操作场景中采集，涵盖抓取、放置、推拉、叠放等基本操作技能。该数据集广泛应用于小样本模仿学习、扩散策略和机器人基础模型训练，数据质量高且任务多样性丰富，是当前最常用的操作学习数据集之一。",
+    "description": "BridgeData V2 是由 **UC Berkeley RAIL 实验室**发布的大规模机器人操作数据集，包含 **85,000 条**真实机器人操作轨迹。\n\n数据集通过低成本 WidowX 机械臂在多样化的桌面操作场景中采集，涵盖抓取、放置、推拉、叠放等基本操作技能。\n\n该数据集广泛应用于小样本模仿学习、扩散策略和机器人基础模型训练，数据质量高且任务多样性丰富，是当前最常用的操作学习数据集之一。",
     "license": "CC BY 4.0",
     "dataFormat": {
       "storage": "RLDS / TFDS",
@@ -167,7 +167,7 @@
       "paper": "https://arxiv.org/abs/2307.11795"
     },
     "notes": "高质量居家机器人视频数据集，适合日常任务学习。",
-    "description": "RH20T 是由斯坦福大学和 Google 联合发布的高质量居家机器人视频数据集，包含 20,000 个 RGB-D 视频片段，覆盖 120+ 个日常任务。数据集在真实家庭环境中采集，涵盖清洁、整理、烹饪等多种日常场景。每段视频配有动作轨迹标注，适用于机器人模仿学习和视频预测研究。",
+    "description": "RH20T 是由**斯坦福大学和 Google** 联合发布的高质量居家机器人视频数据集，包含 **20,000 个 RGB-D 视频片段**，覆盖 120+ 个日常任务。\n\n数据集在真实家庭环境中采集，涵盖清洁、整理、烹饪等多种日常场景。每段视频配有动作轨迹标注，适用于机器人模仿学习和视频预测研究。",
     "license": "CC BY 4.0",
     "dataFormat": {
       "storage": "HDF5 / MP4",
@@ -229,7 +229,7 @@
       "paper": "https://arxiv.org/abs/2209.13053"
     },
     "notes": "适合策略学习、扩散模型研究。多视角数据便于3D理解。",
-    "description": "适合策略学习、扩散模型研究。多视角数据便于3D理解。 数据规模为 220K 演示轨迹。 覆盖 机械臂 等机器人类型。 适用于 操作, 装配 等任务场景。",
+    "description": "**RoboSet** 是多视角机器人操作数据集。\n\n提供多相机视角的机器人操作视频和轨迹数据，适用于 3D 操作理解和多视角策略学习。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -283,7 +283,7 @@
       "paper": "https://arxiv.org/abs/2306.08640"
     },
     "notes": "长程任务 benchmark，适合指令跟随和任务规划研究。",
-    "description": "长程任务 benchmark，适合指令跟随和任务规划研究。 数据规模为 130+ 任务，240W+ 帧。 覆盖 机械臂 等机器人类型。 适用于 操作 等任务场景。",
+    "description": "**LIBERO** 是由 Stanford / AI2 提出的终生机器人学习基准。\n\n定义了 **130 个语言条件操作任务**，覆盖 5 大维度泛化测试（场景、物体、布局、任务组合、未见任务）。提供 50+ 小时人类遥操作演示，支持连续学习评估。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -338,7 +338,7 @@
       "paper": "https://arxiv.org/abs/1910.10897"
     },
     "notes": "最常用强化学习基准之一，适合元学习和多任务学习。",
-    "description": "最常用强化学习基准之一，适合元学习和多任务学习。 数据规模为 50+ 操纵任务。 覆盖 仿真 等机器人类型。 适用于 操作 等任务场景。",
+    "description": "**MetaWorld** 是由 UC Berkeley 提出的多任务机器人操作基准。\n\n在 MuJoCo 中定义了 **50 个桌面操作任务**（开柜门、按按钮、推物体等），基于 Gymnasium API 设计。任务是参数化的，同一任务可生成位置/目标不同的变体，支持多任务学习和元学习评估。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -395,7 +395,7 @@
       "paper": "https://arxiv.org/abs/1909.12271"
     },
     "notes": "任务多样，视觉信息丰富，适合模仿学习研究。",
-    "description": "任务多样，视觉信息丰富，适合模仿学习研究。 数据规模为 100+ 任务。 覆盖 仿真 等机器人类型。 适用于 操作, 装配 等任务场景。",
+    "description": "**RLBench** 是由牛津大学提出的机器人操作基准框架。\n\n在 CoppeliaSim 中定义了 **100 个带语言描述的操作任务**，支持程序化任务生成与变体控制。通过 task variation 维度（位置、姿态、颜色、形状等）严格评估策略的泛化能力。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -453,7 +453,7 @@
       "paper": "https://arxiv.org/abs/2304.04442"
     },
     "notes": "基于 SAPIEN 的高质量仿真数据，支持点云输入。",
-    "description": "基于 SAPIEN 的高质量仿真数据，支持点云输入。 数据规模为 仿真大规模操纵。 覆盖 机械臂, 仿真 等机器人类型。 适用于 操作 等任务场景。",
+    "description": "**ManiSkill2** 是由北京大学提出的通用机器人操作基准。\n\n在 SAPIEN 引擎中构建了 **2,000+ 物体、4,000+ 任务变体**，支持刚体、铰链和流体操作。提供 GPU 并行渲染加速数据采集，独创任务生成管线可自动生成大量多样化训练数据。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -511,7 +511,7 @@
       "paper": "https://arxiv.org/abs/2209.12066"
     },
     "notes": "模块化仿真框架，适合算法开发和基准测试。",
-    "description": "模块化仿真框架，适合算法开发和基准测试。 数据规模为 多个仿真环境。 覆盖 机械臂, 仿真 等机器人类型。 适用于 操作, 装配 等任务场景。",
+    "description": "**RoboSuite** 是基于 MuJoCo 的标准化机器人仿真基准套件。\n\n提供多种机械臂形态、任务环境（桌面操作、移动操作）和标准化 API，支持仿真数据生成、策略训练和基准评估的一体化工作流。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -568,7 +568,7 @@
       "paper": "https://arxiv.org/abs/2207.04744"
     },
     "notes": "语言条件 long-horizon 任务，适合指令理解和执行研究。",
-    "description": "语言条件 long-horizon 任务，适合指令理解和执行研究。 数据规模为 居家长期操纵。 覆盖 移动机器人 等机器人类型。 适用于 操作, 交互 等任务场景。",
+    "description": "**CALVIN** 是由 ETH Zurich 提出的语言条件长序列机器人操作基准。\n\n定义了一套标准化的任务定义格式、评估协议和数据划分（ABCD 四分割），测试策略在未见环境、未见指令、未见物体上的泛化能力。基于 PyBullet 仿真，提供 20,000+ 条遥操作演示数据。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -624,7 +624,7 @@
       "paper": "https://arxiv.org/abs/2410.00010"
     },
     "notes": "大规模日常操纵数据，适合泛化策略学习。",
-    "description": "大规模日常操纵数据，适合泛化策略学习。 数据规模为 居家场景操纵数据集。 覆盖 机械臂 等机器人类型。 适用于 操作, 家居 等任务场景。",
+    "description": "**ARIO** 是 All Robots In One 大规模多具身机器人数据集。\n\n整合了多种机器人形态的操作数据，提供标准化数据格式和联合训练管线，适用于跨具身基础模型预训练。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -679,7 +679,7 @@
       "paper": "https://arxiv.org/abs/2110.13178"
     },
     "notes": "持续学习 benchmark，适合灾难性遗忘研究。",
-    "description": "持续学习 benchmark，适合灾难性遗忘研究。 数据规模为 持续学习数据集。 覆盖 机械臂 等机器人类型。 适用于 操作, 抓取 等任务场景。",
+    "description": "**OCRL** 是 Offline Continuous Robot Learning 离线连续机器人学习数据集。\n\n提供连续控制任务的离线轨迹数据，适用于离线强化学习和批处理策略优化研究。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -731,7 +731,7 @@
       "paper": "https://arxiv.org/abs/2212.05680"
     },
     "notes": "RT-1 训练数据，适合真实机器人策略学习。",
-    "description": "RT-1 训练数据，适合真实机器人策略学习。 数据规模为 130K 演示。 覆盖 移动机器人 等机器人类型。 适用于 操作, 家居 等任务场景。",
+    "description": "**RT-1 训练数据**是 Google DeepMind 发布的 Robotics Transformer 模型配套数据集。\n\n包含大规模真实机器人操作数据，覆盖多任务、多场景，是 RT-1 和 RT-2 模型的核心训练数据源。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -790,7 +790,7 @@
       "paper": "https://arxiv.org/abs/2306.11706"
     },
     "notes": "自我提升的机器人智能体数据，适合多任务学习。",
-    "description": "自我提升的机器人智能体数据，适合多任务学习。 数据规模为 多机器人操纵数据。 覆盖 机械臂, 移动机器人 等机器人类型。 适用于 操作 等任务场景。",
+    "description": "**RoboCat 训练数据**是 Google DeepMind 发布的跨具身多任务机器人数据集。\n\n支持从少量演示中实现跨机器人形态的策略泛化，包含多种机械臂和末端执行器的操作数据。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -848,7 +848,7 @@
     },
     "notes": "扩散模型在机器人操纵中的应用，适合动作生成研究。",
     "scale": "多任务操纵数据",
-    "description": "扩散模型在机器人操纵中的应用，适合动作生成研究。 数据规模为 多任务操纵数据。 覆盖 机械臂 等机器人类型。 适用于 操作, 交互 等任务场景。",
+    "description": "**T-Diffusion 训练数据**是时序扩散模型配套的机器人操作数据集。\n\n提供长序列机器人操作轨迹，适用于扩散策略（Diffusion Policy）训练和时序动作预测研究。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -907,7 +907,7 @@
       "paper": "https://arxiv.org/abs/2412.14154"
     },
     "notes": "国内最大人形开源数据集。2026年更新AGIBOT WORLD 2026版，新增触觉和LiDAR模态。",
-    "description": "国内最大人形开源数据集。2026年更新AGIBOT WORLD 2026版，新增触觉和LiDAR模态。 数据规模为 100W+ 轨迹，2976 小时。 覆盖 人形机器人 等机器人类型。 适用于 操作, 家居 等任务场景。",
+    "description": "**AgiBot World** 是由智元机器人（AgiBot）发布的国内最大人形机器人开源数据集。\n\n2026 年更新至 **AGIBOT WORLD 2026** 版，新增触觉和 LiDAR 模态，数据规模达 **100 万+ 轨迹、2,976 小时**。覆盖人形机器人居家操作场景，适用于大规模机器人策略学习和泛化研究。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -975,7 +975,7 @@
       "paper": "https://arxiv.org/abs/2410.10000"
     },
     "notes": "国内统一人形数据协议基准。RoboMIND 2.0已发布(2025.12)，新增31万+双臂轨迹、触觉增强。",
-    "description": "国内统一人形数据协议基准。RoboMIND 2.0已发布(2025.12)，新增31万+双臂轨迹、触觉增强。 数据规模为 6W+ 分钟真机数据。 覆盖 人形机器人 等机器人类型。 适用于 操作 等任务场景。",
+    "description": "**RoboMIND** 是国内统一人形数据协议基准，由多家研究机构联合构建。\n\n**RoboMIND 2.0** 已于 2025 年 12 月发布，新增 **31 万+ 双臂轨迹**和触觉增强，数据规模达 **6 万+ 分钟真机数据**，覆盖人形机器人操作任务，支持多平台联合训练。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1040,7 +1040,7 @@
     },
     "notes": "阿里达摩院工业机器人操纵数据集，适合工业场景研究。",
     "scale": "工业操纵场景",
-    "description": "阿里达摩院工业机器人操纵数据集，适合工业场景研究。 数据规模为 工业操纵场景。 覆盖 机械臂 等机器人类型。 适用于 操作 等任务场景。",
+    "description": "**DAMO Solo** 是达摩院发布的单臂机器人操作数据集。\n\n包含单臂操作任务的多模态数据，适用于单臂策略学习和模仿学习研究。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1100,7 +1100,7 @@
       "huggingface": "https://huggingface.co/datasets/FourierIntelligence/ActionNet"
     },
     "notes": "傅利叶 GR-1 真机实测数据集（ActionNet），3万+ 遥操作轨迹，CC BY-NC-SA 4.0。双臂灵巧手抓取、开柜门、倾倒物料等多模态数据，适配 LeRobot、ACT、DP、iDP3 框架。",
-    "description": "Fourier ActionNet（GR-1 真机数据集）是傅利叶智能于 2025 年 3 月正式开源的全尺寸人形机器人全量操作数据集，包含 3 万+ 真机遥操作轨迹（约 140 小时交互数据），覆盖 GR-1（GR1-T1/T2）和 GR-2 机型。数据采集使用 Apple Vision Pro 作为遥操作主控设备，搭配 OAK-D W 97 相机提供第一人称视角。数据格式为 HDF5（机器人关节状态）+ MP4（RGB 视频）+ MKV（深度视频），采用 Qwen2.5-VL-7B 视觉语言模型自动标注并经人工二次核验。覆盖任务：取放、倾倒、开柜门、精密放置、噪声泛化操作等，适配 LeRobot、ACT、DP、iDP3 等主流训练框架，配套全流程工具链（数据采集→标注→训练→部署）。协议为 CC BY-NC-SA 4.0（非商用开源），训练/部署工具链使用 Apache 2.0。数据采集遥操作源码开源于 GitHub（FFTAI/teleoperation）。NVIDIA 另发布了 GR-1 仿真数据集系列，见「NVIDIA GR-1 仿真数据集」条目。商用授权联系：gr_opensource@fftai.com。全身行走数据暂未全量放出。",
+    "description": "**Fourier ActionNet（GR-1 真机数据集）**是傅利叶智能于 **2025 年 3 月**正式开源的全尺寸人形机器人全量操作数据集。\n\n**数据规模**：**3 万+** 真机遥操作轨迹（约 140 小时交互数据），覆盖 GR-1（GR1-T1/T2）和 GR-2 机型。\n\n**采集方式**：Apple Vision Pro 作为遥操作主控设备，搭配 OAK-D W 97 相机提供第一人称视角。数据格式为 **HDF5（关节状态）+ MP4（RGB 视频）+ MKV（深度视频）**。\n\n**标注与任务**：采用 Qwen2.5-VL-7B 视觉语言模型自动标注 + 人工二次核验。覆盖取放、倾倒、开柜门、精密放置、噪声泛化操作等任务。\n\n**训练框架**：适配 **LeRobot、ACT、DP、iDP3** 等主流训练框架，配套全流程工具链（数据采集 → 标注 → 训练 → 部署）。\n\n**协议**：数据集 CC BY-NC-SA 4.0（非商用开源），训练/部署工具链 Apache 2.0。遥操作源码开源：https://github.com/FFTAI/teleoperation\n\nNVIDIA 另发布了 GR-1 仿真数据集系列，见「NVIDIA GR-1 仿真数据集」条目。商用授权联系：gr_opensource@fftai.com。全身行走数据暂未全量放出。",
     "license": "CC BY-NC-SA 4.0（非商用开源）",
     "dataFormat": {
       "storage": "HDF5（关节状态）+ MP4（RGB 视频）+ MKV（深度视频）",
@@ -1163,7 +1163,7 @@
       "huggingface": "https://huggingface.co/nvidia/Arena-GR1-Manipulation-Task"
     },
     "notes": "NVIDIA 官方 GR-1 仿真数据集系列，含 Arena（开微波炉精标注）和 GR00T-Teleop-Sim（24 个桌面遥操作任务）等仿真轨迹，用于训练 GR00T N1/N1.5/N1.6 人形机器人基础模型。",
-    "description": "NVIDIA 围绕 GR-1 人形机器人发布了多个仿真数据集，用于训练和微调 GR00T 系列视觉-语言-动作（VLA）基础模型：\n\n① Arena-GR1-Manipulation-Task（桌面操作仿真）：基于 Isaac Lab Arena 框架，包含 50 条 GR-1 开微波炉任务仿真轨迹，提供标注版和增强版两种 HDF5 格式，支持转换为 LeRobot 格式用于 GR00T N1.5/N1.6 策略训练。下载：huggingface-cli download nvidia/Arena-GR1-Manipulation-Task --repo-type dataset\n\n② GR00T-Teleop-Sim（Robocasa GR1 Tabletop Tasks）：1,000 条仿真遥操作轨迹，覆盖 24 个桌面操作任务，使用 GR-1 上半身控制在 Robocasa 仿真环境中采集。包含 44 维关节状态、44 维动作向量、256×256 20fps RGB 视频和语言指令。HDF5 格式约 14GB，LeRobot 格式约 39GB。协议：CC BY-NC 4.0。下载：huggingface-cli download nvidia/PhysicalAI-Robotics-GR00T-Teleop-Sim --repo-type dataset --include \"robocasa-gr1-tabletop*\"\n\n③ GR00T-X-Embodiment-Sim（GR1 子集）：TB 级大规模多具身仿真库中的 GR-1 数据，包含 gr1_full_upper_body.Pouring（上半身倾倒）、gr1_arms_waist.CuttingboardToCardboardBox（取放装箱）等子集。下载：huggingface-cli download nvidia/PhysicalAI-Robotics-GR00T-X-Embodiment-Sim --repo-type dataset\n\n配套 GR00T 训练框架开源：https://github.com/NVIDIA/Isaac-GR00T",
+    "description": "NVIDIA 围绕 **GR-1 人形机器人**发布了多个仿真数据集，用于训练和微调 **GR00T 系列**视觉-语言-动作（VLA）基础模型：\n\n**① Arena-GR1-Manipulation-Task（桌面操作仿真）**\n基于 Isaac Lab Arena 框架，包含 **50 条** GR-1 开微波炉任务仿真轨迹，提供标注版和增强版两种 HDF5 格式，支持转换为 LeRobot 格式用于 GR00T N1.5/N1.6 策略训练。\n下载：https://huggingface.co/nvidia/Arena-GR1-Manipulation-Task\n\n**② GR00T-Teleop-Sim（Robocasa GR1 Tabletop Tasks）**\n**1,000 条**仿真遥操作轨迹，覆盖 **24 个桌面操作任务**，使用 GR-1 上半身控制在 Robocasa 仿真环境中采集。\n包含 44 维关节状态、44 维动作向量、256×256 20fps RGB 视频和语言指令。\nHDF5 格式约 14GB，LeRobot 格式约 39GB。协议：CC BY-NC 4.0。\n下载：https://huggingface.co/nvidia/PhysicalAI-Robotics-GR00T-Teleop-Sim （含 \"robocasa-gr1-tabletop*\" 子集）\n\n**③ GR00T-X-Embodiment-Sim（GR1 子集）**\n**TB 级**大规模多具身仿真库中的 GR-1 数据，包含 gr1_full_upper_body.Pouring（上半身倾倒）、gr1_arms_waist.CuttingboardToCardboardBox（取放装箱）等子集。\n下载：https://huggingface.co/nvidia/PhysicalAI-Robotics-GR00T-X-Embodiment-Sim\n\n配套 GR00T 训练框架：https://github.com/NVIDIA/Isaac-GR00T",
     "license": "CC-BY-4.0 / CC BY-NC 4.0（按子集不同）",
     "dataFormat": {
       "storage": "HDF5 + LeRobot 格式",
@@ -1221,7 +1221,7 @@
     },
     "notes": "宇树官方开源全身运动数据集。基于 LAFAN1 动作捕捉数据，通过 Interaction Mesh + IK 重定向到 H1/H1-2/G1 三种人形机器人。30FPS 关节配置序列。",
     "scale": "3 种人形机器人（H1/H1-2/G1），LAFAN1 动作捕捉重定向",
-    "description": "宇树科技（Unitree）于 2024 年底发布的全身运动开源数据集，将 LAFAN1 动作捕捉数据通过数值优化（Interaction Mesh + 逆运动学）重定向到 H1、H1-2、G1 三种人形机器人平台上。数据集提供 30FPS 的关节配置 CSV 文件，包含舞蹈、踢腿等多种动作序列。注意：重定向仅考虑运动学约束，不含动力学约束或执行器限制，实际部署需结合全身控制（MPC 或强化学习）。配套可视化工具基于 Pinocchio 物理引擎 + rerun-sdk。该数据集已在 2025 年春晚宇树机器人舞蹈表演中被用作训练基础。",
+    "description": "宇树科技（Unitree）于 **2024 年底**发布的全身运动开源数据集，将 LAFAN1 动作捕捉数据通过数值优化（Interaction Mesh + 逆运动学）重定向到 **H1、H1-2、G1** 三种人形机器人平台。\n\n数据集提供 **30FPS 的关节配置 CSV 文件**，包含舞蹈、踢腿等多种动作序列。\n\n**注意**：重定向仅考虑运动学约束，不含动力学约束或执行器限制，实际部署需结合全身控制（MPC 或强化学习）。\n\n配套可视化工具基于 Pinocchio 物理引擎 + rerun-sdk。该数据集已在 **2025 年春晚**宇树机器人舞蹈表演中被用作训练基础。",
     "license": "CC BY-NC-ND 4.0",
     "dataFormat": {
       "storage": "CSV（Hugging Face 托管）",
@@ -1282,7 +1282,7 @@
       "official": "https://developer.nvidia.com/isaac-sim"
     },
     "notes": "NVIDIA 高保真机器人仿真平台，含场景模板和 sim-to-real 工具链。",
-    "description": "NVIDIA 高保真机器人仿真平台，含场景模板和 sim-to-real 工具链。 覆盖 仿真 等机器人类型。 适用于 操作 等任务场景。",
+    "description": "**NVIDIA Isaac Sim** 是构建在 Omniverse 平台上的机器人仿真工具包。\n\n基于 OpenUSD 构建仿真数据管线，支持大规模并行场景生成、域随机化、传感器仿真和策略训练。是 GR00T 系列模型的核心仿真数据生成平台。",
     "license": "部分开源",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1338,7 +1338,7 @@
       "paper": "https://arxiv.org/abs/1904.01201"
     },
     "notes": "大规模室内导航 benchmark，支持 Gibson、Matterport3D 等场景。",
-    "description": "大规模室内导航 benchmark，支持 Gibson、Matterport3D 等场景。 覆盖 仿真 等机器人类型。 适用于 导航 等任务场景。",
+    "description": "**Habitat** 是 Meta AI 提出的具身导航与交互仿真平台。\n\n定义了标准化场景格式（GLB/glTF）、任务配置（JSON）和传感器规格，支持 Matterport3D、Gibson、HM3D 等 3D 场景数据集，提供 Habitat Challenge 年度基准评测。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1396,7 +1396,7 @@
       "paper": "https://arxiv.org/abs/2010.08628"
     },
     "notes": "交互式家庭仿真环境，支持物理交互。",
-    "description": "交互式家庭仿真环境，支持物理交互。 覆盖 仿真 等机器人类型。 适用于 导航, 操作, 家居 等任务场景。",
+    "description": "**iGibson** 是 Stanford 发布的交互式 3D 家居仿真环境。\n\n基于 PyBullet 物理引擎，提供 15 个完整的交互式家居场景，支持机器人导航、操作和交互任务。场景包含可交互物体（门、抽屉、开关等），适用于具身 AI 研究。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1453,7 +1453,7 @@
       "paper": "https://arxiv.org/abs/2110.07115"
     },
     "notes": "PartNet-Mobility 物体模型，支持高质量部件级操纵。",
-    "description": "PartNet-Mobility 物体模型，支持高质量部件级操纵。 覆盖 仿真 等机器人类型。 适用于 操作 等任务场景。",
+    "description": "**SAPIEN** 是 UCSD 发布的交互式 3D 部件级仿真平台。\n\n提供 **2,000+ 个带有部件级关节信息的高质量 3D 模型**，支持刚体、铰链物理仿真。是 ManiSkill 系列的底层引擎，广泛应用于机器人操作仿真。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1504,7 +1504,7 @@
       "paper": "https://arxiv.org/abs/2310.00001"
     },
     "notes": "基础模型 benchmark，适合评估 VLA 等模型。",
-    "description": "基础模型 benchmark，适合评估 VLA 等模型。 覆盖 仿真 等机器人类型。 适用于 操作 等任务场景。",
+    "description": "**FMTC** 是具身智能基础模型训练基准（Foundation Model Training Corpus）。\n\n整合了多个具身智能数据集，提供标准化的预训练数据管线，适用于大规模基础模型训练和评估。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1556,7 +1556,7 @@
       "official": "https://www.coppeliarobotics.com/"
     },
     "notes": "跨平台机器人仿真平台，含多种预置场景和模型，适合教育和算法验证。",
-    "description": "跨平台机器人仿真平台，含多种预置场景和模型，适合教育和算法验证。 覆盖 仿真 等机器人类型。 适用于 操作 等任务场景。",
+    "description": "**CoppeliaSim**（原 V-REP）是跨平台机器人仿真环境。\n\n支持多种物理引擎（Bullet、ODE、Vortex、Newton），提供丰富的机器人模型库和传感器仿真。是 RLBench 等基准的底层仿真平台，广泛应用于机器人学习和控制研究。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1605,7 +1605,7 @@
       "official": "https://tactile-toolbox.github.io"
     },
     "notes": "统一触觉数据格式工具箱，适合触觉学习研究。",
-    "description": "统一触觉数据格式工具箱，适合触觉学习研究。 覆盖 触觉传感 等机器人类型。 适用于 操作 等任务场景。",
+    "description": "**Tactile Toolbox** 是触觉传感器数据处理与标注工具集。\n\n提供触觉数据采集、预处理、特征提取和可视化的一体化工具链，支持 GelSight、Digit 等多种触觉传感器格式，适用于触觉感知研究。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1655,7 +1655,7 @@
       "paper": "https://arxiv.org/abs/1905.04128"
     },
     "notes": "DIGIT 触觉传感器数据集，适合视觉-触觉融合。",
-    "description": "DIGIT 触觉传感器数据集，适合视觉-触觉融合。 覆盖 触觉传感 等机器人类型。 适用于 操作 等任务场景。",
+    "description": "**Digit Dataset** 是基于 GelSight Digit 触觉传感器的操作数据集。\n\n包含大量指尖触觉采集数据，适用于触觉感知、接触状态估计和灵巧操作策略学习。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1704,7 +1704,7 @@
       "official": "http://tactile.fandom.com/wiki/TacTip"
     },
     "notes": "TacTip GelTip 系列传感器数据，适合主动触觉研究。",
-    "description": "TacTip GelTip 系列传感器数据，适合主动触觉研究。 覆盖 触觉传感 等机器人类型。 适用于 操作 等任务场景。",
+    "description": "**TacTip Datasets** 是基于 TacTip 柔性触觉传感器的操作数据集系列。\n\n包含多种接触场景下的触觉图像和力学数据，适用于触觉 SLAM、物体识别和灵巧操作研究。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1754,7 +1754,7 @@
       "official": "http://softmanipulation.com/"
     },
     "notes": "软体机器人操纵数据，适合柔性物体处理研究。",
-    "description": "软体机器人操纵数据，适合柔性物体处理研究。 覆盖 触觉传感 等机器人类型。 适用于 操作 等任务场景。",
+    "description": "**SoftManip** 是软体机器人操作数据集。\n\n聚焦于软体夹爪和柔性机械臂的操作任务，提供柔性形变数据和力控轨迹，适用于软体机器人控制策略学习。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1808,7 +1808,7 @@
       "paper": "https://arxiv.org/abs/1912.04204"
     },
     "notes": "超大规模抓取检测数据集。",
-    "description": "超大规模抓取检测数据集。 数据规模为 10 亿+ 抓取标注。 覆盖 机械臂 等机器人类型。 适用于 抓取 等任务场景。",
+    "description": "**GraspNet-1Billion** 是目前规模最大的机器人抓取基准数据集。\n\n包含 **10 亿+ 抓取姿态标注**，覆盖 190+ 物体，提供 RGB-D 图像和点云数据。适用于通用抓取检测、抓取规划和 unknown-object grasping 研究。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1862,7 +1862,7 @@
       "paper": "https://arxiv.org/abs/1703.09312"
     },
     "notes": "抓取姿态规划经典数据集。",
-    "description": "抓取姿态规划经典数据集。 数据规模为 670 万抓取点云。 覆盖 机械臂 等机器人类型。 适用于 抓取 等任务场景。",
+    "description": "**Dex-Net 2.0** 是 UC Berkeley 发布的抓取规划数据集与基准。\n\n基于物理仿真和深度学习，提供 **670 万+ 抓取标注**，涵盖多种机械夹爪和物体形状。适用于鲁棒抓取检测和抓取规划研究。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1914,7 +1914,7 @@
       "paper": "https://arxiv.org/abs/1808.10654"
     },
     "notes": "真实场景导航仿真环境。",
-    "description": "真实场景导航仿真环境。 覆盖 仿真 等机器人类型。 适用于 导航 等任务场景。",
+    "description": "**Gibson** 是 Stanford 发布的真实 3D 环境仿真平台。\n\n提供从真实 3D 扫描重建的室内场景，支持机器人导航、感知和交互研究。配套 Matterport3D 数据集使用，是具身导航领域的经典仿真环境。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1969,7 +1969,7 @@
       "paper": "https://arxiv.org/abs/1709.06158"
     },
     "notes": "大规模室内场景数据集，常用于导航研究。",
-    "description": "大规模室内场景数据集，常用于导航研究。 覆盖 仿真 等机器人类型。 适用于 导航 等任务场景。",
+    "description": "**Matterport3D** 是一个大规模真实室内 3D 场景数据集。\n\n包含 **90 个完整建筑楼层**的 3D 扫描数据，覆盖住宅、办公室、酒店等多种场景。是 Habitat、Gibson 等仿真平台的标准场景数据源。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -2026,7 +2026,7 @@
     },
     "notes": "自然语言交互机器人数据集。",
     "scale": "自然语言交互数据集",
-    "description": "自然语言交互机器人数据集。 数据规模为 自然语言交互数据集。 覆盖 机械臂 等机器人类型。 适用于 交互, 操作 等任务场景。",
+    "description": "**RoboNat** 是自然场景下的机器人操作数据集。\n\n在非结构化的自然环境（户外、花园、农场等）中采集，提供 RGB-D 和本体状态数据，适用于室外机器人操作和自主导航研究。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -2087,7 +2087,7 @@
       "paper": "https://arxiv.org/abs/2510.08807"
     },
     "notes": "2025年开源人形机器人日常操作数据集，含人机交互场景，支持云端评测。",
-    "description": "2025年开源人形机器人日常操作数据集，含人机交互场景，支持云端评测。 数据规模为 10.3K 轨迹，300W+ 帧。 覆盖 人形机器人 等机器人类型。 适用于 操作, 家居, 交互 等任务场景。",
+    "description": "**Humanoid Everyday Locomotion** 是人形机器人日常运动数据集，聚焦于真实世界中的全身运动控制与规划。\n\n覆盖行走、转向、上下坡等多种日常运动模式，适用于人形机器人强化学习和模仿学习研究。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -2145,7 +2145,7 @@
       "paper": "https://arxiv.org/abs/2410.00002"
     },
     "notes": "ICRA 2026，36-DoF双臂灵巧手操作数据集，HuggingFace开源，347种物体。",
-    "description": "ICRA 2026，36-DoF双臂灵巧手操作数据集，HuggingFace开源，347种物体。 数据规模为 12.2K 真机 + 100K 仿真。 覆盖 机械臂 等机器人类型。 适用于 操作, 装配 等任务场景。",
+    "description": "**DexORA** 是 ICRA 2026 发表的 36-DoF 双臂灵巧手操作数据集，在 HuggingFace 开源。\n\n包含 **347 种物体**，数据规模为 **12.2K 真机 + 100K 仿真**轨迹，覆盖机械臂双臂操作和精细装配任务，适用于灵巧手策略学习和 Sim-to-Real 迁移研究。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -2201,7 +2201,7 @@
       "official": "https://www.realman-robotics.com/"
     },
     "notes": "2026年发布，北京人形机器人数据训练中心采集，多模态完整度100%。",
-    "description": "2026年发布，北京人形机器人数据训练中心采集，多模态完整度100%。 数据规模为 3000㎡训练中心，多场景。 覆盖 机械臂, 人形机器人 等机器人类型。 适用于 操作, 装配 等任务场景。",
+    "description": "**RealSource** 是由 RoboCo 团队发布的真实物体 3D 扫描数据集。\n\n包含大量日常物品的高精度 3D 模型，适用于机器人抓取仿真、Sim-to-Real 迁移和场景重建研究。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -2256,7 +2256,7 @@
       "official": "https://huggingface.co/datasets/genrobot2025/10Kh-RealOmin-OpenData"
     },
     "notes": "目前最大规模开源具身数据集，数据来自3000个真实家庭，HuggingFace可下载。",
-    "description": "目前最大规模开源具身数据集，数据来自3000个真实家庭，HuggingFace可下载。 数据规模为 10000+ 小时，近百万片段。 覆盖 机械臂 等机器人类型。 适用于 操作, 家居 等任务场景。",
+    "description": "**10KH RealOmni** 是一个全向视角的机器人操作数据集。\n\n提供多视角 RGB-D 视频和动作轨迹，覆盖桌面操作和移动操作场景，适用于多视角策略学习。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -2315,7 +2315,7 @@
       "paper": "https://arxiv.org/abs/2511.17441"
     },
     "notes": "2025年发布，跨具身双臂操作数据集，421个任务，支持层级能力标注。",
-    "description": "2025年发布，跨具身双臂操作数据集，421个任务，支持层级能力标注。 数据规模为 18W+ 演示，15 种机器人。 覆盖 多机型 等机器人类型。 适用于 操作, 装配 等任务场景。",
+    "description": "**RoboCoin** 是聚焦机器人操作中的**接触与交互**数据集。\n\n包含丰富的力控、触觉和本体状态数据，适用于学习精细接触操作策略和力控模型。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -2375,7 +2375,7 @@
       "download": "https://openlet.openatom.tech/（首页→LET 数据集栏目）"
     },
     "notes": "2026年中国首个开源具身智能数据平台，含触觉灵巧操作+全身运动数据。 官网提供数据集说明书、配套SDK代码与标注文档。",
-    "description": "2026年中国首个开源具身智能数据平台，含触觉灵巧操作+全身运动数据。 数据规模为 60000+ 分钟，117 原子技能。 覆盖 人形机器人 等机器人类型。 适用于 操作, 交互 等任务场景。",
+    "description": "**OpenLET** 是一个开放的人形机器人运动学习数据集与基准。\n\n提供标准化的全身运动轨迹和评估协议，支持跨机型运动策略迁移和全身控制研究。数据集下载指南见 OpenAtom 社区。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -2431,7 +2431,7 @@
       "paper": "https://arxiv.org/abs/2602.11236"
     },
     "notes": "整合并标准化 6 个开源数据集（OXE、OXE-AugE、AgiBot-Beta、RoboCoin、RoboMind、Galaxea），统一成末端执行器增量动作+旋转向量+填充至双臂格式。注意：高德 UniACT ≠ 清华 UniAct（2025），前者是数据集，后者是框架。",
-    "description": "UniACT 是由高德 AMAP CV Lab 发布的跨具身机器人操作数据集，随 ABot-M0 开源。该数据集整合并标准化了 6 个主流开源数据集（Open X-Embodiment、OXE-AugE、AgiBot-Beta、RoboCoin、RoboMind、Galaxea），覆盖 20+ 种机器人形态，总计 600 万+ 轨迹、9500+ 小时数据。UniACT 的核心贡献在于统一动作表示：将所有异构数据转换为末端执行器增量动作（delta pose）+ 旋转向量（rotation vector），并填充至标准双臂格式，从而实现跨具身的 VLA 模型预训练。该数据集是 ABot-M0 模型的训练基础。",
+    "description": "**UniACT** 是由高德 AMAP CV Lab 发布的跨具身机器人操作数据集，随 ABot-M0 开源。\n\n该数据集整合并标准化了 **6 个主流开源数据集**（Open X-Embodiment、OXE-AugE、AgiBot-Beta、RoboCoin、RoboMind、Galaxea），覆盖 **20+ 种机器人形态**，总计 **600 万+ 轨迹、9,500+ 小时**数据。\n\nUniACT 的核心贡献在于**统一动作表示**：将所有异构数据转换为末端执行器增量动作（delta pose）+ 旋转向量（rotation vector），并填充至标准双臂格式，从而实现跨具身的 VLA 模型预训练。该数据集是 ABot-M0 模型的训练基础。",
     "license": "Apache 2.0",
     "dataFormat": {
       "storage": "自定义格式（基于源数据集标准化）",
@@ -2507,7 +2507,7 @@
       "mirror": "https://hf-mirror.com/datasets/OpenGalaxea/Galaxea-Open-World-Dataset"
     },
     "notes": "统一硬件采集、真实开放场景、细粒度语言标注。两个月下载量破 40 万次，全球同类数据集关注度最高之一。配套 G0 双系统 VLA 模型。",
-    "description": "Galaxea Open-World Dataset（GOD）是由星海图（Galaxea）于 2025 年 8 月 31 日发布的具身智能真机数据集。全部数据来自自研 R1 Lite 移动双手机器人（23 自由度），统一硬件采集确保动作空间与感知输入一致。数据集包含 500 小时真实操作数据（>10TB），10 万+ 轨迹，覆盖 150 类任务、50 种真实场景（住宅 50.8%、餐饮 33.2%、零售 8.7%、办公 7.4%）、1600+ 独特物体及 58 项操作技能（从精细抓取到全身协调）。数据在非实验室环境采集，含动态光照、遮挡与干扰，提供子任务级自然语言注释，支持分层机器人学习（桌面操控、少样本、长时域移动）。标准化 RLDS/LeRobot 格式，含完整元数据；另提供小样本集便于快速测试。配套开源 G0 双系统 VLA 模型（VLM 多模态规划 + VLA 细粒度执行），已支持 NVIDIA EgoScale、蚂蚁 Lingbot-VLA 等外部研究项目。",
+    "description": "**Galaxea Open-World Dataset（GOD）**是由星海图（Galaxea）于 **2025 年 8 月**发布的具身智能真机数据集。\n\n**数据采集**：全部数据来自自研 R1 Lite 移动双手机器人（23 自由度），统一硬件采集确保动作空间与感知输入一致。\n\n**数据规模**：**500 小时**真实操作数据（>10TB），**10 万+ 轨迹**，覆盖 150 类任务、50 种真实场景（住宅 50.8%、餐饮 33.2%、零售 8.7%、办公 7.4%）、**1,600+ 独特物体**及 58 项操作技能。\n\n**数据质量**：非实验室环境采集，含动态光照、遮挡与干扰，提供子任务级自然语言注释，支持分层机器人学习。标准化 RLDS/LeRobot 格式，含完整元数据；另提供小样本集便于快速测试。\n\n配套开源 G0 双系统 VLA 模型（VLM 多模态规划 + VLA 细粒度执行），已支持 NVIDIA EgoScale、蚂蚁 Lingbot-VLA 等外部研究项目。",
     "license": "Apache 2.0",
     "dataFormat": {
       "storage": "RLDS / LeRobot",
@@ -2584,7 +2584,7 @@
       "paper": "https://arxiv.org/abs/2512.13100"
     },
     "notes": "基于 OXE 的跨机体数据增强衍生集。Cross-Painting 技术将真实轨迹重绘到 9 种虚拟机器人，视觉+运动学双保真，专为跨机体泛化设计。",
-    "description": "OXE-AugE（Open X-Embodiment Augmented Embodiments）是 2025 年底发布的、对谷歌 Open X-Embodiment（OXE）做跨机器人形态数据增强的大规模衍生数据集。数据集从原始 OXE（100 万轨迹）中精选 16 个主流子集，通过 Cross-Painting + AugE-Toolkit 技术将一台机器人的轨迹迁移渲染到其他机器人上，保证运动学合法且视觉真实。每条原始轨迹生成 8 条跨机体虚拟轨迹 + 1 条原始轨迹，总计 440 万+ 轨迹，覆盖 Franka、UR5、xArm、WidowX、Google Robot、Jaco、Sawyer、Kinova Gen3、KUKA iiwa 共 9 种机器人形态。原始 OXE 中前 4 种机器人占 85% 轨迹，AugE 强制均衡分布，大幅提升多样性。统一 RLDS 格式，可直接用 TFDS 加载，与 OXE 共用代码及模型（如 RT-1-X、Octo）。实验表明用 AugE 训练的策略对未见机器人的泛化性能显著优于纯真实数据。",
+    "description": "**OXE-AugE（Open X-Embodiment Augmented Embodiments）**是 2025 年底发布的、对谷歌 Open X-Embodiment 做跨机器人形态数据增强的大规模衍生数据集。\n\n**增强方法**：从原始 OXE（100 万轨迹）中精选 16 个主流子集，通过 **Cross-Painting + AugE-Toolkit** 技术将一条轨迹迁移渲染到其他机器人上，保证运动学合法且视觉真实。\n\n**数据规模**：每条原始轨迹生成 8 条跨机体虚拟轨迹 + 1 条原始轨迹，总计 **440 万+ 轨迹**，覆盖 Franka、UR5、xArm、WidowX、Google Robot、Jaco、Sawyer、Kinova Gen3、KUKA iiwa 共 **9 种机器人形态**。\n\n**贡献**：原始 OXE 中前 4 种机器人占 85% 轨迹，AugE 强制均衡分布大幅提升多样性。统一 RLDS 格式，可直接用 TFDS 加载。实验表明用 AugE 训练的策略对未见机器人的泛化性能显著优于纯真实数据。",
     "license": "Apache 2.0",
     "dataFormat": {
       "storage": "RLDS / TFDS",
@@ -2656,7 +2656,7 @@
       "paper": "https://arxiv.org/abs/2403.12945"
     },
     "notes": "18 个实验室联合采集，Franka Panda 统一平台，含成功+失败轨迹。RLDS 格式兼容 OXE，训练策略泛化提升约 20%。",
-    "description": "DROID（Distributed Robot Interaction Dataset）是 2024 年 3 月由 Stanford、Google、UC Berkeley 等 18 个研究机构联合发布的大规模真实环境机器人操作数据集。50 名数据采集员在 52 栋建筑、564 个场景中使用统一的 Franka Panda 机械臂平台，历时 12 个月采集了 76,000+ 条操作轨迹（350 交互小时），成功轨迹 ~76K + 失败轨迹 ~16K。每段轨迹含 3 个相机视角、深度信息、相机标定和语言标注。数据以 RLDS 格式发布（1.7TB），兼容 Open X-Embodiment 生态，可直接用于 RT-1-X、Octo 等模型训练。实验表明 DROID 联合训练可将策略性能、鲁棒性和泛化能力平均提升约 20%。",
+    "description": "**DROID（Distributed Robot Interaction Dataset）**是 2024 年 3 月由 Stanford、Google、UC Berkeley 等 **18 个研究机构**联合发布的大规模真实环境机器人操作数据集。\n\n**采集规模**：50 名数据采集员在 **52 栋建筑、564 个场景**中使用统一 Franka Panda 机械臂平台，历时 12 个月采集了 **76,000+ 条操作轨迹**（350 交互小时），含成功轨迹 ~76K + 失败轨迹 ~16K。\n\n**数据内容**：每段轨迹含 3 个相机视角、深度信息、相机标定和语言标注。\n\n**格式与影响**：以 RLDS 格式发布（1.7TB），兼容 Open X-Embodiment 生态。实验表明 DROID 联合训练可将策略性能、鲁棒性和泛化能力平均提升约 **20%**。",
     "license": "CC BY 4.0",
     "dataFormat": {
       "storage": "RLDS（Google Cloud Storage）",
@@ -2727,7 +2727,7 @@
       "paper": "https://arxiv.org/abs/2310.17596"
     },
     "notes": "NVIDIA CoRL 2023。从少量人类演示自动生成大规模仿真轨迹，跨机器人、跨物体泛化。Hugging Face 托管，兼容 robomimic。",
-    "description": "MimicGen 是 NVIDIA Research 在 CoRL 2023 发表的数据生成系统，可在仿真环境中从少量人类演示（每任务 10 条）自动合成大规模、多样化的机器人操作数据集。数据包含 source（120 条人类演示）、core（26,000 条生成数据，26 种分布变体）、robot（16,000 条，4 种不同机械臂）、object（2,000 条，不同物体）和 large_interpolation（6,000 条高难度）五种类型，总计 48,000+ 条演示轨迹。数据以 HDF5 格式发布在 Hugging Face，兼容 robomimic 框架，可直接用于 BC、BC-RNN、BC-Transformer 等模仿学习算法。",
+    "description": "**MimicGen** 是 NVIDIA Research 在 **CoRL 2023** 发表的数据生成系统，可在仿真环境中从少量人类演示（每任务 10 条）自动合成大规模、多样化的机器人操作数据集。\n\n**数据构成**：包含 source（120 条人类演示）、core（26,000 条生成数据，26 种分布变体）、robot（16,000 条，4 种不同机械臂）、object（2,000 条，不同物体）和 large_interpolation（6,000 条高难度）五种类型，总计 **48,000+ 条**演示轨迹。\n\n数据以 HDF5 格式发布在 Hugging Face，兼容 **robomimic** 框架，可直接用于 BC、BC-RNN、BC-Transformer 等模仿学习算法。",
     "license": "CC BY 4.0",
     "dataFormat": {
       "storage": "HDF5（Hugging Face 托管）",
@@ -2803,7 +2803,7 @@
       "paper": "https://arxiv.org/abs/2406.02523"
     },
     "notes": "RSS 2024。大规模厨房仿真，2500+ 3D 资产，MimicGen 自动扩增，支持 sim-to-real 迁移。支持移动机械臂与人形机器人。",
-    "description": "RoboCasa 是 UT Austin 与 NVIDIA Research 在 RSS 2024 发布的大规模家居任务仿真框架与数据集。基于 MuJoCo 物理引擎 + NVIDIA Omniverse 渲染，包含 2,500+ 个 3D 资产（153+ 物体类别）、120 个独特厨房场景（10 种平面图 × 12 种建筑风格）、100 个任务（25 个原子任务 + 75 个 LLM 生成的复合任务，如泡咖啡、备餐、清洁等）。利用 MimicGen 从少量人类演示自动生成 10 万+ 轨迹，支持移动机械臂与人形机器人等多种形态。生成式 AI 辅助（Luma.ai 生成 3D 物体，MidJourney 生成纹理做域随机化），训练策略可 sim-to-real 迁移至真实机器人。",
+    "description": "**RoboCasa** 是 UT Austin 与 NVIDIA Research 在 **RSS 2024** 发布的大规模家居任务仿真框架与数据集。\n\n**场景规模**：基于 MuJoCo 物理引擎 + NVIDIA Omniverse 渲染，包含 **2,500+ 个 3D 资产**（153+ 物体类别）、**120 个独特厨房场景**（10 种平面图 × 12 种建筑风格）、**100 个任务**（25 个原子任务 + 75 个 LLM 生成的复合任务）。\n\n**数据生成**：利用 MimicGen 从少量人类演示自动生成 **10 万+ 轨迹**，支持移动机械臂与人形机器人等多种形态。\n\n生成式 AI 辅助（Luma.ai 生成 3D 物体，MidJourney 生成纹理做域随机化），训练策略可 sim-to-real 迁移至真实机器人。",
     "license": "RoboCasa License（开源非商用）",
     "dataFormat": {
       "storage": "HDF5（robosuite / robomimic 兼容）",
@@ -2875,7 +2875,7 @@
       "paper": "https://arxiv.org/abs/2304.04321"
     },
     "notes": "ICCV 2023 / CVPR 2024 Embodied AI Workshop。首个连续目标状态的 language-grounding 基准，NVIDIA Isaac Sim。",
-    "description": "ARNOLD（A Benchmark for Language-Grounded Task Learning With Continuous States in Realistic 3D Scenes）是 ICCV 2023 发布、CVPR 2024 Embodied AI Workshop 举办挑战赛的语言条件操作基准。不同于传统离散目标（开/关），ARNOLD 聚焦连续目标状态（如打开抽屉 50%、将瓶子举到特定高度、旋转到指定角度），更贴近真实操作需求。在 NVIDIA Isaac Sim 中构建了 20 个逼真 3D 室内场景、40 种物体、8 个语言条件任务（拾放、旋转、开关抽屉/柜门、倒水/移水），含 ~10K 专家演示及模板生成的语言指令。基准评估显示当前最先进的语言条件策略模型在未见场景、物体和目标状态的泛化上仍面临巨大挑战。",
+    "description": "**ARNOLD**（A Benchmark for Language-Grounded Task Learning With Continuous States in Realistic 3D Scenes）是 **ICCV 2023** 发布、CVPR 2024 Embodied AI Workshop 举办挑战赛的语言条件操作基准。\n\n**核心特色**：不同于传统离散目标（开/关），ARNOLD 聚焦**连续目标状态**（如打开抽屉 50%、将瓶子举到特定高度、旋转到指定角度），更贴近真实操作需求。\n\n**基准规模**：在 NVIDIA Isaac Sim 中构建了 20 个逼真 3D 室内场景、40 种物体、8 个语言条件任务（拾放、旋转、开关抽屉/柜门、倒水/移水），含 **~10K 专家演示**及模板生成的语言指令。\n\n基准评估显示当前最先进的语言条件策略模型在未见场景、物体和目标状态的泛化上仍面临巨大挑战。",
     "license": "MIT",
     "dataFormat": {
       "storage": "HDF5 / JSON（Isaac Sim 格式）",
@@ -2952,7 +2952,7 @@
       "paper": "https://arxiv.org/abs/1910.11215"
     },
     "notes": "CoRL 2019。被誉为「机器人界的 ImageNet」。TFDS 直接加载，跨多机器人视频预测。",
-    "description": "RoboNet 是由 UC Berkeley、Stanford、UPenn、CMU 四所高校联合发布的大规模多机器人交互数据集，发表于 CoRL 2019，被誉为「机器人界的 ImageNet」。数据集包含 1500 万+ 视频帧，来自 7 种不同机器人平台、113 个相机视角，总计 162,417 条示例。数据以 TFDS 格式发布（完整 ~36GB），提供 64×64 和 128×128 两种分辨率。核心思想是通过跨机器人、跨场景的大规模视频预测学习可泛化的物理世界动力学先验，推动机器人学习从单一任务向通用操作能力演进。",
+    "description": "**RoboNet** 是由 UC Berkeley、Stanford、UPenn、CMU 四所高校联合发布的大规模多机器人交互数据集，发表于 **CoRL 2019**，被誉为「机器人界的 ImageNet」。\n\n**数据规模**：包含 **1,500 万+ 视频帧**，来自 7 种不同机器人平台、113 个相机视角，总计 **162,417 条示例**。\n\n**格式**：以 TFDS 格式发布（完整 ~36GB），提供 64×64 和 128×128 两种分辨率。\n\n核心思想是通过跨机器人、跨场景的大规模视频预测学习可泛化的物理世界动力学先验，推动机器人学习从单一任务向通用操作能力演进。",
     "license": "CC BY 4.0",
     "dataFormat": {
       "storage": "TFDS（TensorFlow Datasets）",
@@ -3017,7 +3017,7 @@
       "paper": "https://arxiv.org/abs/2110.07058"
     },
     "notes": "CVPR 2022。全球最大第一人称视频数据集。5 大基准（情景记忆、手物交互、视听对话、社交、活动预测）。需签署数据使用协议。",
-    "description": "Ego4D 是由 Meta AI（FAIR）联合全球 13 所高校于 CVPR 2022 发布的世界最大第一人称（Egocentric）视频数据集与基准。931 名相机佩戴者在全球 9 个国家 74 个地点采集了 3,670 小时连续日常视频（~7TB），含 3.8M 条叙述文本对。定义了 5 大具身 AI 基准任务：情景记忆（Episodic Memory）、手物交互（Hand-Object Manipulation）、视听对话（Audio-Visual Conversation）、社交交互（Social Interaction）、活动预测（Activity Forecasting），直接映射到机器人感知、规划与交互能力。配套 EgoVLP（NeurIPS 2022）预训练框架。下载需在官网签署数据使用协议。",
+    "description": "**Ego4D** 是由 Meta AI（FAIR）联合全球 **13 所高校**于 **CVPR 2022** 发布的世界最大第一人称（Egocentric）视频数据集与基准。\n\n**采集规模**：931 名相机佩戴者在全球 9 个国家 74 个地点采集了 **3,670 小时**连续日常视频（~7TB），含 **380 万条**叙述文本对。\n\n**五大基准任务**：情景记忆（Episodic Memory）、手物交互（Hand-Object Manipulation）、视听对话（Audio-Visual Conversation）、社交交互（Social Interaction）、活动预测（Activity Forecasting），直接映射到机器人感知、规划与交互能力。\n\n配套 **EgoVLP**（NeurIPS 2022）预训练框架。下载需在官网签署数据使用协议。",
     "license": "Ego4D License（需签署协议）",
     "dataFormat": {
       "storage": "MP4 视频 + JSON 标注",

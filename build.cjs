@@ -94,6 +94,21 @@ function buildAll(lang) {
 
   function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
+  function formatDescription(s) {
+    if (!s || !String(s).trim()) return '<p>暂无详细描述</p>';
+    let html = esc(String(s));
+    // Auto-link URLs (before other transforms, since escaped content has no existing tags)
+    html = html.replace(/(https?:\/\/[^\s<>"']+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+    // Bold: **text**
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    // Double newline → paragraph break
+    html = html.replace(/\n\n/g, '</p><p>');
+    // Single newline → <br>
+    html = html.replace(/\n/g, '<br>');
+    // Wrap in <p>
+    return '<p>' + html + '</p>';
+  }
+
   function buildSchemaTree(schema) {
     if (!schema) return '';
     const parts = schema.split('→').map(p => p.trim());
@@ -208,7 +223,7 @@ function buildAll(lang) {
       TYPE_LABEL: typeLabel[ds.type] || ds.type,
       TYPE_CLASS: typeClass[ds.type] || '',
       INSTITUTION: esc(ds.institution || '未知机构'),
-      DESCRIPTION: esc(ds.description || ds.notes || '暂无详细描述'),
+      DESCRIPTION: formatDescription(ds.description || ds.notes || '暂无详细描述'),
       SCALE: esc(ds.scale || '暂无'),
       LICENSE: esc(ds.license || '未知'),
       ROBOT_TYPES: robotTypesHTML,
@@ -291,7 +306,7 @@ function buildAll(lang) {
       TYPE_LABEL: tL[ss.type] || ss.type,
       TYPE_CLASS: tC[ss.type] || '',
       ORGANIZATION: esc(ss.org),
-      DESCRIPTION: esc(ss.desc),
+      DESCRIPTION: formatDescription(ss.desc),
       LICENSE: esc(ss.license || '未知'),
       OPENNESS_CLASS: oC[ss.openness] || '',
       OPENNESS_DOT: oD[ss.openness] || '',
