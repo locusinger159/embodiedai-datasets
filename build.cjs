@@ -267,9 +267,6 @@ function buildAll(lang) {
       .filter(Boolean)
       .slice(0, 8);
 
-    // Find related standards (same type or scene)
-    const relatedST = dataStandards.filter(s => s.id !== ss.id && (s.type === ss.type || (s.scene || []).some(sc => (ss.scene || []).includes(sc)))).slice(0, 4);
-
     // Links
     let linksHTML = '';
     if (ss.links?.site || ss.links?.github) {
@@ -282,10 +279,6 @@ function buildAll(lang) {
     const relatedDSHTML = relatedDS.length
       ? relatedDS.map(d => `<a href="/datasets/${esc(d.id)}/" class="related-card"><div class="related-name">${esc(d.name)}</div><div class="related-org">${esc(d.institution || '')}</div><div class="related-meta">${(d.robotType || []).slice(0, 2).map(t => `<span class="data-tag">${esc(t)}</span>`).join('')}</div></a>`).join('')
       : '<div class="empty-hint">暂无关联数据集</div>';
-
-    const relatedSTHTML = relatedST.length
-      ? relatedST.map(s => `<a href="/standards/${esc(s.id)}/" class="related-card"><div class="related-name">${esc(s.name)}</div><div class="related-org">${esc(s.org)}</div><div class="related-meta"><span class="std-type-badge ${tC[s.type]||''}">${tL[s.type]||s.type}</span></div></div></a>`).join('')
-      : '<div class="empty-hint">暂无相关标准</div>';
 
     const scenesHTML = (ss.scene || []).map(s => `<span class="data-tag">${scL[s] || s}</span>`).join(' ') || '-';
     const modalitiesHTML = (ss.modalities || []).length ? (ss.modalities || []).join('、') : '-';
@@ -306,8 +299,7 @@ function buildAll(lang) {
       SCENES: scenesHTML,
       MODALITIES: modalitiesHTML,
       LINKS: linksHTML,
-      RELATED_DATASETS: relatedDSHTML,
-      RELATED_STANDARDS: relatedSTHTML
+      RELATED_DATASETS: relatedDSHTML
     });
   }
 
