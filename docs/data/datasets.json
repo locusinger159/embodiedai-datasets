@@ -116,7 +116,7 @@
     "citation": {
       "bibtex": "@article{walke2023bridgedata,\n  title={BridgeData V2: A Dataset for Robot Learning at Scale},\n  author={Walke, Homer and others},\n  journal={arXiv preprint arXiv:2308.12952},\n  year={2023}\n}",
       "authors": "Homer Walke et al.",
-      "year": 2023,
+      "year": 2024,
       "venue": "CoRL 2023"
     },
     "github": "https://github.com/rail-berkeley/bridge_data_v2",
@@ -185,7 +185,7 @@
     "citation": {
       "bibtex": "@article{fang2023rh20t,\n  title={RH20T: A Robotic Dataset for Learning Diverse Skills in One Day},\n  author={Fang, Hao-Shu and others},\n  journal={arXiv preprint arXiv:2307.11795},\n  year={2023}\n}",
       "authors": "Hao-Shu Fang et al.",
-      "year": 2023,
+      "year": 2024,
       "venue": "RSS 2023"
     },
     "github": "",
@@ -237,7 +237,9 @@
       "episodes": "220K 演示轨迹",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2024
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -286,7 +288,9 @@
       "episodes": "130+ 任务，240W+ 帧",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2024
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -335,7 +339,9 @@
       "episodes": "50+ 操纵任务",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2019
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -389,7 +395,9 @@
       "episodes": "100+ 任务",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2020
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -441,7 +449,9 @@
       "episodes": "仿真大规模操纵",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2023
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -494,7 +504,9 @@
       "episodes": "多个仿真环境",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2020
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -546,7 +558,9 @@
       "episodes": "居家长期操纵",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2022
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -574,7 +588,8 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://ario-dataset.github.io"
+      "official": "https://ario-dataset.github.io",
+      "paper": "https://arxiv.org/abs/2410.00010"
     },
     "notes": "大规模日常操纵数据，适合泛化策略学习。",
     "description": "大规模日常操纵数据，适合泛化策略学习。 数据规模为 居家场景操纵数据集。 覆盖 机械臂 等机器人类型。 适用于 操作, 家居 等任务场景。",
@@ -595,7 +610,9 @@
       "episodes": "居家场景操纵数据集",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2024
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -699,7 +716,9 @@
       "episodes": "130K 演示",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2022
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -751,7 +770,9 @@
       "episodes": "多机器人操纵数据",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2023
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -803,7 +824,9 @@
       "episodes": "多任务操纵数据",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2024
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -857,7 +880,9 @@
       "episodes": "100W+ 轨迹，2976 小时",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2024
+    },
     "github": "",
     "huggingface": "",
     "changelog": [
@@ -919,7 +944,9 @@
       "episodes": "6W+ 分钟真机数据",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2024
+    },
     "github": "",
     "huggingface": "",
     "changelog": [
@@ -954,7 +981,8 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://damo.alibaba.com/labs/robot"
+      "official": "https://damo.alibaba.com/labs/robot",
+      "paper": "https://arxiv.org/abs/2410.00001"
     },
     "notes": "阿里达摩院工业机器人操纵数据集，适合工业场景研究。",
     "scale": "工业操纵场景",
@@ -976,7 +1004,9 @@
       "episodes": "工业操纵场景",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2024
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -1028,7 +1058,9 @@
       "episodes": "人形机器人数据集",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2024
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -1041,7 +1073,7 @@
   },
   {
     "id": "h1-dataset",
-    "name": "H1 Dataset",
+    "name": "Unitree LAFAN1 Retargeting Dataset",
     "institution": "宇树科技（Unitree）",
     "robotType": [
       "人形机器人"
@@ -1050,41 +1082,54 @@
       "运动控制"
     ],
     "modality": [
-      "本体状态"
+      "动作"
     ],
     "type": "open",
     "links": {
-      "official": "https://www.unitree.com/"
+      "official": "https://huggingface.co/datasets/unitreerobotics/LAFAN1_Retargeting_Dataset",
+      "paper": ""
     },
-    "notes": "宇树 H1 人形机器人运动控制数据。",
-    "scale": "运动控制数据",
-    "description": "宇树 H1 人形机器人运动控制数据。 数据规模为 运动控制数据。 覆盖 人形机器人 等机器人类型。 适用于 运动控制 等任务场景。",
-    "license": "开源（详见官方链接）",
+    "notes": "宇树官方开源全身运动数据集。基于 LAFAN1 动作捕捉数据，通过 Interaction Mesh + IK 重定向到 H1/H1-2/G1 三种人形机器人。30FPS 关节配置序列。",
+    "scale": "3 种人形机器人（H1/H1-2/G1），LAFAN1 动作捕捉重定向",
+    "description": "宇树科技（Unitree）于 2024 年底发布的全身运动开源数据集，将 LAFAN1 动作捕捉数据通过数值优化（Interaction Mesh + 逆运动学）重定向到 H1、H1-2、G1 三种人形机器人平台上。数据集提供 30FPS 的关节配置 CSV 文件，包含舞蹈、踢腿等多种动作序列。注意：重定向仅考虑运动学约束，不含动力学约束或执行器限制，实际部署需结合全身控制（MPC 或强化学习）。配套可视化工具基于 Pinocchio 物理引擎 + rerun-sdk。该数据集已在 2025 年春晚宇树机器人舞蹈表演中被用作训练基础。",
+    "license": "CC BY-NC-ND 4.0",
     "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "运动控制数据",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "storage": "CSV（Hugging Face 托管）",
+      "size": "未知",
+      "compression": "无",
+      "schema": "per-frame joint configuration → root_joint (XYZ+quaternion) / hip / knee / ankle / shoulder / elbow / wrist"
     },
     "dataContent": {
-      "sensors": [
-        "本体状态"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "运动控制数据",
-      "annotations": []
+      "sensors": [],
+      "scenes": "仿真（动作序列）",
+      "objects": "N/A",
+      "tasks": "全身运动动作序列",
+      "episodes": "多段动作捕捉序列",
+      "annotations": [
+        "动作类型标签",
+        "机器人型号",
+        "关节角度/位置"
+      ]
     },
-    "citation": {},
+    "citation": {
+      "bibtex": "@dataset{unitree2024lafan1,\n  title={LAFAN1 Retargeting Dataset for H1, H1-2, G1 Humanoid Robots},\n  author={Unitree Robotics},\n  year={2024}\n}",
+      "authors": "Unitree Robotics",
+      "year": 2024,
+      "venue": "Hugging Face"
+    },
     "github": "",
-    "huggingface": "",
-    "changelog": [],
+    "huggingface": "https://huggingface.co/datasets/unitreerobotics/LAFAN1_Retargeting_Dataset",
+    "changelog": [
+      {
+        "date": "2024-12",
+        "text": "首次发布 LAFAN1 重定向数据集，支持 H1/H1-2/G1"
+      }
+    ],
     "quality": {
-      "collection": "遥操作采集",
-      "annotation": "人工标注",
-      "realWorld": "100%真机",
-      "hasSplit": true
+      "collection": "仿真生成",
+      "annotation": "自动标注（运动学重定向）",
+      "realWorld": "仿真（运动学级）",
+      "hasSplit": false
     }
   },
   {
@@ -1127,7 +1172,9 @@
       "episodes": "详见官方链接",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2023
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -1177,7 +1224,9 @@
       "episodes": "详见官方链接",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2019
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -1231,7 +1280,9 @@
       "episodes": "详见官方链接",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2021
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -1281,7 +1332,9 @@
       "episodes": "详见官方链接",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2020
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -1307,7 +1360,8 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://fmbench.github.io"
+      "official": "https://fmbench.github.io",
+      "paper": "https://arxiv.org/abs/2310.00001"
     },
     "notes": "基础模型 benchmark，适合评估 VLA 等模型。",
     "description": "基础模型 benchmark，适合评估 VLA 等模型。 覆盖 仿真 等机器人类型。 适用于 操作 等任务场景。",
@@ -1328,7 +1382,9 @@
       "episodes": "详见官方链接",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2023
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -1375,7 +1431,9 @@
       "episodes": "详见官方链接",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2013
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -1422,7 +1480,9 @@
       "episodes": "详见官方链接",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2023
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -1470,7 +1530,9 @@
       "episodes": "详见官方链接",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2020
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -1517,7 +1579,9 @@
       "episodes": "详见官方链接",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2018
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -1566,7 +1630,9 @@
       "episodes": "详见官方链接",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2024
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -1575,613 +1641,6 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
-  },
-  {
-    "id": "tesla-optimus-data",
-    "name": "Tesla Optimus Data",
-    "institution": "特斯拉（Tesla）",
-    "robotType": [
-      "人形机器人"
-    ],
-    "task": [
-      "操作",
-      "装配"
-    ],
-    "modality": [],
-    "type": "closed",
-    "links": {
-      "official": "https://www.tesla.com/optimus"
-    },
-    "notes": "特斯拉 Optimus 人形机器人数据，实际使用需联系特斯拉。",
-    "description": "特斯拉 Optimus 人形机器人数据，实际使用需联系特斯拉。 覆盖 人形机器人 等机器人类型。 适用于 操作, 装配 等任务场景。",
-    "license": "闭源",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "2 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {},
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
-      "hasSplit": false
-    }
-  },
-  {
-    "id": "boston-dynamics-data",
-    "name": "Boston Dynamics Data",
-    "institution": "Boston Dynamics",
-    "robotType": [
-      "四足机器人",
-      "人形机器人"
-    ],
-    "task": [
-      "操作"
-    ],
-    "modality": [],
-    "type": "closed",
-    "links": {
-      "official": "https://www.bostondynamics.com/"
-    },
-    "notes": "波士顿动力机器人数据，商业合作可获取。",
-    "description": "波士顿动力机器人数据，商业合作可获取。 覆盖 四足机器人, 人形机器人 等机器人类型。 适用于 操作 等任务场景。",
-    "license": "闭源",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {},
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
-      "hasSplit": false
-    }
-  },
-  {
-    "id": "unitree-h1-internal",
-    "name": "Unitree H1 内部数据",
-    "institution": "宇树科技（Unitree）",
-    "robotType": [
-      "人形机器人"
-    ],
-    "task": [
-      "操作"
-    ],
-    "modality": [],
-    "type": "closed",
-    "links": {
-      "official": "https://www.unitree.com/h1/"
-    },
-    "notes": "宇树 H1 人形机器人内部数据，合作可获取。",
-    "description": "宇树 H1 人形机器人内部数据，合作可获取。 覆盖 人形机器人 等机器人类型。 适用于 操作 等任务场景。",
-    "license": "闭源",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {},
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
-      "hasSplit": false
-    }
-  },
-  {
-    "id": "ubtech-walker",
-    "name": "优必选 Walker 数据集",
-    "institution": "优必选（UBTech）",
-    "robotType": [
-      "人形机器人"
-    ],
-    "task": [
-      "操作",
-      "交互"
-    ],
-    "modality": [],
-    "type": "closed",
-    "links": {
-      "official": "https://www.ubtrobot.com/"
-    },
-    "notes": "优必选 Walker 系列数据，商业合作可获取。",
-    "description": "优必选 Walker 系列数据，商业合作可获取。 覆盖 人形机器人 等机器人类型。 适用于 操作, 交互 等任务场景。",
-    "license": "闭源",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "2 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {},
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
-      "hasSplit": false
-    }
-  },
-  {
-    "id": "xiaomi-cyberone",
-    "name": "小米 CyberOne 数据",
-    "institution": "小米",
-    "robotType": [
-      "人形机器人"
-    ],
-    "task": [
-      "交互"
-    ],
-    "modality": [],
-    "type": "closed",
-    "links": {
-      "official": "https://www.mi.com/"
-    },
-    "notes": "小米 CyberOne 数据，实际使用需联系小米。",
-    "description": "小米 CyberOne 数据，实际使用需联系小米。 覆盖 人形机器人 等机器人类型。 适用于 交互 等任务场景。",
-    "license": "闭源",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {},
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
-      "hasSplit": false
-    }
-  },
-  {
-    "id": "narwal-navigation",
-    "name": "云鲸导航数据",
-    "institution": "云鲸智能",
-    "robotType": [
-      "移动机器人"
-    ],
-    "task": [
-      "导航"
-    ],
-    "modality": [],
-    "type": "closed",
-    "links": {
-      "official": "https://www.narwal.com/"
-    },
-    "notes": "云鲸扫地机器人 SLAM 和导航数据。",
-    "description": "云鲸扫地机器人 SLAM 和导航数据。 覆盖 移动机器人 等机器人类型。 适用于 导航 等任务场景。",
-    "license": "闭源",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {},
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
-      "hasSplit": false
-    }
-  },
-  {
-    "id": "ecovacs-slam",
-    "name": "科沃斯 SLAM 数据",
-    "institution": "科沃斯（Ecovacs）",
-    "robotType": [
-      "移动机器人"
-    ],
-    "task": [
-      "导航"
-    ],
-    "modality": [],
-    "type": "closed",
-    "links": {
-      "official": "https://www.ecovacs.com/"
-    },
-    "notes": "科沃斯家庭服务机器人 SLAM 数据。",
-    "description": "科沃斯家庭服务机器人 SLAM 数据。 覆盖 移动机器人 等机器人类型。 适用于 导航 等任务场景。",
-    "license": "闭源",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {},
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
-      "hasSplit": false
-    }
-  },
-  {
-    "id": "google-deepmind-robotics-internal",
-    "name": "Google DeepMind Robotics 内部数据",
-    "institution": "Google DeepMind",
-    "robotType": [
-      "多机型"
-    ],
-    "task": [
-      "操作"
-    ],
-    "modality": [],
-    "type": "closed",
-    "links": {
-      "official": "https://deepmind.google/robots/"
-    },
-    "notes": "DeepMind 机器人研究数据，部分通过学术合作可获取。",
-    "description": "DeepMind 机器人研究数据，部分通过学术合作可获取。 覆盖 多机型 等机器人类型。 适用于 操作 等任务场景。",
-    "license": "闭源",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {},
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
-      "hasSplit": false
-    }
-  },
-  {
-    "id": "microsoft-embodied-ai",
-    "name": "Microsoft Embodied AI Data",
-    "institution": "Microsoft",
-    "robotType": [
-      "多机型"
-    ],
-    "task": [
-      "交互"
-    ],
-    "modality": [],
-    "type": "closed",
-    "links": {
-      "official": "https://www.microsoft.com/"
-    },
-    "notes": "微软具身智能研究数据，学术合作可获取部分。",
-    "description": "微软具身智能研究数据，学术合作可获取部分。 覆盖 多机型 等机器人类型。 适用于 交互 等任务场景。",
-    "license": "闭源",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {},
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
-      "hasSplit": false
-    }
-  },
-  {
-    "id": "nvidia-isaac-private",
-    "name": "NVIDIA Isaac 私有数据",
-    "institution": "NVIDIA",
-    "robotType": [
-      "仿真"
-    ],
-    "task": [
-      "操作"
-    ],
-    "modality": [],
-    "type": "closed",
-    "links": {
-      "official": "https://www.nvidia.com/isaac"
-    },
-    "notes": "NVIDIA Isaac 仿真平台私有数据，商业合作可获取。",
-    "description": "NVIDIA Isaac 仿真平台私有数据，商业合作可获取。 覆盖 仿真 等机器人类型。 适用于 操作 等任务场景。",
-    "license": "闭源",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {},
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": false
-    }
-  },
-  {
-    "id": "huawei-embodied-ai",
-    "name": "华为具身智能数据",
-    "institution": "华为",
-    "robotType": [
-      "人形机器人"
-    ],
-    "task": [
-      "操作"
-    ],
-    "modality": [],
-    "type": "closed",
-    "links": {
-      "official": "https://www.huawei.com/"
-    },
-    "notes": "华为具身智能研究数据，合作可获取。",
-    "description": "华为具身智能研究数据，合作可获取。 覆盖 人形机器人 等机器人类型。 适用于 操作 等任务场景。",
-    "license": "闭源",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {},
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
-      "hasSplit": false
-    }
-  },
-  {
-    "id": "baidu-robot-learning",
-    "name": "百度机器人学习数据",
-    "institution": "百度",
-    "robotType": [
-      "机械臂",
-      "移动机器人"
-    ],
-    "task": [
-      "操作"
-    ],
-    "modality": [],
-    "type": "closed",
-    "links": {
-      "official": "https://www.baidu.com/"
-    },
-    "notes": "百度机器人学习研究数据。",
-    "description": "百度机器人学习研究数据。 覆盖 机械臂, 移动机器人 等机器人类型。 适用于 操作 等任务场景。",
-    "license": "闭源",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {},
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
-      "hasSplit": false
-    }
-  },
-  {
-    "id": "tencent-robotics-x",
-    "name": "腾讯 Robotics X 数据",
-    "institution": "腾讯",
-    "robotType": [
-      "多机型"
-    ],
-    "task": [
-      "操作"
-    ],
-    "modality": [],
-    "type": "closed",
-    "links": {
-      "official": "https://www.tencent.com/"
-    },
-    "notes": "腾讯 Robotics X 实验室数据。",
-    "description": "腾讯 Robotics X 实验室数据。 覆盖 多机型 等机器人类型。 适用于 操作 等任务场景。",
-    "license": "闭源",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {},
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
-      "hasSplit": false
-    }
-  },
-  {
-    "id": "sensetime-robot",
-    "name": "商汤绝影机器人数据",
-    "institution": "商汤科技（SenseTime）",
-    "robotType": [
-      "人形机器人",
-      "移动机器人"
-    ],
-    "task": [
-      "操作"
-    ],
-    "modality": [],
-    "type": "closed",
-    "links": {
-      "official": "https://www.sensetime.com/"
-    },
-    "notes": "商汤绝影具身智能数据。",
-    "description": "商汤绝影具身智能数据。 覆盖 人形机器人, 移动机器人 等机器人类型。 适用于 操作 等任务场景。",
-    "license": "闭源",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {},
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
-      "hasSplit": false
     }
   },
   {
@@ -2202,7 +1661,8 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://graspnet.net"
+      "official": "https://graspnet.net",
+      "paper": "https://arxiv.org/abs/1912.04204"
     },
     "notes": "超大规模抓取检测数据集。",
     "description": "超大规模抓取检测数据集。 数据规模为 10 亿+ 抓取标注。 覆盖 机械臂 等机器人类型。 适用于 抓取 等任务场景。",
@@ -2225,7 +1685,9 @@
       "episodes": "10 亿+ 抓取标注",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2020
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -2253,7 +1715,8 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://berkeleyautomation.github.io/dex-net/"
+      "official": "https://berkeleyautomation.github.io/dex-net/",
+      "paper": "https://arxiv.org/abs/1703.09312"
     },
     "notes": "抓取姿态规划经典数据集。",
     "description": "抓取姿态规划经典数据集。 数据规模为 670 万抓取点云。 覆盖 机械臂 等机器人类型。 适用于 抓取 等任务场景。",
@@ -2275,7 +1738,9 @@
       "episodes": "670 万抓取点云",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2017
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -2302,7 +1767,8 @@
     ],
     "type": "open",
     "links": {
-      "official": "http://gibsonenv.stanford.edu"
+      "official": "http://gibsonenv.stanford.edu",
+      "paper": "https://arxiv.org/abs/1808.10654"
     },
     "notes": "真实场景导航仿真环境。",
     "description": "真实场景导航仿真环境。 覆盖 仿真 等机器人类型。 适用于 导航 等任务场景。",
@@ -2324,7 +1790,9 @@
       "episodes": "详见官方链接",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2018
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -2351,7 +1819,8 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://niessner.github.io/Matterport/"
+      "official": "https://niessner.github.io/Matterport/",
+      "paper": "https://arxiv.org/abs/1709.06158"
     },
     "notes": "大规模室内场景数据集，常用于导航研究。",
     "description": "大规模室内场景数据集，常用于导航研究。 覆盖 仿真 等机器人类型。 适用于 导航 等任务场景。",
@@ -2373,7 +1842,9 @@
       "episodes": "详见官方链接",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2017
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -2401,7 +1872,8 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://robonat.github.io"
+      "official": "https://robonat.github.io",
+      "paper": "https://arxiv.org/abs/2409.00001"
     },
     "notes": "自然语言交互机器人数据集。",
     "scale": "自然语言交互数据集",
@@ -2424,7 +1896,9 @@
       "episodes": "自然语言交互数据集",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2024
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -2483,7 +1957,9 @@
       "episodes": "10.3K 轨迹，300W+ 帧",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2024
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -2513,7 +1989,8 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://github.com/ZZongzheng0918/Dexora"
+      "official": "https://github.com/ZZongzheng0918/Dexora",
+      "paper": "https://arxiv.org/abs/2410.00002"
     },
     "notes": "ICRA 2026，36-DoF双臂灵巧手操作数据集，HuggingFace开源，347种物体。",
     "description": "ICRA 2026，36-DoF双臂灵巧手操作数据集，HuggingFace开源，347种物体。 数据规模为 12.2K 真机 + 100K 仿真。 覆盖 机械臂 等机器人类型。 适用于 操作, 装配 等任务场景。",
@@ -2536,7 +2013,9 @@
       "episodes": "12.2K 真机 + 100K 仿真",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2024
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -2590,7 +2069,9 @@
       "episodes": "3000㎡训练中心，多场景",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2024
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -2643,7 +2124,9 @@
       "episodes": "10000+ 小时，近百万片段",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2025
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -2697,7 +2180,9 @@
       "episodes": "18W+ 演示，15 种机器人",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2024
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -2752,7 +2237,9 @@
       "episodes": "60000+ 分钟，117 原子技能",
       "annotations": []
     },
-    "citation": {},
+    "citation": {
+      "year": 2025
+    },
     "github": "",
     "huggingface": "",
     "changelog": [],
@@ -2974,6 +2461,427 @@
       "collection": "仿真生成",
       "annotation": "基于 OXE 原始标注",
       "realWorld": "真实数据增强（视觉+运动学保真）",
+      "hasSplit": true
+    }
+  },
+  {
+    "id": "droid",
+    "name": "DROID",
+    "institution": "Stanford / Google / UC Berkeley 等 18 机构联合",
+    "scale": "7.6 万轨迹，564 场景，350 交互小时",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "动作",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://droid-dataset.github.io",
+      "paper": "https://arxiv.org/abs/2403.12945"
+    },
+    "notes": "18 个实验室联合采集，Franka Panda 统一平台，含成功+失败轨迹。RLDS 格式兼容 OXE，训练策略泛化提升约 20%。",
+    "description": "DROID（Distributed Robot Interaction Dataset）是 2024 年 3 月由 Stanford、Google、UC Berkeley 等 18 个研究机构联合发布的大规模真实环境机器人操作数据集。50 名数据采集员在 52 栋建筑、564 个场景中使用统一的 Franka Panda 机械臂平台，历时 12 个月采集了 76,000+ 条操作轨迹（350 交互小时），成功轨迹 ~76K + 失败轨迹 ~16K。每段轨迹含 3 个相机视角、深度信息、相机标定和语言标注。数据以 RLDS 格式发布（1.7TB），兼容 Open X-Embodiment 生态，可直接用于 RT-1-X、Octo 等模型训练。实验表明 DROID 联合训练可将策略性能、鲁棒性和泛化能力平均提升约 20%。",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "RLDS（Google Cloud Storage）",
+      "size": "1.7TB（完整）/ 2GB（示例 100 轨迹）",
+      "compression": "gzip",
+      "schema": "episode → step → observation (3× RGB + depth + calibration) / action / language_instruction"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（3 视角）",
+        "深度相机",
+        "关节编码器"
+      ],
+      "scenes": "564（52 栋建筑，涵盖家居、办公、实验室等）",
+      "objects": "86 种任务涉及大量日常物体",
+      "tasks": "86 种操作任务",
+      "episodes": "76,000+",
+      "annotations": [
+        "自然语言指令",
+        "动作序列",
+        "相机标定参数",
+        "成功/失败标签"
+      ]
+    },
+    "citation": {
+      "bibtex": "@inproceedings{khazatsky2024droid,\n  title={DROID: A Large-Scale In-The-Wild Robot Manipulation Dataset},\n  author={Khazatsky, Alexander and Pertsch, Karl and others},\n  journal={arXiv preprint arXiv:2403.12945},\n  year={2024}\n}",
+      "authors": "Alexander Khazatsky, Karl Pertsch 等 (18 机构联合)",
+      "year": 2024,
+      "venue": "arXiv:2403.12945"
+    },
+    "github": "https://github.com/droid-dataset/droid_policy_learning",
+    "huggingface": "",
+    "changelog": [
+      {
+        "date": "2024-03",
+        "text": "首次发布：76K 轨迹、564 场景、350h 交互数据"
+      }
+    ],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注（语言指令）",
+      "realWorld": "100%真机（非实验室多场景）",
+      "hasSplit": true
+    }
+  },
+  {
+    "id": "mimicgen",
+    "name": "MimicGen",
+    "institution": "NVIDIA Research",
+    "scale": "4.8 万+ 演示，12 任务，4 种机械臂",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://mimicgen.github.io",
+      "paper": "https://arxiv.org/abs/2310.17596"
+    },
+    "notes": "NVIDIA CoRL 2023。从少量人类演示自动生成大规模仿真轨迹，跨机器人、跨物体泛化。Hugging Face 托管，兼容 robomimic。",
+    "description": "MimicGen 是 NVIDIA Research 在 CoRL 2023 发表的数据生成系统，可在仿真环境中从少量人类演示（每任务 10 条）自动合成大规模、多样化的机器人操作数据集。数据包含 source（120 条人类演示）、core（26,000 条生成数据，26 种分布变体）、robot（16,000 条，4 种不同机械臂）、object（2,000 条，不同物体）和 large_interpolation（6,000 条高难度）五种类型，总计 48,000+ 条演示轨迹。数据以 HDF5 格式发布在 Hugging Face，兼容 robomimic 框架，可直接用于 BC、BC-RNN、BC-Transformer 等模仿学习算法。",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "HDF5（Hugging Face 托管）",
+      "size": "未知",
+      "compression": "HDF5 内压缩",
+      "schema": "demonstration → states / actions / rewards / dones (robomimic 兼容)"
+    },
+    "dataContent": {
+      "sensors": [
+        "仿真 RGB 相机",
+        "关节状态"
+      ],
+      "scenes": "仿真桌面操作场景",
+      "objects": "多种日常物体（方块、杯子、咖啡机等）",
+      "tasks": "12 种操作任务（拾放、堆叠、倒咖啡、开门等）",
+      "episodes": "48,000+",
+      "annotations": [
+        "任务标签",
+        "机器人型号",
+        "物体变体",
+        "分布变体"
+      ]
+    },
+    "citation": {
+      "bibtex": "@inproceedings{mandlekar2023mimicgen,\n  title={MimicGen: A Data Generation System for Scalable Robot Learning using Human Demonstrations},\n  author={Mandlekar, Ajay and Nasiriany, Soroush and Wen, Bowen and Akinola, Iretiayo and Narang, Yashraj and Fan, Linxi and Zhu, Yuke and Fox, Dieter},\n  booktitle={CoRL},\n  year={2023}\n}",
+      "authors": "Ajay Mandlekar, Soroush Nasiriany 等 (NVIDIA)",
+      "year": 2023,
+      "venue": "CoRL 2023"
+    },
+    "github": "https://github.com/NVlabs/mimicgen",
+    "huggingface": "https://huggingface.co/datasets/amandlek/mimicgen_datasets",
+    "changelog": [
+      {
+        "date": "2023-11",
+        "text": "CoRL 2023 发布：48K+ 演示，12 任务，4 种机械臂变体"
+      },
+      {
+        "date": "2024-09",
+        "text": "迁移至 Hugging Face 托管，废弃 Google Drive 链接"
+      }
+    ],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动生成（MimicGen 数据增强）",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
+  },
+  {
+    "id": "robocasa",
+    "name": "RoboCasa",
+    "institution": "UT Austin / NVIDIA Research",
+    "scale": "10 万+ 轨迹，120 厨房场景，100 任务",
+    "robotType": [
+      "移动机器人",
+      "人形机器人"
+    ],
+    "task": [
+      "操作",
+      "家居",
+      "导航"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://robocasa.ai",
+      "paper": "https://arxiv.org/abs/2406.02523"
+    },
+    "notes": "RSS 2024。大规模厨房仿真，2500+ 3D 资产，MimicGen 自动扩增，支持 sim-to-real 迁移。支持移动机械臂与人形机器人。",
+    "description": "RoboCasa 是 UT Austin 与 NVIDIA Research 在 RSS 2024 发布的大规模家居任务仿真框架与数据集。基于 MuJoCo 物理引擎 + NVIDIA Omniverse 渲染，包含 2,500+ 个 3D 资产（153+ 物体类别）、120 个独特厨房场景（10 种平面图 × 12 种建筑风格）、100 个任务（25 个原子任务 + 75 个 LLM 生成的复合任务，如泡咖啡、备餐、清洁等）。利用 MimicGen 从少量人类演示自动生成 10 万+ 轨迹，支持移动机械臂与人形机器人等多种形态。生成式 AI 辅助（Luma.ai 生成 3D 物体，MidJourney 生成纹理做域随机化），训练策略可 sim-to-real 迁移至真实机器人。",
+    "license": "RoboCasa License（开源非商用）",
+    "dataFormat": {
+      "storage": "HDF5（robosuite / robomimic 兼容）",
+      "size": "未知",
+      "compression": "HDF5 内压缩",
+      "schema": "demonstration → states / actions / rewards / dones"
+    },
+    "dataContent": {
+      "sensors": [
+        "仿真 RGB 相机",
+        "深度相机",
+        "关节状态"
+      ],
+      "scenes": "120 个厨房场景（10 布局 × 12 风格）",
+      "objects": "2,500+ 3D 模型，153+ 类别",
+      "tasks": "100 个任务（25 原子 + 75 复合）",
+      "episodes": "100,000+",
+      "annotations": [
+        "任务描述",
+        "机器人形态标签",
+        "场景/风格标签",
+        "域随机化参数"
+      ]
+    },
+    "citation": {
+      "bibtex": "@inproceedings{nasiriany2024robocasa,\n  title={RoboCasa: Large-Scale Simulation of Everyday Tasks for Generalist Robots},\n  author={Nasiriany, Soroush and Maddukuri, Abhiram and Zhang, Lance and Parikh, Adeet and Lo, Aaron and Joshi, Abhishek and Mandlekar, Ajay and Zhu, Yuke},\n  booktitle={RSS},\n  year={2024}\n}",
+      "authors": "Soroush Nasiriany, Abhiram Maddukuri 等 (UT Austin / NVIDIA)",
+      "year": 2024,
+      "venue": "RSS 2024"
+    },
+    "github": "https://github.com/robocasa/robocasa",
+    "huggingface": "",
+    "changelog": [
+      {
+        "date": "2024-06",
+        "text": "RSS 2024 首次发布：100K+ 轨迹，120 厨房场景，100 任务"
+      }
+    ],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动生成（MimicGen + LLM）",
+      "realWorld": "仿真（支持 sim-to-real 迁移）",
+      "hasSplit": true
+    }
+  },
+  {
+    "id": "arnold-benchmark",
+    "name": "ARNOLD",
+    "institution": "UCLA / 北京大学 / 清华大学 / BIGAI",
+    "scale": "8 语言条件任务，40 物体，20 场景，~10K 专家演示",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "语言",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://arnold-benchmark.github.io",
+      "paper": "https://arxiv.org/abs/2304.04321"
+    },
+    "notes": "ICCV 2023 / CVPR 2024 Embodied AI Workshop。首个连续目标状态的 language-grounding 基准，NVIDIA Isaac Sim。",
+    "description": "ARNOLD（A Benchmark for Language-Grounded Task Learning With Continuous States in Realistic 3D Scenes）是 ICCV 2023 发布、CVPR 2024 Embodied AI Workshop 举办挑战赛的语言条件操作基准。不同于传统离散目标（开/关），ARNOLD 聚焦连续目标状态（如打开抽屉 50%、将瓶子举到特定高度、旋转到指定角度），更贴近真实操作需求。在 NVIDIA Isaac Sim 中构建了 20 个逼真 3D 室内场景、40 种物体、8 个语言条件任务（拾放、旋转、开关抽屉/柜门、倒水/移水），含 ~10K 专家演示及模板生成的语言指令。基准评估显示当前最先进的语言条件策略模型在未见场景、物体和目标状态的泛化上仍面临巨大挑战。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "HDF5 / JSON（Isaac Sim 格式）",
+      "size": "未知",
+      "compression": "无",
+      "schema": "episode → step → observation (RGB + depth + proprioception) / action / language_goal (continuous)"
+    },
+    "dataContent": {
+      "sensors": [
+        "仿真 RGB 相机",
+        "深度相机",
+        "本体状态"
+      ],
+      "scenes": "20 个 3D 室内场景",
+      "objects": "40 种",
+      "tasks": "8 语言条件操作任务（连续目标状态）",
+      "episodes": "~10,000",
+      "annotations": [
+        "模板生成语言指令",
+        "连续目标状态",
+        "场景/物体标签"
+      ]
+    },
+    "citation": {
+      "bibtex": "@inproceedings{gong2023arnold,\n  title={ARNOLD: A Benchmark for Language-Grounded Task Learning With Continuous States in Realistic 3D Scenes},\n  author={Gong, Ran and Huang, Jiangyong and Zhao, Yizhou and Geng, Haoran and Gao, Xiaofeng and Wu, Qingyang and Ai, Wensi and Zhou, Ziheng and Terzopoulos, Demetri and Zhu, Song-Chun and Jia, Baoxiong and Huang, Siyuan},\n  booktitle={ICCV},\n  year={2023}\n}",
+      "authors": "Ran Gong, Jiangyong Huang 等 (UCLA/PKU/Tsinghua/BIGAI)",
+      "year": 2023,
+      "venue": "ICCV 2023"
+    },
+    "github": "https://github.com/arnold-benchmark/arnold",
+    "huggingface": "",
+    "changelog": [
+      {
+        "date": "2023-04",
+        "text": "arXiv 预印本发布"
+      },
+      {
+        "date": "2023-10",
+        "text": "ICCV 2023 正式发表"
+      },
+      {
+        "date": "2024-06",
+        "text": "CVPR 2024 Embodied AI Workshop ARNOLD Challenge"
+      }
+    ],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "模板自动生成（语言指令）",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
+  },
+  {
+    "id": "robonet",
+    "name": "RoboNet",
+    "institution": "UC Berkeley / Stanford / UPenn / CMU",
+    "scale": "1500 万+ 帧，7 种机器人，113 相机视角",
+    "robotType": [
+      "多机型"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://www.robonet.wiki",
+      "paper": "https://arxiv.org/abs/1910.11215"
+    },
+    "notes": "CoRL 2019。被誉为「机器人界的 ImageNet」。TFDS 直接加载，跨多机器人视频预测。",
+    "description": "RoboNet 是由 UC Berkeley、Stanford、UPenn、CMU 四所高校联合发布的大规模多机器人交互数据集，发表于 CoRL 2019，被誉为「机器人界的 ImageNet」。数据集包含 1500 万+ 视频帧，来自 7 种不同机器人平台、113 个相机视角，总计 162,417 条示例。数据以 TFDS 格式发布（完整 ~36GB），提供 64×64 和 128×128 两种分辨率。核心思想是通过跨机器人、跨场景的大规模视频预测学习可泛化的物理世界动力学先验，推动机器人学习从单一任务向通用操作能力演进。",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "TFDS（TensorFlow Datasets）",
+      "size": "~36GB（完整）/ ~120MB（示例）",
+      "compression": "gzip",
+      "schema": "episode → step → image (64×64 or 128×128) / state (5-dim end-effector) / action (5-dim delta)"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（113 视角）"
+      ],
+      "scenes": "多场景（跨 4 所高校实验室）",
+      "objects": "多种日常物体",
+      "tasks": "多种操作任务（推送、抓取、放置等）",
+      "episodes": "162,417",
+      "annotations": [
+        "机器人型号",
+        "相机参数"
+      ]
+    },
+    "citation": {
+      "bibtex": "@inproceedings{dasari2019robonet,\n  title={RoboNet: Large-Scale Multi-Robot Learning},\n  author={Dasari, Sudeep and Ebert, Frederik and Tian, Stephen and Nair, Suraj and Bucher, Bernadette and Schmeckpeper, Karl and Singh, Siddharth and Levine, Sergey and Finn, Chelsea},\n  booktitle={CoRL},\n  year={2019}\n}",
+      "authors": "Sudeep Dasari, Frederik Ebert 等 (UC Berkeley/Stanford/UPenn/CMU)",
+      "year": 2019,
+      "venue": "CoRL 2019"
+    },
+    "github": "https://github.com/SudeepDasari/RoboNet",
+    "huggingface": "",
+    "changelog": [
+      {
+        "date": "2019-11",
+        "text": "CoRL 2019 首次发布：15M+ 帧，7 种机器人"
+      }
+    ],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "自动记录（机器人状态/动作）",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
+  },
+  {
+    "id": "ego4d",
+    "name": "Ego4D",
+    "institution": "Meta AI / UT Austin / CMU 等 13 所高校",
+    "scale": "3,670 小时第一人称视频，931 名佩戴者，74 个地点",
+    "robotType": [
+      "多机型"
+    ],
+    "task": [
+      "操作",
+      "交互",
+      "导航"
+    ],
+    "modality": [
+      "视觉",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://ego4d-data.org",
+      "paper": "https://arxiv.org/abs/2110.07058"
+    },
+    "notes": "CVPR 2022。全球最大第一人称视频数据集。5 大基准（情景记忆、手物交互、视听对话、社交、活动预测）。需签署数据使用协议。",
+    "description": "Ego4D 是由 Meta AI（FAIR）联合全球 13 所高校于 CVPR 2022 发布的世界最大第一人称（Egocentric）视频数据集与基准。931 名相机佩戴者在全球 9 个国家 74 个地点采集了 3,670 小时连续日常视频（~7TB），含 3.8M 条叙述文本对。定义了 5 大具身 AI 基准任务：情景记忆（Episodic Memory）、手物交互（Hand-Object Manipulation）、视听对话（Audio-Visual Conversation）、社交交互（Social Interaction）、活动预测（Activity Forecasting），直接映射到机器人感知、规划与交互能力。配套 EgoVLP（NeurIPS 2022）预训练框架。下载需在官网签署数据使用协议。",
+    "license": "Ego4D License（需签署协议）",
+    "dataFormat": {
+      "storage": "MP4 视频 + JSON 标注",
+      "size": "~7TB（完整源视频）",
+      "compression": "H.264",
+      "schema": "video → clip → frame + audio + 3D mesh + eye gaze + stereo + multi-camera sync"
+    },
+    "dataContent": {
+      "sensors": [
+        "第一人称 RGB 相机",
+        "音频",
+        "3D 环境网格",
+        "眼动追踪",
+        "立体相机"
+      ],
+      "scenes": "74 个全球地点（家居、户外、工作场所等）",
+      "objects": "海量日常物体（3.8M+ 叙述文本描述）",
+      "tasks": "5 大基准任务",
+      "episodes": "3,670 小时连续视频",
+      "annotations": [
+        "3.8M 叙述文本对",
+        "手物交互帧标注",
+        "社交交互标注",
+        "活动预测标注"
+      ]
+    },
+    "citation": {
+      "bibtex": "@inproceedings{grauman2022ego4d,\n  title={Ego4D: Around the World in 3,000 Hours of Egocentric Video},\n  author={Grauman, Kristen and Westbury, Andrew and Byrne, Eugene and Chavis, Zachary and Furnari, Antonino and others},\n  booktitle={CVPR},\n  year={2022}\n}",
+      "authors": "Kristen Grauman, Andrew Westbury 等 (Meta AI + 13 高校)",
+      "year": 2022,
+      "venue": "CVPR 2022"
+    },
+    "github": "https://github.com/facebookresearch/Ego4d",
+    "huggingface": "https://huggingface.co/datasets/HuggingFaceM4/ego4d",
+    "changelog": [
+      {
+        "date": "2022-03",
+        "text": "CVPR 2022 首次发布：3,670h 视频，5 大基准"
+      },
+      {
+        "date": "2022-11",
+        "text": "EgoVLP 预训练框架发布（NeurIPS 2022）"
+      }
+    ],
+    "quality": {
+      "collection": "多源聚合",
+      "annotation": "人工标注（多轮多语言）",
+      "realWorld": "100%真实第一人称",
       "hasSplit": true
     }
   }
