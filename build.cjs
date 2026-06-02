@@ -186,6 +186,21 @@ function buildAll(lang) {
     const taskTypesHTML = (ds.task || []).map(t => `<span class="data-tag">${esc(t)}</span>`).join(' ') || '-';
     const modalitiesHTML = (ds.modality || []).length ? (ds.modality || []).join('、') : '-';
 
+    // Related standards (by explicit standards field)
+    const standardIds = ds.standards || [];
+    const relatedStandards = standardIds
+      .map(sid => dataStandards.find(s => s.id === sid))
+      .filter(Boolean);
+    let relatedStandardsSectionHTML = '';
+    if (relatedStandards.length) {
+      const tL2 = ui.standardTypeLabels;
+      const tC2 = {format:'type-format',benchmark:'type-benchmark',industry:'type-industry'};
+      relatedStandardsSectionHTML = '<div class="section-block"><h2>' + (isEn ? 'Data Standards' : '采用的数据标准') + '</h2><div class="related-grid">' +
+        relatedStandards.map(s => {
+          return `<a href="/standards/${esc(s.id)}/" class="related-card"><div class="related-name">${esc(s.name)}</div><div class="related-org">${esc(s.org)}</div><div class="related-meta"><span class="std-type-badge ${tC2[s.type]||''}">${tL2[s.type]||s.type}</span></div></a>`;
+        }).join('') + '</div></div>';
+    }
+
     return buildPage('src/pages/dataset-detail.html', {
       meta: `<title>${esc(ds.name)} | EmbodiedAI Datasets</title><meta name="description" content="${esc((ds.notes || ds.description || '').substring(0, 160))}">`,
       nav: getActiveNav('datasets'),
@@ -213,6 +228,7 @@ function buildAll(lang) {
       LINKS: linksHTML,
       CITATION: citationHTML,
       RELATED: relatedHTML,
+      RELATED_STANDARDS_SECTION: relatedStandardsSectionHTML,
       QUALITY_BADGES: qualityHTML,
       CHANGELOG: changelogHTML,
       BACK_TO_DATASETS: isEn ? '← Back to Datasets' : '← 返回全部数据集',
@@ -245,12 +261,11 @@ function buildAll(lang) {
     const oD = {open:'●',partial:'◐',standard:'◆',closed:'○'};
     const scL = ui.sceneLabels;
 
-    // Find related datasets (cross-reference by name mentions in notes, dataFormat, etc.)
-    const relatedDS = dataDatasets.filter(d => {
-      const haystack = [d.notes || '', d.description || '', d.dataFormat?.storage || '', (d.name || '')].join(' ').toLowerCase();
-      const keywords = [ss.name.toLowerCase(), ss.fullName.toLowerCase()];
-      return d.id !== ss.id && keywords.some(k => haystack.includes(k));
-    }).slice(0, 4);
+    // Find related datasets by explicit standards field
+    const relatedDS = (ss.datasetIds || [])
+      .map(did => dataDatasets.find(d => d.id === did))
+      .filter(Boolean)
+      .slice(0, 8);
 
     // Find related standards (same type or scene)
     const relatedST = dataStandards.filter(s => s.id !== ss.id && (s.type === ss.type || (s.scene || []).some(sc => (ss.scene || []).includes(sc)))).slice(0, 4);

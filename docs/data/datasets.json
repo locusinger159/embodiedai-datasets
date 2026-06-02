@@ -68,7 +68,11 @@
       "annotation": "部分人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "rlds",
+      "oxe-schema"
+    ]
   },
   {
     "id": "bridge-data-v2",
@@ -136,7 +140,10 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "hdf5-robomimic"
+    ]
   },
   {
     "id": "rh20t",
@@ -196,7 +203,10 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "hdf5-robomimic"
+    ]
   },
   {
     "id": "roboset",
@@ -248,7 +258,10 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "rlds"
+    ]
   },
   {
     "id": "libero",
@@ -299,7 +312,11 @@
       "annotation": "自动标注",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "libero",
+      "hdf5-robomimic"
+    ]
   },
   {
     "id": "meta-world",
@@ -350,7 +367,10 @@
       "annotation": "自动标注",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "metaworld"
+    ]
   },
   {
     "id": "rlbench",
@@ -406,7 +426,10 @@
       "annotation": "自动标注",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "rlbench"
+    ]
   },
   {
     "id": "maniskill2",
@@ -460,7 +483,10 @@
       "annotation": "自动标注",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "maniskill2"
+    ]
   },
   {
     "id": "robosuite",
@@ -515,7 +541,10 @@
       "annotation": "自动标注",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "hdf5-robomimic"
+    ]
   },
   {
     "id": "calvin",
@@ -569,7 +598,10 @@
       "annotation": "自动标注",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "calvin"
+    ]
   },
   {
     "id": "ario",
@@ -621,7 +653,10 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "rlds"
+    ]
   },
   {
     "id": "ocrl",
@@ -727,7 +762,11 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "rlds",
+      "oxe-schema"
+    ]
   },
   {
     "id": "robocat-data",
@@ -781,7 +820,11 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "rlds",
+      "oxe-schema"
+    ]
   },
   {
     "id": "t-diffusion-data",
@@ -835,7 +878,11 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "rlds",
+      "oxe-schema"
+    ]
   },
   {
     "id": "agibot-world",
@@ -900,7 +947,11 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "agibot-world",
+      "rlds"
+    ]
   },
   {
     "id": "robomind",
@@ -964,7 +1015,10 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "rlds"
+    ]
   },
   {
     "id": "damo-solo",
@@ -1015,7 +1069,10 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "rlds"
+    ]
   },
   {
     "id": "gr-1-dataset",
@@ -1183,7 +1240,10 @@
       "annotation": "自动标注",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "openusd"
+    ]
   },
   {
     "id": "habitat",
@@ -1235,7 +1295,10 @@
       "annotation": "自动标注",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "habitat"
+    ]
   },
   {
     "id": "igibson",
@@ -1291,7 +1354,11 @@
       "annotation": "自动标注",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "openusd",
+      "behavior-1k"
+    ]
   },
   {
     "id": "sapien",
@@ -1393,7 +1460,10 @@
       "annotation": "自动标注",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "hdf5-robomimic"
+    ]
   },
   {
     "id": "coppeliasim",
@@ -1801,7 +1871,10 @@
       "annotation": "自动标注",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "habitat"
+    ]
   },
   {
     "id": "matterport3d",
@@ -1853,7 +1926,10 @@
       "annotation": "自动标注",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "habitat"
+    ]
   },
   {
     "id": "robonat",
@@ -1907,7 +1983,10 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "rlds"
+    ]
   },
   {
     "id": "humanoid-everyday",
@@ -2135,7 +2214,10 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "lerobot"
+    ]
   },
   {
     "id": "robocoin",
@@ -2191,7 +2273,10 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "rlds"
+    ]
   },
   {
     "id": "openlet",
@@ -2316,7 +2401,10 @@
       "annotation": "部分人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "rlds"
+    ]
   },
   {
     "id": "galaxea-open-world",
@@ -2394,7 +2482,11 @@
       "annotation": "细粒度人工标注",
       "realWorld": "100%真机（非实验室开放场景）",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "rlds",
+      "lerobot"
+    ]
   },
   {
     "id": "oxe-auge",
@@ -2462,7 +2554,11 @@
       "annotation": "基于 OXE 原始标注",
       "realWorld": "真实数据增强（视觉+运动学保真）",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "rlds",
+      "oxe-schema"
+    ]
   },
   {
     "id": "droid",
@@ -2530,7 +2626,11 @@
       "annotation": "人工标注（语言指令）",
       "realWorld": "100%真机（非实验室多场景）",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "droid",
+      "rlds"
+    ]
   },
   {
     "id": "mimicgen",
@@ -2600,7 +2700,10 @@
       "annotation": "自动生成（MimicGen 数据增强）",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "hdf5-robomimic"
+    ]
   },
   {
     "id": "robocasa",
@@ -2670,7 +2773,11 @@
       "annotation": "自动生成（MimicGen + LLM）",
       "realWorld": "仿真（支持 sim-to-real 迁移）",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "hdf5-robomimic",
+      "openusd"
+    ]
   },
   {
     "id": "arnold-benchmark",
@@ -2745,7 +2852,10 @@
       "annotation": "模板自动生成（语言指令）",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "standards": [
+      "openusd"
+    ]
   },
   {
     "id": "robonet",

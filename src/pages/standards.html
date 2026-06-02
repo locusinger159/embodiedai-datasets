@@ -24,7 +24,7 @@
       <div class="filter-group"><span class="filter-label">开放程度</span><div class="filter-chips" id="opennessFilters"></div></div>
       <div class="filter-group"><span class="filter-label">适用场景</span><div class="filter-chips" id="sceneFilters"></div></div>
       <div class="filter-actions">
-        <select class="sort-select" id="sortSelect"><option value="name">名称排序</option></select>
+        <select class="sort-select" id="sortSelect"><option value="year" selected>时间排序 ↓</option><option value="name">名称排序</option></select>
         <div class="view-toggle">
           <button class="view-btn active" data-view="table" title="表格视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></button>
           <button class="view-btn" data-view="card" title="卡片视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></button>
@@ -38,7 +38,7 @@
 <section class="datasets-section">
   <div class="table-view" id="tableView">
     <table class="d-table">
-      <thead><tr><th style="width:40px"><input type="checkbox" class="std-checkbox" id="selectAll" title="全选"></th><th>标准名称</th><th>发布组织</th><th>类型</th><th>开放程度</th><th>适用场景</th><th>数据模态</th><th>相关链接</th></tr></thead>
+      <thead><tr><th style="width:40px"><input type="checkbox" class="std-checkbox" id="selectAll" title="全选"></th><th>标准名称</th><th>发布组织</th><th style="width:72px">发布时间</th><th>类型</th><th>开放程度</th><th>适用场景</th><th>数据模态</th><th>相关链接</th></tr></thead>
       <tbody id="stb"></tbody>
     </table>
   </div>
@@ -80,7 +80,7 @@
 
 <script>
 var SS={{STANDARDS_JSON}};
-var isMobile=window.innerWidth<=768;var state={search:'',type:[],openness:[],scene:[],page:1,ps:15,sort:'',view:isMobile?'card':'table'};
+var isMobile=window.innerWidth<=768;var state={search:'',type:[],openness:[],scene:[],page:1,ps:15,sort:'year',sortDir:'desc',view:isMobile?'card':'table'};
 var selectedIds=new Set();
 
 function lT(v){return{format:'数据格式',benchmark:'评测基准',industry:'行业标准'}[v]||v}
@@ -110,20 +110,21 @@ function filterData(){
   if(state.type.length)r=r.filter(function(s){return state.type.indexOf(s.type)>-1});
   if(state.openness.length)r=r.filter(function(s){return state.openness.indexOf(s.openness)>-1});
   if(state.scene.length)r=r.filter(function(s){return s.scene.some(function(v){return state.scene.indexOf(v)>-1})});
+  if(state.sort){r.sort(function(a,b){var va=state.sort==='year'?(a.year||b.year||0):(a[state.sort]||''),vb=state.sort==='year'?(b.year||a.year||0):(b[state.sort]||'');var cmp=state.sort==='year'?va-vb:String(va).localeCompare(String(vb),'zh');return state.sortDir==='asc'?cmp:-cmp})}
   return r;
 }
 
 function renderTable(data){
   var start=(state.page-1)*state.ps,page=data.slice(start,start+state.ps);
   document.getElementById('stb').innerHTML=page.map(function(s){
-    return '<tr class="'+(selectedIds.has(s.id)?'selected':'')+'"><td><input type="checkbox" class="std-checkbox" '+(selectedIds.has(s.id)?'checked':'')+' onchange="toggleSelect(\''+s.id+'\')"></td><td><a href="'+(s.links.site||s.links.github||'#')+'" target="_blank" class="data-name-cell">'+s.name+'</a></td><td class="data-org">'+s.org+'</td><td><span class="std-type-badge '+cT(s.type)+'">'+lT(s.type)+'</span></td><td><span class="type-badge '+cO(s.openness)+'">'+dO(s.openness)+' '+lO(s.openness)+'</span></td><td><div class="data-tags">'+(s.scene||[]).map(function(x){return '<span class="data-tag">'+lS(x)+'</span>'}).join('')+'</div></td><td><div class="data-tags">'+(s.modalities||[]).slice(0,3).map(function(m){return '<span class="data-tag">'+m+'</span>'}).join('')+(s.modalities&&s.modalities.length>3?'<span class="data-tag">+'+(s.modalities.length-3)+'</span>':'')+'</div></td><td><div class="data-links">'+(s.links.site?'<a href="'+s.links.site+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>官网</a>':'')+(s.links.github?'<a href="'+s.links.github+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>':'')+'</div></td></tr>';
+    return '<tr class="'+(selectedIds.has(s.id)?'selected':'')+'"><td><input type="checkbox" class="std-checkbox" '+(selectedIds.has(s.id)?'checked':'')+' onchange="toggleSelect(\''+s.id+'\')"></td><td><a href="'+(s.links.site||s.links.github||'#')+'" target="_blank" class="data-name-cell">'+s.name+'</a></td><td class="data-org">'+s.org+'</td><td style="font-size:13px;color:var(--text-secondary);white-space:nowrap">'+(s.year||'-')+'</td><td><span class="std-type-badge '+cT(s.type)+'">'+lT(s.type)+'</span></td><td><span class="type-badge '+cO(s.openness)+'">'+dO(s.openness)+' '+lO(s.openness)+'</span></td><td><div class="data-tags">'+(s.scene||[]).map(function(x){return '<span class="data-tag">'+lS(x)+'</span>'}).join('')+'</div></td><td><div class="data-tags">'+(s.modalities||[]).slice(0,3).map(function(m){return '<span class="data-tag">'+m+'</span>'}).join('')+(s.modalities&&s.modalities.length>3?'<span class="data-tag">+'+(s.modalities.length-3)+'</span>':'')+'</div></td><td><div class="data-links">'+(s.links.site?'<a href="'+s.links.site+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>官网</a>':'')+(s.links.github?'<a href="'+s.links.github+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>':'')+'</div></td></tr>';
   }).join('');
 }
 
 function renderCards(data){
   var start=(state.page-1)*state.ps,page=data.slice(start,start+state.ps);
   document.getElementById('cardView').innerHTML=page.map(function(s){
-    return '<div class="data-card'+(selectedIds.has(s.id)?' selected':'')+'" style="position:relative;cursor:pointer" onclick="location.href=\'/standards/'+s.id+'/\'"><input type="checkbox" class="std-card-checkbox" '+(selectedIds.has(s.id)?'checked':'')+' onclick="event.stopPropagation()" onchange="toggleSelect(\''+s.id+'\')"><div class="card-header"><div><div class="card-title">'+s.name+'</div><div class="card-org">'+s.org+'</div></div><span class="std-type-badge '+cT(s.type)+'">'+lT(s.type)+'</span></div><p class="card-desc">'+s.desc+'</p><div class="card-meta"><span class="type-badge '+cO(s.openness)+'">'+dO(s.openness)+' '+lO(s.openness)+'</span>'+(s.scene||[]).map(function(x){return '<span class="data-tag card-tag">'+lS(x)+'</span>'}).join('')+'</div><div class="card-footer"><div class="data-tags">'+(s.modalities||[]).slice(0,3).map(function(m){return '<span class="data-tag card-tag">'+m+'</span>'}).join('')+(s.modalities&&s.modalities.length>3?'<span class="data-tag card-tag">+'+(s.modalities.length-3)+'</span>':'')+'</div><a href="/standards/'+s.id+'/" class="link-btn">查看 →</a></div></div>';
+    return '<div class="data-card'+(selectedIds.has(s.id)?' selected':'')+'" style="position:relative;cursor:pointer" onclick="location.href=\'/standards/'+s.id+'/\'"><input type="checkbox" class="std-card-checkbox" '+(selectedIds.has(s.id)?'checked':'')+' onclick="event.stopPropagation()" onchange="toggleSelect(\''+s.id+'\')"><div class="card-header"><div><div class="card-title">'+s.name+'</div><div class="card-org">'+s.org+' · '+((s.year||'—'))+'</div></div><span class="std-type-badge '+cT(s.type)+'">'+lT(s.type)+'</span></div><p class="card-desc">'+s.desc+'</p><div class="card-meta"><span class="type-badge '+cO(s.openness)+'">'+dO(s.openness)+' '+lO(s.openness)+'</span>'+(s.scene||[]).map(function(x){return '<span class="data-tag card-tag">'+lS(x)+'</span>'}).join('')+'</div><div class="card-footer"><div class="data-tags">'+(s.modalities||[]).slice(0,3).map(function(m){return '<span class="data-tag card-tag">'+m+'</span>'}).join('')+(s.modalities&&s.modalities.length>3?'<span class="data-tag card-tag">+'+(s.modalities.length-3)+'</span>':'')+'</div><a href="/standards/'+s.id+'/" class="link-btn">查看 →</a></div></div>';
   }).join('');
 }
 
@@ -178,6 +179,7 @@ function clearFilters(){state.search='';state.type=[];state.openness=[];state.sc
 function goPage(p){state.page=p;update();window.scrollTo({top:400,behavior:'smooth'})}
 
 document.getElementById('searchInput').addEventListener('keypress',function(e){if(e.key==='Enter')handleSearch()});
+	document.getElementById('sortSelect').addEventListener('change',function(){var v=this.value;state.sort=v;state.sortDir=v==='year'?'desc':'asc';state.page=1;update()});
 document.querySelectorAll('.view-btn').forEach(function(b){b.addEventListener('click',function(){state.view=this.dataset.view;document.querySelectorAll('.view-btn').forEach(function(x){x.classList.remove('active')});this.classList.add('active');update()});if(b.dataset.view===state.view){b.classList.add('active');b.parentElement.querySelectorAll('.view-btn').forEach(function(x){if(x!==b)x.classList.remove('active')})}});
 document.getElementById('selectAll').addEventListener('change',function(){var f=filterData();if(this.checked)f.forEach(function(s){selectedIds.add(s.id)});else selectedIds.clear();updateCompareBar();update()});
 document.getElementById('compareModal').addEventListener('click',function(e){if(e.target===this)closeCompare()});
