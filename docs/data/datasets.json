@@ -2762,5 +2762,56 @@
       "realWorld": "100%真机",
       "hasSplit": true
     }
+  },
+  {
+    "id": "uniact",
+    "name": "UniACT",
+    "institution": "AMAP CV Lab (高德)",
+    "scale": "600万+ 轨迹，9500+ 小时，20+ 机器人形态",
+    "robotType": ["多机型"],
+    "task": ["操作"],
+    "modality": ["视觉", "本体状态", "动作"],
+    "type": "open",
+    "links": {
+      "official": "https://amap-cvlab.github.io/ABot-Manipulation",
+      "paper": "https://arxiv.org/abs/2602.11236"
+    },
+    "notes": "整合并标准化 6 个开源数据集（OXE、OXE-AugE、AgiBot-Beta、RoboCoin、RoboMind、Galaxea），统一成末端执行器增量动作+旋转向量+填充至双臂格式。注意：高德 UniACT ≠ 清华 UniAct（2025），前者是数据集，后者是框架。",
+    "description": "UniACT 是由高德 AMAP CV Lab 发布的跨具身机器人操作数据集，随 ABot-M0 开源。该数据集整合并标准化了 6 个主流开源数据集（Open X-Embodiment、OXE-AugE、AgiBot-Beta、RoboCoin、RoboMind、Galaxea），覆盖 20+ 种机器人形态，总计 600 万+ 轨迹、9500+ 小时数据。UniACT 的核心贡献在于统一动作表示：将所有异构数据转换为末端执行器增量动作（delta pose）+ 旋转向量（rotation vector），并填充至标准双臂格式，从而实现跨具身的 VLA 模型预训练。该数据集是 ABot-M0 模型的训练基础。",
+    "license": "Apache 2.0",
+    "dataFormat": {
+      "storage": "自定义格式（基于源数据集标准化）",
+      "size": "取决于源数据集下载量",
+      "compression": "按源数据集",
+      "schema": "episode → step → observation → action (delta pose + rotation vector, dual-arm padded)"
+    },
+    "dataContent": {
+      "sensors": ["RGB 相机", "深度相机", "关节编码器", "触觉传感器（部分）"],
+      "scenes": "多场景（整合自 6 个源数据集）",
+      "objects": "数千种",
+      "tasks": "数百种操作任务",
+      "episodes": "6,000,000+",
+      "annotations": ["自然语言指令", "标准化动作序列", "双臂格式填充"]
+    },
+    "citation": {
+      "bibtex": "@article{uniact2026,\n  title={ABot-M0: A Generalist Robot Manipulation Model with UniACT Dataset},\n  author={AMAP CV Lab},\n  journal={arXiv preprint arXiv:2602.11236},\n  year={2026}\n}",
+      "authors": "AMAP CV Lab",
+      "year": 2026,
+      "venue": "arXiv"
+    },
+    "github": "https://github.com/amap-cvlab/ABot-Manipulation",
+    "huggingface": "",
+    "changelog": [
+      {
+        "date": "2026-03-31",
+        "text": "随 ABot-M0 首次发布，包含 6 个源数据集的标准化整合"
+      }
+    ],
+    "quality": {
+      "collection": "多源聚合",
+      "annotation": "部分人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   }
 ]

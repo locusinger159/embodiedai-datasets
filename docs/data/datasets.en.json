@@ -2762,5 +2762,56 @@
       "realWorld": "100%真机",
       "hasSplit": true
     }
+  },
+  {
+    "id": "uniact",
+    "name": "UniACT",
+    "institution": "AMAP CV Lab (AutoNavi/Amap)",
+    "scale": "6M+ trajectories, 9,500+ hours, 20+ robot embodiments",
+    "robotType": ["multi"],
+    "task": ["操作"],
+    "modality": ["视觉", "本体状态", "动作"],
+    "type": "open",
+    "links": {
+      "official": "https://amap-cvlab.github.io/ABot-Manipulation",
+      "paper": "https://arxiv.org/abs/2602.11236"
+    },
+    "notes": "Standardizes 6 open-source datasets (OXE, OXE-AugE, AgiBot-Beta, RoboCoin, RoboMind, Galaxea) into a unified delta-pose + rotation-vector action space with dual-arm padding. ⚠️ Do not confuse with Tsinghua UniAct (2025 framework) — UniACT is a dataset by AMAP CV Lab.",
+    "description": "UniACT is a cross-embodiment robot manipulation dataset released by AMAP CV Lab (AutoNavi) alongside ABot-M0. It integrates and standardizes 6 major open-source datasets (Open X-Embodiment, OXE-AugE, AgiBot-Beta, RoboCoin, RoboMind, Galaxea), covering 20+ robot embodiments with 6M+ trajectories and 9,500+ hours of data. The key contribution is a unified action representation: all heterogeneous data is converted to end-effector delta pose + rotation vector, padded to a standard dual-arm format, enabling cross-embodiment VLA model pretraining. This dataset serves as the training foundation for the ABot-M0 model.",
+    "license": "Apache 2.0",
+    "dataFormat": {
+      "storage": "Custom (standardized from source datasets)",
+      "size": "Depends on source dataset downloads",
+      "compression": "Per source dataset",
+      "schema": "episode → step → observation → action (delta pose + rotation vector, dual-arm padded)"
+    },
+    "dataContent": {
+      "sensors": ["RGB Camera", "Depth Camera", "Joint Encoders", "Tactile Sensors (partial)"],
+      "scenes": "Multi-scene (aggregated from 6 source datasets)",
+      "objects": "Thousands",
+      "tasks": "数百种操作任务",
+      "episodes": "6,000,000+",
+      "annotations": ["自然语言指令", "标准化动作序列", "双臂格式填充"]
+    },
+    "citation": {
+      "bibtex": "@article{uniact2026,\n  title={ABot-M0: A Generalist Robot Manipulation Model with UniACT Dataset},\n  author={AMAP CV Lab},\n  journal={arXiv preprint arXiv:2602.11236},\n  year={2026}\n}",
+      "authors": "AMAP CV Lab",
+      "year": 2026,
+      "venue": "arXiv"
+    },
+    "github": "https://github.com/amap-cvlab/ABot-Manipulation",
+    "huggingface": "",
+    "changelog": [
+      {
+        "date": "2026-03-31",
+        "text": "Initial release with ABot-M0: standardized integration of 6 source datasets"
+      }
+    ],
+    "quality": {
+      "collection": "多源聚合",
+      "annotation": "部分人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    }
   }
 ]
