@@ -1076,56 +1076,129 @@
   },
   {
     "id": "gr-1-dataset",
-    "name": "GR-1 Dataset",
+    "name": "Fourier ActionNet (GR-1 Real Robot Dataset)",
     "institution": "傅利叶智能（Fourier Intelligence）",
-    "scale": "人形机器人数据集",
+    "scale": "30K+ real robot teleoperation trajectories (~140 hours of interaction data)",
     "robotType": [
       "人形机器人"
     ],
     "task": [
-      "操作"
+      "操作",
+      "抓取"
     ],
     "modality": [
+      "RGB",
+      "深度",
+      "动作",
       "视觉",
       "力控",
       "本体状态"
     ],
     "type": "partial",
     "links": {
-      "official": "https://www.fourier-intelligence.com/"
+      "official": "https://action-net.org/",
+      "huggingface": "https://huggingface.co/datasets/FourierIntelligence/ActionNet"
     },
-    "notes": "傅利叶 GR-1 人形机器人数据，适合双足运动和操纵研究。",
-    "description": "傅利叶 GR-1 人形机器人数据，适合双足运动和操纵研究。 数据规模为 人形机器人数据集。 覆盖 人形机器人 等机器人类型。 适用于 操作 等任务场景。",
-    "license": "部分开源",
+    "notes": "Fourier GR-1 real robot dataset (ActionNet), 30K+ teleoperation trajectories under CC BY-NC-SA 4.0. Bimanual dexterous grasping, cabinet opening, material pouring, and more. Compatible with LeRobot, ACT, DP, iDP3.",
+    "description": "Fourier ActionNet (GR-1 Real Robot Dataset) is Fourier Intelligence's officially open-sourced full-size humanoid robot manipulation dataset, released in March 2025, containing 30K+ real robot teleoperation trajectories (~140 hours of interaction data) across GR-1 (GR1-T1/T2) and GR-2 models. Data collection uses Apple Vision Pro as the teleoperation master device, paired with OAK-D W 97 cameras providing first-person perspective. Data format: HDF5 (joint states) + MP4 (RGB video) + MKV (depth video), auto-annotated by Qwen2.5-VL-7B vision-language model with manual secondary verification. Covered tasks: pick-and-place, pouring, cabinet opening, precise placement, noisy manipulation, etc. Compatible with LeRobot, ACT, DP, iDP3 and other mainstream training frameworks, with a full pipeline toolchain (data collection → annotation → training → deployment). License: CC BY-NC-SA 4.0 (non-commercial open source), training/deployment tools under Apache 2.0. Teleoperation source code open-sourced on GitHub (FFTAI/teleoperation). NVIDIA has also released a separate GR-1 simulation dataset series — see 'NVIDIA GR-1 Simulation Datasets' entry. Commercial licensing: gr_opensource@fftai.com. Full-body walking data not yet fully released.",
+    "license": "CC BY-NC-SA 4.0 (Non-commercial Open Source)",
     "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "人形机器人数据集",
-      "compression": "未知",
+      "storage": "HDF5 (joint states) + MP4 (RGB video) + MKV (depth video)",
+      "size": "30K+ teleoperation trajectories",
+      "compression": "No special compression, standard formats",
       "schema": "episode → step → observation → action"
     },
     "dataContent": {
       "sensors": [
-        "视觉",
-        "力控",
-        "本体状态"
+        "RGB",
+        "深度",
+        "动作",
+        "关节状态",
+        "力控"
       ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "人形机器人数据集",
-      "annotations": []
+      "scenes": "Bimanual dexterous grasping, cabinet opening, material pouring tasks",
+      "objects": "Daily household items (cups, cabinet doors, microwaves, etc.)",
+      "tasks": "Multiple manipulation task types (grasping, cabinet opening, pouring, etc.)",
+      "episodes": "30K+ teleoperation trajectories",
+      "annotations": [
+        "Action labels"
+      ]
     },
     "citation": {
-      "year": 2024
+      "year": 2025
     },
-    "github": "",
-    "huggingface": "",
+    "github": "https://github.com/FFTAI/teleoperation",
+    "huggingface": "FourierIntelligence/ActionNet",
     "changelog": [],
     "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
+      "collection": "Teleoperation (real robot collection)",
+      "annotation": "Action labels",
+      "realWorld": "Real robot data",
       "hasSplit": false
+    }
+  },
+  {
+    "id": "nvidia-gr1-simulation",
+    "name": "NVIDIA GR-1 Simulation Datasets",
+    "institution": "NVIDIA",
+    "scale": "1,050+ simulation trajectories (Arena 50 + Teleop-Sim 1,000) + GR00T large-scale sim library (TB-scale)",
+    "robotType": [
+      "人形机器人",
+      "仿真"
+    ],
+    "task": [
+      "操作",
+      "抓取"
+    ],
+    "modality": [
+      "RGB",
+      "仿真状态",
+      "动作",
+      "视觉",
+      "深度"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://github.com/NVIDIA/Isaac-GR00T",
+      "huggingface": "https://huggingface.co/nvidia/Arena-GR1-Manipulation-Task"
+    },
+    "notes": "NVIDIA's official GR-1 simulation dataset series, including Arena (microwave opening with precise annotations) and GR00T-Teleop-Sim (24 tabletop teleoperation tasks), designed for training GR00T N1/N1.5/N1.6 humanoid foundation models.",
+    "description": "NVIDIA has released multiple simulation datasets centered on the GR-1 humanoid robot for training and fine-tuning the GR00T series vision-language-action (VLA) foundation models:\n\n① Arena-GR1-Manipulation-Task (Tabletop Manipulation Simulation): Built on the Isaac Lab Arena framework, contains 50 GR-1 microwave-door-opening simulation trajectories. Provides both annotated and augmented HDF5 formats, with LeRobot format conversion support for GR00T N1.5/N1.6 policy training. Download: huggingface-cli download nvidia/Arena-GR1-Manipulation-Task --repo-type dataset\n\n② GR00T-Teleop-Sim (Robocasa GR1 Tabletop Tasks): 1,000 simulated teleoperation trajectories covering 24 tabletop manipulation tasks, collected using GR-1 upper-body control in the Robocasa simulation environment. Includes 44-dim joint states, 44-dim action vectors, 256×256 20fps RGB video, and language instructions. HDF5 format ~14GB, LeRobot format ~39GB. License: CC BY-NC 4.0. Download: huggingface-cli download nvidia/PhysicalAI-Robotics-GR00T-Teleop-Sim --repo-type dataset --include \"robocasa-gr1-tabletop*\"\n\n③ GR00T-X-Embodiment-Sim (GR1 Subsets): TB-scale large multi-embodiment simulation library containing GR-1 data, including gr1_full_upper_body.Pouring (full upper body pouring), gr1_arms_waist.CuttingboardToCardboardBox (pick-and-place binning), and more. Download: huggingface-cli download nvidia/PhysicalAI-Robotics-GR00T-X-Embodiment-Sim --repo-type dataset\n\nCompanion GR00T training framework: https://github.com/NVIDIA/Isaac-GR00T",
+    "license": "CC-BY-4.0 / CC BY-NC 4.0 (varies by subset)",
+    "dataFormat": {
+      "storage": "HDF5 + LeRobot format",
+      "size": "14GB ~ TB-scale (varies by subset)",
+      "compression": "No special compression",
+      "schema": "episode → step → observation → action (LeRobot compatible)"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB",
+        "深度",
+        "仿真状态",
+        "关节状态",
+        "动作"
+      ],
+      "scenes": "Isaac Sim / Robocasa simulation environments: microwave opening, pick-and-place binning, tabletop object manipulation, etc.",
+      "objects": "Microwaves, cups, cardboard boxes, cans, bottles, and other daily items",
+      "tasks": "26+ simulation task types",
+      "episodes": "1,050+ simulation trajectories (excluding GR00T-X-Embodiment TB-scale data)",
+      "annotations": [
+        "Language instructions",
+        "Action labels"
+      ]
+    },
+    "citation": {
+      "year": 2025
+    },
+    "github": "https://github.com/NVIDIA/Isaac-GR00T",
+    "huggingface": "nvidia/Arena-GR1-Manipulation-Task",
+    "changelog": [],
+    "quality": {
+      "collection": "Simulation generated (Isaac Sim + Robocasa)",
+      "annotation": "Auto-annotated (with language instructions)",
+      "realWorld": "仿真",
+      "hasSplit": true
     }
   },
   {

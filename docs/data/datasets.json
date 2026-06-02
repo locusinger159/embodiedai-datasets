@@ -1076,56 +1076,129 @@
   },
   {
     "id": "gr-1-dataset",
-    "name": "GR-1 Dataset",
+    "name": "Fourier ActionNet（GR-1 真机数据集）",
     "institution": "傅利叶智能（Fourier Intelligence）",
-    "scale": "人形机器人数据集",
+    "scale": "3万+ 真机遥操作轨迹（约 140 小时交互数据）",
     "robotType": [
       "人形机器人"
     ],
     "task": [
-      "操作"
+      "操作",
+      "抓取"
     ],
     "modality": [
+      "RGB",
+      "深度",
+      "动作",
       "视觉",
       "力控",
       "本体状态"
     ],
     "type": "partial",
     "links": {
-      "official": "https://www.fourier-intelligence.com/"
+      "official": "https://action-net.org/",
+      "huggingface": "https://huggingface.co/datasets/FourierIntelligence/ActionNet"
     },
-    "notes": "傅利叶 GR-1 人形机器人数据，适合双足运动和操纵研究。",
-    "description": "傅利叶 GR-1 人形机器人数据，适合双足运动和操纵研究。 数据规模为 人形机器人数据集。 覆盖 人形机器人 等机器人类型。 适用于 操作 等任务场景。",
-    "license": "部分开源",
+    "notes": "傅利叶 GR-1 真机实测数据集（ActionNet），3万+ 遥操作轨迹，CC BY-NC-SA 4.0。双臂灵巧手抓取、开柜门、倾倒物料等多模态数据，适配 LeRobot、ACT、DP、iDP3 框架。",
+    "description": "Fourier ActionNet（GR-1 真机数据集）是傅利叶智能于 2025 年 3 月正式开源的全尺寸人形机器人全量操作数据集，包含 3 万+ 真机遥操作轨迹（约 140 小时交互数据），覆盖 GR-1（GR1-T1/T2）和 GR-2 机型。数据采集使用 Apple Vision Pro 作为遥操作主控设备，搭配 OAK-D W 97 相机提供第一人称视角。数据格式为 HDF5（机器人关节状态）+ MP4（RGB 视频）+ MKV（深度视频），采用 Qwen2.5-VL-7B 视觉语言模型自动标注并经人工二次核验。覆盖任务：取放、倾倒、开柜门、精密放置、噪声泛化操作等，适配 LeRobot、ACT、DP、iDP3 等主流训练框架，配套全流程工具链（数据采集→标注→训练→部署）。协议为 CC BY-NC-SA 4.0（非商用开源），训练/部署工具链使用 Apache 2.0。数据采集遥操作源码开源于 GitHub（FFTAI/teleoperation）。NVIDIA 另发布了 GR-1 仿真数据集系列，见「NVIDIA GR-1 仿真数据集」条目。商用授权联系：gr_opensource@fftai.com。全身行走数据暂未全量放出。",
+    "license": "CC BY-NC-SA 4.0（非商用开源）",
     "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "人形机器人数据集",
-      "compression": "未知",
+      "storage": "HDF5（关节状态）+ MP4（RGB 视频）+ MKV（深度视频）",
+      "size": "3万+ 遥操作轨迹",
+      "compression": "无特殊压缩，标准格式",
       "schema": "episode → step → observation → action"
     },
     "dataContent": {
       "sensors": [
-        "视觉",
-        "力控",
-        "本体状态"
+        "RGB",
+        "深度",
+        "动作",
+        "关节状态",
+        "力控"
       ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "人形机器人数据集",
-      "annotations": []
+      "scenes": "双臂灵巧手抓取、开柜门、倾倒物料等真机操作",
+      "objects": "日常家居物品（杯子、柜门、微波炉等）",
+      "tasks": "多种操作任务类型（抓取、开柜门、倾倒物料等）",
+      "episodes": "3万+ 遥操作轨迹",
+      "annotations": [
+        "动作标签"
+      ]
     },
     "citation": {
-      "year": 2024
+      "year": 2025
     },
-    "github": "",
-    "huggingface": "",
+    "github": "https://github.com/FFTAI/teleoperation",
+    "huggingface": "FourierIntelligence/ActionNet",
     "changelog": [],
     "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
+      "collection": "遥操作采集（真机实采）",
+      "annotation": "动作标签",
+      "realWorld": "真机实测",
       "hasSplit": false
+    }
+  },
+  {
+    "id": "nvidia-gr1-simulation",
+    "name": "NVIDIA GR-1 仿真数据集",
+    "institution": "NVIDIA",
+    "scale": "1,050+ 仿真轨迹（Arena 50 + Teleop-Sim 1,000）+ GR00T 大规模仿真库（TB 级）",
+    "robotType": [
+      "人形机器人",
+      "仿真"
+    ],
+    "task": [
+      "操作",
+      "抓取"
+    ],
+    "modality": [
+      "RGB",
+      "仿真状态",
+      "动作",
+      "视觉",
+      "深度"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://github.com/NVIDIA/Isaac-GR00T",
+      "huggingface": "https://huggingface.co/nvidia/Arena-GR1-Manipulation-Task"
+    },
+    "notes": "NVIDIA 官方 GR-1 仿真数据集系列，含 Arena（开微波炉精标注）和 GR00T-Teleop-Sim（24 个桌面遥操作任务）等仿真轨迹，用于训练 GR00T N1/N1.5/N1.6 人形机器人基础模型。",
+    "description": "NVIDIA 围绕 GR-1 人形机器人发布了多个仿真数据集，用于训练和微调 GR00T 系列视觉-语言-动作（VLA）基础模型：\n\n① Arena-GR1-Manipulation-Task（桌面操作仿真）：基于 Isaac Lab Arena 框架，包含 50 条 GR-1 开微波炉任务仿真轨迹，提供标注版和增强版两种 HDF5 格式，支持转换为 LeRobot 格式用于 GR00T N1.5/N1.6 策略训练。下载：huggingface-cli download nvidia/Arena-GR1-Manipulation-Task --repo-type dataset\n\n② GR00T-Teleop-Sim（Robocasa GR1 Tabletop Tasks）：1,000 条仿真遥操作轨迹，覆盖 24 个桌面操作任务，使用 GR-1 上半身控制在 Robocasa 仿真环境中采集。包含 44 维关节状态、44 维动作向量、256×256 20fps RGB 视频和语言指令。HDF5 格式约 14GB，LeRobot 格式约 39GB。协议：CC BY-NC 4.0。下载：huggingface-cli download nvidia/PhysicalAI-Robotics-GR00T-Teleop-Sim --repo-type dataset --include \"robocasa-gr1-tabletop*\"\n\n③ GR00T-X-Embodiment-Sim（GR1 子集）：TB 级大规模多具身仿真库中的 GR-1 数据，包含 gr1_full_upper_body.Pouring（上半身倾倒）、gr1_arms_waist.CuttingboardToCardboardBox（取放装箱）等子集。下载：huggingface-cli download nvidia/PhysicalAI-Robotics-GR00T-X-Embodiment-Sim --repo-type dataset\n\n配套 GR00T 训练框架开源：https://github.com/NVIDIA/Isaac-GR00T",
+    "license": "CC-BY-4.0 / CC BY-NC 4.0（按子集不同）",
+    "dataFormat": {
+      "storage": "HDF5 + LeRobot 格式",
+      "size": "14GB ~ TB 级（按子集不同）",
+      "compression": "无特殊压缩",
+      "schema": "episode → step → observation → action（LeRobot 兼容）"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB",
+        "深度",
+        "仿真状态",
+        "关节状态",
+        "动作"
+      ],
+      "scenes": "Isaac Sim / Robocasa 仿真环境：开微波炉、取放装箱、桌面物品操作等",
+      "objects": "微波炉、杯子、纸盒、罐头、瓶子等日常物品",
+      "tasks": "26+ 种仿真操作任务类型",
+      "episodes": "1,050+ 仿真轨迹（不含 GR00T-X-Embodiment TB 级数据）",
+      "annotations": [
+        "语言指令",
+        "动作标签"
+      ]
+    },
+    "citation": {
+      "year": 2025
+    },
+    "github": "https://github.com/NVIDIA/Isaac-GR00T",
+    "huggingface": "nvidia/Arena-GR1-Manipulation-Task",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成（Isaac Sim + Robocasa）",
+      "annotation": "自动标注（含语言指令）",
+      "realWorld": "仿真",
+      "hasSplit": true
     }
   },
   {
