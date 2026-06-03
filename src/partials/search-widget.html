@@ -56,19 +56,19 @@
 @media (max-width:768px) { .search-widget-btn { bottom:20px; right:20px } .search-widget-panel { margin:0 8px; border-radius:16px 16px 0 0 } }
 </style>
 
-<button class="search-widget-btn" id="searchBtn" title="AI 智能搜索">🔍</button>
+<button class="search-widget-btn" id="aiSearchBtn" title="AI 智能搜索">🔍</button>
 
-<div class="search-widget-overlay" id="searchOverlay">
+<div class="search-widget-overlay" id="aiSearchOverlay">
   <div class="search-widget-panel">
     <div class="search-panel-header">
       <span class="search-panel-title">AI 智能搜索</span>
-      <button class="search-panel-close" id="searchClose">✕</button>
+      <button class="search-panel-close" id="aiSearchClose">✕</button>
     </div>
     <div class="search-panel-input">
-      <input type="text" id="searchInput" placeholder="描述你的需求，如：人形机器人双臂操作数据集..." />
-      <button id="searchSubmit">搜索</button>
+      <input type="text" id="aiSearchInput" placeholder="描述你的需求，如：人形机器人双臂操作数据集..." />
+      <button id="aiSearchSubmit">搜索</button>
     </div>
-    <div class="search-panel-body" id="searchBody">
+    <div class="search-panel-body" id="aiSearchBody">
       <div style="text-align:center;padding:40px 0;color:var(--text-light);font-size:14px">输入需求，AI 帮你在 43 个数据集、19 个标准、11 个工具中智能匹配</div>
     </div>
   </div>
@@ -79,12 +79,12 @@
   // CHANGE THIS to your deployed FC endpoint
   const API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/search';
 
-  var btn = document.getElementById('searchBtn');
-  var overlay = document.getElementById('searchOverlay');
-  var closeBtn = document.getElementById('searchClose');
-  var input = document.getElementById('searchInput');
-  var submit = document.getElementById('searchSubmit');
-  var body = document.getElementById('searchBody');
+  var btn = document.getElementById('aiSearchBtn');
+  var overlay = document.getElementById('aiSearchOverlay');
+  var closeBtn = document.getElementById('aiSearchClose');
+  var input = document.getElementById('aiSearchInput');
+  var submit = document.getElementById('aiSearchSubmit');
+  var body = document.getElementById('aiSearchBody');
 
   function open() { overlay.classList.add('open'); setTimeout(function() { input.focus(); }, 300); }
   function close() { overlay.classList.remove('open'); }
