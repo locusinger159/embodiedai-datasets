@@ -119,20 +119,26 @@ img { max-width:100%; display:block; }
 .partner-item { padding:10px 24px; background:var(--light-bg); border-radius:10px; font-size:0.95rem; color:var(--text-secondary); transition:all 0.2s; }
 .partner-item:hover { transform:scale(1.03); box-shadow:0 2px 12px rgba(0,0,0,0.06); }
 
-/* Filter bar */
-.filter-section { padding:32px 48px; background:var(--white); border-bottom:1px solid var(--border); position:sticky; top:72px; z-index:100; }
-.filter-content { max-width:1400px; margin:0 auto; }
-.filter-row { display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start; }
-.filter-group { display:flex; flex-direction:column; gap:10px; }
-.filter-label { font-size:13px; font-weight:600; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px; }
-.filter-chips { display:flex; flex-wrap:wrap; gap:8px; }
-.filter-chip { padding:8px 16px; background:var(--light-bg); border:1px solid var(--border); border-radius:20px; font-size:14px; color:var(--text-secondary); cursor:pointer; transition:all 0.2s; font-family:inherit; }
+/* Filter bar — sidebar layout */
+.datasets-layout { max-width:1400px; margin:0 auto; padding:24px 48px 0; display:flex; gap:24px; align-items:flex-start; }
+.filter-sidebar { width:280px; flex-shrink:0; position:sticky; top:96px; max-height:calc(100vh - 120px); overflow-y:auto; }
+.filter-sidebar .filter-card { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:14px 16px; margin-bottom:10px; }
+.filter-sidebar .filter-card-header { display:flex; align-items:center; gap:6px; margin-bottom:8px; }
+.filter-sidebar .filter-card-icon { font-size:13px; }
+.filter-sidebar .filter-card-label { font-size:12px; font-weight:600; color:var(--text-secondary); }
+.filter-chips { display:flex; flex-wrap:wrap; gap:5px; }
+.filter-chip { padding:5px 12px; background:var(--light-bg); border:1px solid var(--border); border-radius:20px; font-size:12px; color:var(--text-secondary); cursor:pointer; transition:all 0.2s; font-family:inherit; display:inline-flex; align-items:center; gap:5px; white-space:nowrap; }
+.filter-chip .chip-count { font-size:10px; color:var(--text-light); }
 .filter-chip:hover { border-color:var(--primary); color:var(--primary); }
-.filter-chip.active { background:var(--gradient-primary); color:var(--white); border-color:transparent; }
-.filter-actions { margin-left:auto; display:flex; gap:12px; align-items:center; }
-.sort-select { padding:10px 16px; background:var(--white); border:1px solid var(--border); border-radius:10px; font-size:14px; color:var(--text-primary); cursor:pointer; font-family:inherit; }
-.clear-filters { padding:10px 16px; background:transparent; border:1px solid var(--border); border-radius:10px; font-size:14px; color:var(--text-secondary); cursor:pointer; transition:all 0.2s; font-family:inherit; }
+.filter-chip.active { background:var(--primary); color:var(--white); border-color:var(--primary); }
+.filter-chip.active .chip-count { color:rgba(255,255,255,0.7); }
+.filter-toolbar { display:flex; align-items:center; gap:6px; margin-bottom:10px; flex-wrap:wrap; }
+.filter-toolbar-left { display:flex; align-items:center; gap:4px; }
+.filter-result-count { font-size:12px; color:var(--text-secondary); font-weight:500; }
+.sort-select { padding:6px 10px; background:var(--white); border:1px solid var(--border); border-radius:6px; font-size:12px; color:var(--text-primary); cursor:pointer; font-family:inherit; }
+.clear-filters { padding:6px 10px; background:transparent; border:1px solid var(--border); border-radius:6px; font-size:11px; color:var(--text-secondary); cursor:pointer; transition:all 0.2s; font-family:inherit; }
 .clear-filters:hover { border-color:var(--primary); color:var(--primary); }
+.datasets-main { flex:1; min-width:0; }
 
 /* View toggle */
 .view-toggle { display:flex; background:var(--light-bg); border-radius:10px; padding:4px; border:1px solid var(--border); }
@@ -189,7 +195,8 @@ img { max-width:100%; display:block; }
 .page-btn:disabled { opacity:0.5; cursor:not-allowed; }
 
 /* Dataset section */
-.datasets-section { padding:40px 48px 80px; max-width:1400px; margin:0 auto; }
+.datasets-main { padding-bottom:80px; }
+.datasets-main .table-view { border-radius:12px; overflow:hidden; }
 
 /* Compare bar */
 .compare-bar { position:fixed; bottom:-80px; left:50%; transform:translateX(-50%); background:var(--dark-bg); border:1px solid rgba(91,124,255,0.3); border-radius:16px; padding:16px 28px; display:flex; align-items:center; gap:20px; z-index:999; transition:bottom 0.4s cubic-bezier(0.34,1.56,0.64,1); box-shadow:0 12px 40px rgba(0,0,0,0.4); backdrop-filter:blur(20px); }
@@ -358,11 +365,12 @@ img { max-width:100%; display:block; }
   .search-bar{flex-direction:column}
   .search-btn{width:100%;justify-content:center}
 
-  /* Filter bar - not sticky on mobile */
-  .filter-section{position:relative;top:0;padding:20px}
-  .filter-row{flex-direction:column;gap:16px}
-  .filter-actions{margin-left:0;width:100%;justify-content:space-between;flex-wrap:wrap;gap:8px}
-  .filter-group{width:100%}
+  /* Filter bar - collapse to top on mobile */
+  .datasets-layout{flex-direction:column;padding:12px 16px 0}
+  .filter-sidebar{width:100%;position:static;max-height:none;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .filter-sidebar .filter-card{margin-bottom:0}
+  .filter-sidebar .filter-toolbar{grid-column:1/-1}
+  .filter-result-count{display:none}
 
   /* Tables - scrollable */
   .datasets-section{padding:20px}

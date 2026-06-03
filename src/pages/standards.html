@@ -17,25 +17,34 @@
   </div>
 </section>
 
-<section class="filter-section">
-  <div class="filter-content">
-    <div class="filter-row">
-      <div class="filter-group"><span class="filter-label">标准类型</span><div class="filter-chips" id="typeFilters"></div></div>
-      <div class="filter-group"><span class="filter-label">开放程度</span><div class="filter-chips" id="opennessFilters"></div></div>
-      <div class="filter-group"><span class="filter-label">适用场景</span><div class="filter-chips" id="sceneFilters"></div></div>
-      <div class="filter-actions">
-        <select class="sort-select" id="sortSelect"><option value="year" selected>时间排序 ↓</option><option value="name">名称排序</option></select>
-        <div class="view-toggle">
-          <button class="view-btn active" data-view="table" title="表格视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></button>
-          <button class="view-btn" data-view="card" title="卡片视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></button>
-        </div>
-        <button class="clear-filters" onclick="clearFilters()">清除筛选</button>
+<div class="datasets-layout">
+<aside class="filter-sidebar">
+  <div class="filter-toolbar">
+    <div class="filter-toolbar-left">
+      <select class="sort-select" id="sortSelect"><option value="year" selected>时间 ↓</option><option value="name">名称</option></select>
+      <div class="view-toggle">
+        <button class="view-btn active" data-view="table" title="表格视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></button>
+        <button class="view-btn" data-view="card" title="卡片视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></button>
       </div>
     </div>
+    <button class="clear-filters" onclick="clearFilters()">清除</button>
   </div>
-</section>
+  <span class="filter-result-count" style="display:block;margin-bottom:10px"></span>
+  <div class="filter-card">
+    <div class="filter-card-header"><span class="filter-card-icon">📂</span><span class="filter-card-label">标准类型</span></div>
+    <div class="filter-chips" id="typeFilters"></div>
+  </div>
+  <div class="filter-card">
+    <div class="filter-card-header"><span class="filter-card-icon">🔓</span><span class="filter-card-label">开放程度</span></div>
+    <div class="filter-chips" id="opennessFilters"></div>
+  </div>
+  <div class="filter-card">
+    <div class="filter-card-header"><span class="filter-card-icon">🌐</span><span class="filter-card-label">适用场景</span></div>
+    <div class="filter-chips" id="sceneFilters"></div>
+  </div>
+</aside>
 
-<section class="datasets-section">
+<main class="datasets-main">
   <div class="table-view" id="tableView">
     <table class="d-table">
       <thead><tr><th style="width:40px"><input type="checkbox" class="std-checkbox" id="selectAll" title="全选"></th><th>标准名称</th><th>发布组织</th><th style="width:72px">发布时间</th><th>类型</th><th>开放程度</th><th>适用场景</th><th>数据模态</th><th>相关链接</th></tr></thead>
@@ -44,7 +53,8 @@
   </div>
   <div class="card-view" id="cardView"></div>
   <div class="pagination" id="pagination"></div>
-</section>
+</main>
+</div>
 
 <div class="compare-bar" id="compareBar">
   <span class="compare-bar-text">已选择 <span id="compareCount">0</span> 个标准</span>
@@ -142,6 +152,7 @@ function update(){
   var f=filterData();buildFilters();renderTable(f);renderCards(f);renderPagination(f);
   document.getElementById('tableView').style.display=state.view==='table'?'block':'none';
   document.getElementById('cardView').classList.toggle('active',state.view==='card');
+  var rc=document.querySelector('.filter-result-count');if(rc)rc.textContent='找到 '+f.length+' 个标准';
 }
 
 function toggleSelect(id){

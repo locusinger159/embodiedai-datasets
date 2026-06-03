@@ -72,6 +72,11 @@
     "standards": [
       "rlds",
       "oxe-schema"
+    ],
+    "tags": [
+      "大规模",
+      "RLDS",
+      "跨具身"
     ]
   },
   {
@@ -143,6 +148,11 @@
     },
     "standards": [
       "hdf5-robomimic"
+    ],
+    "tags": [
+      "模仿学习",
+      "扩散策略",
+      "HDF5"
     ]
   },
   {
@@ -206,7 +216,8 @@
     },
     "standards": [
       "hdf5-robomimic"
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "roboset",
@@ -261,7 +272,8 @@
     },
     "standards": [
       "rlds"
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "libero",
@@ -316,7 +328,8 @@
     "standards": [
       "libero",
       "hdf5-robomimic"
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "meta-world",
@@ -370,7 +383,8 @@
     },
     "standards": [
       "metaworld"
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "rlbench",
@@ -429,7 +443,8 @@
     },
     "standards": [
       "rlbench"
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "maniskill2",
@@ -486,7 +501,8 @@
     },
     "standards": [
       "maniskill2"
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "calvin",
@@ -543,7 +559,8 @@
     },
     "standards": [
       "calvin"
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "ario",
@@ -598,7 +615,8 @@
     },
     "standards": [
       "rlds"
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "ocrl",
@@ -648,7 +666,8 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "tags": []
   },
   {
     "id": "rt-1-data",
@@ -708,7 +727,8 @@
     "standards": [
       "rlds",
       "oxe-schema"
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "robocat-data",
@@ -766,7 +786,8 @@
     "standards": [
       "rlds",
       "oxe-schema"
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "t-diffusion-data",
@@ -824,7 +845,8 @@
     "standards": [
       "rlds",
       "oxe-schema"
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "agibot-world",
@@ -847,7 +869,8 @@
       "LiDAR",
       "力控",
       "本体状态",
-      "动作"
+      "动作",
+      "IMU"
     ],
     "type": "open",
     "links": {
@@ -913,6 +936,14 @@
     "standards": [
       "agibot-world",
       "rlds"
+    ],
+    "tags": [
+      "世界模型",
+      "全身控制",
+      "遥操作",
+      "灵巧手",
+      "触觉",
+      "LiDAR"
     ]
   },
   {
@@ -980,6 +1011,11 @@
     },
     "standards": [
       "rlds"
+    ],
+    "tags": [
+      "触觉",
+      "双臂",
+      "RLDS"
     ]
   },
   {
@@ -1034,7 +1070,8 @@
     },
     "standards": [
       "rlds"
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "gr-1-dataset",
@@ -1097,7 +1134,15 @@
       "annotation": "Action labels",
       "realWorld": "Real robot data",
       "hasSplit": false
-    }
+    },
+    "tags": [
+      "遥操作",
+      "灵巧手",
+      "双臂",
+      "LeRobot",
+      "ACT",
+      "DP"
+    ]
   },
   {
     "id": "nvidia-gr1-simulation",
@@ -1161,7 +1206,12 @@
       "annotation": "Auto-annotated (with language instructions)",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "tags": [
+      "仿真",
+      "世界模型",
+      "LeRobot"
+    ]
   },
   {
     "id": "h1-dataset",
@@ -1223,7 +1273,11 @@
       "annotation": "Auto-annotated (kinematic retargeting output)",
       "realWorld": "Simulation (kinematic-level, not dynamics)",
       "hasSplit": false
-    }
+    },
+    "tags": [
+      "运动控制",
+      "人形"
+    ]
   },
   {
     "id": "unifolm-wbt-dataset",
@@ -1285,7 +1339,13 @@
       "annotation": "Auto-annotated + language instructions",
       "realWorld": "Real robot data",
       "hasSplit": false
-    }
+    },
+    "tags": [
+      "全身控制",
+      "遥操作",
+      "世界模型",
+      "RLDS"
+    ]
   },
   {
     "id": "fmtc",
@@ -1338,7 +1398,8 @@
     },
     "standards": [
       "hdf5-robomimic"
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "digit-dataset",
@@ -1388,7 +1449,10 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "tags": [
+      "触觉"
+    ]
   },
   {
     "id": "tactip-datasets",
@@ -1437,7 +1501,10 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "tags": [
+      "触觉"
+    ]
   },
   {
     "id": "graspnet-1billion",
@@ -1492,7 +1559,8 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "tags": []
   },
   {
     "id": "dexnet-2-0",
@@ -1545,7 +1613,8 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "tags": []
   },
   {
     "id": "matterport3d",
@@ -1600,7 +1669,8 @@
     },
     "standards": [
       "habitat"
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "robonat",
@@ -1657,7 +1727,8 @@
     },
     "standards": [
       "rlds"
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "humanoid-everyday",
@@ -1718,7 +1789,12 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "tags": [
+      "人形",
+      "运动控制",
+      "家居"
+    ]
   },
   {
     "id": "dexora",
@@ -1726,7 +1802,8 @@
     "institution": "多所高校联合",
     "scale": "12.2K 真机 + 100K 仿真",
     "robotType": [
-      "机械臂"
+      "机械臂",
+      "灵巧手"
     ],
     "task": [
       "操作",
@@ -1774,7 +1851,12 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "tags": [
+      "灵巧手",
+      "双臂",
+      "Sim-to-Real"
+    ]
   },
   {
     "id": "realsource",
@@ -1831,7 +1913,8 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "tags": []
   },
   {
     "id": "10kh-realomni",
@@ -1889,6 +1972,9 @@
     },
     "standards": [
       "lerobot"
+    ],
+    "tags": [
+      "多视角"
     ]
   },
   {
@@ -1948,6 +2034,11 @@
     },
     "standards": [
       "rlds"
+    ],
+    "tags": [
+      "接触",
+      "力控",
+      "触觉"
     ]
   },
   {
@@ -2006,7 +2097,10 @@
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "tags": [
+      "人形"
+    ]
   },
   {
     "id": "uniact",
@@ -2077,6 +2171,10 @@
     },
     "standards": [
       "rlds"
+    ],
+    "tags": [
+      "VLA",
+      "跨具身"
     ]
   },
   {
@@ -2159,6 +2257,13 @@
     "standards": [
       "rlds",
       "lerobot"
+    ],
+    "tags": [
+      "世界模型",
+      "VLA",
+      "RLDS",
+      "LeRobot",
+      "移动操作"
     ]
   },
   {
@@ -2231,6 +2336,11 @@
     "standards": [
       "rlds",
       "oxe-schema"
+    ],
+    "tags": [
+      "大规模",
+      "RLDS",
+      "跨具身"
     ]
   },
   {
@@ -2303,6 +2413,11 @@
     "standards": [
       "droid",
       "rlds"
+    ],
+    "tags": [
+      "大规模",
+      "RLDS",
+      "语言标注"
     ]
   },
   {
@@ -2376,6 +2491,11 @@
     },
     "standards": [
       "hdf5-robomimic"
+    ],
+    "tags": [
+      "数据生成",
+      "仿真",
+      "HDF5"
     ]
   },
   {
@@ -2450,6 +2570,11 @@
     "standards": [
       "hdf5-robomimic",
       "openusd"
+    ],
+    "tags": [
+      "数据生成",
+      "仿真",
+      "家居"
     ]
   },
   {
@@ -2528,6 +2653,10 @@
     },
     "standards": [
       "openusd"
+    ],
+    "tags": [
+      "语言标注",
+      "仿真基准"
     ]
   },
   {
@@ -2591,7 +2720,12 @@
       "annotation": "自动记录（机器人状态/动作）",
       "realWorld": "100%真机",
       "hasSplit": true
-    }
+    },
+    "tags": [
+      "大规模",
+      "视频理解",
+      "跨机器人"
+    ]
   },
   {
     "id": "ego4d",
@@ -2666,6 +2800,10 @@
       "annotation": "人工标注（多轮多语言）",
       "realWorld": "100%真实第一人称",
       "hasSplit": true
-    }
+    },
+    "tags": [
+      "多模态",
+      "视频理解"
+    ]
   }
 ]

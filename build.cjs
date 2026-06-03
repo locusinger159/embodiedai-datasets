@@ -30,7 +30,7 @@ const UI = {
     siteDesc: '全球具身智能、机器人、人形机器人数据集情报站',
     home: '首页', datasets: '全部数据集', standards: '数据标准', tools: '工具/平台', submit: '提交数据集', blog: '技术博客',
     typeLabels: { open: '开源', partial: '部分开源', apply: '可申请', closed: '闭源' },
-    robotLabels: { humanoid: '人形机器人', arm: '机械臂', mobile: '移动机器人', quadruped: '四足机器人', multi: '多机型', '触觉传感': '触觉传感', '仿真': '仿真' },
+    robotLabels: { humanoid: '人形机器人', arm: '机械臂', mobile: '移动机器人', quadruped: '四足机器人', multi: '多机型', '触觉传感': '触觉传感', '仿真': '仿真', '灵巧手': '灵巧手' },
     taskLabels: { '操作': '操作', '抓取': '抓取', '导航': '导航', '装配': '装配', '家居': '家居', '交互': '交互', '运动控制': '运动控制' },
     standardTypeLabels: { format: '数据格式', benchmark: '评测基准', industry: '行业标准', closed: '商业闭源' },
     opennessLabels: { open: '完全开源', partial: '部分开源', standard: '行业标准', closed: '闭源' },
@@ -41,7 +41,7 @@ const UI = {
     siteDesc: 'A global intelligence hub for embodied AI, humanoid robots, and robotics datasets',
     home: 'Home', datasets: 'Datasets', standards: 'Standards', tools: 'Tools & Platforms', submit: 'Submit', blog: 'Blog',
     typeLabels: { open: 'Open', partial: 'Partial', apply: 'Apply', closed: 'Closed' },
-    robotLabels: { humanoid: 'Humanoid', arm: 'Arm', mobile: 'Mobile', quadruped: 'Quadruped', multi: 'Multi-Type', '触觉传感': 'Tactile', '仿真': 'Simulation' },
+    robotLabels: { humanoid: 'Humanoid', arm: 'Arm', mobile: 'Mobile', quadruped: 'Quadruped', multi: 'Multi-Type', '触觉传感': 'Tactile', '仿真': 'Simulation', '灵巧手': 'Dexterous Hand' },
     taskLabels: { '操作': 'Manipulation', '抓取': 'Grasping', '导航': 'Navigation', '装配': 'Assembly', '家居': 'Household', '交互': 'Interaction', '运动控制': 'Locomotion' },
     standardTypeLabels: { format: 'Data Format', benchmark: 'Benchmark', industry: 'Industry Standard', closed: 'Proprietary' },
     opennessLabels: { open: 'Fully Open', partial: 'Partially Open', standard: 'Industry Standard', closed: 'Proprietary' },
@@ -371,6 +371,8 @@ function buildAll(lang) {
   hasSplitYes: isEn ? 'Yes' : '有',
   hasSplitNo: isEn ? 'No' : '无',
   noResults: isEn ? 'No matching datasets found.' : '没有匹配的数据集。',
+  tagFilter: isEn ? 'Trending Tags' : '热门标签',
+  resultCount: isEn ? 'Found' : '找到',
 })};`;
   fs.mkdirSync(`${outDir}/datasets`, { recursive: true });
   fs.writeFileSync(`${outDir}/datasets/index.html`, buildPage(`${templateDir}datasets.html`, {

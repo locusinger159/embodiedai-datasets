@@ -17,29 +17,43 @@
   </div>
 </section>
 
-<section class="filter-section">
-  <div class="filter-content">
-    <div class="filter-row">
-      <div class="filter-group"><span class="filter-label" id="labelRobot">机器人类型</span><div class="filter-chips" id="robotFilters"></div></div>
-      <div class="filter-group"><span class="filter-label" id="labelTask">任务类型</span><div class="filter-chips" id="taskFilters"></div></div>
-      <div class="filter-group"><span class="filter-label" id="labelOpenness">开放程度</span><div class="filter-chips" id="opennessFilters"></div></div>
-      <div class="filter-actions">
-        <select class="sort-select" id="sortSelect"><option value="year" id="sortOptionYear" selected>时间排序 ↓</option><option value="name" id="sortOptionName">名称排序</option><option value="org" id="sortOptionOrg">机构排序</option></select>
-        <div class="view-toggle">
-          <button class="view-btn active" data-view="table" title="表格视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></button>
-          <button class="view-btn" data-view="card" title="卡片视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></button>
-        </div>
-        <button class="clear-filters" onclick="clearFilters()" id="clearFiltersBtn">清除筛选</button>
+<div class="datasets-layout">
+<aside class="filter-sidebar">
+  <div class="filter-toolbar">
+    <div class="filter-toolbar-left">
+      <select class="sort-select" id="sortSelect"><option value="year" id="sortOptionYear" selected>时间 ↓</option><option value="name" id="sortOptionName">名称</option><option value="org" id="sortOptionOrg">机构</option></select>
+      <div class="view-toggle">
+        <button class="view-btn active" data-view="table" title="表格视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></button>
+        <button class="view-btn" data-view="card" title="卡片视图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></button>
       </div>
     </div>
+    <button class="clear-filters" onclick="clearFilters()" id="clearFiltersBtn">清除</button>
   </div>
-</section>
+  <span class="filter-result-count" id="resultCount" style="display:block;margin-bottom:10px"></span>
+  <div class="filter-card">
+    <div class="filter-card-header"><span class="filter-card-icon">🤖</span><span class="filter-card-label" id="labelRobot">机器人类型</span></div>
+    <div class="filter-chips" id="robotFilters"></div>
+  </div>
+  <div class="filter-card">
+    <div class="filter-card-header"><span class="filter-card-icon">📋</span><span class="filter-card-label" id="labelTask">任务类型</span></div>
+    <div class="filter-chips" id="taskFilters"></div>
+  </div>
+  <div class="filter-card">
+    <div class="filter-card-header"><span class="filter-card-icon">🔓</span><span class="filter-card-label" id="labelOpenness">开放程度</span></div>
+    <div class="filter-chips" id="opennessFilters"></div>
+  </div>
+  <div class="filter-card">
+    <div class="filter-card-header"><span class="filter-card-icon">🏷️</span><span class="filter-card-label" id="labelTags">热门标签</span></div>
+    <div class="filter-chips" id="tagFilters"></div>
+  </div>
+</aside>
 
-<section class="datasets-section">
+<main class="datasets-main">
   <div class="table-view" id="tableView"><table class="d-table"><thead><tr><th style="width:40px"><input type="checkbox" class="std-checkbox" id="selectAllDS" title="全选"></th><th>数据集名称</th><th>机构</th><th style="width:72px">发布时间</th><th>机器人类型</th><th>任务类型</th><th>开放程度</th><th>相关链接</th></tr></thead><tbody id="datasetsTableBody"></tbody></table></div>
   <div class="card-view" id="cardView"></div>
   <div class="pagination" id="pagination"></div>
-</section>
+</main>
+</div>
 
 <div class="compare-bar" id="compareBarDS">
   <span class="compare-bar-text"><span id="compareTextPrefix">已选择 </span><span id="compareCountDS">0</span><span id="compareTextSuffix"> 个数据集</span></span>
@@ -58,7 +72,7 @@
 <script>
 {{I18N_JS}}
 const DS = {{DATASETS_JSON}};
-var isMobile=window.innerWidth<=768;var state={search:'',robot:[],task:[],type:[],page:1,ps:15,sort:'year',sortDir:'desc',view:isMobile?'card':'table'};
+var isMobile=window.innerWidth<=768;var state={search:'',robot:[],task:[],type:[],tags:[],page:1,ps:15,sort:'year',sortDir:'desc',view:isMobile?'card':'table'};
 var I=window.I18N||{};var tL=I.typeLabels||{open:'开源',partial:'部分开源',apply:'可申请',closed:'闭源'};
 document.addEventListener('DOMContentLoaded',function(){var a=document.getElementById('labelRobot'),b=document.getElementById('labelTask'),c=document.getElementById('labelOpenness');if(a)a.textContent=I.robotType||a.textContent;if(b)b.textContent=I.taskType||b.textContent;if(c)c.textContent=I.openness||c.textContent;var d=document.getElementById('searchInput');if(d)d.placeholder=I.searchPlaceholder||d.placeholder;var e=document.getElementById('sortOptionName'),f=document.getElementById('sortOptionOrg'),y=document.getElementById('sortOptionYear');if(e)e.textContent=I.sortName||e.textContent;if(f)f.textContent=I.sortOrg||f.textContent;if(y)y.textContent=I.sortYear||y.textContent;var g=document.getElementById('clearFiltersBtn');if(g)g.textContent=I.clearFilters||g.textContent;var h=document.getElementById('compareModalTitle');if(h)h.textContent=I.compareTitle||h.textContent});
 var cL={open:'type-open',partial:'type-partial',apply:'type-partial',closed:'type-closed'};
@@ -71,9 +85,15 @@ function buildFilters(){
   var rts=[...new Set(DS.flatMap(function(d){return d.robotType||[]}))].sort();
   var tks=[...new Set(DS.flatMap(function(d){return d.task||[]}))].sort();
   var tps=[...new Set(DS.map(function(d){return d.type}))];
-  document.getElementById('robotFilters').innerHTML=rts.map(function(r){return '<button class="filter-chip'+(state.robot.includes(r)?' active':'')+'" data-f="robot" data-v="'+r+'">'+rL(r)+'</button>'}).join('');
-  document.getElementById('taskFilters').innerHTML=tks.map(function(t){return '<button class="filter-chip'+(state.task.includes(t)?' active':'')+'" data-f="task" data-v="'+t+'">'+tL2(t)+'</button>'}).join('');
-  document.getElementById('opennessFilters').innerHTML=tps.map(function(t){return '<button class="filter-chip'+(state.type.includes(t)?' active':'')+'" data-f="type" data-v="'+t+'">'+tL[t]+'</button>'}).join('');
+  // Tags: only show tags used by >=2 datasets to reduce noise
+  var tagCount={};DS.forEach(function(d){(d.tags||[]).forEach(function(t){tagCount[t]=(tagCount[t]||0)+1})});
+  var allTags=[...new Set(DS.flatMap(function(d){return d.tags||[]}))].filter(function(t){return tagCount[t]>=2}).sort();
+  // Count per filter
+  function cnt(field,val){return DS.filter(function(d){return (d[field]||[]).indexOf(val)>-1}).length}
+  document.getElementById('robotFilters').innerHTML=rts.map(function(r){var n=cnt('robotType',r);return '<button class="filter-chip'+(state.robot.includes(r)?' active':'')+'" data-f="robot" data-v="'+r+'">'+rL(r)+(n?'<span class="chip-count">'+n+'</span>':'')+'</button>'}).join('');
+  document.getElementById('taskFilters').innerHTML=tks.map(function(t){var n=cnt('task',t);return '<button class="filter-chip'+(state.task.includes(t)?' active':'')+'" data-f="task" data-v="'+t+'">'+tL2(t)+(n?'<span class="chip-count">'+n+'</span>':'')+'</button>'}).join('');
+  document.getElementById('opennessFilters').innerHTML=tps.map(function(t){var n=DS.filter(function(d){return d.type===t}).length;return '<button class="filter-chip'+(state.type.includes(t)?' active':'')+'" data-f="type" data-v="'+t+'">'+tL[t]+'<span class="chip-count">'+n+'</span></button>'}).join('');
+  document.getElementById('tagFilters').innerHTML=allTags.map(function(t){var n=DS.filter(function(d){return (d.tags||[]).indexOf(t)>-1}).length;return '<button class="filter-chip'+(state.tags.includes(t)?' active':'')+'" data-f="tags" data-v="'+t+'">'+t+(n?'<span class="chip-count">'+n+'</span>':'')+'</button>'}).join('');
   bindFilterChips();
 }
 
@@ -89,6 +109,7 @@ function filterData(){
   if(state.robot.length)r=r.filter(function(d){return state.robot.some(function(v){return (d.robotType||[]).indexOf(v)>-1})});
   if(state.task.length)r=r.filter(function(d){return state.task.some(function(v){return (d.task||[]).indexOf(v)>-1})});
   if(state.type.length)r=r.filter(function(d){return state.type.indexOf(d.type)>-1});
+  if(state.tags.length)r=r.filter(function(d){return state.tags.some(function(v){return (d.tags||[]).indexOf(v)>-1})});
   if(state.sort){r.sort(function(a,b){var va=state.sort==='year'?((a.citation||{}).year||0):(a[state.sort]||''),vb=state.sort==='year'?((b.citation||{}).year||0):(b[state.sort]||'');if(Array.isArray(va))va=va.join(',');if(Array.isArray(vb))vb=vb.join(',');var cmp=state.sort==='year'?va-vb:String(va).localeCompare(String(vb),'zh');return state.sortDir==='asc'?cmp:-cmp})}
   return r;
 }
@@ -103,7 +124,7 @@ function renderTable(data){
 function renderCards(data){
   var start=(state.page-1)*state.ps,page=data.slice(start,start+state.ps);
   document.getElementById('cardView').innerHTML=page.map(function(d){
-    return '<div class="data-card'+(selectedDS.has(d.id)?' selected':'')+'" onclick="location.href=\'/datasets/'+d.id+'/\'" style="cursor:pointer;position:relative"><input type="checkbox" class="std-card-checkbox" '+(selectedDS.has(d.id)?'checked':'')+' onclick="event.stopPropagation()" onchange="toggleDS(\''+d.id+'\')"><div class="card-header"><div><div class="card-title">'+d.name+'</div><div class="card-org">'+(d.institution||'-')+' · '+((d.citation||{}).year||'—')+'</div></div><span class="type-badge '+cL[d.type]+'">'+tL[d.type]+'</span></div>'+(d.notes?'<p class="card-desc">'+d.notes+'</p>':'')+'<div class="card-meta"><span class="card-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>'+(d.robotType||[]).map(function(r){return rL(r)}).join(', ')+'</span></div><div class="card-footer"><div class="data-tags">'+(d.task||[]).slice(0,2).map(function(t){return '<span class="data-tag card-tag">'+tL2(t)+'</span>'}).join('')+'</div><a href="/datasets/'+d.id+'/" class="link-btn">查看 →</a></div></div>';
+    return '<div class="data-card'+(selectedDS.has(d.id)?' selected':'')+'" onclick="location.href=\'/datasets/'+d.id+'/\'" style="cursor:pointer;position:relative"><input type="checkbox" class="std-card-checkbox" '+(selectedDS.has(d.id)?'checked':'')+' onclick="event.stopPropagation()" onchange="toggleDS(\''+d.id+'\')"><div class="card-header"><div><div class="card-title">'+d.name+'</div><div class="card-org">'+(d.institution||'-')+' · '+((d.citation||{}).year||'—')+'</div></div><span class="type-badge '+cL[d.type]+'">'+tL[d.type]+'</span></div>'+(d.notes?'<p class="card-desc">'+d.notes+'</p>':'')+'<div class="card-meta"><span class="card-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>'+(d.robotType||[]).map(function(r){return rL(r)}).join(', ')+'</span></div><div class="card-footer"><div class="data-tags">'+(d.tags||[]).slice(0,2).map(function(t){return '<span class="data-tag">'+t+'</span>'}).join('')+(d.task||[]).slice(0,2).map(function(t){return '<span class="data-tag card-tag">'+tL2(t)+'</span>'}).join('')+'</div><a href="/datasets/'+d.id+'/" class="link-btn">查看 →</a></div></div>';
   }).join('');
 }
 
@@ -122,10 +143,11 @@ function update(){
   var f=filterData();buildFilters();renderTable(f);renderCards(f);renderPagination(f);
   document.getElementById('tableView').style.display=state.view==='table'?'block':'none';
   document.getElementById('cardView').classList.toggle('active',state.view==='card');
+  document.getElementById('resultCount').textContent='找到 '+f.length+' 个数据集';
 }
 
 function handleSearch(){state.search=document.getElementById('searchInput').value;state.page=1;update()}
-function clearFilters(){state.search='';state.robot=[];state.task=[];state.type=[];state.page=1;document.getElementById('searchInput').value='';update()}
+function clearFilters(){state.search='';state.robot=[];state.task=[];state.type=[];state.tags=[];state.page=1;document.getElementById('searchInput').value='';update()}
 function goPage(p){state.page=p;update();window.scrollTo({top:400,behavior:'smooth'})}
 document.getElementById('searchInput').addEventListener('keypress',function(e){if(e.key==='Enter')handleSearch()});
 document.getElementById('sortSelect').addEventListener('change',function(){var v=this.value;state.sort=v==='name'?'name':'institution';update()});
