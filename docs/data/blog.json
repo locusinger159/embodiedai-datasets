@@ -1,11 +1,44 @@
 [
   {
+    "id": "ai-semantic-search",
+    "title": "我们给一个纯静态网站接入了 AI 语义搜索，没有用向量数据库",
+    "titleEn": "We Added AI Semantic Search to a Static Site — No Vector Database Required",
+    "date": "2026-06-03",
+    "tags": [
+      "AI 搜索",
+      "Embedding",
+      "技术实践",
+      "产品更新"
+    ],
+    "tagsEn": [
+      "AI Search",
+      "Embedding",
+      "Technical Practice",
+      "Product Update"
+    ],
+    "summary": "在 43 个数据集、19 个标准、11 个工具中做语义搜索，需要多少基础设施？我们的答案是：一个 1.1MB 的 JSON 文件 + 一个阿里云函数计算实例。",
+    "summaryEn": "How much infrastructure does it take to add semantic search across 43 datasets, 19 standards, and 11 tools? Our answer: a 1.1MB JSON file and one Alibaba Cloud Function Compute instance.",
+    "contentHtml": "<p>今天，Superdata RobotAI 上线了 AI 语义搜索功能。你可以在网站右下角找到那个 🔍 按钮，输入自然语言描述你的需求——比如「我要做人形机器人双臂操作抓取数据集」——系统会自动从 43 个数据集、19 个数据标准和 11 个工具中匹配最相关的结果。</p><h2>为什么做这个</h2><p>我们的导航站收录了 73 个实体（数据集 + 标准 + 工具），每个实体都有丰富的标签：机器人类型、任务类型、数据模态、协议、机构等。传统的搜索方式是关键词匹配——你搜「人形机器人」，只能召回标签里含这四个字的条目。</p><p>但用户的搜索习惯不是这样的。有人会搜「双足运动控制数据」——这需要理解「双足」≈「人形机器人」+「运动控制」任务。有人会搜「大规模真实操作数据」，这涉及多个标签的组合。纯关键词匹配做不到。</p><h2>方案：文本嵌入 + 余弦相似度</h2><p>核心思路很简单：把每个实体的关键信息（名称、描述、类型、任务、模态、机构等）拼成一段文本，用阿里云百炼的 text-embedding-v4 模型（通义千问）生成一个 2048 维的向量。用户的查询也同样向量化，然后做余弦相似度匹配。</p><p>整个嵌入索引不到 1.1MB——73 个实体 × 2048 维 × 4 字节 = 约 600KB，加上元数据总共 1.1MB。不需要 Pinecone，不需要 Chroma，不需要 Milvus，一个 JSON 文件就够了。</p><h2>还不够：keyword boost</h2><p>纯语义嵌入有盲区。比如搜「仿真环境下的导航训练」，语义上可能偏向操作类数据集（因为整体语料中操作类占多数），而我们真正想找的是 Habitat、Gibson、iGibson 这些仿真平台。</p><p>解决方案是<strong>混合检索</strong>：从查询中提取结构化关键词（人形机器人 → 类型字段，抓取 → 任务字段），与实体的标签做精确匹配，命中后加分。嵌入负责语义泛化，关键词负责精确命中，两者互补。</p><h2>架构：零成本运维</h2><p><strong>前端</strong>：纯静态站点（GitHub Pages），右下角浮动搜索组件，200 行 vanilla JS。</p><p><strong>后端</strong>：阿里云函数计算（FC），一个 Web 函数处理所有搜索请求。<a href=\"https://www.aliyun.com/product/fc\" target=\"_blank\" rel=\"noopener\">阿里云 FC</a> 免费额度每月 100 万次调用，我们的规模完全在免费线内。</p><p><strong>嵌入 API</strong>：阿里云百炼 text-embedding-v4，新用户 100 万 token 免费额度。73 个实体的嵌入生成只消耗约 15K token。</p><p>整条链路月成本：<strong>¥0</strong>。</p><h2>效果</h2><p>实测几个典型查询：</p><ul><li>「人形机器人双臂操作抓取」→ GR-1 ActionNet 88%、Dexora 83%、Humanoid Everyday 82%</li><li>「触觉传感器数据」→ DIGIT Dataset 85%、TacTip Datasets 78%，工具侧 TACTO 77%、PyTouch 72%</li><li>「仿真环境下的导航训练」→ Gibson 67%、iGibson 57%、Isaac Sim 56%（全部命中工具板块）</li></ul><h2>下一步：AI 助手</h2><p>目前的搜索是「检索式」的——返回匹配列表，用户自己判断。下一步的计划是接入 LLM（通义千问或 DeepSeek），让系统不只是「搜到相关数据」，而是能<strong>给出结构化的建议方案</strong>：推荐哪个数据集 + 配套什么工具 + 参考哪个标准。</p><p>如果你有具体的使用场景或反馈，欢迎在右下角搜索框试试，然后通过评论区告诉我们。</p><hr><p style=\"color:var(--text-light);font-size:13px;margin-top:32px\"><strong>技术栈：</strong>阿里云百炼 text-embedding-v4（2048-dim）· 阿里云函数计算 FC · GitHub Pages · vanilla JS。全部代码开源在 <a href=\"https://github.com/locusinger159/embodiedai-datasets\" target=\"_blank\" rel=\"noopener\">GitHub</a>。</p>",
+    "contentHtmlEn": "<p>Today, Superdata RobotAI launched AI-powered semantic search. Click the 🔍 button in the bottom-right corner of any page, type your query in natural language — like \"I need humanoid dual-arm manipulation grasping dataset\" — and the system matches the most relevant results from 43 datasets, 19 data standards, and 11 tools.</p><h2>Why We Built This</h2><p>Our navigator indexes 73 entities (datasets + standards + tools), each with rich tags: robot type, task type, data modality, license, institution, etc. Traditional search was keyword-based — search \"humanoid robot\" and you only get entries whose tags literally contain those words.</p><p>But that's not how people search. Someone might query \"bipedal locomotion control data\" — which requires understanding that \"bipedal\" ≈ \"humanoid\" + \"locomotion\" task. Or \"large-scale real-world manipulation data\" — a multi-tag combination. Pure keyword matching falls short.</p><h2>Approach: Text Embeddings + Cosine Similarity</h2><p>The core idea is simple: concatenate each entity's key information (name, description, type, task, modality, institution) into a text string, then generate a 2048-dimensional vector using Alibaba Cloud Bailian's text-embedding-v4 model (Qwen). User queries are vectorized the same way, and we compute cosine similarity.</p><p>The entire embedding index is less than 1.1MB — 73 entities × 2048 dims × 4 bytes ≈ 600KB, plus metadata = 1.1MB total. No Pinecone, no Chroma, no Milvus. Just a single JSON file.</p><h2>Not Enough: Keyword Boost</h2><p>Pure semantic embeddings have blind spots. A query like \"simulation-based navigation training\" might semantically drift toward manipulation datasets (because the overall corpus is manipulation-heavy), when what we really want is Habitat, Gibson, iGibson — simulation platforms.</p><p>The solution is <strong>hybrid retrieval</strong>: extract structured keywords from the query (humanoid → robot type field, grasping → task field), match them against entity tags, and boost matches. Embeddings handle semantic generalization, keywords handle precision. They complement each other.</p><h2>Architecture: Zero-Cost Operations</h2><p><strong>Frontend</strong>: Pure static site (GitHub Pages), floating search widget, 200 lines of vanilla JS.</p><p><strong>Backend</strong>: Alibaba Cloud Function Compute (FC), a single Web Function handling all search requests. The free tier covers 1 million invocations per month — our scale stays well within that.</p><p><strong>Embedding API</strong>: Alibaba Cloud Bailian text-embedding-v4, 1 million free tokens for new users. Embedding all 73 entities consumed ~15K tokens.</p><p>Total monthly cost: <strong>$0</strong>.</p><h2>Results</h2><p>Real query examples:</p><ul><li>\"humanoid dual-arm manipulation grasping\" → GR-1 ActionNet 88%, Dexora 83%, Humanoid Everyday 82%</li><li>\"tactile sensor data\" → DIGIT Dataset 85%, TacTip Datasets 78%, tools: TACTO 77%, PyTouch 72%</li><li>\"simulation navigation training\" → Gibson 67%, iGibson 57%, Isaac Sim 56% (all hitting the Tools section)</li></ul><h2>Next: AI Assistant</h2><p>Current search is retrieval-based — returning a ranked list for users to evaluate. The next step is integrating an LLM (Qwen or DeepSeek), so the system doesn't just \"find relevant data\" but <strong>provides structured recommendations</strong>: which dataset to use + which tools to pair + which standard to follow.</p><p>Try the search box on the site and let us know what you think via the comments section.</p><hr><p style=\"color:var(--text-light);font-size:13px;margin-top:32px\"><strong>Tech Stack:</strong> Alibaba Cloud Bailian text-embedding-v4 (2048-dim) · Alibaba Cloud Function Compute · GitHub Pages · vanilla JS. All code open-sourced on <a href=\"https://github.com/locusinger159/embodiedai-datasets\" target=\"_blank\" rel=\"noopener\">GitHub</a>.</p>",
+    "author": "Superdata RobotAI"
+  },
+  {
     "id": "uniact-dataset-deep-dive",
     "title": "UniACT 数据集深度解析：高德如何用 600 万轨迹统一具身智能数据格式",
     "titleEn": "UniACT Dataset Deep Dive: How AMAP Unified 6M+ Trajectories for Cross-Embodiment VLA Training",
     "date": "2026-06-02",
-    "tags": ["数据集解析", "VLA", "数据标准", "动作表示"],
-    "tagsEn": ["Dataset Analysis", "VLA", "Data Standards", "Action Representation"],
+    "tags": [
+      "数据集解析",
+      "VLA",
+      "数据标准",
+      "动作表示"
+    ],
+    "tagsEn": [
+      "Dataset Analysis",
+      "VLA",
+      "Data Standards",
+      "Action Representation"
+    ],
     "summary": "高德 AMAP CV Lab 发布的 UniACT 数据集整合了 6 个主流开源数据集，覆盖 20+ 种机器人形态，通过统一的末端执行器增量动作+旋转向量格式，为 VLA 模型预训练提供了跨具身数据基础。",
     "summaryEn": "UniACT by AMAP CV Lab integrates 6 major open-source datasets across 20+ robot embodiments, unifying them into a delta-pose + rotation-vector action format for cross-embodiment VLA pretraining.",
     "contentHtml": "<p>2026 年 3 月 31 日，高德 AMAP CV Lab 随 ABot-M0 模型开源发布了 <strong>UniACT 数据集</strong>——一个整合 6 个主流开源数据集、覆盖 20+ 种机器人形态、总计 600 万+ 轨迹的超大规模具身智能数据资源。</p><h2>UniACT 是什么</h2><p>UniACT（Universal Action Dataset）并非从零采集的新数据集，而是一个<strong>「数据标准化层」</strong>。它将 OXE、OXE-AugE、AgiBot-Beta、RoboCoin、RoboMind、Galaxea 这 6 个异构数据集统一处理，输出一份格式一致的训练语料。</p><p>核心挑战在于：不同数据集的动作空间、传感器配置、机器人形态差异巨大。Open X-Embodiment 使用绝对末端位姿，AgiBot-Beta 使用关节角度，Galaxea 则是双臂协同——把它们塞进同一个训练 batch，需要一套统一表示。</p><h2>技术核心：统一动作表示</h2><p>UniACT 的解决方案是：</p><ul><li><strong>动作统一</strong>：全部转换为末端执行器增量动作（delta pose）+ 旋转向量（rotation vector），消除绝对位姿和关节空间的差异</li><li><strong>双臂填充</strong>：单臂数据集自动填充为双臂格式，缺失臂的动作置零，确保模型输入维度一致</li><li><strong>标准化管线</strong>：官方 GitHub 仓库提供完整的数据构建脚本，一行命令即可复现</li></ul><p>这套设计的直接受益者是 <strong>VLA（视觉-语言-动作）模型</strong>。ABot-M0 在 UniACT 上预训练后，在多个操作基准上展现了强大的泛化能力。</p><h2>规模与覆盖</h2><ul><li><strong>600 万+ 轨迹</strong>，9500+ 小时数据</li><li><strong>20+ 机器人形态</strong>：从单臂 WidowX 到双臂人形机器人</li><li><strong>6 个源数据集</strong>：涵盖抓取、操作、长序列任务等多种场景</li><li><strong>Apache 2.0 许可</strong>：可商用</li></ul><h2>避坑提示</h2><p>注意区分<strong>高德 UniACT</strong> 和 <strong>清华 UniAct（2025）</strong>——前者是 AMAP CV Lab 发布的数据集，后者是清华/商汤提出的通用动作框架。名字几乎一样，但完全是两回事。</p><h2>获取方式</h2><p>UniACT 不提供一键下载包——你需要 clone 官方仓库，下载 6 个源数据集，然后运行标准化脚本自行构建。仓库中也提供了 ABot-M0 的预训练权重，可直接用于推理或微调。</p><p>GitHub：<a href=\"https://github.com/amap-cvlab/ABot-Manipulation\" target=\"_blank\" rel=\"noopener\">github.com/amap-cvlab/ABot-Manipulation</a></p><p>项目主页：<a href=\"https://amap-cvlab.github.io/ABot-Manipulation\" target=\"_blank\" rel=\"noopener\">amap-cvlab.github.io/ABot-Manipulation</a></p><p>论文：<a href=\"https://arxiv.org/abs/2602.11236\" target=\"_blank\" rel=\"noopener\">arxiv.org/abs/2602.11236</a></p><hr><p style=\"color:var(--text-light);font-size:13px;margin-top:32px\"><strong>免责声明：</strong>以上信息均来自网络公开资料（GitHub、arXiv、项目主页），仅做信息汇总与技术分析，不构成任何商业建议。数据集版权归原机构/作者所有。如有不准确之处，欢迎通过评论区指正。</p>",
@@ -17,8 +50,12 @@
     "title": "欢迎来到 EmbodiedAI Datasets 博客",
     "titleEn": "Welcome to the EmbodiedAI Datasets Blog",
     "date": "2026-06-01",
-    "tags": ["公告"],
-    "tagsEn": ["Announcement"],
+    "tags": [
+      "公告"
+    ],
+    "tagsEn": [
+      "Announcement"
+    ],
     "summary": "这是第一篇博客文章，介绍具身智能数据集导航站的博客板块。",
     "summaryEn": "The first blog post introducing the EmbodiedAI Datasets blog section.",
     "contentHtml": "<p>这是 EmbodiedAI Datasets 博客的第一篇文章。在这里，我们将分享具身智能数据集的最新动态、技术分析和行业洞察。</p>",
