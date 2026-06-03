@@ -100,9 +100,11 @@
 
   async function doSearch() {
     var q = input.value.trim();
-    if (q.length < 2) return;
+    if (q.length < 1) { body.innerHTML = '<div class="search-empty">请输入搜索内容</div>'; return; }
+    if (q.length < 2) { body.innerHTML = '<div class="search-empty">请输入至少 2 个字符</div>'; return; }
     submit.disabled = true;
     body.innerHTML = '<div class="loading"><div class="spinner"></div><div style="margin-top:12px">正在搜索...</div></div>';
+    console.log('[Search] query:', q);
 
     try {
       var res = await fetch(API, {
@@ -115,7 +117,8 @@
       if (data.error) throw new Error(data.error);
       render(data);
     } catch (err) {
-      body.innerHTML = '<div class="search-error">搜索失败：' + esc(err.message) + '<br><small>请确保 API 端点已配置</small></div>';
+      console.error('[Search] error:', err);
+      body.innerHTML = '<div class="search-error">搜索失败：' + esc(err.message) + '<br><small>请检查网络连接，或稍后重试</small></div>';
     }
     submit.disabled = false;
   }
