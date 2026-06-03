@@ -20,7 +20,7 @@ const partnerNames = [...allOrgs].slice(0, 12);
 // i18n UI strings
 const UI = {
   zh: {
-    siteTitle: '具身智能数据集导航 | EmbodiedAI Datasets',
+    siteTitle: 'Superdata RobotAI — 具身智能数据集导航',
     siteDesc: '全球具身智能、机器人、人形机器人数据集情报站',
     home: '首页', datasets: '全部数据集', standards: '数据标准', submit: '提交数据集', blog: '技术博客',
     typeLabels: { open: '开源', partial: '部分开源', apply: '可申请', closed: '闭源' },
@@ -31,7 +31,7 @@ const UI = {
     sceneLabels: { real: '真机', sim: '仿真', general: '通用' },
   },
   en: {
-    siteTitle: 'EmbodiedAI Datasets | Robotics Dataset Navigator',
+    siteTitle: 'Superdata RobotAI — Robotics Dataset Navigator',
     siteDesc: 'A global intelligence hub for embodied AI, humanoid robots, and robotics datasets',
     home: 'Home', datasets: 'Datasets', standards: 'Standards', submit: 'Submit', blog: 'Blog',
     typeLabels: { open: 'Open', partial: 'Partial', apply: 'Apply', closed: 'Closed' },
@@ -217,7 +217,7 @@ function buildAll(lang) {
     }
 
     return buildPage('src/pages/dataset-detail.html', {
-      meta: `<title>${esc(ds.name)} | EmbodiedAI Datasets</title><meta name="description" content="${esc((ds.notes || ds.description || '').substring(0, 160))}">`,
+      meta: `<title>${esc(ds.name)} | Superdata RobotAI</title><meta name="description" content="${esc((ds.notes || ds.description || '').substring(0, 160))}">`,
       nav: getActiveNav('datasets'),
       NAME: esc(ds.name),
       TYPE_LABEL: typeLabel[ds.type] || ds.type,
@@ -299,7 +299,7 @@ function buildAll(lang) {
     const modalitiesHTML = (ss.modalities || []).length ? (ss.modalities || []).join('、') : '-';
 
     return buildPage('src/pages/standard-detail.html', {
-      meta: `<title>${esc(ss.name)} | EmbodiedAI Datasets</title><meta name="description" content="${esc(ss.desc.substring(0, 160))}">`,
+      meta: `<title>${esc(ss.name)} | Superdata RobotAI</title><meta name="description" content="${esc(ss.desc.substring(0, 160))}">`,
       nav: getActiveNav('standards'),
       NAME: esc(ss.name),
       FULLNAME: esc(ss.fullName || ''),
@@ -360,7 +360,7 @@ function buildAll(lang) {
 })};`;
   fs.mkdirSync(`${outDir}/datasets`, { recursive: true });
   fs.writeFileSync(`${outDir}/datasets/index.html`, buildPage(`${templateDir}datasets.html`, {
-    meta: `<title>${ui.datasets} | EmbodiedAI Datasets</title><meta name="description" content="${isEn ? 'Browse all embodied AI and robotics datasets' : '浏览全部具身智能、机器人数据集'}">`,
+    meta: `<title>${ui.datasets} | Superdata RobotAI</title><meta name="description" content="${isEn ? 'Browse all embodied AI and robotics datasets' : '浏览全部具身智能、机器人数据集'}">`,
     nav: getActiveNav('datasets'),
     I18N_JS: i18nJS,
     DATASETS_JSON: JSON.stringify(dataDatasets)
@@ -376,7 +376,7 @@ function buildAll(lang) {
   // ── Standards list page ───────────────────────────────────
   fs.mkdirSync(`${outDir}/standards`, { recursive: true });
   fs.writeFileSync(`${outDir}/standards/index.html`, buildPage(`${templateDir}standards.html`, {
-    meta: `<title>${ui.standards} | EmbodiedAI Datasets</title><meta name="description" content="${isEn ? 'Industry data standards and benchmarks for embodied AI' : '具身智能行业数据标准与评测基准'}">`,
+    meta: `<title>${ui.standards} | Superdata RobotAI</title><meta name="description" content="${isEn ? 'Industry data standards and benchmarks for embodied AI' : '具身智能行业数据标准与评测基准'}">`,
     nav: getActiveNav('standards'),
     STANDARDS_JSON: JSON.stringify(dataStandards)
   }));
@@ -391,7 +391,7 @@ function buildAll(lang) {
   // ── Submit page ──────────────────────────────────────────
   fs.mkdirSync(`${outDir}/submit`, { recursive: true });
   fs.writeFileSync(`${outDir}/submit/index.html`, buildPage(`${templateDir}submit.html`, {
-    meta: `<title>${ui.submit} | EmbodiedAI Datasets</title><meta name="description" content="${isEn ? 'Submit a new embodied AI dataset' : '提交新的具身智能数据集'}">`,
+    meta: `<title>${ui.submit} | Superdata RobotAI</title><meta name="description" content="${isEn ? 'Submit a new embodied AI dataset' : '提交新的具身智能数据集'}">`,
     nav: getActiveNav('submit')
   }));
 
@@ -417,7 +417,7 @@ function buildAll(lang) {
 
     // Blog list page
     fs.writeFileSync(blogDir + '/index.html', buildPage('src/pages/blog.html', {
-      meta: '<title>' + ui.blog + ' | EmbodiedAI Datasets</title><meta name="description" content="' + (isEn ? 'Technical blog on embodied AI datasets and data standards' : '具身智能数据集技术博客') + '">',
+      meta: '<title>' + ui.blog + ' | Superdata RobotAI</title><meta name="description" content="' + (isEn ? 'Technical blog on embodied AI datasets and data standards' : '具身智能数据集技术博客') + '">',
       nav: getActiveNav('blog'),
       BLOG_CARDS: blogCardsHTML,
       BLOG_PAGE_TITLE: isEn ? 'Technical Blog' : '技术博客',
@@ -433,11 +433,11 @@ function buildAll(lang) {
       const tags = isEn ? (post.tagsEn || post.tags) : post.tags;
 
       fs.writeFileSync(detailDir + '/index.html', buildPage('src/pages/blog-detail.html', {
-        meta: '<title>' + esc(title) + ' | EmbodiedAI Datasets</title><meta name="description" content="' + esc((isEn ? (post.summaryEn || post.summary) : post.summary).substring(0, 160)) + '">',
+        meta: '<title>' + esc(title) + ' | Superdata RobotAI</title><meta name="description" content="' + esc((isEn ? (post.summaryEn || post.summary) : post.summary).substring(0, 160)) + '">',
         nav: getActiveNav('blog'),
         BLOG_TITLE: esc(title),
         BLOG_DATE: esc(post.date),
-        BLOG_AUTHOR: esc(post.author || 'EmbodiedAI Datasets'),
+        BLOG_AUTHOR: esc(post.author || 'Superdata RobotAI'),
         BLOG_AUTHOR_LABEL: isEn ? 'By' : '作者',
         BLOG_TAGS: (tags || []).map(t => '<span class="blog-tag">' + esc(t) + '</span>').join(''),
         BLOG_CONTENT: content,
@@ -448,7 +448,7 @@ function buildAll(lang) {
     // RSS feed (only for Chinese build, placed at dist root)
     if (!isEn) {
       const rssItems = blogPosts.map(p => '<item><title>' + esc(p.title) + '</title><link>https://superdata-robotai.com/blog/' + esc(p.id) + '/</link><description>' + esc(p.summary) + '</description><pubDate>' + new Date(p.date).toUTCString() + '</pubDate><guid>https://superdata-robotai.com/blog/' + esc(p.id) + '/</guid></item>').join('\n');
-      const rss = '<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n<channel>\n  <title>EmbodiedAI Datasets Blog</title>\n  <link>https://superdata-robotai.com/blog/</link>\n  <description>具身智能数据集技术博客</description>\n  <language>zh-CN</language>\n' + rssItems + '\n</channel>\n</rss>';
+      const rss = '<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n<channel>\n  <title>Superdata RobotAI Blog</title>\n  <link>https://superdata-robotai.com/blog/</link>\n  <description>具身智能数据集技术博客</description>\n  <language>zh-CN</language>\n' + rssItems + '\n</channel>\n</rss>';
       fs.writeFileSync('dist/rss.xml', rss);
     }
   }
@@ -484,7 +484,7 @@ function buildAll(lang) {
   const formatsDir = outDir + '/formats';
   fs.mkdirSync(formatsDir, { recursive: true });
   fs.writeFileSync(formatsDir + '/index.html', buildPage('src/pages/formats.html', {
-    meta: '<title>' + (isEn ? 'Data Format Panorama' : '数据格式全景图') + ' | EmbodiedAI Datasets</title>',
+    meta: '<title>' + (isEn ? 'Data Format Panorama' : '数据格式全景图') + ' | Superdata RobotAI</title>',
     nav: getActiveNav('datasets'),
     FORMATS_JSON: JSON.stringify(buildFormatData(dataDatasets)),
     FORMATS_PAGE_TITLE: isEn ? 'Data Format Panorama' : '数据格式全景图',
@@ -600,7 +600,7 @@ function buildAll(lang) {
   const proposalDir = outDir + '/standard-proposal';
   fs.mkdirSync(proposalDir, { recursive: true });
   fs.writeFileSync(proposalDir + '/index.html', buildPage('src/pages/standard-proposal.html', {
-    meta: '<title>' + (isEn ? 'Data Standard Proposal' : '数据标准草案') + ' | EmbodiedAI Datasets</title><meta name="description" content="' + (isEn ? 'A community draft for unified embodied AI data format' : '具身智能统一数据格式社区草案') + '">',
+    meta: '<title>' + (isEn ? 'Data Standard Proposal' : '数据标准草案') + ' | Superdata RobotAI</title><meta name="description" content="' + (isEn ? 'A community draft for unified embodied AI data format' : '具身智能统一数据格式社区草案') + '">',
     nav: getActiveNav('standards'),
     PROPOSAL_TITLE: isEn ? 'Embodied AI Data Standard Proposal' : '具身智能数据标准草案',
     PROPOSAL_SUBTITLE: isEn ? 'A community draft for unified embodied AI data format — based on analysis of ' + dataDatasets.length + ' datasets' : '基于 ' + dataDatasets.length + ' 个数据集的分析 — 统一数据格式社区草案',
