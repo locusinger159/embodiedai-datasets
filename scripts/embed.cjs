@@ -20,6 +20,9 @@ if (!DASHSCOPE_KEY) {
   process.exit(1);
 }
 
+const DIM = 2048;
+const BATCH = 6;
+
 // Load data
 const datasets = JSON.parse(fs.readFileSync('docs/data/datasets.json', 'utf8'));
 const standards = JSON.parse(fs.readFileSync('docs/data/standards.json', 'utf8'));
@@ -28,16 +31,18 @@ const tools = JSON.parse(fs.readFileSync('docs/data/tools.json', 'utf8'));
 // Build text representations for each entity
 function buildText(item, type) {
   const parts = [item.name];
-  // Add description (first 200 chars for embedding)
+  // Repeat name for emphasis (helps embedding focus on the most discriminative field)
+  parts.push(item.name);
+  // Add description (first 300 chars for embedding)
   const desc = type === 'standard' ? item.desc : item.description;
-  if (desc && typeof desc === 'string') parts.push(desc.substring(0, 200));
+  if (desc && typeof desc === 'string') parts.push(desc.substring(0, 300));
   if (item.notes && typeof item.notes === 'string') parts.push(item.notes);
-  // Add structured fields as keywords
-  if (item.robotType && item.robotType.length) parts.push('机器人类型: ' + item.robotType.join(', '));
-  if (item.task && item.task.length) parts.push('任务: ' + item.task.join(', '));
-  if (item.modality && item.modality.length) parts.push('模态: ' + item.modality.join(', '));
-  if (item.license) parts.push('协议: ' + item.license);
-  if (item.institution) parts.push('机构: ' + item.institution);
+  // Structured fields as repeated keywords (higher weight in embedding)
+  if (item.robotType && item.robotType.length) parts.push('类型 ' + item.robotType.join(' ') + ' ' + item.robotType.join(' '));
+  if (item.task && item.task.length) parts.push('任务 ' + item.task.join(' ') + ' ' + item.task.join(' '));
+  if (item.modality && item.modality.length) parts.push('模态 ' + item.modality.join(' '));
+  if (item.license) parts.push('协议 ' + item.license);
+  if (item.institution) parts.push('机构 ' + item.institution);
   return parts.join('。');
 }
 
@@ -65,7 +70,7 @@ async function callEmbedding(texts) {
     body: JSON.stringify({
       model: 'text-embedding-v4',
       input: texts,
-      dimensions: 1024,
+      dimensions: DIM,
       encoding_format: 'float',
     }),
   });
@@ -78,8 +83,6 @@ async function callEmbedding(texts) {
 }
 
 async function main() {
-  // Batch by 25 (DashScope supports batch embedding)
-  const BATCH = 10;
   const allEmbeddings = [];
   const texts = entities.map(e => e.text);
 

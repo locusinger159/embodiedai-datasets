@@ -1,9 +1,7 @@
 /**
  * Superdata RobotAI — AI Search Backend (Alibaba Cloud FC Web Function)
- * Start command: node index.js
- * Port: 9000
- *
- * Uses Bailian (百炼) OpenAI-compatible API for text embedding.
+ * Start: node index.js | Port: 9000
+ * Embedding: Bailian (百炼) text-embedding-v4, 2048-dim
  */
 
 const http = require('http');
@@ -32,7 +30,7 @@ async function embedQuery(text, apiKey) {
     body: JSON.stringify({
       model: 'text-embedding-v4',
       input: text,
-      dimensions: 1024,
+      dimensions: 2048,
       encoding_format: 'float',
     }),
   });
@@ -44,22 +42,51 @@ async function embedQuery(text, apiKey) {
   return json.data[0].embedding;
 }
 
-// Search
-function search(queryVec) {
+// Keyword extraction from query for structured boosting
+function extractKeywords(query) {
+  const keywords = { robotType: [], task: [], modality: [] };
+  const ROBOT_MAP = { '人形': '人形机器人', '机械臂': '机械臂', '移动': '移动机器人', '四足': '四足机器人', '仿真': '仿真', '触觉': '触觉传感', '多机型': '多机型' };
+  const TASK_MAP = { '操作': '操作', '抓取': '抓取', '导航': '导航', '装配': '装配', '家居': '家居', '交互': '交互', '运动控制': '运动控制', '运动': '运动控制', '行走': '运动控制', '双足': '运动控制' };
+  const MOD_MAP = { 'rgb': 'RGB', '深度': '深度', '触觉': '触觉', 'lidar': 'LiDAR', '点云': '点云', '力控': '力控', '动作': '动作', '语言': '语言', '视觉': '视觉' };
+
+  for (const [kw, val] of Object.entries(ROBOT_MAP)) if (query.includes(kw)) keywords.robotType.push(val);
+  for (const [kw, val] of Object.entries(TASK_MAP)) if (query.includes(kw)) keywords.task.push(val);
+  for (const [kw, val] of Object.entries(MOD_MAP)) if (query.toLowerCase().includes(kw.toLowerCase())) keywords.modality.push(val);
+
+  return keywords;
+}
+
+// Keyword boost score (0-20 points added to embedding score)
+function keywordBoost(item, keywords) {
+  let boost = 0;
+  for (const rt of keywords.robotType) if ((item.robotType || []).includes(rt)) boost += 6;
+  for (const t of keywords.task) if ((item.task || []).includes(t)) boost += 5;
+  for (const m of keywords.modality) if ((item.modality || []).includes(m)) boost += 3;
+  return Math.min(boost, 20); // cap at 20
+}
+
+// Search with hybrid scoring (embedding + keyword boost)
+function search(queryVec, query) {
+  const keywords = extractKeywords(query);
+
   const scored = (arr, k) =>
-    arr.map(item => ({ ...item, score: Math.round(cosineSim(queryVec, item.vec) * 100) }))
-       .sort((a, b) => b.score - a.score)
-       .slice(0, k)
-       .map(({ vec, ...rest }) => rest);
+    arr.map(item => {
+      const embScore = Math.round(cosineSim(queryVec, item.vec) * 100);
+      const boost = keywordBoost(item, keywords);
+      return { ...item, score: embScore + boost, _emb: embScore, _kw: boost };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, k)
+    .map(({ vec, _emb, _kw, ...rest }) => rest);
 
   return {
     datasets: scored(embeddings.datasets, 5),
-    standards: scored(embeddings.standards, 2),
-    tools: scored(embeddings.tools, 2),
+    standards: scored(embeddings.standards, 3),
+    tools: scored(embeddings.tools, 5),  // increased from 2 → 5
   };
 }
 
-// CORS and response helpers
+// CORS helpers
 const corsHeaders = {
   'Content-Type': 'application/json',
   'Access-Control-Allow-Origin': '*',
@@ -72,49 +99,33 @@ function json(resp, code, data) {
   resp.end(JSON.stringify(data));
 }
 
-// Create HTTP server
+// HTTP server
 const server = http.createServer(async (req, res) => {
-  // Preflight
   if (req.method === 'OPTIONS') {
-    res.writeHead(204, corsHeaders);
-    res.end();
-    return;
+    res.writeHead(204, corsHeaders); res.end(); return;
   }
-
-  // POST /api/search only
   if (req.method !== 'POST') {
-    json(res, 405, { error: 'Use POST /api/search' });
-    return;
+    json(res, 405, { error: 'Use POST /api/search' }); return;
   }
 
-  // Read body
   let body = '';
   req.on('data', chunk => body += chunk);
   req.on('end', async () => {
     try {
       const { query, lang } = JSON.parse(body || '{}');
       const q = (query || '').trim();
-      if (!q || q.length < 2) {
-        json(res, 400, { error: 'Query too short' });
-        return;
-      }
-      if (q.length > 500) {
-        json(res, 400, { error: 'Query too long' });
-        return;
-      }
+      if (!q || q.length < 2) { json(res, 400, { error: 'Query too short' }); return; }
+      if (q.length > 500) { json(res, 400, { error: 'Query too long' }); return; }
 
       const apiKey = process.env.DASHSCOPE_API_KEY;
-      if (!apiKey) {
-        json(res, 500, { error: 'Server config' });
-        return;
-      }
+      if (!apiKey) { json(res, 500, { error: 'Server config' }); return; }
 
       const vec = await embedQuery(q, apiKey);
-      const results = search(vec);
+      const results = search(vec, q);
 
       json(res, 200, {
         ...results, query: q, lang: lang || 'zh',
-        model: embeddings.model, version: embeddings.version,
+        model: embeddings.model, dim: embeddings.dim, version: embeddings.version,
       });
     } catch (err) {
       console.error('Search error:', err.message);
@@ -124,6 +135,4 @@ const server = http.createServer(async (req, res) => {
 });
 
 const PORT = process.env.PORT || 9000;
-server.listen(PORT, () => {
-  console.log(`Superdata search server running on port ${PORT}`);
-});
+server.listen(PORT, () => console.log(`Superdata search running on port ${PORT}`));
