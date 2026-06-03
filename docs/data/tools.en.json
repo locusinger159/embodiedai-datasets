@@ -449,5 +449,160 @@
     "standards": [
       "habitat"
     ]
+  },
+  {
+    "id": "robomimic",
+    "name": "robomimic",
+    "institution": "ARISE Initiative (Stanford / UT Austin / NVIDIA GEAR)",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "动作",
+      "本体状态"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://robomimic.github.io",
+      "paper": "https://arxiv.org/abs/2108.01974"
+    },
+    "notes": "Imitation learning data processing framework. Converts raw robot data → standardized HDF5. Dataset conversion, observation extraction, splitting, download management. v0.5.0 (June 2025) adds Diffusion Policy, multi-dataset training, language-conditioned policies. Standard format for BridgeData V2, RoboTurk.",
+    "description": "**robomimic** is the premier robot imitation learning data processing and training framework maintained by the ARISE Initiative — one of the most central data tooling pieces in the embodied AI ecosystem.\n\n**Data Processing Pipeline** (raw data → training-ready):\n1. Collect human demos (robosuite's collect_human_demonstrations.py)\n2. Format conversion (convert_robosuite.py → robomimic-compatible HDF5)\n3. Observation extraction (dataset_states_to_obs.py, replay MuJoCo states to generate image observations)\n4. Dataset splitting (split_train_val.py, 90-10 split)\n5. Training (train.py, supports BC/BC-RNN/BC-Transformer/Diffusion Policy/IQL)\n\n**HDF5 Standard Structure**: demo_N → states/actions/rewards/dones/obs/next_obs, actions normalized to [-1, 1], images as uint8 channel-last (H, W, C).\n\n**v0.5.0 (June 2025)**: Diffusion Policy, multi-dataset training, language-conditioned policies.\nv0.4.0 (March 2025): robosuite v1.5 compatibility, datasets migrated to HuggingFace.\n\nInstall: pip install robomimic\nGitHub: https://github.com/ARISE-Initiative/robomimic",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "HDF5 (robomimic-compatible format)",
+      "size": "Codebase + HuggingFace-hosted datasets",
+      "compression": "Optional gzip",
+      "schema": "demo_N → states/actions/rewards/dones/obs/next_obs → low_dim + rgb"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "动作",
+        "本体状态"
+      ],
+      "scenes": "Robot manipulation data from robosuite + custom environments",
+      "objects": "N/A (data processing framework)",
+      "tasks": "Format conversion, observation extraction, dataset management, policy training",
+      "episodes": "N/A (framework, not a standalone dataset)",
+      "annotations": [
+        "HDF5 structured metadata",
+        "filter keys for train/val splits"
+      ]
+    },
+    "github": "https://github.com/ARISE-Initiative/robomimic",
+    "huggingface": "",
+    "citation": {
+      "year": 2021,
+      "venue": "CoRL",
+      "authors": "Mandlekar, A. et al."
+    },
+    "changelog": [],
+    "quality": {
+      "collection": "N/A (data processing framework)",
+      "annotation": "Automated observation extraction & format conversion",
+      "realWorld": "N/A",
+      "hasSplit": true
+    }
+  },
+  {
+    "id": "tacto",
+    "name": "TACTO",
+    "institution": "Meta AI (Facebook Research)",
+    "robotType": [
+      "触觉传感",
+      "仿真"
+    ],
+    "task": [
+      "交互"
+    ],
+    "modality": [
+      "触觉",
+      "RGB",
+      "深度"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://github.com/facebookresearch/tacto",
+      "paper": "https://arxiv.org/abs/2012.08456"
+    },
+    "notes": "Meta AI's open-source optical tactile sensor simulator. Generates synthetic tactile data (RGB+depth, >100FPS) for DIGIT, OmniTact, GelSight. PyBullet-based. Companion simulator to PyTouch. pip install tacto.",
+    "description": "**TACTO** is an open-source optical tactile sensor simulator developed by Meta AI (Facebook Research), published in IEEE RA-L 2022.\n\n**Core Capabilities**:\n- High-speed rendering: **>100 FPS** high-resolution tactile images (RGB + depth)\n- Multi-sensor support: **DIGIT, OmniTact, GelSight** — three major optical tactile sensors\n- Physics engine integration: native **PyBullet** support, extensible to other engines\n- Modular design: configurable sensor geometry (size, resolution, lighting)\n\n**Relationship with PyTouch**: TACTO generates synthetic tactile training data → PyTouch processes real tactile data. Together they form a complete tactile perception toolchain.\n\nInstall: pip install tacto\nCommunity: touch-sensing.org #TACTO channel",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "Python library (PyBullet rendering)",
+      "size": "pip installable",
+      "compression": "N/A",
+      "schema": "sensor config → PyBullet simulation → RGB + depth tactile images"
+    },
+    "dataContent": {
+      "sensors": [
+        "触觉",
+        "RGB",
+        "深度"
+      ],
+      "scenes": "Tactile interaction in PyBullet simulation environments",
+      "objects": "DIGIT / OmniTact / GelSight sensor models",
+      "tasks": "Synthetic tactile data generation (RGB tactile images + depth maps)",
+      "episodes": "N/A (simulator, generates on demand)",
+      "annotations": [
+        "Auto-generated tactile images and contact information"
+      ]
+    },
+    "github": "https://github.com/facebookresearch/tacto",
+    "huggingface": "",
+    "citation": {
+      "year": 2022,
+      "venue": "IEEE RA-L",
+      "authors": "Wang, S. et al."
+    },
+    "changelog": [],
+    "quality": {
+      "collection": "Simulation generated (PyBullet)",
+      "annotation": "Auto-rendered output",
+      "realWorld": "仿真",
+      "hasSplit": false
+    }
+  },
+  {
+    "id": "foxglove",
+    "name": "Foxglove / Lichtblick",
+    "institution": "Foxglove (Commercial) / BMW (Open-Source Fork)",
+    "robotType": [
+      "多机型"
+    ],
+    "task": [
+      "交互"
+    ],
+    "modality": [
+      "视觉",
+      "深度",
+      "LiDAR",
+      "本体状态"
+    ],
+    "type": "partial",
+    "links": {
+      "official": "https://foxglove.dev",
+      "paper": ""
+    },
+    "notes": "Robotics data visualization & debugging platform. MCAP/rosbag playback, 3D scenes, time-series plotting. Went closed-source (BUSL-1.1) after Feb 2024. Open-source fork: Lichtblick (BMW, Apache 2.0). MCAP is the default ROS 2 storage format.",
+    "description": "**Foxglove** is the leading robotics data visualization and debugging platform, natively supporting **MCAP** format (ROS 2 Iron+ default storage) recording, playback, and analysis.\n\n**Features**: 3D scene visualization, time-series plotting, multi-file merged playback, H.264/H.265 video decoding, Jupyter Notebook integration. Supports ROS 1/2 bag → MCAP conversion.\n\n**License Status**: After February 2024 (v1.87.0), relicensed under **BUSL-1.1 (commercial)**. Free tier provides basic viewing; Pro plans from $20/month.\n\n**Open-Source Successors**:\n- **Lichtblick** (maintained by BMW): GitHub 692⭐, Apache 2.0, most active open-source fork. Desktop + browser support, compatible with Foxglove bridge protocol.\n  Download: https://github.com/Lichtblick-Suite/lichtblick\n- **Trillium** (Robotnik Automation): MPL 2.0, ~40% smaller build, more resource-friendly.\n  Download: https://github.com/RobotnikAutomation/trillium\n\nMCAP CLI tools remain Apache 2.0 open source: https://github.com/foxglove/mcap",
+    "license": "BUSL-1.1 (Commercial) / Lichtblick: Apache 2.0 (Open Source)",
+    "github": "https://github.com/Lichtblick-Suite/lichtblick",
+    "huggingface": "",
+    "citation": {
+      "year": 2022
+    },
+    "changelog": [],
+    "quality": {
+      "collection": "N/A (visualization tool)",
+      "annotation": "N/A",
+      "realWorld": "N/A",
+      "hasSplit": false
+    }
   }
 ]

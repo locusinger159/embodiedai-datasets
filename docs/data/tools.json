@@ -449,5 +449,160 @@
     "standards": [
       "habitat"
     ]
+  },
+  {
+    "id": "robomimic",
+    "name": "robomimic",
+    "institution": "ARISE Initiative（Stanford / UT Austin / NVIDIA GEAR）",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "动作",
+      "本体状态"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://robomimic.github.io",
+      "paper": "https://arxiv.org/abs/2108.01974"
+    },
+    "notes": "模仿学习数据处理框架。原始机器人数据 → 标准化 HDF5，含数据集转换/观测提取/切分/下载管理。v0.5.0（2025.06）支持 Diffusion Policy、多数据集联合训练、语言条件策略。BridgeData V2、RoboTurk 的标准格式。",
+    "description": "**robomimic** 是 ARISE Initiative 维护的机器人模仿学习数据处理与训练框架，是具身智能数据生态中最核心的数据处理工具之一。\n\n**数据处理管线**（原始数据 → 训练就绪）：\n1. 采集人类演示（robosuite 的 collect_human_demonstrations.py）\n2. 格式转换（convert_robosuite.py → robomimic 兼容 HDF5）\n3. 观测提取（dataset_states_to_obs.py，从 MuJoCo 状态回放生成图像观测）\n4. 数据集切分（split_train_val.py，90-10 划分）\n5. 训练（train.py，支持 BC/BC-RNN/BC-Transformer/Diffusion Policy/IQL 等算法）\n\n**HDF5 标准结构**：demo_N → states/actions/rewards/dones/obs/next_obs，动作归一化至 [-1, 1]，图像为 uint8 channel-last (H, W, C)。\n\n**v0.5.0（2025.06）**：新增 Diffusion Policy、多数据集联合训练、语言条件策略支持。\nv0.4.0（2025.03）：robosuite v1.5 兼容，数据集迁移至 HuggingFace。\n\n下载：pip install robomimic\nGitHub：https://github.com/ARISE-Initiative/robomimic",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "HDF5（robomimic 兼容格式）",
+      "size": "代码库 + HuggingFace 托管数据集",
+      "compression": "可选 gzip",
+      "schema": "demo_N → states/actions/rewards/dones/obs/next_obs → low_dim + rgb"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "动作",
+        "本体状态"
+      ],
+      "scenes": "robosuite + 自定义环境的机器人操作数据",
+      "objects": "N/A（数据处理框架）",
+      "tasks": "数据格式转换、观测提取、数据集管理、策略训练",
+      "episodes": "N/A（框架，非独立数据集）",
+      "annotations": [
+        "HDF5 结构化标注",
+        "filter keys 训练/验证划分"
+      ]
+    },
+    "github": "https://github.com/ARISE-Initiative/robomimic",
+    "huggingface": "",
+    "citation": {
+      "year": 2021,
+      "venue": "CoRL",
+      "authors": "Mandlekar, A. et al."
+    },
+    "changelog": [],
+    "quality": {
+      "collection": "N/A（数据处理框架）",
+      "annotation": "自动化观测提取与格式转换",
+      "realWorld": "N/A",
+      "hasSplit": true
+    }
+  },
+  {
+    "id": "tacto",
+    "name": "TACTO",
+    "institution": "Meta AI（Facebook Research）",
+    "robotType": [
+      "触觉传感",
+      "仿真"
+    ],
+    "task": [
+      "交互"
+    ],
+    "modality": [
+      "触觉",
+      "RGB",
+      "深度"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://github.com/facebookresearch/tacto",
+      "paper": "https://arxiv.org/abs/2012.08456"
+    },
+    "notes": "Meta AI 光学触觉传感器仿真器。为 DIGIT、OmniTact、GelSight 生成合成触觉数据（RGB+深度，>100FPS）。基于 PyBullet，PyTouch 的配套仿真器。pip install tacto。",
+    "description": "**TACTO** 是 Meta AI（Facebook Research）开发的开源光学触觉传感器仿真器，发表于 IEEE RA-L 2022。\n\n**核心能力**：\n- 高速渲染：**>100 FPS** 生成高分辨率触觉图像（RGB + 深度）\n- 多传感器支持：**DIGIT、OmniTact、GelSight** 三种主流光学触觉传感器\n- 物理引擎集成：原生支持 **PyBullet**，可对接其他引擎\n- 模块化设计：可配置传感器几何参数（尺寸、分辨率、光照）\n\n**与 PyTouch 的关系**：TACTO 生成合成触觉训练数据 → PyTouch 处理真实触觉数据，二者形成完整的触觉感知工具链。\n\n安装：pip install tacto\n社区：touch-sensing.org #TACTO 频道",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "Python 库（PyBullet 渲染）",
+      "size": "pip 安装",
+      "compression": "N/A",
+      "schema": "sensor config → PyBullet simulation → RGB + depth tactile images"
+    },
+    "dataContent": {
+      "sensors": [
+        "触觉",
+        "RGB",
+        "深度"
+      ],
+      "scenes": "PyBullet 仿真环境中的触觉交互",
+      "objects": "DIGIT / OmniTact / GelSight 传感器模型",
+      "tasks": "合成触觉数据生成（RGB 触觉图像 + 深度图）",
+      "episodes": "N/A（仿真器，按需生成）",
+      "annotations": [
+        "自动生成的触觉图像与接触信息"
+      ]
+    },
+    "github": "https://github.com/facebookresearch/tacto",
+    "huggingface": "",
+    "citation": {
+      "year": 2022,
+      "venue": "IEEE RA-L",
+      "authors": "Wang, S. et al."
+    },
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成（PyBullet）",
+      "annotation": "自动渲染输出",
+      "realWorld": "仿真",
+      "hasSplit": false
+    }
+  },
+  {
+    "id": "foxglove",
+    "name": "Foxglove / Lichtblick",
+    "institution": "Foxglove（商业）/ BMW（开源 fork）",
+    "robotType": [
+      "多机型"
+    ],
+    "task": [
+      "交互"
+    ],
+    "modality": [
+      "视觉",
+      "深度",
+      "LiDAR",
+      "本体状态"
+    ],
+    "type": "partial",
+    "links": {
+      "official": "https://foxglove.dev",
+      "paper": ""
+    },
+    "notes": "机器人数据可视化与调试平台。支持 MCAP/rosbag 播放、3D 场景、时序绘图。2024.02 后商业闭源（BUSL-1.1），开源社区 fork：Lichtblick（BMW，Apache 2.0）。MCAP 格式为 ROS 2 默认存储格式。",
+    "description": "**Foxglove** 是领先的机器人数据可视化与调试平台，原生支持 **MCAP** 格式（ROS 2 Iron+ 默认存储格式）的录制、播放和分析。\n\n**功能**：3D 场景可视化、时序绘图、多文件合并播放、H.264/H.265 视频解码、Jupyter Notebook 集成。支持 ROS 1/2 bag 转 MCAP。\n\n**协议状态**：2024 年 2 月（v1.87.0）后转为 **BUSL-1.1 商业许可**，不再开源。免费套餐提供基础查看功能，专业版 $20/月起。\n\n**开源后继**：\n- **Lichtblick**（BMW 维护）：GitHub 692⭐，Apache 2.0，最活跃的开源 fork。支持桌面 + 浏览器，兼容 Foxglove bridge 协议。\n  下载：https://github.com/Lichtblick-Suite/lichtblick\n- **Trillium**（Robotnik Automation）：MPL 2.0，体积小 40%，资源更友好。\n  下载：https://github.com/RobotnikAutomation/trillium\n\nMCAP CLI 工具仍为 Apache 2.0 开源：https://github.com/foxglove/mcap",
+    "license": "BUSL-1.1（商业闭源）/ Lichtblick: Apache 2.0（开源）",
+    "github": "https://github.com/Lichtblick-Suite/lichtblick",
+    "huggingface": "",
+    "citation": {
+      "year": 2022
+    },
+    "changelog": [],
+    "quality": {
+      "collection": "N/A（可视化工具）",
+      "annotation": "N/A",
+      "realWorld": "N/A",
+      "hasSplit": false
+    }
   }
 ]
