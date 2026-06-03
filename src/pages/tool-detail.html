@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>{{HEAD}}
+<style>
+.detail-main { max-width:900px; margin:0 auto; padding:120px 48px 60px; }
+.back-link { display:inline-flex; align-items:center; gap:6px; color:var(--text-secondary); font-size:14px; margin-bottom:24px; transition:color 0.2s; }
+.back-link:hover { color:var(--primary); }
+.detail-header { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:8px; flex-wrap:wrap; }
+.detail-name { font-size:36px; font-weight:800; color:var(--text-primary); }
+.detail-org { font-size:18px; color:var(--text-secondary); margin-bottom:24px; }
+.detail-desc { font-size:16px; line-height:1.8; color:var(--text-primary); margin-bottom:40px; }
+.detail-desc p { margin-bottom:16px; }
+.detail-desc p:last-child { margin-bottom:0; }
+.info-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; margin-bottom:40px; }
+.info-card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:20px; }
+.info-card-label { font-size:12px; font-weight:600; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px; }
+.info-card-value { font-size:16px; font-weight:600; color:var(--text-primary); }
+.links-section { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:40px; }
+.link-card { display:inline-flex; align-items:center; gap:8px; padding:14px 24px; background:var(--white); border:1px solid var(--border); border-radius:10px; font-weight:600; font-size:15px; color:var(--text-primary); text-decoration:none; transition:all 0.2s; }
+.link-card:hover { border-color:var(--primary); color:var(--primary); background:rgba(91,124,255,0.03); }
+@media (max-width:768px) { .detail-main{padding:100px 24px 40px} .detail-name{font-size:28px} .info-grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+{{NAVBAR}}
+<main class="detail-main">
+  <a href="/tools/" class="back-link">{{BACK_TO_TOOLS}}</a>
+  <div class="detail-header">
+    <div><h1 class="detail-name">{{NAME}}</h1></div>
+    <span class="type-badge {{TYPE_CLASS}}">{{TYPE_LABEL}}</span>
+  </div>
+  <p class="detail-org">{{INSTITUTION}}</p>
+  <div class="detail-desc">{{DESCRIPTION}}</div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="info-card-label">{{LABEL_INSTITUTION}}</div><div class="info-card-value">{{INSTITUTION}}</div></div>
+    <div class="info-card"><div class="info-card-label">{{LABEL_LICENSE}}</div><div class="info-card-value">{{LICENSE}}</div></div>
+    <div class="info-card"><div class="info-card-label">{{LABEL_ROBOT_TYPE}}</div><div class="info-card-value">{{ROBOT_TYPES}}</div></div>
+    <div class="info-card"><div class="info-card-label">{{LABEL_TASK_TYPE}}</div><div class="info-card-value">{{TASK_TYPES}}</div></div>
+  </div>
+
+  <!-- Links -->
+  {{LINKS}}
+
+  <!-- Citation -->
+  {{CITATION}}
+</main>
+{{FOOTER}}
+
+<script>
+window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>50?'rgba(11,15,26,0.95)':'rgba(11,15,26,0.85)';n.style.boxShadow=y>50?'0 4px 20px rgba(0,0,0,0.3)':'none'})
+</script>
+</body>
+</html>

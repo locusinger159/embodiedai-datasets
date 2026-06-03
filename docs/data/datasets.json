@@ -489,64 +489,6 @@
     ]
   },
   {
-    "id": "robosuite",
-    "name": "RoboSuite",
-    "institution": "UC Berkeley",
-    "scale": "多个仿真环境",
-    "robotType": [
-      "机械臂",
-      "仿真"
-    ],
-    "task": [
-      "操作",
-      "装配"
-    ],
-    "modality": [
-      "仿真状态",
-      "视觉"
-    ],
-    "type": "open",
-    "links": {
-      "official": "https://robosuite.ai",
-      "paper": "https://arxiv.org/abs/2209.12066"
-    },
-    "notes": "模块化仿真框架，适合算法开发和基准测试。",
-    "description": "**RoboSuite** 是基于 MuJoCo 的标准化机器人仿真基准套件。\n\n提供多种机械臂形态、任务环境（桌面操作、移动操作）和标准化 API，支持仿真数据生成、策略训练和基准评估的一体化工作流。",
-    "license": "开源（详见官方链接）",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "多个仿真环境",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [
-        "仿真状态",
-        "视觉"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "2 种任务类型",
-      "episodes": "多个仿真环境",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2020
-    },
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
-    },
-    "standards": [
-      "hdf5-robomimic"
-    ]
-  },
-  {
     "id": "calvin",
     "name": "CALVIN",
     "institution": "Bosch Center for AI、图宾根大学",
@@ -1203,7 +1145,7 @@
   },
   {
     "id": "h1-dataset",
-    "name": "Unitree LAFAN1 Retargeting Dataset",
+    "name": "Unitree LAFAN1 Retargeting Dataset（宇树全身运动重定向数据集）",
     "institution": "宇树科技（Unitree）",
     "robotType": [
       "人形机器人"
@@ -1217,28 +1159,29 @@
     "type": "open",
     "links": {
       "official": "https://huggingface.co/datasets/unitreerobotics/LAFAN1_Retargeting_Dataset",
-      "paper": ""
+      "paper": "https://arxiv.org/abs/2510.02252"
     },
-    "notes": "宇树官方开源全身运动数据集。基于 LAFAN1 动作捕捉数据，通过 Interaction Mesh + IK 重定向到 H1/H1-2/G1 三种人形机器人。30FPS 关节配置序列。",
-    "scale": "3 种人形机器人（H1/H1-2/G1），LAFAN1 动作捕捉重定向",
-    "description": "宇树科技（Unitree）于 **2024 年底**发布的全身运动开源数据集，将 LAFAN1 动作捕捉数据通过数值优化（Interaction Mesh + 逆运动学）重定向到 **H1、H1-2、G1** 三种人形机器人平台。\n\n数据集提供 **30FPS 的关节配置 CSV 文件**，包含舞蹈、踢腿等多种动作序列。\n\n**注意**：重定向仅考虑运动学约束，不含动力学约束或执行器限制，实际部署需结合全身控制（MPC 或强化学习）。\n\n配套可视化工具基于 Pinocchio 物理引擎 + rerun-sdk。该数据集已在 **2025 年春晚**宇树机器人舞蹈表演中被用作训练基础。",
-    "license": "CC BY-NC-ND 4.0",
+    "notes": "宇树官方开源全身运动数据集。将 LAFAN1 动作捕捉数据通过 Interaction Mesh + IK（Pinocchio 库）重定向到 H1/H1-2/G1 三种人形机器人。30FPS 关节配置 CSV，2025 年春晚舞蹈表演训练基础。",
+    "scale": "3 种人形机器人（H1 19关节 / H1-2 25关节 / G1 29关节），LAFAN1 动作捕捉重定向，30FPS CSV",
+    "description": "宇树科技（Unitree）于 **2024 年底**发布的全身运动开源数据集，将 Ubisoft 的 LAFAN1 动作捕捉数据通过数值优化（Interaction Mesh + 逆运动学）重定向到 **H1（19 关节）、H1-2（25 关节）、G1（29 关节）**三种人形机器人平台。\n\n**技术方法**：基于 **Pinocchio** 刚体动力学库（Maestro Consortium）进行运动学重定向，约束条件包括末端执行器姿态、关节位置/速度限制和防脚滑。重定向仅考虑运动学约束，不含动力学约束或执行器限制，实际部署需结合全身控制（MPC 或强化学习）。\n\n**数据格式**：**30FPS 的 CSV 文件**，每行对应一帧，按顺序记录根关节（XYZ + 四元数）及各关节角度。包含舞蹈、踢腿等多种动作序列。\n\n**配套工具**：提供基于 Pinocchio + **rerun-sdk** 的可视化脚本（rerun_visualize.py）。协议：动作数据 **CC BY-NC-ND 4.0**，工具代码 MIT。\n\n**下载**：\n- 官方：https://huggingface.co/datasets/unitreerobotics/LAFAN1_Retargeting_Dataset\n- 镜像：https://huggingface.co/datasets/lvhaidong/LAFAN1_Retargeting_Dataset\n- ModelScope：https://www.modelscope.cn/datasets/AI-ModelScope/LAFAN1_Retargeting_Dataset\n\n**影响**：该数据集已在 **2025 年春晚**宇树机器人舞蹈表演中被用作训练基础。Stanford 等机构的论文 **Retargeting Matters**（arXiv:2510.02252，2025）系统性评估了重定向质量对强化学习策略的影响，将其作为高质量基线对比，项目页：https://jaraujo98.github.io/retargeting_matters",
+    "license": "CC BY-NC-ND 4.0（动作数据）/ MIT（工具代码）",
     "dataFormat": {
       "storage": "CSV（Hugging Face 托管）",
-      "size": "未知",
+      "size": "按机器人型号分目录，30FPS CSV",
       "compression": "无",
       "schema": "per-frame joint configuration → root_joint (XYZ+quaternion) / hip / knee / ankle / shoulder / elbow / wrist"
     },
     "dataContent": {
       "sensors": [],
-      "scenes": "仿真（动作序列）",
+      "scenes": "动作捕捉重定向（运动学级）",
       "objects": "N/A",
-      "tasks": "全身运动动作序列",
-      "episodes": "多段动作捕捉序列",
+      "tasks": "全身运动动作序列（舞蹈、踢腿等）",
+      "episodes": "多段 LAFAN1 动作捕捉序列，按 3 种机器人型号分开",
       "annotations": [
         "动作类型标签",
         "机器人型号",
-        "关节角度/位置"
+        "关节角度/位置",
+        "30FPS 时间戳"
       ]
     },
     "citation": {
@@ -1248,7 +1191,7 @@
       "venue": "Hugging Face"
     },
     "github": "",
-    "huggingface": "https://huggingface.co/datasets/unitreerobotics/LAFAN1_Retargeting_Dataset",
+    "huggingface": "unitreerobotics/LAFAN1_Retargeting_Dataset",
     "changelog": [
       {
         "date": "2024-12",
@@ -1256,233 +1199,72 @@
       }
     ],
     "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注（运动学重定向）",
-      "realWorld": "仿真（运动学级）",
+      "collection": "动作捕捉重定向（运动学仿真）",
+      "annotation": "自动标注（运动学重定向输出）",
+      "realWorld": "仿真（运动学级，非动力学）",
       "hasSplit": false
     }
   },
   {
-    "id": "isaac-sim-dataset",
-    "name": "Isaac Sim",
-    "institution": "NVIDIA",
+    "id": "unifolm-wbt-dataset",
+    "name": "UnifoLM-WBT 全身遥操作真机数据集",
+    "institution": "宇树科技（Unitree）",
+    "scale": "340+ 小时真机数据，189 万条动作轨迹，G1 人形机器人全身遥操作",
     "robotType": [
-      "仿真"
+      "人形机器人"
     ],
     "task": [
-      "操作"
-    ],
-    "modality": [
-      "视觉",
-      "点云",
-      "深度"
-    ],
-    "type": "partial",
-    "links": {
-      "official": "https://developer.nvidia.com/isaac-sim"
-    },
-    "notes": "NVIDIA 高保真机器人仿真平台，含场景模板和 sim-to-real 工具链。",
-    "description": "**NVIDIA Isaac Sim** 是构建在 Omniverse 平台上的机器人仿真工具包。\n\n基于 OpenUSD 构建仿真数据管线，支持大规模并行场景生成、域随机化、传感器仿真和策略训练。是 GR00T 系列模型的核心仿真数据生成平台。",
-    "license": "部分开源",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉",
-        "点云",
-        "深度"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2023
-    },
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
-    },
-    "standards": [
-      "openusd"
-    ]
-  },
-  {
-    "id": "habitat",
-    "name": "Habitat",
-    "institution": "Meta AI",
-    "robotType": [
-      "仿真"
-    ],
-    "task": [
-      "导航"
-    ],
-    "modality": [
-      "视觉",
-      "深度"
-    ],
-    "type": "open",
-    "links": {
-      "official": "https://aihabitat.org",
-      "paper": "https://arxiv.org/abs/1904.01201"
-    },
-    "notes": "大规模室内导航 benchmark，支持 Gibson、Matterport3D 等场景。",
-    "description": "**Habitat** 是 Meta AI 提出的具身导航与交互仿真平台。\n\n定义了标准化场景格式（GLB/glTF）、任务配置（JSON）和传感器规格，支持 Matterport3D、Gibson、HM3D 等 3D 场景数据集，提供 Habitat Challenge 年度基准评测。",
-    "license": "开源（详见官方链接）",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉",
-        "深度"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2019
-    },
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
-    },
-    "standards": [
-      "habitat"
-    ]
-  },
-  {
-    "id": "igibson",
-    "name": "iGibson",
-    "institution": "斯坦福大学",
-    "robotType": [
-      "仿真"
-    ],
-    "task": [
-      "导航",
       "操作",
-      "家居"
+      "运动控制"
     ],
     "modality": [
-      "视觉",
-      "深度",
-      "物理"
+      "RGB",
+      "动作",
+      "本体状态",
+      "视觉"
     ],
     "type": "open",
     "links": {
-      "official": "https://stanfordvl.github.io/igibson",
-      "paper": "https://arxiv.org/abs/2010.08628"
+      "official": "https://huggingface.co/collections/unitreerobotics/unifolm-wbt-dataset",
+      "paper": ""
     },
-    "notes": "交互式家庭仿真环境，支持物理交互。",
-    "description": "**iGibson** 是 Stanford 发布的交互式 3D 家居仿真环境。\n\n基于 PyBullet 物理引擎，提供 15 个完整的交互式家居场景，支持机器人导航、操作和交互任务。场景包含可交互物体（门、抽屉、开关等），适用于具身 AI 研究。",
-    "license": "开源（详见官方链接）",
+    "notes": "宇树 2026 年 3 月开源的 G1 人形机器人全身遥操作真机数据集，340+ 小时、189 万条动作轨迹，Apache 2.0 协议，RLDS 格式。覆盖家庭与工业场景的全身协同操作（行走+抓取+放置）。",
+    "description": "**UnifoLM-WBT（Whole-Body Teleoperation）数据集**是宇树科技于 **2026 年 3 月**发布的 G1 人形机器人旗舰级全身遥操作真机数据集，是全球头部人形机器人厂商首次完全开源高质量全身遥操作数据。\n\n**数据规模**：截至 2026 年 3 月，**340+ 小时**真机采集数据，**189 万条动作轨迹**，持续高频滚动更新。\n\n**核心特色**：强调 **全身协同（whole-body coordination）**——同时记录双足行走、重心动态调整与指尖精细操作，非上下肢分拆采集。这在人形机器人数据集中极为少见，直接支撑全身 VLA 模型训练。\n\n**场景覆盖**：真实家庭与工业开放场景——衣物收纳、家电操作、餐具整理等日常任务。\n\n**数据格式**：行业通用 **RLDS 格式**，可直接用于 Open X-Embodiment 生态和主流 VLA 模型训练。\n协议：**Apache 2.0**（完全开源，可商用）。\n\n**下载**：https://huggingface.co/collections/unitreerobotics/unifolm-wbt-dataset\n\n**UnifoLM 全链路生态**：\n- UnifoLM-WMA-0（2025.09）：世界模型动作框架（仿真引擎）\n- UnifoLM-VLA-0（2026.01）：基于 Qwen2.5-VL-7B 的具身大模型，支持自然语言指令完成 12 大类复杂操作\n- UnifoLM-WBT-Dataset（2026.03）：本数据集，真机全身遥操作\n\n形成「仿真框架 → 大模型 → 真机数据」全链路开源训练栈。",
+    "license": "Apache 2.0（完全开源，可商用）",
     "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "storage": "RLDS（Hugging Face 托管）",
+      "size": "340+ 小时，189 万条轨迹，持续更新",
+      "compression": "标准 RLDS 压缩",
+      "schema": "episode → step → observation → action（RLDS 兼容）"
     },
     "dataContent": {
       "sensors": [
-        "视觉",
-        "深度",
-        "物理"
+        "RGB",
+        "本体状态",
+        "关节状态",
+        "动作"
       ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "3 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
+      "scenes": "真实家庭与工业场景：衣物收纳、家电操作、餐具整理等",
+      "objects": "衣物、家电、餐具等日常家居与工业物品",
+      "tasks": "全身协同操作（行走 + 抓取 + 放置 + 精细操作）",
+      "episodes": "189 万条动作轨迹（340+ 小时）",
+      "annotations": [
+        "自然语言任务指令",
+        "动作标签",
+        "场景标签"
+      ]
     },
     "citation": {
-      "year": 2021
+      "year": 2026
     },
     "github": "",
-    "huggingface": "",
+    "huggingface": "unitreerobotics/unifolm-wbt-dataset",
     "changelog": [],
     "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
-    },
-    "standards": [
-      "openusd",
-      "behavior-1k"
-    ]
-  },
-  {
-    "id": "sapien",
-    "name": "SAPIEN",
-    "institution": "斯坦福大学、上海交通大学",
-    "robotType": [
-      "仿真"
-    ],
-    "task": [
-      "操作"
-    ],
-    "modality": [
-      "视觉",
-      "点云"
-    ],
-    "type": "open",
-    "links": {
-      "official": "https://sapien.ucsd.edu",
-      "paper": "https://arxiv.org/abs/2110.07115"
-    },
-    "notes": "PartNet-Mobility 物体模型，支持高质量部件级操纵。",
-    "description": "**SAPIEN** 是 UCSD 发布的交互式 3D 部件级仿真平台。\n\n提供 **2,000+ 个带有部件级关节信息的高质量 3D 模型**，支持刚体、铰链物理仿真。是 ManiSkill 系列的底层引擎，广泛应用于机器人操作仿真。",
-    "license": "开源（详见官方链接）",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉",
-        "点云"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2020
-    },
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
+      "collection": "真机遥操作采集（全身协同）",
+      "annotation": "自动标注 + 语言指令",
+      "realWorld": "真机实测",
+      "hasSplit": false
     }
   },
   {
@@ -1537,104 +1319,6 @@
     "standards": [
       "hdf5-robomimic"
     ]
-  },
-  {
-    "id": "coppeliasim",
-    "name": "CoppeliaSim",
-    "institution": "Coppelia Robotics",
-    "robotType": [
-      "仿真"
-    ],
-    "task": [
-      "操作"
-    ],
-    "modality": [
-      "视觉"
-    ],
-    "type": "open",
-    "links": {
-      "official": "https://www.coppeliarobotics.com/"
-    },
-    "notes": "跨平台机器人仿真平台，含多种预置场景和模型，适合教育和算法验证。",
-    "description": "**CoppeliaSim**（原 V-REP）是跨平台机器人仿真环境。\n\n支持多种物理引擎（Bullet、ODE、Vortex、Newton），提供丰富的机器人模型库和传感器仿真。是 RLBench 等基准的底层仿真平台，广泛应用于机器人学习和控制研究。",
-    "license": "开源（详见官方链接）",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2013
-    },
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
-    }
-  },
-  {
-    "id": "tactile-toolbox",
-    "name": "TactileToolbox",
-    "institution": "多个高校联合",
-    "robotType": [
-      "触觉传感"
-    ],
-    "task": [
-      "操作"
-    ],
-    "modality": [
-      "触觉"
-    ],
-    "type": "open",
-    "links": {
-      "official": "https://tactile-toolbox.github.io"
-    },
-    "notes": "统一触觉数据格式工具箱，适合触觉学习研究。",
-    "description": "**Tactile Toolbox** 是触觉传感器数据处理与标注工具集。\n\n提供触觉数据采集、预处理、特征提取和可视化的一体化工具链，支持 GelSight、Digit 等多种触觉传感器格式，适用于触觉感知研究。",
-    "license": "开源（详见官方链接）",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [
-        "触觉"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2023
-    },
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "遥操作采集",
-      "annotation": "人工标注",
-      "realWorld": "100%真机",
-      "hasSplit": true
-    }
   },
   {
     "id": "digit-dataset",
@@ -1701,10 +1385,10 @@
     ],
     "type": "open",
     "links": {
-      "official": "http://tactile.fandom.com/wiki/TacTip"
+      "official": "https://data.bristol.ac.uk/data/"
     },
-    "notes": "TacTip GelTip 系列传感器数据，适合主动触觉研究。",
-    "description": "**TacTip Datasets** 是基于 TacTip 柔性触觉传感器的操作数据集系列。\n\n包含多种接触场景下的触觉图像和力学数据，适用于触觉 SLAM、物体识别和灵巧操作研究。",
+    "notes": "Bristol Robotics Lab 光学触觉传感器数据集系列。TacTip 仿生柔性触觉，3D 打印结构 + 内部摄像头追踪形变。包括触觉伺服、超分辨率、纹理分类等多数据集。",
+    "description": "**TacTip 触觉数据集**是由 Bristol Robotics Laboratory（Nathan Lepora 团队）发布的系列光学触觉传感器数据集。\n\nTacTip 是一种仿生柔性光学触觉传感器，通过 3D 打印的仿指纹结构 + 内部摄像头追踪接触形变来感知触觉信息。\n\n**主要数据集**：\n- Bristol 数据仓库：触觉伺服、超分辨率、主动触觉感知等多个数据集，含 tactip-127 和 tactip-331 两种规格\n- Sussex Figshare（2025）：光学触觉纹理分类数据集，15 种纹理，TacTip 拖拽采集，~100FPS\n\n**下载**：\n- Bristol 官方：https://data.bristol.ac.uk/data/ （搜索 TacTip）\n- 纹理分类：https://sussex.figshare.com/articles/dataset/Optical_Tactile_TacTip_Dataset_for_texture_classification/26935696\n\n协议：UK Non-Commercial Government Licence（非商用免费）。",
     "license": "开源（详见官方链接）",
     "dataFormat": {
       "storage": "详见官方链接",
@@ -1724,57 +1408,6 @@
     },
     "citation": {
       "year": 2018
-    },
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "遥操作采集",
-      "annotation": "人工标注",
-      "realWorld": "100%真机",
-      "hasSplit": true
-    }
-  },
-  {
-    "id": "softmanip",
-    "name": "SoftManip",
-    "institution": "多个高校联合",
-    "robotType": [
-      "触觉传感"
-    ],
-    "task": [
-      "操作"
-    ],
-    "modality": [
-      "视觉",
-      "触觉"
-    ],
-    "type": "open",
-    "links": {
-      "official": "http://softmanipulation.com/"
-    },
-    "notes": "软体机器人操纵数据，适合柔性物体处理研究。",
-    "description": "**SoftManip** 是软体机器人操作数据集。\n\n聚焦于软体夹爪和柔性机械臂的操作任务，提供柔性形变数据和力控轨迹，适用于软体机器人控制策略学习。",
-    "license": "开源（详见官方链接）",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉",
-        "触觉"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2024
     },
     "github": "",
     "huggingface": "",
@@ -1893,61 +1526,6 @@
       "realWorld": "100%真机",
       "hasSplit": true
     }
-  },
-  {
-    "id": "gibson",
-    "name": "Gibson",
-    "institution": "斯坦福大学",
-    "robotType": [
-      "仿真"
-    ],
-    "task": [
-      "导航"
-    ],
-    "modality": [
-      "视觉",
-      "深度"
-    ],
-    "type": "open",
-    "links": {
-      "official": "http://gibsonenv.stanford.edu",
-      "paper": "https://arxiv.org/abs/1808.10654"
-    },
-    "notes": "真实场景导航仿真环境。",
-    "description": "**Gibson** 是 Stanford 发布的真实 3D 环境仿真平台。\n\n提供从真实 3D 扫描重建的室内场景，支持机器人导航、感知和交互研究。配套 Matterport3D 数据集使用，是具身导航领域的经典仿真环境。",
-    "license": "开源（详见官方链接）",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉",
-        "深度"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2018
-    },
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
-    },
-    "standards": [
-      "habitat"
-    ]
   },
   {
     "id": "matterport3d",
@@ -2198,7 +1776,8 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://www.realman-robotics.com/"
+      "official": "https://realmanrobot.github.io/real_source_dataset/#/index",
+      "paper": "https://realmanrobot.github.io/real_source_dataset/#/index"
     },
     "notes": "2026年发布，北京人形机器人数据训练中心采集，多模态完整度100%。",
     "description": "**RealSource** 是由 RoboCo 团队发布的真实物体 3D 扫描数据集。\n\n包含大量日常物品的高精度 3D 模型，适用于机器人抓取仿真、Sim-to-Real 迁移和场景重建研究。",

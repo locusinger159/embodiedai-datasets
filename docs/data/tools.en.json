@@ -1,0 +1,453 @@
+[
+  {
+    "id": "robosuite",
+    "name": "RoboSuite",
+    "institution": "UC Berkeley",
+    "scale": "多个仿真环境",
+    "robotType": [
+      "机械臂",
+      "仿真"
+    ],
+    "task": [
+      "操作",
+      "装配"
+    ],
+    "modality": [
+      "仿真状态",
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://robosuite.ai",
+      "paper": "https://arxiv.org/abs/2009.12293"
+    },
+    "notes": "Modular robot simulation framework maintained by Stanford/UT Austin/NVIDIA GEAR. MuJoCo-based. v1.5 (2024) adds humanoid support, custom robot composition, whole-body controllers, Isaac Sim rendering. 9+ standard tasks, 7 robot models, Gymnasium API.",
+    "description": "**RoboSuite** is a modular simulation framework for robot learning, originally developed by Stanford Vision and Learning Lab and now maintained by the **ARISE Initiative (Stanford / UT Austin / NVIDIA GEAR)**.\n\nBuilt on the **MuJoCo** physics engine with standardized benchmark environments.\n\n**v1.5 (Oct 2024) Highlights**:\n- Humanoid robot and diverse embodiment support\n- Custom robot composition (programmatic assembly of new designs)\n- Composite controllers (IK + operational space + joint-space whole-body control)\n- NVIDIA Isaac Sim integration for photorealistic rendering\n\n**Core Features**: 9+ standardized manipulation tasks (Lift, Stack, Nut Assembly, Door, etc.), 7 robot arms + 8 gripper models, multi-modal sensors (RGB, depth, proprioception), Gymnasium API compatible. Sister project **robomimic** for human demo collection and imitation learning.",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "多个仿真环境",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "仿真状态",
+        "视觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "多个仿真环境",
+      "annotations": []
+    },
+    "citation": {
+      "year": 2020,
+      "venue": "arXiv",
+      "authors": "Zhu, Y. et al."
+    },
+    "github": "https://github.com/ARISE-Initiative/robosuite",
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "standards": [
+      "hdf5-robomimic"
+    ]
+  },
+  {
+    "id": "isaac-sim-dataset",
+    "name": "Isaac Sim",
+    "institution": "NVIDIA",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "点云",
+      "深度"
+    ],
+    "type": "partial",
+    "links": {
+      "official": "https://developer.nvidia.com/isaac-sim"
+    },
+    "notes": "NVIDIA's high-performance robot simulation toolkit on Omniverse. OpenUSD-based pipelines for parallel scene generation, domain randomization, sensor simulation, and policy training. Core simulation platform for the GR00T model series.",
+    "description": "**NVIDIA Isaac Sim** is a high-performance robot simulation toolkit built on the **Omniverse** platform.\n\nConstructs simulation data pipelines based on **OpenUSD**, supporting large-scale parallel scene generation, domain randomization, physics-grade sensor simulation (RGB-D, LiDAR, IMU, etc.), and RL/imitation learning policy training.\n\nServes as the core simulation data generation and training/validation platform for NVIDIA's **GR00T** series humanoid robot foundation models. Deeply integrated with Isaac Lab (formerly Isaac Gym) for GPU-accelerated massively parallel simulation.",
+    "license": "NVIDIA Proprietary (free for dev/research)",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "点云",
+        "深度"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {
+      "year": 2023
+    },
+    "github": "https://github.com/NVIDIA/Isaac-Sim",
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "standards": [
+      "openusd"
+    ]
+  },
+  {
+    "id": "habitat",
+    "name": "Habitat",
+    "institution": "Meta AI",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "导航"
+    ],
+    "modality": [
+      "视觉",
+      "深度"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://aihabitat.org",
+      "paper": "https://arxiv.org/abs/2310.13724"
+    },
+    "notes": "Meta AI's high-performance embodied navigation & interaction simulation platform. Habitat 3.0 (2023) supports human-robot collaboration, VR human-in-the-loop, social navigation & rearrangement. HM3D, MatterPort3D, Replica datasets. Annual Habitat Challenge.",
+    "description": "**Habitat** is a high-performance embodied navigation and interaction simulation platform from **Meta AI** (formerly Facebook AI).\n\n**Habitat 3.0 (2023)** introduces human-robot collaboration tasks, high-fidelity human avatar simulation (articulated skeletons + surface rendering), human-in-the-loop interaction (VR/keyboard-mouse), and two core collaboration tasks: Social Navigation and Social Rearrangement.\n\n**Architecture**: Habitat-Sim (high-performance 3D simulator supporting HM3D, MatterPort3D, Gibson, Replica scene datasets) + Habitat-Lab (modular task definition & training library) + Habitat Challenge (annual CVPR Embodied AI Workshop benchmark). Fetch robot achieves 8,000+ steps/second.",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "深度"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {
+      "year": 2023,
+      "venue": "arXiv",
+      "authors": "Puig, X. et al."
+    },
+    "github": "https://github.com/facebookresearch/habitat-sim",
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "standards": [
+      "habitat"
+    ]
+  },
+  {
+    "id": "igibson",
+    "name": "iGibson",
+    "institution": "斯坦福大学",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "导航",
+      "操作",
+      "家居"
+    ],
+    "modality": [
+      "视觉",
+      "深度",
+      "物理"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://stanfordvl.github.io/iGibson",
+      "paper": "https://arxiv.org/abs/2010.08628"
+    },
+    "notes": "StanfordVL interactive 3D home simulation environment (Bullet physics). 15 fully interactive home scenes with manipulable objects (doors, drawers, switches). v2.2 (2024) adds Tiago robot, ROS integration. Successor: OmniGibson (NVIDIA Omniverse).",
+    "description": "**iGibson (Interactive Gibson)** is an interactive 3D home simulation environment developed by Stanford Vision and Learning Lab.\n\nBased on the **Bullet** physics engine, providing 15 fully interactive home scenes (doors, drawers, switches, furniture, etc.) for robot navigation, manipulation, and interaction tasks.\n\n**v2.2 (2024)** added Tiago robot support, ROS integration, object-centric action primitives, and primitive action interface.\n\n**Successor Project**: **OmniGibson** (built on NVIDIA Omniverse) is the team's current next-generation platform, supporting higher-quality rendering and physics simulation.",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "深度",
+        "物理"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "3 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {
+      "year": 2021,
+      "venue": "IROS",
+      "authors": "Shen, B. et al."
+    },
+    "github": "https://github.com/StanfordVL/iGibson",
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "standards": [
+      "openusd",
+      "behavior-1k"
+    ]
+  },
+  {
+    "id": "sapien",
+    "name": "SAPIEN",
+    "institution": "斯坦福大学、上海交通大学",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "点云"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://maniskill.ai/",
+      "paper": "https://arxiv.org/abs/2410.00425"
+    },
+    "notes": "UCSD Hao Su Lab's GPU-parallelized robotics simulation & rendering platform. ManiSkill3 (RSS 2025) achieves 30,000+ FPS, 20+ robot morphologies. SAPIEN 3.0 engine with heterogeneous massively parallel simulation. pip install mani_skill.",
+    "description": "**SAPIEN** is an interactive 3D part-level simulation platform developed by UCSD Hao Su Lab, and **ManiSkill** built on top of it is the state-of-the-art GPU-parallelized robotics simulation and benchmark framework.\n\n**ManiSkill3 (RSS 2025) Key Features**:\n- GPU-parallel simulation + rendering at **30,000+ FPS** (RGB-D + segmentation)\n- 2-3x better GPU memory efficiency than Isaac Lab (128 parallel envs: 4.4GB vs 14.1GB)\n- 12 environment categories, **20+ robots** (humanoids, mobile manipulators, quadrupeds, dexterous hands, etc.)\n- Built-in ReplicaCAD, AI2THOR scenes, heterogeneous parallel simulation support\n- RL (PPO/SAC/TD-MPC2), imitation learning (BC/Diffusion Policy), VLA (Octo/RDT/RT-x) baselines\n\nSAPIEN 3.0 engine provides 2,000+ high-quality 3D models with part-level articulation. Install: pip install --upgrade mani_skill.",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "点云"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {
+      "year": 2024,
+      "venue": "RSS 2025",
+      "authors": "Tao, S. et al."
+    },
+    "github": "https://github.com/haosulab/ManiSkill",
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
+  },
+  {
+    "id": "coppeliasim",
+    "name": "CoppeliaSim",
+    "institution": "Coppelia Robotics",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://www.coppeliarobotics.com/"
+    },
+    "notes": "Cross-platform robot simulation environment (formerly V-REP). V4.10.0 (May 2025), MuJoCo V3.2.6 integration for 2-10x speedup. Multi-engine support (Bullet/ODE/Vortex/Newton). Rich model library & sensor simulation. RLBench backend.",
+    "description": "**CoppeliaSim** (formerly V-REP) is a cross-platform general-purpose robot simulation environment developed and maintained by Coppelia Robotics.\n\n**Latest V4.10.0 (May 2025)**, featuring MuJoCo V3.2.6 integration for **2-10x simulation speedup** and new adhesion functionality.\n\n**Core Features**: Multiple physics engine support (Bullet, ODE, Vortex, Newton, MuJoCo), rich robot model library and sensor simulation (vision, depth, force, IMU, etc.), Python/C/C++/MATLAB/ROS multi-language APIs. Serves as the backend simulation platform for **RLBench** and is widely used in robot learning and control research.",
+    "license": "CoppeliaSim Edu (free) / Commercial (paid)",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {
+      "year": 2013,
+      "authors": "Rohmer, E. et al."
+    },
+    "github": "https://github.com/CoppeliaRobotics/CoppeliaSim",
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
+  },
+  {
+    "id": "pytouch",
+    "name": "PyTouch",
+    "institution": "Meta AI (Facebook Research)",
+    "robotType": [
+      "触觉传感"
+    ],
+    "task": [
+      "交互"
+    ],
+    "modality": [
+      "触觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://facebookresearch.github.io/PyTouch/",
+      "paper": "https://arxiv.org/abs/2105.12791"
+    },
+    "notes": "Meta AI's first ML library for touch processing. PyTorch-based with pre-trained models for touch detection, slip detection, object pose estimation, and contact area estimation. Supports DIGIT, OmniTact, GelSight. pip install pytouch.",
+    "description": "**PyTouch** is Meta AI's (Facebook Research) first dedicated machine learning library for tactile sensing.\n\nBuilt on **PyTorch** with the following pre-trained models:\n- Touch/Contact Detection\n- Slip Detection\n- Object Pose Estimation\n- Contact Area Estimation\n\nSupports **DIGIT, OmniTact, GelSight** and other major optical tactile sensors. Companion **TACTO** tactile simulator generates synthetic data for model training.\nInstall: pip install pytouch.",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "PyTorch models + Python library",
+      "size": "pip installable",
+      "compression": "N/A",
+      "schema": "sensor input → ML model → prediction"
+    },
+    "dataContent": {
+      "sensors": [
+        "触觉"
+      ],
+      "scenes": "Tactile data processing and perception",
+      "objects": "DIGIT / OmniTact / GelSight sensors",
+      "tasks": "Tactile perception (contact detection, slip detection, pose estimation)",
+      "episodes": "N/A (tool library)",
+      "annotations": [
+        "Pretrained model weights",
+        "Tactile data annotations"
+      ]
+    },
+    "github": "https://github.com/facebookresearch/PyTouch",
+    "huggingface": "",
+    "citation": {
+      "year": 2021,
+      "venue": "ICRA",
+      "authors": "Lambeta, M. et al."
+    },
+    "changelog": [],
+    "quality": {
+      "collection": "N/A (tool library)",
+      "annotation": "Pretrained models",
+      "realWorld": "N/A",
+      "hasSplit": false
+    }
+  },
+  {
+    "id": "gibson",
+    "name": "Gibson",
+    "institution": "斯坦福大学",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "导航"
+    ],
+    "modality": [
+      "视觉",
+      "深度"
+    ],
+    "type": "open",
+    "links": {
+      "official": "http://gibsonenv.stanford.edu",
+      "paper": "https://arxiv.org/abs/1808.10654"
+    },
+    "notes": "StanfordVL realistic 3D scene simulation environment. Indoor scenes from real 3D scans for navigation, perception & interaction. Used with Matterport3D. iGibson is the interactive successor. MIT licensed.",
+    "description": "**Gibson Environment (GibsonEnv)** is a realistic 3D scene simulation platform developed by Stanford Vision and Learning Lab.\n\nReconstructs indoor scenes from real 3D scan data, with RGB, depth, semantic segmentation, and other sensor simulation. Used alongside the **Matterport3D** dataset as a classic simulation environment in embodied navigation.\n\n**Successors**: **iGibson** (adds physical interaction + object manipulation) and **OmniGibson** (next-gen platform built on NVIDIA Omniverse). MIT licensed open source.",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "深度"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {
+      "year": 2018,
+      "venue": "CVPR",
+      "authors": "Xia, F. et al."
+    },
+    "github": "https://github.com/StanfordVL/gibsonenv",
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "standards": [
+      "habitat"
+    ]
+  }
+]

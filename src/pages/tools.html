@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>{{HEAD}}
+<style>
+.tools-section { max-width:1400px; margin:0 auto; padding:40px 48px 60px; }
+.tools-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; }
+.tool-card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:24px; transition:all 0.2s; display:flex; flex-direction:column; gap:16px; height:100%; }
+.tool-card:hover { border-color:var(--primary); box-shadow:0 4px 16px rgba(91,124,255,0.08); }
+.tool-card-icon { width:48px; height:48px; border-radius:10px; background:var(--light-bg); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:24px; }
+.tool-card-body { flex:1; min-width:0; display:flex; flex-direction:column; }
+.tool-card-header { display:flex; align-items:center; gap:10px; margin-bottom:6px; flex-wrap:wrap; }
+.tool-card-name { font-size:18px; font-weight:700; }
+.tool-card-name a { color:var(--text-primary); text-decoration:none; }
+.tool-card-name a:hover { color:var(--primary); }
+.tool-card-org { font-size:14px; color:var(--text-secondary); }
+.tool-card-desc { font-size:14px; color:var(--text-secondary); line-height:1.6; margin-top:8px; flex:1; }
+.tool-card-links { display:flex; gap:8px; margin-top:auto; padding-top:12px; flex-wrap:wrap; }
+.tool-card-links a { display:inline-flex; align-items:center; gap:4px; padding:6px 14px; background:var(--light-bg); border-radius:6px; font-size:13px; font-weight:500; color:var(--text-secondary); text-decoration:none; transition:all 0.2s; }
+.tool-card-links a:hover { background:var(--primary); color:var(--white); }
+.tool-detail-link { margin-left:auto; background:var(--primary) !important; color:var(--white) !important; font-weight:600; }
+@media (max-width:1024px) { .tools-grid{grid-template-columns:repeat(2, 1fr)} }
+@media (max-width:768px) { .tools-section{padding:100px 24px 40px} .tools-grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+{{NAVBAR}}
+<section class="page-hero">
+  <div class="page-hero-content">
+    <h1 class="page-hero-title">{{TOOLS_PAGE_TITLE}}</h1>
+    <p class="page-hero-subtitle">{{TOOLS_PAGE_SUBTITLE}}</p>
+  </div>
+</section>
+
+<section class="tools-section">
+  <div id="toolsList"></div>
+</section>
+{{FOOTER}}
+
+<script>
+var TOOLS = {{TOOLS_JSON}};
+var I = window.I18N || {};
+var tL = I.typeLabels || {open:'开源',partial:'部分开源',apply:'可申请',closed:'闭源'};
+var cL = {open:'type-open',partial:'type-partial',apply:'type-partial',closed:'type-closed'};
+var rL = I.robotLabels || {};
+var tkL = I.taskLabels || {};
+
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function getIcon(tool) {
+  var rt = (tool.robotType || [])[0] || '';
+  if (rt === '仿真') return '🖥️';
+  if (rt === '人形机器人') return '🤖';
+  if (rt === '机械臂') return '🦾';
+  return '🔧';
+}
+
+function getPlatform(tool) {
+  var types = tool.robotType || [];
+  return types.map(function(t) { return rL[t] || t; }).join(' · ');
+}
+
+function render() {
+  var h = TOOLS.map(function(tool) {
+    var links = tool.links || {};
+    var linkHtml = '';
+    if (links.official) linkHtml += '<a href="' + links.official + '" target="_blank" rel="noopener">🏠 官网</a>';
+    if (links.paper) linkHtml += '<a href="' + links.paper + '" target="_blank" rel="noopener">📄 论文</a>';
+    if (tool.github) linkHtml += '<a href="' + tool.github + '" target="_blank" rel="noopener">💻 GitHub</a>';
+    if (tool.huggingface) {
+      var hf = tool.huggingface.startsWith('http') ? tool.huggingface : 'https://huggingface.co/' + tool.huggingface;
+      linkHtml += '<a href="' + hf + '" target="_blank" rel="noopener">🤗 HF</a>';
+    }
+
+    return '<div class="tool-card">'
+      + '<div style="display:flex;align-items:center;gap:12px">'
+      + '<div class="tool-card-icon">' + getIcon(tool) + '</div>'
+      + '<div class="tool-card-header" style="margin-bottom:0">'
+      + '<span class="tool-card-name"><a href="/tools/' + tool.id + '/">' + tool.name + '</a></span>'
+      + '<span class="type-badge ' + (cL[tool.type]||'') + '">' + (tL[tool.type]||tool.type) + '</span>'
+      + '</div></div>'
+      + '<div class="tool-card-body">'
+      + '<div class="tool-card-org">' + esc(tool.institution || '') + ' · ' + getPlatform(tool) + '</div>'
+      + '<div class="tool-card-desc">' + esc(tool.notes || '') + '</div>'
+      + '<div class="tool-card-links">' + linkHtml + '<a href="/tools/' + tool.id + '/" class="tool-detail-link">📋 查看详情 →</a></div>'
+      + '</div></div>';
+  }).join('');
+  document.getElementById('toolsList').innerHTML = '<div class="tools-grid">' + h + '</div>';
+}
+
+window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>50?'rgba(11,15,26,0.95)':'rgba(11,15,26,0.85)';n.style.boxShadow=y>50?'0 4px 20px rgba(0,0,0,0.3)':'none'});
+
+render();
+
+window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>50?'rgba(11,15,26,0.95)':'rgba(11,15,26,0.85)';n.style.boxShadow=y>50?'0 4px 20px rgba(0,0,0,0.3)':'none'});
+
+render();
+</script>
+</body>
+</html>

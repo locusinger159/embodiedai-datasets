@@ -22,7 +22,7 @@ const UI = {
   zh: {
     siteTitle: 'Superdata RobotAI — 具身智能数据集导航',
     siteDesc: '全球具身智能、机器人、人形机器人数据集情报站',
-    home: '首页', datasets: '全部数据集', standards: '数据标准', submit: '提交数据集', blog: '技术博客',
+    home: '首页', datasets: '全部数据集', standards: '数据标准', tools: '工具/平台', submit: '提交数据集', blog: '技术博客',
     typeLabels: { open: '开源', partial: '部分开源', apply: '可申请', closed: '闭源' },
     robotLabels: { humanoid: '人形机器人', arm: '机械臂', mobile: '移动机器人', quadruped: '四足机器人', multi: '多机型', '触觉传感': '触觉传感', '仿真': '仿真' },
     taskLabels: { '操作': '操作', '抓取': '抓取', '导航': '导航', '装配': '装配', '家居': '家居', '交互': '交互', '运动控制': '运动控制' },
@@ -33,7 +33,7 @@ const UI = {
   en: {
     siteTitle: 'Superdata RobotAI — Robotics Dataset Navigator',
     siteDesc: 'A global intelligence hub for embodied AI, humanoid robots, and robotics datasets',
-    home: 'Home', datasets: 'Datasets', standards: 'Standards', submit: 'Submit', blog: 'Blog',
+    home: 'Home', datasets: 'Datasets', standards: 'Standards', tools: 'Tools & Platforms', submit: 'Submit', blog: 'Blog',
     typeLabels: { open: 'Open', partial: 'Partial', apply: 'Apply', closed: 'Closed' },
     robotLabels: { humanoid: 'Humanoid', arm: 'Arm', mobile: 'Mobile', quadruped: 'Quadruped', multi: 'Multi-Type', '触觉传感': 'Tactile', '仿真': 'Simulation' },
     taskLabels: { '操作': 'Manipulation', '抓取': 'Grasping', '导航': 'Navigation', '装配': 'Assembly', '家居': 'Household', '交互': 'Interaction', '运动控制': 'Locomotion' },
@@ -54,6 +54,9 @@ function buildAll(lang) {
   const dataStandards = isEn
     ? JSON.parse(fs.readFileSync('docs/data/standards.en.json', 'utf8'))
     : standards;
+  const dataTools = isEn
+    ? JSON.parse(fs.readFileSync('docs/data/tools.en.json', 'utf8'))
+    : JSON.parse(fs.readFileSync('docs/data/tools.json', 'utf8'));
   const navPartial = isEn
     ? fs.readFileSync('src/partials/navbar-en.html', 'utf8')
     : navbar;
@@ -75,6 +78,7 @@ function buildAll(lang) {
       .replace('{{NAV_HOME}}', page === 'home' ? 'active' : '')
       .replace('{{NAV_DATASETS}}', page === 'datasets' ? 'active' : '')
       .replace('{{NAV_STANDARDS}}', page === 'standards' ? 'active' : '')
+      .replace('{{NAV_TOOLS}}', page === 'tools' ? 'active' : '')
       .replace('{{NAV_SUBMIT}}', page === 'submit' ? 'active' : '')
       .replace('{{NAV_BLOG}}', page === 'blog' ? 'active' : '');
   }
@@ -386,6 +390,65 @@ function buildAll(lang) {
     const dir = `${outDir}/standards/${ss.id}`;
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(`${dir}/index.html`, buildStandardDetail(ss));
+  }
+
+  // ── Tools & Platforms list page ───────────────────────────
+  const toolsI18N = {
+    typeLabels: ui.typeLabels,
+    robotLabels: ui.robotLabels,
+    taskLabels: ui.taskLabels,
+  };
+  fs.mkdirSync(`${outDir}/tools`, { recursive: true });
+  fs.writeFileSync(`${outDir}/tools/index.html`, buildPage(`${templateDir}tools.html`, {
+    meta: `<title>${ui.tools} | Superdata RobotAI</title><meta name="description" content="${isEn ? 'Robotics simulation platforms, toolkits, and infrastructure' : '机器人仿真平台、工具链与基础设施'}">`,
+    nav: getActiveNav('tools'),
+    TOOLS_PAGE_TITLE: isEn ? 'Tools & Platforms' : '工具/平台',
+    TOOLS_PAGE_SUBTITLE: isEn ? 'Robotics simulation environments, data toolkits, and infrastructure' : '机器人仿真环境、数据处理工具链与基础设施',
+    TOOLS_JSON: JSON.stringify(dataTools),
+    I18N_JS: `window.I18N = ${JSON.stringify(toolsI18N)};`
+  }));
+
+  // ── Tool detail pages ─────────────────────────────────────
+  for (const tool of dataTools) {
+    const dir = `${outDir}/tools/${tool.id}`;
+    fs.mkdirSync(dir, { recursive: true });
+    const typeLabel = ui.typeLabels;
+    const typeClass = { open:'type-open', partial:'type-partial', apply:'type-partial', closed:'type-closed' };
+    const cit = tool.citation || {};
+    const links = tool.links || {};
+    const robotTypes = (tool.robotType || []).map(r => ui.robotLabels[r] || r).join(', ') || '-';
+    const taskTypes = (tool.task || []).map(t => ui.taskLabels[t] || t).join(', ') || '-';
+
+    let linksHTML = '<div class="links-section">';
+    if (links.official) linksHTML += `<a href="${esc(links.official)}" target="_blank" class="link-card" rel="noopener">🏠 ${isEn ? 'Official Site' : '官方网站'}</a>`;
+    if (links.paper) linksHTML += `<a href="${esc(links.paper)}" target="_blank" class="link-card" rel="noopener">📄 Paper</a>`;
+    if (tool.github) linksHTML += `<a href="${esc(tool.github)}" target="_blank" class="link-card" rel="noopener">💻 GitHub</a>`;
+    if (tool.huggingface) { const hf = tool.huggingface.startsWith('http') ? tool.huggingface : `https://huggingface.co/${tool.huggingface}`; linksHTML += `<a href="${esc(hf)}" target="_blank" class="link-card" rel="noopener">🤗 Hugging Face</a>`; }
+    linksHTML += '</div>';
+
+    let citationHTML = '';
+    if (cit.bibtex) citationHTML = `<div class="section-block"><h2>${isEn ? 'Citation (BibTeX)' : '引用格式 (BibTeX)'}</h2><div class="citation-box"><pre>${esc(cit.bibtex)}</pre></div></div>`;
+    else if (cit.year) citationHTML = `<div class="section-block"><h2>${isEn ? 'Citation' : '引用'}</h2><div class="citation-box"><pre>${esc(cit.authors || tool.institution || '')}, ${cit.year}${cit.venue ? ', ' + cit.venue : ''}</pre></div></div>`;
+
+    fs.writeFileSync(`${dir}/index.html`, buildPage(`${templateDir}tool-detail.html`, {
+      meta: `<title>${esc(tool.name)} | Superdata RobotAI</title><meta name="description" content="${esc((tool.notes || '').substring(0, 160))}">`,
+      nav: getActiveNav('tools'),
+      NAME: esc(tool.name),
+      TYPE_LABEL: typeLabel[tool.type] || tool.type,
+      TYPE_CLASS: typeClass[tool.type] || '',
+      INSTITUTION: esc(tool.institution || ''),
+      DESCRIPTION: formatDescription(tool.description || tool.notes || ''),
+      LICENSE: esc(tool.license || '未知'),
+      ROBOT_TYPES: robotTypes,
+      TASK_TYPES: taskTypes,
+      LINKS: linksHTML,
+      CITATION: citationHTML,
+      BACK_TO_TOOLS: isEn ? '← Back to Tools' : '← 返回工具/平台',
+      LABEL_INSTITUTION: isEn ? 'Institution' : '机构',
+      LABEL_LICENSE: isEn ? 'License' : '协议',
+      LABEL_ROBOT_TYPE: isEn ? 'Platform Type' : '平台类型',
+      LABEL_TASK_TYPE: isEn ? 'Use Case' : '适用场景',
+    }));
   }
 
   // ── Submit page ──────────────────────────────────────────

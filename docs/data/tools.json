@@ -1,0 +1,453 @@
+[
+  {
+    "id": "robosuite",
+    "name": "RoboSuite",
+    "institution": "UC Berkeley",
+    "scale": "多个仿真环境",
+    "robotType": [
+      "机械臂",
+      "仿真"
+    ],
+    "task": [
+      "操作",
+      "装配"
+    ],
+    "modality": [
+      "仿真状态",
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://robosuite.ai",
+      "paper": "https://arxiv.org/abs/2009.12293"
+    },
+    "notes": "Stanford/UT Austin/NVIDIA 维护的模块化机器人仿真框架，基于 MuJoCo 引擎。v1.5（2024）支持人形机器人、自定义组合机器人、全身控制器、Isaac Sim 渲染。9+ 标准操作任务，7 种机械臂模型，Gymnasium API 兼容。",
+    "description": "**RoboSuite** 是由 Stanford Vision and Learning Lab 最初开发，现由 **ARISE Initiative（Stanford / UT Austin / NVIDIA GEAR）**联合维护的模块化机器人仿真框架。\n\n基于 **MuJoCo** 物理引擎，提供标准化的机器人学习基准环境。\n\n**v1.5（2024.10）更新亮点**：\n- 支持人形机器人等多种新型机器人形态\n- 自定义机器人组合（程序化组装新机器人设计）\n- 复合控制器（IK + 操作空间 + 关节空间全身控制）\n- 集成 NVIDIA Isaac Sim 实现照片级渲染\n\n**核心特性**：9+ 标准化操作任务（Lift、Stack、Nut Assembly、Door 等），7 种机械臂 + 8 种夹爪模型，多模态传感器（RGB、深度、本体状态），Gymnasium API 兼容。配套 sister project **robomimic** 用于人类演示数据采集与模仿学习。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "多个仿真环境",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "仿真状态",
+        "视觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "2 种任务类型",
+      "episodes": "多个仿真环境",
+      "annotations": []
+    },
+    "citation": {
+      "year": 2020,
+      "venue": "arXiv",
+      "authors": "Zhu, Y. et al."
+    },
+    "github": "https://github.com/ARISE-Initiative/robosuite",
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "standards": [
+      "hdf5-robomimic"
+    ]
+  },
+  {
+    "id": "isaac-sim-dataset",
+    "name": "Isaac Sim",
+    "institution": "NVIDIA",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "点云",
+      "深度"
+    ],
+    "type": "partial",
+    "links": {
+      "official": "https://developer.nvidia.com/isaac-sim"
+    },
+    "notes": "NVIDIA Omniverse 平台上的机器人仿真工具包。基于 OpenUSD 构建仿真数据管线，支持大规模并行场景生成、域随机化、传感器仿真和策略训练。GR00T 系列模型的核心仿真平台。",
+    "description": "**NVIDIA Isaac Sim** 是构建在 **Omniverse** 平台上的高性能机器人仿真工具包。\n\n基于 **OpenUSD** 构建仿真数据管线，支持大规模并行场景生成、域随机化、物理级传感器仿真（RGB-D、LiDAR、IMU 等）和强化学习/模仿学习策略训练。\n\n是 NVIDIA **GR00T** 系列人形机器人基础模型的核心仿真数据生成与训练验证平台。与 Isaac Lab（原 Isaac Gym）深度集成，支持 GPU 加速的大规模并行仿真。",
+    "license": "NVIDIA 专有（免费用于开发/研究）",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "点云",
+        "深度"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {
+      "year": 2023
+    },
+    "github": "https://github.com/NVIDIA/Isaac-Sim",
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "standards": [
+      "openusd"
+    ]
+  },
+  {
+    "id": "habitat",
+    "name": "Habitat",
+    "institution": "Meta AI",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "导航"
+    ],
+    "modality": [
+      "视觉",
+      "深度"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://aihabitat.org",
+      "paper": "https://arxiv.org/abs/2310.13724"
+    },
+    "notes": "Meta AI 具身导航与交互仿真平台。Habitat 3.0（2023）支持人机协作任务、VR 人机回环、社交导航与重排。适配 HM3D、MatterPort3D、Replica 等数据集，年度 Habitat Challenge 基准评测。",
+    "description": "**Habitat** 是 Meta AI（原 Facebook AI）提出的高性能具身导航与交互仿真平台。\n\n**Habitat 3.0（2023）** 引入人机协作任务、高精度人体化身仿真（关节骨骼 + 表面渲染）、人机回环（VR/键鼠实时交互），以及社交导航（Social Navigation）和社交重排（Social Rearrangement）两类核心协作任务。\n\n**架构**：Habitat-Sim（高性能 3D 仿真器，支持 HM3D、MatterPort3D、Gibson、Replica 等场景数据集）+ Habitat-Lab（模块化任务定义与训练库）+ Habitat Challenge（CVPR Embodied AI Workshop 年度基准评测）。Fetch 机器人可达 8,000+ 步/秒。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "深度"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {
+      "year": 2023,
+      "venue": "arXiv",
+      "authors": "Puig, X. et al."
+    },
+    "github": "https://github.com/facebookresearch/habitat-sim",
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "standards": [
+      "habitat"
+    ]
+  },
+  {
+    "id": "igibson",
+    "name": "iGibson",
+    "institution": "斯坦福大学",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "导航",
+      "操作",
+      "家居"
+    ],
+    "modality": [
+      "视觉",
+      "深度",
+      "物理"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://stanfordvl.github.io/iGibson",
+      "paper": "https://arxiv.org/abs/2010.08628"
+    },
+    "notes": "StanfordVL 交互式 3D 家居仿真环境（Bullet 物理引擎）。15 个完整交互式家居场景，支持物体操作（门、抽屉、开关等）。v2.2（2024）支持 Tiago 机器人、ROS 集成。后继项目 OmniGibson（NVIDIA Omniverse 版）。",
+    "description": "**iGibson（Interactive Gibson）**是 Stanford Vision and Learning Lab 开发的交互式 3D 家居仿真环境。\n\n基于 **Bullet** 物理引擎，提供 15 个完整的交互式家居场景（门、抽屉、开关、家具等可交互物体），支持机器人导航、操作和交互任务。\n\n**v2.2（2024）** 新增 Tiago 机器人支持、ROS 集成、物体中心动作原语、原语动作接口。\n\n**后继项目**：**OmniGibson**（基于 NVIDIA Omniverse）是该团队当前重点开发的新一代平台，支持更高质量的渲染和物理仿真。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "深度",
+        "物理"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "3 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {
+      "year": 2021,
+      "venue": "IROS",
+      "authors": "Shen, B. et al."
+    },
+    "github": "https://github.com/StanfordVL/iGibson",
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "standards": [
+      "openusd",
+      "behavior-1k"
+    ]
+  },
+  {
+    "id": "sapien",
+    "name": "SAPIEN",
+    "institution": "斯坦福大学、上海交通大学",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "点云"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://maniskill.ai/",
+      "paper": "https://arxiv.org/abs/2410.00425"
+    },
+    "notes": "UCSD Hao Su Lab 的 GPU 并行化机器人仿真与渲染平台。ManiSkill3（RSS 2025）达 30,000+ FPS，20+ 种机器人形态。SAPIEN 3.0 引擎支持异构大规模并行仿真。pip install mani_skill。",
+    "description": "**SAPIEN** 是 UCSD Hao Su Lab 开发的交互式 3D 部件级仿真平台，其上的 **ManiSkill** 是目前最先进的 GPU 并行化机器人仿真与基准框架。\n\n**ManiSkill3（RSS 2025）核心特性**：\n- GPU 并行仿真 + 渲染达 **30,000+ FPS**（RGB-D + 分割）\n- GPU 内存使用 2-3 倍优于 Isaac Lab（128 并行环境：4.4GB vs 14.1GB）\n- 12 类环境、**20+ 种机器人**（人形、移动操作臂、四足、灵巧手等）\n- 内置 ReplicaCAD、AI2THOR 场景，支持异构并行仿真\n- 提供 RL（PPO/SAC/TD-MPC2）、模仿学习（BC/Diffusion Policy）、VLA（Octo/RDT/RT-x）基线\n\nSAPIEN 3.0 引擎提供 2,000+ 个带部件级关节信息的高质量 3D 模型。安装：pip install --upgrade mani_skill。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "点云"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {
+      "year": 2024,
+      "venue": "RSS 2025",
+      "authors": "Tao, S. et al."
+    },
+    "github": "https://github.com/haosulab/ManiSkill",
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
+  },
+  {
+    "id": "coppeliasim",
+    "name": "CoppeliaSim",
+    "institution": "Coppelia Robotics",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://www.coppeliarobotics.com/"
+    },
+    "notes": "跨平台机器人仿真环境（原 V-REP）。V4.10.0（2025.05），集成 MuJoCo V3.2.6 实现 2-10x 仿真加速。支持 Bullet/ODE/Vortex/Newton 多引擎，含丰富机器人模型库与传感器仿真。RLBench 底层平台。",
+    "description": "**CoppeliaSim**（原 V-REP）是跨平台通用机器人仿真环境，由 Coppelia Robotics 公司开发维护。\n\n**最新版本 V4.10.0（2025.05）**，集成 MuJoCo V3.2.6 实现 **2-10 倍仿真速度提升**，新增 adhesion 功能。\n\n**核心特性**：支持多种物理引擎（Bullet、ODE、Vortex、Newton、MuJoCo），丰富的机器人模型库和传感器仿真（视觉、深度、力控、IMU 等），Python/C/C++/MATLAB/ROS 多语言 API。是 **RLBench** 等基准的底层仿真平台，广泛应用于机器人学习和控制研究。",
+    "license": "CoppeliaSim Edu 免费 / Commercial 付费",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {
+      "year": 2013,
+      "authors": "Rohmer, E. et al."
+    },
+    "github": "https://github.com/CoppeliaRobotics/CoppeliaSim",
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    }
+  },
+  {
+    "id": "pytouch",
+    "name": "PyTouch",
+    "institution": "Meta AI（Facebook Research）",
+    "robotType": [
+      "触觉传感"
+    ],
+    "task": [
+      "交互"
+    ],
+    "modality": [
+      "触觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://facebookresearch.github.io/PyTouch/",
+      "paper": "https://arxiv.org/abs/2105.12791"
+    },
+    "notes": "Meta AI 推出的首个触觉处理 ML 库。基于 PyTorch，提供触觉检测、滑移检测、物体姿态估计、接触面积估计等预训练模型。支持 DIGIT、OmniTact、GelSight 传感器。pip install pytouch。",
+    "description": "**PyTouch** 是 Meta AI（Facebook Research）推出的首个专用于触觉处理的机器学习库。\n\n基于 **PyTorch** 构建，提供以下预训练模型：\n- 触觉接触检测（Touch/Contact Detection）\n- 滑移检测（Slip Detection）\n- 物体姿态估计（Object Pose Estimation）\n- 接触面积估计（Contact Area Estimation）\n\n支持 **DIGIT、OmniTact、GelSight** 等主流光学触觉传感器。配套 TACTO 触觉仿真器可生成合成触觉数据用于模型训练。\n安装：pip install pytouch。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "PyTorch 模型 + Python 库",
+      "size": "pip 安装",
+      "compression": "N/A",
+      "schema": "sensor input → ML model → prediction"
+    },
+    "dataContent": {
+      "sensors": [
+        "触觉"
+      ],
+      "scenes": "触觉数据处理与感知",
+      "objects": "DIGIT / OmniTact / GelSight 传感器",
+      "tasks": "触觉感知（接触检测、滑移检测、姿态估计）",
+      "episodes": "N/A（工具库）",
+      "annotations": [
+        "预训练模型权重",
+        "触觉数据标注"
+      ]
+    },
+    "github": "https://github.com/facebookresearch/PyTouch",
+    "huggingface": "",
+    "citation": {
+      "year": 2021,
+      "venue": "ICRA",
+      "authors": "Lambeta, M. et al."
+    },
+    "changelog": [],
+    "quality": {
+      "collection": "N/A（工具库）",
+      "annotation": "预训练模型",
+      "realWorld": "N/A",
+      "hasSplit": false
+    }
+  },
+  {
+    "id": "gibson",
+    "name": "Gibson",
+    "institution": "斯坦福大学",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "导航"
+    ],
+    "modality": [
+      "视觉",
+      "深度"
+    ],
+    "type": "open",
+    "links": {
+      "official": "http://gibsonenv.stanford.edu",
+      "paper": "https://arxiv.org/abs/1808.10654"
+    },
+    "notes": "StanfordVL 真实 3D 场景仿真环境。从真实 3D 扫描重建室内场景，支持导航、感知与交互研究。配套 Matterport3D 使用。iGibson 为其交互式后继版本。MIT 协议。",
+    "description": "**Gibson Environment（GibsonEnv）**是 Stanford Vision and Learning Lab 开发的真实 3D 场景仿真平台。\n\n基于真实 3D 扫描数据重建室内场景，提供 RGB、深度、语义分割等传感器仿真。配套 **Matterport3D** 数据集使用，是具身导航领域的经典仿真环境。\n\n**后继版本**：**iGibson**（增加物理交互 + 物体操作能力）和 **OmniGibson**（基于 NVIDIA Omniverse 的新一代平台）。MIT 协议开源。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "详见官方链接",
+      "size": "详见官方链接",
+      "compression": "未知",
+      "schema": "episode → step → observation → action"
+    },
+    "dataContent": {
+      "sensors": [
+        "视觉",
+        "深度"
+      ],
+      "scenes": "详见官方链接",
+      "objects": "详见官方链接",
+      "tasks": "1 种任务类型",
+      "episodes": "详见官方链接",
+      "annotations": []
+    },
+    "citation": {
+      "year": 2018,
+      "venue": "CVPR",
+      "authors": "Xia, F. et al."
+    },
+    "github": "https://github.com/StanfordVL/gibsonenv",
+    "huggingface": "",
+    "changelog": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "standards": [
+      "habitat"
+    ]
+  }
+]
