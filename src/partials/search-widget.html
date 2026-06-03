@@ -1,0 +1,166 @@
+<!-- AI Search Widget — floating button + search panel -->
+<style>
+.search-widget-btn {
+  position:fixed; bottom:32px; right:32px; z-index:9999;
+  width:56px; height:56px; border-radius:50%;
+  background:var(--primary); color:#fff;
+  border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 20px rgba(91,124,255,0.35);
+  transition:all 0.25s; font-size:24px;
+}
+.search-widget-btn:hover { transform:scale(1.08); box-shadow:0 6px 28px rgba(91,124,255,0.5); }
+.search-widget-overlay {
+  position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0.4);
+  display:none; align-items:flex-end; justify-content:flex-end;
+}
+.search-widget-overlay.open { display:flex; }
+.search-widget-panel {
+  width:480px; max-width:100vw; max-height:85vh;
+  background:var(--white); border-radius:16px 16px 0 0;
+  box-shadow:0 -8px 40px rgba(0,0,0,0.15);
+  display:flex; flex-direction:column; overflow:hidden;
+  margin:0 16px;
+  animation:slideUp 0.3s ease;
+}
+@keyframes slideUp { from{transform:translateY(40px);opacity:0} to{transform:translateY(0);opacity:1} }
+.search-panel-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 24px 12px; border-bottom:1px solid var(--border);
+}
+.search-panel-title { font-size:18px; font-weight:700; }
+.search-panel-close { background:none; border:none; font-size:22px; cursor:pointer; color:var(--text-secondary); padding:4px 8px; border-radius:6px; }
+.search-panel-close:hover { background:var(--light-bg); }
+.search-panel-input { padding:12px 24px 16px; display:flex; gap:10px; }
+.search-panel-input input { flex:1; padding:12px 16px; border:1px solid var(--border); border-radius:10px; font-size:15px; outline:none; transition:border-color 0.2s; }
+.search-panel-input input:focus { border-color:var(--primary); }
+.search-panel-input button { padding:12px 20px; background:var(--primary); color:#fff; border:none; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; transition:opacity 0.2s; }
+.search-panel-input button:disabled { opacity:0.5; cursor:not-allowed; }
+.search-panel-body { flex:1; overflow-y:auto; padding:0 24px 24px; }
+.search-panel-body .loading { text-align:center; padding:40px 0; color:var(--text-secondary); }
+.search-panel-body .spinner { display:inline-block; width:32px; height:32px; border:3px solid var(--border); border-top-color:var(--primary); border-radius:50%; animation:spin 0.8s linear infinite; }
+@keyframes spin { to{transform:rotate(360deg)} }
+.search-result-section { margin-top:20px; }
+.search-result-section h3 { font-size:14px; font-weight:600; color:var(--text-secondary); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px; }
+.search-result-item { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border:1px solid var(--border); border-radius:10px; margin-bottom:8px; transition:all 0.2s; text-decoration:none; color:inherit; }
+.search-result-item:hover { border-color:var(--primary); background:rgba(91,124,255,0.02); }
+.search-result-score { width:44px; height:44px; border-radius:8px; background:var(--light-bg); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:var(--primary); flex-shrink:0; }
+.search-result-body { flex:1; min-width:0; }
+.search-result-name { font-size:15px; font-weight:600; margin-bottom:3px; }
+.search-result-name:hover { color:var(--primary); }
+.search-result-desc { font-size:13px; color:var(--text-secondary); line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.search-result-tags { display:flex; gap:4px; margin-top:6px; flex-wrap:wrap; }
+.search-result-tags span { font-size:11px; padding:2px 8px; border-radius:4px; background:var(--light-bg); color:var(--text-secondary); }
+.search-empty { text-align:center; padding:40px 0; color:var(--text-secondary); font-size:14px; }
+.search-error { text-align:center; padding:20px 0; color:#e53e3e; font-size:14px; }
+@media (max-width:768px) { .search-widget-btn { bottom:20px; right:20px } .search-widget-panel { margin:0 8px; border-radius:16px 16px 0 0 } }
+</style>
+
+<button class="search-widget-btn" id="searchBtn" title="AI 智能搜索">🔍</button>
+
+<div class="search-widget-overlay" id="searchOverlay">
+  <div class="search-widget-panel">
+    <div class="search-panel-header">
+      <span class="search-panel-title">AI 智能搜索</span>
+      <button class="search-panel-close" id="searchClose">✕</button>
+    </div>
+    <div class="search-panel-input">
+      <input type="text" id="searchInput" placeholder="描述你的需求，如：人形机器人双臂操作数据集..." />
+      <button id="searchSubmit">搜索</button>
+    </div>
+    <div class="search-panel-body" id="searchBody">
+      <div style="text-align:center;padding:40px 0;color:var(--text-light);font-size:14px">输入需求，AI 帮你在 43 个数据集、19 个标准、11 个工具中智能匹配</div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // CHANGE THIS to your deployed FC endpoint
+  const API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/search';
+
+  var btn = document.getElementById('searchBtn');
+  var overlay = document.getElementById('searchOverlay');
+  var closeBtn = document.getElementById('searchClose');
+  var input = document.getElementById('searchInput');
+  var submit = document.getElementById('searchSubmit');
+  var body = document.getElementById('searchBody');
+
+  function open() { overlay.classList.add('open'); setTimeout(function() { input.focus(); }, 300); }
+  function close() { overlay.classList.remove('open'); }
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  btn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+    if (e.key === 'k' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); open(); }
+  });
+
+  async function doSearch() {
+    var q = input.value.trim();
+    if (q.length < 2) return;
+    submit.disabled = true;
+    body.innerHTML = '<div class="loading"><div class="spinner"></div><div style="margin-top:12px">正在搜索...</div></div>';
+
+    try {
+      var res = await fetch(API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: q, lang: (document.documentElement.lang || 'zh').startsWith('en') ? 'en' : 'zh' })
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var data = await res.json();
+      if (data.error) throw new Error(data.error);
+      render(data);
+    } catch (err) {
+      body.innerHTML = '<div class="search-error">搜索失败：' + esc(err.message) + '<br><small>请确保 API 端点已配置</small></div>';
+    }
+    submit.disabled = false;
+  }
+
+  function render(data) {
+    var h = '';
+    if (data.datasets && data.datasets.length) {
+      h += '<div class="search-result-section"><h3>📊 数据集推荐</h3>';
+      data.datasets.forEach(function(d) {
+        var tags = (d.robotType || []).concat(d.task || []).slice(0, 3);
+        h += '<a href="/datasets/' + d.id + '/" class="search-result-item">'
+          + '<div class="search-result-score">' + d.score + '%</div>'
+          + '<div class="search-result-body">'
+          + '<div class="search-result-name">' + esc(d.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(d.notes || '') + '</div>'
+          + '<div class="search-result-tags">' + tags.map(function(t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>'
+          + '</div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.standards && data.standards.length) {
+      h += '<div class="search-result-section"><h3>📏 相关标准</h3>';
+      data.standards.forEach(function(s) {
+        h += '<a href="/standards/' + s.id + '/" class="search-result-item">'
+          + '<div class="search-result-score">' + s.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(s.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(s.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.tools && data.tools.length) {
+      h += '<div class="search-result-section"><h3>🔧 相关工具</h3>';
+      data.tools.forEach(function(t) {
+        h += '<a href="/tools/' + t.id + '/" class="search-result-item">'
+          + '<div class="search-result-score">' + t.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(t.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(t.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (!h) h = '<div class="search-empty">未找到匹配结果，试试换一种描述？</div>';
+    body.innerHTML = h;
+  }
+
+  submit.addEventListener('click', doSearch);
+  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doSearch(); });
+})();
+</script>
