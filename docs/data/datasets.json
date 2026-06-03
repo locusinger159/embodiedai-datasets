@@ -828,52 +828,72 @@
   },
   {
     "id": "agibot-world",
-    "name": "AgiBot World",
-    "institution": "智元机器人（AgiBot）",
-    "scale": "100W+ 轨迹，2976 小时",
+    "name": "AGIBOT WORLD 2026",
+    "institution": "智元机器人（AGIBOT）",
+    "scale": "数百小时真机数据（五阶段持续发布），100+ 场景，精灵 G2 人形机器人平台",
     "robotType": [
       "人形机器人"
     ],
     "task": [
       "操作",
-      "家居"
+      "抓取",
+      "家居",
+      "交互"
     ],
     "modality": [
-      "视觉",
+      "RGB",
+      "深度",
+      "触觉",
+      "LiDAR",
       "力控",
-      "本体状态"
+      "本体状态",
+      "动作"
     ],
     "type": "open",
     "links": {
       "official": "https://agibot-world.com",
-      "paper": "https://arxiv.org/abs/2412.14154"
+      "huggingface": "https://huggingface.co/datasets/agibot-world/AgiBotWorld2026",
+      "paper": ""
     },
-    "notes": "国内最大人形开源数据集。2026年更新AGIBOT WORLD 2026版，新增触觉和LiDAR模态。",
-    "description": "**AgiBot World** 是由智元机器人（AgiBot）发布的国内最大人形机器人开源数据集。\n\n2026 年更新至 **AGIBOT WORLD 2026** 版，新增触觉和 LiDAR 模态，数据规模达 **100 万+ 轨迹、2,976 小时**。覆盖人形机器人居家操作场景，适用于大规模机器人策略学习和泛化研究。",
-    "license": "开源（详见官方链接）",
+    "notes": "智元机器人 AGIBOT WORLD 2026 真机数据集。100% 真实场景 + 遥操作采集，精灵 G2 平台，多模态（RGB-D + 触觉 + LiDAR + 力控）。两阶段开源（模仿学习 + 多样交互），行业首个聚焦物理交互的数据集。",
+    "description": "**AGIBOT WORLD 2026** 是智元机器人（AGIBOT）于 2026 年 4 月正式开源的大规模具身智能数据集，定位为首个覆盖具身智能全域研究的开源数据底座，分五阶段持续发布。\n\n**硬件平台**：基于自研 **精灵 G2（Sprite G2）** 通用人形机器人，集成高性能关节执行器、多模态传感器（多视角 RGB-D、触觉、LiDAR、IMU、力传感器）和高性能域控制器。\n\n**采集方式**：100% 真实场景 + 真人遥操作。采用超视距第一人称遥操作 + 全身控制（WBC），操作员以机器人视角实时操控，手臂、腰部、手部协同运作。引入力控采集，记录接触动力学和力反馈。\n\n**场景覆盖**：家居、酒店餐饮、商业空间、安防、工业物流等复杂真实环境，含遮挡、逆光、动态人流等真实干扰。\n\n**两阶段发布**：\n- 第一期（2026.04）：模仿学习数据，数百小时真实世界数据，含任务描述、动作序列、原子技能标签、物体标注，保留错误恢复轨迹\n- 第二期（2026.06.03）：**行业首个聚焦物理交互的开源具身数据集**，面向世界模型和神经仿真器。主动保留抓取失败、物体滑落、碰撞、液体飞溅、布料变形等「失败」数据，实验证实加入失败数据后世界模型的物理一致性显著提升\n\n**配套生态**：Genie Sim 3.0 仿真器 + GE-Sim 2.0 世界模型 + GO-2 基座模型 + 1:1 数字孪生仿真数据同步开源。\n\n**下载**：https://huggingface.co/datasets/agibot-world/AgiBotWorld2026\n项目主页：https://agibot-world.com",
+    "license": "Apache 2.0（完全开源，可商用）",
     "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "100W+ 轨迹，2976 小时",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "storage": "HDF5 + LeRobot 格式（Hugging Face 托管）",
+      "size": "数百小时，五阶段持续发布",
+      "compression": "标准压缩",
+      "schema": "episode → step → observation（RGB-D/触觉/LiDAR/IMU/力/关节状态）→ action"
     },
     "dataContent": {
       "sensors": [
-        "视觉",
-        "力控",
-        "本体状态"
+        "RGB",
+        "深度",
+        "触觉",
+        "LiDAR",
+        "IMU",
+        "力传感器",
+        "本体状态",
+        "动作"
       ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "2 种任务类型",
-      "episodes": "100W+ 轨迹，2976 小时",
-      "annotations": []
+      "scenes": "家居、酒店餐饮、商业空间、安防、工业物流等 100+ 真实场景",
+      "objects": "日常物品、工具、容器等，含 2D 边界框标注",
+      "tasks": "自由形式遥操作任务（模仿学习 + 多样交互），含失败恢复轨迹",
+      "episodes": "数百小时真机数据（五阶段持续发布）",
+      "annotations": [
+        "任务级描述",
+        "原子技能标签",
+        "2D 物体边界框",
+        "物体名称/颜色",
+        "语言指令"
+      ]
     },
     "citation": {
-      "year": 2024
+      "year": 2026,
+      "venue": "AGIBOT",
+      "authors": "AGIBOT (智元机器人)"
     },
     "github": "",
-    "huggingface": "",
+    "huggingface": "agibot-world/AgiBotWorld2026",
     "changelog": [
       {
         "date": "2024-12",
@@ -885,9 +905,9 @@
       }
     ],
     "quality": {
-      "collection": "遥操作采集",
-      "annotation": "人工标注",
-      "realWorld": "100%真机",
+      "collection": "真机遥操作采集（全身控制 + 力控）",
+      "annotation": "自动 + 人工核验（DaaS 工业质检管线）",
+      "realWorld": "真机实测（100% 真实场景）",
       "hasSplit": true
     },
     "standards": [
