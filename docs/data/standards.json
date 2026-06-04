@@ -40,7 +40,51 @@
       "oxe-auge",
       "droid"
     ],
-    "datasetCount": 15
+    "datasetCount": 15,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "Schema 结构",
+        "text": "数据必须以 episode 为最外层组织单元",
+        "detail": "每个 episode 是 tf.data.Dataset of Steps，对应一次完整的任务执行轨迹"
+      },
+      {
+        "level": "must",
+        "category": "Schema 结构",
+        "text": "每个 step 必须包含 is_first 和 is_last 两个布尔字段",
+        "detail": "is_first 标识 episode 的第一步（含初始状态），is_last 标识最后一步"
+      },
+      {
+        "level": "must",
+        "category": "Schema 结构",
+        "text": "同一数据集内所有 step 必须包含相同的字段集合",
+        "detail": "字段集合不能因 episode 而异，必须全局一致"
+      },
+      {
+        "level": "must",
+        "category": "存储格式",
+        "text": "基于 TFDS（TensorFlow Datasets）体系存储",
+        "detail": "支持流式读取、分片、确定性 shuffle，通过 tf.data.Dataset API 访问"
+      },
+      {
+        "level": "should",
+        "category": "Schema 结构",
+        "text": "建议包含 observation、action、reward、discount、is_terminal 字段",
+        "detail": "is_terminal 标识自然终止（区别于时间截断），discount 为浮点折扣因子"
+      },
+      {
+        "level": "should",
+        "category": "元数据",
+        "text": "建议提供 episode 级元数据",
+        "detail": "如任务是否成功、语言指令、场景描述等，便于下游筛选和分析"
+      },
+      {
+        "level": "may",
+        "category": "存储格式",
+        "text": "可选使用分片（shard）存储以支持大规模数据集",
+        "detail": "TFDS 原生支持按文件分片，无需额外处理"
+      }
+    ]
   },
   {
     "id": "oxe-schema",
@@ -72,7 +116,45 @@
       "t-diffusion-data",
       "oxe-auge"
     ],
-    "datasetCount": 5
+    "datasetCount": 5,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "Schema 结构",
+        "text": "必须兼容 RLDS 基础格式（episode → step 层级）",
+        "detail": "OXE 是 RLDS 的扩展，所有 OXE 数据集必须首先是合法的 RLDS 数据集"
+      },
+      {
+        "level": "must",
+        "category": "跨具身映射",
+        "text": "图像必须统一 resize 到 320×256（宽×高）",
+        "detail": "多来源数据集的相机图像统一为此分辨率，确保模型输入一致"
+      },
+      {
+        "level": "must",
+        "category": "跨具身映射",
+        "text": "动作空间必须标准化为末端执行器（EEF）空间",
+        "detail": "原始关节位置动作转换为 7 维 EEF 动作：world_vector(3) + rotation_delta(3) + gripper(1)"
+      },
+      {
+        "level": "must",
+        "category": "元数据",
+        "text": "每步必须包含自然语言任务描述",
+        "detail": "字段名为 language_instruction 或 task，描述当前执行的任务"
+      },
+      {
+        "level": "should",
+        "category": "Schema 结构",
+        "text": "建议提供 proprioceptive state（本体感知状态）",
+        "detail": "如末端执行器位姿、关节角度等低维状态信息"
+      },
+      {
+        "level": "should",
+        "category": "元数据",
+        "text": "建议标注机器人形态类型和机构来源",
+        "detail": "便于跨具身模型的训练和评估"
+      }
+    ]
   },
   {
     "id": "lerobot",
@@ -102,7 +184,57 @@
       "10kh-realomni",
       "galaxea-open-world"
     ],
-    "datasetCount": 2
+    "datasetCount": 2,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "Schema 结构",
+        "text": "数据必须组织为 Parquet 文件，每行对应一个 time step",
+        "detail": "列包含 observation、action、episode_index、frame_index、timestamp 等"
+      },
+      {
+        "level": "must",
+        "category": "Schema 结构",
+        "text": "必须包含 meta/info.json 元数据文件",
+        "detail": "定义 codebase_version、robot_type、fps、features schema、total_episodes 等"
+      },
+      {
+        "level": "must",
+        "category": "命名规范",
+        "text": "观测必须放在 observation 命名空间下",
+        "detail": "如 observation.images.top（相机图像）、observation.states.ee_pos（末端位姿）"
+      },
+      {
+        "level": "must",
+        "category": "命名规范",
+        "text": "动作必须放在 action 命名空间下",
+        "detail": "如 actions.position（位置）、actions.gripper（夹爪），支持层级化命名"
+      },
+      {
+        "level": "must",
+        "category": "存储格式",
+        "text": "视频必须为 MP4 格式，存储在 videos/ 目录",
+        "detail": "使用 H.264 编码，按相机分文件，与 data 目录中的 frame_index 对齐"
+      },
+      {
+        "level": "should",
+        "category": "元数据",
+        "text": "建议提供 meta/stats.json 全局统计量",
+        "detail": "包含每个特征的 mean、std、min、max，用于数据归一化"
+      },
+      {
+        "level": "should",
+        "category": "存储格式",
+        "text": "建议使用分片存储（v3.0 格式）",
+        "detail": "按约 100MB data / 500MB video 的 target size 分片，减少文件数"
+      },
+      {
+        "level": "may",
+        "category": "Schema 结构",
+        "text": "可选包含 next.done 字段标识 episode 结束",
+        "detail": "布尔值，最后一帧为 True"
+      }
+    ]
   },
   {
     "id": "hdf5-robomimic",
@@ -137,7 +269,57 @@
       "mimicgen",
       "robocasa"
     ],
-    "datasetCount": 7
+    "datasetCount": 7,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "Schema 结构",
+        "text": "每个 HDF5 文件根节点必须为 data group",
+        "detail": "所有 demonstration 数据组织在 /data 下"
+      },
+      {
+        "level": "must",
+        "category": "Schema 结构",
+        "text": "每个 demonstration 必须包含 states、actions、rewards、dones 四个 dataset",
+        "detail": "均按时间维度 [T, ...] 排列，T 为轨迹长度"
+      },
+      {
+        "level": "must",
+        "category": "Schema 结构",
+        "text": "观测必须放在 obs/ group 下",
+        "detail": "常见观测键：robot0_eef_pos、robot0_eef_quat、robot0_gripper_qpos、agentview_image 等"
+      },
+      {
+        "level": "must",
+        "category": "元数据",
+        "text": "每个 demo 必须有 num_samples 属性",
+        "detail": "记录该 demonstration 的时间步数"
+      },
+      {
+        "level": "must",
+        "category": "元数据",
+        "text": "根节点必须有 total 属性和 env_args 属性",
+        "detail": "total 为全数据集样本总数，env_args 为 JSON 格式的环境配置"
+      },
+      {
+        "level": "should",
+        "category": "Schema 结构",
+        "text": "建议提供 mask/ group 定义 train/valid 划分",
+        "detail": "包含 train 和 valid 两个 dataset，列出各自包含的 demo 名称"
+      },
+      {
+        "level": "should",
+        "category": "存储格式",
+        "text": "建议使用 HDF5 压缩以减小存储体积",
+        "detail": "通过 hdf5plugin 使用 Blosc 等压缩插件"
+      },
+      {
+        "level": "may",
+        "category": "Schema 结构",
+        "text": "可选包含 next_obs/ group 存储下一时刻观测",
+        "detail": "非必要场景可通过 --exclude-next-obs 省略，节省约 5 倍存储"
+      }
+    ]
   },
   {
     "id": "mcap",
@@ -164,7 +346,57 @@
     },
     "year": 2021,
     "datasetIds": [],
-    "datasetCount": 0
+    "datasetCount": 0,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "文件结构",
+        "text": "文件必须以 Magic Bytes（8 字节）开头和结尾",
+        "detail": "开头为 0x89,M,C,A,P,0x30,\\r,\\n，结尾相同，0x30 为版本号"
+      },
+      {
+        "level": "must",
+        "category": "文件结构",
+        "text": "Header Record（op=0x01）必须是第一个记录，Footer Record（op=0x02）必须是最后一个",
+        "detail": "Header 含 profile 和 library 字段，Footer 含各 section 的 CRC 校验和偏移量"
+      },
+      {
+        "level": "must",
+        "category": "文件结构",
+        "text": "Data Section 必须以 DataEnd Record（op=0x0F）结尾",
+        "detail": "DataEnd 包含整个 Data Section 的 CRC32 校验"
+      },
+      {
+        "level": "must",
+        "category": "Channel 规范",
+        "text": "每个 Channel 必须声明 message_encoding",
+        "detail": "如 ros1、cdr、protobuf、json 等，描述该 Channel 上消息的序列化格式"
+      },
+      {
+        "level": "must",
+        "category": "Schema 规范",
+        "text": "非自描述格式（protobuf/flatbuffer/ros1msg）必须注册 Schema",
+        "detail": "Schema id 不能为 0，encoding 字段必须与 message_encoding 匹配"
+      },
+      {
+        "level": "must",
+        "category": "Message 规范",
+        "text": "每条 Message 必须引用有效的 channel_id 并包含 log_time",
+        "detail": "log_time 和 publish_time 均为纳秒级时间戳，publish_time 不可用时等于 log_time"
+      },
+      {
+        "level": "should",
+        "category": "文件结构",
+        "text": "建议包含 Summary Section 以支持随机访问",
+        "detail": "Summary 提供 ChunkIndex、MessageIndex 等索引，实现按时间戳快速定位"
+      },
+      {
+        "level": "may",
+        "category": "存储格式",
+        "text": "可选使用 Chunk 分块和 zstd/lz4 压缩",
+        "detail": "Chunk 将多条消息批量打包，支持压缩，提高 I/O 效率"
+      }
+    ]
   },
   {
     "id": "openusd",
@@ -194,7 +426,51 @@
       "robocasa",
       "arnold-benchmark"
     ],
-    "datasetCount": 4
+    "datasetCount": 4,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "Prim 定义",
+        "text": "每个 Prim 必须有唯一的绝对路径（SdfPath）",
+        "detail": "如 /World/Characters/Mike/Body，以 / 分隔层级"
+      },
+      {
+        "level": "must",
+        "category": "Prim 定义",
+        "text": "每个 Prim 必须有 Specifier：def、over 或 class",
+        "detail": "def 定义具体实例，over 仅覆写，class 为抽象模板"
+      },
+      {
+        "level": "must",
+        "category": "Layer 组合",
+        "text": "多 Layer 组合必须遵循确定的强弱顺序",
+        "detail": "Root layer > sublayers > references > payloads，同一输入必须产生相同结果"
+      },
+      {
+        "level": "must",
+        "category": "文件格式",
+        "text": "必须支持 USDA（ASCII）、USDC（二进制）和 USDZ（打包）三种格式",
+        "detail": "AOUSD Core Spec 1.0 规定了逐字节级别的合规要求"
+      },
+      {
+        "level": "should",
+        "category": "Prim 定义",
+        "text": "建议为几何类 Prim 指定 typeName",
+        "detail": "如 Cube、Mesh、Xform、Scope，关联对应 Schema 以提供 fallback 属性值"
+      },
+      {
+        "level": "should",
+        "category": "3D 场景",
+        "text": "建议为可渲染 Prim 设置 purpose 和 visibility 元数据",
+        "detail": "purpose: default/render/proxy/guide，visibility: inherited/invisible"
+      },
+      {
+        "level": "may",
+        "category": "Prim 定义",
+        "text": "可选使用 instanceable 标记实现内存高效的实例化",
+        "detail": "适用于大量重复几何体（如植被、道具）"
+      }
+    ]
   },
   {
     "id": "ros2",
@@ -219,7 +495,51 @@
     },
     "year": 2017,
     "datasetIds": [],
-    "datasetCount": 0
+    "datasetCount": 0,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "消息定义",
+        "text": "消息类型必须在 .msg / .srv / .action 文件中定义",
+        "detail": "每个字段含类型和名称，支持嵌套类型和定长/变长数组"
+      },
+      {
+        "level": "must",
+        "category": "通信协议",
+        "text": "必须基于 DDS（Data Distribution Service）实现实时通信",
+        "detail": "ROS 2 默认使用 eProsima Fast DDS，支持可配置的 QoS 策略"
+      },
+      {
+        "level": "must",
+        "category": "QoS 配置",
+        "text": "每个 Topic 必须配置 QoS Profile",
+        "detail": "含可靠性（reliable/best_effort）、持久性（volatile/transient_local）、截止时间等参数"
+      },
+      {
+        "level": "must",
+        "category": "命名规范",
+        "text": "Topic、Service、Action 名称必须遵循 ROS 2 命名规范",
+        "detail": "使用小写字母和下划线，以 / 分隔命名空间，如 /robot/sensor/camera"
+      },
+      {
+        "level": "should",
+        "category": "消息定义",
+        "text": "建议使用标准消息类型（sensor_msgs、geometry_msgs 等）",
+        "detail": "避免自定义重复类型，提高跨项目互操作性"
+      },
+      {
+        "level": "should",
+        "category": "数据记录",
+        "text": "建议使用 MCAP 格式替代传统 ROS bag",
+        "detail": "MCAP 支持自包含 Schema、多编码格式和随机访问，已集成 ros2 bag"
+      },
+      {
+        "level": "may",
+        "category": "通信协议",
+        "text": "可选使用 Zenoh 等替代 DDS 的中间件",
+        "detail": "适用于对延迟和吞吐量有特殊需求的场景"
+      }
+    ]
   },
   {
     "id": "calvin",
@@ -248,7 +568,45 @@
     "datasetIds": [
       "calvin"
     ],
-    "datasetCount": 1
+    "datasetCount": 1,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "任务定义",
+        "text": "任务必须以自然语言指令定义",
+        "detail": "每个 episode 包含一条语言指令，如 'open the drawer and place the block inside'"
+      },
+      {
+        "level": "must",
+        "category": "数据划分",
+        "text": "必须遵循 ABCD 四分割评估协议",
+        "detail": "A/B/C/D 分别对应不同环境/指令/物体的组合，测试跨域泛化能力"
+      },
+      {
+        "level": "must",
+        "category": "评估指标",
+        "text": "必须使用任务完成率（Success Rate）作为主要指标",
+        "detail": "按任务类型分别统计，同时报告平均完成率和每个任务的成功率"
+      },
+      {
+        "level": "must",
+        "category": "环境配置",
+        "text": "环境必须在 PyBullet 中运行，使用 Franka Panda 机器人",
+        "detail": "含桌面操作区域和抽屉、按钮、滑块等交互对象"
+      },
+      {
+        "level": "should",
+        "category": "观测格式",
+        "text": "建议提供 RGB 图像和 proprioceptive state",
+        "detail": "static camera 和 gripper camera 双视角，state 含 7-DoF 关节位置"
+      },
+      {
+        "level": "may",
+        "category": "数据划分",
+        "text": "可选使用 long-horizon 评估协议测试长序列能力",
+        "detail": "连续执行 5 个指令组成的序列，测试策略的长程规划能力"
+      }
+    ]
   },
   {
     "id": "libero",
@@ -276,7 +634,45 @@
     "datasetIds": [
       "libero"
     ],
-    "datasetCount": 1
+    "datasetCount": 1,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "任务定义",
+        "text": "必须覆盖 130 个语言条件操作任务",
+        "detail": "含 5 大泛化维度：场景（Scene）、物体（Object）、布局（Spatial）、任务组合（Task）、未见任务（Novel）"
+      },
+      {
+        "level": "must",
+        "category": "数据组织",
+        "text": "数据必须以 HDF5 格式发布，兼容 robomimic",
+        "detail": "每个 demo 包含 states/actions/rewards/dones 和 obs group"
+      },
+      {
+        "level": "must",
+        "category": "评估协议",
+        "text": "必须按 5 个维度分别评估和报告",
+        "detail": "每个维度独立测试策略在该维度上的泛化性能"
+      },
+      {
+        "level": "must",
+        "category": "环境配置",
+        "text": "必须在 robosuite 仿真环境中运行",
+        "detail": "基于 MuJoCo 物理引擎，使用 Franka Panda 或 Kinova 机械臂"
+      },
+      {
+        "level": "should",
+        "category": "观测格式",
+        "text": "建议提供 agentview 和 eye_in_hand 双视角图像",
+        "detail": "同时提供 robot0_eef_pos/robot0_eef_quat/robot0_gripper_qpos 等低维状态"
+      },
+      {
+        "level": "may",
+        "category": "训练协议",
+        "text": "可选使用终生学习（Lifelong Learning）协议",
+        "detail": "顺序学习 130 个任务，测试知识积累和灾难性遗忘缓解能力"
+      }
+    ]
   },
   {
     "id": "rlbench",
@@ -304,7 +700,45 @@
     "datasetIds": [
       "rlbench"
     ],
-    "datasetCount": 1
+    "datasetCount": 1,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "任务定义",
+        "text": "必须覆盖 100 个操作任务，每个任务含自然语言描述",
+        "detail": "如 'open drawer'、'pick up cup' 等，任务在 CoppeliaSim 仿真中定义"
+      },
+      {
+        "level": "must",
+        "category": "任务变体",
+        "text": "每个任务必须通过 variation 维度控制难度和泛化",
+        "detail": "含位置、姿态、颜色、形状、大小等参数化变体，支持程序化生成"
+      },
+      {
+        "level": "must",
+        "category": "数据采集",
+        "text": "必须使用 waypoint 关键帧提取进行数据处理",
+        "detail": "从遥操作轨迹中提取关键帧，减少冗余数据，提升训练效率"
+      },
+      {
+        "level": "must",
+        "category": "观测格式",
+        "text": "必须提供 front_rgb、wrist_rgb 和 low_dim_state",
+        "detail": "low_dim_state 含末端位姿、夹爪开合度、关节角度等本体感知信息"
+      },
+      {
+        "level": "should",
+        "category": "评估协议",
+        "text": "建议按 seen/unseen variation 分别评估",
+        "detail": "训练和测试使用不同的 variation 参数，测试泛化能力"
+      },
+      {
+        "level": "may",
+        "category": "训练协议",
+        "text": "可选使用多任务训练协议",
+        "detail": "多任务联合训练或 sequential fine-tuning，适配 PerAct/RVT 等方法"
+      }
+    ]
   },
   {
     "id": "metaworld",
@@ -331,7 +765,45 @@
     "datasetIds": [
       "meta-world"
     ],
-    "datasetCount": 1
+    "datasetCount": 1,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "任务定义",
+        "text": "必须覆盖 50 个桌面操作任务",
+        "detail": "含开柜门、按按钮、推物体、拧瓶盖、挂衣架等，基于 MuJoCo 物理引擎"
+      },
+      {
+        "level": "must",
+        "category": "API 规范",
+        "text": "必须兼容 Gymnasium API（原 OpenAI Gym）",
+        "detail": "提供 reset()、step(action)、observation_space、action_space 等标准接口"
+      },
+      {
+        "level": "must",
+        "category": "任务变体",
+        "text": "每个任务支持参数化目标位置和物体属性",
+        "detail": "同一任务可生成不同的 goal position/object placement，支持多任务和元学习"
+      },
+      {
+        "level": "must",
+        "category": "评估指标",
+        "text": "必须使用 success rate 作为主要指标",
+        "detail": "根据任务是否达成目标状态（如抽屉是否完全打开）判断成功"
+      },
+      {
+        "level": "should",
+        "category": "训练协议",
+        "text": "建议使用 ML1/ML10/ML45 三种基准配置",
+        "detail": "ML1 为单任务，ML10 为 10 任务训练+5 任务测试，ML45 为全 50 任务"
+      },
+      {
+        "level": "may",
+        "category": "观测格式",
+        "text": "可选提供 RGB 渲染图像作为观测",
+        "detail": "默认观测为 MuJoCo 低维状态向量，可通过 wrapper 添加视觉观测"
+      }
+    ]
   },
   {
     "id": "maniskill2",
@@ -360,7 +832,45 @@
     "datasetIds": [
       "maniskill2"
     ],
-    "datasetCount": 1
+    "datasetCount": 1,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "任务定义",
+        "text": "必须支持 2,000+ 物体和 4,000+ 任务变体",
+        "detail": "覆盖刚体、铰链、流体等多种物理交互类型"
+      },
+      {
+        "level": "must",
+        "category": "仿真引擎",
+        "text": "必须在 SAPIEN 引擎中运行",
+        "detail": "支持 GPU 并行渲染加速数据采集，可同时运行多个环境实例"
+      },
+      {
+        "level": "must",
+        "category": "观测格式",
+        "text": "必须提供 RGB-D 图像、分割掩码和 proprioceptive state",
+        "detail": "多视角相机配置，分割掩码支持实例级/语义级分割"
+      },
+      {
+        "level": "must",
+        "category": "动作空间",
+        "text": "动作必须包含末端执行器位姿和夹爪控制",
+        "detail": "支持绝对位姿和增量位姿两种模式"
+      },
+      {
+        "level": "should",
+        "category": "数据采集",
+        "text": "建议使用 GPU 并行生成加速数据采集",
+        "detail": "SAPIEN 的 GPU 渲染能力可实现 ~36,000 FPS 的 RGB-D 图像生成"
+      },
+      {
+        "level": "may",
+        "category": "训练协议",
+        "text": "可选使用程序化任务生成管线创建新任务",
+        "detail": "通过组合物体、场景和任务逻辑，自动生成训练数据"
+      }
+    ]
   },
   {
     "id": "behavior-1k",
@@ -387,7 +897,45 @@
     "datasetIds": [
       "igibson"
     ],
-    "datasetCount": 1
+    "datasetCount": 1,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "任务定义",
+        "text": "必须覆盖 1,000 个日常生活活动任务",
+        "detail": "含清洁、烹饪、整理、维修等类别，基于 BDDL（BEHAVIOR Domain Definition Language）定义"
+      },
+      {
+        "level": "must",
+        "category": "环境配置",
+        "text": "必须在 OmniGibson 仿真平台中运行",
+        "detail": "基于 NVIDIA Omniverse 和 PhysX 5，支持逼真物理模拟"
+      },
+      {
+        "level": "must",
+        "category": "任务定义",
+        "text": "每个任务必须包含初始状态、目标状态和成功条件",
+        "detail": "BDDL 格式以逻辑谓词定义状态，支持复杂的时序逻辑条件"
+      },
+      {
+        "level": "must",
+        "category": "评估协议",
+        "text": "必须使用任务完成率作为主要指标",
+        "detail": "按任务难度和类别分别报告，同时记录执行步数和物理合理性"
+      },
+      {
+        "level": "should",
+        "category": "观测格式",
+        "text": "建议提供多模态观测：RGB-D、segmentation、proprioception、触觉",
+        "detail": "支持多相机配置和丰富的传感器模拟"
+      },
+      {
+        "level": "may",
+        "category": "任务定义",
+        "text": "可选定义任务之间的依赖关系和子任务分解",
+        "detail": "BDDL 支持层次化任务分解和子目标定义"
+      }
+    ]
   },
   {
     "id": "habitat",
@@ -417,7 +965,45 @@
       "gibson",
       "matterport3d"
     ],
-    "datasetCount": 3
+    "datasetCount": 3,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "场景格式",
+        "text": "3D 场景必须为 GLB/glTF 格式",
+        "detail": "支持 Matterport3D、Gibson、HM3D、Replica 等标准场景数据集"
+      },
+      {
+        "level": "must",
+        "category": "任务配置",
+        "text": "任务必须通过 JSON 配置文件定义",
+        "detail": "含场景路径、起始位置、目标位置、传感器配置、评价指标等"
+      },
+      {
+        "level": "must",
+        "category": "传感器配置",
+        "text": "传感器规格必须在任务配置中明确定义",
+        "detail": "含 RGB/Depth/Semantic 相机分辨率、FOV、位置、朝向等参数"
+      },
+      {
+        "level": "must",
+        "category": "动作空间",
+        "text": "动作必须包含离散或连续导航控制",
+        "detail": "离散动作为 forward/left/right/stop，连续动作为线速度和角速度"
+      },
+      {
+        "level": "should",
+        "category": "评估协议",
+        "text": "建议使用 SPL（Success weighted by Path Length）作为主指标",
+        "detail": "SPL = 成功时路径效率，同时报告 Success Rate 和路径长度"
+      },
+      {
+        "level": "may",
+        "category": "训练协议",
+        "text": "可选使用 Habitat-SIM 的 GPU 并行渲染",
+        "detail": "支持数千个环境并行运行，加速 RL 训练"
+      }
+    ]
   },
   {
     "id": "china-standard-2026",
@@ -439,7 +1025,45 @@
     },
     "year": 2026,
     "datasetIds": [],
-    "datasetCount": 0
+    "datasetCount": 0,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "数据集描述",
+        "text": "数据集必须提供标准化的描述信息",
+        "detail": "包括机构、规模、许可证、机器人类型、任务类型、数据模态等基础元数据"
+      },
+      {
+        "level": "must",
+        "category": "质量评估",
+        "text": "必须定义数据质量评估指标体系",
+        "detail": "涵盖采集方式、标注质量、真机占比、数据划分等维度"
+      },
+      {
+        "level": "must",
+        "category": "合规要求",
+        "text": "必须符合国家数据安全和隐私保护法规",
+        "detail": "包括个人信息保护法、数据安全法等，涉及人脸/场景数据需脱敏处理"
+      },
+      {
+        "level": "should",
+        "category": "标准体系",
+        "text": "建议建立数据集分级分类体系",
+        "detail": "按开放程度（开源/部分开源/可申请/闭源）和应用领域（工业/家居/医疗等）分类"
+      },
+      {
+        "level": "should",
+        "category": "互操作性",
+        "text": "建议参考国际标准格式（RLDS/LeRobot）以提升互操作性",
+        "detail": "同时支持中国自主标准，实现国际兼容与自主可控的平衡"
+      },
+      {
+        "level": "may",
+        "category": "评测基准",
+        "text": "可选建立中国本土化的评测基准",
+        "detail": "覆盖中文语言指令、中国家庭/工业场景等本土化需求"
+      }
+    ]
   },
   {
     "id": "shanghai-standard",
@@ -461,7 +1085,45 @@
     },
     "year": 2024,
     "datasetIds": [],
-    "datasetCount": 0
+    "datasetCount": 0,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "数据采集",
+        "text": "数据采集过程必须有标准化记录",
+        "detail": "含采集设备型号、传感器配置、采集人员、时间跨度、环境条件等信息"
+      },
+      {
+        "level": "must",
+        "category": "数据标注",
+        "text": "标注流程必须遵循标准化操作规范（SOP）",
+        "detail": "标注员培训 → 试标注 → 正式标注 → 质量抽检 → 验收，每个环节有明确标准"
+      },
+      {
+        "level": "must",
+        "category": "数据共享",
+        "text": "数据共享必须遵循分级授权机制",
+        "detail": "按敏感度分级，明确使用范围、商业用途限制和衍生数据归属"
+      },
+      {
+        "level": "must",
+        "category": "质量管控",
+        "text": "必须建立数据质量全流程追溯体系",
+        "detail": "从采集、标注、质检到发布的每个环节可追溯，问题数据可定位和修复"
+      },
+      {
+        "level": "should",
+        "category": "产业适配",
+        "text": "建议优先适配长三角地区重点产业需求",
+        "detail": "含汽车制造、电子信息、生物医药等地方优势产业的应用场景"
+      },
+      {
+        "level": "may",
+        "category": "标准演进",
+        "text": "可选参与国家标准体系的对接和互认",
+        "detail": "推动地方标准与国家标准、国际标准的协调一致"
+      }
+    ]
   },
   {
     "id": "iso-tc-299",
@@ -482,7 +1144,45 @@
     },
     "year": 2015,
     "datasetIds": [],
-    "datasetCount": 0
+    "datasetCount": 0,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "安全要求",
+        "text": "工业机器人必须符合 ISO 10218 安全标准",
+        "detail": "含机器人本体安全设计、安全控制系统、协作操作模式等要求"
+      },
+      {
+        "level": "must",
+        "category": "安全要求",
+        "text": "服务机器人必须符合 ISO 13482 安全标准",
+        "detail": "含个人护理机器人、载人机器人、移动 servant 机器人等类别的专项安全要求"
+      },
+      {
+        "level": "must",
+        "category": "模块化",
+        "text": "机器人系统模块化设计应参照 ISO 22166",
+        "detail": "定义硬件模块接口、软件模块通信协议和系统集成规范"
+      },
+      {
+        "level": "should",
+        "category": "数据格式",
+        "text": "机器人数据交换建议参考 OPC UA Robotics 配套规范",
+        "detail": "基于 OPC UA 框架定义机器人数据模型和信息交换标准"
+      },
+      {
+        "level": "should",
+        "category": "测试验证",
+        "text": "建议遵循 ISO 9283 进行机器人性能测试",
+        "detail": "含位姿精度、路径精度、速度特性、角偏差等性能指标"
+      },
+      {
+        "level": "may",
+        "category": "前沿领域",
+        "text": "可选参与 ISO/TC 299/WG 关于 AI 和自主学习机器人标准的制定",
+        "detail": "关注具身智能和自主学习系统的标准化需求"
+      }
+    ]
   },
   {
     "id": "droid",
@@ -510,7 +1210,45 @@
     "datasetIds": [
       "droid"
     ],
-    "datasetCount": 1
+    "datasetCount": 1,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "硬件配置",
+        "text": "必须使用 Franka Panda 机器人平台",
+        "detail": "7-DoF 机械臂，统一硬件接口确保数据一致性"
+      },
+      {
+        "level": "must",
+        "category": "传感器配置",
+        "text": "必须配置 3 视角 RGB-D 相机",
+        "detail": "含桌面全局视角、腕部视角和侧面视角，统一相机标定参数"
+      },
+      {
+        "level": "must",
+        "category": "数据格式",
+        "text": "数据必须兼容 RLDS 格式",
+        "detail": "episode → step 层级，包含 observation/action/language_instruction"
+      },
+      {
+        "level": "must",
+        "category": "采集协议",
+        "text": "必须使用标准化的遥操作界面采集数据",
+        "detail": "统一的操作杆/示教器配置，确保动作分布的一致性"
+      },
+      {
+        "level": "should",
+        "category": "元数据",
+        "text": "建议记录 camera calibration 参数",
+        "detail": "含相机内参（K 矩阵）和外参（相机在机器人基座坐标系中的位姿）"
+      },
+      {
+        "level": "may",
+        "category": "数据格式",
+        "text": "可选额外提供 proprioception 和 force-torque 数据",
+        "detail": "适用于接触丰富的操作任务分析"
+      }
+    ]
   },
   {
     "id": "agibot-world",
@@ -538,6 +1276,44 @@
     "datasetIds": [
       "agibot-world"
     ],
-    "datasetCount": 1
+    "datasetCount": 1,
+    "requirements": [
+      {
+        "level": "must",
+        "category": "传感器对齐",
+        "text": "必须实现多传感器时间同步对齐",
+        "detail": "含视觉（RGB-D）、触觉（阵列传感器）、力控（力矩/力传感器）和本体状态（关节编码器）"
+      },
+      {
+        "level": "must",
+        "category": "数据组织",
+        "text": "每个 episode 必须包含任务级语言标注",
+        "detail": "描述任务目标、执行步骤和约束条件"
+      },
+      {
+        "level": "must",
+        "category": "数据质量",
+        "text": "采集数据必须通过人工核验",
+        "detail": "验证轨迹有效性、标注准确性和传感器数据完整性"
+      },
+      {
+        "level": "must",
+        "category": "场景覆盖",
+        "text": "必须覆盖家居和工业两大类场景",
+        "detail": "家居含厨房、卧室等，工业含装配、分拣等场景"
+      },
+      {
+        "level": "should",
+        "category": "数据格式",
+        "text": "建议适配主流训练框架（LeRobot/RLDS）",
+        "detail": "提供格式转换工具，降低下游使用门槛"
+      },
+      {
+        "level": "may",
+        "category": "数据规模",
+        "text": "可选提供多机器人平台和多操作场景的扩展数据",
+        "detail": "逐步覆盖更多机器人形态和操作任务类型"
+      }
+    ]
   }
 ]

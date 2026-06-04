@@ -365,6 +365,36 @@ function buildAll(lang) {
     const scenesHTML = (ss.scene || []).map(s => `<span class="data-tag">${scL[s] || s}</span>`).join(' ') || '-';
     const modalitiesHTML = (ss.modalities || []).length ? (ss.modalities || []).join('、') : '-';
 
+    // Requirements rendering
+    const reqs = ss.requirements || [];
+    let requirementsHTML = '';
+    if (reqs.length) {
+      const levelLabels = { must: isEn ? 'MUST' : '必须', should: isEn ? 'SHOULD' : '建议', may: isEn ? 'MAY' : '可选' };
+      const levelIcons = { must: '🔴', should: '🟡', may: '🟢' };
+      var catMap = {};
+      for (var ri = 0; ri < reqs.length; ri++) {
+        var r = reqs[ri];
+        var cat = r.category || (isEn ? 'General' : '通用');
+        if (!catMap[cat]) catMap[cat] = [];
+        catMap[cat].push(r);
+      }
+      requirementsHTML = '<div class="section-block"><h2>' + (isEn ? '📋 Normative Requirements' : '📋 规范性要求') + '</h2><div class="requirements-list">';
+      for (var catName in catMap) {
+        var items = catMap[catName];
+        requirementsHTML += '<div class="req-category"><div class="req-category-name">' + esc(catName) + '</div>';
+        for (var ri2 = 0; ri2 < items.length; ri2++) {
+          var r2 = items[ri2];
+          requirementsHTML += '<div class="req-item req-' + esc(r2.level) + '">';
+          requirementsHTML += '<span class="req-badge req-badge-' + esc(r2.level) + '">' + (levelIcons[r2.level] || '') + ' ' + (levelLabels[r2.level] || r2.level) + '</span>';
+          requirementsHTML += '<div class="req-body"><div class="req-text">' + esc(r2.text) + '</div>';
+          if (r2.detail) requirementsHTML += '<div class="req-detail">' + esc(r2.detail) + '</div>';
+          requirementsHTML += '</div></div>';
+        }
+        requirementsHTML += '</div>';
+      }
+      requirementsHTML += '</div></div>';
+    }
+
     return buildPage('src/pages/standard-detail.html', {
       meta: `<title>${esc(ss.name)} | Superdata RobotAI</title><meta name="description" content="${esc(ss.desc.substring(0, 160))}">`,
       nav: getActiveNav('standards'),
@@ -381,6 +411,7 @@ function buildAll(lang) {
       SCENES: scenesHTML,
       MODALITIES: modalitiesHTML,
       LINKS: linksHTML,
+      REQUIREMENTS: requirementsHTML,
       RELATED_DATASETS: relatedDSHTML
     });
   }
