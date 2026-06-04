@@ -196,11 +196,17 @@ function buildAll(lang) {
       citationHTML = '<div class="section-block"><h2>{{SECTION_CITATION}}</h2><div class="citation-box"><pre>' + esc(cit.bibtex) + '</pre></div></div>';
     }
 
-    // Related datasets (same robot type or same task)
-    const related = dataDatasets.filter(d => d.id !== ds.id && (
-      (d.robotType || []).some(r => (ds.robotType || []).includes(r)) ||
-      (d.task || []).some(t => (ds.task || []).includes(t))
-    )).slice(0, 4);
+    // Related datasets — weighted by shared robotType (×3) + shared task (×2)
+    const related = dataDatasets
+      .filter(d => d.id !== ds.id)
+      .map(d => {
+        const sharedRT = (d.robotType || []).filter(r => (ds.robotType || []).includes(r)).length;
+        const sharedTask = (d.task || []).filter(t => (ds.task || []).includes(t)).length;
+        return { ...d, _score: sharedRT * 3 + sharedTask * 2 };
+      })
+      .filter(d => d._score > 0)
+      .sort((a, b) => b._score - a._score)
+      .slice(0, 4);
     let relatedHTML = '';
     if (related.length) {
       relatedHTML = related.map(r => {
