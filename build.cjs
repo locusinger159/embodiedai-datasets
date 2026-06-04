@@ -123,14 +123,60 @@ function buildAll(lang) {
     return '<p>' + html + '</p>';
   }
 
+  function splitOutsideParens(text, sep) {
+    // Split by separator only when outside parentheses (including Chinese parens).
+    // Recognizes patterns: " / ", "）/ ", " /（", etc.
+    var parts = [];
+    var depth = 0;
+    var current = '';
+    var i = 0;
+    while (i < text.length) {
+      var ch = text[i];
+      if (ch === '(' || ch === '[' || ch === '（' || ch === '【') depth++;
+      else if (ch === ')' || ch === ']' || ch === '）' || ch === '】') depth--;
+      // Try to split when we see sep outside parens
+      if (depth === 0 && ch === sep) {
+        var prevCh = i > 0 ? text[i - 1] : '';
+        var nextCh = i < text.length - 1 ? text[i + 1] : '';
+        var prevSep = prevCh === ' ' || prevCh === ')' || prevCh === ']' || prevCh === '）' || prevCh === '】';
+        var nextSep = nextCh === ' ' || nextCh === '(' || nextCh === '[' || nextCh === '（' || nextCh === '【';
+        if (prevSep && nextSep) {
+          // Trim trailing space
+          var part = current;
+          if (part.length > 0 && part[part.length - 1] === ' ') part = part.slice(0, -1);
+          if (part.trim()) parts.push(part.trim());
+          current = '';
+          i++;
+          if (i < text.length && text[i] === ' ') i++; // skip trailing space
+          continue;
+        }
+      }
+      current += ch;
+      i++;
+    }
+    if (current.trim()) parts.push(current.trim());
+    return parts.length > 0 ? parts : [text];
+  }
+
   function buildSchemaTree(schema) {
     if (!schema) return '';
-    const parts = schema.split('→').map(p => p.trim());
+    // 1. Split by → for nesting hierarchy
+    const levels = schema.split('→').map(function(p) { return p.trim(); });
+    // 2. Split each level by / (siblings at same depth)
+    const nodes = []; // [{text, depth, isRoot}]
+    for (let i = 0; i < levels.length; i++) {
+      const siblings = splitOutsideParens(levels[i], '/');
+      for (let j = 0; j < siblings.length; j++) {
+        nodes.push({ text: siblings[j], depth: i, isRoot: i === 0 && j === 0 });
+      }
+    }
+    // 3. Render tree: increase depth for →, siblings at same margin
     let html = '';
-    for (let i = 0; i < parts.length; i++) {
-      html += `<div class="tree-node" style="margin-left:${i * 24}px">`;
-      if (i > 0) html += '<span class="tree-line"></span>';
-      html += `<span class="tree-label">${esc(parts[i])}</span>`;
+    for (let k = 0; k < nodes.length; k++) {
+      const node = nodes[k];
+      html += '<div class="tree-node" style="margin-left:' + (node.depth * 24) + 'px">';
+      if (node.depth > 0) html += '<span class="tree-line"></span>';
+      html += '<span class="tree-label' + (node.isRoot ? ' root' : '') + '">' + esc(node.text) + '</span>';
       html += '</div>';
     }
     return html;
@@ -252,9 +298,8 @@ function buildAll(lang) {
       FORMAT_STORAGE: esc(df.storage || '未知'),
       FORMAT_SIZE: esc(df.size || ds.scale || '未知'),
       FORMAT_COMPRESSION: esc(df.compression || '未知'),
-      SCHEMA_ROOT: esc((df.schema || '').split('→')[0]?.trim() || '数据'),
-      SCHEMA_TREE: (df.schema && df.schema !== 'episode → step → observation → action')
-        ? '<div class="schema-tree" style="margin-top:16px"><div class="tree-node"><span class="tree-label root">' + esc((df.schema || '').split('→')[0]?.trim() || '数据') + '</span></div>' + schemaHTML + '</div>'
+      SCHEMA_TREE: schemaHTML
+        ? '<div class="schema-tree" style="margin-top:16px">' + schemaHTML + '</div>'
         : '',
       SENSORS: sensorsHTML,
       CONTENT_SCENES: esc(dc.scenes || '未知'),

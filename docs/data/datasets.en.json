@@ -357,7 +357,7 @@
       "storage": "详见官方链接",
       "size": "50+ 操纵任务",
       "compression": "未知",
-      "schema": "episode → step → observation（MuJoCo state）→ action → reward → done（Gymnasium API, 50 任务 × N 变体）"
+      "schema": "episode → step → observation（MuJoCo state）/ action / reward / done, Gymnasium API, 50 tasks × N variants"
     },
     "dataContent": {
       "sensors": [
@@ -415,7 +415,7 @@
       "storage": "详见官方链接",
       "size": "100+ 任务",
       "compression": "未知",
-      "schema": "episode → waypoint → observation（RGB + depth + point_cloud + proprioception）→ action（end-effector pose + gripper）→ reward（CoppeliaSim, HDF5/NPZ）"
+      "schema": "task → variation → episode → observation（RGB + depth + point_cloud + proprioception）/ action（end-effector pose + gripper）/ reward, HDF5/NPZ"
     },
     "dataContent": {
       "sensors": [
@@ -532,7 +532,7 @@
       "storage": "详见官方链接",
       "size": "居家长期操纵",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + proprioception）→ action（7-DoF + gripper）→ language_instruction（HDF5, PyBullet, ABCD 4-fold）"
+      "schema": "episode → step → observation（RGB + proprioception）/ action（7-DoF + gripper）/ language_instruction, HDF5, PyBullet, ABCD 4-fold"
     },
     "dataContent": {
       "sensors": [
@@ -645,7 +645,7 @@
       "storage": "详见官方链接",
       "size": "持续学习数据集",
       "compression": "未知",
-      "schema": "episode → step → observation → action → reward → next_observation（offline RL, HDF5 / NPZ）"
+      "schema": "episode → step → observation / action / reward / next_observation, offline RL, HDF5/NPZ"
     },
     "dataContent": {
       "sensors": [
@@ -974,7 +974,7 @@
       "storage": "详见官方链接",
       "size": "6W+ 分钟真机数据",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + depth + tactile + proprioception）→ action（dual-arm + gripper）→ language_instruction（RLDS）"
+      "schema": "episode → step → observation（RGB + depth + tactile + proprioception）/ action（dual-arm + gripper）/ language_instruction, RLDS"
     },
     "dataContent": {
       "sensors": [
@@ -1105,7 +1105,7 @@
       "storage": "HDF5 (joint states) + MP4 (RGB video) + MKV (depth video)",
       "size": "30K+ teleoperation trajectories",
       "compression": "No special compression, standard formats",
-      "schema": "episode → step → observation（RGB + Depth + joint_state + force + action_label）→ action"
+      "schema": "episode → step → state（joint / pose / hand）/ action（joint / pose / hand）, HDF5 + MP4/MKV"
     },
     "dataContent": {
       "sensors": [
@@ -1239,7 +1239,7 @@
       "storage": "CSV (Hugging Face hosted)",
       "size": "Per-robot directories, 30FPS CSV",
       "compression": "None",
-      "schema": "per-frame joint configuration → root_joint (XYZ+quaternion) / hip / knee / ankle / shoulder / elbow / wrist"
+      "schema": "episode → frame → joint_configuration（root + hip + knee + ankle + shoulder + elbow + wrist）, whole-body 23-DoF"
     },
     "dataContent": {
       "sensors": [],
@@ -1426,7 +1426,7 @@
       "storage": "详见官方链接",
       "size": "详见官方链接",
       "compression": "未知",
-      "schema": "contact_episode → frame → tactile_image（GelSight DIGIT, 640×480） + force_torque（FT sensor） + end-effector_pose, HDF5"
+      "schema": "contact_episode → frame → tactile_image（GelSight DIGIT, 640×480）/ force_torque（FT sensor）/ end-effector_pose, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -1478,7 +1478,7 @@
       "storage": "详见官方链接",
       "size": "详见官方链接",
       "compression": "未知",
-      "schema": "contact_episode → frame → tactile_image（TacTip, 内部摄像头） + contact_deformation + sensor_pose, HDF5 + PNG"
+      "schema": "contact_episode → frame → tactile_image（TacTip, internal camera）/ contact_deformation / sensor_pose, HDF5 + PNG"
     },
     "dataContent": {
       "sensors": [
@@ -1534,7 +1534,7 @@
       "storage": "详见官方链接",
       "size": "10 亿+ 抓取标注",
       "compression": "未知",
-      "schema": "scene → point_cloud（Kinect v2）→ grasp_pose（6-DoF + score + width）→ label（success/fail）, 1B+ annotations, NPY format"
+      "schema": "scene → camera（kinect / realsense）→ RGB-D / segmentation / annotation / rect_grasp / grasp_label（per-object NPZ, 1.1B+ grasps）"
     },
     "dataContent": {
       "sensors": [
@@ -1589,7 +1589,7 @@
       "storage": "详见官方链接",
       "size": "670 万抓取点云",
       "compression": "未知",
-      "schema": "object → mesh + point_cloud → grasp_candidate → grasp_quality_score（GQ-CNN）, 6.7M+ annotations, HDF5"
+      "schema": "object → point_cloud / mesh / grasp_candidate（with GQ-CNN robust_ferrari_canny score）, 6.7M+ grasps, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -1642,7 +1642,7 @@
       "storage": "详见官方链接",
       "size": "详见官方链接",
       "compression": "未知",
-      "schema": "building → floor → room → 3D_mesh（GLB/glTF） + panorama_images（RGB-D） + camera_poses + semantic_labels（90 buildings）"
+      "schema": "building → floor → room → 3D_mesh（GLB/glTF）/ panorama_images（RGB-D）/ camera_poses / semantic_labels（90 buildings）"
     },
     "dataContent": {
       "sensors": [
@@ -1762,7 +1762,7 @@
       "storage": "详见官方链接",
       "size": "10.3K 轨迹，300W+ 帧",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + depth + IMU + joint_state）→ action（full-body joint_targets + root_velocity）→ reward, HDF5"
+      "schema": "episode → step → observation（RGB + depth + IMU + joint_state）/ action（full-body joint_targets + root_velocity）/ reward, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -1888,7 +1888,7 @@
       "storage": "详见官方链接",
       "size": "3000㎡训练中心，多场景",
       "compression": "未知",
-      "schema": "object → multi-view_RGB-D_images + point_cloud + 3D_mesh（high-precision scan）, HDF5"
+      "schema": "object → multi-view_RGB-D_images / point_cloud / 3D_mesh（high-precision scan）, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -1944,7 +1944,7 @@
       "storage": "详见官方链接",
       "size": "10000+ 小时，近百万片段",
       "compression": "未知",
-      "schema": "episode → step → observation（omni-directional RGB-D, multi-camera）→ action（end-effector pose）→ language_instruction, HDF5"
+      "schema": "episode → step → observation（omni-directional RGB-D, multi-camera）/ action（end-effector pose）/ language_instruction, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -2071,7 +2071,7 @@
       "storage": "详见官方链接",
       "size": "60000+ 分钟，117 原子技能",
       "compression": "未知",
-      "schema": "episode → step → observation（proprioception + base_pose）→ action（joint_positions, full-body locomotion + manipulation）, CSV / HDF5"
+      "schema": "episode → step → observation（proprioception + base_pose）→ action（joint_positions, full-body locomotion + manipulation）, CSV/HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -2756,7 +2756,7 @@
       "storage": "MP4 video + JSON annotations",
       "size": "~7TB (full source videos)",
       "compression": "H.264",
-      "schema": "video → clip → frame + audio + 3D mesh + eye gaze + stereo + multi-camera sync"
+      "schema": "video_component → canonical_video → canonical_clip → frame（annotations: narration / FHO / NLQ / VQ / AV）, 30fps, 3670h"
     },
     "dataContent": {
       "sensors": [
