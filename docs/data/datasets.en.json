@@ -1105,7 +1105,7 @@
       "storage": "HDF5 (joint states) + MP4 (RGB video) + MKV (depth video)",
       "size": "30K+ teleoperation trajectories",
       "compression": "No special compression, standard formats",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（RGB + Depth + joint_state + force + action_label）→ action"
     },
     "dataContent": {
       "sensors": [
@@ -1309,7 +1309,7 @@
       "storage": "RLDS (Hugging Face hosted)",
       "size": "340+ hours, 1.89M trajectories, continuously updated",
       "compression": "Standard RLDS compression",
-      "schema": "episode → step → observation → action (RLDS compatible)"
+      "schema": "episode → step → observation（RGB + proprioception + joint_state）→ action（whole-body, RLDS format）"
     },
     "dataContent": {
       "sensors": [

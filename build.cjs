@@ -253,7 +253,9 @@ function buildAll(lang) {
       FORMAT_SIZE: esc(df.size || ds.scale || '未知'),
       FORMAT_COMPRESSION: esc(df.compression || '未知'),
       SCHEMA_ROOT: esc((df.schema || '').split('→')[0]?.trim() || '数据'),
-      SCHEMA_TREE: schemaHTML,
+      SCHEMA_TREE: (df.schema && df.schema !== 'episode → step → observation → action')
+        ? '<div class="schema-tree" style="margin-top:16px"><div class="tree-node"><span class="tree-label root">' + esc((df.schema || '').split('→')[0]?.trim() || '数据') + '</span></div>' + schemaHTML + '</div>'
+        : '',
       SENSORS: sensorsHTML,
       CONTENT_SCENES: esc(dc.scenes || '未知'),
       CONTENT_OBJECTS: esc(dc.objects || '未知'),
