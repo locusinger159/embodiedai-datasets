@@ -246,7 +246,7 @@
       "storage": "详见官方链接",
       "size": "220K 演示轨迹",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（multi-view RGB + depth + proprioception）→ action（end-effector pose + gripper）, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -301,7 +301,7 @@
       "storage": "详见官方链接",
       "size": "130+ 任务，240W+ 帧",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（RGB + proprioception + depth）→ action（7-DoF end-effector）→ reward / done（HDF5, robomimic 兼容）"
     },
     "dataContent": {
       "sensors": [
@@ -357,7 +357,7 @@
       "storage": "详见官方链接",
       "size": "50+ 操纵任务",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（MuJoCo state）→ action → reward → done（Gymnasium API, 50 任务 × N 变体）"
     },
     "dataContent": {
       "sensors": [
@@ -415,7 +415,7 @@
       "storage": "详见官方链接",
       "size": "100+ 任务",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → waypoint → observation（RGB + depth + point_cloud + proprioception）→ action（end-effector pose + gripper）→ reward（CoppeliaSim, HDF5/NPZ）"
     },
     "dataContent": {
       "sensors": [
@@ -474,7 +474,7 @@
       "storage": "详见官方链接",
       "size": "仿真大规模操纵",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（RGB-D + segmentation + proprioception）→ action（end-effector pose + gripper）（SAPIEN, HDF5, GPU 并行生成）"
     },
     "dataContent": {
       "sensors": [
@@ -532,7 +532,7 @@
       "storage": "详见官方链接",
       "size": "居家长期操纵",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（RGB + proprioception）→ action（7-DoF + gripper）→ language_instruction（HDF5, PyBullet, ABCD 4-fold）"
     },
     "dataContent": {
       "sensors": [
@@ -589,7 +589,7 @@
       "storage": "详见官方链接",
       "size": "居家场景操纵数据集",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation → action（multi-embodiment unified format, RLDS）"
     },
     "dataContent": {
       "sensors": [
@@ -645,7 +645,7 @@
       "storage": "详见官方链接",
       "size": "持续学习数据集",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation → action → reward → next_observation（offline RL, HDF5 / NPZ）"
     },
     "dataContent": {
       "sensors": [
@@ -698,7 +698,7 @@
       "storage": "详见官方链接",
       "size": "130K 演示",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（RGB + natural_language_instruction）→ action（7-DoF + gripper + base）, RLDS"
     },
     "dataContent": {
       "sensors": [
@@ -758,7 +758,7 @@
       "storage": "详见官方链接",
       "size": "多机器人操纵数据",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（RGB + proprioception）→ action（multi-embodiment, various DoF）, RLDS"
     },
     "dataContent": {
       "sensors": [
@@ -817,7 +817,7 @@
       "storage": "详见官方链接",
       "size": "多任务操纵数据",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（RGB + proprioception）→ action（end-effector pose + gripper）, HDF5（用于 Diffusion Policy 训练）"
     },
     "dataContent": {
       "sensors": [
@@ -974,7 +974,7 @@
       "storage": "详见官方链接",
       "size": "6W+ 分钟真机数据",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（RGB + depth + tactile + proprioception）→ action（dual-arm + gripper）→ language_instruction（RLDS）"
     },
     "dataContent": {
       "sensors": [
@@ -1044,7 +1044,7 @@
       "storage": "详见官方链接",
       "size": "工业操纵场景",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（RGB-D + proprioception）→ action（single-arm 6-DoF + gripper）, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -1372,7 +1372,7 @@
       "storage": "详见官方链接",
       "size": "详见官方链接",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation → action（multi-source aggregated, standardized RLDS pipeline）"
     },
     "dataContent": {
       "sensors": [
@@ -1426,7 +1426,7 @@
       "storage": "详见官方链接",
       "size": "详见官方链接",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "contact_episode → frame → tactile_image（GelSight DIGIT, 640×480） + force_torque（FT sensor） + end-effector_pose, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -1478,7 +1478,7 @@
       "storage": "详见官方链接",
       "size": "详见官方链接",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "contact_episode → frame → tactile_image（TacTip, 内部摄像头） + contact_deformation + sensor_pose, HDF5 + PNG"
     },
     "dataContent": {
       "sensors": [
@@ -1534,7 +1534,7 @@
       "storage": "详见官方链接",
       "size": "10 亿+ 抓取标注",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "scene → point_cloud（Kinect v2）→ grasp_pose（6-DoF + score + width）→ label（success/fail）, 1B+ annotations, NPY format"
     },
     "dataContent": {
       "sensors": [
@@ -1589,7 +1589,7 @@
       "storage": "详见官方链接",
       "size": "670 万抓取点云",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "object → mesh + point_cloud → grasp_candidate → grasp_quality_score（GQ-CNN）, 6.7M+ annotations, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -1642,7 +1642,7 @@
       "storage": "详见官方链接",
       "size": "详见官方链接",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "building → floor → room → 3D_mesh（GLB/glTF） + panorama_images（RGB-D） + camera_poses + semantic_labels（90 buildings）"
     },
     "dataContent": {
       "sensors": [
@@ -1700,7 +1700,7 @@
       "storage": "详见官方链接",
       "size": "自然语言交互数据集",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（RGB-D + GPS + IMU）→ action（mobile_base + arm）, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -1762,7 +1762,7 @@
       "storage": "详见官方链接",
       "size": "10.3K 轨迹，300W+ 帧",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（RGB + depth + IMU + joint_state）→ action（full-body joint_targets + root_velocity）→ reward, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -1826,7 +1826,7 @@
       "storage": "详见官方链接",
       "size": "12.2K 真机 + 100K 仿真",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（multi-view RGB + depth + proprioception + tactile）→ action（36-DoF dual-arm dexterous + gripper）, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -1888,7 +1888,7 @@
       "storage": "详见官方链接",
       "size": "3000㎡训练中心，多场景",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "object → multi-view_RGB-D_images + point_cloud + 3D_mesh（high-precision scan）, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -1944,7 +1944,7 @@
       "storage": "详见官方链接",
       "size": "10000+ 小时，近百万片段",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（omni-directional RGB-D, multi-camera）→ action（end-effector pose）→ language_instruction, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -2006,7 +2006,7 @@
       "storage": "详见官方链接",
       "size": "18W+ 演示，15 种机器人",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（RGB + tactile + force_torque + proprioception）→ action（contact-rich manipulation）, RLDS"
     },
     "dataContent": {
       "sensors": [
@@ -2071,7 +2071,7 @@
       "storage": "详见官方链接",
       "size": "60000+ 分钟，117 原子技能",
       "compression": "未知",
-      "schema": "episode → step → observation → action"
+      "schema": "episode → step → observation（proprioception + base_pose）→ action（joint_positions, full-body locomotion + manipulation）, CSV / HDF5"
     },
     "dataContent": {
       "sensors": [
