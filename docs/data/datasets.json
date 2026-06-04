@@ -106,7 +106,7 @@
       "storage": "RLDS / TFDS",
       "size": "200GB+",
       "compression": "gzip",
-      "schema": "episode → step → observation (image/state) → action"
+      "schema": "episode → step → observation (image/state) / action"
     },
     "dataContent": {
       "sensors": [
@@ -246,7 +246,7 @@
       "storage": "详见官方链接",
       "size": "220K 演示轨迹",
       "compression": "未知",
-      "schema": "episode → step → observation（multi-view RGB + depth + proprioception）→ action（end-effector pose + gripper）, HDF5"
+      "schema": "episode → step → observation（multi-view RGB + depth + proprioception）/ action（end-effector pose + gripper）, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -301,7 +301,7 @@
       "storage": "详见官方链接",
       "size": "130+ 任务，240W+ 帧",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + proprioception + depth）→ action（7-DoF end-effector）→ reward / done（HDF5, robomimic 兼容）"
+      "schema": "episode → step → observation（RGB + proprioception + depth）/ action（7-DoF end-effector）/ reward / done, HDF5, robomimic 兼容"
     },
     "dataContent": {
       "sensors": [
@@ -474,7 +474,7 @@
       "storage": "详见官方链接",
       "size": "仿真大规模操纵",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB-D + segmentation + proprioception）→ action（end-effector pose + gripper）（SAPIEN, HDF5, GPU 并行生成）"
+      "schema": "episode → step → observation（RGB-D + segmentation + proprioception）/ action（end-effector pose + gripper）（SAPIEN, HDF5, GPU 并行生成）"
     },
     "dataContent": {
       "sensors": [
@@ -589,7 +589,7 @@
       "storage": "详见官方链接",
       "size": "居家场景操纵数据集",
       "compression": "未知",
-      "schema": "episode → step → observation → action（multi-embodiment unified format, RLDS）"
+      "schema": "episode → step → observation / action（multi-embodiment unified format, RLDS）"
     },
     "dataContent": {
       "sensors": [
@@ -698,7 +698,7 @@
       "storage": "详见官方链接",
       "size": "130K 演示",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + natural_language_instruction）→ action（7-DoF + gripper + base）, RLDS"
+      "schema": "episode → step → observation（RGB + natural_language_instruction）/ action（7-DoF + gripper + base）, RLDS"
     },
     "dataContent": {
       "sensors": [
@@ -758,7 +758,7 @@
       "storage": "详见官方链接",
       "size": "多机器人操纵数据",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + proprioception）→ action（multi-embodiment, various DoF）, RLDS"
+      "schema": "episode → step → observation（RGB + proprioception）/ action（multi-embodiment, various DoF）, RLDS"
     },
     "dataContent": {
       "sensors": [
@@ -817,7 +817,7 @@
       "storage": "详见官方链接",
       "size": "多任务操纵数据",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + proprioception）→ action（end-effector pose + gripper）, HDF5（用于 Diffusion Policy 训练）"
+      "schema": "episode → step → observation（RGB + proprioception）/ action（end-effector pose + gripper）, HDF5（用于 Diffusion Policy 训练）"
     },
     "dataContent": {
       "sensors": [
@@ -885,7 +885,7 @@
       "storage": "HDF5 + LeRobot 格式（Hugging Face 托管）",
       "size": "数百小时，五阶段持续发布",
       "compression": "标准压缩",
-      "schema": "episode → step → observation（RGB-D/触觉/LiDAR/IMU/力/关节状态）→ action"
+      "schema": "episode → step → observation（RGB-D/触觉/LiDAR/IMU/力/关节状态）/ action"
     },
     "dataContent": {
       "sensors": [
@@ -1044,7 +1044,7 @@
       "storage": "详见官方链接",
       "size": "工业操纵场景",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB-D + proprioception）→ action（single-arm 6-DoF + gripper）, HDF5"
+      "schema": "episode → step → observation（RGB-D + proprioception）/ action（single-arm 6-DoF + gripper）, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -1176,7 +1176,7 @@
       "storage": "HDF5 + LeRobot 格式",
       "size": "14GB ~ TB 级（按子集不同）",
       "compression": "无特殊压缩",
-      "schema": "episode → step → observation → action（LeRobot 兼容）"
+      "schema": "episode → step → observation / action（LeRobot 兼容）"
     },
     "dataContent": {
       "sensors": [
@@ -1309,7 +1309,7 @@
       "storage": "RLDS（Hugging Face 托管）",
       "size": "340+ 小时，189 万条轨迹，持续更新",
       "compression": "标准 RLDS 压缩",
-      "schema": "episode → step → observation（RGB + proprioception + joint_state）→ action（whole-body, RLDS format）"
+      "schema": "episode → step → observation（RGB + proprioception + joint_state）/ action（whole-body, RLDS format）"
     },
     "dataContent": {
       "sensors": [
@@ -1372,7 +1372,7 @@
       "storage": "详见官方链接",
       "size": "详见官方链接",
       "compression": "未知",
-      "schema": "episode → step → observation → action（multi-source aggregated, standardized RLDS pipeline）"
+      "schema": "episode → step → observation / action（multi-source aggregated, standardized RLDS pipeline）"
     },
     "dataContent": {
       "sensors": [
@@ -1700,7 +1700,7 @@
       "storage": "详见官方链接",
       "size": "自然语言交互数据集",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB-D + GPS + IMU）→ action（mobile_base + arm）, HDF5"
+      "schema": "episode → step → observation（RGB-D + GPS + IMU）/ action（mobile_base + arm）, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -1826,7 +1826,7 @@
       "storage": "详见官方链接",
       "size": "12.2K 真机 + 100K 仿真",
       "compression": "未知",
-      "schema": "episode → step → observation（multi-view RGB + depth + proprioception + tactile）→ action（36-DoF dual-arm dexterous + gripper）, HDF5"
+      "schema": "episode → step → observation（multi-view RGB + depth + proprioception + tactile）/ action（36-DoF dual-arm dexterous + gripper）, HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -2006,7 +2006,7 @@
       "storage": "详见官方链接",
       "size": "18W+ 演示，15 种机器人",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + tactile + force_torque + proprioception）→ action（contact-rich manipulation）, RLDS"
+      "schema": "episode → step → observation（RGB + tactile + force_torque + proprioception）/ action（contact-rich manipulation）, RLDS"
     },
     "dataContent": {
       "sensors": [
@@ -2071,7 +2071,7 @@
       "storage": "详见官方链接",
       "size": "60000+ 分钟，117 原子技能",
       "compression": "未知",
-      "schema": "episode → step → observation（proprioception + base_pose）→ action（joint_positions, full-body locomotion + manipulation）, CSV/HDF5"
+      "schema": "episode → step → observation（proprioception + base_pose）/ action（joint_positions, full-body locomotion + manipulation）, CSV/HDF5"
     },
     "dataContent": {
       "sensors": [
@@ -2130,7 +2130,7 @@
       "storage": "自定义格式（基于源数据集标准化）",
       "size": "取决于源数据集下载量",
       "compression": "按源数据集",
-      "schema": "episode → step → observation → action (delta pose + rotation vector, dual-arm padded)"
+      "schema": "episode → step → observation / action (delta pose + rotation vector, dual-arm padded)"
     },
     "dataContent": {
       "sensors": [
