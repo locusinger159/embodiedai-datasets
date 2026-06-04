@@ -1167,10 +1167,10 @@
     "type": "open",
     "links": {
       "official": "https://github.com/NVIDIA/Isaac-GR00T",
-      "huggingface": "https://huggingface.co/nvidia/Arena-GR1-Manipulation-Task"
+      "huggingface": "https://huggingface.co/datasets/nvidia/Arena-GR1-Manipulation-Task"
     },
     "notes": "NVIDIA 官方 GR-1 仿真数据集系列，含 Arena（开微波炉精标注）和 GR00T-Teleop-Sim（24 个桌面遥操作任务）等仿真轨迹，用于训练 GR00T N1/N1.5/N1.6 人形机器人基础模型。",
-    "description": "NVIDIA 围绕 **GR-1 人形机器人**发布了多个仿真数据集，用于训练和微调 **GR00T 系列**视觉-语言-动作（VLA）基础模型：\n\n**① Arena-GR1-Manipulation-Task（桌面操作仿真）**\n基于 Isaac Lab Arena 框架，包含 **50 条** GR-1 开微波炉任务仿真轨迹，提供标注版和增强版两种 HDF5 格式，支持转换为 LeRobot 格式用于 GR00T N1.5/N1.6 策略训练。\n下载：https://huggingface.co/nvidia/Arena-GR1-Manipulation-Task\n\n**② GR00T-Teleop-Sim（Robocasa GR1 Tabletop Tasks）**\n**1,000 条**仿真遥操作轨迹，覆盖 **24 个桌面操作任务**，使用 GR-1 上半身控制在 Robocasa 仿真环境中采集。\n包含 44 维关节状态、44 维动作向量、256×256 20fps RGB 视频和语言指令。\nHDF5 格式约 14GB，LeRobot 格式约 39GB。协议：CC BY-NC 4.0。\n下载：https://huggingface.co/nvidia/PhysicalAI-Robotics-GR00T-Teleop-Sim （含 \"robocasa-gr1-tabletop*\" 子集）\n\n**③ GR00T-X-Embodiment-Sim（GR1 子集）**\n**TB 级**大规模多具身仿真库中的 GR-1 数据，包含 gr1_full_upper_body.Pouring（上半身倾倒）、gr1_arms_waist.CuttingboardToCardboardBox（取放装箱）等子集。\n下载：https://huggingface.co/nvidia/PhysicalAI-Robotics-GR00T-X-Embodiment-Sim\n\n配套 GR00T 训练框架：https://github.com/NVIDIA/Isaac-GR00T",
+    "description": "NVIDIA 围绕 **GR-1 人形机器人**发布了多个仿真数据集，用于训练和微调 **GR00T 系列**视觉-语言-动作（VLA）基础模型：\n\n**① Arena-GR1-Manipulation-Task（桌面操作仿真）**\n基于 Isaac Lab Arena 框架，包含 **50 条** GR-1 开微波炉任务仿真轨迹，提供标注版和增强版两种 HDF5 格式，支持转换为 LeRobot 格式用于 GR00T N1.5/N1.6 策略训练。\n下载：https://huggingface.co/datasets/nvidia/Arena-GR1-Manipulation-Task\n\n**② GR00T-Teleop-Sim（Robocasa GR1 Tabletop Tasks）**\n**1,000 条**仿真遥操作轨迹，覆盖 **24 个桌面操作任务**，使用 GR-1 上半身控制在 Robocasa 仿真环境中采集。\n包含 44 维关节状态、44 维动作向量、256×256 20fps RGB 视频和语言指令。\nHDF5 格式约 14GB，LeRobot 格式约 39GB。协议：CC BY-NC 4.0。\n下载：https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-GR00T-Teleop-Sim （含 \"robocasa-gr1-tabletop*\" 子集）\n\n**③ GR00T-X-Embodiment-Sim（GR1 子集）**\n**TB 级**大规模多具身仿真库中的 GR-1 数据，包含 gr1_full_upper_body.Pouring（上半身倾倒）、gr1_arms_waist.CuttingboardToCardboardBox（取放装箱）等子集。\n下载：https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-GR00T-X-Embodiment-Sim\n\n配套 GR00T 训练框架：https://github.com/NVIDIA/Isaac-GR00T",
     "license": "CC-BY-4.0 / CC BY-NC 4.0（按子集不同）",
     "dataFormat": {
       "storage": "HDF5 + LeRobot 格式",
