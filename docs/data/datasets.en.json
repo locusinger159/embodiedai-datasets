@@ -236,7 +236,7 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://roboset.github.io",
+      "official": "https://robopen.github.io/roboset/",
       "paper": "https://arxiv.org/abs/2209.13053"
     },
     "notes": "适合策略学习、扩散模型研究。多视角数据便于3D理解。",
@@ -1362,7 +1362,6 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://fmbench.github.io",
       "paper": "https://arxiv.org/abs/2310.00001"
     },
     "notes": "基础模型 benchmark，适合评估 VLA 等模型。",
@@ -1752,7 +1751,7 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://humanoid-everyday.github.io",
+      "official": "https://humanoideveryday.github.io",
       "paper": "https://arxiv.org/abs/2510.08807"
     },
     "notes": "2025年开源人形机器人日常操作数据集，含人机交互场景，支持云端评测。",
