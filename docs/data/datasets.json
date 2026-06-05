@@ -522,7 +522,7 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://ut-ras.github.io/CALVIN",
+      "official": "https://github.com/mees/calvin",
       "paper": "https://arxiv.org/abs/2207.04744"
     },
     "notes": "语言条件 long-horizon 任务，适合指令理解和执行研究。",
@@ -635,7 +635,7 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://sites.google.com/view/oclr/",
+      "official": "https://arxiv.org/abs/2401.12525",
       "paper": "https://arxiv.org/abs/2110.13178"
     },
     "notes": "持续学习 benchmark，适合灾难性遗忘研究。",
@@ -748,7 +748,7 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://deepmind.google/blog/robocat",
+      "official": "https://arxiv.org/abs/2306.07878",
       "paper": "https://arxiv.org/abs/2306.11706"
     },
     "notes": "自我提升的机器人智能体数据，适合多任务学习。",
@@ -806,7 +806,7 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://deepmind.google/blog/t-diffusion",
+      "official": "https://arxiv.org/abs/2502.00836",
       "paper": "https://arxiv.org/abs/2309.12664"
     },
     "notes": "扩散模型在机器人操纵中的应用，适合动作生成研究。",
@@ -1996,8 +1996,9 @@
     ],
     "type": "open",
     "links": {
-      "official": "https://robocoin.github.io",
-      "paper": "https://arxiv.org/abs/2511.17441"
+      "official": "https://flagopen.github.io/RoboCOIN",
+      "paper": "https://arxiv.org/abs/2511.17441",
+      "github": "https://github.com/FlagOpen/CoRobot"
     },
     "notes": "2025年发布，跨具身双臂操作数据集，421个任务，支持层级能力标注。",
     "description": "**RoboCoin** 是聚焦机器人操作中的**接触与交互**数据集。\n\n包含丰富的力控、触觉和本体状态数据，适用于学习精细接触操作策略和力控模型。",
@@ -2320,7 +2321,7 @@
       "venue": "arXiv:2512.13100"
     },
     "github": "",
-    "huggingface": "https://huggingface.co/datasets/oxe-aug-e",
+    "huggingface": "https://huggingface.co/oxe-auge",
     "changelog": [
       {
         "date": "2025-12-20",
@@ -2949,7 +2950,7 @@
   {
     "changelog": [],
     "huggingface": "",
-    "github": "https://github.com/teleema/GLOVER-plusplus",
+    "github": "",
     "id": "hova-500k",
     "name": "HOVA-500K",
     "institution": "HKUST (Guangzhou)",
@@ -3304,7 +3305,7 @@
   {
     "changelog": [],
     "huggingface": "",
-    "github": "https://github.com/hoi4d/HOI4D",
+    "github": "https://github.com/leolyliu/HOI4D-Instructions",
     "id": "hoi4d",
     "name": "HOI4D",
     "institution": "Tsinghua University / Peking University",

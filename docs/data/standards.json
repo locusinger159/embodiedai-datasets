@@ -890,7 +890,7 @@
     "license": "开源",
     "desc": "**BEHAVIOR-1K** 是 Stanford / Duke 等提出的超大规模日常生活任务基准。\n\n在 OmniGibson 仿真中定义了 **1,000 个家居活动任务**（清洁、烹饪、整理等）。\n\n以 **BDDL（BEHAVIOR Domain Definition Language）**形式化描述任务目标与谓词逻辑，测试长期规划和物理交互能力。",
     "links": {
-      "site": "https://behavior.stanford.edu/behavior-1k",
+      "site": "https://behavior.stanford.edu/",
       "paper": "https://arxiv.org/abs/2208.03475"
     },
     "year": 2022,
@@ -1139,7 +1139,7 @@
     "license": "国际标准",
     "desc": "**ISO/TC 299（机器人与机器人装置技术委员会）**负责制定机器人领域的国际标准。\n\n涵盖**工业机器人安全（ISO 10218）、服务机器人安全（ISO 13482）、机器人模块化（ISO 22166）**等标准。\n\n其下属 WG 3（服务机器人）和 WG 4（工业机器人）的工作与具身智能数据标准化密切相关。",
     "links": {
-      "site": "https://www.iso.org/committee/5403656.html",
+      "site": "https://www.iso.org/committee/5915511.html",
       "paper": ""
     },
     "year": 2015,

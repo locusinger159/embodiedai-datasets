@@ -890,7 +890,7 @@
     "license": "开源",
     "desc": "**BEHAVIOR-1K** is an ultra-large-scale daily living task benchmark proposed by Stanford, Duke, and others.\n\nDefines **1,000 home activity tasks** (cleaning, cooking, organizing, etc.) in the OmniGibson simulation.\n\nFormally describes task goals and predicate logic using **BDDL (BEHAVIOR Domain Definition Language)**, testing long-term planning and physical interaction capabilities.",
     "links": {
-      "site": "https://behavior.stanford.edu/behavior-1k",
+      "site": "https://behavior.stanford.edu/",
       "paper": "https://arxiv.org/abs/2208.03475"
     },
     "year": 2022,
@@ -1139,7 +1139,7 @@
     "license": "国际标准",
     "desc": "**ISO/TC 299 (Robotics Technical Committee)** is responsible for developing international standards in the robotics field.\n\nCovers **industrial robot safety (ISO 10218), service robot safety (ISO 13482), robot modularity (ISO 22166)**, and more.\n\nThe work of its subcommittees WG 3 (Service Robots) and WG 4 (Industrial Robots) is closely related to embodied AI data standardization.",
     "links": {
-      "site": "https://www.iso.org/committee/5403656.html",
+      "site": "https://www.iso.org/committee/5915511.html",
       "paper": ""
     },
     "year": 2015,

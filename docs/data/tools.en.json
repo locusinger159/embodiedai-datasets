@@ -103,7 +103,7 @@
     "citation": {
       "year": 2023
     },
-    "github": "https://github.com/NVIDIA/Isaac-Sim",
+    "github": "https://github.com/isaac-sim/IsaacSim",
     "huggingface": "",
     "changelog": [],
     "quality": {
@@ -333,7 +333,7 @@
       "year": 2013,
       "authors": "Rohmer, E. et al."
     },
-    "github": "https://github.com/CoppeliaRobotics/CoppeliaSim",
+    "github": "https://github.com/CoppeliaRobotics/coppeliaSimLib",
     "huggingface": "",
     "changelog": [],
     "quality": {
