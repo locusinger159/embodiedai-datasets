@@ -518,8 +518,7 @@ function buildAll(lang) {
     const typeClass = { open:'type-open', partial:'type-partial', apply:'type-partial', closed:'type-closed' };
     const cit = tool.citation || {};
     const links = tool.links || {};
-    const robotTypes = (tool.robotType || []).map(r => ui.robotLabels[r] || r).join(', ') || '-';
-    const taskTypes = (tool.task || []).map(t => ui.taskLabels[t] || t).join(', ') || '-';
+    const toolTypeLabel = (isEn ? { '仿真器': 'Simulator', '物理引擎': 'Physics Engine', '训练框架': 'RL/IL Framework', '可视化': 'Visualization', '触觉模拟': 'Tactile Sim' } : { '仿真器': '仿真器', '物理引擎': '物理引擎', '训练框架': '训练框架', '可视化': '可视化', '触觉模拟': '触觉模拟' })[tool.toolType] || tool.toolType || '-';
 
     let linksHTML = '<div class="links-section">';
     if (links.official) linksHTML += `<a href="${esc(links.official)}" target="_blank" class="link-card" rel="noopener">🏠 ${isEn ? 'Official Site' : '官方网站'}</a>`;
@@ -541,15 +540,13 @@ function buildAll(lang) {
       INSTITUTION: esc(tool.institution || ''),
       DESCRIPTION: formatDescription(tool.description || tool.notes || ''),
       LICENSE: esc(tool.license || '未知'),
-      ROBOT_TYPES: robotTypes,
-      TASK_TYPES: taskTypes,
+      TOOL_TYPE: toolTypeLabel,
       LINKS: linksHTML,
       CITATION: citationHTML,
       BACK_TO_TOOLS: isEn ? '← Back to Tools' : '← 返回工具/平台',
       LABEL_INSTITUTION: isEn ? 'Institution' : '机构',
       LABEL_LICENSE: isEn ? 'License' : '协议',
-      LABEL_ROBOT_TYPE: isEn ? 'Platform Type' : '平台类型',
-      LABEL_TASK_TYPE: isEn ? 'Use Case' : '适用场景',
+      LABEL_TOOL_TYPE: isEn ? 'Tool Type' : '工具类型',
     }));
   }
 
