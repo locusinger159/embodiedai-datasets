@@ -3531,5 +3531,443 @@
     ],
     "changelog": [],
     "standards": []
+  },
+  {
+    "id": "internscenes",
+    "name": "InternScenes",
+    "institution": "上海人工智能实验室 (Shanghai AI Lab)",
+    "scale": "~40,000 室内场景 + 196 万 3D 物体 + 288 物体类别 + ~186 GB",
+    "robotType": [
+      "仿真",
+      "多机型"
+    ],
+    "task": [
+      "导航",
+      "操作",
+      "3D场景理解"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "3D点云",
+      "语义分割"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://hyper.ai/datasets/44612",
+      "paper": "https://arxiv.org/abs/2509.10813"
+    },
+    "notes": "上海 AI 实验室 2025，最大规模可模拟 3D 室内场景数据集。~40K 场景、196 万物体，20% 可交互（冰箱/微波炉/抽屉）。可导入 GRUtopia/InternUtopia 和 Isaac Sim 一键生成仿真场景，InternVLA-N1 配套数据集。15 类居家场景。",
+    "description": "InternScenes 是上海 AI 实验室于 2025 年发布的大规模可模拟室内 3D 场景数据集。规模：~40,000 个室内场景、48,000 个区域、196 万个 3D 物体（288 类别），~186 GB。覆盖 15 类居家场景（厨房、卧室、客厅、卫浴、书房等）。三大子集：Real2Sim（~9.8K 区域）基于真实扫描 + Objaverse 3D 资产替换；Gen（~11.5K 区域）程序化生成；Synthetic（~27.1K 区域）设计师创建 + 物理模拟优化。20% 物体可交互（PartNet-Mobility：冰箱、微波炉、抽屉、橱柜等），通过 SAPIEN 物理引擎消除穿透/碰撞，可直接导入 Isaac Sim 进行仿真。协议：非商业用途。配套平台：GRUtopia / InternUtopia。",
+    "license": "非商业用途",
+    "dataFormat": {
+      "storage": "USD / GLB",
+      "size": "~186 GB",
+      "compression": "无",
+      "schema": "scene -> room -> 3D_objects（static + interactive）/ layout / camera_poses"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB-D（仿真渲染）",
+        "3D 点云"
+      ],
+      "scenes": "15 类室内场景（厨房/卧室/客厅/卫浴/书房/餐厅等）",
+      "objects": "196 万 3D 物体（288 类别），20% 可交互",
+      "tasks": "点目标导航、室内场景布局生成、物体交互操作",
+      "episodes": "~40,000 场景",
+      "annotations": [
+        "场景布局",
+        "物体类别",
+        "可交互部件标签",
+        "物理属性"
+      ]
+    },
+    "citation": {
+      "year": 2025,
+      "venue": "arXiv",
+      "authors": "Shanghai AI Lab et al."
+    },
+    "github": "https://github.com/InternRobotics/InternUtopia",
+    "huggingface": "",
+    "quality": {
+      "collection": "Real2Sim + 程序化生成 + 人工设计",
+      "annotation": "自动标注 + 人工核验",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "tags": [
+      "3D场景",
+      "仿真",
+      "导航",
+      "大规模",
+      "Sim-to-Real",
+      "语义分割"
+    ],
+    "changelog": [],
+    "standards": []
+  },
+  {
+    "id": "kairos-homeworld",
+    "name": "Kairos-HomeWorld",
+    "institution": "大晓机器人 (ACE Robotics) / 香港中文大学",
+    "scale": "30 万中国住宅户型 + 5,000 全屋仿真场景 + 5 万+ 可交互物体",
+    "robotType": [
+      "仿真",
+      "多机型"
+    ],
+    "task": [
+      "导航",
+      "操作",
+      "家居",
+      "3D场景理解"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "3D点云",
+      "仿真状态"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://kairos-homeworld.github.io/",
+      "paper": ""
+    },
+    "notes": "大晓机器人 + 港中文 2025.6，全球首个中国家庭专属全屋 3D 数据集。纯正中式家装（玄关鞋柜、封闭厨房、干湿分离卫浴、阳台），30 万真实户型 + 5 千全屋可交互仿真场景。用于批量生成全屋导航 + 家务训练数据。",
+    "description": "Kairos-HomeWorld 是大晓机器人（ACE Robotics）联合香港中文大学于 2025 年 6 月发布的全球首个中国家庭专属全屋 3D 仿真数据集。规模：30 万真实中国住宅户型、5,000 套完整可交互全屋仿真场景、50,000+ 可交互物体资产。中国特色：相比国际数据集（北美/欧洲为主），Kairos-HomeWorld 专为中国家庭设计——南北通透户型、封闭式厨房、独立洗衣阳台、干湿分离卫生间、玄关鞋柜、不规整老房户型等。四阶段层级生成架构：全局结构到局部细节到闭环验证到交互增强。通过 VLM 自动检测并修正物理违规。应用：批量生成仿真居家数据，做全屋机器人导航 + 家务任务。协议：开源。",
+    "license": "开源",
+    "dataFormat": {
+      "storage": "USD / GLB + JSON",
+      "size": "~100 GB",
+      "compression": "无",
+      "schema": "floorplan -> room -> furniture（static + interactive）/ layout / physics_properties"
+    },
+    "dataContent": {
+      "sensors": [
+        "仿真 RGB-D",
+        "3D 点云"
+      ],
+      "scenes": "中国住宅（客厅/卧室/厨房/卫浴/玄关/阳台/书房/餐厅等）",
+      "objects": "50,000+ 中式家具与家电（鞋柜、橱柜、电视柜、洗衣机、热水器等）",
+      "tasks": "全屋导航、物品搬运、开关家电、衣物整理、厨房操作",
+      "episodes": "5,000 全屋场景 + 30 万户型模板",
+      "annotations": [
+        "户型结构",
+        "房间/门窗/功能区",
+        "物体物理属性",
+        "可交互标签"
+      ]
+    },
+    "citation": {
+      "year": 2025
+    },
+    "github": "",
+    "huggingface": "",
+    "quality": {
+      "collection": "真实户型 + 程序化生成",
+      "annotation": "自动标注（VLM 验证）",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "tags": [
+      "3D场景",
+      "仿真",
+      "导航",
+      "家居",
+      "大规模",
+      "Sim-to-Real"
+    ],
+    "changelog": [],
+    "standards": []
+  },
+  {
+    "id": "groot-n1-dataset",
+    "name": "GR00T N1 官方数据集",
+    "institution": "NVIDIA",
+    "scale": "78 万合成轨迹 + 真实遥操作 + 人类视频（Ego4D/Ego-Exo4D）",
+    "robotType": [
+      "人形机器人",
+      "仿真"
+    ],
+    "task": [
+      "操作",
+      "运动控制",
+      "交互"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "本体状态",
+      "仿真状态",
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://huggingface.co/nvidia/GR00T-N1-2B",
+      "paper": "https://arxiv.org/abs/2503.14734"
+    },
+    "notes": "NVIDIA GTC 2025 发布，全球首个开源人形机器人基础模型 GR00T N1 的训练数据集。含 78 万合成轨迹（约等于 6,500 小时演示）、真实遥操作数据、互联网规模人类视频。含人形行走/搬物/开关家具等多样化任务。混合训练比纯真实数据性能提升 40%。",
+    "description": "GR00T N1 官方数据集是 NVIDIA 于 GTC 2025 伴随 GR00T N1 模型发布的大规模人形机器人训练数据集。数据金字塔三层：真实遥操作轨迹（顶层，量少质高）跨多机器人平台；合成数据（中层）通过 DexMimicGen + RoboCasa 在 Omniverse 中生成 78 万条合成轨迹（相当于 6,500 小时人工演示）；互联网视频（底层，量最大）Ego4D、Ego-Exo4D 等。合成 + 真实混合训练比纯真实数据性能提升 40%；仅用 10% 数据在 Fourier GR-1 上达 42.6% 成功率，全量数据达 76.8%。协议：Apache 2.0（代码），CC BY 4.0（数据）。与网站已有的 NVIDIA GR-1 仿真数据集互补。",
+    "license": "Apache 2.0 / CC BY 4.0",
+    "dataFormat": {
+      "storage": "LeRobot 格式 + HDF5 + MP4",
+      "size": "TB 级",
+      "compression": "HDF5 压缩",
+      "schema": "episode -> step -> observation（RGB + proprioception）/ action（full-body joint_targets）/ language_instruction"
+    },
+    "dataContent": {
+      "sensors": [
+        "多视角 RGB-D",
+        "本体状态",
+        "末端执行器位姿"
+      ],
+      "scenes": "仿真桌面操作 + 真实室内外场景",
+      "objects": "多样化家具与日常物品（抽屉、微波炉、杯子、工具等）",
+      "tasks": "人形行走、搬运物体、开关家具、桌面操作、双臂协作",
+      "episodes": "78 万合成轨迹 + 真实遥操作 + 互联网视频",
+      "annotations": [
+        "语言任务描述",
+        "动作标签",
+        "物体 6-DoF 位姿"
+      ]
+    },
+    "citation": {
+      "year": 2025,
+      "venue": "GTC / arXiv",
+      "authors": "NVIDIA GR00T Team"
+    },
+    "github": "https://github.com/NVIDIA/Isaac-GR00T",
+    "huggingface": "https://huggingface.co/nvidia/GR00T-N1-2B",
+    "quality": {
+      "collection": "多源聚合（真机遥操作 + 合成生成 + 互联网视频）",
+      "annotation": "自动标注（VLM + 逆动力学推断）",
+      "realWorld": "100%真机（遥操作层）",
+      "hasSplit": true
+    },
+    "tags": [
+      "人形",
+      "VLA",
+      "Sim-to-Real",
+      "大规模",
+      "运动控制",
+      "仿真",
+      "世界模型"
+    ],
+    "changelog": [],
+    "standards": []
+  },
+  {
+    "id": "internhumanoid-motionmillions",
+    "name": "InternHumanoid MotionMillions",
+    "institution": "上海人工智能实验室 (Shanghai AI Lab)",
+    "scale": "200 万+ 动作序列 + 2,000+ 小时 + 百余种动作类别",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "运动控制"
+    ],
+    "modality": [
+      "动作",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://huggingface.co/datasets/InternRobotics/MotionMillion",
+      "paper": "https://arxiv.org/abs/2507.10000"
+    },
+    "notes": "上海 AI 实验室 2025，人体动捕转人形动作数据。200 万+ 动作序列（20 倍于现有数据集），覆盖武术/健身/表演/舞蹈/体育等百余种。20+ 风格语义标注，GPT-4o 增强。配套 Scamo7B 文本-动作生成模型。Intern-Robotics 模型/数据集总下载量超 110 万次。",
+    "description": "InternHumanoid MotionMillions 是上海 AI 实验室于 2025 年发布的超大规模人形机器人运动数据集。规模：200 万+ 动作序列（是现有人体动作数据集的 20 倍以上），总时长超 2,000 小时，百余种动作类别。动作覆盖：武术（23.7%）、健身（26.4%）、表演（17.5%）、舞蹈（14.9%）、体育（2.4%）等。每个动作配备 20+ 种不同风格语义描述（情绪/体态/风格/环境），叠加 GPT-4o 自动标注，分布多样性提升 200%。配套工具：InternHumanoid 跨本体人形机器人全身运动控制工具链；Scamo7B 文本-动作基础生成模型（7B 参数）。协议：Apache 2.0。",
+    "license": "Apache 2.0",
+    "dataFormat": {
+      "storage": "NPY / HDF5（SMPL 参数 + 关节角度）",
+      "size": "~100 GB",
+      "compression": "无",
+      "schema": "motion_sequence -> frame -> joint_angles（full-body）/ semantic_labels（20+ dimensions）/ style_descriptions"
+    },
+    "dataContent": {
+      "sensors": [
+        "人体动捕（MoCap）",
+        "SMPL/SMPL-X 参数"
+      ],
+      "scenes": "多样化动作采集环境",
+      "objects": "N/A（纯运动数据）",
+      "tasks": "全身运动生成（行走/跑步/舞蹈/武术/健身/表演等百余种）",
+      "episodes": "200 万+ 动作序列",
+      "annotations": [
+        "动作类别",
+        "风格语义（20+ 维度）",
+        "GPT-4o 增强描述",
+        "关节角度"
+      ]
+    },
+    "citation": {
+      "year": 2025,
+      "venue": "arXiv",
+      "authors": "Shanghai AI Lab et al."
+    },
+    "github": "https://github.com/InternRobotics/InternHumanoid",
+    "huggingface": "https://huggingface.co/datasets/InternRobotics/MotionMillion",
+    "quality": {
+      "collection": "人体动捕 + 视频提取",
+      "annotation": "自动标注（GPT-4o）+ 人工核验",
+      "realWorld": "100%真机（MoCap）",
+      "hasSplit": true
+    },
+    "tags": [
+      "人形",
+      "运动控制",
+      "大规模",
+      "Sim-to-Real",
+      "语言标注"
+    ],
+    "changelog": [],
+    "standards": []
+  },
+  {
+    "id": "dexgraspvla",
+    "name": "DexGraspVLA 数据集",
+    "institution": "Psi-Robot / 北京大学",
+    "scale": "7.3 GB 人类遥操作 + DexGraspNet 3.0（1.7 亿抓取姿态 / 17.4 万物体）",
+    "robotType": [
+      "灵巧手",
+      "仿真"
+    ],
+    "task": [
+      "抓取",
+      "操作"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "本体状态",
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://dexgraspvla.github.io",
+      "paper": "https://arxiv.org/abs/2502.20900"
+    },
+    "notes": "Psi-Robot/北大 2025，灵巧手抓取 VLA 框架配套数据集。含 51 条人类遥操作演示（~7.3 GB）、DexGraspNet 3.0（1.7 亿仿真抓取姿态，174K 物体）。杂乱物体/透明物体精准抓取，灵巧手仿真专用。",
+    "description": "DexGraspVLA 数据集是 Psi-Robot 与北京大学于 2025 年提出的灵巧手抓取 VLA 框架的配套数据集。包含：DexGraspVLA 人类演示 51 条真实遥操作轨迹（~7.3 GB）；DexGraspNet 3.0（DexVLG/ICCV 2025）1.7 亿仿真抓取姿态覆盖 174,000 物体含部件级语义标注；DexGrasp Anything（CVPR 2025）340 万+ 抓取姿态 15,000+ 物体。分层架构（VLM 高层规划 + Diffusion 低层控制），杂乱场景 90%+ 成功率，支持透明/异形物体。协议：CC BY 4.0。",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "HDF5 / NPY + PNG",
+      "size": "~7.3 GB（遥操作）+ TB 级（仿真）",
+      "compression": "无",
+      "schema": "episode -> step -> observation（RGB-D + proprioception）/ action（dexterous_hand_joints）/ language_prompt"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB-D",
+        "本体状态（灵巧手关节）"
+      ],
+      "scenes": "杂乱桌面场景（含透明/异形物体）",
+      "objects": "174,000+ 物体（Objaverse），含透明、异形、日常物品",
+      "tasks": "灵巧手抓取（杂乱物体、透明物体、长指令、非抓握操作）",
+      "episodes": "51 遥操作 + 1.7 亿仿真姿态",
+      "annotations": [
+        "语言任务指令",
+        "抓取姿态",
+        "物体类别",
+        "部件语义"
+      ]
+    },
+    "citation": {
+      "year": 2025,
+      "venue": "arXiv / ICCV 2025",
+      "authors": "Zhong, Y. et al."
+    },
+    "github": "",
+    "huggingface": "",
+    "quality": {
+      "collection": "人工遥操作 + 仿真生成",
+      "annotation": "自动标注（仿真）+ 人工标注（遥操作）",
+      "realWorld": "100%真机（遥操作）",
+      "hasSplit": true
+    },
+    "tags": [
+      "灵巧手",
+      "抓取",
+      "VLA",
+      "Sim-to-Real",
+      "仿真",
+      "语言标注",
+      "大规模"
+    ],
+    "changelog": [],
+    "standards": []
+  },
+  {
+    "id": "graspvla-syngrasp",
+    "name": "GraspVLA / SynGrasp-1B",
+    "institution": "Galbot / 北京大学 / 港大 / 北京智源",
+    "scale": "10 亿帧合成抓取数据 + 10,000+ 物体 + 240 物体类别",
+    "robotType": [
+      "机械臂",
+      "仿真"
+    ],
+    "task": [
+      "抓取",
+      "操作"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "仿真状态",
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://pku-epic.github.io/GraspVLA-web/",
+      "paper": "https://arxiv.org/abs/2505.03233"
+    },
+    "notes": "Galbot/北大 CoRL 2025，十亿级合成抓取基础模型 GraspVLA 配套数据集 SynGrasp-1B。MuJoCo 物理 + Isaac Sim 光追渲染，100 条微调即达 90% 工业件成功率。透明物体抓取 86.6%（传统方法仅 10%）。LIBERO 长程 94.1% 零样本。",
+    "description": "GraspVLA / SynGrasp-1B 是 Galbot、北京大学、港大和北京智源于 CoRL 2025 发布的十亿级合成抓取数据集。规模：10 亿帧合成抓取数据，覆盖 10,000+ 物体（240 类别，来自 Objaverse）。生成管线：MuJoCo 物理仿真稳定抓取 + BoDex 反掌抓取生成 + CuRobo 无碰撞轨迹规划 + Isaac Sim 光追真实渲染。关键能力：零样本合成类别 93.3% 真实世界成功率；零样本互联网类别 86.6%；透明物体 86.6%（AnyGrasp 仅 10%）通过 RGB 多视角 + 语义推理绕过深度传感器局限；少样本微调 100 条 demo 即从 30% 提升到 90%。协议：CC BY 4.0。",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "NPY + PNG（仿真渲染）",
+      "size": "TB 级（10 亿帧）",
+      "compression": "无",
+      "schema": "episode -> step -> observation（multi-view RGB + depth + proprioception）/ action（grasp_pose + gripper）/ object_category"
+    },
+    "dataContent": {
+      "sensors": [
+        "多视角 RGB-D（Isaac Sim 光追）",
+        "本体状态"
+      ],
+      "scenes": "仿真桌面场景（域随机化）",
+      "objects": "10,000+ 物体（240 类别，Objaverse）",
+      "tasks": "零样本抓取、少样本微调、长程任务（LIBERO）、透明物体抓取",
+      "episodes": "10 亿帧合成数据",
+      "annotations": [
+        "抓取姿态（6-DoF）",
+        "物体类别",
+        "2D 边界框",
+        "语言指令"
+      ]
+    },
+    "citation": {
+      "year": 2025,
+      "venue": "CoRL",
+      "authors": "Deng, S. et al."
+    },
+    "github": "https://github.com/PKU-EPIC/GraspVLA",
+    "huggingface": "",
+    "quality": {
+      "collection": "仿真生成（MuJoCo + Isaac Sim 光追）",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "tags": [
+      "抓取",
+      "仿真",
+      "VLA",
+      "大规模",
+      "Sim-to-Real",
+      "扩散策略"
+    ],
+    "changelog": [],
+    "standards": []
   }
 ]
