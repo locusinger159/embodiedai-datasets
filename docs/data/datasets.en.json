@@ -1348,59 +1348,6 @@
     ]
   },
   {
-    "id": "fmtc",
-    "name": "FMTC",
-    "institution": "Carnegie Mellon University",
-    "robotType": [
-      "仿真"
-    ],
-    "task": [
-      "操作"
-    ],
-    "modality": [
-      "视觉"
-    ],
-    "type": "open",
-    "links": {
-      "paper": "https://arxiv.org/abs/2310.00001"
-    },
-    "notes": "基础模型 benchmark，适合评估 VLA 等模型。",
-    "description": "**FMTC** (Foundation Model Training Corpus) is an embodied AI foundation model training benchmark.\n\nIntegrates multiple embodied AI datasets, providing a standardized pre-training data pipeline, suitable for large-scale foundation model training and evaluation.",
-    "license": "开源（详见官方链接）",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation / action（multi-source aggregated, standardized RLDS pipeline）"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2023
-    },
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
-    },
-    "standards": [
-      "hdf5-robomimic"
-    ],
-    "tags": []
-  },
-  {
     "id": "digit-dataset",
     "name": "DIGIT Dataset",
     "institution": "MIT",
