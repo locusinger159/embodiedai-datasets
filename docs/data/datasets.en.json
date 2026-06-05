@@ -3388,5 +3388,148 @@
       "AFUN",
       "大规模"
     ]
+  },
+  {
+    "id": "bc-z",
+    "name": "BC-Z (Berkeley)",
+    "institution": "Google / Everyday Robots / UC Berkeley / Stanford",
+    "scale": "39,350 训练轨迹 + 3,914 验证轨迹，100 种操作任务，81 GB (TFDS)",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "抓取"
+    ],
+    "modality": [
+      "RGB",
+      "语言",
+      "本体状态"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://www.tensorflow.org/datasets/catalog/bc_z",
+      "paper": "https://arxiv.org/abs/2202.02005"
+    },
+    "notes": "Google/UC Berkeley 2022，100 种桌面操作任务，全自然语言标注。Franka Panda 单臂，DAgger 方式采集（7 名操作员 × 12 台机器人），是 OpenVLA 等 VLA 模型的核心预训练子集。早期 VLA 标杆数据集。",
+    "description": "**BC-Z（BC-Zero）**是 Google Robotics、Everyday Robots、UC Berkeley 和 Stanford 于 2022 年联合发布的大规模机器人模仿学习数据集。\n\n**规模**：**39,350** 条训练轨迹 + **3,914** 条验证轨迹，覆盖 **100 种** 桌面操作任务（抓取、开抽屉、摆物件、倒水等），累计 125 小时机器人操作数据。\n\n**采集方式**：7 名操作员通过 DAgger（Dataset Aggregation）方式远程操控 12 台 Franka Panda 机械臂，交替执行自主策略和遥操作干预。\n\n**数据格式**：TFDS（TensorFlow Datasets），每条轨迹包含：RGB 图像观测 (171×213)、末端执行器 3D 位置残差 + 轴角旋转残差 + 夹爪开合、自然语言任务指令 + 512 维 Universal Sentence Encoder 嵌入。\n\n**核心特性**：零样本任务泛化——通过语言描述或人类操作视频即可执行训练中未见过的任务。是 OpenVLA、RT-1 等 VLA 模型的核心预训练子集。\n\n**协议**：CC BY 4.0。",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "TFDS (RLDS 兼容)",
+      "size": "81 GB (TFDS 格式) / 32 GB (ZIP 压缩)",
+      "compression": "ZIP",
+      "schema": "episode → step → observation（RGB + language_embedding）/ action（delta_pose + gripper）"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB",
+        "本体状态（末端位姿、夹爪开合）"
+      ],
+      "scenes": "桌面操作场景（12 台 Franka Panda 工作台）",
+      "objects": "多样化桌面物体（杯子、抽屉、布料、工具等）",
+      "tasks": "100 种桌面操作任务（抓取、开抽屉、摆物件、倒水、擦拭等）",
+      "episodes": "39,350 训练 + 3,914 验证",
+      "annotations": [
+        "自然语言任务指令",
+        "Universal Sentence Encoder 嵌入",
+        "DAgger 自主/遥操标签"
+      ]
+    },
+    "citation": {
+      "year": 2022,
+      "venue": "NeurIPS",
+      "authors": "Jang, E. et al."
+    },
+    "github": "https://github.com/google-research/robotics_transformer",
+    "huggingface": "",
+    "quality": {
+      "collection": "人工遥操作采集（DAgger）",
+      "annotation": "人工标注（自然语言任务指令）",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "tags": [
+      "VLA",
+      "语言标注",
+      "RLDS",
+      "模仿学习",
+      "Sim-to-Real"
+    ],
+    "changelog": [],
+    "standards": []
+  },
+  {
+    "id": "aloha-dataset",
+    "name": "ALOHA Dataset",
+    "institution": "Stanford / Google DeepMind",
+    "scale": "ALOHA Sim ~5 GB + Mobile ALOHA 50+ GB + ALOHA 2 26K+ 轨迹 + LeRobot 多子集",
+    "robotType": [
+      "机械臂",
+      "多机型"
+    ],
+    "task": [
+      "操作",
+      "抓取",
+      "装配"
+    ],
+    "modality": [
+      "RGB",
+      "本体状态",
+      "视觉"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://tonyzhaozh.github.io/aloha/",
+      "paper": "https://arxiv.org/abs/2304.13705"
+    },
+    "notes": "Stanford 2023 (ACT)，低成本双臂操作平台。含仿真数据集（Google Drive）和真实 Mobile ALOHA 数据（HuggingFace LeRobot）。精细操作标杆（折叠布料、小件组装），ACT/Diffusion Policy/DiT-Policy 等算法标配基准。",
+    "description": "**ALOHA（A Low-cost Open-source Hardware System for Bimanual Teleoperation）**是 Stanford 于 2023 年提出的低成本双臂遥操作平台，配套数据集已成为精细操作领域的标杆基准。\n\n**平台组成**：\n- **ALOHA Stationary**：双 ViperX 300 机械臂（6-DoF + 夹爪），桌面固定\n- **Mobile ALOHA**：ALOHA 双臂 + AgileX Tracer 移动底盘，支持移动操作\n- **ALOHA 2**（Google DeepMind 2024）：26,000+ 演示轨迹，5 项高难度灵巧任务\n\n**数据集组成**：\n- **ALOHA Sim 数据集**（~5 GB，Google Drive）：仿真 Transfer Cube / Bimanual Insertion 任务的脚本演示 + 人类遥操作数据\n- **Mobile ALOHA 数据集**（50+ GB，TFDS）：真实场景下 7 类家务任务（炒虾、擦桌子、叠衣服等）\n- **LeRobot ALOHA 子集**（HuggingFace）：`lerobot/aloha_static_coffee` 等多个标准化子集\n\n**适配算法**：ACT、Diffusion Policy、VINN、DiT-Policy、π0 等。\n\n**协议**：MIT（代码），CC BY 4.0（数据）。",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "HDF5 / LeRobot Parquet / TFDS",
+      "size": "~5 GB (仿真) + 50+ GB (Mobile ALOHA) + LeRobot 多子集",
+      "compression": "无",
+      "schema": "episode → step → observation（multi-view RGB + proprioception）/ action（dual-arm 14-DoF + gripper）"
+    },
+    "dataContent": {
+      "sensors": [
+        "多视角 RGB（4 相机）",
+        "本体状态（双机械臂关节位置）"
+      ],
+      "scenes": "桌面操作 + 移动操作（厨房、办公桌、家居）",
+      "objects": "杯子、布料、餐具、食品、工具、小件零件等",
+      "tasks": "Transfer Cube、Bimanual Insertion、炒虾、擦桌子、叠衣服、拧瓶盖、挂衣架等",
+      "episodes": "仿真 ~800 + Mobile ALOHA ~800 + ALOHA 2 26,000+ + LeRobot 多子集",
+      "annotations": [
+        "动作标签",
+        "成功/失败标志",
+        "任务描述（部分）"
+      ]
+    },
+    "citation": {
+      "year": 2023,
+      "venue": "RSS",
+      "authors": "Zhao, T. et al."
+    },
+    "github": "https://github.com/tonyzhaozh/act",
+    "huggingface": "https://huggingface.co/lerobot",
+    "quality": {
+      "collection": "人工遥操作采集 + 仿真生成",
+      "annotation": "自动标注（动作记录）",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "tags": [
+      "ACT",
+      "DP",
+      "LeRobot",
+      "Sim-to-Real",
+      "双臂",
+      "模仿学习",
+      "VLA",
+      "扩散策略"
+    ],
+    "changelog": [],
+    "standards": []
   }
 ]
