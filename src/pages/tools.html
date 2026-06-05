@@ -61,12 +61,8 @@
       </div>
       <span class="filter-result-count" id="resultCount"></span>
       <div class="filter-card">
-        <div class="filter-card-header"><span>🤖</span><span id="labelRobot">平台类型</span></div>
-        <div class="filter-chips" id="robotFilters"></div>
-      </div>
-      <div class="filter-card">
-        <div class="filter-card-header"><span>📋</span><span id="labelTask">适用场景</span></div>
-        <div class="filter-chips" id="taskFilters"></div>
+        <div class="filter-card-header"><span>🔧</span><span id="labelToolType">工具类型</span></div>
+        <div class="filter-chips" id="toolTypeFilters"></div>
       </div>
       <div class="filter-card">
         <div class="filter-card-header"><span>🔓</span><span id="labelOpenness">开放程度</span></div>
@@ -86,44 +82,40 @@
 var TOOLS = {{TOOLS_JSON}};
 var I = window.I18N || {};
 var tL = I.typeLabels || {open:'开源',partial:'部分开源',apply:'可申请',closed:'闭源'};
-var rL = I.robotLabels || {};
-var tkL = I.taskLabels || {};
+var ttL = I.toolTypeLabels || {};
 var cL = {open:'type-open',partial:'type-partial',apply:'type-partial',closed:'type-closed'};
 
 document.addEventListener('DOMContentLoaded',function(){
-  var a=document.getElementById('labelRobot');if(a)a.textContent=I.robotType||a.textContent;
-  var b=document.getElementById('labelTask');if(b)b.textContent=I.taskType||b.textContent;
-  var c=document.getElementById('labelOpenness');if(c)c.textContent=I.openness||c.textContent;
-  var d=document.getElementById('searchInput');if(d)d.placeholder=I.searchPlaceholder||d.placeholder;
-  var e=document.getElementById('clearFiltersBtn');if(e)e.textContent=I.clearFilters||e.textContent;
+  var a=document.getElementById('labelToolType');if(a)a.textContent=I.toolType||a.textContent;
+  var b=document.getElementById('labelOpenness');if(b)b.textContent=I.openness||b.textContent;
+  var c=document.getElementById('searchInput');if(c)c.placeholder=I.searchPlaceholder||c.placeholder;
+  var d=document.getElementById('clearFiltersBtn');if(d)d.textContent=I.clearFilters||d.textContent;
 });
 
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 
 var ICONS = {
-  '仿真':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
-  '人形机器人':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"/><rect x="9" y="7" width="6" height="10" rx="2"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="9" y1="9" x2="5" y2="7"/><line x1="15" y1="9" x2="19" y2="7"/><line x1="9" y1="21" x2="7" y2="21"/><line x1="15" y1="21" x2="17" y2="21"/></svg>',
-  '机械臂':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>',
-  '触觉传感':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
-  '多机型':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="8" y="14" width="7" height="7" rx="1"/></svg>',
+  '仿真器':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+  '物理引擎':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>',
+  '训练框架':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>',
+  '可视化':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="8" y="14" width="7" height="7" rx="1"/></svg>',
+  '触觉模拟':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
   'default':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>'
 };
 
-function getIcon(tool){var rt=(tool.robotType||[])[0]||'';return ICONS[rt]||ICONS['default']}
+function getIcon(tool){var tt=tool.toolType||'';return ICONS[tt]||ICONS['default']}
 
-function getPlatform(tool){return (tool.robotType||[]).map(function(t){return rL[t]||t}).join(' · ')}
+function getSubtitle(tool){var parts=[];if(tool.institution)parts.push(tool.institution);parts.push(ttL[tool.toolType]||tool.toolType||'');return parts.join(' · ')}
 
-var state = {search:'', robot:[], task:[], type:[], tags:[]};
+var state = {search:'', toolType:[], type:[], tags:[]};
 
 function buildFilters(){
-  var rts=[...new Set(TOOLS.flatMap(function(d){return d.robotType||[]}))].sort();
-  var tks=[...new Set(TOOLS.flatMap(function(d){return d.task||[]}))].sort();
+  var tts=[...new Set(TOOLS.map(function(d){return d.toolType||'其他'}))].sort();
   var tps=[...new Set(TOOLS.map(function(d){return d.type}))];
   var tagCount={};TOOLS.forEach(function(d){(d.tags||[]).forEach(function(t){tagCount[t]=(tagCount[t]||0)+1})});
   var allTags=[...new Set(TOOLS.flatMap(function(d){return d.tags||[]}))].filter(function(t){return tagCount[t]>=1}).sort();
-  function cnt(field,val){return TOOLS.filter(function(d){return (d[field]||[]).indexOf(val)>-1}).length}
-  document.getElementById('robotFilters').innerHTML=rts.map(function(r){var n=cnt('robotType',r);return '<button class="filter-chip'+(state.robot.includes(r)?' active':'')+'" data-f="robot" data-v="'+r+'">'+(rL[r]||r)+(n?'<span class="chip-count">'+n+'</span>':'')+'</button>'}).join('');
-  document.getElementById('taskFilters').innerHTML=tks.map(function(t){var n=cnt('task',t);return '<button class="filter-chip'+(state.task.includes(t)?' active':'')+'" data-f="task" data-v="'+t+'">'+(tkL[t]||t)+(n?'<span class="chip-count">'+n+'</span>':'')+'</button>'}).join('');
+  function cnt(field,val){return TOOLS.filter(function(d){return d[field]===val}).length}
+  document.getElementById('toolTypeFilters').innerHTML=tts.map(function(tt){var n=TOOLS.filter(function(d){return d.toolType===tt}).length;return '<button class="filter-chip'+(state.toolType.includes(tt)?' active':'')+'" data-f="toolType" data-v="'+tt+'">'+(ttL[tt]||tt)+'<span class="chip-count">'+n+'</span></button>'}).join('');
   document.getElementById('opennessFilters').innerHTML=tps.map(function(t){var n=TOOLS.filter(function(d){return d.type===t}).length;return '<button class="filter-chip'+(state.type.includes(t)?' active':'')+'" data-f="type" data-v="'+t+'">'+(tL[t]||t)+'<span class="chip-count">'+n+'</span></button>'}).join('');
   document.getElementById('tagFilters').innerHTML=allTags.map(function(t){var n=TOOLS.filter(function(d){return (d.tags||[]).indexOf(t)>-1}).length;return '<button class="filter-chip'+(state.tags.includes(t)?' active':'')+'" data-f="tags" data-v="'+t+'">'+t+(n?'<span class="chip-count">'+n+'</span>':'')+'</button>'}).join('');
   bindFilterChips();
@@ -138,8 +130,7 @@ function bindFilterChips(){
 function filterData(){
   var r=TOOLS;
   if(state.search){var q=state.search.toLowerCase();r=r.filter(function(d){return d.name.toLowerCase().indexOf(q)>-1||(d.institution||'').toLowerCase().indexOf(q)>-1||(d.notes||'').toLowerCase().indexOf(q)>-1})}
-  if(state.robot.length)r=r.filter(function(d){return state.robot.some(function(v){return (d.robotType||[]).indexOf(v)>-1})});
-  if(state.task.length)r=r.filter(function(d){return state.task.some(function(v){return (d.task||[]).indexOf(v)>-1})});
+  if(state.toolType.length)r=r.filter(function(d){return state.toolType.indexOf(d.toolType||'其他')>-1});
   if(state.type.length)r=r.filter(function(d){return state.type.indexOf(d.type)>-1});
   if(state.tags.length)r=r.filter(function(d){return state.tags.some(function(v){return (d.tags||[]).indexOf(v)>-1})});
   return r;
@@ -153,7 +144,7 @@ function render(){
       + '<div class="tool-card-icon">' + getIcon(tool) + '</div>'
       + '<div class="tool-card-header">'
       + '<div class="tool-card-name">' + tool.name + '</div>'
-      + '<div class="tool-card-meta">' + esc(tool.institution || '') + ' · ' + getPlatform(tool) + '</div>'
+      + '<div class="tool-card-meta">' + getSubtitle(tool) + '</div>'
       + '</div></div>'
       + '<div class="tool-card-desc">' + esc(tool.notes || '') + '</div>'
       + '<div class="tool-card-footer">'
@@ -166,7 +157,7 @@ function render(){
 }
 
 function handleSearch(){state.search=document.getElementById('searchInput').value;update()}
-function clearFilters(){state.search='';state.robot=[];state.task=[];state.type=[];state.tags=[];document.getElementById('searchInput').value='';update()}
+function clearFilters(){state.search='';state.toolType=[];state.type=[];state.tags=[];document.getElementById('searchInput').value='';update()}
 
 function update(){buildFilters();render()}
 

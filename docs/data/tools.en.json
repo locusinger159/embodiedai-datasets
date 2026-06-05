@@ -57,7 +57,8 @@
     },
     "standards": [
       "hdf5-robomimic"
-    ]
+    ],
+    "toolType": "RL/IL Framework"
   },
   {
     "id": "isaac-sim-dataset",
@@ -113,7 +114,8 @@
     },
     "standards": [
       "openusd"
-    ]
+    ],
+    "toolType": "Simulator"
   },
   {
     "id": "habitat",
@@ -170,7 +172,8 @@
     },
     "standards": [
       "habitat"
-    ]
+    ],
+    "toolType": "Simulator"
   },
   {
     "id": "igibson",
@@ -232,7 +235,8 @@
     "standards": [
       "openusd",
       "behavior-1k"
-    ]
+    ],
+    "toolType": "Simulator"
   },
   {
     "id": "sapien",
@@ -286,7 +290,8 @@
       "annotation": "自动标注",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "toolType": "Simulator"
   },
   {
     "id": "coppeliasim",
@@ -336,7 +341,8 @@
       "annotation": "自动标注",
       "realWorld": "仿真",
       "hasSplit": true
-    }
+    },
+    "toolType": "Simulator"
   },
   {
     "id": "pytouch",
@@ -391,7 +397,8 @@
       "annotation": "Pretrained models",
       "realWorld": "N/A",
       "hasSplit": false
-    }
+    },
+    "toolType": "Tactile Sim"
   },
   {
     "id": "gibson",
@@ -448,7 +455,8 @@
     },
     "standards": [
       "habitat"
-    ]
+    ],
+    "toolType": "Simulator"
   },
   {
     "id": "robomimic",
@@ -507,7 +515,8 @@
       "annotation": "Automated observation extraction & format conversion",
       "realWorld": "N/A",
       "hasSplit": true
-    }
+    },
+    "toolType": "RL/IL Framework"
   },
   {
     "id": "tacto",
@@ -566,7 +575,8 @@
       "annotation": "Auto-rendered output",
       "realWorld": "仿真",
       "hasSplit": false
-    }
+    },
+    "toolType": "Tactile Sim"
   },
   {
     "id": "foxglove",
@@ -603,7 +613,8 @@
       "annotation": "N/A",
       "realWorld": "N/A",
       "hasSplit": false
-    }
+    },
+    "toolType": "Visualization"
   },
   {
     "id": "pybullet",
@@ -664,7 +675,8 @@
       "episodes": "",
       "annotations": []
     },
-    "scale": ""
+    "scale": "",
+    "toolType": "Physics Engine"
   },
   {
     "id": "mujoco",
@@ -732,7 +744,8 @@
       "episodes": "",
       "annotations": []
     },
-    "scale": ""
+    "scale": "",
+    "toolType": "Physics Engine"
   },
   {
     "id": "webots",
@@ -802,7 +815,8 @@
       "episodes": "",
       "annotations": []
     },
-    "scale": ""
+    "scale": "",
+    "toolType": "Simulator"
   },
   {
     "id": "isaac-lab",
@@ -881,7 +895,8 @@
       "episodes": "",
       "annotations": []
     },
-    "scale": ""
+    "scale": "",
+    "toolType": "RL/IL Framework"
   },
   {
     "id": "gazebo",
@@ -954,7 +969,8 @@
       "episodes": "",
       "annotations": []
     },
-    "scale": ""
+    "scale": "",
+    "toolType": "Simulator"
   },
   {
     "id": "rerun",
@@ -1022,7 +1038,8 @@
       "episodes": "",
       "annotations": []
     },
-    "scale": ""
+    "scale": "",
+    "toolType": "Visualization"
   },
   {
     "id": "rviz",
@@ -1089,6 +1106,7 @@
       "episodes": "",
       "annotations": []
     },
-    "scale": ""
+    "scale": "",
+    "toolType": "Visualization"
   }
 ]
