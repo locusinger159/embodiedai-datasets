@@ -493,6 +493,12 @@ function buildAll(lang) {
     typeLabels: ui.typeLabels,
     robotLabels: ui.robotLabels,
     taskLabels: ui.taskLabels,
+    searchPlaceholder: isEn ? 'Search tool name, institution...' : '搜索工具/平台名称、机构...',
+    robotType: isEn ? 'Platform Type' : '平台类型',
+    taskType: isEn ? 'Use Case' : '适用场景',
+    openness: isEn ? 'Access Level' : '开放程度',
+    clearFilters: isEn ? 'Clear' : '清除',
+    resultCount: isEn ? 'Found' : '找到',
   };
   fs.mkdirSync(`${outDir}/tools`, { recursive: true });
   fs.writeFileSync(`${outDir}/tools/index.html`, buildPage(`${templateDir}tools.html`, {
