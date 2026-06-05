@@ -2805,5 +2805,641 @@
       "多模态",
       "视频理解"
     ]
+  },
+  {
+    "changelog": [],
+    "huggingface": "",
+    "github": "https://github.com/NVlabs/HANDAL",
+    "id": "handal-dataset",
+    "name": "HANDAL",
+    "institution": "NVIDIA",
+    "scale": "308K 标注帧 + 2.2K 视频，212 个真实物体 + 17 类别",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "可供性分割",
+      "抓取"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "语义分割",
+      "3D重建"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://nvlabs.github.io/HANDAL/",
+      "paper": "https://arxiv.org/abs/2308.01477"
+    },
+    "notes": "NVIDIA IROS 2023，首个类别级 6-DoF 位姿 + 可供性标注的真实物体数据集。提供像素级 3D handle affordance 分割、物体 6-DoF 位姿、2D/3D 重建网格。AFUN 在 HANDAL-Mini/Easy/Hard 三个测试集上取得 SOTA。",
+    "description": "**HANDAL（Household ANnotated Dataset for functionAL grasping）**是 NVIDIA 于 IROS 2023 发布的可供性分割基准数据集。\n\n**规模**：**30.8 万** 标注帧、**2.2K** 视频序列、**212** 个真实世界物体，覆盖 **17 个类别**（工具箱类：锤子、钳子、螺丝刀、扳手等；厨房类：铲子、量杯、滤网等）。\n\n**标注内容**：类别级 6-DoF 位姿 + 尺度、像素级物体分割、**像素级 3D handle affordance 分割**、2D 边界框、3D 物体网格重建。\n\n**测试拆分**：HANDAL-Mini / HANDAL Easy / HANDAL Hard 三个测试集，分别测试模型在不同难度下的可供性分割能力。\n\n**协议**：CC BY-NC-SA 4.0。\n\nAFUN 论文在 HANDAL 三个测试集上全面超越所有基线（+23.9 gIoU）。",
+    "license": "CC BY-NC-SA 4.0",
+    "dataFormat": {
+      "storage": "PNG + JSON + NPY",
+      "size": "~50GB（含 3D 网格）",
+      "compression": "无",
+      "schema": "scene → object_category → frame → RGB / depth / affordance_mask / 6D_pose / mesh"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB",
+        "深度",
+        "语义分割",
+        "6-DoF位姿"
+      ],
+      "scenes": "桌面/工作台，含遮挡与多角度视角",
+      "objects": "212 个真实物体（17 类别：锤子、钳子、螺丝刀、铲子、滤网等）",
+      "tasks": "functional grasping（功能性抓取：识别并抓取物体的正确操作部位）",
+      "episodes": "2.2K 视频序列（308K 帧）",
+      "annotations": [
+        "可供性分割掩码",
+        "6-DoF 类别位姿",
+        "2D 边界框",
+        "3D 网格重建",
+        "像素级物体分割"
+      ]
+    },
+    "citation": {
+      "year": 2023
+    },
+    "quality": {
+      "collection": "人工采集（真实桌面场景）",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "tags": [
+      "可供性",
+      "HDF5",
+      "3D重建",
+      "语义分割",
+      "功能理解",
+      "AFUN",
+      "位姿估计"
+    ]
+  },
+  {
+    "changelog": [],
+    "huggingface": "",
+    "github": "",
+    "id": "3doi-dataset",
+    "name": "3DOI",
+    "institution": "University of Michigan",
+    "scale": "~10K 图像 + 密集可供性标注",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "可供性分割",
+      "3D运动预测",
+      "物体交互"
+    ],
+    "modality": [
+      "RGB",
+      "3D点云"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://jasonqsy.github.io/3DOI/",
+      "paper": "https://arxiv.org/abs/2308.12351"
+    },
+    "notes": "UMich ICCV 2023，从单张 RGB 图像预测 3D 物体交互点与可供性。标注了接触点、关节类型、可移动性等物理属性。AFUN 在 3DOI / 3DOI Easy 两个测试集上取得 SOTA。",
+    "description": "**3DOI（3D Object Interaction）**是密歇根大学于 ICCV 2023 提出的 3D 物体交互理解数据集。\n\n**规模**：约 **1 万张** RGB 图像，来源涵盖互联网视频、第一人称视频及 3D 数据集渲染。\n\n**标注内容**：交互查询点、可供性关键点、2D 边界框、关节类型（旋转/平移/固定）、可移动性、夹具标签。\n\n**核心任务**：从单张 RGB 图像 + 查询点，预测可供性分割掩码和 3D 交互 affordance map。\n\n**测试拆分**：3DOI（标准）和 3DOI Easy（简化）两个测试集。\n\nAFUN 在 3DOI 分割任务上大幅超越所有基线。",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "PNG + JSON 标注",
+      "size": "~5GB",
+      "compression": "无",
+      "schema": "image → query_point → affordance_mask / interaction_keypoint / articulation_type"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB"
+      ],
+      "scenes": "互联网视频 + 第一人称视频 + 3D 数据集渲染",
+      "objects": "多样化日常物品（含铰接和刚体）",
+      "tasks": "3D 物体交互点预测、可供性分割、物理属性识别",
+      "episodes": "~10K 图像",
+      "annotations": [
+        "可供性关键点",
+        "关节类型",
+        "可移动性标签",
+        "夹具标签",
+        "2D 边界框"
+      ]
+    },
+    "citation": {
+      "year": 2023
+    },
+    "quality": {
+      "collection": "多源聚合",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "tags": [
+      "可供性",
+      "3D运动",
+      "功能理解",
+      "AFUN",
+      "语义分割"
+    ]
+  },
+  {
+    "changelog": [],
+    "huggingface": "",
+    "github": "https://github.com/teleema/GLOVER-plusplus",
+    "id": "hova-500k",
+    "name": "HOVA-500K",
+    "institution": "HKUST (Guangzhou)",
+    "scale": "50 万张 RGB 图像 + 1,726 物体类别 + 675 动作类别",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "可供性分割",
+      "接触点预测",
+      "物体交互"
+    ],
+    "modality": [
+      "RGB"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://teleema.github.io/projects/GLOVER++",
+      "paper": "https://arxiv.org/abs/2505.11865"
+    },
+    "notes": "HKUST 2025 (GLOVER++)，当前最大规模的视觉可供性数据集。从 Ego4D/EPIC-KITCHENS 等人类视频自动提取手-物接触帧并回投标注。AFUN 在 HOVA-500K 可供性分割上取得 SOTA，并在其基础上转换生成了分割训练数据。",
+    "description": "**HOVA-500K（Human-Object Visual Affordance 500K）**是 HKUST（广州）于 2025 年发布的大规模视觉可供性数据集，伴随 GLOVER++ 模型。\n\n**规模**：**50 万** 张 RGB 图像，覆盖 **1,726** 个物体类别和 **675** 个动作/动词类别，是目前最大规模的 visual affordance 数据集。\n\n**采集方式**：从 Ego4D、EPIC-KITCHENS 等第一人称人类视频中检测手-物接触帧，通过 homography 反投影将接触点映射到无遮挡帧，实现毫米级交互点标注。\n\n**标注**：point-level Gaussian heatmap（非区域掩码），以接触点为中心的高斯热力图，精度可达毫米级。\n\n**关联模型**：GLOVER++（全局-局部可供性训练框架），仅 8.1M 可训练参数，在真实机器人零样本操作中达 73.3% 成功率。\n\nAFUN 将 HOVA-500K 的 point-level 标注转换为分割掩码用于训练，并在其测试集上取得 SOTA。",
+    "license": "CC BY-NC 4.0",
+    "dataFormat": {
+      "storage": "PNG + JSON（热力图标注）",
+      "size": "~120GB",
+      "compression": "无",
+      "schema": "image → object_category / action_category → contact_heatmap（Gaussian keypoint）"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB"
+      ],
+      "scenes": "Ego4D/EPIC-KITCHENS 等第一人称视频中的日常生活场景",
+      "objects": "1,726 类日常物体",
+      "tasks": "视觉可供性关键点预测、可供性分割、接触点预测",
+      "episodes": "500K 图像",
+      "annotations": [
+        "接触点高斯热力图",
+        "物体类别",
+        "动作类别"
+      ]
+    },
+    "citation": {
+      "year": 2025
+    },
+    "quality": {
+      "collection": "多源聚合（Ego4D/EPIC-KITCHENS 自动标注）",
+      "annotation": "自动标注（半自动化管线）",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "tags": [
+      "可供性",
+      "视频学习",
+      "第一人称",
+      "AFUN",
+      "大规模",
+      "跨具身"
+    ]
+  },
+  {
+    "changelog": [],
+    "huggingface": "",
+    "github": "https://github.com/hq-King/Affordance-R1",
+    "id": "reasonaff",
+    "name": "ReasonAFF",
+    "institution": "Shanghai AI Lab / ShanghaiTech",
+    "scale": "48 物体类别 + 30 可供性类别 + GPT-4o 推理指令重写",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "可供性分割",
+      "语言推理"
+    ],
+    "modality": [
+      "RGB",
+      "语义分割",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://github.com/hq-King/Affordance-R1",
+      "paper": "https://arxiv.org/abs/2508.06206"
+    },
+    "notes": "上海 AI Lab 2025 (Affordance-R1)，基于 InstructPart 扩展的推理级可供性数据集。将直接指令改写为隐含推理问题（如 '打开垃圾桶应该碰哪里？'），考验 MLLM 的 Chain-of-Thought 可供性推理。AFUN 在 ReasonAFF 上大幅超越 Seg-Zero/Vision Reasoner/Qwen2.5VL 等基线。",
+    "description": "**ReasonAFF** 是上海 AI Lab 于 2025 年伴随 Affordance-R1 模型发布的推理级可供性数据集。\n\n**数据来源**：基于 InstructPart 数据集，通过 GPT-4o 将原来的直接指令（如 'segment the lid'）改写为隐含推理问题（如 'Where would you place your hand if you wanted to open this trash can?'）。\n\n**规模**：覆盖 **48** 个物体类别、**30** 个可供性类别，每条数据包含推理指令 + 可供性分割掩码 + 边界框 + 中心点。\n\n**核心创新**：将可供性分割从纯视觉任务升级为视觉-语言推理任务，需要模型先理解任务语义再定位操作部位。\n\n**关联模型**：Affordance-R1，采用纯强化学习（GRPO）训练，零样本泛化到 AGD20K/UMD 等 OOD 数据集。\n\nAFUN 在 ReasonAFF 上取得 gIoU 67.41 / cIoU 62.72 的 SOTA 成绩。",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "PNG + JSON（Q&A 格式）",
+      "size": "~2GB",
+      "compression": "无",
+      "schema": "image → reasoning_instruction（GPT-4o 改写）/ affordance_mask / bbox / centroid"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB"
+      ],
+      "scenes": "日常家庭场景（基于 InstructPart 图像 + HOI 图像）",
+      "objects": "48 类日常物体（垃圾桶、微波炉、水龙头等）",
+      "tasks": "推理级可供性分割（Chain-of-Thought affordance reasoning + segmentation）",
+      "episodes": "~2.4K 图像（含 GPT-4o 推理指令）",
+      "annotations": [
+        "推理指令（Q&A）",
+        "可供性分割掩码",
+        "边界框",
+        "可供性中心点"
+      ]
+    },
+    "citation": {
+      "year": 2025
+    },
+    "quality": {
+      "collection": "基于 InstructPart 扩展",
+      "annotation": "自动标注（GPT-4o）+ 人工验证",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "tags": [
+      "可供性",
+      "语言标注",
+      "VLA",
+      "功能理解",
+      "AFUN",
+      "跨具身"
+    ]
+  },
+  {
+    "changelog": [],
+    "huggingface": "",
+    "github": "",
+    "id": "instructpart",
+    "name": "InstructPart",
+    "institution": "CMU Robotics Institute",
+    "scale": "2,400 真实图像 + 48 物体类别 + 9,600 任务指令",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "可供性分割",
+      "语义分割",
+      "语言推理"
+    ],
+    "modality": [
+      "RGB",
+      "语义分割",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://zifuwan.github.io/InstructPart/",
+      "paper": "https://arxiv.org/abs/2505.18291"
+    },
+    "notes": "CMU ACL 2025 Main，首个桥接任务导向交互与部件分割的基准。含 9,600 条人工标注任务指令（TRPS 任务推理部件分割 + ORPS 指代部件分割）。AFUN 在 InstructPart 可供性分割上取得 SOTA。",
+    "description": "**InstructPart** 是 CMU 机器人研究所于 ACL 2025 (Main) 提出的任务导向部件分割基准。\n\n**规模**：**2,400** 张真实世界图像，覆盖 **48** 个物体类别、**44** 个部件类别、**30** 个可供性类别、**37** 个动作类别。\n\n**标注**：**9,600** 条人工标注任务指令（含专家标注 + GPT-polished + 人工核验），像素级分割掩码。\n\n**两大任务**：\n1. **TRPS（Task Reasoning Part Segmentation）**——给定任务指令+图像，推理并分割出正确操作部件（如 '拉开微波炉需要碰哪个部位？'）\n2. **ORPS（Oracle Referring Part Segmentation）**——给定直接部件/物体指代，分割对应部件（如 '水龙头的把手'）\n\n**协议**：CC BY 4.0。\n\nAFUN 在 InstructPart 上与 ReasonAFF 一起作为核心可供性分割评测基准。",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "PNG + JSON（任务指令）",
+      "size": "~1GB",
+      "compression": "无",
+      "schema": "image → task_instruction → part_segmentation_mask / affordance_label / object_category"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB"
+      ],
+      "scenes": "日常家庭场景",
+      "objects": "48 类日常物体（微波炉、水龙头、垃圾桶、剪刀等）",
+      "tasks": "TRPS（任务推理部件分割）+ ORPS（指代部件分割）",
+      "episodes": "2,400 图像 + 9,600 任务指令",
+      "annotations": [
+        "部件分割掩码",
+        "任务指令",
+        "可供性标签",
+        "物体/部件类别"
+      ]
+    },
+    "citation": {
+      "year": 2025
+    },
+    "quality": {
+      "collection": "人工采集（真实场景）",
+      "annotation": "人工标注 + GPT 辅助 + 人工核验",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "tags": [
+      "可供性",
+      "语言标注",
+      "功能理解",
+      "AFUN",
+      "语义分割"
+    ]
+  },
+  {
+    "changelog": [],
+    "huggingface": "",
+    "github": "https://github.com/SceneFun3D/scenefun3d",
+    "id": "scenefun3d",
+    "name": "SceneFun3D",
+    "institution": "ETH Zürich / Google / TUM / Microsoft",
+    "scale": "710 个高精度 3D 室内场景 + 14.8K+ 交互标注 + 3,000+ 任务描述",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "3D场景理解",
+      "可供性分割",
+      "3D运动预测"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "3D点云",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://scenefun3d.github.io/",
+      "paper": "https://arxiv.org/abs/2404.12345"
+    },
+    "notes": "ETH/Microsoft CVPR 2024 Oral，首个精细 3D 场景功能理解数据集。Faro 激光扫描仪捕捉 710 个真实室内场景，标注了把手、旋钮、按钮、开关等细小可交互元素。AFUN 在 SceneFun3D 的 3D 运动预测（n=721）上取得 SOTA。",
+    "description": "**SceneFun3D** 是 ETH Zürich / Google / TUM / Microsoft 联合发表于 CVPR 2024 (Oral) 的精细 3D 场景功能理解数据集。\n\n**规模**：**710** 个高精度 3D 室内场景（Faro 激光扫描仪采集，远超 RGB-D 重建精度），**14,800+** 精细交互标注，**3,000+** 自然语言任务描述，覆盖 **9** 个可供性类别（旋转、钩拉、推按等）。\n\n**独特之处**：标注了传统 RGB-D 重建（ScanNet/Matterport3D）中不可见的细小功能元素——门把手、旋钮、按钮、开关、拨杆等。\n\n**三大基准任务**：\n1. **Functionality Segmentation**：3D 点云中分割功能元素并预测可供性标签\n2. **Task-Driven Affordance Grounding**：根据自然语言任务描述定位功能元素\n3. **3D Motion Estimation**：预测交互所需的运动参数（运动类型、轴、原点）\n\n**协议**：CC BY-NC-SA 4.0。\n\nAFUN 使用 SceneFun3D 作为训练数据源和 3D 运动测试集（n=721），在 ADE/FDE/CIM 三个指标上全面超越 General Flow 等基线。",
+    "license": "CC BY-NC-SA 4.0",
+    "dataFormat": {
+      "storage": "PLY（点云）+ JSON（标注）+ PNG（RGB-D）",
+      "size": "~200GB（含 Faro 原始扫描）",
+      "compression": "无",
+      "schema": "scene → functional_element → affordance_label / 3D_motion_params（type + axis + origin）/ task_description"
+    },
+    "dataContent": {
+      "sensors": [
+        "Faro 激光扫描",
+        "RGB-D (ARKit)"
+      ],
+      "scenes": "710 个真实室内场景（含厨房、客厅、办公室、卧室等）",
+      "objects": "门把手、旋钮、按钮、开关、抽屉拉手、水龙头等细小功能元素",
+      "tasks": "功能分割 + 任务驱动可供性定位 + 3D 运动参数估计",
+      "episodes": "14.8K+ 交互标注 + 3,000+ 任务描述",
+      "annotations": [
+        "功能元素分割",
+        "可供性标签（9类）",
+        "3D 运动参数",
+        "任务描述",
+        "6-DoF 位姿"
+      ]
+    },
+    "citation": {
+      "year": 2024
+    },
+    "quality": {
+      "collection": "人工采集（Faro 激光扫描 + ARKit RGB-D）",
+      "annotation": "人工标注",
+      "realWorld": "100%真机（真实室内场景）",
+      "hasSplit": true
+    },
+    "tags": [
+      "3D场景",
+      "可供性",
+      "3D运动",
+      "语义分割",
+      "点云",
+      "功能理解",
+      "AFUN",
+      "3D重建"
+    ]
+  },
+  {
+    "changelog": [],
+    "huggingface": "https://modelscope.cn/datasets/X-Humanoid/RoboMIND2.0",
+    "github": "https://github.com/Open-X-Humanoid/RoboMIND-Sim",
+    "id": "robomind2",
+    "name": "RoboMIND 2.0",
+    "institution": "北京人形机器人创新中心 / 北京大学",
+    "scale": "31 万+ 演示轨迹 + 1,000+ 小时 + 759 任务 + 6 种机器人形态",
+    "robotType": [
+      "人形机器人",
+      "机械臂",
+      "多机型",
+      "灵巧手"
+    ],
+    "task": [
+      "操作",
+      "抓取",
+      "交互",
+      "家居",
+      "装配"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "触觉",
+      "本体状态",
+      "力控"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://log2r.github.io/RoboMIND2.0",
+      "paper": "https://arxiv.org/abs/2512.24653"
+    },
+    "notes": "RoboMIND v2.0，首次大规模覆盖双臂移动操作 + 触觉感知的真实机器人数据集。31 万+ 轨迹、6 种形态（含天工人形机器人）、1,139 种物体。AFUN 将 RoboMIND2 作为训练源和域外 3D 运动测试集（n=156），验证开放场景泛化能力。",
+    "description": "**RoboMIND 2.0** 是北京人形机器人创新中心与北京大学于 2025 年 12 月发布的超大规模多模态真实机器人操作数据集，是 RoboMIND 1.0 (RSS 2025) 的全面升级。\n\n**数据规模**：**31 万+** 演示轨迹、**1,000+** 小时操作数据、**759** 种精细任务、**1,139** 种交互物体、覆盖 **11** 个核心场景（工业分拣、化学实验室、家庭厨房、家电交互等）。\n\n**多形态覆盖**：**6 种机器人形态**——Franka Emika Panda、UR5e、AgileX 轮式双臂平台、'天工'全尺寸人形机器人（含灵巧手）、'天轶'轮式人形机器人、ARX 轮式机器人。\n\n**多模态感知**：\n- **视觉**：多视角 RGB-D\n- **触觉**：1.2 万条触觉增强片段（法向力 + 切向力），行业首次大规模集成\n- **语言**：Gemini 辅助生成的精细任务描述\n- **本体感知**：完整关节状态\n\n**训练框架**：配套 MIND-2 分层架构——慢系统（VLM 推理规划）+ 快系统（VLA 实时控制），采用 Implicit Q-Learning 离线 RL 训练。\n\n**协议**：CC BY-NC 4.0。\n\nAFUN 使用 RoboMIND2 作为训练数据源，并将其测试集（n=156）作为域外（out-of-domain）3D 运动评测基准。",
+    "license": "CC BY-NC 4.0",
+    "dataFormat": {
+      "storage": "HDF5 + MP4",
+      "size": "~10TB（全量原始数据 + 仿真数据）",
+      "compression": "HDF5 压缩",
+      "schema": "episode → step → observation（RGB-D + tactile + proprioception）/ action（dual-arm + mobile_base）/ language_instruction"
+    },
+    "dataContent": {
+      "sensors": [
+        "多视角 RGB-D",
+        "触觉阵列",
+        "力控传感器",
+        "关节编码器",
+        "IMU"
+      ],
+      "scenes": "11 个核心场景：工业分拣、化学实验室、家庭厨房、家电交互、仓储物流等",
+      "objects": "1,139 种物体（含刚体、铰接、柔性物体）",
+      "tasks": "759 种精细任务（含双臂协作、移动操作、精密插入、长程任务序列）",
+      "episodes": "31 万+ 演示轨迹（1,000+ 小时）",
+      "annotations": [
+        "语言任务描述",
+        "动作标签",
+        "触觉力反馈",
+        "成功/失败标志"
+      ]
+    },
+    "citation": {
+      "year": 2025
+    },
+    "quality": {
+      "collection": "人工遥操作采集 + Isaac Sim 数字孪生",
+      "annotation": "自动标注（Gemini 语言标注）+ 人工核验",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "tags": [
+      "人形",
+      "双臂",
+      "触觉",
+      "移动操作",
+      "多模态",
+      "VLA",
+      "大规模",
+      "力控",
+      "Sim-to-Real",
+      "AFUN"
+    ]
+  },
+  {
+    "changelog": [],
+    "huggingface": "",
+    "github": "https://github.com/hoi4d/HOI4D",
+    "id": "hoi4d",
+    "name": "HOI4D",
+    "institution": "Tsinghua University / Peking University",
+    "scale": "2.4M RGB-D 帧 + 4,000+ 序列 + 800 物体实例 + 16 类别",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "人机交互",
+      "3D运动预测",
+      "可供性分割"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "3D点云"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://hoi4d.github.io/",
+      "paper": "https://arxiv.org/abs/2203.01577"
+    },
+    "notes": "清华/北大 CVPR 2022，首个大规模 4D 第一人称人-物交互数据集。含全景分割、运动分割、3D 手部姿态、类别级 6-DoF 物体位姿。AFUN 将其作为人类第一人称训练数据源（1,020 episodes）。",
+    "description": "**HOI4D（4D Egocentric Human-Object Interaction）**是清华大学与北京大学于 CVPR 2022 发布的大规模 4D 第一人称人-物交互数据集。\n\n**规模**：**240 万** RGB-D 第一人称视频帧、**4,000+** 交互序列、**800** 个物体实例（16 类别，含刚体和铰接物体）、**610** 个不同室内场景。\n\n**采集方式**：头戴式 Intel RealSense D455 + Kinect v2 采集，9 名参与者在自然室内环境中进行日常操作。\n\n**标注**：逐帧全景分割、运动分割、3D 手部姿态、类别级物体 6-DoF 位姿（含铰接物体关节状态）、动作分割标签。\n\n**三大基准任务**：\n1. 4D 动态点云序列语义分割\n2. 类别级物体位姿跟踪\n3. 第一人称动作分割\n\n**协议**：CC BY-NC-SA 4.0。\n\nAFUN 将 HOI4D 作为人类第一人称（human egocentric）训练数据源，从中提取 2,165 个动作区间用于可供性学习。",
+    "license": "CC BY-NC-SA 4.0",
+    "dataFormat": {
+      "storage": "PNG（RGB-D 帧）+ NPY（点云）+ JSON（标注）",
+      "size": "~500GB（含点云序列）",
+      "compression": "无",
+      "schema": "sequence → frame → RGB-D / point_cloud / panoptic_segmentation / 6D_object_pose / hand_pose / action_label"
+    },
+    "dataContent": {
+      "sensors": [
+        "RealSense D455",
+        "Kinect v2",
+        "IMU"
+      ],
+      "scenes": "610 个室内场景（办公室、厨房、客厅、实验室等）",
+      "objects": "800 个物体实例（16 类别：剪刀、抽屉、马克杯、笔记本电脑等）",
+      "tasks": "4D 点云语义分割、类别级物体位姿跟踪、第一人称动作分割",
+      "episodes": "4,000+ 交互序列（2.4M 帧）",
+      "annotations": [
+        "全景分割",
+        "运动分割",
+        "3D 手部姿态",
+        "类别级 6-DoF 位姿",
+        "动作分割标签"
+      ]
+    },
+    "citation": {
+      "year": 2022
+    },
+    "quality": {
+      "collection": "人工采集（头戴设备，自然室内环境）",
+      "annotation": "半自动标注 + 人工核验",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "tags": [
+      "人机交互",
+      "第一人称",
+      "3D运动",
+      "点云",
+      "语义分割",
+      "AFUN",
+      "位姿估计"
+    ]
+  },
+  {
+    "changelog": [],
+    "huggingface": "",
+    "github": "",
+    "id": "vitra",
+    "name": "VITRA",
+    "institution": "Microsoft Research",
+    "scale": "1,098,944 动作区间（基于 EPIC-KITCHENS + Ego4D 人类视频）",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "操作",
+      "抓取",
+      "交互",
+      "可供性分割"
+    ],
+    "modality": [
+      "RGB",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "paper": "https://arxiv.org/abs/2510.21571"
+    },
+    "notes": "Microsoft 2025，规模化 VLA 预训练数据集。从 EPIC-KITCHENS 和 Ego4D 人类活动视频中提取操作片段，提供逐帧 SLAM 相机内外参。AFUN 的最大训练数据源（129,433 条拟合曲线）。",
+    "description": "**VITRA（Scalable Vision-Language-Action Model Pretraining with Human Activity Videos）**是 Microsoft Research 于 2025 年发布的规模化 VLA 预训练数据集。\n\n**规模**：基于 **EPIC-KITCHENS** 和 **Ego4D** 两大第一人称视频数据集，提取了约 **110 万** 个操作动作区间，累计约 130 万视角观测。\n\n**核心技术**：为第一人称视频提供逐帧 **SLAM 相机内参和外参**，解决了第一人称视频中相机运动噪声的核心挑战——使轨迹可几何投影到 3D 空间。\n\n**标注**：使用 VLM + SAM3 跟踪 → 深度反投影 → Bézier 曲线拟合的自动化管线，从人类操作视频中提取物体运动轨迹。\n\n**协议**：CC BY 4.0。\n\nAFUN 将 VITRA 作为最大的训练数据来源（human egocentric 类别），从中生成了 129,433 条有效 Bézier 样条运动曲线。",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "MP4（源视频）+ JSON（SLAM 相机参数 + 标注）",
+      "size": "基于 EPIC-KITCHENS + Ego4D（引用源数据集存储）",
+      "compression": "无",
+      "schema": "video_clip → action_interval → RGB_frames + SLAM_camera_poses + object_track + Bézier_curve"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB（第一人称）",
+        "SLAM 相机位姿"
+      ],
+      "scenes": "日常厨房（EPIC-KITCHENS）+ 多样化室内外（Ego4D）",
+      "objects": "多样化日常物体（烹饪工具、家居用品等）",
+      "tasks": "人类操作视频 → VLA 预训练（物体跟踪 + 运动轨迹拟合）",
+      "episodes": "1,098,944 动作区间（基于 3,024 条源视频）",
+      "annotations": [
+        "物体跟踪掩码",
+        "3D 运动 Bézier 曲线",
+        "SLAM 相机位姿",
+        "接触帧索引"
+      ]
+    },
+    "citation": {
+      "year": 2025
+    },
+    "quality": {
+      "collection": "多源聚合（EPIC-KITCHENS + Ego4D）",
+      "annotation": "自动标注（VLM + SAM3 跟踪 + 深度反投影）",
+      "realWorld": "100%真机（人类第一人称视频）",
+      "hasSplit": true
+    },
+    "tags": [
+      "视频学习",
+      "第一人称",
+      "人机交互",
+      "VLA",
+      "Sim-to-Real",
+      "AFUN",
+      "大规模"
+    ]
   }
 ]
