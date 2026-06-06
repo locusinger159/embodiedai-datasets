@@ -3440,7 +3440,7 @@
       "venue": "NeurIPS",
       "authors": "Jang, E. et al."
     },
-    "github": "https://github.com/google-research/robotics_transformer",
+    "github": "",
     "huggingface": "",
     "quality": {
       "collection": "人工遥操作采集（DAgger）",
