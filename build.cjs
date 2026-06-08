@@ -417,12 +417,38 @@ function buildAll(lang) {
   }
 
   // ── Homepage ─────────────────────────────────────────────
+  // Read blog posts for homepage cards
+  const blogFile = 'docs/data/blog.json';
+  let blogPosts = [];
+  if (fs.existsSync(blogFile)) {
+    blogPosts = JSON.parse(fs.readFileSync(blogFile, 'utf8'));
+    blogPosts.sort((a, b) => b.date.localeCompare(a.date));
+  }
+  // Generate blog cards for homepage (3 most recent)
+  let blogCardsHTML = '';
+  if (blogPosts.length > 0) {
+    blogCardsHTML = blogPosts.slice(0, 3).map(p => {
+      const title = isEn ? (p.titleEn || p.title) : p.title;
+      const summary = isEn ? (p.summaryEn || p.summary) : p.summary;
+      const tags = isEn ? (p.tagsEn || p.tags) : p.tags;
+      const blogPath = '/' + (isEn ? 'en/' : '') + 'blog/' + p.id + '/';
+      return '<article class="blog-home-card">'
+        + '<a href="' + blogPath + '" class="blog-home-card-link">'
+        + '<time class="blog-home-card-date">' + esc(p.date) + '</time>'
+        + '<h3 class="blog-home-card-title">' + esc(title) + '</h3>'
+        + '<p class="blog-home-card-summary">' + esc(summary) + '</p>'
+        + '<div class="blog-home-card-tags">' + (tags || []).slice(0, 3).map(t => '<span class="blog-home-card-tag">' + esc(t) + '</span>').join('') + '</div>'
+        + '</a></article>';
+    }).join('');
+  }
+
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(`${outDir}/index.html`, buildPage(`${templateDir}index.html`, {
     meta: `<title>${ui.siteTitle}</title><meta name="description" content="${ui.siteDesc}"><meta name="keywords" content="具身智能,机器人数据集,人形机器人,机械臂,开源数据集,机器人学习"><meta property="og:title" content="${ui.siteTitle}"><meta property="og:description" content="${ui.siteDesc}"><meta property="og:type" content="website">`,
     nav: getActiveNav('home'),
     STAT_TOTAL: String(totalDatasets), STAT_ORGS: String(allOrgs.size), STAT_TYPES: String(allRobotTypes.size), STAT_STANDARDS: String(totalStandards),
-    PARTNERS: partnerNames.map(n => `<span class="partner-item">${n}</span>`).join('\n')
+    PARTNERS: partnerNames.map(n => `<span class="partner-item">${n}</span>`).join('\n'),
+    BLOG_CARDS: blogCardsHTML
   }));
 
   // ── Datasets list page ───────────────────────────────────
@@ -558,19 +584,12 @@ function buildAll(lang) {
   }));
 
   // ── Blog ────────────────────────────────────────────────
-  const blogFile = 'docs/data/blog.json';
-  let blogPosts = [];
-  if (fs.existsSync(blogFile)) {
-    blogPosts = JSON.parse(fs.readFileSync(blogFile, 'utf8'));
-    blogPosts.sort((a, b) => b.date.localeCompare(a.date));
-  }
-
   if (blogPosts.length > 0) {
     const blogDir = outDir + '/blog';
     fs.mkdirSync(blogDir, { recursive: true });
 
     // Blog cards for list page
-    const blogCardsHTML = blogPosts.map(p => {
+    const blogListCards = blogPosts.map(p => {
       const title = isEn ? (p.titleEn || p.title) : p.title;
       const summary = isEn ? (p.summaryEn || p.summary) : p.summary;
       const tags = isEn ? (p.tagsEn || p.tags) : p.tags;
@@ -581,7 +600,7 @@ function buildAll(lang) {
     fs.writeFileSync(blogDir + '/index.html', buildPage('src/pages/blog.html', {
       meta: '<title>' + ui.blog + ' | Superdata RobotAI</title><meta name="description" content="' + (isEn ? 'Technical blog on embodied AI datasets and data standards' : '具身智能数据集技术博客') + '">',
       nav: getActiveNav('blog'),
-      BLOG_CARDS: blogCardsHTML,
+      BLOG_CARDS: blogListCards,
       BLOG_PAGE_TITLE: isEn ? 'Technical Blog' : '技术博客',
       BLOG_PAGE_SUBTITLE: isEn ? 'Deep dives into embodied AI datasets, data standards, and industry trends' : '深入分析具身智能数据集、数据标准与行业趋势',
     }));
