@@ -58,7 +58,29 @@
     "standards": [
       "hdf5-robomimic"
     ],
-    "toolType": "RL/IL Framework"
+    "toolType": "RL/IL Framework",
+    "tutorial": {
+      "quickstart": "pip install robosuite\npython -c \"import robosuite; env = robosuite.make('Lift', robots='Panda'); env.reset()\"",
+      "deps": [
+        "robosuite",
+        "mujoco",
+        "numpy"
+      ],
+      "links": [
+        {
+          "name": "官方文档",
+          "url": "https://robosuite.ai/docs/overview.html"
+        },
+        {
+          "name": "快速入门",
+          "url": "https://robosuite.ai/docs/quickstart.html"
+        },
+        {
+          "name": "示例代码",
+          "url": "https://github.com/ARISE-Initiative/robosuite/tree/master/robosuite/demos"
+        }
+      ]
+    }
   },
   {
     "id": "isaac-sim-dataset",
@@ -115,7 +137,29 @@
     "standards": [
       "openusd"
     ],
-    "toolType": "Simulator"
+    "toolType": "Simulator",
+    "tutorial": {
+      "quickstart": "# 通过 NVIDIA Omniverse Launcher 安装 Isaac Sim\n# 或 pip 安装基础库\npip install isaacsim\n# 启动后 File > Open Sample Scene 加载示例",
+      "deps": [
+        "isaacsim",
+        "numpy",
+        "torch"
+      ],
+      "links": [
+        {
+          "name": "官方文档",
+          "url": "https://docs.isaacsim.omniverse.nvidia.com/"
+        },
+        {
+          "name": "安装指南",
+          "url": "https://docs.isaacsim.omniverse.nvidia.com/latest/installation/index.html"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/isaac-sim/IsaacSim"
+        }
+      ]
+    }
   },
   {
     "id": "habitat",
@@ -173,7 +217,29 @@
     "standards": [
       "habitat"
     ],
-    "toolType": "Simulator"
+    "toolType": "Simulator",
+    "tutorial": {
+      "quickstart": "pip install habitat-sim habitat-lab\npython -c \"import habitat; print(habitat.__version__)\"",
+      "deps": [
+        "habitat-sim",
+        "habitat-lab",
+        "numpy"
+      ],
+      "links": [
+        {
+          "name": "官方文档",
+          "url": "https://aihabitat.org/docs/"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/facebookresearch/habitat-sim"
+        },
+        {
+          "name": "示例教程",
+          "url": "https://aihabitat.org/tutorial/"
+        }
+      ]
+    }
   },
   {
     "id": "igibson",
@@ -236,7 +302,29 @@
       "openusd",
       "behavior-1k"
     ],
-    "toolType": "Simulator"
+    "toolType": "Simulator",
+    "tutorial": {
+      "quickstart": "pip install igibson\npython -m igibson.examples.environments.env_nonint_example",
+      "deps": [
+        "igibson",
+        "numpy",
+        "pybullet"
+      ],
+      "links": [
+        {
+          "name": "官方文档",
+          "url": "https://stanfordvl.github.io/iGibson/"
+        },
+        {
+          "name": "安装指南",
+          "url": "https://stanfordvl.github.io/iGibson/installation.html"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/StanfordVL/iGibson"
+        }
+      ]
+    }
   },
   {
     "id": "sapien",
@@ -291,7 +379,29 @@
       "realWorld": "仿真",
       "hasSplit": true
     },
-    "toolType": "Simulator"
+    "toolType": "Simulator",
+    "tutorial": {
+      "quickstart": "pip install sapien\npython -c \"import sapien.core as sapien; engine = sapien.Engine(); print('SAPIEN ready')\"",
+      "deps": [
+        "sapien",
+        "numpy",
+        "open3d"
+      ],
+      "links": [
+        {
+          "name": "官方文档",
+          "url": "https://sapien.ucsd.edu/docs/"
+        },
+        {
+          "name": "快速入门",
+          "url": "https://sapien.ucsd.edu/docs/latest/tutorial/basic/index.html"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/haosulab/SAPIEN"
+        }
+      ]
+    }
   },
   {
     "id": "coppeliasim",
@@ -342,7 +452,28 @@
       "realWorld": "仿真",
       "hasSplit": true
     },
-    "toolType": "Simulator"
+    "toolType": "Simulator",
+    "tutorial": {
+      "quickstart": "# 下载 CoppeliaSim 客户端: https://www.coppeliarobotics.com/downloads\n# Python 远程 API\npip install coppeliasim-zmqremoteapi-client\npython -c \"from coppeliasim_zmqremoteapi_client import RemoteAPIClient; print('Ready')\"",
+      "deps": [
+        "coppeliasim-zmqremoteapi-client",
+        "numpy"
+      ],
+      "links": [
+        {
+          "name": "官方文档",
+          "url": "https://manual.coppeliarobotics.com/"
+        },
+        {
+          "name": "下载",
+          "url": "https://www.coppeliarobotics.com/downloads"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/CoppeliaRobotics/coppeliaSimLib"
+        }
+      ]
+    }
   },
   {
     "id": "pytouch",
@@ -398,7 +529,25 @@
       "realWorld": "N/A",
       "hasSplit": false
     },
-    "toolType": "Tactile Sim"
+    "toolType": "Tactile Sim",
+    "tutorial": {
+      "quickstart": "pip install pytouch\npython -c \"from pytouch import PyTouch; pt = PyTouch(); print('PyTouch ready')\"",
+      "deps": [
+        "pytouch",
+        "torch",
+        "numpy"
+      ],
+      "links": [
+        {
+          "name": "官方文档",
+          "url": "https://pypi.org/project/pytouch/"
+        },
+        {
+          "name": "论文",
+          "url": "https://arxiv.org/abs/2105.02934"
+        }
+      ]
+    }
   },
   {
     "id": "gibson",
@@ -456,7 +605,23 @@
     "standards": [
       "habitat"
     ],
-    "toolType": "Simulator"
+    "toolType": "Simulator",
+    "tutorial": {
+      "quickstart": "# Gibson 已被 iGibson 取代\n# 建议使用 pip install igibson",
+      "deps": [
+        "igibson"
+      ],
+      "links": [
+        {
+          "name": "iGibson (替代)",
+          "url": "https://stanfordvl.github.io/iGibson/"
+        },
+        {
+          "name": "旧版 GitHub",
+          "url": "https://github.com/StanfordVL/GibsonEnv"
+        }
+      ]
+    }
   },
   {
     "id": "robomimic",
@@ -516,7 +681,30 @@
       "realWorld": "N/A",
       "hasSplit": true
     },
-    "toolType": "RL/IL Framework"
+    "toolType": "RL/IL Framework",
+    "tutorial": {
+      "quickstart": "pip install robomimic\npython -c \"import robomimic; print(robomimic.__version__)\"",
+      "deps": [
+        "robomimic",
+        "h5py",
+        "torch",
+        "numpy"
+      ],
+      "links": [
+        {
+          "name": "官方文档",
+          "url": "https://robomimic.github.io/"
+        },
+        {
+          "name": "数据集概览",
+          "url": "https://robomimic.github.io/docs/datasets/overview.html"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/ARISE-Initiative/robomimic"
+        }
+      ]
+    }
   },
   {
     "id": "tacto",
@@ -576,7 +764,30 @@
       "realWorld": "仿真",
       "hasSplit": false
     },
-    "toolType": "Tactile Sim"
+    "toolType": "Tactile Sim",
+    "tutorial": {
+      "quickstart": "pip install tacto\npython -c \"import tacto; print('TACTO ready')\"",
+      "deps": [
+        "tacto",
+        "pyrender",
+        "numpy",
+        "torch"
+      ],
+      "links": [
+        {
+          "name": "官方文档",
+          "url": "https://pypi.org/project/tacto/"
+        },
+        {
+          "name": "论文",
+          "url": "https://arxiv.org/abs/2012.08495"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/facebookresearch/tacto"
+        }
+      ]
+    }
   },
   {
     "id": "foxglove",
@@ -614,7 +825,25 @@
       "realWorld": "N/A",
       "hasSplit": false
     },
-    "toolType": "Visualization"
+    "toolType": "Visualization",
+    "tutorial": {
+      "quickstart": "# 下载 Foxglove Studio: https://foxglove.dev/download\n# 或使用浏览器版: https://studio.foxglove.dev/\n# 打开 MCAP/ROS bag 文件即可可视化",
+      "deps": [],
+      "links": [
+        {
+          "name": "下载 Studio",
+          "url": "https://foxglove.dev/download"
+        },
+        {
+          "name": "Web 版",
+          "url": "https://studio.foxglove.dev/"
+        },
+        {
+          "name": "文档",
+          "url": "https://docs.foxglove.dev/"
+        }
+      ]
+    }
   },
   {
     "id": "pybullet",
@@ -676,7 +905,28 @@
       "annotations": []
     },
     "scale": "",
-    "toolType": "Physics Engine"
+    "toolType": "Physics Engine",
+    "tutorial": {
+      "quickstart": "pip install pybullet\npython -c \"import pybullet; pybullet.connect(pybullet.GUI); print('PyBullet ready')\"",
+      "deps": [
+        "pybullet",
+        "numpy"
+      ],
+      "links": [
+        {
+          "name": "官方文档",
+          "url": "https://pybullet.org/wordpress/"
+        },
+        {
+          "name": "快速入门指南",
+          "url": "https://docs.google.com/document/d/10sXEhzFRSnvFcl3XxNGhnD4N2SedqwdAvK3dsihxVUA/"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/bulletphysics/bullet3"
+        }
+      ]
+    }
   },
   {
     "id": "mujoco",
@@ -745,7 +995,28 @@
       "annotations": []
     },
     "scale": "",
-    "toolType": "Physics Engine"
+    "toolType": "Physics Engine",
+    "tutorial": {
+      "quickstart": "pip install mujoco\npython -c \"import mujoco; print(mujoco.__version__)\"",
+      "deps": [
+        "mujoco",
+        "numpy"
+      ],
+      "links": [
+        {
+          "name": "官方文档",
+          "url": "https://mujoco.readthedocs.io/"
+        },
+        {
+          "name": "MJX GPU 加速",
+          "url": "https://mujoco.readthedocs.io/en/stable/mjx.html"
+        },
+        {
+          "name": "模型库 (Menagerie)",
+          "url": "https://github.com/google-deepmind/mujoco_menagerie"
+        }
+      ]
+    }
   },
   {
     "id": "webots",
@@ -816,7 +1087,27 @@
       "annotations": []
     },
     "scale": "",
-    "toolType": "Simulator"
+    "toolType": "Simulator",
+    "tutorial": {
+      "quickstart": "# 下载 Webots: https://cyberbotics.com/#download\n# 或 pip 安装\npip install webots\n# 打开示例世界: File > Open Sample World",
+      "deps": [
+        "webots"
+      ],
+      "links": [
+        {
+          "name": "官方文档",
+          "url": "https://cyberbotics.com/doc/guide/index"
+        },
+        {
+          "name": "下载",
+          "url": "https://cyberbotics.com/#download"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/cyberbotics/webots"
+        }
+      ]
+    }
   },
   {
     "id": "isaac-lab",
@@ -896,7 +1187,29 @@
       "annotations": []
     },
     "scale": "",
-    "toolType": "RL/IL Framework"
+    "toolType": "RL/IL Framework",
+    "tutorial": {
+      "quickstart": "git clone https://github.com/isaac-sim/IsaacLab.git\ncd IsaacLab\n./isaaclab.sh --install\n./isaaclab.sh -p scripts/tutorials/00_sim/create_empty.py",
+      "deps": [
+        "isaacsim",
+        "torch",
+        "numpy"
+      ],
+      "links": [
+        {
+          "name": "官方文档",
+          "url": "https://isaac-sim.github.io/IsaacLab/"
+        },
+        {
+          "name": "安装指南",
+          "url": "https://isaac-sim.github.io/IsaacLab/main/source/setup/installation.html"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/isaac-sim/IsaacLab"
+        }
+      ]
+    }
   },
   {
     "id": "gazebo",
@@ -970,7 +1283,27 @@
       "annotations": []
     },
     "scale": "",
-    "toolType": "Simulator"
+    "toolType": "Simulator",
+    "tutorial": {
+      "quickstart": "# Ubuntu 安装\nsudo apt install gz-harmonic\n# 启动空世界\ngz sim empty.sdf",
+      "deps": [
+        "gz-harmonic"
+      ],
+      "links": [
+        {
+          "name": "官方文档",
+          "url": "https://gazebosim.org/docs"
+        },
+        {
+          "name": "安装指南",
+          "url": "https://gazebosim.org/docs/harmonic/install_ubuntu"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/gazebosim/gz-sim"
+        }
+      ]
+    }
   },
   {
     "id": "rerun",
@@ -1039,7 +1372,28 @@
       "annotations": []
     },
     "scale": "",
-    "toolType": "Visualization"
+    "toolType": "Visualization",
+    "tutorial": {
+      "quickstart": "pip install rerun-sdk\npython -c \"import rerun as rr; rr.init('test'); print('Rerun ready')\"",
+      "deps": [
+        "rerun-sdk",
+        "numpy"
+      ],
+      "links": [
+        {
+          "name": "官方文档",
+          "url": "https://rerun.io/docs"
+        },
+        {
+          "name": "Python API",
+          "url": "https://ref.rerun.io/docs/python"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/rerun-io/rerun"
+        }
+      ]
+    }
   },
   {
     "id": "rviz",
@@ -1107,6 +1461,26 @@
       "annotations": []
     },
     "scale": "",
-    "toolType": "Visualization"
+    "toolType": "Visualization",
+    "tutorial": {
+      "quickstart": "# 需要 ROS 2 环境\nsudo apt install ros-jazzy-rviz2\nros2 run rviz2 rviz2",
+      "deps": [
+        "ros-jazzy-rviz2"
+      ],
+      "links": [
+        {
+          "name": "ROS 2 文档",
+          "url": "https://docs.ros.org/en/jazzy/Tutorials/Intermediate/RViz/RViz-User-Guide/RViz-User-Guide.html"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/ros2/rviz"
+        },
+        {
+          "name": "插件教程",
+          "url": "https://docs.ros.org/en/jazzy/Tutorials/Intermediate/RViz/RViz-Plugin-Tutorial.html"
+        }
+      ]
+    }
   }
 ]

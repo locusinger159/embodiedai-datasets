@@ -584,6 +584,30 @@ function buildAll(lang) {
     if (cit.bibtex) citationHTML = `<div class="section-block"><h2>${isEn ? 'Citation (BibTeX)' : '引用格式 (BibTeX)'}</h2><div class="citation-box"><pre>${esc(cit.bibtex)}</pre></div></div>`;
     else if (cit.year) citationHTML = `<div class="section-block"><h2>${isEn ? 'Citation' : '引用'}</h2><div class="citation-box"><pre>${esc(cit.authors || tool.institution || '')}, ${cit.year}${cit.venue ? ', ' + cit.venue : ''}</pre></div></div>`;
 
+    // Tutorial section
+    const tut = tool.tutorial || {};
+    let tutorialHTML = '';
+    if (tut.quickstart || (tut.links && tut.links.length)) {
+      tutorialHTML = '<div class="section-block"><h2>' + (isEn ? 'Tutorial' : '教程') + '</h2>';
+      if (tut.quickstart) {
+        tutorialHTML += '<div class="content-card"><h3>' + (isEn ? 'Quick Start' : '快速开始') + '</h3>';
+        tutorialHTML += '<pre><code>' + esc(tut.quickstart) + '</code></pre></div>';
+      }
+      if (tut.deps && tut.deps.length) {
+        tutorialHTML += '<div style="margin-top:12px;margin-bottom:12px"><span style="font-size:13px;color:var(--text-secondary);font-weight:600">' + (isEn ? 'Dependencies: ' : '依赖：') + '</span>';
+        tut.deps.forEach(function(d) { tutorialHTML += '<span class="data-tag" style="margin-left:4px">' + esc(d) + '</span>'; });
+        tutorialHTML += '</div>';
+      }
+      if (tut.links && tut.links.length) {
+        tutorialHTML += '<div class="links-section" style="margin-top:16px">';
+        tut.links.forEach(function(l) {
+          tutorialHTML += '<a href="' + esc(l.url) + '" target="_blank" class="link-card" rel="noopener">📖 ' + esc(l.name) + '</a>';
+        });
+        tutorialHTML += '</div>';
+      }
+      tutorialHTML += '</div>';
+    }
+
     fs.writeFileSync(`${dir}/index.html`, buildPage(`${templateDir}tool-detail.html`, {
       meta: `<title>${esc(tool.name)} | Superdata RobotAI</title><meta name="description" content="${esc((tool.notes || '').substring(0, 160))}">`,
       nav: getActiveNav('tools'),
@@ -595,6 +619,7 @@ function buildAll(lang) {
       LICENSE: esc(tool.license || '未知'),
       TOOL_TYPE: toolTypeLabel,
       LINKS: linksHTML,
+      TUTORIAL: tutorialHTML,
       CITATION: citationHTML,
       BACK_TO_TOOLS: isEn ? '← Back to Tools' : '← 返回工具/平台',
       LABEL_INSTITUTION: isEn ? 'Institution' : '机构',
