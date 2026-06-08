@@ -573,12 +573,12 @@ function buildAll(lang) {
     const links = tool.links || {};
     const toolTypeLabel = (isEn ? { '仿真器': 'Simulator', '物理引擎': 'Physics Engine', '训练框架': 'RL/IL Framework', '可视化': 'Visualization', '触觉模拟': 'Tactile Sim' } : { '仿真器': '仿真器', '物理引擎': '物理引擎', '训练框架': '训练框架', '可视化': '可视化', '触觉模拟': '触觉模拟' })[tool.toolType] || tool.toolType || '-';
 
-    let linksHTML = '<div class="links-section">';
+    let linksHTML = '<div class="section-block"><h2>' + (isEn ? 'Links' : '相关链接') + '</h2><div class="links-section">';
     if (links.official) linksHTML += `<a href="${esc(links.official)}" target="_blank" class="link-card" rel="noopener">🏠 ${isEn ? 'Official Site' : '官方网站'}</a>`;
     if (links.paper) linksHTML += `<a href="${esc(links.paper)}" target="_blank" class="link-card" rel="noopener">📄 Paper</a>`;
     if (tool.github) linksHTML += `<a href="${esc(tool.github)}" target="_blank" class="link-card" rel="noopener">💻 GitHub</a>`;
     if (tool.huggingface) { const hf = tool.huggingface.startsWith('http') ? tool.huggingface : `https://huggingface.co/${tool.huggingface}`; linksHTML += `<a href="${esc(hf)}" target="_blank" class="link-card" rel="noopener">🤗 Hugging Face</a>`; }
-    linksHTML += '</div>';
+    linksHTML += '</div></div>';
 
     let citationHTML = '';
     if (cit.bibtex) citationHTML = `<div class="section-block"><h2>${isEn ? 'Citation (BibTeX)' : '引用格式 (BibTeX)'}</h2><div class="citation-box"><pre>${esc(cit.bibtex)}</pre></div></div>`;
