@@ -312,7 +312,7 @@ function buildAll(lang) {
       USAGE_SECTION: (function(){
         const usage = ds.usage;
         if (!usage || !usage.load) return '';
-        let h = '<div class="section-block"><h2>' + (isEn ? 'Usage' : '快速上手') + '</h2>';
+        let h = '<div class="section-block usage-section"><h2>' + (isEn ? 'Usage' : '快速上手') + '</h2>';
         h += '<div class="content-card"><h3>' + (isEn ? 'Load Data' : '加载数据') + '</h3>';
         h += '<pre><code>' + esc(usage.load) + '</code></pre>';
         if (usage.deps && usage.deps.length) {
