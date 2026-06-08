@@ -255,7 +255,7 @@ function buildAll(lang) {
       })
       .filter(d => d._score >= 3)  // minimum similarity threshold
       .sort((a, b) => b._score - a._score)
-      .slice(0, 4);
+      .slice(0, 6);
     let relatedHTML = '';
     if (related.length) {
       relatedHTML = related.map(r => {
