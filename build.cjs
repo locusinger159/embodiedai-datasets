@@ -253,7 +253,7 @@ function buildAll(lang) {
         const sameInst = d.institution === ds.institution ? 1 : 0;
         return { ...d, _score: sharedRT * 3 + sharedTask * 2 + sharedStd * 5 + sharedTags * 1 + sameInst * 3 };
       })
-      .filter(d => d._score > 0)
+      .filter(d => d._score >= 3)  // minimum similarity threshold
       .sort((a, b) => b._score - a._score)
       .slice(0, 4);
     let relatedHTML = '';
