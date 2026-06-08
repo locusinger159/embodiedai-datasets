@@ -1,7 +1,8 @@
 /**
- * Superdata RobotAI — AI Search Backend (Alibaba Cloud FC Web Function)
+ * Superdata RobotAI — AI Search + LLM Assistant (Alibaba Cloud FC Web Function)
  * Start: node index.js | Port: 9000
  * Embedding: Bailian (百炼) text-embedding-v4, 2048-dim
+ * LLM: DeepSeek V4 Flash (OpenAI-compatible API)
  */
 
 const http = require('http');
@@ -99,36 +100,134 @@ function json(resp, code, data) {
   resp.end(JSON.stringify(data));
 }
 
+// LLM Assistant — query DeepSeek with search context injected
+async function assistant(query, history, apiKey, model) {
+  const embedKey = process.env.DASHSCOPE_API_KEY;
+  if (!embedKey) throw new Error('DASHSCOPE_API_KEY not configured');
+  if (!apiKey) throw new Error('DEEPSEEK_API_KEY not configured');
+
+  // 1. Embedding search
+  const vec = await embedQuery(query, embedKey);
+  const results = search(vec, query);
+  const allResults = [
+    ...results.datasets.map(d => ({ ...d, type: 'dataset' })),
+    ...results.standards.map(s => ({ ...s, type: 'standard' })),
+    ...results.tools.map(t => ({ ...t, type: 'tool' })),
+  ].sort((a, b) => b.score - a.score).slice(0, 8);
+
+  // 2. Build context for LLM
+  const contextParts = allResults.map((r, i) =>
+    `[${i + 1}] ${r.type === 'dataset' ? '📊' : r.type === 'standard' ? '📐' : '🔧'} **${r.name}** (${r.institution || '未知机构'})\n` +
+    `   类型: ${r.type === 'dataset' ? '数据集' : r.type === 'standard' ? '数据标准' : '工具/平台'}\n` +
+    `   简介: ${(r.notes || '').substring(0, 150)}\n` +
+    (r.id ? `   链接: https://superdata-robotai.com/${r.type === 'tool' ? 'tools' : 'datasets'}/${r.id}/\n` : '')
+  ).join('\n');
+
+  const systemPrompt = `你是 Superdata RobotAI 的 AI 助手，专门帮助用户从具身智能数据集导航站中找到合适的数据集、数据标准和工具/平台。
+
+网站当前收录: 58 个数据集、19 个数据标准、18 个工具/平台。
+
+根据用户的问题，以下是从数据库中检索到的最相关内容:
+
+${contextParts}
+
+请基于以上检索结果回答用户的问题。要求:
+1. 推荐最相关的数据集/标准/工具，说明推荐理由
+2. 如果检索结果不完全匹配，诚实说明，并给出搜索建议
+3. 回答简洁专业，引用来源时使用 [N] 标注（如 "根据 [1]..."）
+4. 如有多个相关结果，做横向对比
+5. 用中文回复`;
+
+  // 3. Build messages
+  const messages = [
+    { role: 'system', content: systemPrompt },
+    ...(history || []).slice(-6), // keep last 6 history messages
+    { role: 'user', content: query },
+  ];
+
+  // 4. Call DeepSeek API (OpenAI-compatible)
+  const resp = await fetch('https://api.deepseek.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: model || 'deepseek-v4-flash',
+      messages,
+      max_tokens: 1200,
+      temperature: 0.3,
+    }),
+  });
+
+  if (!resp.ok) {
+    const err = await resp.text();
+    throw new Error(`DeepSeek API ${resp.status}: ${err.substring(0, 200)}`);
+  }
+
+  const jsonResp = await resp.json();
+  const reply = jsonResp.choices[0].message.content;
+
+  // 5. Return structured response
+  return {
+    reply,
+    sources: allResults.slice(0, 5).map(r => ({
+      id: r.id,
+      name: r.name,
+      type: r.type,
+      score: r.score,
+    })),
+  };
+}
+
 // HTTP server
 const server = http.createServer(async (req, res) => {
   if (req.method === 'OPTIONS') {
     res.writeHead(204, corsHeaders); res.end(); return;
   }
   if (req.method !== 'POST') {
-    json(res, 405, { error: 'Use POST /api/search' }); return;
+    json(res, 405, { error: 'Use POST /api/search or /api/assistant' }); return;
   }
+
+  const url = new URL(req.url, 'http://localhost');
+  const path = url.pathname;
 
   let body = '';
   req.on('data', chunk => body += chunk);
   req.on('end', async () => {
     try {
-      const { query, lang } = JSON.parse(body || '{}');
-      const q = (query || '').trim();
-      if (!q || q.length < 2) { json(res, 400, { error: 'Query too short' }); return; }
-      if (q.length > 500) { json(res, 400, { error: 'Query too long' }); return; }
+      const parsed = JSON.parse(body || '{}');
+      const query = (parsed.query || '').trim();
 
-      const apiKey = process.env.DASHSCOPE_API_KEY;
-      if (!apiKey) { json(res, 500, { error: 'Server config' }); return; }
+      // ── Assistant endpoint ──
+      if (path === '/api/assistant') {
+        if (!query || query.length < 2) { json(res, 400, { error: 'Query too short' }); return; }
+        if (query.length > 2000) { json(res, 400, { error: 'Query too long' }); return; }
 
-      const vec = await embedQuery(q, apiKey);
-      const results = search(vec, q);
+        const apiKey = process.env.DEEPSEEK_API_KEY;
+        if (!apiKey) { json(res, 500, { error: 'DEEPSEEK_API_KEY not configured' }); return; }
+
+        const result = await assistant(query, parsed.history, apiKey, process.env.DEEPSEEK_MODEL);
+        json(res, 200, { ...result, query });
+        return;
+      }
+
+      // ── Search endpoint (default) ──
+      if (!query || query.length < 2) { json(res, 400, { error: 'Query too short' }); return; }
+      if (query.length > 500) { json(res, 400, { error: 'Query too long' }); return; }
+
+      const embedKey = process.env.DASHSCOPE_API_KEY;
+      if (!embedKey) { json(res, 500, { error: 'DASHSCOPE_API_KEY not configured' }); return; }
+
+      const vec = await embedQuery(query, embedKey);
+      const results = search(vec, query);
 
       json(res, 200, {
-        ...results, query: q, lang: lang || 'zh',
+        ...results, query, lang: parsed.lang || 'zh',
         model: embeddings.model, dim: embeddings.dim, version: embeddings.version,
       });
     } catch (err) {
-      console.error('Search error:', err.message);
+      console.error('Request error:', err.message);
       json(res, 500, { error: err.message });
     }
   });

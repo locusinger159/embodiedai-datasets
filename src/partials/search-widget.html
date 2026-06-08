@@ -62,22 +62,40 @@
   <div class="search-widget-panel">
     <div class="search-panel-header">
       <span class="search-panel-title">AI 智能搜索</span>
-      <button class="search-panel-close" id="aiSearchClose">✕</button>
+      <div style="display:flex;gap:4px">
+        <button class="search-tab-btn active" id="tabSearch">🔍 搜索</button>
+        <button class="search-tab-btn" id="tabChat">💬 AI 助手</button>
+        <button class="search-panel-close" id="aiSearchClose">✕</button>
+      </div>
     </div>
     <div class="search-panel-input">
       <input type="text" id="aiSearchInput" placeholder="描述你的需求，如：人形机器人双臂操作数据集..." />
       <button id="aiSearchSubmit">搜索</button>
     </div>
     <div class="search-panel-body" id="aiSearchBody">
-      <div style="text-align:center;padding:40px 0;color:var(--text-light);font-size:14px">输入需求，AI 帮你在 43 个数据集、19 个标准、11 个工具中智能匹配</div>
+      <div style="text-align:center;padding:40px 0;color:var(--text-light);font-size:14px">输入需求，AI 帮你在 58 个数据集、19 个标准、18 个工具中智能匹配</div>
     </div>
   </div>
 </div>
 
+<style>
+.search-tab-btn { padding:4px 12px; border:1px solid var(--border); border-radius:6px; background:var(--white); color:var(--text-secondary); font-size:13px; cursor:pointer; transition:all 0.2s; }
+.search-tab-btn.active { background:var(--primary); color:var(--white); border-color:var(--primary); }
+.chat-message { padding:12px 16px; margin-bottom:12px; border-radius:10px; line-height:1.7; font-size:14px; }
+.chat-message.user { background:var(--light-bg); color:var(--text-primary); }
+.chat-message.assistant { background:rgba(91,124,255,0.04); border:1px solid rgba(91,124,255,0.12); }
+.chat-message.assistant a { color:var(--primary); }
+.chat-message.assistant strong { color:var(--text-primary); }
+.chat-sources { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+.chat-source { display:inline-flex; align-items:center; gap:4px; padding:4px 10px; background:var(--white); border:1px solid var(--border); border-radius:8px; font-size:12px; text-decoration:none; color:var(--text-primary); transition:all 0.15s; }
+.chat-source:hover { border-color:var(--primary); color:var(--primary); }
+.chat-source-score { font-size:10px; color:var(--primary); font-weight:600; }
+</style>
+
 <script>
 (function() {
-  // CHANGE THIS to your deployed FC endpoint
-  const API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/search';
+  const SEARCH_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/search';
+  const CHAT_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/assistant';
 
   var btn = document.getElementById('aiSearchBtn');
   var overlay = document.getElementById('aiSearchOverlay');
@@ -85,10 +103,30 @@
   var input = document.getElementById('aiSearchInput');
   var submit = document.getElementById('aiSearchSubmit');
   var body = document.getElementById('aiSearchBody');
+  var tabSearch = document.getElementById('tabSearch');
+  var tabChat = document.getElementById('tabChat');
+  var mode = 'search'; // 'search' | 'chat'
+  var chatHistory = [];
 
   function open() { overlay.classList.add('open'); setTimeout(function() { input.focus(); }, 300); }
   function close() { overlay.classList.remove('open'); }
   function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function setMode(m) {
+    mode = m;
+    tabSearch.classList.toggle('active', m === 'search');
+    tabChat.classList.toggle('active', m === 'chat');
+    submit.textContent = m === 'chat' ? '提问' : '搜索';
+    input.placeholder = m === 'chat' ? '向 AI 助手提问，如：我的机械臂要做桌面抓取，推荐什么数据集？' : '描述你的需求，如：人形机器人双臂操作数据集...';
+    if (m === 'chat' && chatHistory.length === 0) {
+      body.innerHTML = '<div style="text-align:center;padding:40px 0;color:var(--text-light);font-size:14px">向 AI 助手提问，获取个性化数据集推荐<br><small style="color:var(--text-light)">支持多轮对话，上下文自动关联</small></div>';
+    } else if (m === 'search') {
+      body.innerHTML = '<div style="text-align:center;padding:40px 0;color:var(--text-light);font-size:14px">输入需求，AI 帮你在 58 个数据集、19 个标准、18 个工具中智能匹配</div>';
+    }
+  }
+
+  tabSearch.addEventListener('click', function() { setMode('search'); });
+  tabChat.addEventListener('click', function() { setMode('chat'); chatHistory = []; });
 
   btn.addEventListener('click', open);
   closeBtn.addEventListener('click', close);
@@ -98,32 +136,7 @@
     if (e.key === 'k' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); open(); }
   });
 
-  async function doSearch() {
-    var q = input.value.trim();
-    if (q.length < 1) { body.innerHTML = '<div class="search-empty">请输入搜索内容</div>'; return; }
-    if (q.length < 2) { body.innerHTML = '<div class="search-empty">请输入至少 2 个字符</div>'; return; }
-    submit.disabled = true;
-    body.innerHTML = '<div class="loading"><div class="spinner"></div><div style="margin-top:12px">正在搜索...</div></div>';
-    console.log('[Search] query:', q);
-
-    try {
-      var res = await fetch(API, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: q, lang: (document.documentElement.lang || 'zh').startsWith('en') ? 'en' : 'zh' })
-      });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      var data = await res.json();
-      if (data.error) throw new Error(data.error);
-      render(data);
-    } catch (err) {
-      console.error('[Search] error:', err);
-      body.innerHTML = '<div class="search-error">搜索失败：' + esc(err.message) + '<br><small>请检查网络连接，或稍后重试</small></div>';
-    }
-    submit.disabled = false;
-  }
-
-  function render(data) {
+  function renderSearch(data) {
     var h = '';
     if (data.datasets && data.datasets.length) {
       h += '<div class="search-result-section"><h3>📊 数据集推荐</h3>';
@@ -163,7 +176,79 @@
     body.innerHTML = h;
   }
 
-  submit.addEventListener('click', doSearch);
-  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doSearch(); });
+  function renderChatHistory() {
+    var h = '';
+    chatHistory.forEach(function(msg) {
+      if (msg.role === 'user') {
+        h += '<div class="chat-message user"><strong>你：</strong>' + esc(msg.content) + '</div>';
+      } else {
+        h += '<div class="chat-message assistant">' + (msg.reply || '') + '</div>';
+        if (msg.sources && msg.sources.length) {
+          h += '<div class="chat-sources">';
+          msg.sources.forEach(function(s) {
+            var url = '/' + (s.type === 'tool' ? 'tools' : s.type === 'standard' ? 'standards' : 'datasets') + '/' + s.id + '/';
+            h += '<a href="' + url + '" class="chat-source" target="_blank">' + (s.type === 'dataset' ? '📊' : s.type === 'standard' ? '📐' : '🔧') + ' ' + esc(s.name) + ' <span class="chat-source-score">' + s.score + '%</span></a>';
+          });
+          h += '</div>';
+        }
+      }
+    });
+    if (!h) h = '<div style="text-align:center;padding:40px 0;color:var(--text-light);font-size:14px">向 AI 助手提问，获取个性化数据集推荐</div>';
+    body.innerHTML = h;
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function simpleMarkdown(text) {
+    // Bold, italic, links, lists
+    return esc(text)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n- /g, '\n<li>')
+      .replace(/\n(\d+)\. /g, '\n<li>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+  }
+
+  async function doSubmit() {
+    var q = input.value.trim();
+    if (q.length < 2) { body.innerHTML = '<div class="search-empty">请输入至少 2 个字符</div>'; return; }
+    submit.disabled = true;
+    body.innerHTML = '<div class="loading"><div class="spinner"></div><div style="margin-top:12px">' + (mode === 'chat' ? 'AI 正在分析...' : '正在搜索...') + '</div></div>';
+
+    try {
+      if (mode === 'search') {
+        var res = await fetch(SEARCH_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, lang: (document.documentElement.lang || 'zh').startsWith('en') ? 'en' : 'zh' })
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        var data = await res.json();
+        if (data.error) throw new Error(data.error);
+        renderSearch(data);
+      } else {
+        // Chat mode — call assistant API
+        chatHistory.push({ role: 'user', content: q });
+        var cres = await fetch(CHAT_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, history: chatHistory.slice(0, -1) })
+        });
+        if (!cres.ok) throw new Error('HTTP ' + cres.status);
+        var cdata = await cres.json();
+        if (cdata.error) throw new Error(cdata.error);
+        chatHistory.push({ role: 'assistant', reply: simpleMarkdown(cdata.reply), sources: cdata.sources });
+        renderChatHistory();
+        input.value = '';
+      }
+    } catch (err) {
+      console.error('[Search] error:', err);
+      body.innerHTML = '<div class="search-error">请求失败：' + esc(err.message) + '<br><small>请检查网络连接，或稍后重试</small></div>';
+    }
+    submit.disabled = false;
+    setTimeout(function() { input.focus(); }, 100);
+  }
+
+  submit.addEventListener('click', doSubmit);
+  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doSubmit(); });
 })();
 </script>
