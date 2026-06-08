@@ -1,23 +1,16 @@
 <!-- AI Search Widget — floating button + search panel -->
 <style>
-.search-widget-btns { position:fixed; bottom:32px; right:32px; z-index:9999; display:flex; flex-direction:column; gap:10px; align-items:flex-end; }
+.search-widget-btns { position:fixed; bottom:32px; right:32px; z-index:9999; display:flex; flex-direction:column; gap:8px; }
 .search-widget-btn {
-  border-radius:28px; background:var(--white); color:var(--text-primary);
-  border:1px solid var(--border); cursor:pointer;
-  display:flex; align-items:center; gap:8px;
-  box-shadow:0 3px 16px rgba(0,0,0,0.1);
-  transition:all 0.25s; font-size:15px; padding:0;
+  width:120px; height:40px; border-radius:20px; border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; gap:6px;
+  font-size:14px; font-weight:600; transition:all 0.2s;
 }
-.search-widget-btn:hover { transform:translateY(-2px); box-shadow:0 6px 24px rgba(0,0,0,0.15); }
-.ai-btn { height:48px; padding:0 20px 0 14px; border-color:rgba(91,124,255,0.4); box-shadow:0 4px 20px rgba(91,124,255,0.25); }
-.ai-btn:hover { border-color:var(--primary); box-shadow:0 6px 28px rgba(91,124,255,0.4); }
-.ai-btn::after { content:''; position:absolute; inset:-2px; border-radius:30px; border:2px solid rgba(91,124,255,0.3); animation:aiPulse 2.5s ease-in-out infinite; pointer-events:none; }
-@keyframes aiPulse { 0%,100%{opacity:0.3;transform:scale(1)} 50%{opacity:1;transform:scale(1.04)} }
-.ai-btn-icon { font-size:20px; }
-.ai-btn-label { font-weight:600; font-size:14px; color:var(--primary); }
-.search-btn { width:44px; height:44px; justify-content:center; padding:0; }
-.search-btn .ai-btn-icon { font-size:18px; }
-@media (max-width:768px) { .search-widget-btns{ bottom:20px; right:16px; gap:8px } .ai-btn{height:44px;padding:0 16px 0 10px} .ai-btn-label{font-size:13px} }
+.ai-btn { background:var(--primary); color:#fff; box-shadow:0 4px 16px rgba(91,124,255,0.35); }
+.ai-btn:hover { background:#4a6ae8; transform:translateY(-1px); box-shadow:0 6px 20px rgba(91,124,255,0.5); }
+.search-btn { background:var(--white); color:var(--text-secondary); border:1px solid var(--border); box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+.search-btn:hover { border-color:var(--primary); color:var(--primary); transform:translateY(-1px); }
+@media (max-width:768px) { .search-widget-btns{ bottom:20px; right:16px } }
 .search-widget-overlay {
   position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0.4);
   display:none; align-items:flex-end; justify-content:flex-end;
@@ -65,13 +58,8 @@
 </style>
 
 <div class="search-widget-btns">
-  <button class="search-widget-btn ai-btn" id="aiChatBtn" title="AI 助手 — 智能对话推荐">
-    <span class="ai-btn-icon">💬</span>
-    <span class="ai-btn-label">AI 助手</span>
-  </button>
-  <button class="search-widget-btn search-btn" id="aiSearchBtn" title="语义搜索">
-    <span class="ai-btn-icon">🔍</span>
-  </button>
+  <button class="search-widget-btn ai-btn" id="aiChatBtn" title="AI 助手 — 智能对话推荐">💬 AI 助手</button>
+  <button class="search-widget-btn search-btn" id="aiSearchBtn" title="语义搜索">🔍 搜索</button>
 </div>
 
 <div class="search-widget-overlay" id="aiSearchOverlay">
