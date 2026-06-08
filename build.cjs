@@ -242,13 +242,16 @@ function buildAll(lang) {
       citationHTML = '<div class="section-block"><h2>{{SECTION_CITATION}}</h2><div class="citation-box"><pre>' + esc(cit.bibtex) + '</pre></div></div>';
     }
 
-    // Related datasets — weighted by shared robotType (×3) + shared task (×2)
+    // Related datasets — weighted by multi-dimensional similarity
     const related = dataDatasets
       .filter(d => d.id !== ds.id)
       .map(d => {
         const sharedRT = (d.robotType || []).filter(r => (ds.robotType || []).includes(r)).length;
         const sharedTask = (d.task || []).filter(t => (ds.task || []).includes(t)).length;
-        return { ...d, _score: sharedRT * 3 + sharedTask * 2 };
+        const sharedStd = (d.standards || []).filter(s => (ds.standards || []).includes(s)).length;
+        const sharedTags = (d.tags || []).filter(t => (ds.tags || []).includes(t)).length;
+        const sameInst = d.institution === ds.institution ? 1 : 0;
+        return { ...d, _score: sharedRT * 3 + sharedTask * 2 + sharedStd * 5 + sharedTags * 1 + sameInst * 3 };
       })
       .filter(d => d._score > 0)
       .sort((a, b) => b._score - a._score)
