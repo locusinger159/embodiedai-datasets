@@ -1,15 +1,23 @@
 <!-- AI Search Widget — floating button + search panel -->
 <style>
+.search-widget-btns { position:fixed; bottom:32px; right:32px; z-index:9999; display:flex; flex-direction:column; gap:10px; align-items:flex-end; }
 .search-widget-btn {
-  position:fixed; bottom:32px; right:32px; z-index:9999;
-  width:56px; height:56px; border-radius:50%;
-  background:var(--primary); color:#fff;
-  border:none; cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  box-shadow:0 4px 20px rgba(91,124,255,0.35);
-  transition:all 0.25s; font-size:24px;
+  border-radius:28px; background:var(--white); color:var(--text-primary);
+  border:1px solid var(--border); cursor:pointer;
+  display:flex; align-items:center; gap:8px;
+  box-shadow:0 3px 16px rgba(0,0,0,0.1);
+  transition:all 0.25s; font-size:15px; padding:0;
 }
-.search-widget-btn:hover { transform:scale(1.08); box-shadow:0 6px 28px rgba(91,124,255,0.5); }
+.search-widget-btn:hover { transform:translateY(-2px); box-shadow:0 6px 24px rgba(0,0,0,0.15); }
+.ai-btn { height:48px; padding:0 20px 0 14px; border-color:rgba(91,124,255,0.4); box-shadow:0 4px 20px rgba(91,124,255,0.25); }
+.ai-btn:hover { border-color:var(--primary); box-shadow:0 6px 28px rgba(91,124,255,0.4); }
+.ai-btn::after { content:''; position:absolute; inset:-2px; border-radius:30px; border:2px solid rgba(91,124,255,0.3); animation:aiPulse 2.5s ease-in-out infinite; pointer-events:none; }
+@keyframes aiPulse { 0%,100%{opacity:0.3;transform:scale(1)} 50%{opacity:1;transform:scale(1.04)} }
+.ai-btn-icon { font-size:20px; }
+.ai-btn-label { font-weight:600; font-size:14px; color:var(--primary); }
+.search-btn { width:44px; height:44px; justify-content:center; padding:0; }
+.search-btn .ai-btn-icon { font-size:18px; }
+@media (max-width:768px) { .search-widget-btns{ bottom:20px; right:16px; gap:8px } .ai-btn{height:44px;padding:0 16px 0 10px} .ai-btn-label{font-size:13px} }
 .search-widget-overlay {
   position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0.4);
   display:none; align-items:flex-end; justify-content:flex-end;
@@ -53,20 +61,24 @@
 .search-result-tags span { font-size:11px; padding:2px 8px; border-radius:4px; background:var(--light-bg); color:var(--text-secondary); }
 .search-empty { text-align:center; padding:40px 0; color:var(--text-secondary); font-size:14px; }
 .search-error { text-align:center; padding:20px 0; color:#e53e3e; font-size:14px; }
-@media (max-width:768px) { .search-widget-btn { bottom:20px; right:20px } .search-widget-panel { margin:0 8px; border-radius:16px 16px 0 0 } }
+@media (max-width:768px) { .search-widget-panel { margin:0 8px; border-radius:16px 16px 0 0 } }
 </style>
 
-<button class="search-widget-btn" id="aiSearchBtn" title="AI 智能搜索">🔍</button>
+<div class="search-widget-btns">
+  <button class="search-widget-btn ai-btn" id="aiChatBtn" title="AI 助手 — 智能对话推荐">
+    <span class="ai-btn-icon">💬</span>
+    <span class="ai-btn-label">AI 助手</span>
+  </button>
+  <button class="search-widget-btn search-btn" id="aiSearchBtn" title="语义搜索">
+    <span class="ai-btn-icon">🔍</span>
+  </button>
+</div>
 
 <div class="search-widget-overlay" id="aiSearchOverlay">
   <div class="search-widget-panel">
     <div class="search-panel-header">
-      <span class="search-panel-title">AI 智能搜索</span>
-      <div style="display:flex;gap:4px">
-        <button class="search-tab-btn active" id="tabSearch">🔍 搜索</button>
-        <button class="search-tab-btn" id="tabChat">💬 AI 助手</button>
-        <button class="search-panel-close" id="aiSearchClose">✕</button>
-      </div>
+      <span class="search-panel-title" id="panelTitle">AI 助手</span>
+      <button class="search-panel-close" id="aiSearchClose">✕</button>
     </div>
     <div class="search-panel-input">
       <input type="text" id="aiSearchInput" placeholder="描述你的需求，如：人形机器人双臂操作数据集..." />
@@ -79,8 +91,6 @@
 </div>
 
 <style>
-.search-tab-btn { padding:4px 12px; border:1px solid var(--border); border-radius:6px; background:var(--white); color:var(--text-secondary); font-size:13px; cursor:pointer; transition:all 0.2s; }
-.search-tab-btn.active { background:var(--primary); color:var(--white); border-color:var(--primary); }
 .chat-message { padding:12px 16px; margin-bottom:12px; border-radius:10px; line-height:1.7; font-size:14px; }
 .chat-message.user { background:var(--light-bg); color:var(--text-primary); }
 .chat-message.assistant { background:rgba(91,124,255,0.04); border:1px solid rgba(91,124,255,0.12); }
@@ -97,43 +107,41 @@
   const SEARCH_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/search';
   const CHAT_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/assistant';
 
-  var btn = document.getElementById('aiSearchBtn');
+  var chatBtn = document.getElementById('aiChatBtn');
+  var searchBtn = document.getElementById('aiSearchBtn');
   var overlay = document.getElementById('aiSearchOverlay');
   var closeBtn = document.getElementById('aiSearchClose');
   var input = document.getElementById('aiSearchInput');
   var submit = document.getElementById('aiSearchSubmit');
   var body = document.getElementById('aiSearchBody');
-  var tabSearch = document.getElementById('tabSearch');
-  var tabChat = document.getElementById('tabChat');
-  var mode = 'search'; // 'search' | 'chat'
+  var panelTitle = document.getElementById('panelTitle');
+  var mode = 'chat'; // chat is default
   var chatHistory = [];
 
-  function open() { overlay.classList.add('open'); setTimeout(function() { input.focus(); }, 300); }
+  function open(m) {
+    mode = m;
+    chatHistory = [];
+    overlay.classList.add('open');
+    panelTitle.textContent = m === 'chat' ? 'AI 助手' : '语义搜索';
+    submit.textContent = m === 'chat' ? '提问' : '搜索';
+    input.placeholder = m === 'chat'
+      ? '向 AI 助手提问，如：我的机械臂要做桌面抓取，推荐什么数据集？'
+      : '描述你的需求，如：人形机器人双臂操作数据集...';
+    body.innerHTML = m === 'chat'
+      ? '<div style="text-align:center;padding:40px 0;color:var(--text-light);font-size:14px">向 AI 助手提问，获取个性化数据集推荐<br><small style="color:var(--text-light)">支持多轮对话，上下文自动关联</small></div>'
+      : '<div style="text-align:center;padding:40px 0;color:var(--text-light);font-size:14px">输入需求，AI 帮你在 58 个数据集、19 个标准、18 个工具中智能匹配</div>';
+    setTimeout(function() { input.focus(); }, 300);
+  }
   function close() { overlay.classList.remove('open'); }
   function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-  function setMode(m) {
-    mode = m;
-    tabSearch.classList.toggle('active', m === 'search');
-    tabChat.classList.toggle('active', m === 'chat');
-    submit.textContent = m === 'chat' ? '提问' : '搜索';
-    input.placeholder = m === 'chat' ? '向 AI 助手提问，如：我的机械臂要做桌面抓取，推荐什么数据集？' : '描述你的需求，如：人形机器人双臂操作数据集...';
-    if (m === 'chat' && chatHistory.length === 0) {
-      body.innerHTML = '<div style="text-align:center;padding:40px 0;color:var(--text-light);font-size:14px">向 AI 助手提问，获取个性化数据集推荐<br><small style="color:var(--text-light)">支持多轮对话，上下文自动关联</small></div>';
-    } else if (m === 'search') {
-      body.innerHTML = '<div style="text-align:center;padding:40px 0;color:var(--text-light);font-size:14px">输入需求，AI 帮你在 58 个数据集、19 个标准、18 个工具中智能匹配</div>';
-    }
-  }
-
-  tabSearch.addEventListener('click', function() { setMode('search'); });
-  tabChat.addEventListener('click', function() { setMode('chat'); chatHistory = []; });
-
-  btn.addEventListener('click', open);
+  chatBtn.addEventListener('click', function() { open('chat'); });
+  searchBtn.addEventListener('click', function() { open('search'); });
   closeBtn.addEventListener('click', close);
   overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && overlay.classList.contains('open')) close();
-    if (e.key === 'k' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); open(); }
+    if (e.key === 'k' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); open('search'); }
   });
 
   function renderSearch(data) {
