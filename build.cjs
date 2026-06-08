@@ -323,6 +323,7 @@ function buildAll(lang) {
         if (usage.preprocess) {
           h += '<div style="margin-top:16px"><h3>' + (isEn ? 'Preprocessing Notes' : '预处理说明') + '</h3>';
           h += '<div style="font-size:14px;color:var(--text-secondary);line-height:1.8">' + esc(usage.preprocess) + '</div>';
+          h += '</div>';
         }
         h += '</div></div>';
         return h;
