@@ -619,57 +619,6 @@
     "tags": []
   },
   {
-    "id": "ocrl",
-    "name": "OCRL",
-    "institution": "UC Berkeley",
-    "scale": "持续学习数据集",
-    "robotType": [
-      "机械臂"
-    ],
-    "task": [
-      "操作",
-      "抓取"
-    ],
-    "modality": [
-      "视觉"
-    ],
-    "type": "open",
-    "links": {
-      "official": "https://arxiv.org/abs/2401.12525",
-      "paper": "https://arxiv.org/abs/2110.13178"
-    },
-    "notes": "持续学习 benchmark，适合灾难性遗忘研究。",
-    "description": "**OCRL** (Offline Continuous Robot Learning) is an offline continuous robot learning dataset.\n\nProvides offline trajectory data for continuous control tasks, suitable for offline reinforcement learning and batch policy optimization research.",
-    "license": "开源（详见官方链接）",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "持续学习数据集",
-      "compression": "未知",
-      "schema": "episode → step → observation / action / reward / next_observation, offline RL, HDF5/NPZ"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "2 种任务类型",
-      "episodes": "持续学习数据集",
-      "annotations": []
-    },
-    "citation": {},
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "遥操作采集",
-      "annotation": "人工标注",
-      "realWorld": "100%真机",
-      "hasSplit": true
-    },
-    "tags": []
-  },
-  {
     "id": "rt-1-data",
     "name": "RT-1 Data",
     "institution": "Google DeepMind",
