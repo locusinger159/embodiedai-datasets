@@ -301,9 +301,32 @@ function buildAll(lang) {
       FORMAT_STORAGE: esc(df.storage || '未知'),
       FORMAT_SIZE: esc(df.size || ds.scale || '未知'),
       FORMAT_COMPRESSION: esc(df.compression || '未知'),
+      FORMAT_LAYOUT: esc(df.layout || ''),
+      FORMAT_INDEX: esc(df.index || ''),
+      FORMAT_FORMAT: esc(df.format || ''),
       SCHEMA_TREE: schemaHTML
         ? '<div class="schema-tree" style="margin-top:16px">' + schemaHTML + '</div>'
         : '',
+
+      // Usage section
+      USAGE_SECTION: (function(){
+        const usage = ds.usage;
+        if (!usage || !usage.load) return '';
+        let h = '<div class="section-block"><h2>' + (isEn ? 'Usage' : '快速上手') + '</h2>';
+        h += '<div class="content-card"><h3>' + (isEn ? 'Load Data' : '加载数据') + '</h3>';
+        h += '<pre><code>' + esc(usage.load) + '</code></pre>';
+        if (usage.deps && usage.deps.length) {
+          h += '<div style="margin-top:16px"><h3>' + (isEn ? 'Dependencies' : '依赖库') + '</h3><div class="data-tags">';
+          usage.deps.forEach(function(dep){ h += '<span class="data-tag">' + esc(dep) + '</span>'; });
+          h += '</div></div>';
+        }
+        if (usage.preprocess) {
+          h += '<div style="margin-top:16px"><h3>' + (isEn ? 'Preprocessing Notes' : '预处理说明') + '</h3>';
+          h += '<div style="font-size:14px;color:var(--text-secondary);line-height:1.8">' + esc(usage.preprocess) + '</div>';
+        }
+        h += '</div></div>';
+        return h;
+      })(),
       SENSORS: sensorsHTML,
       CONTENT_SCENES: esc(dc.scenes || '未知'),
       CONTENT_OBJECTS: esc(dc.objects || '未知'),

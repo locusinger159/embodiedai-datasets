@@ -27,7 +27,10 @@
       "storage": "RLDS / TFDS",
       "size": "1TB+",
       "compression": "gzip",
-      "schema": "episode → step → observation / action / reward / discount"
+      "schema": "episode → step → observation / action / reward / discount",
+      "layout": "RLDS 格式（tf.data.Dataset of Episodes）；每 episode 含 steps Dataset + episode metadata",
+      "index": "TFDS 内置索引（支持 sharding + deterministic shuffle）",
+      "format": "TFDS/RLDS（底层 HDF5 或 sharded TFRecord）"
     },
     "dataContent": {
       "sensors": [
@@ -77,7 +80,16 @@
       "大规模",
       "RLDS",
       "跨具身"
-    ]
+    ],
+    "usage": {
+      "load": "import tensorflow_datasets as tfds\nds = tfds.load('fractal20220817_data', split='train')\nfor episode in ds.take(1):\n    for step in episode['steps']:\n        img = step['observation']['image']\n        action = step['action']\n        lang = step['observation'].get('natural_language_instruction', b'').decode()",
+      "deps": [
+        "tensorflow-datasets",
+        "tensorflow",
+        "numpy"
+      ],
+      "preprocess": "图像已统一 resize 到 320x256（OXE 标准）；动作 7 维 EEF（world_vector + rotation_delta + gripper）；60+ 子集需指定 TFDS dataset name"
+    }
   },
   {
     "id": "bridge-data-v2",
@@ -106,7 +118,10 @@
       "storage": "RLDS / TFDS",
       "size": "200GB+",
       "compression": "gzip",
-      "schema": "episode → step → observation (image/state) / action"
+      "schema": "episode → step → observation (image/state) / action",
+      "layout": "按 episode 分 HDF5 文件；每个文件含 observation/action/discount/reward group；RLDS 兼容",
+      "index": "TFDS 自动索引 + RLDS episode metadata",
+      "format": "HDF5 v2.0 + TFDS/RLDS"
     },
     "dataContent": {
       "sensors": [
@@ -153,7 +168,16 @@
       "模仿学习",
       "扩散策略",
       "HDF5"
-    ]
+    ],
+    "usage": {
+      "load": "import tensorflow_datasets as tfds\nds = tfds.load('bridge_data_v2', split='train')\nfor episode in ds.take(1):\n    for step in episode['steps']:\n        img = step['observation']['image']\n        action = step['action']",
+      "deps": [
+        "tensorflow-datasets",
+        "tensorflow",
+        "numpy"
+      ],
+      "preprocess": "图像原始尺寸 480x640，需 resize 到 224x224；动作 7 维（delta pose + gripper）；语言指令在 episode 级 metadata 中"
+    }
   },
   {
     "id": "rh20t",
@@ -183,7 +207,10 @@
       "storage": "HDF5 / MP4",
       "size": "500GB+",
       "compression": "H.264",
-      "schema": "video → frame → RGB+Depth+action"
+      "schema": "video → frame → RGB+Depth+action",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -217,7 +244,12 @@
     "standards": [
       "hdf5-robomimic"
     ],
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "roboset",
@@ -246,7 +278,10 @@
       "storage": "详见官方链接",
       "size": "220K 演示轨迹",
       "compression": "未知",
-      "schema": "episode → step → observation（multi-view RGB + depth + proprioception）/ action（end-effector pose + gripper）, HDF5"
+      "schema": "episode → step → observation（multi-view RGB + depth + proprioception）/ action（end-effector pose + gripper）, HDF5",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -273,7 +308,12 @@
     "standards": [
       "rlds"
     ],
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "libero",
@@ -301,7 +341,10 @@
       "storage": "详见官方链接",
       "size": "130+ 任务，240W+ 帧",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + proprioception + depth）/ action（7-DoF end-effector）/ reward / done, HDF5, robomimic 兼容"
+      "schema": "episode → step → observation（RGB + proprioception + depth）/ action（7-DoF end-effector）/ reward / done, HDF5, robomimic 兼容",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -329,7 +372,12 @@
       "libero",
       "hdf5-robomimic"
     ],
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "meta-world",
@@ -357,7 +405,10 @@
       "storage": "详见官方链接",
       "size": "50+ 操纵任务",
       "compression": "未知",
-      "schema": "episode → step → observation（MuJoCo state）/ action / reward / done, Gymnasium API, 50 tasks × N variants"
+      "schema": "episode → step → observation（MuJoCo state）/ action / reward / done, Gymnasium API, 50 tasks × N variants",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -384,7 +435,12 @@
     "standards": [
       "metaworld"
     ],
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "rlbench",
@@ -415,7 +471,10 @@
       "storage": "详见官方链接",
       "size": "100+ 任务",
       "compression": "未知",
-      "schema": "task → variation → episode → observation（RGB + depth + point_cloud + proprioception）/ action（end-effector pose + gripper）/ reward, HDF5/NPZ"
+      "schema": "task → variation → episode → observation（RGB + depth + point_cloud + proprioception）/ action（end-effector pose + gripper）/ reward, HDF5/NPZ",
+      "layout": "按 task/variation/episode 三级目录；每 episode 含 front_rgb/wrist_rgb/low_dim_state 四个目录",
+      "index": "variation_descriptions.pkl（任务描述） + low_dim_state.npy（本体状态索引）",
+      "format": "PNG（RGB 帧）+ NPY（low_dim_state + gripper_pose）"
     },
     "dataContent": {
       "sensors": [
@@ -444,7 +503,17 @@
     "standards": [
       "rlbench"
     ],
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "from rlbench.action_modes import ArmActionMode\nfrom rlbench.environment import Environment\nenv = Environment(action_mode=ArmActionMode.ABS_JOINT_POSITION)\nlaunch = env.launch()\ntask = env.get_task(launch, 'open_drawer')\ndemos = task.get_demos(amount=10)  # 每个 demo 含 front_rgb + wrist_rgb + low_dim_state",
+      "deps": [
+        "rlbench",
+        "pyrep",
+        "opencv-python",
+        "numpy"
+      ],
+      "preprocess": "图像为 PIL Image 格式，需转为 numpy array；low_dim_state 为 26 维本体状态；每个 demo 含 4 个 observation list（front_rgb/wrist_rgb/front_depth/wrist_depth）"
+    }
   },
   {
     "id": "maniskill2",
@@ -474,7 +543,10 @@
       "storage": "详见官方链接",
       "size": "仿真大规模操纵",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB-D + segmentation + proprioception）/ action（end-effector pose + gripper）（SAPIEN, HDF5, GPU 并行生成）"
+      "schema": "episode → step → observation（RGB-D + segmentation + proprioception）/ action（end-effector pose + gripper）（SAPIEN, HDF5, GPU 并行生成）",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -502,7 +574,12 @@
     "standards": [
       "maniskill2"
     ],
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "calvin",
@@ -532,7 +609,10 @@
       "storage": "详见官方链接",
       "size": "居家长期操纵",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + proprioception）/ action（7-DoF + gripper）/ language_instruction, HDF5, PyBullet, ABCD 4-fold"
+      "schema": "episode → step → observation（RGB + proprioception）/ action（7-DoF + gripper）/ language_instruction, HDF5, PyBullet, ABCD 4-fold",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -560,7 +640,12 @@
     "standards": [
       "calvin"
     ],
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "ario",
@@ -589,7 +674,10 @@
       "storage": "详见官方链接",
       "size": "居家场景操纵数据集",
       "compression": "未知",
-      "schema": "episode → step → observation / action（multi-embodiment unified format, RLDS）"
+      "schema": "episode → step → observation / action（multi-embodiment unified format, RLDS）",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -616,7 +704,12 @@
     "standards": [
       "rlds"
     ],
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "rt-1-data",
@@ -647,7 +740,10 @@
       "storage": "详见官方链接",
       "size": "130K 演示",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + natural_language_instruction）/ action（7-DoF + gripper + base）, RLDS"
+      "schema": "episode → step → observation（RGB + natural_language_instruction）/ action（7-DoF + gripper + base）, RLDS",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -677,7 +773,12 @@
       "rlds",
       "oxe-schema"
     ],
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "robocat-data",
@@ -707,7 +808,10 @@
       "storage": "详见官方链接",
       "size": "多机器人操纵数据",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + proprioception）/ action（multi-embodiment, various DoF）, RLDS"
+      "schema": "episode → step → observation（RGB + proprioception）/ action（multi-embodiment, various DoF）, RLDS",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -736,7 +840,12 @@
       "rlds",
       "oxe-schema"
     ],
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "t-diffusion-data",
@@ -766,7 +875,10 @@
       "storage": "详见官方链接",
       "size": "多任务操纵数据",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + proprioception）/ action（end-effector pose + gripper）, HDF5（用于 Diffusion Policy 训练）"
+      "schema": "episode → step → observation（RGB + proprioception）/ action（end-effector pose + gripper）, HDF5（用于 Diffusion Policy 训练）",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -795,7 +907,12 @@
       "rlds",
       "oxe-schema"
     ],
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "agibot-world",
@@ -834,7 +951,10 @@
       "storage": "HDF5 + LeRobot 格式（Hugging Face 托管）",
       "size": "数百小时，五阶段持续发布",
       "compression": "标准压缩",
-      "schema": "episode → step → observation（RGB-D/触觉/LiDAR/IMU/力/关节状态）/ action"
+      "schema": "episode → step → observation（RGB-D/触觉/LiDAR/IMU/力/关节状态）/ action",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -893,7 +1013,12 @@
       "灵巧手",
       "触觉",
       "LiDAR"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "robomind",
@@ -923,7 +1048,10 @@
       "storage": "详见官方链接",
       "size": "6W+ 分钟真机数据",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + depth + tactile + proprioception）/ action（dual-arm + gripper）/ language_instruction, RLDS"
+      "schema": "episode → step → observation（RGB + depth + tactile + proprioception）/ action（dual-arm + gripper）/ language_instruction, RLDS",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -965,7 +1093,12 @@
       "触觉",
       "双臂",
       "RLDS"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "damo-solo",
@@ -993,7 +1126,10 @@
       "storage": "详见官方链接",
       "size": "工业操纵场景",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB-D + proprioception）/ action（single-arm 6-DoF + gripper）, HDF5"
+      "schema": "episode → step → observation（RGB-D + proprioception）/ action（single-arm 6-DoF + gripper）, HDF5",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -1020,7 +1156,12 @@
     "standards": [
       "rlds"
     ],
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "gr-1-dataset",
@@ -1054,7 +1195,10 @@
       "storage": "HDF5（关节状态）+ MP4（RGB 视频）+ MKV（深度视频）",
       "size": "3万+ 遥操作轨迹",
       "compression": "无特殊压缩，标准格式",
-      "schema": "episode → step → state（joint / pose / hand）/ action（joint / pose / hand）, HDF5 + MP4/MKV"
+      "schema": "episode → step → state（joint / pose / hand）/ action（joint / pose / hand）, HDF5 + MP4/MKV",
+      "layout": "按 episode 分文件（HDF5 + 视频目录）；每 HDF5 含 action/state/timestamp 三个 group",
+      "index": "HDF5 内部属性（attributes group）+ 外部 Metadata.json（任务 prompt + episode ID）",
+      "format": "HDF5 v2.0（关节数据）+ MP4/H.264（RGB）+ MKV/Z16（深度）"
     },
     "dataContent": {
       "sensors": [
@@ -1091,7 +1235,16 @@
       "LeRobot",
       "ACT",
       "DP"
-    ]
+    ],
+    "usage": {
+      "load": "import h5py\nwith h5py.File('episode.hdf5', 'r') as f:\n    actions = f['action/robot'][:]   # [32, T] GR1-T1/T2\n    states = f['state/robot'][:]\n    timestamps = f['timestamp'][:]",
+      "deps": [
+        "h5py",
+        "numpy",
+        "opencv-python"
+      ],
+      "preprocess": "图像从 MP4/MKV 视频流读取；关节数据按时间维度 [D, T] 排列（列主序），需 transpose 为 [T, D]；动作值与状态值共享相同 timestamp"
+    }
   },
   {
     "id": "nvidia-gr1-simulation",
@@ -1125,7 +1278,10 @@
       "storage": "HDF5 + LeRobot 格式",
       "size": "14GB ~ TB 级（按子集不同）",
       "compression": "无特殊压缩",
-      "schema": "episode → step → observation / action（LeRobot 兼容）"
+      "schema": "episode → step → observation / action（LeRobot 兼容）",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -1160,7 +1316,12 @@
       "仿真",
       "世界模型",
       "LeRobot"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "h1-dataset",
@@ -1188,7 +1349,10 @@
       "storage": "CSV（Hugging Face 托管）",
       "size": "按机器人型号分目录，30FPS CSV",
       "compression": "无",
-      "schema": "episode → frame → joint_configuration（root + hip + knee + ankle + shoulder + elbow + wrist）, whole-body 23-DoF"
+      "schema": "episode → frame → joint_configuration（root + hip + knee + ankle + shoulder + elbow + wrist）, whole-body 23-DoF",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [],
@@ -1226,7 +1390,12 @@
     "tags": [
       "运动控制",
       "人形"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "unifolm-wbt-dataset",
@@ -1258,7 +1427,10 @@
       "storage": "RLDS（Hugging Face 托管）",
       "size": "340+ 小时，189 万条轨迹，持续更新",
       "compression": "标准 RLDS 压缩",
-      "schema": "episode → step → observation（RGB + proprioception + joint_state）/ action（whole-body, RLDS format）"
+      "schema": "episode → step → observation（RGB + proprioception + joint_state）/ action（whole-body, RLDS format）",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -1294,7 +1466,12 @@
       "遥操作",
       "世界模型",
       "RLDS"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "digit-dataset",
@@ -1321,7 +1498,10 @@
       "storage": "详见官方链接",
       "size": "详见官方链接",
       "compression": "未知",
-      "schema": "contact_episode → frame → tactile_image（GelSight DIGIT, 640×480）/ force_torque（FT sensor）/ end-effector_pose, HDF5"
+      "schema": "contact_episode → frame → tactile_image（GelSight DIGIT, 640×480）/ force_torque（FT sensor）/ end-effector_pose, HDF5",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -1347,7 +1527,12 @@
     },
     "tags": [
       "触觉"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "tactip-datasets",
@@ -1373,7 +1558,10 @@
       "storage": "详见官方链接",
       "size": "详见官方链接",
       "compression": "未知",
-      "schema": "contact_episode → frame → tactile_image（TacTip, internal camera）/ contact_deformation / sensor_pose, HDF5 + PNG"
+      "schema": "contact_episode → frame → tactile_image（TacTip, internal camera）/ contact_deformation / sensor_pose, HDF5 + PNG",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -1399,7 +1587,12 @@
     },
     "tags": [
       "触觉"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "graspnet-1billion",
@@ -1429,7 +1622,10 @@
       "storage": "详见官方链接",
       "size": "10 亿+ 抓取标注",
       "compression": "未知",
-      "schema": "scene → camera（kinect / realsense）→ RGB-D / segmentation / annotation / rect_grasp / grasp_label（per-object NPZ, 1.1B+ grasps）"
+      "schema": "scene → camera（kinect / realsense）→ RGB-D / segmentation / annotation / rect_grasp / grasp_label（per-object NPZ, 1.1B+ grasps）",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -1455,7 +1651,12 @@
       "realWorld": "100%真机",
       "hasSplit": true
     },
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "dexnet-2-0",
@@ -1484,7 +1685,10 @@
       "storage": "详见官方链接",
       "size": "670 万抓取点云",
       "compression": "未知",
-      "schema": "object → point_cloud / mesh / grasp_candidate（with GQ-CNN robust_ferrari_canny score）, 6.7M+ grasps, HDF5"
+      "schema": "object → point_cloud / mesh / grasp_candidate（with GQ-CNN robust_ferrari_canny score）, 6.7M+ grasps, HDF5",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -1509,7 +1713,12 @@
       "realWorld": "100%真机",
       "hasSplit": true
     },
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "matterport3d",
@@ -1537,7 +1746,10 @@
       "storage": "详见官方链接",
       "size": "详见官方链接",
       "compression": "未知",
-      "schema": "building → floor → room → 3D_mesh（GLB/glTF）/ panorama_images（RGB-D）/ camera_poses / semantic_labels（90 buildings）"
+      "schema": "building → floor → room → 3D_mesh（GLB/glTF）/ panorama_images（RGB-D）/ camera_poses / semantic_labels（90 buildings）",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -1565,7 +1777,12 @@
     "standards": [
       "habitat"
     ],
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "robonat",
@@ -1595,7 +1812,10 @@
       "storage": "详见官方链接",
       "size": "自然语言交互数据集",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB-D + GPS + IMU）/ action（mobile_base + arm）, HDF5"
+      "schema": "episode → step → observation（RGB-D + GPS + IMU）/ action（mobile_base + arm）, HDF5",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -1623,7 +1843,12 @@
     "standards": [
       "rlds"
     ],
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "humanoid-everyday",
@@ -1657,7 +1882,10 @@
       "storage": "详见官方链接",
       "size": "10.3K 轨迹，300W+ 帧",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + depth + IMU + joint_state）/ action（full-body joint_targets + root_velocity）/ reward, HDF5"
+      "schema": "episode → step → observation（RGB + depth + IMU + joint_state）/ action（full-body joint_targets + root_velocity）/ reward, HDF5",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -1689,7 +1917,12 @@
       "人形",
       "运动控制",
       "家居"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "dexora",
@@ -1721,7 +1954,10 @@
       "storage": "详见官方链接",
       "size": "12.2K 真机 + 100K 仿真",
       "compression": "未知",
-      "schema": "episode → step → observation（multi-view RGB + depth + proprioception + tactile）/ action（36-DoF dual-arm dexterous + gripper）, HDF5"
+      "schema": "episode → step → observation（multi-view RGB + depth + proprioception + tactile）/ action（36-DoF dual-arm dexterous + gripper）, HDF5",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -1751,7 +1987,12 @@
       "灵巧手",
       "双臂",
       "Sim-to-Real"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "realsource",
@@ -1783,7 +2024,10 @@
       "storage": "详见官方链接",
       "size": "3000㎡训练中心，多场景",
       "compression": "未知",
-      "schema": "object → multi-view_RGB-D_images / point_cloud / 3D_mesh（high-precision scan）, HDF5"
+      "schema": "object → multi-view_RGB-D_images / point_cloud / 3D_mesh（high-precision scan）, HDF5",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -1809,7 +2053,12 @@
       "realWorld": "100%真机",
       "hasSplit": true
     },
-    "tags": []
+    "tags": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "10kh-realomni",
@@ -1839,7 +2088,10 @@
       "storage": "详见官方链接",
       "size": "10000+ 小时，近百万片段",
       "compression": "未知",
-      "schema": "episode → step → observation（omni-directional RGB-D, multi-camera）/ action（end-effector pose）/ language_instruction, HDF5"
+      "schema": "episode → step → observation（omni-directional RGB-D, multi-camera）/ action（end-effector pose）/ language_instruction, HDF5",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -1870,7 +2122,12 @@
     ],
     "tags": [
       "多视角"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "robocoin",
@@ -1902,7 +2159,10 @@
       "storage": "详见官方链接",
       "size": "18W+ 演示，15 种机器人",
       "compression": "未知",
-      "schema": "episode → step → observation（RGB + tactile + force_torque + proprioception）/ action（contact-rich manipulation）, RLDS"
+      "schema": "episode → step → observation（RGB + tactile + force_torque + proprioception）/ action（contact-rich manipulation）, RLDS",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -1935,7 +2195,12 @@
       "接触",
       "力控",
       "触觉"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "openlet",
@@ -1967,7 +2232,10 @@
       "storage": "详见官方链接",
       "size": "60000+ 分钟，117 原子技能",
       "compression": "未知",
-      "schema": "episode → step → observation（proprioception + base_pose）/ action（joint_positions, full-body locomotion + manipulation）, CSV/HDF5"
+      "schema": "episode → step → observation（proprioception + base_pose）/ action（joint_positions, full-body locomotion + manipulation）, CSV/HDF5",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -1996,7 +2264,12 @@
     },
     "tags": [
       "人形"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "uniact",
@@ -2026,7 +2299,10 @@
       "storage": "自定义格式（基于源数据集标准化）",
       "size": "取决于源数据集下载量",
       "compression": "按源数据集",
-      "schema": "episode → step → observation / action (delta pose + rotation vector, dual-arm padded)"
+      "schema": "episode → step → observation / action (delta pose + rotation vector, dual-arm padded)",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -2071,7 +2347,12 @@
     "tags": [
       "VLA",
       "跨具身"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "galaxea-open-world",
@@ -2106,7 +2387,10 @@
       "storage": "RLDS / LeRobot",
       "size": "10TB+",
       "compression": "原始 + 压缩",
-      "schema": "episode → step → observation (RGB + depth + proprioception) / action (23-DoF) / language_instruction"
+      "schema": "episode → step → observation (RGB + depth + proprioception) / action (23-DoF) / language_instruction",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -2160,7 +2444,12 @@
       "RLDS",
       "LeRobot",
       "移动操作"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "oxe-auge",
@@ -2190,7 +2479,10 @@
       "storage": "RLDS / TFDS",
       "size": "未知",
       "compression": "TFDS 自动缓存/压缩",
-      "schema": "兼容 OXE — episode → step → observation / action / reward / discount"
+      "schema": "兼容 OXE — episode → step → observation / action / reward / discount",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -2237,7 +2529,12 @@
       "大规模",
       "RLDS",
       "跨具身"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "droid",
@@ -2267,7 +2564,10 @@
       "storage": "RLDS（Google Cloud Storage）",
       "size": "1.7TB（完整）/ 2GB（示例 100 轨迹）",
       "compression": "gzip",
-      "schema": "episode → step → observation (3× RGB + depth + calibration) / action / language_instruction"
+      "schema": "episode → step → observation (3× RGB + depth + calibration) / action / language_instruction",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -2314,7 +2614,12 @@
       "大规模",
       "RLDS",
       "语言标注"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "mimicgen",
@@ -2343,7 +2648,10 @@
       "storage": "HDF5（Hugging Face 托管）",
       "size": "未知",
       "compression": "HDF5 内压缩",
-      "schema": "demonstration → states / actions / rewards / dones (robomimic 兼容)"
+      "schema": "demonstration → states / actions / rewards / dones (robomimic 兼容)",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -2392,7 +2700,12 @@
       "数据生成",
       "仿真",
       "HDF5"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "robocasa",
@@ -2424,7 +2737,10 @@
       "storage": "HDF5（robosuite / robomimic 兼容）",
       "size": "未知",
       "compression": "HDF5 内压缩",
-      "schema": "demonstration → states / actions / rewards / dones"
+      "schema": "demonstration → states / actions / rewards / dones",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -2471,7 +2787,12 @@
       "数据生成",
       "仿真",
       "家居"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "arnold-benchmark",
@@ -2501,7 +2822,10 @@
       "storage": "HDF5 / JSON（Isaac Sim 格式）",
       "size": "未知",
       "compression": "无",
-      "schema": "episode → step → observation (RGB + depth + proprioception) / action / language_goal (continuous)"
+      "schema": "episode → step → observation (RGB + depth + proprioception) / action / language_goal (continuous)",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -2553,7 +2877,12 @@
     "tags": [
       "语言标注",
       "仿真基准"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "robonet",
@@ -2582,7 +2911,10 @@
       "storage": "TFDS（TensorFlow Datasets）",
       "size": "~36GB（完整）/ ~120MB（示例）",
       "compression": "gzip",
-      "schema": "episode → step → image (64×64 or 128×128) / state (5-dim end-effector) / action (5-dim delta)"
+      "schema": "episode → step → image (64×64 or 128×128) / state (5-dim end-effector) / action (5-dim delta)",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -2621,7 +2953,12 @@
       "大规模",
       "视频理解",
       "跨机器人"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "ego4d",
@@ -2652,7 +2989,10 @@
       "storage": "MP4 视频 + JSON 标注",
       "size": "~7TB（完整源视频）",
       "compression": "H.264",
-      "schema": "video_component → canonical_video → canonical_clip → frame（annotations: narration / FHO / NLQ / VQ / AV）, 30fps, 3670h"
+      "schema": "video_component → canonical_video → canonical_clip → frame（annotations: narration / FHO / NLQ / VQ / AV）, 30fps, 3670h",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -2700,7 +3040,12 @@
     "tags": [
       "多模态",
       "视频理解"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "changelog": [],
@@ -2735,7 +3080,10 @@
       "storage": "PNG + JSON + NPY",
       "size": "~50GB（含 3D 网格）",
       "compression": "无",
-      "schema": "scene → object_category → frame → RGB / depth / affordance_mask / 6D_pose / mesh"
+      "schema": "scene → object_category → frame → RGB / depth / affordance_mask / 6D_pose / mesh",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -2773,7 +3121,12 @@
       "功能理解",
       "AFUN",
       "位姿估计"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "changelog": [],
@@ -2807,7 +3160,10 @@
       "storage": "PNG + JSON 标注",
       "size": "~5GB",
       "compression": "无",
-      "schema": "image → query_point → affordance_mask / interaction_keypoint / articulation_type"
+      "schema": "image → query_point → affordance_mask / interaction_keypoint / articulation_type",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -2840,7 +3196,12 @@
       "功能理解",
       "AFUN",
       "语义分割"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "changelog": [],
@@ -2873,7 +3234,10 @@
       "storage": "PNG + JSON（热力图标注）",
       "size": "~120GB",
       "compression": "无",
-      "schema": "image → object_category / action_category → contact_heatmap（Gaussian keypoint）"
+      "schema": "image → object_category / action_category → contact_heatmap（Gaussian keypoint）",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -2905,7 +3269,12 @@
       "AFUN",
       "大规模",
       "跨具身"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "changelog": [],
@@ -2939,7 +3308,10 @@
       "storage": "PNG + JSON（Q&A 格式）",
       "size": "~2GB",
       "compression": "无",
-      "schema": "image → reasoning_instruction（GPT-4o 改写）/ affordance_mask / bbox / centroid"
+      "schema": "image → reasoning_instruction（GPT-4o 改写）/ affordance_mask / bbox / centroid",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -2972,7 +3344,12 @@
       "功能理解",
       "AFUN",
       "跨具身"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "changelog": [],
@@ -3007,7 +3384,10 @@
       "storage": "PNG + JSON（任务指令）",
       "size": "~1GB",
       "compression": "无",
-      "schema": "image → task_instruction → part_segmentation_mask / affordance_label / object_category"
+      "schema": "image → task_instruction → part_segmentation_mask / affordance_label / object_category",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -3039,7 +3419,12 @@
       "功能理解",
       "AFUN",
       "语义分割"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "changelog": [],
@@ -3075,7 +3460,10 @@
       "storage": "PLY（点云）+ JSON（标注）+ PNG（RGB-D）",
       "size": "~200GB（含 Faro 原始扫描）",
       "compression": "无",
-      "schema": "scene → functional_element → affordance_label / 3D_motion_params（type + axis + origin）/ task_description"
+      "schema": "scene → functional_element → affordance_label / 3D_motion_params（type + axis + origin）/ task_description",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -3112,7 +3500,12 @@
       "功能理解",
       "AFUN",
       "3D重建"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "changelog": [],
@@ -3154,7 +3547,10 @@
       "storage": "HDF5 + MP4",
       "size": "~10TB（全量原始数据 + 仿真数据）",
       "compression": "HDF5 压缩",
-      "schema": "episode → step → observation（RGB-D + tactile + proprioception）/ action（dual-arm + mobile_base）/ language_instruction"
+      "schema": "episode → step → observation（RGB-D + tactile + proprioception）/ action（dual-arm + mobile_base）/ language_instruction",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -3195,7 +3591,12 @@
       "力控",
       "Sim-to-Real",
       "AFUN"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "changelog": [],
@@ -3230,7 +3631,10 @@
       "storage": "PNG（RGB-D 帧）+ NPY（点云）+ JSON（标注）",
       "size": "~500GB（含点云序列）",
       "compression": "无",
-      "schema": "sequence → frame → RGB-D / point_cloud / panoptic_segmentation / 6D_object_pose / hand_pose / action_label"
+      "schema": "sequence → frame → RGB-D / point_cloud / panoptic_segmentation / 6D_object_pose / hand_pose / action_label",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -3267,7 +3671,12 @@
       "语义分割",
       "AFUN",
       "位姿估计"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "changelog": [],
@@ -3301,7 +3710,10 @@
       "storage": "MP4（源视频）+ JSON（SLAM 相机参数 + 标注）",
       "size": "基于 EPIC-KITCHENS + Ego4D（引用源数据集存储）",
       "compression": "无",
-      "schema": "video_clip → action_interval → RGB_frames + SLAM_camera_poses + object_track + Bézier_curve"
+      "schema": "video_clip → action_interval → RGB_frames + SLAM_camera_poses + object_track + Bézier_curve",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -3336,7 +3748,12 @@
       "Sim-to-Real",
       "AFUN",
       "大规模"
-    ]
+    ],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "bc-z",
@@ -3367,7 +3784,10 @@
       "storage": "TFDS (RLDS 兼容)",
       "size": "81 GB (TFDS 格式) / 32 GB (ZIP 压缩)",
       "compression": "ZIP",
-      "schema": "episode → step → observation（RGB + language_embedding）/ action（delta_pose + gripper）"
+      "schema": "episode → step → observation（RGB + language_embedding）/ action（delta_pose + gripper）",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -3405,7 +3825,12 @@
       "Sim-to-Real"
     ],
     "changelog": [],
-    "standards": []
+    "standards": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "aloha-dataset",
@@ -3438,7 +3863,10 @@
       "storage": "HDF5 / LeRobot Parquet / TFDS",
       "size": "~5 GB (仿真) + 50+ GB (Mobile ALOHA) + LeRobot 多子集",
       "compression": "无",
-      "schema": "episode → step → observation（multi-view RGB + proprioception）/ action（dual-arm 14-DoF + gripper）"
+      "schema": "episode → step → observation（multi-view RGB + proprioception）/ action（dual-arm 14-DoF + gripper）",
+      "layout": "LeRobot v3 格式（meta/info.json + data/*.parquet + videos/*.mp4）；HDF5 格式（ACT 原始数据）",
+      "index": "meta/info.json（全局 schema）+ meta/episodes/*.parquet（逐 episode 索引）",
+      "format": "LeRobot Parquet v3.0 + HDF5 v2.0"
     },
     "dataContent": {
       "sensors": [
@@ -3479,7 +3907,17 @@
       "扩散策略"
     ],
     "changelog": [],
-    "standards": []
+    "standards": [],
+    "usage": {
+      "load": "from lerobot.datasets import LeRobotDataset\ndataset = LeRobotDataset('lerobot/aloha_static_coffee')\n# 或从 HuggingFace 直接加载\nfrom datasets import load_dataset\nds = load_dataset('lerobot/aloha_static_coffee')",
+      "deps": [
+        "lerobot",
+        "torch",
+        "datasets",
+        "opencv-python"
+      ],
+      "preprocess": "多视角 4 相机 RGB；动作 14 维（双臂 7-DoF × 2）；LeRobot 格式下 episode_index + frame_index 已对齐"
+    }
   },
   {
     "id": "internscenes",
@@ -3513,7 +3951,10 @@
       "storage": "USD / GLB",
       "size": "~186 GB",
       "compression": "无",
-      "schema": "scene -> room -> 3D_objects（static + interactive）/ layout / camera_poses"
+      "schema": "scene -> room -> 3D_objects（static + interactive）/ layout / camera_poses",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -3553,7 +3994,12 @@
       "语义分割"
     ],
     "changelog": [],
-    "standards": []
+    "standards": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "kairos-homeworld",
@@ -3588,7 +4034,10 @@
       "storage": "USD / GLB + JSON",
       "size": "~100 GB",
       "compression": "无",
-      "schema": "floorplan -> room -> furniture（static + interactive）/ layout / physics_properties"
+      "schema": "floorplan -> room -> furniture（static + interactive）/ layout / physics_properties",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -3626,7 +4075,12 @@
       "Sim-to-Real"
     ],
     "changelog": [],
-    "standards": []
+    "standards": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "groot-n1-dataset",
@@ -3661,7 +4115,10 @@
       "storage": "LeRobot 格式 + HDF5 + MP4",
       "size": "TB 级",
       "compression": "HDF5 压缩",
-      "schema": "episode -> step -> observation（RGB + proprioception）/ action（full-body joint_targets）/ language_instruction"
+      "schema": "episode -> step -> observation（RGB + proprioception）/ action（full-body joint_targets）/ language_instruction",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -3702,7 +4159,12 @@
       "世界模型"
     ],
     "changelog": [],
-    "standards": []
+    "standards": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "internhumanoid-motionmillions",
@@ -3731,7 +4193,10 @@
       "storage": "NPY / HDF5（SMPL 参数 + 关节角度）",
       "size": "~100 GB",
       "compression": "无",
-      "schema": "motion_sequence -> frame -> joint_angles（full-body）/ semantic_labels（20+ dimensions）/ style_descriptions"
+      "schema": "motion_sequence -> frame -> joint_angles（full-body）/ semantic_labels（20+ dimensions）/ style_descriptions",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -3770,7 +4235,12 @@
       "语言标注"
     ],
     "changelog": [],
-    "standards": []
+    "standards": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "dexgraspvla",
@@ -3803,7 +4273,10 @@
       "storage": "HDF5 / NPY + PNG",
       "size": "~7.3 GB（遥操作）+ TB 级（仿真）",
       "compression": "无",
-      "schema": "episode -> step -> observation（RGB-D + proprioception）/ action（dexterous_hand_joints）/ language_prompt"
+      "schema": "episode -> step -> observation（RGB-D + proprioception）/ action（dexterous_hand_joints）/ language_prompt",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -3844,7 +4317,12 @@
       "大规模"
     ],
     "changelog": [],
-    "standards": []
+    "standards": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   },
   {
     "id": "graspvla-syngrasp",
@@ -3877,7 +4355,10 @@
       "storage": "NPY + PNG（仿真渲染）",
       "size": "TB 级（10 亿帧）",
       "compression": "无",
-      "schema": "episode -> step -> observation（multi-view RGB + depth + proprioception）/ action（grasp_pose + gripper）/ object_category"
+      "schema": "episode -> step -> observation（multi-view RGB + depth + proprioception）/ action（grasp_pose + gripper）/ object_category",
+      "layout": "",
+      "index": "",
+      "format": ""
     },
     "dataContent": {
       "sensors": [
@@ -3917,6 +4398,11 @@
       "扩散策略"
     ],
     "changelog": [],
-    "standards": []
+    "standards": [],
+    "usage": {
+      "load": "",
+      "deps": [],
+      "preprocess": ""
+    }
   }
 ]
