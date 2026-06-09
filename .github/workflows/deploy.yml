@@ -23,6 +23,31 @@ jobs:
       - name: Build
         run: node build.cjs
 
+      - name: Validate
+        run: |
+          echo "== Checking template rendering =="
+          # No unresolved template variables
+          ! grep -rn '\{\{[A-Z_]+\}\}' dist/ --include="*.html" | grep -v '{{FOOTER}}' | grep -v '{{NAVBAR}}' | grep -v '{{HEAD}}' | grep -v '{{I18N_JS}}' | grep -v '{{DATASETS_JSON}}' | grep -v '{{TOOLS_JSON}}' | grep -v '{{STANDARDS_JSON}}' | tee /dev/stderr | grep -q '\{\{' && echo "  PASS: No unresolved templates" || (echo "  FAIL: Unresolved template variables found"; exit 1)
+
+          echo "== Checking div balance =="
+          for f in dist/index.html dist/datasets/gr-1-dataset/index.html dist/tools/mujoco/index.html dist/en/index.html; do
+            if [ -f "$f" ]; then
+              opens=$(grep -o '<div' "$f" | wc -l)
+              closes=$(grep -o '</div>' "$f" | wc -l)
+              diff=$((opens - closes))
+              if [ "$diff" -ne 0 ]; then echo "  FAIL: $f div balance=$diff"; exit 1; fi
+            fi
+          done
+          echo "  PASS: Div balance OK"
+
+          echo "== Checking entity counts =="
+          ds_count=$(ls dist/datasets/*/index.html 2>/dev/null | wc -l | tr -d ' ')
+          tool_count=$(ls dist/tools/*/index.html 2>/dev/null | wc -l | tr -d ' ')
+          std_count=$(ls dist/standards/*/index.html 2>/dev/null | wc -l | tr -d ' ')
+          echo "  Datasets: $ds_count, Tools: $tool_count, Standards: $std_count"
+          [ "$ds_count" -ge 50 ] && echo "  PASS: Dataset count OK" || (echo "  FAIL: Too few datasets"; exit 1)
+          [ "$tool_count" -ge 10 ] && echo "  PASS: Tool count OK" || (echo "  FAIL: Too few tools"; exit 1)
+
       - name: Deploy to gh-pages
         run: |
           touch dist/.nojekyll
