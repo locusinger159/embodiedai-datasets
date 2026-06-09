@@ -169,14 +169,36 @@ ${contextParts}
   const reply = jsonResp.choices[0].message.content;
 
   // 5. Return structured response
+  const keywords = extractKeywords(query);
+  function findSnippet(text) {
+    if (!text) return '';
+    const sarr = String(text).split(/(?<=[。.!?？])/);
+    for (const s of sarr) {
+      if (s.toLowerCase().includes(query.toLowerCase())) return s.trim().slice(0,200);
+    }
+    return String(text).slice(0,200);
+  }
+
   return {
     reply,
-    sources: allResults.slice(0, 5).map(r => ({
-      id: r.id,
-      name: r.name,
-      type: r.type,
-      score: r.score,
-    })),
+    sources: allResults.slice(0, 5).map(r => {
+      const matching_fields = [];
+      if (r.name && r.name.toLowerCase().includes(query.toLowerCase())) matching_fields.push('name');
+      if (r.notes && r.notes.toLowerCase().includes(query.toLowerCase())) matching_fields.push('notes');
+      if ((r.robotType||[]).some(rt => keywords.robotType.includes(rt))) matching_fields.push('robotType');
+      if ((r.task||[]).some(t => keywords.task.includes(t))) matching_fields.push('task');
+      if ((r.modality||[]).some(m => keywords.modality.includes(m))) matching_fields.push('modality');
+      const snippet = findSnippet(r.notes || r.description || r.summary || '');
+      return {
+        id: r.id,
+        name: r.name,
+        type: r.type,
+        score: r.score,
+        matching_fields,
+        snippet,
+        link: r.id ? `https://superdata-robotai.com/${r.type === 'tool' ? 'tools' : 'datasets'}/${r.id}/` : null,
+      };
+    }),
   };
 }
 

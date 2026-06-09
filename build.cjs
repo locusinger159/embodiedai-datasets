@@ -285,6 +285,20 @@ function buildAll(lang) {
         }).join('') + '</div></div>';
     }
 
+    // Samples previews
+    let samplesHTML = '';
+    const samples = ds.samples || [];
+    if (samples.length) {
+      samplesHTML = '<div class="section-block"><h2>' + (isEn ? 'Samples' : '样例预览') + '</h2><div class="related-grid">';
+      samples.forEach(function(s){
+        const thumb = s.thumb || s.url || '';
+        const url = s.url || s.thumb || '';
+        const cap = s.caption ? esc(s.caption) : '';
+        samplesHTML += `<a href="${esc(url)}" target="_blank" rel="noopener" class="related-card"><div style="height:140px;background:var(--light-bg);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden"><img src="${esc(thumb)}" style="max-width:100%;max-height:140px;object-fit:cover"></div><div style="margin-top:8px;font-size:13px;color:var(--text-secondary)">${cap}</div></a>`;
+      });
+      samplesHTML += '</div></div>';
+    }
+
     return buildPage('src/pages/dataset-detail.html', {
       meta: `<title>${esc(ds.name)} | Superdata RobotAI</title><meta name="description" content="${esc((ds.notes || ds.description || '').substring(0, 160))}">`,
       nav: getActiveNav('datasets'),
@@ -334,6 +348,7 @@ function buildAll(lang) {
       CONTENT_TASKS: esc(dc.tasks || '未知'),
       CONTENT_EPISODES: esc(dc.episodes || ds.scale || '未知'),
       ANNOTATIONS: annotationsHTML,
+      SAMPLES: samplesHTML,
       LINKS: linksHTML,
       CITATION: citationHTML,
       RELATED: relatedHTML,
