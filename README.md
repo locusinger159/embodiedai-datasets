@@ -8,7 +8,7 @@
 
 专注收录全球具身智能、人形机器人、机械臂、移动机器人数据集情报。只做信息汇总与申请导航，助力算法研发。
 
-- 📊 收录 **58** 个数据集
+- 📊 收录 **57** 个数据集
 - 📐 收录 **19** 个数据标准与评测基准
 - 🔧 收录 **18** 个工具与平台
 - 🤖 覆盖 **8** 大机器人类型：人形机器人、机械臂、移动机器人、四足机器人、多机型、触觉传感、灵巧手、通用
@@ -25,9 +25,8 @@
 - **数据标准页** — 19 个行业标准/评测基准，每条含 RFC 2119 规范性要求（MUST/SHOULD/MAY），表格/卡片双视图
 - **工具/平台** — 18 个仿真平台、物理引擎、训练框架、可视化工具，侧边栏按工具类型筛选，每条含教程模块（快速开始/依赖/外部教程）
 - **数据格式全景图** — 全局视角查看存储格式分布、Schema 层级深度、传感器覆盖
-- **技术博客** — 5 篇深度文章：7 天 VLA 项目实战 / AI 搜索技术实践 / GR-1 数据生态测评 / UniACT 深度解析
+- **技术博客** — 5 篇深度文章：7 天 VLA 项目实战 / AI 搜索技术实践 / GR-1 数据生态测评 / UniACT 深度解析，RSS 订阅
 - **英文站** — 全站英文版（`/en/`），中/EN 一键切换
-- **技术博客** — 数据集深度分析、技术实践，RSS 订阅
 - **评论区** — 基于 giscus + GitHub Discussions
 
 ## 快速开始
@@ -78,7 +77,7 @@ embodiedai-datasets/
 │       ├── formats.html           #   格式全景图
 │       └── standard-proposal.html #   标准草案
 ├── docs/data/
-│   ├── datasets.json / datasets.en.json       # 59 个数据集
+│   ├── datasets.json / datasets.en.json       # 57 个数据集
 │   ├── standards.json / standards.en.json     # 19 个标准
 │   ├── tools.json / tools.en.json             # 18 个工具
 │   └── blog.json                              # 博客文章
@@ -158,7 +157,7 @@ push 到 main 分支后，GitHub Actions 自动执行：
 ### v2.9 (2026-06-08)
 
 - 💬 **AI 助手 Phase 2** — DeepSeek V4 Flash 驱动，检索结果注入 system prompt 生成结构化推荐。双按钮入口（💬AI 助手 + 🔍搜索），右侧抽屉面板，多轮对话 + 引用来源
-- 💻 **全部数据集快速上手** — 58 个数据集补充 `usage` 字段（加载代码/依赖库/预处理说明），`dataFormat` 扩展 layout/index/format
+- 💻 **全部数据集快速上手** — 57 个数据集补充 `usage` 字段（加载代码/依赖库/预处理说明），`dataFormat` 扩展 layout/index/format
 - 📝 **GR-1 数据生态深度测评** — 三数据集横向对比（ActionNet/NVIDIA 仿真/GR00T N1），实战选型指南
 - 🔧 **工具教程模块** — 18 个工具各含快速开始命令、依赖包列表、外部教程链接
 - 🎨 **工具详情页与数据集页对齐** — 统一 CSS 布局、section-block 结构、3 列 info-grid

@@ -298,6 +298,7 @@ function buildAll(lang) {
       ROBOT_TYPES: robotTypesHTML,
       TASK_TYPES: taskTypesHTML,
       MODALITIES: modalitiesHTML,
+      YEAR: String(ds.year || '—'),
       FORMAT_STORAGE: esc(df.storage || '未知'),
       FORMAT_SIZE: esc(df.size || ds.scale || '未知'),
       FORMAT_COMPRESSION: esc(df.compression || '未知'),
@@ -358,6 +359,7 @@ function buildAll(lang) {
       LABEL_LICENSE: isEn ? 'License' : '许可证',
       LABEL_ROBOT_TYPE: isEn ? 'Robot Type' : '机器人类型',
       LABEL_TASK_TYPE: isEn ? 'Task Type' : '任务类型',
+      LABEL_YEAR: isEn ? 'Year' : '发布年份',
       LABEL_MODALITY: isEn ? 'Modality' : '数据模态'
     });
   }
