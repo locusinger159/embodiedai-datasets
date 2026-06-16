@@ -4582,5 +4582,517 @@
       "preprocess": "NPY 格式；10 亿帧合成；240 类别"
     },
     "year": 2025
+  },
+  {
+    "id": "openrobocare",
+    "name": "OpenRoboCare",
+    "institution": "Cornell University (EmPRISE Lab)",
+    "scale": "19.8h, 31,185 samples, 15 caregiving tasks",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "康养护理"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "触觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://emprise.cs.cornell.edu/robo-care/",
+      "paper": "https://arxiv.org/abs/2511.13707",
+      "download": "https://registry.opendata.aws/open-robo-care/"
+    },
+    "notes": "World's first multi-modal expert demonstration dataset for robot caregiving. 21 OTs, 15 care tasks, 5 sensing modalities. BSD-3-Clause.",
+    "description": "OpenRoboCare is the world's first multi-modal expert demonstration dataset for robot-assisted caregiving, published at IROS 2025 by Cornell's EmPRISE Lab. 21 licensed occupational therapists perform 15 core caregiving tasks on two hospital manikins across five ADL categories. Five modalities: RGB-D (3x RealSense), 12-camera OptiTrack motion capture, Pupil Labs eye-tracking (120Hz), 44-point tactile skin (60Hz), and expert-labeled hierarchical temporal annotations. 315 sessions, 19.8 hours, 31,185 samples. BSD-3-Clause. AWS Open Data.",
+    "license": "BSD-3-Clause",
+    "dataFormat": {
+      "storage": "ROS Bag / CSV / NPZ",
+      "size": "约 500GB",
+      "compression": "无损",
+      "schema": "session → task → subtask → action_component → RGB-D frame / pose / tactile / gaze",
+      "layout": "AWS S3 (s3://open-robo-care)，按 session 和 modality 分目录",
+      "index": "提供 metadata.csv 索引全部 315 组护理流程"
+    },
+    "dataContent": {
+      "sensors": [
+        "Intel RealSense D435i ×3",
+        "OptiTrack Prime 13 ×12",
+        "Pupil Labs 眼动眼镜",
+        "定制 44 点触觉皮肤 ×2"
+      ],
+      "scenes": "医院模拟护理环境",
+      "objects": "人体模型 ×2 + 护理工具（毛巾、轮椅、衣物等）",
+      "tasks": "翻身、床上擦浴、穿衣、喂饭、轮椅转移、如厕辅助、肢体康复、梳头、眼部护理等 15 项",
+      "episodes": "315 组完整护理流程",
+      "annotations": [
+        "层级护理动作标签",
+        "3D 骨骼关键点",
+        "触觉力分布",
+        "眼动注视点"
+      ]
+    },
+    "citation": {
+      "bibtex": "@inproceedings{openrobocare2025,\n  title={OpenRoboCare: A Multimodal Multi-Task Expert Demonstration Dataset for Robot Caregiving},\n  author={EmPRISE Lab, Cornell University},\n  booktitle={IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},\n  year={2025},\n  url={https://arxiv.org/abs/2511.13707}\n}"
+    },
+    "changelog": [
+      {
+        "date": "2025-11",
+        "text": "首次发布，IROS 2025 发表，包含 315 组护理流程"
+      },
+      {
+        "date": "2025-12",
+        "text": "AWS Open Data 托管上线"
+      }
+    ],
+    "quality": {
+      "collection": "职业治疗师遥操作演示",
+      "annotation": "专家层级标注",
+      "realWorld": "100% 真机（人体模型+传感器）",
+      "hasSplit": true
+    },
+    "standards": [],
+    "tags": [
+      "康养护理",
+      "遥操作",
+      "多模态",
+      "触觉",
+      "动捕",
+      "眼动追踪",
+      "IROS"
+    ],
+    "year": 2025,
+    "usage": {
+      "load": "# AWS CLI 下载\naws s3 sync s3://open-robo-care ./data --no-sign-request",
+      "preprocess": "ROS Bag 数据需用 rosbag 库解析；触觉数据为 CSV 格式；动捕数据为 NPZ 格式。按 metadata.csv 的 session 索引进行数据对齐。",
+      "dependencies": [
+        "rosbag",
+        "numpy",
+        "opencv-python",
+        "pandas",
+        "scipy"
+      ],
+      "training": "适用于 Imitation Learning（BC、ACT、Diffusion Policy）和 VLA 模型训练。触觉模态可用于多模态融合研究。"
+    }
+  },
+  {
+    "id": "etri-activity3d-livinglab",
+    "name": "ETRI-Activity3D-LivingLab",
+    "institution": "ETRI (Electronics and Telecommunications Research Institute, Korea)",
+    "scale": "112,620 samples, 55 action classes, 100 subjects",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "康养护理"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://ai4robot.github.io/etri-activity3d-en",
+      "paper": "https://arxiv.org/abs/2003.01920"
+    },
+    "notes": "55 elderly daily activity classes with Kinect RGB-D and 3D skeleton. Real home environments. For elderly-care robot action recognition.",
+    "description": "ETRI-Activity3D is a large-scale RGB-D dataset for elderly daily activity recognition by ETRI Korea (IROS 2020), with the LivingLab extension (ROMAN 2021). First 3D action recognition dataset in actual elderly homes. Kinect v2: RGB (1920x1080), depth, 25-joint 3D skeleton. 112,620 samples, 100 subjects (50 elderly + 50 young), 55 action classes covering eating, cooking, hygiene, dressing, household chores, social interaction, exercise, and safety-critical actions. LivingLab targets domain shift for real-world deployment.",
+    "license": "Academic Use",
+    "dataFormat": {
+      "storage": "NPZ / AVI",
+      "size": "约 80GB",
+      "compression": "标准压缩",
+      "schema": "subject → session → RGB video / depth / skeleton (25 joints × 3D)",
+      "layout": "按受试者分目录，每段视频对应同步的骨骼 NPZ 文件",
+      "index": "提供 action_label.csv 映射 55 种动作类别"
+    },
+    "dataContent": {
+      "sensors": [
+        "Kinect v2（RGB-D + 骨骼）"
+      ],
+      "scenes": "真实居家环境（客厅、厨房、卧室、卫生间等）",
+      "objects": "日常家居物品",
+      "tasks": "55 种老年人日常动作（饮食/烹饪/卫生/穿衣/家务/社交/运动/安全）",
+      "episodes": "112,620",
+      "annotations": [
+        "动作类别标签",
+        "3D 骨骼关键点（25 关节）"
+      ]
+    },
+    "citation": {
+      "bibtex": "@inproceedings{etri2020,\n  title={ETRI-Activity3D: A Large-Scale RGB-D Dataset for Robots to Recognize Daily Activities of the Elderly},\n  author={Jang, Jinhyeok and Kim, Daehyun and Park, Cheonshu and et al.},\n  booktitle={IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},\n  year={2020},\n  url={https://arxiv.org/abs/2003.01920}\n}"
+    },
+    "changelog": [
+      {
+        "date": "2020-10",
+        "text": "ETRI-Activity3D 首次发布（IROS 2020），112,620 条样本"
+      },
+      {
+        "date": "2021-08",
+        "text": "LivingLab 扩展版发布（ROMAN 2021），新增真实居家场景数据"
+      }
+    ],
+    "quality": {
+      "collection": "真实居家环境录制",
+      "annotation": "人工标注动作类别",
+      "realWorld": "100% 真实居家",
+      "hasSplit": true
+    },
+    "standards": [],
+    "tags": [
+      "康养护理",
+      "动作识别",
+      "老年人",
+      "RGB-D",
+      "3D骨骼"
+    ],
+    "year": 2021,
+    "usage": {
+      "load": "从官网下载后，NPZ 骨骼数据用 numpy.load() 读取，视频为 AVI 格式。",
+      "preprocess": "骨骼数据需归一化到统一坐标系。视频帧与骨骼帧需按时间戳对齐（Kinect SDK 提供同步机制）。",
+      "dependencies": [
+        "numpy",
+        "opencv-python",
+        "scipy"
+      ],
+      "training": "适用于 3D CNN（I3D、SlowFast）、GCN（ST-GCN）等动作识别模型。LivingLab 子集专门用于领域自适应研究。"
+    }
+  },
+  {
+    "id": "kfall",
+    "name": "KFall",
+    "institution": "KAIST (Korea Advanced Institute of Science and Technology)",
+    "scale": "32 subjects, 15 fall types + 21 ADLs, 100Hz IMU",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "康养护理"
+    ],
+    "modality": [
+      "IMU",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "paper": "https://doi.org/10.3389/fnagi.2021.692865"
+    },
+    "notes": "First open dataset for pre-impact fall detection. 9-axis IMU at waist, 100Hz with 90fps synchronized video for fall timestamp labeling. DL benchmark: 99.3% sensitivity.",
+    "description": "KFall is the first publicly available dataset for pre-impact fall detection (Frontiers in Aging Neuroscience, 2021). 32 Korean young adults, LPMS-B2 9-axis IMU at waist (100Hz), synchronized Raspberry Pi HQ camera (90fps). 15 simulated fall types + 21 ADLs. CNN-LSTM: 99.32% sensitivity / 99.01% specificity. Later validated on FARSEEING real elderly falls. Key contribution: synchronized video-based fall moment temporal labels enabling pre-impact detection.",
+    "license": "Academic Use",
+    "dataFormat": {
+      "storage": "CSV / MAT",
+      "size": "约 5GB",
+      "compression": "标准压缩",
+      "schema": "subject → trial → accelerometer(3) / gyroscope(3) / magnetometer(3) / euler(3) × timestamp(100Hz)",
+      "layout": "按受试者和动作类型分目录，同步视频单独存放",
+      "index": "提供 trial_label.csv 标注动作类型和跌倒时刻（t_fall）"
+    },
+    "dataContent": {
+      "sensors": [
+        "LPMS-B2 9轴IMU ×1（腰部后方）",
+        "Raspberry Pi HQ 相机（90fps 同步视频）"
+      ],
+      "scenes": "实验室模拟环境",
+      "objects": "床垫（安全防护）",
+      "tasks": "15 种跌倒 + 21 种 ADL",
+      "episodes": "1,152 组（32 人 × 36 种动作）",
+      "annotations": [
+        "动作类别标签",
+        "跌倒时刻戳（t_fall）",
+        "同步视频帧"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{kfall2021,\n  title={A Large-Scale Open Motion Dataset (KFall) and Benchmark Algorithms for Detecting Pre-impact Fall of the Elderly Using Wearable Inertial Sensors},\n  author={Yu, Xiaoqun and Jang, Jungyeon and Xiong, Shuping},\n  journal={Frontiers in Aging Neuroscience},\n  volume={13},\n  year={2021},\n  doi={10.3389/fnagi.2021.692865}\n}"
+    },
+    "changelog": [
+      {
+        "date": "2021-07",
+        "text": "首次发布，Frontiers in Aging Neuroscience 发表"
+      }
+    ],
+    "quality": {
+      "collection": "实验室模拟录制",
+      "annotation": "视频同步标注跌倒时刻",
+      "realWorld": "模拟跌倒（非真实跌倒）",
+      "hasSplit": true
+    },
+    "standards": [],
+    "tags": [
+      "康养护理",
+      "跌倒检测",
+      "可穿戴",
+      "IMU",
+      "老年人安全"
+    ],
+    "year": 2021,
+    "usage": {
+      "load": "CSV 格式可用 pandas 读取；MAT 格式用 scipy.io.loadmat。",
+      "preprocess": "IMU 数据需进行低通滤波（截止频率 20Hz）去除高频噪声。滑动窗口（2s, 50% overlap）分割时序数据。按 t_fall 标签划分跌倒前/后样本。",
+      "dependencies": [
+        "numpy",
+        "scipy",
+        "pandas",
+        "scikit-learn"
+      ],
+      "training": "适用于 CNN-LSTM、Transformer、SVM 等时序分类模型。重点是跌倒前 300-500ms 窗口的特征提取。"
+    }
+  },
+  {
+    "id": "ec-ar",
+    "name": "EC-AR (Elderly Care Action Recognition)",
+    "institution": "Zhengzhou University",
+    "scale": "Elderly care video dataset, RGB + skeleton dual modality",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "康养护理"
+    ],
+    "modality": [
+      "RGB",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "paper": "https://doi.org/10.1002/aisy.202300326"
+    },
+    "notes": "Action recognition dataset for elderly-care robots. RGB video + skeleton data. CC BY 4.0. Skeleton-guided multi-stream 3D CNN architecture.",
+    "description": "EC-AR is an elderly care action recognition dataset by Zhengzhou University (Advanced Intelligent Systems, 2023, CC BY 4.0). Provides RGB video and skeleton keypoint modalities targeting elderly-specific care scenarios. Companion paper proposes a skeleton-guided multi-stream 3D CNN (dual Light-SlowFast, ResNet-18 backbone). Applications: health monitoring, daily living assistance, abnormal behavior detection.",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "MP4 / NPZ",
+      "size": "约 10GB",
+      "compression": "标准压缩",
+      "schema": "video → RGB frames / skeleton frames (N joints × 3D)",
+      "layout": "按动作类别分目录",
+      "index": "提供 action_label.json"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机",
+        "骨骼提取（预训练姿态估计器）"
+      ],
+      "scenes": "模拟居家护理环境",
+      "objects": "日常护理物品",
+      "tasks": "老年人护理典型动作（坐、站、进食、行走、跌倒等）",
+      "episodes": "待确认",
+      "annotations": [
+        "动作类别标签",
+        "人体骨骼关键点"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{ecar2023,\n  title={Skeleton-Guided Action Recognition with Multistream 3D Convolutional Neural Network for Elderly-Care Robot},\n  author={Zhang, Dawei and Zhang, Yanming and Zhou, Meng},\n  journal={Advanced Intelligent Systems},\n  volume={5},\n  number={12},\n  year={2023},\n  doi={10.1002/aisy.202300326}\n}"
+    },
+    "changelog": [
+      {
+        "date": "2023-12",
+        "text": "首次发布，Advanced Intelligent Systems 发表"
+      }
+    ],
+    "quality": {
+      "collection": "模拟护理场景录制",
+      "annotation": "人工标注动作类别",
+      "realWorld": "模拟环境",
+      "hasSplit": true
+    },
+    "standards": [],
+    "tags": [
+      "康养护理",
+      "动作识别",
+      "老年人",
+      "3D CNN",
+      "骨骼"
+    ],
+    "year": 2023,
+    "usage": {
+      "load": "视频为 MP4 格式，骨骼为 NPZ 格式，可用 OpenCV + numpy 读取。",
+      "preprocess": "视频需抽帧至固定 FPS（建议 15-30fps）。骨骼数据需归一化到以髋关节为原点的坐标系。RGB 帧和骨骼帧按时间戳对齐。",
+      "dependencies": [
+        "numpy",
+        "opencv-python",
+        "pytorch"
+      ],
+      "training": "适用于多流 3D CNN（Light-SlowFast）、GCN（ST-GCN）等动作识别架构。骨骼流可单独训练或与 RGB 流融合。"
+    }
+  },
+  {
+    "id": "medmassage-12k",
+    "name": "MedMassage-12K",
+    "institution": "CASIA / Beihang University / Georgia Tech",
+    "scale": "12,190 images, 60 acupoints, 174K QA pairs",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "康养护理"
+    ],
+    "modality": [
+      "RGB",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://github.com/Xiaofeng-Han-Res/HMR-1",
+      "paper": "https://arxiv.org/abs/2603.08817"
+    },
+    "notes": "World's first acupoint massage VLM dataset. HMR-1: Qwen-VL localizes acupoints, Franka Panda executes 6-DOF massage. IoU=0.5: 81.4%.",
+    "description": "MedMassage-12K is the world's first vision-language dataset for robotic acupoint massage (arXiv, March 2026). 12,190 images covering 60 acupoints, 174,177 QA pairs. HMR-1 framework: High-Level acupoint Localization Module (Qwen-VL) + Low-Level Control Module (Franka Panda 6-DOF). General MLLMs score 0% at IoU=0.5; fine-tuned HMR-1 achieves 81.42%. Code: github.com/Xiaofeng-Han-Res/HMR-1.",
+    "license": "Academic Use",
+    "dataFormat": {
+      "storage": "JPEG / JSON",
+      "size": "约 2GB",
+      "compression": "JPEG 压缩",
+      "schema": "image → acupoint_bbox / acupoint_name / QA_pairs",
+      "layout": "按穴位分目录，每穴位含图像文件和标注 JSON",
+      "index": "提供 acupoints.json（60 个穴位名称和编号映射）"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机"
+      ],
+      "scenes": "室内多光照条件",
+      "objects": "人体背部/手臂/腿部等按摩区域",
+      "tasks": "60 个穴位定位与按摩",
+      "episodes": "12,190 张图像 + 174,177 对 QA",
+      "annotations": [
+        "穴位边界框",
+        "穴位名称",
+        "穴位功能描述",
+        "穴位位置文本描述"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{medmassage2026,\n  title={HMR-1: Hierarchical Massage Robot with Vision-Language-Model for Embodied Healthcare},\n  author={Xu, Rongtao and Yu, Mingming and Han, Xiaofeng and et al.},\n  journal={arXiv preprint arXiv:2603.08817},\n  year={2026},\n  url={https://arxiv.org/abs/2603.08817}\n}"
+    },
+    "changelog": [
+      {
+        "date": "2026-03",
+        "text": "首次发布，arXiv 2603.08817，代码与数据集开源"
+      }
+    ],
+    "quality": {
+      "collection": "多光照条件实拍 + 数据增强",
+      "annotation": "专业穴位标注",
+      "realWorld": "100% 真实拍摄",
+      "hasSplit": true
+    },
+    "standards": [],
+    "tags": [
+      "康养护理",
+      "按摩",
+      "穴位",
+      "VLM",
+      "Franka",
+      "医疗机器人"
+    ],
+    "year": 2026,
+    "usage": {
+      "load": "git clone https://github.com/Xiaofeng-Han-Res/HMR-1",
+      "preprocess": "图像需 Resize 至 Qwen-VL 输入尺寸。QA 对为 JSON 格式，包含 question（穴位名称/描述）和 answer（bounding box 坐标）。穴位坐标需归一化到 [0,1] 范围。",
+      "dependencies": [
+        "transformers",
+        "qwen-vl-utils",
+        "opencv-python",
+        "torch"
+      ],
+      "training": "适用于 VLM 微调（Qwen-VL 系列）。推荐 LoRA 微调视觉编码器和 MLP 投影层，冻结 LLM 主干。"
+    }
+  },
+  {
+    "id": "ceti-age-kinematics",
+    "name": "CeTI-Age-Kinematics",
+    "institution": "TU Dresden / KIT",
+    "scale": "32 subjects (20 elderly 66-75y + 12 young 19-28y), 33 IMU sensors, 100Hz",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "康养护理",
+      "运动控制"
+    ],
+    "modality": [
+      "IMU",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "paper": "https://doi.org/10.1038/s41597-025-04818-y",
+      "download": "https://doi.org/10.6084/m9.figshare.26983645"
+    },
+    "notes": "Nature Scientific Data: full-body IMU kinematics comparing elderly vs young. 30 daily tasks incl. gait and sit-to-stand. Motion-BIDS. CC BY 4.0.",
+    "description": "CeTI-Age-Kinematics is a full-body IMU-based motion dataset comparing older and younger adults (Nature Scientific Data, March 2025, CC BY 4.0). 32 subjects, 33 IMU sensors (Rokoko Smartsuit Pro + Smartgloves) at 100Hz. 30 daily tasks in 9 categories: gait, sit-to-stand test, reach-grasp, door opening, tool handling. Motion-BIDS standard. Figshare open access. Key resource for rehabilitation robotics and fall-risk prediction.",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "TSV / BVH (Motion-BIDS)",
+      "size": "约 15GB",
+      "compression": "标准压缩",
+      "schema": "subject → session → task → IMU_data (33 sensors × 100Hz) / BVH_animation",
+      "layout": "Motion-BIDS 标准目录结构，按 sub-xxx/ses-xxx 组织",
+      "index": "提供 participants.tsv 和 task_metadata.json"
+    },
+    "dataContent": {
+      "sensors": [
+        "Rokoko Smartsuit Pro（19 IMU）",
+        "Rokoko Smartgloves（每手7 IMU）",
+        "共 33 个 IMU 传感器"
+      ],
+      "scenes": "实验室环境",
+      "objects": "工具箱、门把手、挂钩、真实/虚拟抓取物体",
+      "tasks": "30 项日常任务（步态、坐站、抓取、搬运、开关门等 9 大类）",
+      "episodes": "32 人 × 30 任务 × 多次重复",
+      "annotations": [
+        "年龄分组标签",
+        "任务类型",
+        "速度条件",
+        "人体测量数据"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{ceti2025,\n  title={A Full-Body IMU-Based Motion Dataset of Daily Tasks by Older and Younger Adults},\n  author={CeTI, TU Dresden and KIT},\n  journal={Scientific Data},\n  volume={12},\n  year={2025},\n  doi={10.1038/s41597-025-04818-y}\n}"
+    },
+    "changelog": [
+      {
+        "date": "2025-03",
+        "text": "首次发布，Nature Scientific Data 发表，Figshare 开放下载"
+      }
+    ],
+    "quality": {
+      "collection": "实验室标准化采集",
+      "annotation": "任务类型和条件标签",
+      "realWorld": "100% 真人运动采集",
+      "hasSplit": true
+    },
+    "standards": [
+      "Motion-BIDS"
+    ],
+    "tags": [
+      "康养护理",
+      "运动学",
+      "老年人",
+      "IMU",
+      "步态",
+      "康复",
+      "可穿戴"
+    ],
+    "year": 2025,
+    "usage": {
+      "load": "pip install motion-bids && 从 Figshare 下载后按 BIDS 标准读取。",
+      "preprocess": "IMU 数据需进行 Madgwick 滤波估计姿态四元数。BVH 文件可直接导入 Blender/MotionBuilder 可视化。TSV 数据用 pandas 读取。需按年龄组和速度条件分层抽样。",
+      "dependencies": [
+        "numpy",
+        "pandas",
+        "scipy",
+        "motion-bids"
+      ],
+      "training": "适用于步态分析、动作质量评估、年龄分类、异常步态检测。可训练 GCN/Transformer 进行跨年龄域适应。"
+    }
   }
 ]
