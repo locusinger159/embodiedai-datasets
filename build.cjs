@@ -35,6 +35,16 @@ const UI = {
     standardTypeLabels: { format: '数据格式', benchmark: '评测基准', industry: '行业标准', closed: '商业闭源' },
     opennessLabels: { open: '完全开源', partial: '部分开源', standard: '行业标准', closed: '闭源' },
     sceneLabels: { real: '真机', sim: '仿真', general: '通用' },
+    vlaLabels: {
+      pi0: 'π0 (Physical Intelligence)',
+      openvla: 'OpenVLA (Stanford/Berkeley)',
+      gr00t: 'GR00T N1 (NVIDIA)',
+      octo: 'Octo (UC Berkeley)',
+      'rt-2': 'RT-2/RT-1-X (Google DeepMind)',
+      'rdt-1b': 'RDT-1B (Tsinghua)',
+      act: 'ACT/ALOHA (Stanford/TRI)',
+    },
+    vlaShortLabels: { pi0: 'π0', openvla: 'OpenVLA', gr00t: 'GR00T N1', octo: 'Octo', 'rt-2': 'RT-2', 'rdt-1b': 'RDT-1B', act: 'ACT' },
   },
   en: {
     siteTitle: 'Superdata RobotAI — Robotics Dataset Navigator',
@@ -46,6 +56,16 @@ const UI = {
     standardTypeLabels: { format: 'Data Format', benchmark: 'Benchmark', industry: 'Industry Standard', closed: 'Proprietary' },
     opennessLabels: { open: 'Fully Open', partial: 'Partially Open', standard: 'Industry Standard', closed: 'Proprietary' },
     sceneLabels: { real: 'Real', sim: 'Simulation', general: 'General' },
+    vlaLabels: {
+      pi0: 'π0 (Physical Intelligence)',
+      openvla: 'OpenVLA (Stanford/Berkeley)',
+      gr00t: 'GR00T N1 (NVIDIA)',
+      octo: 'Octo (UC Berkeley)',
+      'rt-2': 'RT-2/RT-1-X (Google DeepMind)',
+      'rdt-1b': 'RDT-1B (Tsinghua)',
+      act: 'ACT/ALOHA (Stanford/TRI)',
+    },
+    vlaShortLabels: { pi0: 'π0', openvla: 'OpenVLA', gr00t: 'GR00T N1', octo: 'Octo', 'rt-2': 'RT-2', 'rdt-1b': 'RDT-1B', act: 'ACT' },
   }
 };
 
@@ -220,6 +240,17 @@ function buildAll(lang) {
     if (q.hasSplit !== undefined) qb.push({label: q.hasSplit ? '📊 有数据划分' : '📊 无数据划分', cls: q.hasSplit ? 'good' : 'warn'});
     const qualityHTML = qb.length ? '<div class="quality-badges">' + qb.map(b => `<span class="quality-badge ${b.cls}">${b.label}</span>`).join('') + '</div>' : '';
 
+    // VLA compatibility badges
+    const vlaSL = ui.vlaShortLabels;
+    const vlaFL = ui.vlaLabels;
+    const vlaCompat = ds.vlaCompatible || [];
+    let vlaBadgesHTML = '';
+    if (vlaCompat.length) {
+      vlaBadgesHTML = '<div class="section-block" style="margin-bottom:24px"><h2 style="font-size:16px;font-weight:600;margin-bottom:10px;padding-left:12px;border-left:4px solid var(--primary)">' + (isEn ? 'VLA Framework Compatibility' : 'VLA 框架兼容性') + '</h2><div class="quality-badges">' +
+        vlaCompat.map(v => `<span class="quality-badge info" title="${esc(vlaFL[v] || v)}" style="cursor:help">🧠 ${esc(vlaSL[v] || v)}</span>`).join('') +
+        '</div></div>';
+    }
+
     // Changelog
     const cl = ds.changelog || [];
     let changelogHTML = '';
@@ -355,6 +386,7 @@ function buildAll(lang) {
       RELATED: relatedHTML,
       RELATED_STANDARDS_SECTION: relatedStandardsSectionHTML,
       QUALITY_BADGES: qualityHTML,
+      VLA_BADGES: vlaBadgesHTML,
       CHANGELOG: changelogHTML,
       BACK_TO_DATASETS: isEn ? '← Back to Datasets' : '← 返回全部数据集',
       SECTION_DATA_FORMAT: isEn ? 'Data Format' : '数据格式',
@@ -500,6 +532,8 @@ function buildAll(lang) {
   typeLabels: ui.typeLabels,
   robotLabels: ui.robotLabels,
   taskLabels: ui.taskLabels,
+  vlaShortLabels: ui.vlaShortLabels,
+  vlaLabels: ui.vlaLabels,
   searchPlaceholder: isEn ? 'Search dataset name, institution, task type...' : '搜索数据集名称、机构、任务类型...',
   robotType: isEn ? 'Robot Type' : '机器人类型',
   taskType: isEn ? 'Task Type' : '任务类型',

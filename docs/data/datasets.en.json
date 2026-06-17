@@ -90,7 +90,15 @@
       ],
       "preprocess": "图像已统一 resize 到 320x256（OXE 标准）；动作 7 维 EEF（world_vector + rotation_delta + gripper）；60+ 子集需指定 TFDS dataset name"
     },
-    "year": 2024
+    "year": 2024,
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "octo",
+      "rt-2",
+      "rdt-1b",
+      "gr00t"
+    ]
   },
   {
     "id": "bridge-data-v2",
@@ -179,7 +187,15 @@
       ],
       "preprocess": "图像原始尺寸 480x640，需 resize 到 224x224；动作 7 维（delta pose + gripper）；语言指令在 episode 级 metadata 中"
     },
-    "year": 2023
+    "year": 2023,
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "octo",
+      "rt-2",
+      "rdt-1b",
+      "gr00t"
+    ]
   },
   {
     "id": "rh20t",
@@ -256,7 +272,10 @@
       ],
       "preprocess": "视频-based 格式；每帧含 RGB+Depth+action；T 维在第一个轴"
     },
-    "year": 2023
+    "year": 2023,
+    "vlaCompatible": [
+      "rdt-1b"
+    ]
   },
   {
     "id": "roboset",
@@ -324,7 +343,10 @@
       ],
       "preprocess": "HDF5 格式；multi-view RGB"
     },
-    "year": 2022
+    "year": 2022,
+    "vlaCompatible": [
+      "rdt-1b"
+    ]
   },
   {
     "id": "libero",
@@ -393,7 +415,13 @@
       ],
       "preprocess": "兼容 robomimic 格式；130 任务分 5 维度；每 demo 含 states/actions/rewards/dones"
     },
-    "year": 2023
+    "year": 2023,
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "octo",
+      "gr00t"
+    ]
   },
   {
     "id": "meta-world",
@@ -461,7 +489,10 @@
       ],
       "preprocess": "Gymnasium API 兼容；50 任务；MuJoCo 低维状态观测"
     },
-    "year": 2019
+    "year": 2019,
+    "vlaCompatible": [
+      "pi0"
+    ]
   },
   {
     "id": "rlbench",
@@ -535,7 +566,11 @@
       ],
       "preprocess": "图像为 PIL Image 格式，需转为 numpy array；low_dim_state 为 26 维本体状态；每个 demo 含 4 个 observation list（front_rgb/wrist_rgb/front_depth/wrist_depth）"
     },
-    "year": 2019
+    "year": 2019,
+    "vlaCompatible": [
+      "openvla",
+      "octo"
+    ]
   },
   {
     "id": "maniskill2",
@@ -606,7 +641,11 @@
       ],
       "preprocess": "SAPIEN 引擎；GPU 并行渲染；2000+ 物体"
     },
-    "year": 2023
+    "year": 2023,
+    "vlaCompatible": [
+      "pi0",
+      "rdt-1b"
+    ]
   },
   {
     "id": "calvin",
@@ -677,7 +716,12 @@
       ],
       "preprocess": "PyBullet 仿真；Franka Panda；语言指令在环境 step 中附带"
     },
-    "year": 2022
+    "year": 2022,
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "rdt-1b"
+    ]
   },
   {
     "id": "ario",
@@ -746,7 +790,8 @@
       ],
       "preprocess": "RLDS 多具身统一格式；动作维度因具身而异"
     },
-    "year": 2024
+    "year": 2024,
+    "vlaCompatible": []
   },
   {
     "id": "rt-1-data",
@@ -820,7 +865,14 @@
       ],
       "preprocess": "RLDS 格式；图像 300×300；动作 7 维 EEF + gripper + base"
     },
-    "year": 2022
+    "year": 2022,
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "octo",
+      "rt-2",
+      "rdt-1b"
+    ]
   },
   {
     "id": "robocat-data",
@@ -892,7 +944,10 @@
       ],
       "preprocess": "多具身数据，各具身动作维度不同；RLDS 格式"
     },
-    "year": 2023
+    "year": 2023,
+    "vlaCompatible": [
+      "rt-2"
+    ]
   },
   {
     "id": "t-diffusion-data",
@@ -964,7 +1019,10 @@
       ],
       "preprocess": "HDF5 格式兼容 robomimic；图像 84×84；动作 7 维 delta pose + gripper"
     },
-    "year": 2023
+    "year": 2023,
+    "vlaCompatible": [
+      "rt-2"
+    ]
   },
   {
     "id": "agibot-world",
@@ -1075,7 +1133,10 @@
       ],
       "preprocess": "原始 HDF5 + LeRobot 双格式；G2 平台采集"
     },
-    "year": 2024
+    "year": 2024,
+    "vlaCompatible": [
+      "gr00t"
+    ]
   },
   {
     "id": "robomind",
@@ -1159,7 +1220,11 @@
       ],
       "preprocess": "HDF5 格式；含触觉；multi-embodiment"
     },
-    "year": 2024
+    "year": 2024,
+    "vlaCompatible": [
+      "pi0",
+      "gr00t"
+    ]
   },
   {
     "id": "damo-solo",
@@ -1226,7 +1291,8 @@
       ],
       "preprocess": "HDF5 格式；单臂 6-DoF"
     },
-    "year": 2024
+    "year": 2024,
+    "vlaCompatible": []
   },
   {
     "id": "gr-1-dataset",
@@ -1310,7 +1376,10 @@
       ],
       "preprocess": "图像从 MP4/MKV 视频流读取；关节数据按时间维度 [D, T] 排列（列主序），需 transpose 为 [T, D]；动作值与状态值共享相同 timestamp"
     },
-    "year": 2024
+    "year": 2024,
+    "vlaCompatible": [
+      "gr00t"
+    ]
   },
   {
     "id": "nvidia-gr1-simulation",
@@ -1392,7 +1461,10 @@
       ],
       "preprocess": "HDF5 + LeRobot 双格式；Arena 50 + Teleop-Sim 1,000"
     },
-    "year": 2024
+    "year": 2024,
+    "vlaCompatible": [
+      "gr00t"
+    ]
   },
   {
     "id": "h1-dataset",
@@ -1471,7 +1543,10 @@
       ],
       "preprocess": "SMPL 参数 + 关节角度；23-DoF 人形"
     },
-    "year": 2024
+    "year": 2024,
+    "vlaCompatible": [
+      "gr00t"
+    ]
   },
   {
     "id": "unifolm-wbt-dataset",
@@ -1551,7 +1626,10 @@
       ],
       "preprocess": "HDF5 格式；340h；189 万轨迹"
     },
-    "year": 2026
+    "year": 2026,
+    "vlaCompatible": [
+      "gr00t"
+    ]
   },
   {
     "id": "digit-dataset",
@@ -1616,7 +1694,8 @@
       ],
       "preprocess": "HDF5 格式；GelSight DIGIT 640×480"
     },
-    "year": 2019
+    "year": 2019,
+    "vlaCompatible": []
   },
   {
     "id": "tactip-datasets",
@@ -1681,7 +1760,8 @@
       ],
       "preprocess": "HDF5 + PNG；TacTip 内部摄像头"
     },
-    "year": 2019
+    "year": 2019,
+    "vlaCompatible": []
   },
   {
     "id": "graspnet-1billion",
@@ -1750,7 +1830,8 @@
       ],
       "preprocess": "NPY/NPZ 格式；190 场景；1.1B+ 标注"
     },
-    "year": 2019
+    "year": 2019,
+    "vlaCompatible": []
   },
   {
     "id": "dexnet-2-0",
@@ -1816,7 +1897,8 @@
       ],
       "preprocess": "HDF5 格式；1,500+ 物体；6.7M+ 抓取"
     },
-    "year": 2017
+    "year": 2017,
+    "vlaCompatible": []
   },
   {
     "id": "matterport3d",
@@ -1884,7 +1966,8 @@
       ],
       "preprocess": "Habitat 兼容；90 建筑；GLB/glTF 格式"
     },
-    "year": 2017
+    "year": 2017,
+    "vlaCompatible": []
   },
   {
     "id": "humanoid-everyday",
@@ -1962,7 +2045,8 @@
       ],
       "preprocess": "HDF5 格式；10,300+ 轨迹；260 任务"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": []
   },
   {
     "id": "dexora",
@@ -2036,7 +2120,8 @@
       ],
       "preprocess": "HDF5 格式；36-DoF 双臂灵巧手"
     },
-    "year": 2024
+    "year": 2024,
+    "vlaCompatible": []
   },
   {
     "id": "realsource",
@@ -2107,7 +2192,8 @@
       ],
       "preprocess": "HDF5 格式；multi-view RGB-D + 点云 + 3D 网格"
     },
-    "year": 2026
+    "year": 2026,
+    "vlaCompatible": []
   },
   {
     "id": "10kh-realomni",
@@ -2181,7 +2267,8 @@
       ],
       "preprocess": "全向 RGB-D 多相机；LeRobot 格式"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": []
   },
   {
     "id": "robocoin",
@@ -2259,7 +2346,8 @@
       ],
       "preprocess": "RLDS 格式；双臂接触丰富操作"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": []
   },
   {
     "id": "openlet",
@@ -2333,7 +2421,8 @@
       ],
       "preprocess": "CSV/HDF5 双格式；全身运动+操作"
     },
-    "year": 2026
+    "year": 2026,
+    "vlaCompatible": []
   },
   {
     "id": "uniact",
@@ -2420,7 +2509,11 @@
       ],
       "preprocess": "HDF5 格式；delta pose + rotation vector"
     },
-    "year": 2026
+    "year": 2026,
+    "vlaCompatible": [
+      "pi0",
+      "gr00t"
+    ]
   },
   {
     "id": "galaxea-open-world",
@@ -2522,7 +2615,8 @@
       ],
       "preprocess": "100K+ 轨迹；多视角 RGB-D；LeRobot v3 格式"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": []
   },
   {
     "id": "oxe-auge",
@@ -2611,7 +2705,8 @@
       ],
       "preprocess": "LeRobot 格式；4.4M 轨迹；跨具身增强"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": []
   },
   {
     "id": "droid",
@@ -2700,7 +2795,15 @@
       ],
       "preprocess": "RLDS 格式；3 视角 RGB-D；Franka Panda"
     },
-    "year": 2024
+    "year": 2024,
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "octo",
+      "rt-2",
+      "rdt-1b",
+      "gr00t"
+    ]
   },
   {
     "id": "mimicgen",
@@ -2791,7 +2894,10 @@
       ],
       "preprocess": "robomimic 兼容；48,000 演示；可用 robomimic SequenceDataset 加载"
     },
-    "year": 2023
+    "year": 2023,
+    "vlaCompatible": [
+      "pi0"
+    ]
   },
   {
     "id": "robocasa",
@@ -2883,7 +2989,11 @@
       ],
       "preprocess": "robomimic 兼容格式；大规模家居仿真场景"
     },
-    "year": 2024
+    "year": 2024,
+    "vlaCompatible": [
+      "pi0",
+      "gr00t"
+    ]
   },
   {
     "id": "arnold-benchmark",
@@ -2977,7 +3087,8 @@
       ],
       "preprocess": "HDF5 格式；连续语言目标"
     },
-    "year": 2023
+    "year": 2023,
+    "vlaCompatible": []
   },
   {
     "id": "robonet",
@@ -3057,7 +3168,14 @@
       ],
       "preprocess": "HDF5 格式；64×64 或 128×128 图像"
     },
-    "year": 2019
+    "year": 2019,
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "octo",
+      "rt-2",
+      "rdt-1b"
+    ]
   },
   {
     "id": "ego4d",
@@ -3148,7 +3266,8 @@
       ],
       "preprocess": "Canonical clips (30fps VP9)；JSON 标注；3670h"
     },
-    "year": 2022
+    "year": 2022,
+    "vlaCompatible": []
   },
   {
     "changelog": [],
@@ -3234,7 +3353,8 @@
       ],
       "preprocess": "PNG 图像 + JSON 标注；308K 帧；17 类别"
     },
-    "year": 2023
+    "year": 2023,
+    "vlaCompatible": []
   },
   {
     "changelog": [],
@@ -3314,7 +3434,8 @@
       ],
       "preprocess": "单张 RGB + JSON 标注；~10K 图像"
     },
-    "year": 2023
+    "year": 2023,
+    "vlaCompatible": []
   },
   {
     "changelog": [],
@@ -3391,7 +3512,8 @@
       ],
       "preprocess": "50 万张图像；point-level 高斯热力图标注"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": []
   },
   {
     "changelog": [],
@@ -3471,7 +3593,8 @@
       ],
       "preprocess": "基于 InstructPart + GPT-4o 推理指令改写；Q&A 格式"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": []
   },
   {
     "changelog": [],
@@ -3551,7 +3674,8 @@
       ],
       "preprocess": "9,600 任务指令；TRPS + ORPS 双任务"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": []
   },
   {
     "changelog": [],
@@ -3637,7 +3761,8 @@
       ],
       "preprocess": "PLY 点云；710 场景；14.8K 交互标注"
     },
-    "year": 2024
+    "year": 2024,
+    "vlaCompatible": []
   },
   {
     "changelog": [],
@@ -3732,7 +3857,11 @@
       ],
       "preprocess": "HDF5 格式；310K 轨迹；6 形态；11 场景"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": [
+      "pi0",
+      "gr00t"
+    ]
   },
   {
     "changelog": [],
@@ -3817,7 +3946,8 @@
       ],
       "preprocess": "RGB-D 视频 + JSON 标注；2.4M 帧"
     },
-    "year": 2022
+    "year": 2022,
+    "vlaCompatible": []
   },
   {
     "changelog": [],
@@ -3899,7 +4029,8 @@
       ],
       "preprocess": "MP4 + JSON；SLAM 相机位姿；110 万 interval"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": []
   },
   {
     "id": "bc-z",
@@ -3981,7 +4112,14 @@
       ],
       "preprocess": "TFDS 格式；100 任务；172×213 图像；语言指令"
     },
-    "year": 2022
+    "year": 2022,
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "octo",
+      "rt-2",
+      "rdt-1b"
+    ]
   },
   {
     "id": "aloha-dataset",
@@ -4069,7 +4207,11 @@
       ],
       "preprocess": "多视角 4 相机 RGB；动作 14 维（双臂 7-DoF × 2）；LeRobot 格式下 episode_index + frame_index 已对齐"
     },
-    "year": 2023
+    "year": 2023,
+    "vlaCompatible": [
+      "act",
+      "pi0"
+    ]
   },
   {
     "id": "internscenes",
@@ -4155,7 +4297,8 @@
       ],
       "preprocess": "USD/GLB 格式；40K 场景；Isaac Sim 兼容"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": []
   },
   {
     "id": "kairos-homeworld",
@@ -4240,7 +4383,8 @@
       ],
       "preprocess": "USD/GLB 格式；5K 全屋场景；30 万户型"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": []
   },
   {
     "id": "groot-n1-dataset",
@@ -4329,7 +4473,10 @@
       ],
       "preprocess": "LeRobot + HDF5；TB 级；三层金字塔"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": [
+      "gr00t"
+    ]
   },
   {
     "id": "internhumanoid-motionmillions",
@@ -4410,7 +4557,10 @@
       ],
       "preprocess": "HuggingFace 托管；200 万+ 动作序列"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": [
+      "gr00t"
+    ]
   },
   {
     "id": "dexgraspvla",
@@ -4496,7 +4646,10 @@
       ],
       "preprocess": "51 条遥操作 + DexGraspNet 3.0（1.7 亿姿态）"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": [
+      "openvla"
+    ]
   },
   {
     "id": "graspvla-syngrasp",
@@ -4581,7 +4734,10 @@
       ],
       "preprocess": "NPY 格式；10 亿帧合成；240 类别"
     },
-    "year": 2025
+    "year": 2025,
+    "vlaCompatible": [
+      "openvla"
+    ]
   },
   {
     "id": "openrobocare",
@@ -4677,7 +4833,8 @@
         "scipy"
       ],
       "training": "适用于 Imitation Learning（BC、ACT、Diffusion Policy）和 VLA 模型训练。触觉模态可用于多模态融合研究。"
-    }
+    },
+    "vlaCompatible": []
   },
   {
     "id": "etri-activity3d-livinglab",
@@ -4761,7 +4918,8 @@
         "scipy"
       ],
       "training": "适用于 3D CNN（I3D、SlowFast）、GCN（ST-GCN）等动作识别模型。LivingLab 子集专门用于领域自适应研究。"
-    }
+    },
+    "vlaCompatible": []
   },
   {
     "id": "kfall",
@@ -4842,7 +5000,8 @@
         "scikit-learn"
       ],
       "training": "适用于 CNN-LSTM、Transformer、SVM 等时序分类模型。重点是跌倒前 300-500ms 窗口的特征提取。"
-    }
+    },
+    "vlaCompatible": []
   },
   {
     "id": "ec-ar",
@@ -4921,7 +5080,8 @@
         "pytorch"
       ],
       "training": "适用于多流 3D CNN（Light-SlowFast）、GCN（ST-GCN）等动作识别架构。骨骼流可单独训练或与 RGB 流融合。"
-    }
+    },
+    "vlaCompatible": []
   },
   {
     "id": "medmassage-12k",
@@ -5004,7 +5164,8 @@
         "torch"
       ],
       "training": "适用于 VLM 微调（Qwen-VL 系列）。推荐 LoRA 微调视觉编码器和 MLP 投影层，冻结 LLM 主干。"
-    }
+    },
+    "vlaCompatible": []
   },
   {
     "id": "ceti-age-kinematics",
@@ -5093,6 +5254,7 @@
         "motion-bids"
       ],
       "training": "适用于步态分析、动作质量评估、年龄分类、异常步态检测。可训练 GCN/Transformer 进行跨年龄域适应。"
-    }
+    },
+    "vlaCompatible": []
   }
 ]
