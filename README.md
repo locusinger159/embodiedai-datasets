@@ -14,7 +14,7 @@
 - 🤖 覆盖 **8** 大机器人类型：人形机器人、机械臂、移动机器人、四足机器人、多机型、触觉传感、灵巧手、通用
 - 🎯 覆盖 **16** 种任务类型：操作、抓取、导航、装配、家居、交互、运动控制、可供性分割、3D运动预测、康养护理 等
 - 🏷️ 热门标签：世界模型、RLDS、遥操作、VLA、大规模、可供性 等
-- 🏛️ 数据来自 **48+** 全球顶级研究机构
+- 🏛️ 数据来自 **53** 个全球顶级研究机构
 
 ## 功能特性
 
@@ -25,7 +25,7 @@
 - **数据标准页** — 19 个行业标准/评测基准，每条含 RFC 2119 规范性要求（MUST/SHOULD/MAY），表格/卡片双视图
 - **工具/平台** — 18 个仿真平台、物理引擎、训练框架、可视化工具，侧边栏按工具类型筛选，每条含教程模块（快速开始/依赖/外部教程）
 - **数据格式全景图** — 全局视角查看存储格式分布、Schema 层级深度、传感器覆盖
-- **技术博客** — 5 篇深度文章：7 天 VLA 项目实战 / AI 搜索技术实践 / GR-1 数据生态测评 / UniACT 深度解析，RSS 订阅
+- **技术博客** — 6 篇深度文章：Qwen-Robot 模型矩阵解析 / 7 天 VLA 项目实战 / AI 搜索技术实践 / GR-1 数据生态测评 / UniACT 深度解析，RSS 订阅
 - **英文站** — 全站英文版（`/en/`），中/EN 一键切换
 - **评论区** — 基于 giscus + GitHub Discussions
 
@@ -82,7 +82,9 @@ embodiedai-datasets/
 │   ├── tools.json / tools.en.json             # 18 个工具
 │   └── blog.json                              # 博客文章
 ├── scripts/
-│   └── embed.cjs                 #   嵌入生成脚本（百炼 text-embedding-v4）
+│   ├── embed.cjs                 #   嵌入生成脚本（百炼 text-embedding-v4）
+│   ├── validate.cjs              #   数据校验（JSON schema / 必填字段 / 跨语言一致性 / URL）
+│   └── scan-fiction-risk.py      #   AI 虚构数据风险扫描（多维度打分）
 ├── fc/
 │   ├── index.js                  #   阿里云 FC 搜索后端
 │   ├── package.json
@@ -154,10 +156,19 @@ push 到 main 分支后，GitHub Actions 自动执行：
 
 ## 版本记录
 
+### v2.10 (2026-06-17)
+
+- 🏥 **康养护理数据集** — 新增 6 个数据集（57→63）：OpenRoboCare（Cornell 专业护理演示）、ETRI-Activity3D-LivingLab（韩国 55 种老年日常动作）、KFall（KAIST 跌倒前检测 IMU）、EC-AR（郑州大学 养老动作识别）、MedMassage-12K（中科院 穴位按摩 VLM）、CeTI-Age-Kinematics（TU Dresden 老年运动学），新增「康养护理」任务类型
+- 🗑️ **删除 RoboNat** — AI 虚构数据集（论文 arxiv 2409.00001 指向脑瘫检测 XAI 论文），与 FMTC/OCRL 同为第三例虚构
+- 📅 **年份字段补全** — 全部 63 个数据集添加显式 `year` 字段（2017-2026），修复数据集列表年份排序 bug
+- 🔍 **防虚构体系** — 新增 `validate.cjs`（6 大校验项：JSON schema / 必填字段 / 跨语言一致性 / 年份覆盖 / 受控词汇 / URL 格式）和 `scan-fiction-risk.py`（多维度 AI 虚构风险扫描），三层防御写入项目约定
+- 📝 **Qwen-Robot 博客** — 阿里首个具身大模型矩阵深度解析（Manip + Nav + World），含与 GR00T 横向对比
+- 🐛 **修复** — HuggingFace `/datasets/` 前缀缺失、OpenLET 下载链接夹带中文、数据集列表排序下拉框映射错误
+
 ### v2.9 (2026-06-08)
 
 - 💬 **AI 助手 Phase 2** — DeepSeek V4 Flash 驱动，检索结果注入 system prompt 生成结构化推荐。双按钮入口（💬AI 助手 + 🔍搜索），右侧抽屉面板，多轮对话 + 引用来源
-- 💻 **全部数据集快速上手** — 63 个数据集补充 `usage` 字段（加载代码/依赖库/预处理说明），`dataFormat` 扩展 layout/index/format
+- 💻 **全部数据集快速上手** — 59 个数据集补充 `usage` 字段（加载代码/依赖库/预处理说明），`dataFormat` 扩展 layout/index/format
 - 📝 **GR-1 数据生态深度测评** — 三数据集横向对比（ActionNet/NVIDIA 仿真/GR00T N1），实战选型指南
 - 🔧 **工具教程模块** — 18 个工具各含快速开始命令、依赖包列表、外部教程链接
 - 🎨 **工具详情页与数据集页对齐** — 统一 CSS 布局、section-block 结构、3 列 info-grid
