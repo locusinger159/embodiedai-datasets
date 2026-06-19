@@ -5232,7 +5232,7 @@
       "hasSplit": true
     },
     "standards": [
-      "Motion-BIDS"
+      "motion-bids"
     ],
     "tags": [
       "康养护理",
@@ -5974,7 +5974,9 @@
       "venue": "CoRL 2024"
     },
     "year": 2024,
-    "standards": [],
+    "standards": [
+      "behavior-1k"
+    ],
     "tags": [
       "大规模",
       "仿真",

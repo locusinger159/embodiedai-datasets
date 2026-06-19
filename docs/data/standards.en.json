@@ -1315,5 +1315,26 @@
         "detail": "逐步覆盖更多机器人形态和操作任务类型"
       }
     ]
+  },
+  {
+    "id": "motion-bids",
+    "name": "Motion-BIDS",
+    "fullName": "Motion Brain Imaging Data Structure",
+    "org": "BIDS Community / Stanford",
+    "type": "format",
+    "openness": "open",
+    "links": {
+      "site": "https://bids-specification.readthedocs.io/en/stable/modality-specific-files/motion.html"
+    },
+    "desc": "BIDS motion data extension standard for organizing motion capture and kinematics data. Defines directory structure, metadata format, and storage specifications for sensor data (IMU, joint angles, motion trajectories, etc.). Applicable to standardized sharing of human motion and robot kinematics data.",
+    "scene": [
+      "general"
+    ],
+    "modalities": [
+      "动作",
+      "IMU",
+      "本体状态"
+    ],
+    "license": "CC BY 4.0"
   }
 ]

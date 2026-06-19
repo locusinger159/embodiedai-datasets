@@ -1315,5 +1315,26 @@
         "detail": "逐步覆盖更多机器人形态和操作任务类型"
       }
     ]
+  },
+  {
+    "id": "motion-bids",
+    "name": "Motion-BIDS",
+    "fullName": "Motion Brain Imaging Data Structure",
+    "org": "BIDS Community / Stanford",
+    "type": "format",
+    "openness": "open",
+    "links": {
+      "site": "https://bids-specification.readthedocs.io/en/stable/modality-specific-files/motion.html"
+    },
+    "desc": "BIDS 运动数据扩展标准，用于规范化组织运动捕捉和运动学数据。定义目录结构、元数据格式和传感器数据（IMU、关节角度、运动轨迹等）的存储规范。适用于人体运动和机器人运动学数据的标准化共享。",
+    "scene": [
+      "general"
+    ],
+    "modalities": [
+      "动作",
+      "IMU",
+      "本体状态"
+    ],
+    "license": "CC BY 4.0"
   }
 ]
