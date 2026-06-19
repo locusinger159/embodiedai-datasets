@@ -8,21 +8,23 @@
 
 专注收录全球具身智能、人形机器人、机械臂、移动机器人数据集情报。只做信息汇总与申请导航，助力算法研发。
 
-- 📊 收录 **63** 个数据集
-- 📐 收录 **19** 个数据标准与评测基准
+- 📊 收录 **92** 个数据集
+- 📐 收录 **20** 个数据标准与评测基准
 - 🔧 收录 **18** 个工具与平台
 - 🤖 覆盖 **8** 大机器人类型：人形机器人、机械臂、移动机器人、四足机器人、多机型、触觉传感、灵巧手、通用
-- 🎯 覆盖 **16** 种任务类型：操作、抓取、导航、装配、家居、交互、运动控制、可供性分割、3D运动预测、康养护理 等
+- 🎯 覆盖 **17** 种任务类型：操作、抓取、导航、装配、家居、交互、运动控制、可供性分割、3D运动预测、康养护理、人类操作 等
 - 🏷️ 热门标签：世界模型、RLDS、遥操作、VLA、大规模、可供性 等
-- 🏛️ 数据来自 **53** 个全球顶级研究机构
+- 🏛️ 数据来自 **69** 个全球顶级研究机构
 
 ## 功能特性
 
 - **AI 语义搜索** — 全站右下角 🔍 浮动搜索，自然语言输入，百炼 text-embedding-v4（2048 维）+ 关键词加权混合检索
-- **数据集详情页** — 每个数据集独立页面，含信息卡片、Schema 图、传感器规格、数据统计、BibTeX 引用、相关推荐
+- **反向推荐** — 🎯 6 步配置向导（任务→机器人→模态→场景→VLA→获取），加权打分推荐 Top 8，6 个快捷预设
+- **VLA 框架兼容性** — 标注 7 大 VLA 框架（π0、OpenVLA、GR00T N1、Octo、RT-2、RDT-1B、ACT），数据集详情页和列表页直观展示
+- **数据集详情页** — 每个数据集独立页面，含信息卡片、VLA 兼容性、Schema 图、传感器规格、数据统计、BibTeX 引用、相关推荐
 - **数据集对比** — 多选横向对比（最多 4 个），高亮差异字段
-- **侧边栏筛选** — 280px 左侧筛选面板（机器人类型/任务/开放程度/热门标签），右侧列表展示
-- **数据标准页** — 19 个行业标准/评测基准，每条含 RFC 2119 规范性要求（MUST/SHOULD/MAY），表格/卡片双视图
+- **侧边栏筛选** — 280px 左侧筛选面板（机器人类型/任务/开放程度/热门标签），右侧列表展示，桌面端含 VLA 兼容列
+- **数据标准页** — 20 个行业标准/评测基准，每条含 RFC 2119 规范性要求（MUST/SHOULD/MAY），表格/卡片双视图
 - **工具/平台** — 18 个仿真平台、物理引擎、训练框架、可视化工具，侧边栏按工具类型筛选，每条含教程模块（快速开始/依赖/外部教程）
 - **数据格式全景图** — 全局视角查看存储格式分布、Schema 层级深度、传感器覆盖
 - **技术博客** — 6 篇深度文章：Qwen-Robot 模型矩阵解析 / 7 天 VLA 项目实战 / AI 搜索技术实践 / GR-1 数据生态测评 / UniACT 深度解析，RSS 订阅
@@ -81,6 +83,8 @@ embodiedai-datasets/
 │   ├── standards.json / standards.en.json     # 19 个标准
 │   ├── tools.json / tools.en.json             # 18 个工具
 │   └── blog.json                              # 博客文章
+├── src/pages/
+│   └── recommend.html                         # 反向推荐页（6步向导+加权打分）
 ├── scripts/
 │   ├── embed.cjs                 #   嵌入生成脚本（百炼 text-embedding-v4）
 │   ├── validate.cjs              #   数据校验（JSON schema / 必填字段 / 跨语言一致性 / URL）
@@ -111,6 +115,8 @@ embodiedai-datasets/
   "links": { "official": "...", "paper": "..." },
   "description": "详细描述",
   "license": "CC BY-NC-SA 4.0",
+  "year": 2025,
+  "vlaCompatible": ["pi0", "openvla"],
   "quality": {
     "collection": "遥操作采集",
     "annotation": "人工标注",
@@ -155,6 +161,17 @@ push 到 main 分支后，GitHub Actions 自动执行：
 - 🔀 Pull Request：直接编辑 `docs/data/datasets.json`
 
 ## 版本记录
+
+### v2.11 (2026-06-19)
+
+- 📊 **+29 数据集** — 63→92：从社区 Awesome List 和行业表格中查漏补缺
+  - **Tier 1（10 个）**: Language Table、Furniture Bench、VIMA、QT-Opt、Stanford HYDRA、TidyBot、Columbia PushT、DobbE、ALFRED、BEHAVIOR-1K — VLA 训练/评测高频引用
+  - **Tier 2（12 个）**: CMU Play Fusion、NYU Franka Play、Berkeley Autolab UR5、Berkeley Fanuc Manipulation、Berkeley Cable Routing、CMU Stretch、RoboTurk、RoboMimic、MIME (CMU)、ManiWAV、RoboTwin 2.0、RoboVQA — 多数为 OXE 成员
+  - **Tier 3（7 个）**: Something-Something V2、YouCook2、100DOH、EPIC-KITCHENS-100、Assembly101、Motion-X、Ego-Exo4D — 人类操作数据，新增「人类操作」任务类型（16→17）
+- 🧠 **VLA 框架兼容性** — 新增 `vlaCompatible` 字段，标注 7 大 VLA 框架（π0, OpenVLA, GR00T N1, Octo, RT-2, RDT-1B, ACT），数据集详情页 badge + 列表页标签
+- 🎯 **反向推荐系统** — `/recommend/` 页面，6 步配置向导 + 6 个快捷预设 + 6 维加权打分，数据集列表页横幅入口
+- 📐 **数据标准补全** — 新增 Motion-BIDS 标准，BEHAVIOR-1K 关联 behavior-1k 标准（19→20）
+- 🐛 **修复** — robotType 中英文混用问题统一（arm→机械臂, mobile→移动机器人），筛选器无重复项
 
 ### v2.10 (2026-06-17)
 
