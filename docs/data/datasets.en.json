@@ -1474,7 +1474,7 @@
       "人形机器人"
     ],
     "task": [
-      "运动控制"
+      "动作捕捉"
     ],
     "modality": [
       "动作"
@@ -4487,7 +4487,7 @@
       "人形机器人"
     ],
     "task": [
-      "运动控制"
+      "动作捕捉"
     ],
     "modality": [
       "动作",
@@ -7222,8 +7222,7 @@
       "人形机器人"
     ],
     "task": [
-      "人类操作",
-      "运动控制"
+      "动作捕捉"
     ],
     "modality": [
       "视觉",
@@ -7348,6 +7347,295 @@
     "quality": {},
     "vlaCompatible": [],
     "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "amass",
+    "name": "AMASS",
+    "institution": "Max Planck Institute / CMU / ETH Zürich",
+    "year": 2019,
+    "scale": "40+ 小时动作捕捉，11,000+ 动作序列，720 万帧，300+ 对象",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "动作捕捉"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://amass.is.tue.mpg.de/",
+      "paper": "https://arxiv.org/abs/1904.03278"
+    },
+    "notes": "⚠️ Human motion data, NOT a robot dataset. THE standard humanoid motion benchmark. 40h mocap, 11K+ sequences, 7.2M frames. AstraBrain-WBC 0.5 training data is 2 orders of magnitude larger than AMASS.",
+    "description": "AMASS (Archive of Motion Capture as Surface Shapes) is a large-scale human motion dataset published by **Max Planck Institute**, **CMU**, and **ETH Zürich**.\n\nIt unifies **15** different motion capture data sources (CMU MoCap, HumanEva, KIT, BMLrub, etc.), covering **40+ hours** of motion data, **11,000+** motion sequences, and approximately **7.2 million frames** across **300+ subjects**. All data is represented using unified **SMPL/SMPL-X** body model parameters.\n\n⚠️ **Note: This is human motion data, not a robot dataset.** It is the standard benchmark in humanoid robot motion control, widely used for training and evaluating whole-body motion tracking, retargeting, and imitation learning. The AstraBrain-WBC 0.5 paper uses AMASS as a comparison baseline (its training data is 2 orders of magnitude larger).",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "NPZ",
+      "size": "~30GB",
+      "compression": "未压缩",
+      "schema": "sequence → poses (SMPL/SMPL-X) / shape / gender",
+      "layout": "NPZ 格式，每序列含 SMPL/SMPL-H/SMPL-X 姿态参数 + 体型参数 + 性别标签",
+      "index": "无",
+      "format": "NPZ (SMPL model parameters)"
+    },
+    "dataContent": {
+      "sensors": [
+        "动作捕捉系统",
+        "IMU（部分）"
+      ],
+      "scenes": "室内实验室",
+      "objects": "—",
+      "tasks": "行走、跑步、跳跃、舞蹈、日常动作等",
+      "episodes": "11,000+",
+      "annotations": [
+        "SMPL/SMPL-X 3D 姿态参数",
+        "体型参数",
+        "性别标签"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{mahmood2019amass,\n  title={AMASS: Archive of Motion Capture as Surface Shapes},\n  author={Mahmood, Naureen and Ghorbani, Nima and Troje, Nikolaus F and Pons-Moll, Gerard and Black, Michael J},\n  journal={arXiv preprint arXiv:1904.03278},\n  year={2019}\n}",
+      "authors": "Naureen Mahmood et al.",
+      "year": 2019,
+      "venue": "ICCV 2019"
+    },
+    "standards": [],
+    "tags": [
+      "人类数据",
+      "动作捕捉",
+      "SMPL",
+      "人形机器人",
+      "基准"
+    ],
+    "quality": {
+      "collection": "多源聚合",
+      "annotation": "自动标注",
+      "realWorld": "100%真机（动作捕捉）",
+      "hasSplit": true
+    },
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "phuma",
+    "name": "PHUMA",
+    "institution": "KAIST (DAVIAN Robotics)",
+    "year": 2025,
+    "scale": "73 小时，76,000+ 片段，Unitree G1 & H1-2",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "动作捕捉"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://huggingface.co/datasets/DAVIAN-Robotics/PHUMA",
+      "paper": "https://arxiv.org/abs/2510.26236"
+    },
+    "notes": "⚠️ Human motion data (retargeted), NOT a robot dataset. Physically-grounded humanoid locomotion. 73h, 76K+ clips, Unitree G1 & H1-2. 3× AMASS scale. Used by AstraBrain-WBC 0.5 and NVIDIA ProtoMotions.",
+    "description": "PHUMA (Physically-grounded HUMAnoid locomotion dataset) is a large-scale physically-aware humanoid locomotion dataset published by **KAIST DAVIAN Robotics** lab.\n\nIt contains **73 hours** of motion data and **76,000+** motion clips, targeting **Unitree G1** and **H1-2** humanoid robots. PHUMA filters out ~70% of raw Humanoid-X data artifacts (jitter, floating, ground penetration, foot-skating, joint violations) via a physics-aware curation pipeline, and uses proprietary PhySINK retargeting to ensure physical plausibility.\n\n⚠️ **Note: This is human motion retargeting data, not real robot data.** In imitation learning benchmarks, PHUMA achieves **1.2×** and **2.1×** higher success rates than AMASS and Humanoid-X respectively. Used by AstraBrain-WBC 0.5 and NVIDIA ProtoMotions.",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "NPY",
+      "size": "~10GB",
+      "compression": "未压缩",
+      "schema": "clip → frames → root_trans / root_ori / dof_pos",
+      "layout": "NPY 格式，每文件含 root_trans(xyz) + root_ori(quat) + dof_pos + fps",
+      "index": "无",
+      "format": "NPY"
+    },
+    "dataContent": {
+      "sensors": [
+        "动作捕捉系统（重定向）"
+      ],
+      "scenes": "多样场景（行走、跑步、跳跃、蹲起等）",
+      "objects": "—",
+      "tasks": "全身运动（行走、跑步、跳跃、蹲起、弓步等）",
+      "episodes": "76,000+",
+      "annotations": [
+        "root 平移",
+        "root 旋转四元数",
+        "关节位置 (DoF)"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{lee2025phuma,\n  title={PHUMA: Physically-Grounded Humanoid Locomotion Dataset},\n  author={Lee, Kyungmin and Kim, Sibeen and Park, Minho and Kim, Hyunseung and Hwang, Dongyoon and Lee, Hojoon and Choo, Jaegul},\n  journal={arXiv preprint arXiv:2510.26236},\n  year={2025}\n}",
+      "authors": "Kyungmin Lee et al.",
+      "year": 2025,
+      "venue": "arXiv 2025"
+    },
+    "standards": [],
+    "tags": [
+      "人类数据",
+      "人形机器人",
+      "运动控制",
+      "物理感知"
+    ],
+    "quality": {
+      "collection": "多源聚合",
+      "annotation": "自动标注",
+      "realWorld": "100%真机（动作捕捉重定向）",
+      "hasSplit": true
+    },
+    "vlaCompatible": [],
+    "github": "https://github.com/DAVIAN-Robotics/PHUMA",
+    "huggingface": "https://huggingface.co/datasets/DAVIAN-Robotics/PHUMA"
+  },
+  {
+    "id": "lafan1",
+    "name": "LAFAN1",
+    "institution": "Ubisoft La Forge",
+    "year": 2019,
+    "scale": "~4.6 小时，496,672 帧，77 序列，5 对象，30 FPS",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "动作捕捉"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://github.com/ubisoft/ubisoft-laforge-animation-dataset",
+      "paper": "https://arxiv.org/abs/1907.03318"
+    },
+    "notes": "⚠️ Human motion data, NOT a robot dataset. Ubisoft animation dataset. 77 sequences, 496K frames, 17 themes (dance, martial arts, falls, obstacles). AstraBrain-WBC 0.5 training source, retargeted to Unitree G1.",
+    "description": "LAFAN1 is a high-quality motion capture dataset published by **Ubisoft La Forge** for human motion prediction and generation research.\n\nIt contains **77** motion sequences, approximately **496K frames** (~4.6 hours), spanning **17 themes**: obstacles, walking, dance, fall & recovery, aiming, crawling, running, fight, jumps, push & stumble, sprint, etc. Recorded from **5** actors in a motion capture studio.\n\n⚠️ **Note: This is human motion data, not a robot dataset.** In humanoid robotics, LAFAN1 is widely used for motion retargeting — both AstraBrain-WBC 0.5 and the Unitree LAFAN1 Retargeting Dataset use LAFAN1 as source data.",
+    "license": "CC BY-NC 4.0",
+    "dataFormat": {
+      "storage": "BVH",
+      "size": "~500MB",
+      "compression": "ZIP",
+      "schema": "file → frames → joint_hierarchy / rotations / root_positions",
+      "layout": "BVH 文件（Biovision Hierarchy），每文件含骨骼层级 + 关节旋转 + 根位置",
+      "index": "无",
+      "format": "BVH"
+    },
+    "dataContent": {
+      "sensors": [
+        "动作捕捉系统（Vicon）"
+      ],
+      "scenes": "室内动作捕捉工作室",
+      "objects": "—",
+      "tasks": "17 类主题（舞蹈、武术、跌倒、行走、跑步、障碍等）",
+      "episodes": "77",
+      "annotations": [
+        "主题标签",
+        "骨骼层级",
+        "关节旋转（欧拉角）"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{harvey2020lafan1,\n  title={Robust Motion In-Betweening},\n  author={Harvey, F{\\'e}lix G and Yurick, Mike and Nowrouzezahrai, Derek and Pal, Christopher},\n  journal={ACM Transactions on Graphics},\n  year={2020}\n}",
+      "authors": "Félix G. Harvey et al.",
+      "year": 2019,
+      "venue": "SIGGRAPH 2020"
+    },
+    "standards": [],
+    "tags": [
+      "人类数据",
+      "动作捕捉",
+      "BVH",
+      "人形机器人",
+      "动画"
+    ],
+    "quality": {
+      "collection": "动作捕捉采集",
+      "annotation": "自动标注",
+      "realWorld": "100%真机（动作捕捉）",
+      "hasSplit": true
+    },
+    "vlaCompatible": [],
+    "github": "https://github.com/ubisoft/ubisoft-laforge-animation-dataset",
+    "huggingface": ""
+  },
+  {
+    "id": "motion-x-plus",
+    "name": "Motion-X++",
+    "institution": "Tsinghua University / IDEA / JHU / CUHK-Shenzhen",
+    "year": 2025,
+    "scale": "120.5K 片段，19.5M 帧，180.9 小时，80.8K RGB 视频，45.3K 音频",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "动作捕捉"
+    ],
+    "modality": [
+      "视觉",
+      "音频",
+      "动作",
+      "语言"
+    ],
+    "type": "partial",
+    "links": {
+      "official": "https://github.com/IDEA-Research/Motion-X",
+      "paper": "https://arxiv.org/abs/2501.05098"
+    },
+    "notes": "⚠️ Human motion data, NOT a robot dataset. Significantly expanded Motion-X: 120.5K clips, 19.5M frames, 180.9h, new RGB video + audio, GPT-4V annotations. AstraBrain-WBC 0.5 training source. Requires authorization.",
+    "description": "Motion-X++ is a significantly expanded version of the Motion-X dataset published by **Tsinghua University**, **IDEA**, **JHU**, and **CUHK-Shenzhen**.\n\nCompared to the original Motion-X (15.6M frames), Motion-X++ contains **120.5K** motion clips, **19.5M** frames, **180.9 hours**, plus **80.8K RGB videos** and **45.3K** audio samples. GPT-4V is used for frame-level semantic annotation.\n\n⚠️ **Note: This is human motion data, not a robot dataset.** Used by AstraBrain-WBC 0.5 as one of its training data sources for humanoid whole-body motion control. Requires authorization request to download from HuggingFace.",
+    "license": "Research use only（需申请）",
+    "dataFormat": {
+      "storage": "NPZ + MP4 + JSON",
+      "size": "~200GB",
+      "compression": "部分压缩",
+      "schema": "sequence → SMPL-X poses / RGB video / audio / text descriptions",
+      "layout": "NPZ SMPL-X 参数 + MP4 视频 + JSON 语义标注 + WAV 音频",
+      "index": "HuggingFace 数据集索引",
+      "format": "NPZ + MP4 + JSON"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机",
+        "麦克风",
+        "动作捕捉（SMPL-X 拟合）"
+      ],
+      "scenes": "体育场、舞蹈室、户外、日常场景等",
+      "objects": "—",
+      "tasks": "体育运动、舞蹈、音乐表演、武术、太极、户外活动等",
+      "episodes": "120,500",
+      "annotations": [
+        "逐帧级语义描述（GPT-4V）",
+        "序列级语义标签",
+        "SMPL-X 3D 姿态",
+        "2D/3D 关键点"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{zhang2025motionxplus,\n  title={Motion-X++: A Large-Scale Multimodal 3D Whole-body Human Motion Dataset},\n  author={Zhang, Yaqi and Lin, Jing and Wu, Guanlin and Cai, Yuanhao and others},\n  journal={arXiv preprint arXiv:2501.05098},\n  year={2025}\n}",
+      "authors": "Yaqi Zhang et al.",
+      "year": 2025,
+      "venue": "arXiv 2025"
+    },
+    "standards": [],
+    "tags": [
+      "人类数据",
+      "全身运动",
+      "SMPL-X",
+      "多模态",
+      "GPT标注"
+    ],
+    "quality": {
+      "collection": "多源聚合",
+      "annotation": "自动标注（GPT-4V）",
+      "realWorld": "仿真（SMPL-X 拟合）",
+      "hasSplit": true
+    },
+    "vlaCompatible": [],
+    "github": "https://github.com/IDEA-Research/Motion-X",
     "huggingface": ""
   }
 ]
