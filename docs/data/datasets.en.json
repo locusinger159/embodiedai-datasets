@@ -6885,5 +6885,467 @@
     "vlaCompatible": [],
     "github": "",
     "huggingface": ""
+  },
+  {
+    "id": "something-something-v2",
+    "name": "Something-Something V2",
+    "institution": "TwentyBN / Qualcomm",
+    "scale": "220,847 视频，174 动作类别",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "人类操作"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://developer.qualcomm.com/software/ai-datasets/something-something",
+      "paper": "https://arxiv.org/abs/1706.04261"
+    },
+    "notes": "⚠️ Human activity data, NOT a robot dataset. 220K videos, 174 action classes. Used by VLA community for visual representation pretraining.",
+    "description": "Something-Something V2 is a large-scale human action understanding video dataset published by **TwentyBN**.\n\nIt contains **220,847** videos covering **174** fine-grained action categories (e.g., 'picking something up', 'putting something down', 'pushing something'). Each video shows human hands performing basic object manipulation actions.\n\n⚠️ **Note: This is human activity data, not a robot dataset.** It is frequently used by the VLA community for visual representation pretraining to help models understand basic manipulation semantics.",
+    "license": "Custom (research)",
+    "dataFormat": {
+      "storage": "视频文件 + JSON",
+      "size": "20GB",
+      "compression": "未压缩",
+      "schema": "video → action_label",
+      "layout": "MP4 视频 + JSON 动作标签",
+      "index": "无",
+      "format": "MP4 + JSON"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机"
+      ],
+      "scenes": "桌面、日常环境",
+      "objects": "日常物品",
+      "tasks": "174 种基本手部操作动作",
+      "episodes": "220,847",
+      "annotations": [
+        "动作类别标签"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{goyal2017something,\n  title={The \"Something Something\" Video Database for Learning and Evaluating Visual Common Sense},\n  author={Goyal, Raghav and Kahou, Samira Ebrahimi and Michalski, Vincent and Materzy{\\'n}ska, Joanna and Westphal, Susanne and Kim, Heuna and Haenel, Valentin and Fruend, Ingo and Yianilos, Peter and Mueller-Freitag, Moritz and others},\n  journal={arXiv preprint arXiv:1706.04261},\n  year={2017}\n}",
+      "authors": "Raghav Goyal et al.",
+      "year": 2017,
+      "venue": "ICCV 2017"
+    },
+    "year": 2017,
+    "standards": [],
+    "tags": [
+      "人类数据",
+      "动作理解",
+      "视频"
+    ],
+    "quality": {},
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "youcook2",
+    "name": "YouCook2",
+    "institution": "University of Michigan",
+    "scale": "2000 长视频，89 食谱，烹饪任务",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "人类操作"
+    ],
+    "modality": [
+      "视觉",
+      "音频",
+      "语言",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "http://youcook2.eecs.umich.edu/",
+      "paper": "https://arxiv.org/abs/1703.09788"
+    },
+    "notes": "⚠️ Human activity data, NOT a robot dataset. 2,000 untrimmed cooking videos, 89 recipes. Used for long-sequence task planning research.",
+    "description": "YouCook2 is a task-oriented cooking instructional video dataset published by **University of Michigan**.\n\nIt contains **2,000** long untrimmed videos covering **89** cooking recipes. Each video shows a human completing a full dish from start to finish, with natural language narration and action sequences.\n\n⚠️ **Note: This is human activity data, not a robot dataset.** It is commonly used for long-sequence task planning and procedural understanding research.",
+    "license": "Custom (research)",
+    "dataFormat": {
+      "storage": "视频文件 + JSON",
+      "size": "70GB",
+      "compression": "未压缩",
+      "schema": "video → segments → actions / narration",
+      "layout": "MP4 视频 + JSON 时间段标注 + 文字旁白",
+      "index": "无",
+      "format": "MP4 + JSON"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（第三人称）"
+      ],
+      "scenes": "厨房",
+      "objects": "食材、厨具",
+      "tasks": "89 种烹饪食谱",
+      "episodes": "2,000",
+      "annotations": [
+        "时间段",
+        "动作描述",
+        "文字旁白"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{zhou2018youcook2,\n  title={Towards Automatic Learning of Procedures from Web Instructional Videos},\n  author={Zhou, Luowei and Xu, Chenliang and Corso, Jason J},\n  journal={arXiv preprint arXiv:1703.09788},\n  year={2018}\n}",
+      "authors": "Luowei Zhou et al.",
+      "year": 2018,
+      "venue": "AAAI 2018"
+    },
+    "year": 2018,
+    "standards": [],
+    "tags": [
+      "人类数据",
+      "烹饪",
+      "长序列"
+    ],
+    "quality": {},
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "100doh",
+    "name": "100DOH",
+    "institution": "University of Michigan",
+    "scale": "27.3K YouTube 视频，131 天手-物交互",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "人类操作"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://fouheylab.eecs.umich.edu/~dandans/projects/100DOH/",
+      "paper": "https://arxiv.org/abs/2006.05638"
+    },
+    "notes": "⚠️ Human activity data, NOT a robot dataset. 27.3K YouTube videos, 131 days of hand-object interaction footage. For hand detection and manipulation understanding.",
+    "description": "100DOH (100 Days of Hands) is a large-scale hand-object interaction video dataset published by **University of Michigan**.\n\nIt collects **27.3K** YouTube videos spanning 11 categories of daily interactions, with nearly **131 days** of interaction footage. Annotations focus on hand contact and hand-object 2D bounding boxes, covering both egocentric and exocentric views.\n\n⚠️ **Note: This is human activity data, not a robot dataset.** It is commonly used to train hand detection and manipulation understanding models.",
+    "license": "Custom (research)",
+    "dataFormat": {
+      "storage": "视频文件 + JSON",
+      "size": "~2TB",
+      "compression": "未压缩",
+      "schema": "video → frames → hand_bbox / object_bbox",
+      "layout": "MP4 视频 + JSON 手-物检测框标注",
+      "index": "无",
+      "format": "MP4 + JSON"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（第一/三人称）"
+      ],
+      "scenes": "日常环境",
+      "objects": "各种日常物品",
+      "tasks": "手-物交互检测",
+      "episodes": "27,300+",
+      "annotations": [
+        "手部边界框",
+        "物体边界框",
+        "接触状态"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{shan2020100doh,\n  title={Understanding Human Hands in Contact at Internet Scale},\n  author={Shan, Dandan and Geng, Jiaqi and Shu, Michelle and Fouhey, David F},\n  journal={arXiv preprint arXiv:2006.05638},\n  year={2020}\n}",
+      "authors": "Dandan Shan et al.",
+      "year": 2020,
+      "venue": "CVPR 2020"
+    },
+    "year": 2020,
+    "standards": [],
+    "tags": [
+      "人类数据",
+      "手-物交互",
+      "大规模"
+    ],
+    "quality": {},
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "epic-kitchens-100",
+    "name": "EPIC-KITCHENS-100",
+    "institution": "University of Bristol / University of Toronto",
+    "scale": "100 小时，90K 动作，700 视频，45 个厨房",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "人类操作"
+    ],
+    "modality": [
+      "视觉",
+      "音频",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://epic-kitchens.github.io/",
+      "paper": "https://arxiv.org/abs/2006.13256"
+    },
+    "notes": "⚠️ Human activity data, NOT a robot dataset. Egocentric kitchen operations, 100h head-mounted camera. Used by VLA community for visual representation pretraining.",
+    "description": "EPIC-KITCHENS-100 is a large-scale egocentric kitchen operation dataset published by **University of Bristol** and **University of Toronto**.\n\nIt contains **100 hours**, **20 million frames**, and **90K actions** across **700 videos** of varying lengths. All videos are captured with a head-mounted camera in **45 different** kitchen environments, recording long-duration unscripted daily activities.\n\n⚠️ **Note: This is human activity data, not a robot dataset.** Used by the VLA community (e.g., RoboMirror) for egocentric visual representation pretraining.",
+    "license": "CC BY-NC 4.0",
+    "dataFormat": {
+      "storage": "视频文件 + CSV",
+      "size": "~1.85TB",
+      "compression": "未压缩",
+      "schema": "video → segments → action / narration / object",
+      "layout": "MP4 视频 + CSV 时间段标注（动词+名词+物体）",
+      "index": "内置索引",
+      "format": "MP4 + CSV"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（头戴式自我中心）",
+        "麦克风"
+      ],
+      "scenes": "45 个不同厨房",
+      "objects": "数百种厨房物品",
+      "tasks": "日常厨房活动",
+      "episodes": "700（90,000 动作片段）",
+      "annotations": [
+        "动作标注（动词+名词）",
+        "物体标注",
+        "文字旁白"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{damen2020epic,\n  title={The EPIC-KITCHENS Dataset: Collection, Challenges and Baselines},\n  author={Damen, Dima and Doughty, Hazel and Farinella, Giovanni Maria and Fidler, Sanja and Furnari, Antonino and Kazakos, Evangelos and Moltisanti, Davide and Munro, Jonathan and Perrett, Toby and Price, Will and Wray, Michael},\n  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},\n  year={2020}\n}",
+      "authors": "Dima Damen et al.",
+      "year": 2020,
+      "venue": "TPAMI 2020"
+    },
+    "year": 2020,
+    "standards": [],
+    "tags": [
+      "人类数据",
+      "自我中心",
+      "厨房"
+    ],
+    "quality": {},
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "assembly101",
+    "name": "Assembly101",
+    "institution": "University of Bristol",
+    "scale": "101 款玩具车，100K 粗粒度 + 1M 细粒度动作，18M 3D 手部姿态",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "人类操作",
+      "装配"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://assembly-101.github.io/",
+      "paper": "https://arxiv.org/abs/2203.14712"
+    },
+    "notes": "⚠️ Human activity data, NOT a robot dataset. 101 toy cars, 100K coarse + 1M fine actions, 18M 3D hand poses. Highly relevant to robot assembly tasks.",
+    "description": "Assembly101 is a fine-grained assembly action dataset published by **University of Bristol**.\n\nIt records people assembling and disassembling **101** 'take-apart' toy cars, with synchronized **8 static** and **4 egocentric** camera views. Sequences are annotated with **100K+** coarse-grained action segments, **1M** fine-grained actions, and **18M** 3D hand poses.\n\n⚠️ **Note: This is human activity data, not a robot dataset.** However, it is highly relevant to robot assembly tasks — 3D hand poses can inform dexterous manipulation policies.",
+    "license": "CC BY-NC 4.0",
+    "dataFormat": {
+      "storage": "视频文件 + JSON",
+      "size": "~500GB",
+      "compression": "未压缩",
+      "schema": "video → segments → action / 3d_hand_pose / object_pose",
+      "layout": "MP4 视频（多视角）+ JSON 3D 手部姿态 + 物体姿态",
+      "index": "内置索引",
+      "format": "MP4 + JSON"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（8 静态 + 4 自我中心）",
+        "深度相机"
+      ],
+      "scenes": "桌面",
+      "objects": "101 款玩具车",
+      "tasks": "组装/拆卸玩具车",
+      "episodes": "101（~500 小时）",
+      "annotations": [
+        "3D 手部姿态（18M）",
+        "粗/细粒度动作标签",
+        "物体 6DoF 姿态"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{sener2022assembly101,\n  title={Assembly101: A Large-Scale Multi-View Video Dataset for Understanding Procedural Activities},\n  author={Sener, Fadime and Chatterjee, Dibyadip and Shelepov, Daniel and He, Kun and Singhania, Dipika and Wang, Robert and Yao, Angela},\n  journal={arXiv preprint arXiv:2203.14712},\n  year={2022}\n}",
+      "authors": "Fadime Sener et al.",
+      "year": 2022,
+      "venue": "CVPR 2022"
+    },
+    "year": 2022,
+    "standards": [],
+    "tags": [
+      "人类数据",
+      "装配",
+      "3D手部姿态",
+      "多视角"
+    ],
+    "quality": {},
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "motion-x",
+    "name": "Motion-X",
+    "institution": "Tsinghua University / Shanghai AI Lab",
+    "scale": "15.6M 全身姿态，81.1K 动作序列，SMPL-X 标注",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "人类操作",
+      "运动控制"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://motion-x-dataset.github.io/",
+      "paper": "https://arxiv.org/abs/2307.00818"
+    },
+    "notes": "⚠️ Human motion data, NOT a robot dataset. 15.6M full-body poses, 81.1K sequences with SMPL-X. Reference for humanoid robot whole-body control via RoboMirror-style retargeting.",
+    "description": "Motion-X is a large-scale 3D full-body human motion dataset published by **Tsinghua University** and **Shanghai AI Lab**.\n\nIt contains **15.6M** full-body poses and **81.1K** motion sequences annotated with **SMPL-X** parameters (including hand poses), along with action labels, text labels, and RGB video.\n\n⚠️ **Note: This is human motion data, not a robot dataset.** However, via RoboMirror-style retargeting, it can be transferred to humanoid robots for training whole-body locomotion and manipulation policies.",
+    "license": "Custom (research)",
+    "dataFormat": {
+      "storage": "NPZ + JSON + 视频",
+      "size": "~100GB",
+      "compression": "gzip",
+      "schema": "sequence → poses / text / video",
+      "layout": "NPZ SMPL-X 参数 + JSON 文本标签 + MP4 视频",
+      "index": "无",
+      "format": "NPZ + JSON + MP4"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机",
+        "动作捕捉系统"
+      ],
+      "scenes": "各种日常场景",
+      "objects": "—",
+      "tasks": "81,100 种动作（走、跑、跳、操作等）",
+      "episodes": "81,100",
+      "annotations": [
+        "SMPL-X 3D 姿态参数",
+        "动作标签",
+        "文本描述"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{lin2023motionx,\n  title={Motion-X: A Large-Scale 3D Expressive Whole-Body Human Motion Dataset},\n  author={Lin, Jing and Zeng, Ailing and Lu, Shunlin and Cai, Yuanhao and Zhang, Ruimao and Wang, Haoqian and Zhang, Lei},\n  journal={arXiv preprint arXiv:2307.00818},\n  year={2023}\n}",
+      "authors": "Jing Lin et al.",
+      "year": 2023,
+      "venue": "NeurIPS 2023"
+    },
+    "year": 2023,
+    "standards": [],
+    "tags": [
+      "人类数据",
+      "全身运动",
+      "SMPL-X",
+      "人形机器人"
+    ],
+    "quality": {},
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "ego-exo4d",
+    "name": "Ego-Exo4D",
+    "institution": "Meta AI / 13 所高校",
+    "scale": "1286 小时，740 人，123 场景，多视角熟练技能",
+    "robotType": [
+      "通用"
+    ],
+    "task": [
+      "人类操作"
+    ],
+    "modality": [
+      "视觉",
+      "音频",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://ego-exo4d-data.org/",
+      "paper": "https://arxiv.org/abs/2311.18259"
+    },
+    "notes": "⚠️ Human activity data, NOT a robot dataset. Synchronized egocentric + exocentric views, 1,286h of skilled activities (sports/music/repair). Used by RoboMirror for robot skill learning.",
+    "description": "Ego-Exo4D is a large-scale multi-view skilled human activity dataset published by **Meta AI** and 13 universities.\n\nIt simultaneously captures **egocentric** and **exocentric** views of skilled human activities (sports, music, dance, bike repair, etc.). **740 participants** across **13 cities** performed activities in **123 natural scenes**, totaling **1,286 hours**.\n\n⚠️ **Note: This is human activity data, not a robot dataset.** It is used by methods like RoboMirror for robot skill learning — the egocentric perspective is particularly suited for training visuomotor policies.",
+    "license": "CC BY-NC 4.0",
+    "dataFormat": {
+      "storage": "视频文件 + JSON",
+      "size": "~14TB",
+      "compression": "未压缩",
+      "schema": "video → take → egocentric / exocentric",
+      "layout": "MP4 视频（自我中心+外部视角）+ JSON 元数据",
+      "index": "内置索引",
+      "format": "MP4 + JSON"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（自我中心+外部多视角）",
+        "麦克风",
+        "IMU",
+        "眼动追踪"
+      ],
+      "scenes": "123 种自然场景",
+      "objects": "各种工具、乐器、运动器材",
+      "tasks": "运动/音乐/舞蹈/维修等熟练技能",
+      "episodes": "1,286 小时",
+      "annotations": [
+        "动作描述",
+        "技能标签",
+        "3D 点云",
+        "相机姿态"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{grauman2023egoexo4d,\n  title={Ego-Exo4D: Understanding Skilled Human Activity from First- and Third-Person Perspectives},\n  author={Grauman, Kristen and Westbury, Andrew and Torresani, Lorenzo and Kitani, Kris and Malik, Jitendra and others},\n  journal={arXiv preprint arXiv:2311.18259},\n  year={2023}\n}",
+      "authors": "Kristen Grauman et al.",
+      "year": 2023,
+      "venue": "CVPR 2024"
+    },
+    "year": 2023,
+    "standards": [],
+    "tags": [
+      "人类数据",
+      "多视角",
+      "熟练技能",
+      "自我中心"
+    ],
+    "quality": {},
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
   }
 ]
