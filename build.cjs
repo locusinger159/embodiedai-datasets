@@ -106,7 +106,8 @@ function buildAll(lang) {
       .replace('{{NAV_STANDARDS}}', page === 'standards' ? 'active' : '')
       .replace('{{NAV_TOOLS}}', page === 'tools' ? 'active' : '')
       .replace('{{NAV_SUBMIT}}', page === 'submit' ? 'active' : '')
-      .replace('{{NAV_BLOG}}', page === 'blog' ? 'active' : '');
+      .replace('{{NAV_BLOG}}', page === 'blog' ? 'active' : '')
+      .replace('{{NAV_RECOMMEND}}', page === 'recommend' ? 'active' : '');
   }
 
   function buildPage(templateFile, replacements) {
@@ -561,6 +562,48 @@ function buildAll(lang) {
   noResults: isEn ? 'No matching datasets found.' : '没有匹配的数据集。',
   tagFilter: isEn ? 'Trending Tags' : '热门标签',
   resultCount: isEn ? 'Found' : '找到',
+  // Recommend page
+  recTitle: isEn ? 'Reverse Recommendation' : '反向推荐',
+  recSubtitle: isEn ? 'Describe your scenario — we recommend the best datasets' : '描述你的场景，我们推荐最合适的数据集',
+  recPresetsLabel: isEn ? 'Quick Presets' : '快捷场景',
+  recPresetPickPlace: isEn ? '🍽️ Pick & Place Arm' : '🍽️ 桌面抓取（机械臂）',
+  recPresetNav: isEn ? '🗺️ Mobile Navigation' : '🗺️ 移动导航',
+  recPresetLoco: isEn ? '🚶 Humanoid Locomotion' : '🚶 人形运动控制',
+  recPresetBimanip: isEn ? '🤖 Bimanual (ALOHA)' : '🤖 双臂操作 (ALOHA)',
+  recPresetOpenvla: isEn ? '🧠 OpenVLA Compatible' : '🧠 OpenVLA 兼容',
+  recPresetHealthcare: isEn ? '🏥 Healthcare/Caregiving' : '🏥 康养护理',
+  recStepTask: isEn ? 'What task do you want to do?' : '你要做什么任务？',
+  recStepRobot: isEn ? 'What robot are you using?' : '你用什么机器人？',
+  recStepModality: isEn ? 'What data modalities do you need?' : '你需要什么数据模态？',
+  recStepScene: isEn ? 'Real robot or simulation?' : '真机还是仿真？',
+  recStepVla: isEn ? 'Which VLA framework? (optional)' : '用哪个 VLA 框架？（可选）',
+  recStepAccess: isEn ? 'Data access requirements?' : '数据获取限制？',
+  recBtnRecommend: isEn ? '🎲 Recommend →' : '🎲 给我推荐 →',
+  recBtnReset: isEn ? 'Reset' : '重置',
+  recResultsTitle: isEn ? 'Recommendation Results' : '推荐结果',
+  recFound: isEn ? 'Found' : '找到',
+  recTop: isEn ? 'Top' : '推荐',
+  recDatasets: isEn ? 'datasets' : '个数据集',
+  recScoreUnit: isEn ? 'pts' : '分',
+  recAny: isEn ? 'Any' : '不限',
+  recSceneAny: isEn ? 'Any' : '不限',
+  recSceneReal: isEn ? 'Real Robot Preferred' : '真机优先',
+  recSceneSim: isEn ? 'Simulation Preferred' : '仿真优先',
+  recAccessAny: isEn ? 'Any' : '不限',
+  recAccessOpen: isEn ? 'Fully Open Source' : '完全开源',
+  recAccessOpenApply: isEn ? 'Open + Apply OK' : '开源 + 可申请',
+  recEmptyTitle: isEn ? 'Select your requirements above' : '请在上方选择你的需求',
+  recEmptyHint: isEn ? 'Or click a quick preset to get started' : '或点击快捷场景快速开始',
+  recNoResultsTitle: isEn ? 'No exact matches found' : '没有精确匹配',
+  recNoResultsHint: isEn ? 'Try relaxing some filters or choosing "Any"' : '试试放宽筛选条件或选择"不限"',
+  recReasonTask: isEn ? 'Task: ' : '任务匹配：',
+  recReasonRobot: isEn ? 'Robot: ' : '机器人匹配：',
+  recReasonMod: isEn ? 'Modality: ' : '模态匹配：',
+  recReasonVla: isEn ? 'VLA Native: ' : 'VLA 原生支持：',
+  recReasonAccess: isEn ? 'Access match' : '获取方式匹配',
+  recReasonReal: isEn ? '100% Real Robot' : '100% 真机数据',
+  recReasonSim: isEn ? 'Simulation Data' : '仿真数据',
+  recViewDetail: isEn ? 'View Details' : '查看详情',
 })};`;
   fs.mkdirSync(`${outDir}/datasets`, { recursive: true });
   fs.writeFileSync(`${outDir}/datasets/index.html`, buildPage(`${templateDir}datasets.html`, {
@@ -568,6 +611,63 @@ function buildAll(lang) {
     nav: getActiveNav('datasets'),
     I18N_JS: i18nJS,
     DATASETS_JSON: JSON.stringify(dataDatasets)
+  }));
+
+  // ── Reverse Recommendation page ─────────────────────────
+  const recI18N = `window.I18N = ${JSON.stringify({
+    typeLabels: ui.typeLabels,
+    robotLabels: ui.robotLabels,
+    taskLabels: ui.taskLabels,
+    vlaShortLabels: ui.vlaShortLabels,
+    vlaLabels: ui.vlaLabels,
+  })};`;
+  fs.mkdirSync(`${outDir}/recommend`, { recursive: true });
+  fs.writeFileSync(`${outDir}/recommend/index.html`, buildPage(`${templateDir}recommend.html`, {
+    meta: `<title>${isEn ? 'Reverse Recommendation' : '反向推荐'} | Superdata RobotAI</title><meta name="description" content="${isEn ? 'Find the best dataset for your robot and task' : '根据你的机器人和任务，推荐最合适的数据集'}">`,
+    nav: getActiveNav('datasets'),
+    I18N_JS: recI18N,
+    DATASETS_JSON: JSON.stringify(dataDatasets),
+    REC_TITLE: isEn ? '🎯 Reverse Recommendation' : '🎯 反向推荐',
+    REC_SUBTITLE: isEn ? 'Describe your scenario — we recommend the best datasets' : '描述你的场景，我们推荐最合适的数据集',
+    REC_PRESETS_LABEL: isEn ? 'Quick Presets' : '快捷场景',
+    REC_PRESET_PICK_PLACE: isEn ? '🍽️ Pick & Place Arm' : '🍽️ 桌面抓取（机械臂）',
+    REC_PRESET_NAV: isEn ? '🗺️ Mobile Navigation' : '🗺️ 移动导航',
+    REC_PRESET_LOCO: isEn ? '🚶 Humanoid Locomotion' : '🚶 人形运动控制',
+    REC_PRESET_BIMANIP: isEn ? '🤖 Bimanual (ALOHA)' : '🤖 双臂操作 (ALOHA)',
+    REC_PRESET_OPENVLA: isEn ? '🧠 OpenVLA Compatible' : '🧠 OpenVLA 兼容',
+    REC_PRESET_HEALTHCARE: isEn ? '🏥 Healthcare/Caregiving' : '🏥 康养护理',
+    REC_STEP_TASK: isEn ? 'What task do you want to do?' : '你要做什么任务？',
+    REC_STEP_ROBOT: isEn ? 'What robot are you using?' : '你用什么机器人？',
+    REC_STEP_MODALITY: isEn ? 'What data modalities do you need?' : '你需要什么数据模态？',
+    REC_STEP_SCENE: isEn ? 'Real robot or simulation?' : '真机还是仿真？',
+    REC_STEP_VLA: isEn ? 'Which VLA framework? (optional)' : '用哪个 VLA 框架？（可选）',
+    REC_STEP_ACCESS: isEn ? 'Data access requirements?' : '数据获取限制？',
+    REC_BTN_RECOMMEND: isEn ? '🎲 Recommend →' : '🎲 给我推荐 →',
+    REC_BTN_RESET: isEn ? 'Reset' : '重置',
+    REC_RESULTS_TITLE: isEn ? 'Recommendation Results' : '推荐结果',
+    REC_FOUND: isEn ? 'Found' : '找到',
+    REC_TOP: isEn ? 'Top' : '推荐',
+    REC_DATASETS: isEn ? 'datasets' : '个数据集',
+    REC_SCORE_UNIT: isEn ? 'pts' : '分',
+    REC_ANY: isEn ? 'Any' : '不限',
+    REC_SCENE_ANY: isEn ? 'Any' : '不限',
+    REC_SCENE_REAL: isEn ? 'Real Robot Preferred' : '真机优先',
+    REC_SCENE_SIM: isEn ? 'Simulation Preferred' : '仿真优先',
+    REC_ACCESS_ANY: isEn ? 'Any' : '不限',
+    REC_ACCESS_OPEN: isEn ? 'Fully Open Source' : '完全开源',
+    REC_ACCESS_OPEN_APPLY: isEn ? 'Open + Apply OK' : '开源 + 可申请',
+    REC_EMPTY_TITLE: isEn ? 'Select your requirements above' : '请在上方选择你的需求',
+    REC_EMPTY_HINT: isEn ? 'Or click a quick preset to get started' : '或点击快捷场景快速开始',
+    REC_NO_RESULTS_TITLE: isEn ? 'No exact matches found' : '没有精确匹配',
+    REC_NO_RESULTS_HINT: isEn ? 'Try relaxing some filters or choosing "Any"' : '试试放宽筛选条件或选择"不限"',
+    REC_REASON_TASK: isEn ? 'Task: ' : '任务匹配：',
+    REC_REASON_ROBOT: isEn ? 'Robot: ' : '机器人匹配：',
+    REC_REASON_MOD: isEn ? 'Modality: ' : '模态匹配：',
+    REC_REASON_VLA: isEn ? 'VLA Native: ' : 'VLA 原生支持：',
+    REC_REASON_ACCESS: isEn ? 'Access match' : '获取方式匹配',
+    REC_REASON_REAL: isEn ? '100% Real Robot' : '100% 真机数据',
+    REC_REASON_SIM: isEn ? 'Simulation Data' : '仿真数据',
+    REC_VIEW_DETAIL: isEn ? 'View Details' : '查看详情',
   }));
 
   // ── Dataset detail pages ─────────────────────────────────
