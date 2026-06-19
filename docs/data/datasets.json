@@ -1379,6 +1379,9 @@
     "year": 2024,
     "vlaCompatible": [
       "gr00t"
+    ],
+    "standards": [
+      "hdf5-robomimic"
     ]
   },
   {
@@ -1464,6 +1467,10 @@
     "year": 2024,
     "vlaCompatible": [
       "gr00t"
+    ],
+    "standards": [
+      "lerobot",
+      "hdf5-robomimic"
     ]
   },
   {
@@ -1546,6 +1553,9 @@
     "year": 2024,
     "vlaCompatible": [
       "gr00t"
+    ],
+    "standards": [
+      "hdf5-robomimic"
     ]
   },
   {
@@ -1629,6 +1639,10 @@
     "year": 2026,
     "vlaCompatible": [
       "gr00t"
+    ],
+    "standards": [
+      "rlds",
+      "hdf5-robomimic"
     ]
   },
   {
@@ -1695,7 +1709,10 @@
       "preprocess": "HDF5 格式；GelSight DIGIT 640×480"
     },
     "year": 2019,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "standards": [
+      "hdf5-robomimic"
+    ]
   },
   {
     "id": "tactip-datasets",
@@ -1761,7 +1778,10 @@
       "preprocess": "HDF5 + PNG；TacTip 内部摄像头"
     },
     "year": 2019,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "standards": [
+      "hdf5-robomimic"
+    ]
   },
   {
     "id": "graspnet-1billion",
@@ -1898,7 +1918,10 @@
       "preprocess": "HDF5 格式；1,500+ 物体；6.7M+ 抓取"
     },
     "year": 2017,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "standards": [
+      "hdf5-robomimic"
+    ]
   },
   {
     "id": "matterport3d",
@@ -2046,7 +2069,10 @@
       "preprocess": "HDF5 格式；10,300+ 轨迹；260 任务"
     },
     "year": 2025,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "standards": [
+      "hdf5-robomimic"
+    ]
   },
   {
     "id": "dexora",
@@ -2121,7 +2147,10 @@
       "preprocess": "HDF5 格式；36-DoF 双臂灵巧手"
     },
     "year": 2024,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "standards": [
+      "hdf5-robomimic"
+    ]
   },
   {
     "id": "realsource",
@@ -2193,7 +2222,10 @@
       "preprocess": "HDF5 格式；multi-view RGB-D + 点云 + 3D 网格"
     },
     "year": 2026,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "standards": [
+      "hdf5-robomimic"
+    ]
   },
   {
     "id": "10kh-realomni",
@@ -2422,7 +2454,10 @@
       "preprocess": "CSV/HDF5 双格式；全身运动+操作"
     },
     "year": 2026,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "standards": [
+      "hdf5-robomimic"
+    ]
   },
   {
     "id": "uniact",
@@ -3865,6 +3900,9 @@
     "vlaCompatible": [
       "pi0",
       "gr00t"
+    ],
+    "standards": [
+      "hdf5-robomimic"
     ]
   },
   {
@@ -4203,7 +4241,10 @@
       "扩散策略"
     ],
     "changelog": [],
-    "standards": [],
+    "standards": [
+      "lerobot",
+      "hdf5-robomimic"
+    ],
     "usage": {
       "load": "from lerobot.datasets import LeRobotDataset\ndataset = LeRobotDataset('lerobot/aloha_static_coffee')\n# 或从 HuggingFace 直接加载\nfrom datasets import load_dataset\nds = load_dataset('lerobot/aloha_static_coffee')",
       "deps": [
@@ -4295,7 +4336,9 @@
       "语义分割"
     ],
     "changelog": [],
-    "standards": [],
+    "standards": [
+      "openusd"
+    ],
     "usage": {
       "load": "# InternScenes USD 场景可在 Isaac Sim 中直接打开\n# 或通过 Python 解析 USD\nfrom pxr import Usd, UsdGeom\nstage = Usd.Stage.Open('internscenes_scene.usd')\nfor prim in stage.TraverseAll():\n    if prim.IsA(UsdGeom.Mesh):\n        print(prim.GetPath())",
       "deps": [
@@ -4381,7 +4424,9 @@
       "Sim-to-Real"
     ],
     "changelog": [],
-    "standards": [],
+    "standards": [
+      "openusd"
+    ],
     "usage": {
       "load": "# Kairos-HomeWorld USD 全屋场景\nfrom pxr import Usd, UsdGeom\nstage = Usd.Stage.Open('kairos_home.usd')\nfor prim in stage.TraverseAll():\n    print(prim.GetPath(), prim.GetTypeName())",
       "deps": [
@@ -4470,7 +4515,10 @@
       "世界模型"
     ],
     "changelog": [],
-    "standards": [],
+    "standards": [
+      "lerobot",
+      "hdf5-robomimic"
+    ],
     "usage": {
       "load": "# GR00T N1 权重 + 数据在 HuggingFace\nfrom datasets import load_dataset\nds = load_dataset('nvidia/GR00T-N1-2B', split='train')\n# 或通过 Isaac Lab 加载合成数据\nfrom isaaclab.utils import load_groot_data",
       "deps": [
@@ -4554,7 +4602,9 @@
       "语言标注"
     ],
     "changelog": [],
-    "standards": [],
+    "standards": [
+      "hdf5-robomimic"
+    ],
     "usage": {
       "load": "from datasets import load_dataset\nds = load_dataset('InternRobotics/MotionMillion')\nfor sample in ds['train'].take(10):\n    motion = sample['motion_sequence']\n    text = sample['style_description']",
       "deps": [
