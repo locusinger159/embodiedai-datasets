@@ -3175,6 +3175,10 @@
       "octo",
       "rt-2",
       "rdt-1b"
+    ],
+    "standards": [
+      "rlds",
+      "oxe-schema"
     ]
   },
   {
@@ -4102,7 +4106,10 @@
       "Sim-to-Real"
     ],
     "changelog": [],
-    "standards": [],
+    "standards": [
+      "rlds",
+      "oxe-schema"
+    ],
     "usage": {
       "load": "import tensorflow_datasets as tfds\nds = tfds.load('bc_z', split='train')\nfor episode in ds.take(1):\n    for step in episode['steps']:\n        img = step['observation']['image']\n        action = step['action']\n        lang = step['observation']['natural_language_instruction']",
       "deps": [
