@@ -5256,5 +5256,1634 @@
       "training": "适用于步态分析、动作质量评估、年龄分类、异常步态检测。可训练 GCN/Transformer 进行跨年龄域适应。"
     },
     "vlaCompatible": []
+  },
+  {
+    "id": "language-table",
+    "name": "Language Table",
+    "institution": "Google Research",
+    "scale": "600K 语言标注轨迹，多种几何形状积木",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "语言",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://interactive-language.github.io/",
+      "paper": "https://arxiv.org/abs/2206.03286"
+    },
+    "notes": "600K 语言标注轨迹，开放词汇多任务桌面操作。OXE 成员，广泛用于 VLA 训练。",
+    "description": "Language-Table 是由 **Google Research** 发布的开放词汇多任务桌面操作基准数据集。\n\n该数据集包含 **60 万条**语言标注的机器人操作轨迹，涵盖多种几何形状积木的推、排列等任务。机器人通过自然语言指令进行操作，支持开放词汇的实时语言驱动控制。\n\n数据集属于 **Open X-Embodiment** 成员，被 Octo、OpenVLA、RDT-1B 等主流 VLA 模型广泛使用。",
+    "license": "Apache 2.0",
+    "dataFormat": {
+      "storage": "RLDS / TFDS",
+      "size": "~100GB",
+      "compression": "gzip",
+      "schema": "episode → step → observation / action / language_instruction",
+      "layout": "RLDS 格式，每 episode 含 RGB 图像 + 语言指令 + 动作序列",
+      "index": "TFDS 内置索引",
+      "format": "TFDS/RLDS"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机"
+      ],
+      "scenes": "桌面",
+      "objects": "多种几何形状积木",
+      "tasks": "推、排列、重排",
+      "episodes": "600,000+",
+      "annotations": [
+        "自然语言指令",
+        "动作序列"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{lynch2022language,\n  title={Interactive Language: Talking to Robots in Real Time},\n  author={Lynch, Corey and Wahid, Ayzaan and Tompson, Jonathan and Ding, Tianli and Betker, James and Baruch, Robert and Armstrong, Travis and Florence, Pete},\n  journal={arXiv preprint arXiv:2210.06407},\n  year={2022}\n}",
+      "authors": "Corey Lynch et al.",
+      "year": 2022,
+      "venue": "CoRL 2022"
+    },
+    "year": 2022,
+    "standards": [
+      "rlds",
+      "oxe-schema"
+    ],
+    "tags": [
+      "大规模",
+      "语言标注",
+      "VLA训练"
+    ],
+    "quality": {
+      "collection": "多源聚合",
+      "annotation": "部分人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "octo",
+      "rt-2",
+      "rdt-1b"
+    ],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "furniture-bench",
+    "name": "Furniture Bench",
+    "institution": "UT Austin / NVIDIA Research",
+    "scale": "550+ 小时人类演示，9 款 IKEA 风格家具",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "装配"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://clvrai.github.io/furniture-bench/",
+      "paper": "https://arxiv.org/abs/2306.11929"
+    },
+    "notes": "长序列家具装配 benchmark，5+ IKEA 模型，550h 人类数据。OXE 成员，模仿学习 ≤42% 成功率，暴露当前方法局限性。",
+    "description": "FurnitureBench 是由 **UT Austin** 和 **NVIDIA Research** 联合发布的真实机器人长序列家具装配基准。\n\n该数据集包含 **5+ 款 IKEA 风格**3D 打印家具模型的装配数据，超过 **550 小时**的人类遥操作演示。任务涉及抓取、插入、拧螺丝等精细操作，是评估机器人长序列操作能力的标准 benchmark。\n\n当前最先进的模仿学习方法在该 benchmark 上成功率不超过 42%，暴露了现有方法在长序列任务上的显著不足。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "RLDS / TFDS",
+      "size": "~500GB",
+      "compression": "gzip",
+      "schema": "episode → step → observation / action / reward",
+      "layout": "RLDS 格式，多视角 RGB-D + 本体状态 + 动作序列",
+      "index": "TFDS 内置索引",
+      "format": "TFDS/RLDS"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB-D 相机（多视角）",
+        "关节编码器"
+      ],
+      "scenes": "桌面装配",
+      "objects": "9 款 IKEA 风格 3D 打印家具",
+      "tasks": "9 种家具装配任务（抓取、插入、拧螺丝）",
+      "episodes": "550+ 小时",
+      "annotations": [
+        "动作序列",
+        "任务阶段标注"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{heo2023furniturebench,\n  title={FurnitureBench: Reproducible Real-World Benchmark for Long-Horizon Complex Manipulation},\n  author={Heo, Minho and Lee, Youngwoon and Lee, Doohyun and Lim, Joseph J},\n  journal={arXiv preprint arXiv:2306.11929},\n  year={2023}\n}",
+      "authors": "Minho Heo et al.",
+      "year": 2023,
+      "venue": "RSS 2023"
+    },
+    "year": 2023,
+    "standards": [
+      "rlds",
+      "oxe-schema"
+    ],
+    "tags": [
+      "长序列",
+      "装配",
+      "benchmark"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "部分人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "octo",
+      "rt-2",
+      "rdt-1b"
+    ],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "vima",
+    "name": "VIMA",
+    "institution": "Stanford / NVIDIA",
+    "scale": "600K+ 专家轨迹，多模态 prompt，4 级泛化",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "语言",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://vimalabs.github.io/",
+      "paper": "https://arxiv.org/abs/2210.03094"
+    },
+    "notes": "VIMA-BENCH 多模态 prompt 桌面操作 benchmark，600K 轨迹。支持图文视频混合提示，4 级泛化协议评估零样本能力。",
+    "description": "VIMA-BENCH 是由 **Stanford** 和 **NVIDIA** 联合发布的大规模多模态机器人学习基准。\n\n该数据集包含 **60 万+**专家演示轨迹，涵盖程序生成的桌面操作任务，支持图文视频混合 prompt。定义了 **4 级泛化协议**（placement / combinatorial / novel object / novel task）来评估模型的零样本泛化能力。\n\nVIMA 模型使用 Transformer 架构直接处理多模态 token，在视觉推理、模仿学习等任务上显著超越现有方法。",
+    "license": "Apache 2.0",
+    "dataFormat": {
+      "storage": "HDF5",
+      "size": "~500GB",
+      "compression": "gzip",
+      "schema": "episode → step → observation / action / prompt",
+      "layout": "HDF5 格式，每 episode 含 RGB 图像 + 多模态 prompt + 动作序列",
+      "index": "内置 episode 索引",
+      "format": "HDF5"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（仿真）"
+      ],
+      "scenes": "桌面",
+      "objects": "数千种 3D 模型",
+      "tasks": "6 类任务（rearrangement / one-shot imitation 等）",
+      "episodes": "600,000+",
+      "annotations": [
+        "多模态 prompt（文本+图像+视频）",
+        "动作序列"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{jiang2022vima,\n  title={VIMA: General Robot Manipulation with Multimodal Prompts},\n  author={Jiang, Yunfan and Gupta, Agrim and Zhang, Zichen and Wang, Guanzhi and Dou, Yongqiang and Chen, Yanjun and Fei-Fei, Li and Anandkumar, Anima and Zhu, Yuke and Fan, Linxi},\n  journal={arXiv preprint arXiv:2210.03094},\n  year={2023}\n}",
+      "authors": "Yunfan Jiang et al.",
+      "year": 2023,
+      "venue": "ICML 2023"
+    },
+    "year": 2023,
+    "standards": [],
+    "tags": [
+      "多模态",
+      "benchmark",
+      "大规模",
+      "仿真"
+    ],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "vlaCompatible": [
+      "pi0",
+      "openvla"
+    ],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "qt-opt",
+    "name": "QT-Opt",
+    "institution": "Google / UC Berkeley",
+    "scale": "580K+ 真实抓取试验，7 台 Kuka 机器人",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "抓取"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://arxiv.org/abs/1806.10293",
+      "paper": "https://arxiv.org/abs/1806.10293"
+    },
+    "notes": "经典 Kuka 抓取数据集，580K+ 次真实试验，96% 抓取成功率。分布式深度 RL，7 台 Kuka 持续运行。",
+    "description": "QT-Opt 是由 **Google** 和 **UC Berkeley** 联合发布的经典机器人抓取数据集。\n\n该数据集包含超过 **58 万次**真实世界抓取试验，由 **7 台 Kuka 机器人**在数月的持续运行中采集。使用分布式深度强化学习训练，最终达到 **96%** 的抓取成功率，能够泛化到未见过的物体。\n\n这是机器人学习领域的里程碑式工作，证明了大规模真实世界 RL 训练的可行性。",
+    "license": "BSD 3-Clause",
+    "dataFormat": {
+      "storage": "TFRecord",
+      "size": "~500GB",
+      "compression": "gzip",
+      "schema": "episode → step → observation / action / reward",
+      "layout": "TFRecord 格式，RGB 图像 + 抓取动作 + Q 值",
+      "index": "分布式 replay buffer",
+      "format": "TFRecord（内部格式）"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机"
+      ],
+      "scenes": "工业料箱",
+      "objects": "数百种日常物品",
+      "tasks": "料箱抓取",
+      "episodes": "580,000+",
+      "annotations": [
+        "抓取成功/失败",
+        "Q 值"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{kalashnikov2018qtopt,\n  title={QT-Opt: Scalable Deep Reinforcement Learning for Vision-Based Robotic Manipulation},\n  author={Kalashnikov, Dmitry and Irpan, Alex and Pastor, Peter and Ibarz, Julian and Herzog, Alexander and Jang, Eric and Quillen, Deirdre and Holly, Ethan and Kalakrishnan, Mrinal and Vanhoucke, Vincent and Levine, Sergey},\n  journal={arXiv preprint arXiv:1806.10293},\n  year={2018}\n}",
+      "authors": "Dmitry Kalashnikov et al.",
+      "year": 2018,
+      "venue": "CoRL 2018"
+    },
+    "year": 2018,
+    "standards": [],
+    "tags": [
+      "大规模",
+      "抓取",
+      "强化学习"
+    ],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "100%真机",
+      "hasSplit": false
+    },
+    "vlaCompatible": [
+      "rt-2"
+    ],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "stanford-hydra",
+    "name": "Stanford HYDRA",
+    "institution": "Stanford University",
+    "scale": "多任务家用操作（咖啡、烤面包、摆盘）",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "家居"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://sites.google.com/view/hydra-il-2023",
+      "paper": "https://arxiv.org/abs/2301.13379"
+    },
+    "notes": "混合动作空间模仿学习，稀疏 waypoint + 稠密底层动作。OXE 成员，咖啡/烤面包/摆盘任务，减少 40% 分布偏移。",
+    "description": "Stanford HYDRA 是由 **Stanford University** 发布的家用机器人操作数据集。\n\n该数据集收集了多任务家用场景下的遥操作演示，包括**制作咖啡**、**烤面包**、**摆盘**等长序列任务。HYDRA 使用混合动作空间（稀疏 waypoint + 稠密底层动作），通过动态切换和动作重标注减少 **40%** 的分布偏移。\n\n属于 **Open X-Embodiment** 成员数据集。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "RLDS / TFDS",
+      "size": "~20GB",
+      "compression": "gzip",
+      "schema": "episode → step → observation / action / waypoint",
+      "layout": "RLDS 格式，多视角 RGB + 本体状态 + 混合动作",
+      "index": "TFDS 内置索引",
+      "format": "TFDS/RLDS"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（多视角）",
+        "关节编码器"
+      ],
+      "scenes": "家用厨房",
+      "objects": "咖啡机、烤箱、餐具等",
+      "tasks": "制作咖啡、烤面包、摆盘",
+      "episodes": "数百条",
+      "annotations": [
+        "动作序列",
+        "waypoint 标注",
+        "任务阶段"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{belkhale2023hydra,\n  title={HYDRA: Hybrid Robot Actions for Imitation Learning},\n  author={Belkhale, Suneel and Cui, Yuchen and Sadigh, Dorsa},\n  journal={arXiv preprint arXiv:2301.13379},\n  year={2023}\n}",
+      "authors": "Suneel Belkhale et al.",
+      "year": 2023,
+      "venue": "CoRL 2023"
+    },
+    "year": 2023,
+    "standards": [
+      "rlds",
+      "oxe-schema"
+    ],
+    "tags": [
+      "长序列",
+      "家居",
+      "混合动作"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "部分人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "octo",
+      "rt-2"
+    ],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "tidybot",
+    "name": "TidyBot",
+    "institution": "Princeton University",
+    "scale": "LLM 驱动的个性化家居整理，85% 真实世界成功率",
+    "robotType": [
+      "移动机器人"
+    ],
+    "task": [
+      "家居",
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "语言",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://tidybot.cs.princeton.edu/",
+      "paper": "https://arxiv.org/abs/2305.05658"
+    },
+    "notes": "LLM 从 few-shot 样例推断用户偏好，个性化整理收纳，85% 真实世界成功率。移动操作机器人。",
+    "description": "TidyBot 是由 **Princeton University** 发布的 LLM 驱动的个性化家居整理数据集。\n\n该系统使用大语言模型从少量用户示例中推断个性化整理偏好，控制移动操作机器人将物品放入合适的收纳容器。在真实世界测试中达到 **85%** 的任务成功率。\n\n该工作是 LLM + 机器人操作的代表性应用，展示了语言模型在物理世界任务中的推理和泛化能力。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "自定义",
+      "size": "~5GB",
+      "compression": "未压缩",
+      "schema": "episode → step → RGB + 动作 + 语言偏好",
+      "layout": "自定义格式，RGB 图像 + 自然语言偏好 + 机器人动作",
+      "index": "无",
+      "format": "自定义"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机"
+      ],
+      "scenes": "家庭室内",
+      "objects": "衣物、玩具、餐具等日常用品",
+      "tasks": "个性化整理收纳",
+      "episodes": "~100",
+      "annotations": [
+        "自然语言偏好",
+        "物品类别",
+        "收纳容器类别"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{wu2023tidybot,\n  title={TidyBot: Personalized Robot Assistance with Large Language Models},\n  author={Wu, Jimmy and Antonova, Rika and Kan, Adam and Lepert, Marion and Zeng, Andy and Song, Shuran and Bohg, Jeannette and Rusinkiewicz, Szymon and Funkhouser, Thomas},\n  journal={arXiv preprint arXiv:2305.05658},\n  year={2023}\n}",
+      "authors": "Jimmy Wu et al.",
+      "year": 2023,
+      "venue": "CoRL 2023"
+    },
+    "year": 2023,
+    "standards": [],
+    "tags": [
+      "LLM",
+      "家居",
+      "个性化"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": false
+    },
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "columbia-pusht",
+    "name": "Columbia PushT Dataset",
+    "institution": "Columbia University",
+    "scale": "15 个任务，Diffusion Policy 标准 benchmark",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://github.com/columbia-ai-robotics/diffusion_policy",
+      "paper": "https://arxiv.org/abs/2301.10677"
+    },
+    "notes": "Diffusion Policy 标准 benchmark。推 T 形块到目标位姿 + 移动到出口。46.9% 更高成功率。",
+    "description": "Columbia PushT Dataset 是由 **Columbia University** 发布的精密操作数据集，作为 **Diffusion Policy** 方法的标准 benchmark。\n\n该数据集包含 **15 个任务**，核心任务是推动 T 形块到目标位姿后移动到出口区域。Diffusion Policy 使用迭代去噪生成动作序列，在此数据集上达到 **46.9%** 的更高成功率和实时推理能力。\n\n该数据集已成为评估扩散生成式操作策略的事实标准。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "HDF5 / Zarr",
+      "size": "~5GB",
+      "compression": "gzip",
+      "schema": "episode → step → RGB / state / action",
+      "layout": "HDF5/Zarr 格式，每 episode 含 RGB 图像 + 本体状态 + 动作序列",
+      "index": "无",
+      "format": "HDF5 / Zarr"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（眼-in-手 + 第三方视角）"
+      ],
+      "scenes": "桌面",
+      "objects": "T 形块",
+      "tasks": "15 个 Push-T 变体任务",
+      "episodes": "~200",
+      "annotations": [
+        "动作序列",
+        "目标位姿"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{chi2023diffusion,\n  title={Diffusion Policy: Visuomotor Policy Learning via Action Diffusion},\n  author={Chi, Cheng and Feng, Siyuan and Du, Yilun and Xu, Zhenjia and Cousineau, Eric and Burchfiel, Benjamin and Song, Shuran},\n  journal={arXiv preprint arXiv:2301.10677},\n  year={2023}\n}",
+      "authors": "Cheng Chi et al.",
+      "year": 2023,
+      "venue": "RSS 2023"
+    },
+    "year": 2023,
+    "standards": [],
+    "tags": [
+      "精密操作",
+      "benchmark",
+      "扩散策略"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "dobbe",
+    "name": "DobbE",
+    "institution": "NYU / Meta AI",
+    "scale": "109 个真实家庭，7 类任务，81% 成功率",
+    "robotType": [
+      "移动机器人"
+    ],
+    "task": [
+      "家居",
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://github.com/notmahi/dobb-e",
+      "paper": "https://arxiv.org/abs/2311.16098"
+    },
+    "notes": "去中心化家居机器人数据。109 个家庭，20 分钟学会一项任务，81% 成功率。开源硬件设计 + 数据。",
+    "description": "DobbE 是由 **NYU** 和 **Meta AI** 联合发布的去中心化家居机器人学习数据集。\n\n该数据集在 **109 个真实家庭**中采集了 7 类家居任务的数据（开关门/抽屉、抓取把手、物品拿放、随机游走），使用自制的低成本采集工具（the Stick）。DobbE 使用自适应预训练表示 (HPR)，支持机器人在 **20 分钟**内学会新任务，达到 **81%** 的成功率。\n\n该项目开放了数据、模型和硬件设计，推动家居机器人技术的民主化。",
+    "license": "CC BY-NC 4.0",
+    "dataFormat": {
+      "storage": "自定义",
+      "size": "~50GB",
+      "compression": "未压缩",
+      "schema": "episode → step → RGB / action",
+      "layout": "自定义格式，RGB 图像 + 低成本采集工具动作",
+      "index": "无",
+      "format": "自定义"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（低成本采集工具）"
+      ],
+      "scenes": "109 个真实家庭",
+      "objects": "门、抽屉、把手、日常物品",
+      "tasks": "7 类（开关门/抽屉、抓取把手、物品拿放、随机游走）",
+      "episodes": "~5,600",
+      "annotations": [
+        "任务类别",
+        "环境元数据"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{shafiullah2023dobbe,\n  title={On Bringing Robots Home},\n  author={Shafiullah, Nur Muhammad Mahi and Rai, Anant and Etukuru, Haritheja and Liu, Yiqian and Misra, Ishan and Chintala, Soumith and Pinto, Lerrel},\n  journal={arXiv preprint arXiv:2311.16098},\n  year={2024}\n}",
+      "authors": "Nur Muhammad Mahi Shafiullah et al.",
+      "year": 2024,
+      "venue": "CoRL 2024"
+    },
+    "year": 2024,
+    "standards": [],
+    "tags": [
+      "家居",
+      "去中心化",
+      "低成本"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "部分人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "alfred",
+    "name": "ALFRED",
+    "institution": "USC / Allen Institute for AI",
+    "scale": "8055 专家演示，25743 条指令，模拟家居多步任务",
+    "robotType": [
+      "仿真"
+    ],
+    "task": [
+      "家居",
+      "交互"
+    ],
+    "modality": [
+      "视觉",
+      "语言",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://askforalfred.com/",
+      "paper": "https://arxiv.org/abs/1912.01734"
+    },
+    "notes": "经典模拟家居 benchmark。8055 专家演示 + 25743 条自然语言指令，每个任务平均 50 步。第一人称视觉。",
+    "description": "ALFRED (Action Learning From REalistic Directions) 是由 **USC** 和 **Allen Institute for AI** 联合发布的经典模拟家居任务指令数据集。\n\n该数据集包含 **8,055 条**专家演示和 **25,743 条**高层/低层自然语言指令，任务覆盖模拟家庭环境中的多步操作，每个任务平均 **50 个动作步骤**。使用第一人称视觉输入，要求模型将视觉和语言指令映射为操作序列。\n\nALFRED 是具身指令跟随领域的经典 benchmark，广泛用于评估 VLN 和 VLA 模型的长期任务规划能力。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "JSON + 图像",
+      "size": "109GB",
+      "compression": "未压缩",
+      "schema": "task → steps → RGB / action / language",
+      "layout": "JSON 任务描述 + 第一人称 RGB 图像 + 离散动作序列",
+      "index": "无",
+      "format": "JSON + PNG"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（第一人称）"
+      ],
+      "scenes": "模拟家居（AI2-THOR）",
+      "objects": "数百种日常物品",
+      "tasks": "7 类任务（取放、整理、加热、清洁等）",
+      "episodes": "8,055",
+      "annotations": [
+        "自然语言指令（高层+低层）",
+        "离散动作序列"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{shridhar2020alfred,\n  title={ALFRED: A Benchmark for Interpreting Grounded Instructions for Everyday Tasks},\n  author={Shridhar, Mohit and Thomason, Jesse and Gordon, Daniel and Bisk, Yonatan and Han, Winson and Mottaghi, Roozbeh and Zettlemoyer, Luke and Fox, Dieter},\n  journal={arXiv preprint arXiv:1912.01734},\n  year={2020}\n}",
+      "authors": "Mohit Shridhar et al.",
+      "year": 2019,
+      "venue": "CVPR 2020"
+    },
+    "year": 2019,
+    "standards": [],
+    "tags": [
+      "指令跟随",
+      "benchmark",
+      "长序列",
+      "仿真"
+    ],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "behavior-1k",
+    "name": "Behavior-1K",
+    "institution": "Stanford University",
+    "scale": "1000 种日常活动，50+ 场景，5000+ 物体",
+    "robotType": [
+      "仿真",
+      "多机型"
+    ],
+    "task": [
+      "家居",
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "语言",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://behavior.stanford.edu/",
+      "paper": "https://arxiv.org/abs/2403.09227"
+    },
+    "notes": "大规模日常活动仿真基准。1000 种活动（含费力/愉快），50+ 场景，5000+ 标注物体，物理+语义标注。",
+    "description": "BEHAVIOR-1K 是由 **Stanford University** 发布的大规模日常活动仿真基准。\n\n该数据集通过调研人类需求，收集了人类最希望机器人协助完成的 **1000 种活动**（费力活动排名最高，愉快活动排名最低）。包含 **50+ 场景**和 **5000+ 个**带有物理和语义属性标注的物体。\n\n该基准旨在推动通用家用机器人的发展，是目前规模最大、最全面的日常活动仿真基准之一。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "仿真环境（OmniGibson）",
+      "size": "~2TB",
+      "compression": "未压缩",
+      "schema": "activity → scene → objects → goal",
+      "layout": "OmniGibson 仿真环境，物理+语义物体标注，目标条件定义",
+      "index": "无",
+      "format": "OmniGibson 仿真格式"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（仿真）",
+        "深度相机（仿真）",
+        "本体状态（仿真）"
+      ],
+      "scenes": "50+ 种室内场景",
+      "objects": "5,000+ 种 3D 模型",
+      "tasks": "1000 种日常活动",
+      "episodes": "—（目标条件 benchmark）",
+      "annotations": [
+        "物理属性",
+        "语义标签",
+        "目标条件"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{li2024behavior1k,\n  title={BEHAVIOR-1K: A Human-Centered, Embodied AI Benchmark with 1,000 Everyday Activities and Realistic Simulation},\n  author={Li, Chengshu and Zhang, Ruohan and Wong, Josiah and Gokmen, Cem and Srivastava, Sanjana and Mart{\\'\\i}n-Mart{\\'\\i}n, Roberto and Wang, Chen and Levine, Gabrael and Lingelbach, Michael and Sun, Jiankai and others},\n  journal={arXiv preprint arXiv:2403.09227},\n  year={2024}\n}",
+      "authors": "Chengshu Li et al.",
+      "year": 2024,
+      "venue": "CoRL 2024"
+    },
+    "year": 2024,
+    "standards": [],
+    "tags": [
+      "大规模",
+      "仿真",
+      "基准",
+      "日常活动"
+    ],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "cmu-play-fusion",
+    "name": "CMU Play Fusion",
+    "institution": "Carnegie Mellon University",
+    "scale": "3 个复杂场景（烧烤/摆桌/洗碗）",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "家居"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://play-fusion.github.io/",
+      "paper": "https://arxiv.org/abs/2306.14847"
+    },
+    "notes": "OXE 成员，非结构化 play data 驱动技能发现。烧烤/摆桌/洗碗 3 场景，扩散模型 + 离散技能瓶颈。",
+    "description": "CMU Play Fusion 是由 **Carnegie Mellon University** 发布的非结构化机器人操作数据集。\n\n该数据集通过让机器人在 **3 个复杂场景**（烧烤台、餐桌、洗碗池）中自由玩耍来收集数据，使用扩散模型和离散技能瓶颈从 play data 中发现可解释和可泛化的技能。\n\n属于 **Open X-Embodiment** 成员数据集，展示了从非结构化交互数据中学习可泛化操作技能的可行路径。",
+    "license": "CC BY-NC 4.0",
+    "dataFormat": {
+      "storage": "RLDS / TFDS",
+      "size": "~50GB",
+      "compression": "gzip",
+      "schema": "episode → step → observation / action",
+      "layout": "RLDS 格式，多视角 RGB + 本体状态 + 动作序列",
+      "index": "TFDS 内置索引",
+      "format": "TFDS/RLDS"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（多视角）",
+        "关节编码器"
+      ],
+      "scenes": "烧烤台、餐桌、洗碗池",
+      "objects": "厨具、餐具、食物模型",
+      "tasks": "3 场景（烧烤/摆桌/洗碗）",
+      "episodes": "~800",
+      "annotations": [
+        "动作序列",
+        "技能标签"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{chen2023playfusion,\n  title={Play-Fusion: Skill Acquisition via Diffusion from Language-Annotated Play},\n  author={Chen, Lili and Bahl, Shikhar and Pathak, Deepak},\n  journal={arXiv preprint arXiv:2312.04549},\n  year={2023}\n}",
+      "authors": "Lili Chen et al.",
+      "year": 2023,
+      "venue": "CoRL 2023"
+    },
+    "year": 2023,
+    "standards": [
+      "rlds",
+      "oxe-schema"
+    ],
+    "tags": [
+      "非结构化",
+      "技能发现",
+      "OXE成员"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "部分人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": false
+    },
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "octo",
+      "rt-2",
+      "rdt-1b"
+    ],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "nyu-franka-play",
+    "name": "NYU Franka Play",
+    "institution": "New York University",
+    "scale": "玩具厨房自由操作，微波炉/烤箱/灶台",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "家居"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://play-to-policy.github.io/",
+      "paper": "https://arxiv.org/abs/2307.05924"
+    },
+    "notes": "OXE 成员，Play-to-Policy。将非结构化人类 play 转化为目标条件策略，零样本泛化。玩具厨房场景。",
+    "description": "NYU Franka Play 是由 **New York University** 发布的 Play-to-Policy 数据集。\n\n该数据集通过让人类在玩具厨房中自由操作 Franka 机器人来收集非结构化的 play data，然后通过 Play-to-Policy 框架将其转化为目标条件策略，实现零样本泛化的操作任务。\n\n属于 **Open X-Embodiment** 成员数据集，核心场景包括开关微波炉门、烤箱门、转动灶台旋钮、移动锅等。",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "RLDS / TFDS",
+      "size": "~10GB",
+      "compression": "gzip",
+      "schema": "episode → step → observation / action / goal",
+      "layout": "RLDS 格式，RGB + 本体状态 + 动作 + 目标条件",
+      "index": "TFDS 内置索引",
+      "format": "TFDS/RLDS"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（多视角）",
+        "关节编码器"
+      ],
+      "scenes": "玩具厨房",
+      "objects": "微波炉、烤箱、灶台、锅",
+      "tasks": "开关微波炉/烤箱门、转动旋钮、移动锅",
+      "episodes": "~1,000",
+      "annotations": [
+        "动作序列",
+        "目标条件"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{cui2023playtopolicy,\n  title={Play to Policy: Learning Goal-Conditioned Policies from Unstructured Play Data},\n  author={Cui, Zichen Jeff and Wang, Yibin and Shafiullah, Nur Muhammad and Pinto, Lerrel},\n  journal={arXiv preprint arXiv:2307.05924},\n  year={2023}\n}",
+      "authors": "Zichen Jeff Cui et al.",
+      "year": 2023,
+      "venue": "CoRL 2023"
+    },
+    "year": 2023,
+    "standards": [
+      "rlds",
+      "oxe-schema"
+    ],
+    "tags": [
+      "非结构化",
+      "玩具厨房",
+      "OXE成员"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "部分人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": false
+    },
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "octo",
+      "rt-2",
+      "rdt-1b"
+    ],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "berkeley-autolab-ur5",
+    "name": "Berkeley Autolab UR5",
+    "institution": "UC Berkeley",
+    "scale": "UR5 自适应操作，4 任务（取放/擦拭/堆叠/精确抓取）",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://sites.google.com/view/berkeley-ur5/home",
+      "paper": "https://arxiv.org/abs/1909.06972"
+    },
+    "notes": "OXE 成员，UR5 研究平台。变形物体处理 + 人机协作，4 种操作任务。",
+    "description": "Berkeley Autolab UR5 是由 **UC Berkeley** 发布的自适应机器人操作研究平台数据集。\n\n该数据集使用 UR5 机器人收集了 **4 种操作任务**的数据：简单取放毛绒玩具、擦拭布料、堆叠杯子、需要精确 6DoF 旋转的瓶子取放。专注于变形物体处理和人类机器人协作场景。\n\n属于 **Open X-Embodiment** 成员数据集。",
+    "license": "CC BY 4.0",
+    "dataFormat": {
+      "storage": "RLDS / TFDS",
+      "size": "~10GB",
+      "compression": "gzip",
+      "schema": "episode → step → observation / action",
+      "layout": "RLDS 格式，多视角 RGB + 本体状态 + 动作序列",
+      "index": "TFDS 内置索引",
+      "format": "TFDS/RLDS"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（多视角）",
+        "关节编码器"
+      ],
+      "scenes": "桌面",
+      "objects": "毛绒玩具、布料、杯子、瓶子",
+      "tasks": "取放、擦拭、堆叠、精确抓取",
+      "episodes": "~500",
+      "annotations": [
+        "动作序列"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{mandlekar2019scaling,\n  title={Scaling Robot Supervision to Hundreds of Hours with RoboTurk},\n  author={Mandlekar, Ajay and Xu, Danfei and Wong, Josiah and Nasiriany, Soroush and Wang, Chen and Kulkarni, Rohun and Fei-Fei, Li and Fox, Dieter and Zhu, Yuke and Mart{\\'\\i}n-Mart{\\'\\i}n, Roberto},\n  journal={arXiv preprint arXiv:1911.04036},\n  year={2019}\n}",
+      "authors": "Ajay Mandlekar et al.",
+      "year": 2019,
+      "venue": "CoRL 2019"
+    },
+    "year": 2019,
+    "standards": [
+      "rlds",
+      "oxe-schema"
+    ],
+    "tags": [
+      "变形物体",
+      "自适应",
+      "OXE成员"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "部分人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": false
+    },
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "octo",
+      "rt-2",
+      "rdt-1b"
+    ],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "berkeley-fanuc-manipulation",
+    "name": "Berkeley Fanuc Manipulation",
+    "institution": "UC Berkeley",
+    "scale": "FANUC Mate 200iD 工业机器人，多视角操作演示",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://sites.google.com/berkeley.edu/fanuc-manipulation",
+      "paper": "https://arxiv.org/abs/2106.13228"
+    },
+    "notes": "OXE 成员，FANUC 工业机器人。多视角视频+本体感知+语言指令，可用于 visuomotor 策略训练和视觉模型微调。",
+    "description": "Berkeley Fanuc Manipulation 是由 **UC Berkeley** 发布的工业机器人操作数据集。\n\n该数据集使用 **FANUC Mate 200iD** 工业机器人收集多视角视频、本体感知数据和语言指令。任务包括开关抽屉、抓取物体、关门、关电脑和推动物体等。\n\n属于 **Open X-Embodiment** 成员数据集，可用于训练 visuomotor 策略、微调视觉模型和指令条件动作生成。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "RLDS / TFDS",
+      "size": "~20GB",
+      "compression": "gzip",
+      "schema": "episode → step → observation / action / language",
+      "layout": "RLDS 格式，多视角 RGB + 本体状态 + 语言指令 + 动作",
+      "index": "TFDS 内置索引",
+      "format": "TFDS/RLDS"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（多视角）",
+        "关节编码器"
+      ],
+      "scenes": "工业桌面",
+      "objects": "抽屉、门、电脑、各种物体",
+      "tasks": "开关抽屉、抓取、关门、关电脑、推物体",
+      "episodes": "~1,000",
+      "annotations": [
+        "语言指令",
+        "动作序列"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{wang2021fanuc,\n  title={FANUC Manipulation Dataset},\n  author={Wang, Chen and others},\n  journal={arXiv preprint arXiv:2106.13228},\n  year={2021}\n}",
+      "authors": "Chen Wang et al.",
+      "year": 2021,
+      "venue": "—"
+    },
+    "year": 2021,
+    "standards": [
+      "rlds",
+      "oxe-schema"
+    ],
+    "tags": [
+      "工业机器人",
+      "多视角",
+      "OXE成员"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "部分人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": false
+    },
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "octo",
+      "rt-2",
+      "rdt-1b"
+    ],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "berkeley-cable-routing",
+    "name": "Berkeley Cable Routing",
+    "institution": "UC Berkeley",
+    "scale": "线缆穿夹，分层模仿学习，自主故障恢复",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "装配",
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://sites.google.com/view/cablerouting/home",
+      "paper": "https://arxiv.org/abs/2210.06679"
+    },
+    "notes": "分层模仿学习实现线缆穿夹。高层视觉运动原语排序 + 低层执行，自主故障恢复，交互式微调适应新场景。",
+    "description": "Berkeley Cable Routing 是由 **UC Berkeley** 发布的线缆穿夹精密操作数据集。\n\n该数据集训练机器人将线缆穿过多个紧密排列的夹子，使用分层模仿学习框架——**高层**对可复用的视觉运动原语进行排序，**低层**执行精确操作。系统能自主从故障中恢复，并通过交互式微调适应新场景。\n\n该工作展示了仅需少量演示即可实现鲁棒精密操作的可行性。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "RLDS / TFDS",
+      "size": "~5GB",
+      "compression": "gzip",
+      "schema": "episode → step → observation / action / primitive_label",
+      "layout": "RLDS 格式，多视角 RGB + 本体状态 + 动作 + 原语标签",
+      "index": "TFDS 内置索引",
+      "format": "TFDS/RLDS"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（多视角）",
+        "关节编码器"
+      ],
+      "scenes": "桌面",
+      "objects": "线缆、夹子",
+      "tasks": "线缆穿夹",
+      "episodes": "~200",
+      "annotations": [
+        "动作序列",
+        "原语标签"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{luo2022cablerouting,\n  title={Hierarchical Imitation Learning for Cable Routing},\n  author={Luo, Jianlan and Dong, Siyuan and Schmeckpeper, Karl and Daniilidis, Kostas},\n  journal={arXiv preprint arXiv:2210.06679},\n  year={2022}\n}",
+      "authors": "Jianlan Luo et al.",
+      "year": 2022,
+      "venue": "CoRL 2022"
+    },
+    "year": 2022,
+    "standards": [
+      "rlds"
+    ],
+    "tags": [
+      "精密操作",
+      "分层学习",
+      "线缆"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "部分人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": false
+    },
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "cmu-stretch",
+    "name": "CMU Stretch",
+    "institution": "Carnegie Mellon University",
+    "scale": "VRB 视觉可供性，从人类视频迁移技能到机器人",
+    "robotType": [
+      "移动机器人"
+    ],
+    "task": [
+      "操作",
+      "家居"
+    ],
+    "modality": [
+      "视觉",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://robo-affordances.github.io/",
+      "paper": "https://arxiv.org/abs/2304.08488"
+    },
+    "notes": "OXE 成员。VRB 从人类视频学习视觉可供性，实现跨任务策略迁移。10+ 真实世界任务，最少演示。",
+    "description": "CMU Stretch 是由 **Carnegie Mellon University** 发布的视觉可供性机器人操作数据集。\n\n该数据集基于 VRB (Vision-Robotics Bridge) 框架，从人类视频中学习视觉可供性（affordance），然后将这些知识迁移到机器人策略中。使用 Hello Robot Stretch 机器人在 **10+ 真实家居任务**中验证，仅需少量演示即可实现跨任务泛化。\n\n属于 **Open X-Embodiment** 成员数据集。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "RLDS / TFDS",
+      "size": "~10GB",
+      "compression": "gzip",
+      "schema": "episode → step → observation / action / affordance",
+      "layout": "RLDS 格式，RGB + 动作 + 可供性标注",
+      "index": "TFDS 内置索引",
+      "format": "TFDS/RLDS"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机"
+      ],
+      "scenes": "家庭室内",
+      "objects": "门、抽屉、把手、日常物品",
+      "tasks": "开关门/抽屉、抓取把手、物品取放",
+      "episodes": "~500",
+      "annotations": [
+        "可供性标注",
+        "动作序列"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{bahl2023vrb,\n  title={Affordances from Human Videos as a Versatile Representation for Robotics},\n  author={Bahl, Shikhar and Mendonca, Russell and Chen, Lili and Jain, Unnat and Pathak, Deepak},\n  journal={arXiv preprint arXiv:2304.08488},\n  year={2023}\n}",
+      "authors": "Shikhar Bahl et al.",
+      "year": 2023,
+      "venue": "CVPR 2023"
+    },
+    "year": 2023,
+    "standards": [
+      "rlds",
+      "oxe-schema"
+    ],
+    "tags": [
+      "可供性",
+      "人-机器人迁移",
+      "OXE成员"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "部分人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": false
+    },
+    "vlaCompatible": [
+      "pi0",
+      "openvla",
+      "octo",
+      "rt-2",
+      "rdt-1b"
+    ],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "roboturk",
+    "name": "RoboTurk",
+    "institution": "Stanford University",
+    "scale": "2144 个众包遥操作演示，Sawyer 机器人 3 任务",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://roboturk.stanford.edu/dataset_real.html",
+      "paper": "https://arxiv.org/abs/1911.04036"
+    },
+    "notes": "众包遥操作平台。2144 个真实 Sawyer 演示，3 任务（叠衣/搭塔/搜索），可扩展的模仿学习。",
+    "description": "RoboTurk 是由 **Stanford University** 发布的众包机器人遥操作数据集。\n\n该数据集通过 RoboTurk 众包平台收集了 **2,144 个**真实 Sawyer 机器人的遥操作演示，覆盖 **3 种操作任务**：抚平衣物、搭塔（叠碗）和搜索物体。\n\nRoboTurk 平台证明了大规模众包机器人数据采集的可行性，为可扩展的模仿学习提供数据基础。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "HDF5",
+      "size": "~50GB",
+      "compression": "gzip",
+      "schema": "episode → step → observation / action",
+      "layout": "HDF5 格式，多视角 RGB + 本体状态 + 动作序列",
+      "index": "无",
+      "format": "HDF5"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机（多视角）",
+        "关节编码器"
+      ],
+      "scenes": "桌面",
+      "objects": "衣物、碗、日常物品",
+      "tasks": "抚平衣物、搭塔（叠碗）、搜索物体",
+      "episodes": "2,144",
+      "annotations": [
+        "动作序列"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{mandlekar2019roboturk,\n  title={RoboTurk: A Crowdsourcing Platform for Robotic Skill Learning through Imitation},\n  author={Mandlekar, Ajay and Xu, Danfei and Wong, Josiah and Nasiriany, Soroush and Wang, Chen and Kulkarni, Rohun and Fei-Fei, Li and Fox, Dieter and Zhu, Yuke and Mart{\\'\\i}n-Mart{\\'\\i}n, Roberto},\n  journal={arXiv preprint arXiv:1911.04036},\n  year={2019}\n}",
+      "authors": "Ajay Mandlekar et al.",
+      "year": 2019,
+      "venue": "CoRL 2019"
+    },
+    "year": 2019,
+    "standards": [],
+    "tags": [
+      "众包",
+      "遥操作",
+      "Sawyer"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "部分人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "robomimic",
+    "name": "RoboMimic",
+    "institution": "Stanford University",
+    "scale": "模拟+真实多阶段操作，离线 IL/RL benchmark",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://robomimic.github.io/",
+      "paper": "https://arxiv.org/abs/2108.03298"
+    },
+    "notes": "开源人类演示机器人操作数据集。模拟+真实环境多阶段任务，评估离线模仿学习和强化学习算法。",
+    "description": "RoboMimic 是由 **Stanford University** 发布的机器人操作模仿学习基准数据集。\n\n该数据集提供 **模拟和真实环境**下的多阶段操作任务的高质量人类演示轨迹，专为评估**离线模仿学习**和**离线强化学习**算法而设计。包含多种难度级别的任务（lift / can / square / transport），覆盖单手和双手操作。\n\nRoboMimic 已成为离线机器人学习领域最广泛使用的 benchmark 之一。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "HDF5",
+      "size": "~50GB",
+      "compression": "gzip",
+      "schema": "episode → step → observation / action / reward / done",
+      "layout": "HDF5 格式，RGB + 本体状态 + 动作 + 奖励 + 终止标志",
+      "index": "hdf5 文件索引",
+      "format": "HDF5（robomimic 格式）"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机",
+        "深度相机（部分）",
+        "关节编码器"
+      ],
+      "scenes": "桌面（模拟+真实）",
+      "objects": "方块、罐子、工具",
+      "tasks": "lift / can / square / transport",
+      "episodes": "~5,000（多源聚合）",
+      "annotations": [
+        "动作序列",
+        "奖励信号",
+        "终止标志"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{mandlekar2021robomimic,\n  title={What Matters in Learning from Offline Human Demonstrations for Robot Manipulation},\n  author={Mandlekar, Ajay and Xu, Danfei and Wong, Josiah and Nasiriany, Soroush and Wang, Chen and Kulkarni, Rohun and Fei-Fei, Li and Fox, Dieter and Zhu, Yuke and Mart{\\'\\i}n-Mart{\\'\\i}n, Roberto},\n  journal={arXiv preprint arXiv:2108.03298},\n  year={2021}\n}",
+      "authors": "Ajay Mandlekar et al.",
+      "year": 2021,
+      "venue": "CoRL 2021"
+    },
+    "year": 2021,
+    "standards": [],
+    "tags": [
+      "benchmark",
+      "离线学习",
+      "模仿学习"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "部分人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "mime-cmu",
+    "name": "MIME (CMU)",
+    "institution": "Carnegie Mellon University",
+    "scale": "8260 人机交互演示，20 种不同机器人任务",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "交互"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://sites.google.com/view/mime-cmu",
+      "paper": "https://arxiv.org/abs/1808.06249"
+    },
+    "notes": "早期人机交互数据集。8260 个演示覆盖 20 种任务，从简单推物到复杂家居物品堆叠。",
+    "description": "MIME (CMU) 是由 **Carnegie Mellon University** 发布的早期人机交互演示数据集。\n\n该数据集包含 **8,260 个**人机交互演示，覆盖 **20 种**不同的机器人操作任务，从简单的推动物体到复杂的堆叠家用物品。每个演示包含视频、状态和动作数据。\n\n该数据集是机器人模仿学习领域早期的重要数据资源，支持从人类演示中学习复杂操作策略。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "自定义",
+      "size": "~10GB",
+      "compression": "未压缩",
+      "schema": "episode → step → video / state / action",
+      "layout": "自定义格式，视频帧 + 机器人状态 + 动作序列",
+      "index": "无",
+      "format": "自定义"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机",
+        "关节编码器"
+      ],
+      "scenes": "桌面",
+      "objects": "家居物品",
+      "tasks": "20 种（推物、堆叠等）",
+      "episodes": "8,260",
+      "annotations": [
+        "动作序列"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{sharma2018mime,\n  title={MIME: Mutual Information Minimization and Entropy Maximization for Robust Few-Shot Learning},\n  author={Sharma, Pratyusha and Pathak, Deepak and Gupta, Abhinav},\n  journal={arXiv preprint arXiv:1808.06249},\n  year={2018}\n}",
+      "authors": "Pratyusha Sharma et al.",
+      "year": 2018,
+      "venue": "CoRL 2018"
+    },
+    "year": 2018,
+    "standards": [],
+    "tags": [
+      "早期数据集",
+      "人机交互"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": false
+    },
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "maniwav",
+    "name": "ManiWAV",
+    "institution": "Stanford University / Columbia University",
+    "scale": "手持式数据采集设备，同步音频+视觉反馈",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "音频",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://maniwav.github.io/",
+      "paper": "https://arxiv.org/abs/2406.11867"
+    },
+    "notes": "ManiWAV 手持采集设备，同步音频+视觉反馈。从人类演示中学习接触丰富的操作策略。",
+    "description": "ManiWAV 是由 **Stanford University** 和 **Columbia University** 联合发布的手持式机器人数据采集设备及配套数据集。\n\n该设备在采集人类操作演示时同步记录**音频**和**视觉**反馈，音频信号提供了关于接触状态、材料属性和任务进度的丰富信息。数据集支持训练融合音频-视觉的机器人操作策略。\n\n该工作展示了音频模态在机器人操作中的独特价值，特别是在接触丰富任务中。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "自定义",
+      "size": "~10GB",
+      "compression": "未压缩",
+      "schema": "episode → step → audio / video / state / action",
+      "layout": "自定义格式，同步音频 + 视频 + 机器人状态 + 动作",
+      "index": "无",
+      "format": "自定义"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB 相机",
+        "麦克风（接触式）",
+        "关节编码器"
+      ],
+      "scenes": "桌面",
+      "objects": "各种日常物品",
+      "tasks": "接触丰富操作任务",
+      "episodes": "~500",
+      "annotations": [
+        "音频标注",
+        "动作序列"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{huang2024maniwav,\n  title={ManiWAV: Learning Robot Manipulation from In-the-Wild Audio-Visual Data},\n  author={Huang, Zeyi and others},\n  journal={arXiv preprint arXiv:2406.11867},\n  year={2024}\n}",
+      "authors": "Zeyi Huang et al.",
+      "year": 2024,
+      "venue": "CoRL 2024"
+    },
+    "year": 2024,
+    "standards": [],
+    "tags": [
+      "音频",
+      "手持采集",
+      "接触丰富"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "100%真机",
+      "hasSplit": false
+    },
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "robotwin-2",
+    "name": "RoboTwin 2.0",
+    "institution": "ACE Robotics / CUHK",
+    "scale": "100K+ 双臂操作轨迹，50 任务，731 物体",
+    "robotType": [
+      "机械臂",
+      "多机型"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "视觉",
+      "本体状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://robotwin-benchmark.github.io/",
+      "paper": "https://arxiv.org/abs/2509.05884"
+    },
+    "notes": "仿真双臂操作 benchmark。147 类别 731 物体，50 任务 100K+ 轨迹。ACE-Ego 同团队。",
+    "description": "RoboTwin 2.0 是由 **大晓机器人 (ACE Robotics)** 和 **香港中文大学** 联合发布的仿真双臂操作基准。\n\n该数据集包含 **50 个任务**中超过 **10 万条**双臂操作轨迹，使用 RoboTwin-OD 物体数据集（涵盖 **147 个类别**和 **731 个不同物体**），所有物体带有丰富的语义标注。\n\n该数据集与 ACE-Ego 为同一团队发布，专注于双臂协同操作的标准化评估。",
+    "license": "MIT",
+    "dataFormat": {
+      "storage": "HDF5 / 仿真环境",
+      "size": "~1.5TB",
+      "compression": "未压缩",
+      "schema": "episode → step → observation / action / object_label",
+      "layout": "HDF5 + 仿真环境，RGB-D + 本体状态 + 物体语义标签 + 动作",
+      "index": "无",
+      "format": "HDF5"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB-D 相机（仿真）",
+        "关节编码器（仿真）"
+      ],
+      "scenes": "仿真桌面",
+      "objects": "731 个 3D 物体",
+      "tasks": "50 种双臂操作任务",
+      "episodes": "100,000+",
+      "annotations": [
+        "物体语义标签",
+        "动作序列",
+        "任务标签"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{robotwin2025,\n  title={RoboTwin 2.0: A Large-Scale Bimanual Manipulation Benchmark},\n  author={ACE Robotics and CUHK},\n  journal={arXiv preprint arXiv:2509.05884},\n  year={2025}\n}",
+      "authors": "ACE Robotics / CUHK",
+      "year": 2025,
+      "venue": "—"
+    },
+    "year": 2025,
+    "standards": [],
+    "tags": [
+      "仿真",
+      "双臂",
+      "benchmark"
+    ],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
+  },
+  {
+    "id": "robovqa",
+    "name": "RoboVQA",
+    "institution": "Stanford University",
+    "scale": "RGB-D 场景图，3 栋办公楼长序列任务，89% 成功率",
+    "robotType": [
+      "移动机器人"
+    ],
+    "task": [
+      "操作",
+      "导航"
+    ],
+    "modality": [
+      "视觉",
+      "深度",
+      "语言",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://anonymous-robovqa.github.io/",
+      "paper": "https://arxiv.org/abs/2403.12996"
+    },
+    "notes": "将 RGB-D 转为可操作场景图，语言引导长序列任务执行。3 栋办公楼，89% 真实世界成功率。",
+    "description": "RoboVQA 是由 **Stanford University** 发布的 RGB-D 场景图数据集。\n\n该数据集将 RGB-D 输入转化为可操作的场景图（scene graph），使机器人能够理解和执行跨 **3 栋办公楼**的长时间跨度的用户请求。通过场景图推理实现语言引导的任务执行，达到 **89%** 的真实世界成功率。\n\n该工作展示了结构化场景表示在长序列机器人任务中的独特价值。",
+    "license": "BSD 2-Clause",
+    "dataFormat": {
+      "storage": "自定义",
+      "size": "~100GB",
+      "compression": "未压缩",
+      "schema": "scene → objects → relationships → task",
+      "layout": "自定义格式，RGB-D + 场景图 + 语言指令 + 动作",
+      "index": "无",
+      "format": "自定义"
+    },
+    "dataContent": {
+      "sensors": [
+        "RGB-D 相机",
+        "激光雷达"
+      ],
+      "scenes": "3 栋办公楼",
+      "objects": "数百种办公物品",
+      "tasks": "长序列用户请求（取物、递送、整理等）",
+      "episodes": "~1,000",
+      "annotations": [
+        "场景图",
+        "语言指令",
+        "物体关系"
+      ]
+    },
+    "citation": {
+      "bibtex": "@article{robovqa2024,\n  title={RoboVQA: Multimodal Scene Graph Reasoning for Long-Horizon Robot Manipulation},\n  author={Stanford University},\n  journal={arXiv preprint arXiv:2403.12996},\n  year={2024}\n}",
+      "authors": "Stanford University",
+      "year": 2024,
+      "venue": "CoRL 2024"
+    },
+    "year": 2024,
+    "standards": [],
+    "tags": [
+      "场景图",
+      "长序列",
+      "语言引导"
+    ],
+    "quality": {
+      "collection": "人工遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "100%真机",
+      "hasSplit": true
+    },
+    "vlaCompatible": [],
+    "github": "",
+    "huggingface": ""
   }
 ]
