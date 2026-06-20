@@ -104,6 +104,7 @@ function buildAll(lang) {
       .replace('{{NAV_HOME}}', page === 'home' ? 'active' : '')
       .replace('{{NAV_DATASETS}}', page === 'datasets' ? 'active' : '')
       .replace('{{NAV_STANDARDS}}', page === 'standards' ? 'active' : '')
+      .replace('{{NAV_BENCHMARKS}}', page === 'benchmarks' ? 'active' : '')
       .replace('{{NAV_TOOLS}}', page === 'tools' ? 'active' : '')
       .replace('{{NAV_SUBMIT}}', page === 'submit' ? 'active' : '')
       .replace('{{NAV_BLOG}}', page === 'blog' ? 'active' : '')
@@ -252,6 +253,42 @@ function buildAll(lang) {
         '</div></div>';
     }
 
+    // Benchmark results
+    const benchmarks = ds.benchmarks || [];
+    let benchmarksHTML = '';
+    if (benchmarks.length) {
+      // Group by benchmark suite
+      const bySuite = {};
+      benchmarks.forEach(b => {
+        const key = b.benchmarkId + '|' + b.suite;
+        if (!bySuite[key]) bySuite[key] = { id: b.benchmarkId, suite: b.suite, results: [] };
+        bySuite[key].results.push(b);
+      });
+      benchmarksHTML = '<div class="section-block"><h2>' + (isEn ? '🏆 Benchmark Results' : '🏆 Benchmark 评测表现') + '</h2>';
+      benchmarksHTML += '<p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">' + (isEn ? 'Scores achieved by models trained on this dataset, evaluated on standard benchmarks' : '使用该数据集训练的模型在标准 benchmark 上的得分') + '</p>';
+      for (const key in bySuite) {
+        const g = bySuite[key];
+        // Sort: higher is better
+        g.results.sort((a,b) => (b.higherIsBetter !== false ? 1 : -1) * (b.score - a.score));
+        benchmarksHTML += '<div style="margin-bottom:20px"><h3 style="font-size:15px;font-weight:600;margin-bottom:8px">' + esc(g.suite) + '</h3>';
+        benchmarksHTML += '<div class="benchmark-table" style="background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden">';
+        g.results.forEach((r, i) => {
+          const pct = Math.min(100, Math.max(0, r.score));
+          const barColor = pct >= 80 ? 'var(--success)' : pct >= 60 ? 'var(--warning)' : 'var(--text-light)';
+          benchmarksHTML += '<div style="display:flex;align-items:center;gap:12px;padding:10px 16px;' + (i > 0 ? 'border-top:1px solid var(--border)' : '') + '">';
+          benchmarksHTML += '<span style="font-weight:600;font-size:13px;min-width:100px">' + esc(r.model) + ' <span style="color:var(--text-light);font-weight:400;font-size:11px">(' + esc(r.modelSize) + ')</span></span>';
+          benchmarksHTML += '<div style="flex:1;background:var(--light-bg);border-radius:6px;height:20px;overflow:hidden"><div style="height:100%;width:' + pct + '%;background:' + barColor + ';border-radius:6px;transition:width 0.5s"></div></div>';
+          benchmarksHTML += '<span style="font-weight:700;font-size:14px;min-width:55px;text-align:right">' + r.score + (r.unit || '%') + '</span>';
+          benchmarksHTML += '<a href="' + esc(r.paper) + '" target="_blank" rel="noopener" title="' + esc(r.paperTitle || '') + '" style="font-size:11px;color:var(--text-light);text-decoration:none">📄</a>';
+          if (r.conditions) benchmarksHTML += '<span style="font-size:11px;color:var(--text-light);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="' + esc(r.conditions) + '">' + esc(r.conditions) + '</span>';
+          benchmarksHTML += '</div>';
+        });
+        benchmarksHTML += '</div></div>';
+      }
+      benchmarksHTML += '<p style="font-size:12px;color:var(--text-light);margin-top:8px">' + (isEn ? '📄 Click paper icon for source. ' : '📄 点击论文图标查看数据来源。') + '<a href="/benchmarks/' + benchmarks[0].benchmarkId + '/">' + (isEn ? 'View leaderboard →' : '查看完整排行榜 →') + '</a></p>';
+      benchmarksHTML += '</div>';
+    }
+
     // Changelog
     const cl = ds.changelog || [];
     let changelogHTML = '';
@@ -388,6 +425,7 @@ function buildAll(lang) {
       RELATED_STANDARDS_SECTION: relatedStandardsSectionHTML,
       QUALITY_BADGES: qualityHTML,
       VLA_BADGES: vlaBadgesHTML,
+      BENCHMARKS: benchmarksHTML,
       CHANGELOG: changelogHTML,
       BACK_TO_DATASETS: isEn ? '← Back to Datasets' : '← 返回全部数据集',
       SECTION_DATA_FORMAT: isEn ? 'Data Format' : '数据格式',
@@ -690,6 +728,112 @@ function buildAll(lang) {
     const dir = `${outDir}/standards/${ss.id}`;
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(`${dir}/index.html`, buildStandardDetail(ss));
+  }
+
+  // ── Benchmark index page ────────────────────────────────────
+  const benchmarkStds = dataStandards.filter(s => s.benchmarkMeta);
+  if (benchmarkStds.length) {
+    fs.mkdirSync(`${outDir}/benchmarks`, { recursive: true });
+    let bmCardsHTML = '';
+    let bmTotalDS = 0;
+    benchmarkStds.forEach(s => {
+      let dsCount = 0;
+      dataDatasets.forEach(d => {
+        if ((d.benchmarks || []).some(b => b.benchmarkId === s.id)) dsCount++;
+      });
+      bmTotalDS += dsCount;
+      const desc = s.desc || '';
+      bmCardsHTML += `<a href="/benchmarks/${esc(s.id)}/" class="bm-card">
+        <div class="bm-card-top">
+          <div class="bm-card-icon">🏆</div>
+          <div class="bm-card-header">
+            <div class="bm-card-name">${esc(s.name)}</div>
+            <div class="bm-card-meta">${esc(s.org || '')}</div>
+          </div>
+        </div>
+        <div class="bm-card-desc">${esc(desc.length > 120 ? desc.slice(0, 120) + '...' : desc)}</div>
+        <div class="bm-card-footer">
+          <span class="bm-card-badge">${isEn ? 'Benchmark' : '评测基准'}</span>
+          <span class="bm-card-count">${dsCount} ${isEn ? 'training datasets' : '个训练数据集'}</span>
+        </div>
+      </a>`;
+    });
+    fs.writeFileSync(`${outDir}/benchmarks/index.html`, buildPage(`${templateDir}benchmarks-list.html`, {
+      meta: `<title>${isEn ? 'Benchmark Leaderboards' : 'Benchmark 排行榜'} | Superdata RobotAI</title><meta name="description" content="${isEn ? 'Embodied AI benchmark leaderboards: compare training datasets by model performance' : '具身智能 Benchmark 排行榜：按模型性能对比训练数据集'}">`,
+      nav: getActiveNav('benchmarks'),
+      BM_TITLE: isEn ? '🏆 Benchmark Leaderboards' : '🏆 Benchmark 排行榜',
+      BM_SUBTITLE: isEn ? 'Compare training datasets by model performance on standard benchmarks. Higher score = better training data.' : '按标准 benchmark 上的模型性能对比训练数据集。分数越高 = 训练数据越有效。',
+      BM_RESULT_COUNT: (isEn ? 'Total ' : '共 ') + benchmarkStds.length + (isEn ? ' benchmarks, ' : ' 个评测基准，') + bmTotalDS + (isEn ? ' training datasets compared' : ' 个训练数据集参与对比'),
+      BM_CARDS: bmCardsHTML,
+    }));
+  }
+
+  // ── Benchmark leaderboard pages ────────────────────────────
+  for (const ss of dataStandards) {
+    if (!ss.benchmarkMeta) continue;
+    const bm = ss.benchmarkMeta;
+    // Collect all datasets with benchmarks for this standard
+    const entries = [];
+    dataDatasets.forEach(d => {
+      (d.benchmarks || []).forEach(b => {
+        if (b.benchmarkId === ss.id) entries.push({ dataset: d, benchmark: b });
+      });
+    });
+    if (!entries.length) continue;
+
+    // Group by training dataset, best model per dataset
+    const byDataset = {};
+    entries.forEach(e => {
+      const did = e.dataset.id;
+      if (!byDataset[did]) byDataset[did] = { dataset: e.dataset, bestScore: e.benchmark.score, bestModel: e.benchmark.model, bestSize: e.benchmark.modelSize, allResults: [] };
+      byDataset[did].allResults.push(e.benchmark);
+      if ((bm.higherIsBetter !== false && e.benchmark.score > byDataset[did].bestScore) ||
+          (bm.higherIsBetter === false && e.benchmark.score < byDataset[did].bestScore)) {
+        byDataset[did].bestScore = e.benchmark.score;
+        byDataset[did].bestModel = e.benchmark.model;
+        byDataset[did].bestSize = e.benchmark.modelSize;
+      }
+    });
+    const ranked = Object.values(byDataset).sort((a, b) =>
+      (bm.higherIsBetter !== false ? 1 : -1) * (b.bestScore - a.bestScore)
+    );
+
+    // Build table rows
+    let rowsHTML = '';
+    ranked.forEach((entry, i) => {
+      const pct = Math.min(100, Math.max(0, entry.bestScore));
+      const barColor = pct >= 80 ? 'var(--success)' : pct >= 60 ? 'var(--warning)' : 'var(--text-light)';
+      const rankClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
+      rowsHTML += '<tr class="leaderboard-row" style="' + (i > 0 ? 'border-top:1px solid var(--border)' : '') + '">';
+      rowsHTML += '<td class="leaderboard-rank ' + rankClass + '">' + (i + 1) + '</td>';
+      rowsHTML += '<td><a href="/datasets/' + esc(entry.dataset.id) + '/" class="leaderboard-ds-name">' + esc(entry.dataset.name) + '</a><div class="leaderboard-ds-org">' + esc(entry.dataset.institution || '') + '</div></td>';
+      rowsHTML += '<td><span class="leaderboard-model">' + esc(entry.bestModel) + '</span> <span class="leaderboard-model-size">(' + esc(entry.bestSize) + ')</span></td>';
+      rowsHTML += '<td style="text-align:right"><div style="display:flex;align-items:center;gap:8px;justify-content:flex-end"><div class="leaderboard-score-bar"><div class="leaderboard-score-fill" style="width:' + pct + '%;background:' + barColor + '"></div></div><span class="leaderboard-score-val">' + entry.bestScore + (bm.unit || '%') + '</span></div></td>';
+      rowsHTML += '</tr>';
+      // Expandable sub-rows for all model results on this dataset
+      if (entry.allResults.length > 1) {
+        rowsHTML += '<tr style="border-top:1px solid var(--border)"><td colspan="4"><details class="leaderboard-all-results"><summary>' + (isEn ? 'Show all ' : '展开全部 ') + entry.allResults.length + (isEn ? ' results' : ' 条结果') + '</summary>';
+        entry.allResults.sort((a,b) => (bm.higherIsBetter !== false ? 1 : -1) * (b.score - a.score));
+        entry.allResults.forEach(r => {
+          const sp = Math.min(100, Math.max(0, r.score));
+          rowsHTML += '<div class="leaderboard-sub-row"><span class="leaderboard-sub-model">' + esc(r.model) + ' (' + esc(r.modelSize) + ')</span><div class="leaderboard-sub-bar"><div class="leaderboard-sub-fill" style="width:' + sp + '%;background:' + (sp >= 80 ? 'var(--success)' : sp >= 60 ? 'var(--warning)' : 'var(--text-light)') + '"></div></div><span class="leaderboard-sub-score">' + r.score + (bm.unit || '%') + '</span><a href="' + esc(r.paper) + '" target="_blank" rel="noopener" style="font-size:11px;color:var(--text-light);text-decoration:none">📄</a></div>';
+        });
+        rowsHTML += '</details></td></tr>';
+      }
+    });
+
+    const dir = `${outDir}/benchmarks/${ss.id}`;
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(`${dir}/index.html`, buildPage(`${templateDir}benchmark.html`, {
+      meta: `<title>${esc(ss.name)} 排行榜 | Superdata RobotAI</title><meta name="description" content="${esc(ss.name)} benchmark leaderboard: ${ranked.length} training datasets ranked by best model score">`,
+      nav: getActiveNav('benchmarks'),
+      BENCHMARK_NAME: esc(ss.name),
+      BENCHMARK_DESC: isEn ? ('Ranking of training datasets by best model performance on ' + esc(ss.name) + '. Higher score = better training data for this benchmark.') : ('训练数据集在 ' + esc(ss.name) + ' 上的最佳模型性能排名。分数越高 = 该训练集在这个 benchmark 上越有效。'),
+      BENCHMARK_METRIC: bm.metricEn || bm.metric || '成功率',
+      BENCHMARK_UNIT: bm.unit || '%',
+      BENCHMARK_ORG: esc(ss.org || ''),
+      LEADERBOARD_ROWS: rowsHTML,
+    }));
   }
 
   // ── Tools & Platforms list page ───────────────────────────

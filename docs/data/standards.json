@@ -606,7 +606,13 @@
         "text": "可选使用 long-horizon 评估协议测试长序列能力",
         "detail": "连续执行 5 个指令组成的序列，测试策略的长程规划能力"
       }
-    ]
+    ],
+    "benchmarkMeta": {
+      "metric": "成功率",
+      "metricEn": "Success Rate",
+      "unit": "%",
+      "higherIsBetter": true
+    }
   },
   {
     "id": "libero",
@@ -672,7 +678,13 @@
         "text": "可选使用终生学习（Lifelong Learning）协议",
         "detail": "顺序学习 130 个任务，测试知识积累和灾难性遗忘缓解能力"
       }
-    ]
+    ],
+    "benchmarkMeta": {
+      "metric": "成功率",
+      "metricEn": "Success Rate",
+      "unit": "%",
+      "higherIsBetter": true
+    }
   },
   {
     "id": "rlbench",
@@ -738,7 +750,13 @@
         "text": "可选使用多任务训练协议",
         "detail": "多任务联合训练或 sequential fine-tuning，适配 PerAct/RVT 等方法"
       }
-    ]
+    ],
+    "benchmarkMeta": {
+      "metric": "成功率",
+      "metricEn": "Success Rate",
+      "unit": "%",
+      "higherIsBetter": true
+    }
   },
   {
     "id": "metaworld",
@@ -1336,5 +1354,63 @@
       "本体状态"
     ],
     "license": "CC BY 4.0"
+  },
+  {
+    "id": "simpler-env",
+    "name": "SimplerEnv",
+    "fullName": "SimplerEnv Evaluation Suite",
+    "org": "Stanford / Google DeepMind",
+    "type": "benchmark",
+    "openness": "open",
+    "links": {
+      "site": "https://github.com/simpler-env/SimplerEnv",
+      "github": "https://github.com/simpler-env/SimplerEnv"
+    },
+    "desc": "SimplerEnv 是用于评估机器人操作策略的仿真评测套件，包含 Fractal、Bridge 等多个真实环境的高保真仿真复现。GR00T N1 和 pi0 等模型使用 SimplerEnv 进行后训练评估。",
+    "scene": [
+      "sim"
+    ],
+    "modalities": [
+      "视觉",
+      "深度",
+      "本体状态",
+      "动作"
+    ],
+    "license": "MIT",
+    "benchmarkMeta": {
+      "metric": "成功率",
+      "metricEn": "Success Rate",
+      "unit": "%",
+      "higherIsBetter": true
+    }
+  },
+  {
+    "id": "furniture-bench",
+    "name": "FurnitureBench",
+    "fullName": "FurnitureBench Benchmark",
+    "org": "UT Austin / NVIDIA Research",
+    "type": "benchmark",
+    "openness": "open",
+    "links": {
+      "site": "https://clvrai.github.io/furniture-bench/",
+      "github": "https://github.com/clvrai/furniture-bench"
+    },
+    "desc": "FurnitureBench 是真实机器人长序列家具装配基准，包含 9 款 IKEA 风格 3D 打印家具模型的装配任务。评估机器人在长序列操作中的抓取、插入、拧螺丝等精细操作能力。",
+    "scene": [
+      "real"
+    ],
+    "modalities": [
+      "视觉",
+      "深度",
+      "本体状态",
+      "动作"
+    ],
+    "license": "MIT",
+    "benchmarkMeta": {
+      "metric": "成功率",
+      "metricEn": "Success Rate",
+      "unit": "%",
+      "higherIsBetter": true
+    }
   }
 ]

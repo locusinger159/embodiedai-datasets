@@ -98,7 +98,8 @@
       "rt-2",
       "rdt-1b",
       "gr00t"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "bridge-data-v2",
@@ -195,7 +196,8 @@
       "rt-2",
       "rdt-1b",
       "gr00t"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "rh20t",
@@ -275,7 +277,8 @@
     "year": 2023,
     "vlaCompatible": [
       "rdt-1b"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "roboset",
@@ -346,7 +349,8 @@
     "year": 2022,
     "vlaCompatible": [
       "rdt-1b"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "libero",
@@ -421,6 +425,200 @@
       "openvla",
       "octo",
       "gr00t"
+    ],
+    "benchmarks": [
+      {
+        "benchmarkId": "libero",
+        "suite": "LIBERO-Spatial",
+        "model": "OpenVLA",
+        "modelSize": "7B",
+        "score": 84.7,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.09246",
+        "paperTitle": "OpenVLA: An Open-Source VLA Model",
+        "year": 2024,
+        "conditions": "OXE 预训练 + LIBERO-Spatial 全量微调",
+        "confidence": "HIGH"
+      },
+      {
+        "benchmarkId": "libero",
+        "suite": "LIBERO-Spatial",
+        "model": "Octo-Base",
+        "modelSize": "93M",
+        "score": 78.9,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.09246",
+        "paperTitle": "OpenVLA: An Open-Source VLA Model",
+        "year": 2024,
+        "conditions": "OXE 预训练 + LIBERO-Spatial 微调",
+        "confidence": "HIGH"
+      },
+      {
+        "benchmarkId": "libero",
+        "suite": "LIBERO-Spatial",
+        "model": "Diffusion Policy",
+        "modelSize": "~50M",
+        "score": 78.3,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.09246",
+        "paperTitle": "OpenVLA: An Open-Source VLA Model",
+        "year": 2024,
+        "conditions": "从头训练 (scratch on LIBERO)",
+        "confidence": "HIGH"
+      },
+      {
+        "benchmarkId": "libero",
+        "suite": "LIBERO-Object",
+        "model": "OpenVLA",
+        "modelSize": "7B",
+        "score": 88.4,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.09246",
+        "paperTitle": "OpenVLA: An Open-Source VLA Model",
+        "year": 2024,
+        "conditions": "OXE 预训练 + LIBERO-Object 全量微调",
+        "confidence": "HIGH"
+      },
+      {
+        "benchmarkId": "libero",
+        "suite": "LIBERO-Object",
+        "model": "Octo-Base",
+        "modelSize": "93M",
+        "score": 85.7,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.09246",
+        "paperTitle": "OpenVLA: An Open-Source VLA Model",
+        "year": 2024,
+        "conditions": "OXE 预训练 + LIBERO-Object 微调",
+        "confidence": "HIGH"
+      },
+      {
+        "benchmarkId": "libero",
+        "suite": "LIBERO-Object",
+        "model": "Diffusion Policy",
+        "modelSize": "~50M",
+        "score": 92.5,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.09246",
+        "paperTitle": "OpenVLA: An Open-Source VLA Model",
+        "year": 2024,
+        "conditions": "从头训练 (scratch on LIBERO)",
+        "confidence": "HIGH"
+      },
+      {
+        "benchmarkId": "libero",
+        "suite": "LIBERO-Goal",
+        "model": "OpenVLA",
+        "modelSize": "7B",
+        "score": 79.2,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.09246",
+        "paperTitle": "OpenVLA: An Open-Source VLA Model",
+        "year": 2024,
+        "conditions": "OXE 预训练 + LIBERO-Goal 全量微调",
+        "confidence": "HIGH"
+      },
+      {
+        "benchmarkId": "libero",
+        "suite": "LIBERO-Goal",
+        "model": "Octo-Base",
+        "modelSize": "93M",
+        "score": 84.6,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.09246",
+        "paperTitle": "OpenVLA: An Open-Source VLA Model",
+        "year": 2024,
+        "conditions": "OXE 预训练 + LIBERO-Goal 微调",
+        "confidence": "HIGH"
+      },
+      {
+        "benchmarkId": "libero",
+        "suite": "LIBERO-Goal",
+        "model": "Diffusion Policy",
+        "modelSize": "~50M",
+        "score": 68.3,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.09246",
+        "paperTitle": "OpenVLA: An Open-Source VLA Model",
+        "year": 2024,
+        "conditions": "从头训练 (scratch on LIBERO)",
+        "confidence": "HIGH"
+      },
+      {
+        "benchmarkId": "libero",
+        "suite": "LIBERO-Long",
+        "model": "OpenVLA",
+        "modelSize": "7B",
+        "score": 53.7,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.09246",
+        "paperTitle": "OpenVLA: An Open-Source VLA Model",
+        "year": 2024,
+        "conditions": "OXE 预训练 + LIBERO-Long 全量微调",
+        "confidence": "HIGH"
+      },
+      {
+        "benchmarkId": "libero",
+        "suite": "LIBERO-Long",
+        "model": "Octo-Base",
+        "modelSize": "93M",
+        "score": 51.1,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.09246",
+        "paperTitle": "OpenVLA: An Open-Source VLA Model",
+        "year": 2024,
+        "conditions": "OXE 预训练 + LIBERO-Long 微调",
+        "confidence": "HIGH"
+      },
+      {
+        "benchmarkId": "libero",
+        "suite": "LIBERO-Long",
+        "model": "Diffusion Policy",
+        "modelSize": "~50M",
+        "score": 50.5,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.09246",
+        "paperTitle": "OpenVLA: An Open-Source VLA Model",
+        "year": 2024,
+        "conditions": "从头训练 (scratch on LIBERO)",
+        "confidence": "HIGH"
+      }
     ]
   },
   {
@@ -492,7 +690,8 @@
     "year": 2019,
     "vlaCompatible": [
       "pi0"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "rlbench",
@@ -570,7 +769,8 @@
     "vlaCompatible": [
       "openvla",
       "octo"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "maniskill2",
@@ -645,7 +845,8 @@
     "vlaCompatible": [
       "pi0",
       "rdt-1b"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "calvin",
@@ -721,7 +922,8 @@
       "pi0",
       "openvla",
       "rdt-1b"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "ario",
@@ -791,7 +993,8 @@
       "preprocess": "RLDS 多具身统一格式；动作维度因具身而异"
     },
     "year": 2024,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "rt-1-data",
@@ -872,7 +1075,8 @@
       "octo",
       "rt-2",
       "rdt-1b"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "robocat-data",
@@ -947,7 +1151,8 @@
     "year": 2023,
     "vlaCompatible": [
       "rt-2"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "t-diffusion-data",
@@ -1022,7 +1227,8 @@
     "year": 2023,
     "vlaCompatible": [
       "rt-2"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "agibot-world",
@@ -1136,7 +1342,8 @@
     "year": 2024,
     "vlaCompatible": [
       "gr00t"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "robomind",
@@ -1224,7 +1431,8 @@
     "vlaCompatible": [
       "pi0",
       "gr00t"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "damo-solo",
@@ -1292,7 +1500,8 @@
       "preprocess": "HDF5 格式；单臂 6-DoF"
     },
     "year": 2024,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "gr-1-dataset",
@@ -1382,7 +1591,8 @@
     ],
     "standards": [
       "hdf5-robomimic"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "nvidia-gr1-simulation",
@@ -1471,7 +1681,8 @@
     "standards": [
       "lerobot",
       "hdf5-robomimic"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "h1-dataset",
@@ -1556,7 +1767,8 @@
     ],
     "standards": [
       "hdf5-robomimic"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "unifolm-wbt-dataset",
@@ -1643,7 +1855,8 @@
     "standards": [
       "rlds",
       "hdf5-robomimic"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "digit-dataset",
@@ -1712,7 +1925,8 @@
     "vlaCompatible": [],
     "standards": [
       "hdf5-robomimic"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "tactip-datasets",
@@ -1781,7 +1995,8 @@
     "vlaCompatible": [],
     "standards": [
       "hdf5-robomimic"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "graspnet-1billion",
@@ -1851,7 +2066,8 @@
       "preprocess": "NPY/NPZ 格式；190 场景；1.1B+ 标注"
     },
     "year": 2019,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "dexnet-2-0",
@@ -1921,7 +2137,8 @@
     "vlaCompatible": [],
     "standards": [
       "hdf5-robomimic"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "matterport3d",
@@ -1990,7 +2207,8 @@
       "preprocess": "Habitat 兼容；90 建筑；GLB/glTF 格式"
     },
     "year": 2017,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "humanoid-everyday",
@@ -2072,7 +2290,8 @@
     "vlaCompatible": [],
     "standards": [
       "hdf5-robomimic"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "dexora",
@@ -2150,7 +2369,8 @@
     "vlaCompatible": [],
     "standards": [
       "hdf5-robomimic"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "realsource",
@@ -2225,7 +2445,8 @@
     "vlaCompatible": [],
     "standards": [
       "hdf5-robomimic"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "10kh-realomni",
@@ -2300,7 +2521,8 @@
       "preprocess": "全向 RGB-D 多相机；LeRobot 格式"
     },
     "year": 2025,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "robocoin",
@@ -2379,7 +2601,8 @@
       "preprocess": "RLDS 格式；双臂接触丰富操作"
     },
     "year": 2025,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "openlet",
@@ -2457,7 +2680,8 @@
     "vlaCompatible": [],
     "standards": [
       "hdf5-robomimic"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "uniact",
@@ -2548,7 +2772,8 @@
     "vlaCompatible": [
       "pi0",
       "gr00t"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "galaxea-open-world",
@@ -2651,7 +2876,8 @@
       "preprocess": "100K+ 轨迹；多视角 RGB-D；LeRobot v3 格式"
     },
     "year": 2025,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "oxe-auge",
@@ -2741,7 +2967,8 @@
       "preprocess": "LeRobot 格式；4.4M 轨迹；跨具身增强"
     },
     "year": 2025,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "droid",
@@ -2838,7 +3065,8 @@
       "rt-2",
       "rdt-1b",
       "gr00t"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "mimicgen",
@@ -2932,7 +3160,8 @@
     "year": 2023,
     "vlaCompatible": [
       "pi0"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "robocasa",
@@ -3028,7 +3257,8 @@
     "vlaCompatible": [
       "pi0",
       "gr00t"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "arnold-benchmark",
@@ -3123,7 +3353,8 @@
       "preprocess": "HDF5 格式；连续语言目标"
     },
     "year": 2023,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "robonet",
@@ -3214,7 +3445,8 @@
     "standards": [
       "rlds",
       "oxe-schema"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "ego4d",
@@ -3306,7 +3538,8 @@
       "preprocess": "Canonical clips (30fps VP9)；JSON 标注；3670h"
     },
     "year": 2022,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "changelog": [],
@@ -3393,7 +3626,8 @@
       "preprocess": "PNG 图像 + JSON 标注；308K 帧；17 类别"
     },
     "year": 2023,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "changelog": [],
@@ -3474,7 +3708,8 @@
       "preprocess": "单张 RGB + JSON 标注；~10K 图像"
     },
     "year": 2023,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "changelog": [],
@@ -3552,7 +3787,8 @@
       "preprocess": "50 万张图像；point-level 高斯热力图标注"
     },
     "year": 2025,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "changelog": [],
@@ -3633,7 +3869,8 @@
       "preprocess": "基于 InstructPart + GPT-4o 推理指令改写；Q&A 格式"
     },
     "year": 2025,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "changelog": [],
@@ -3714,7 +3951,8 @@
       "preprocess": "9,600 任务指令；TRPS + ORPS 双任务"
     },
     "year": 2025,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "changelog": [],
@@ -3801,7 +4039,8 @@
       "preprocess": "PLY 点云；710 场景；14.8K 交互标注"
     },
     "year": 2024,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "changelog": [],
@@ -3903,7 +4142,8 @@
     ],
     "standards": [
       "hdf5-robomimic"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "changelog": [],
@@ -3989,7 +4229,8 @@
       "preprocess": "RGB-D 视频 + JSON 标注；2.4M 帧"
     },
     "year": 2022,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "changelog": [],
@@ -4072,7 +4313,8 @@
       "preprocess": "MP4 + JSON；SLAM 相机位姿；110 万 interval"
     },
     "year": 2025,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "bc-z",
@@ -4164,7 +4406,8 @@
       "octo",
       "rt-2",
       "rdt-1b"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "aloha-dataset",
@@ -4259,7 +4502,8 @@
     "vlaCompatible": [
       "act",
       "pi0"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "internscenes",
@@ -4348,7 +4592,8 @@
       "preprocess": "USD/GLB 格式；40K 场景；Isaac Sim 兼容"
     },
     "year": 2025,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "kairos-homeworld",
@@ -4436,7 +4681,8 @@
       "preprocess": "USD/GLB 格式；5K 全屋场景；30 万户型"
     },
     "year": 2025,
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "groot-n1-dataset",
@@ -4531,7 +4777,8 @@
     "year": 2025,
     "vlaCompatible": [
       "gr00t"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "internhumanoid-motionmillions",
@@ -4617,7 +4864,8 @@
     "year": 2025,
     "vlaCompatible": [
       "gr00t"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "dexgraspvla",
@@ -4706,7 +4954,8 @@
     "year": 2025,
     "vlaCompatible": [
       "openvla"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "graspvla-syngrasp",
@@ -4794,7 +5043,8 @@
     "year": 2025,
     "vlaCompatible": [
       "openvla"
-    ]
+    ],
+    "benchmarks": []
   },
   {
     "id": "openrobocare",
@@ -4891,7 +5141,8 @@
       ],
       "training": "适用于 Imitation Learning（BC、ACT、Diffusion Policy）和 VLA 模型训练。触觉模态可用于多模态融合研究。"
     },
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "etri-activity3d-livinglab",
@@ -4976,7 +5227,8 @@
       ],
       "training": "适用于 3D CNN（I3D、SlowFast）、GCN（ST-GCN）等动作识别模型。LivingLab 子集专门用于领域自适应研究。"
     },
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "kfall",
@@ -5058,7 +5310,8 @@
       ],
       "training": "适用于 CNN-LSTM、Transformer、SVM 等时序分类模型。重点是跌倒前 300-500ms 窗口的特征提取。"
     },
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "ec-ar",
@@ -5138,7 +5391,8 @@
       ],
       "training": "适用于多流 3D CNN（Light-SlowFast）、GCN（ST-GCN）等动作识别架构。骨骼流可单独训练或与 RGB 流融合。"
     },
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "medmassage-12k",
@@ -5222,7 +5476,8 @@
       ],
       "training": "适用于 VLM 微调（Qwen-VL 系列）。推荐 LoRA 微调视觉编码器和 MLP 投影层，冻结 LLM 主干。"
     },
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "ceti-age-kinematics",
@@ -5312,7 +5567,8 @@
       ],
       "training": "适用于步态分析、动作质量评估、年龄分类、异常步态检测。可训练 GCN/Transformer 进行跨年龄域适应。"
     },
-    "vlaCompatible": []
+    "vlaCompatible": [],
+    "benchmarks": []
   },
   {
     "id": "language-table",
@@ -5390,7 +5646,8 @@
       "rdt-1b"
     ],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "furniture-bench",
@@ -5469,7 +5726,8 @@
       "rdt-1b"
     ],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "vima",
@@ -5542,7 +5800,8 @@
       "openvla"
     ],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "qt-opt",
@@ -5612,7 +5871,8 @@
       "rt-2"
     ],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "stanford-hydra",
@@ -5692,7 +5952,8 @@
       "rt-2"
     ],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "tidybot",
@@ -5763,7 +6024,8 @@
     },
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "columbia-pusht",
@@ -5831,7 +6093,8 @@
     },
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "dobbe",
@@ -5900,7 +6163,8 @@
     },
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "alfred",
@@ -5971,7 +6235,8 @@
     },
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "behavior-1k",
@@ -6048,7 +6313,8 @@
     },
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "cmu-play-fusion",
@@ -6128,7 +6394,8 @@
       "rdt-1b"
     ],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "nyu-franka-play",
@@ -6208,7 +6475,8 @@
       "rdt-1b"
     ],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "berkeley-autolab-ur5",
@@ -6286,7 +6554,8 @@
       "rdt-1b"
     ],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "berkeley-fanuc-manipulation",
@@ -6366,7 +6635,8 @@
       "rdt-1b"
     ],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "berkeley-cable-routing",
@@ -6439,7 +6709,8 @@
     },
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "cmu-stretch",
@@ -6517,7 +6788,8 @@
       "rdt-1b"
     ],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "roboturk",
@@ -6586,7 +6858,8 @@
     },
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "robomimic",
@@ -6658,7 +6931,8 @@
     },
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "mime-cmu",
@@ -6727,7 +7001,8 @@
     },
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "maniwav",
@@ -6798,7 +7073,8 @@
     },
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "robotwin-2",
@@ -6870,7 +7146,8 @@
     },
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "robovqa",
@@ -6943,7 +7220,8 @@
     },
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "something-something-v2",
@@ -7005,7 +7283,8 @@
     "quality": {},
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "youcook2",
@@ -7071,7 +7350,8 @@
     "quality": {},
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "100doh",
@@ -7135,7 +7415,8 @@
     "quality": {},
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "epic-kitchens-100",
@@ -7201,7 +7482,8 @@
     "quality": {},
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "assembly101",
@@ -7268,7 +7550,8 @@
     "quality": {},
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "motion-x",
@@ -7334,7 +7617,8 @@
     "quality": {},
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "ego-exo4d",
@@ -7404,7 +7688,8 @@
     "quality": {},
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "amass",
@@ -7476,7 +7761,8 @@
     },
     "vlaCompatible": [],
     "github": "",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "phuma",
@@ -7546,7 +7832,8 @@
     },
     "vlaCompatible": [],
     "github": "https://github.com/DAVIAN-Robotics/PHUMA",
-    "huggingface": "https://huggingface.co/datasets/DAVIAN-Robotics/PHUMA"
+    "huggingface": "https://huggingface.co/datasets/DAVIAN-Robotics/PHUMA",
+    "benchmarks": []
   },
   {
     "id": "lafan1",
@@ -7617,7 +7904,8 @@
     },
     "vlaCompatible": [],
     "github": "https://github.com/ubisoft/ubisoft-laforge-animation-dataset",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   },
   {
     "id": "motion-x-plus",
@@ -7693,6 +7981,7 @@
     },
     "vlaCompatible": [],
     "github": "https://github.com/IDEA-Research/Motion-X",
-    "huggingface": ""
+    "huggingface": "",
+    "benchmarks": []
   }
 ]

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>{{HEAD}}
+<style>
+.benchmark-main { max-width:1200px; margin:0 auto; padding:120px 48px 60px; }
+.benchmark-header { margin-bottom:32px; }
+.benchmark-header h1 { font-size:32px; font-weight:800; margin-bottom:8px; }
+.benchmark-header p { font-size:16px; color:var(--text-secondary); max-width:700px; }
+.benchmark-meta { display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; }
+.benchmark-meta-item { padding:6px 14px; background:var(--light-bg); border-radius:20px; font-size:13px; color:var(--text-secondary); }
+.leaderboard-table { background:var(--white); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:40px; }
+.leaderboard-table table { width:100%; border-collapse:collapse; }
+.leaderboard-table th { padding:14px 16px; text-align:left; font-size:13px; font-weight:600; background:var(--light-bg); color:var(--text-secondary); }
+.leaderboard-table td { padding:14px 16px; }
+.leaderboard-row { transition:background 0.15s; }
+.leaderboard-row:hover { background:rgba(91,124,255,0.03); }
+.leaderboard-rank { font-weight:700; font-size:15px; width:40px; }
+.leaderboard-rank.gold { color:#f59e0b; }
+.leaderboard-rank.silver { color:#94a3b8; }
+.leaderboard-rank.bronze { color:#d97706; }
+.leaderboard-ds-name { font-weight:600; color:var(--text-primary); text-decoration:none; font-size:15px; }
+.leaderboard-ds-name:hover { color:var(--primary); }
+.leaderboard-ds-org { font-size:12px; color:var(--text-secondary); }
+.leaderboard-model { font-weight:600; font-size:13px; }
+.leaderboard-model-size { font-size:11px; color:var(--text-light); font-weight:400; }
+.leaderboard-score-bar { flex:1; max-width:100px; background:var(--light-bg); border-radius:4px; height:18px; overflow:hidden; }
+.leaderboard-score-fill { height:100%; border-radius:4px; transition:width 0.5s; }
+.leaderboard-score-val { font-weight:700; font-size:15px; min-width:60px; text-align:right; }
+.leaderboard-all-results { margin-top:4px; padding-left:52px; }
+.leaderboard-all-results summary { font-size:12px; color:var(--text-light); cursor:pointer; }
+.leaderboard-sub-row { display:flex; align-items:center; gap:8px; padding:4px 0; font-size:12px; color:var(--text-secondary); }
+.leaderboard-sub-model { min-width:90px; }
+.leaderboard-sub-score { font-weight:600; min-width:50px; text-align:right; }
+.leaderboard-sub-bar { flex:1; max-width:80px; background:var(--light-bg); border-radius:3px; height:10px; overflow:hidden; }
+.leaderboard-sub-fill { height:100%; border-radius:3px; }
+.leaderboard-footer { font-size:13px; color:var(--text-light); margin-top:8px; }
+@media (max-width:768px) { .benchmark-main { padding:100px 20px 40px; } }
+</style>
+</head>
+<body>
+{{NAVBAR}}
+<main class="benchmark-main">
+  <div class="benchmark-header">
+    <h1>🏆 {{BENCHMARK_NAME}} 排行榜</h1>
+    <p>{{BENCHMARK_DESC}}</p>
+    <div class="benchmark-meta">
+      <span class="benchmark-meta-item">📏 指标：{{BENCHMARK_METRIC}}</span>
+      <span class="benchmark-meta-item">📐 单位：{{BENCHMARK_UNIT}}</span>
+      <span class="benchmark-meta-item">🏛️ {{BENCHMARK_ORG}}</span>
+    </div>
+  </div>
+
+  <div class="leaderboard-table">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>训练数据集</th>
+          <th>最佳模型</th>
+          <th style="text-align:right">得分</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{LEADERBOARD_ROWS}}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="leaderboard-footer">📄 分数来源为已发表论文。点击数据集查看详情和完整 benchmark 数据。如需提交新的评测结果，请通过 GitHub Issue 或邮件联系。</p>
+
+  <a href="/benchmarks/" class="back-link" style="display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);font-size:14px;text-decoration:none">← 返回排行榜</a>
+</main>
+{{FOOTER}}
+</body>
+</html>
