@@ -163,6 +163,13 @@ push 到 main 分支后，GitHub Actions 自动执行：
 
 ## 版本记录
 
+### v2.12 (2026-06-21)
+
+- 🏆 **Benchmark 排行榜** — 独立 `/benchmarks/` 页面，导航栏新入口「排行榜 / Leaderboards」。首期收录 5 个 benchmark（LIBERO / CALVIN / SimplerEnv / RLBench / FurnitureBench），12 条精确数据来自 OpenVLA Table 12
+- 📐 **数据标准 20→22** — 新增 SimplerEnv 和 FurnitureBench 评测标准
+- 🔒 **LICENSE** — 数据 CC BY-NC-SA 4.0（署名-非商业-相同方式共享），代码 AGPL-3.0（Copyleft），页脚加版权声明
+- 📝 **首页核心优势重写** — 6 卡片升级：VLA 兼容性 / 反向推荐 / AI 助手 / 96 数据集 / 多维筛选 / 22 数据标准
+
 ### v2.11 (2026-06-19)
 
 - 📊 **+29 数据集** — 63→92：从社区 Awesome List 和行业表格中查漏补缺
