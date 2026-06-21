@@ -835,7 +835,88 @@
       "openvla",
       "octo"
     ],
-    "benchmarks": []
+    "benchmarks": [
+      {
+        "benchmarkId": "rlbench",
+        "suite": "RLBench (18 tasks, 100 demos/task)",
+        "model": "RVT-2",
+        "modelSize": "—",
+        "score": 79.9,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.08545",
+        "paperTitle": "RVT-2: Learning Precise Manipulation from Few Demonstrations",
+        "year": 2024,
+        "conditions": "18 任务平均，100 demos/task",
+        "confidence": "MEDIUM"
+      },
+      {
+        "benchmarkId": "rlbench",
+        "suite": "RLBench (18 tasks, 100 demos/task)",
+        "model": "RVT",
+        "modelSize": "—",
+        "score": 62.9,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.08545",
+        "paperTitle": "RVT-2 (Table I)",
+        "year": 2024,
+        "conditions": "18 任务平均，100 demos/task",
+        "confidence": "HIGH"
+      },
+      {
+        "benchmarkId": "rlbench",
+        "suite": "RLBench (18 tasks, 100 demos/task)",
+        "model": "PerAct",
+        "modelSize": "—",
+        "score": 49.4,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.08545",
+        "paperTitle": "RVT-2 (Table I, citing PerAct)",
+        "year": 2024,
+        "conditions": "18 任务平均，100 demos/task",
+        "confidence": "HIGH"
+      },
+      {
+        "benchmarkId": "rlbench",
+        "suite": "RLBench (18 tasks, 100 demos/task)",
+        "model": "HiveFormer",
+        "modelSize": "—",
+        "score": 45.3,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.08545",
+        "paperTitle": "RVT-2 (Table I)",
+        "year": 2024,
+        "conditions": "18 任务平均，100 demos/task",
+        "confidence": "HIGH"
+      },
+      {
+        "benchmarkId": "rlbench",
+        "suite": "RLBench (18 tasks, 100 demos/task)",
+        "model": "Image-BC (ViT)",
+        "modelSize": "—",
+        "score": 1.3,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2406.08545",
+        "paperTitle": "RVT-2 (Table I)",
+        "year": 2024,
+        "conditions": "18 任务平均，100 demos/task",
+        "confidence": "HIGH"
+      }
+    ]
   },
   {
     "id": "maniskill2",
@@ -5889,7 +5970,40 @@
     ],
     "github": "",
     "huggingface": "",
-    "benchmarks": []
+    "benchmarks": [
+      {
+        "benchmarkId": "furniture-bench",
+        "suite": "FurnitureBench (9 tasks, low random)",
+        "model": "IQL-R3M",
+        "modelSize": "—",
+        "score": 40.0,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2305.12821",
+        "paperTitle": "FurnitureBench",
+        "year": 2023,
+        "conditions": "9 家具全装配任务，低随机初始化",
+        "confidence": "MEDIUM"
+      },
+      {
+        "benchmarkId": "furniture-bench",
+        "suite": "FurnitureBench (9 tasks, low random)",
+        "model": "BC-ResNet18",
+        "modelSize": "—",
+        "score": 25.0,
+        "metric": "success_rate",
+        "metricLabel": "成功率",
+        "unit": "%",
+        "higherIsBetter": true,
+        "paper": "https://arxiv.org/abs/2305.12821",
+        "paperTitle": "FurnitureBench",
+        "year": 2023,
+        "conditions": "行为克隆 ResNet-18，9 家具全装配",
+        "confidence": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "vima",
