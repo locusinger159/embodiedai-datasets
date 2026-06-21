@@ -6,7 +6,17 @@
  */
 
 const http = require('http');
-const embeddings = require('./embeddings.json');
+let embeddings, paperEmbeddings;
+try {
+  embeddings = require('./embeddings.json');
+} catch (e) {
+  embeddings = { datasets: [], standards: [], tools: [] };
+}
+try {
+  paperEmbeddings = require('./embeddings_papers.json');
+} catch (e) {
+  paperEmbeddings = { papers: [] };
+}
 
 // Cosine similarity
 function cosineSim(a, b) {
@@ -80,10 +90,13 @@ function search(queryVec, query) {
     .slice(0, k)
     .map(({ vec, _emb, _kw, ...rest }) => rest);
 
+  const papers = scored(paperEmbeddings.papers || [], 8);
+
   return {
     datasets: scored(embeddings.datasets, 5),
     standards: scored(embeddings.standards, 3),
-    tools: scored(embeddings.tools, 5),  // increased from 2 → 5
+    tools: scored(embeddings.tools, 5),
+    papers,
   };
 }
 
@@ -113,19 +126,22 @@ async function assistant(query, history, apiKey, model) {
     ...results.datasets.map(d => ({ ...d, type: 'dataset' })),
     ...results.standards.map(s => ({ ...s, type: 'standard' })),
     ...results.tools.map(t => ({ ...t, type: 'tool' })),
-  ].sort((a, b) => b.score - a.score).slice(0, 8);
+    ...results.papers.map(p => ({ ...p, type: 'paper', name: p.title, notes: p.text })),
+  ].sort((a, b) => b.score - a.score).slice(0, 10);
 
   // 2. Build context for LLM
-  const contextParts = allResults.map((r, i) =>
-    `[${i + 1}] ${r.type === 'dataset' ? '📊' : r.type === 'standard' ? '📐' : '🔧'} **${r.name}** (${r.institution || '未知机构'})\n` +
-    `   类型: ${r.type === 'dataset' ? '数据集' : r.type === 'standard' ? '数据标准' : '工具/平台'}\n` +
-    `   简介: ${(r.notes || '').substring(0, 150)}\n` +
-    (r.id ? `   链接: https://superdata-robotai.com/${r.type === 'tool' ? 'tools' : 'datasets'}/${r.id}/\n` : '')
-  ).join('\n');
+  const contextParts = allResults.map((r, i) => {
+    const icon = r.type === 'dataset' ? '📊' : r.type === 'standard' ? '📐' : r.type === 'tool' ? '🔧' : '📄';
+    if (r.type === 'paper') {
+      return `[${i + 1}] ${icon} **${r.title?.substring(0, 100) || '未知论文'}**\n   类型: 学术论文\n   相关数据集: ${r.dataset || '通用'}\n   摘要: ${(r.text || '').substring(0, 200)}`;
+    }
+    return `[${i + 1}] ${icon} **${r.name}** (${r.institution || '未知机构'})\n   类型: ${r.type === 'dataset' ? '数据集' : r.type === 'standard' ? '数据标准' : '工具/平台'}\n   简介: ${(r.notes || '').substring(0, 150)}\n` +
+      (r.id ? `   链接: https://superdata-robotai.com/${r.type === 'tool' ? 'tools' : 'datasets'}/${r.id}/\n` : '');
+  }).join('\n');
 
   const systemPrompt = `你是 Superdata RobotAI 的 AI 助手，专门帮助用户从具身智能数据集导航站中找到合适的数据集、数据标准和工具/平台。
 
-网站当前收录: 58 个数据集、19 个数据标准、18 个工具/平台。
+网站收录 96 个数据集、22 个标准、18 个工具、90 篇论文知识库。
 
 根据用户的问题，以下是从数据库中检索到的最相关内容:
 
