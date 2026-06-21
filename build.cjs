@@ -779,8 +779,6 @@ function buildAll(lang) {
         if (b.benchmarkId === ss.id) entries.push({ dataset: d, benchmark: b });
       });
     });
-    if (!entries.length) continue;
-
     // Group by training dataset, best model per dataset
     const byDataset = {};
     entries.forEach(e => {
@@ -800,6 +798,9 @@ function buildAll(lang) {
 
     // Build table rows
     let rowsHTML = '';
+    if (ranked.length === 0) {
+      rowsHTML = '<tr><td colspan="4" style="padding:40px;text-align:center;color:var(--text-light)">' + (isEn ? '📋 No benchmark data yet. ' : '📋 暂无评测数据。') + '<a href="https://github.com/locusinger159/embodiedai-datasets/issues/new" style="color:var(--primary)">' + (isEn ? 'Submit results →' : '欢迎提交评测结果 →') + '</a></td></tr>';
+    }
     ranked.forEach((entry, i) => {
       const pct = Math.min(100, Math.max(0, entry.bestScore));
       const barColor = pct >= 80 ? 'var(--success)' : pct >= 60 ? 'var(--warning)' : 'var(--text-light)';
