@@ -1412,34 +1412,5 @@
       "unit": "%",
       "higherIsBetter": true
     }
-  },
-  {
-    "id": "embodied-bench",
-    "name": "EmbodiedBench",
-    "fullName": "EmbodiedBench: Comprehensive Benchmarking for Embodied Agents",
-    "org": "UIUC / Northwestern / Purdue",
-    "type": "benchmark",
-    "openness": "open",
-    "links": {
-      "site": "https://arxiv.org/abs/2502.09560",
-      "paper": "https://arxiv.org/abs/2502.09560"
-    },
-    "desc": "EmbodiedBench 是面向多模态大模型 (MLLM) 的综合具身评测基准。融合 4 大仿真环境（EB-ALFRED/EB-Habitat/EB-Navigation/EB-Manipulation），评估 6 大核心能力：常识推理、空间感知、长时序规划、开放词汇理解、视觉定位、物理交互。2026 年 ICML 论文。",
-    "scene": [
-      "sim"
-    ],
-    "modalities": [
-      "视觉",
-      "语言",
-      "动作"
-    ],
-    "license": "MIT",
-    "benchmarkMeta": {
-      "metric": "成功率",
-      "metricEn": "Success Rate",
-      "unit": "%",
-      "higherIsBetter": true,
-      "rankBy": "model"
-    }
   }
 ]
