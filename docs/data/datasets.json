@@ -201,22 +201,6 @@
       {
         "benchmarkId": "simpler-env",
         "suite": "SimplerEnv-WidowX (Bridge)",
-        "model": "EO-1",
-        "modelSize": "—",
-        "score": 72.7,
-        "metric": "success_rate",
-        "metricLabel": "成功率",
-        "unit": "%",
-        "higherIsBetter": true,
-        "paper": "https://github.com/allenai/vla-evaluation-harness",
-        "paperTitle": "VLA Evaluation Harness (Allen AI)",
-        "year": 2025,
-        "conditions": "SimplerEnv WidowX 4 任务平均",
-        "confidence": "MEDIUM"
-      },
-      {
-        "benchmarkId": "simpler-env",
-        "suite": "SimplerEnv-WidowX (Bridge)",
         "model": "Dream-VLA",
         "modelSize": "—",
         "score": 71.4,
@@ -244,22 +228,6 @@
         "paperTitle": "π0",
         "year": 2024,
         "conditions": "零样本（预训练后直接评估）",
-        "confidence": "MEDIUM"
-      },
-      {
-        "benchmarkId": "simpler-env",
-        "suite": "SimplerEnv-WidowX (Bridge)",
-        "model": "OpenVLA",
-        "modelSize": "7B",
-        "score": 1.0,
-        "metric": "success_rate",
-        "metricLabel": "成功率",
-        "unit": "%",
-        "higherIsBetter": true,
-        "paper": "https://github.com/allenai/vla-evaluation-harness",
-        "paperTitle": "VLA Evaluation Harness (Allen AI)",
-        "year": 2025,
-        "conditions": "零样本（无微调）",
         "confidence": "MEDIUM"
       }
     ]
@@ -1323,22 +1291,6 @@
       {
         "benchmarkId": "simpler-env",
         "suite": "SimplerEnv-Google VM",
-        "model": "EO-1",
-        "modelSize": "—",
-        "score": 76.5,
-        "metric": "success_rate",
-        "metricLabel": "成功率",
-        "unit": "%",
-        "higherIsBetter": true,
-        "paper": "https://github.com/allenai/vla-evaluation-harness",
-        "paperTitle": "VLA Evaluation Harness (Allen AI)",
-        "year": 2025,
-        "conditions": "SimplerEnv Google VM 4 任务平均",
-        "confidence": "MEDIUM"
-      },
-      {
-        "benchmarkId": "simpler-env",
-        "suite": "SimplerEnv-Google VM",
         "model": "π0",
         "modelSize": "3.3B",
         "score": 71.4,
@@ -1350,38 +1302,6 @@
         "paperTitle": "π0",
         "year": 2024,
         "conditions": "零样本",
-        "confidence": "MEDIUM"
-      },
-      {
-        "benchmarkId": "simpler-env",
-        "suite": "SimplerEnv-Google VM",
-        "model": "OpenVLA",
-        "modelSize": "7B",
-        "score": 24.5,
-        "metric": "success_rate",
-        "metricLabel": "成功率",
-        "unit": "%",
-        "higherIsBetter": true,
-        "paper": "https://github.com/allenai/vla-evaluation-harness",
-        "paperTitle": "VLA Evaluation Harness (Allen AI)",
-        "year": 2025,
-        "conditions": "零样本（无微调）",
-        "confidence": "MEDIUM"
-      },
-      {
-        "benchmarkId": "simpler-env",
-        "suite": "SimplerEnv-Google VA",
-        "model": "EO-1",
-        "modelSize": "—",
-        "score": 63.0,
-        "metric": "success_rate",
-        "metricLabel": "成功率",
-        "unit": "%",
-        "higherIsBetter": true,
-        "paper": "https://github.com/allenai/vla-evaluation-harness",
-        "paperTitle": "VLA Evaluation Harness (Allen AI)",
-        "year": 2025,
-        "conditions": "SimplerEnv Google VA 4 任务平均",
         "confidence": "MEDIUM"
       },
       {
@@ -1398,22 +1318,6 @@
         "paperTitle": "π0",
         "year": 2024,
         "conditions": "零样本",
-        "confidence": "MEDIUM"
-      },
-      {
-        "benchmarkId": "simpler-env",
-        "suite": "SimplerEnv-Google VA",
-        "model": "OpenVLA",
-        "modelSize": "7B",
-        "score": 30.0,
-        "metric": "success_rate",
-        "metricLabel": "成功率",
-        "unit": "%",
-        "higherIsBetter": true,
-        "paper": "https://github.com/allenai/vla-evaluation-harness",
-        "paperTitle": "VLA Evaluation Harness (Allen AI)",
-        "year": 2025,
-        "conditions": "零样本（无微调）",
         "confidence": "MEDIUM"
       }
     ]
