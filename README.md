@@ -34,31 +34,6 @@
 - **英文站** — 全站英文版（`/en/`），中/EN 一键切换
 - **评论区** — 基于 giscus + GitHub Discussions
 
-## 快速开始
-
-```bash
-git clone https://github.com/locusinger159/embodiedai-datasets.git
-cd embodiedai-datasets
-
-# 构建
-node build.cjs
-
-# 本地预览
-npx serve dist
-```
-
-### AI 搜索
-
-```bash
-# 生成嵌入（需要百炼 API Key）
-DASHSCOPE_API_KEY=sk-xxx node scripts/embed.cjs
-
-# 复制嵌入到 FC 部署目录
-cp dist/embeddings.json fc/embeddings.json
-
-# 部署阿里云 FC（上传 fc/ 目录）
-```
-
 ## 项目结构
 
 ```
@@ -139,14 +114,6 @@ embodiedai-datasets/
 | `quality.collection` | 采集方式：遥操作采集 / 仿真生成 / 多源聚合 |
 | `quality.annotation` | 标注质量：人工标注 / 自动标注 |
 | `quality.realWorld` | 真机占比：真机实测 / 仿真 |
-
-## 部署
-
-push 到 main 分支后，GitHub Actions 自动执行：
-
-1. `node build.cjs` — 读取 JSON，注入模板，生成全站页面
-2. force push `dist/` → `gh-pages` 分支
-3. GitHub Pages serve + 自定义域名 `superdata-robotai.com`
 
 ## 技术栈
 
