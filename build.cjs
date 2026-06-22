@@ -839,7 +839,8 @@ function buildAll(lang) {
         entry.allResults.sort((a,b) => (bm.higherIsBetter !== false ? 1 : -1) * (b.score - a.score));
         entry.allResults.forEach(r => {
           const sp = Math.min(100, Math.max(0, r.score));
-          rowsHTML += '<div class="leaderboard-sub-row"><span class="leaderboard-sub-model">' + esc(r.model) + ' (' + esc(r.modelSize) + ')</span><div class="leaderboard-sub-bar"><div class="leaderboard-sub-fill" style="width:' + sp + '%;background:' + (sp >= 80 ? 'var(--success)' : sp >= 60 ? 'var(--warning)' : 'var(--text-light)') + '"></div></div><span class="leaderboard-sub-score">' + r.score + (bm.unit || '%') + '</span><a href="' + esc(r.paper) + '" target="_blank" rel="noopener" style="font-size:11px;color:var(--text-light);text-decoration:none">📄</a></div>';
+          var subLabel = (rankBy === 'model') ? esc(r.suite) : (esc(r.model) + ' (' + esc(r.modelSize) + ')');
+          rowsHTML += '<div class="leaderboard-sub-row"><span class="leaderboard-sub-model">' + subLabel + '</span><div class="leaderboard-sub-bar"><div class="leaderboard-sub-fill" style="width:' + sp + '%;background:' + (sp >= 80 ? 'var(--success)' : sp >= 60 ? 'var(--warning)' : 'var(--text-light)') + '"></div></div><span class="leaderboard-sub-score">' + r.score + (bm.unit || '%') + '</span><a href="' + esc(r.paper) + '" target="_blank" rel="noopener" style="font-size:11px;color:var(--text-light);text-decoration:none">📄</a></div>';
         });
         rowsHTML += '</details></td></tr>';
       }
