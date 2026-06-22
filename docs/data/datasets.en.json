@@ -283,7 +283,7 @@
     "type": "open",
     "links": {
       "official": "https://rh20t.github.io",
-      "paper": "https://arxiv.org/abs/2307.11795"
+      "paper": "https://arxiv.org/abs/2307.00595"
     },
     "notes": "高质量居家机器人视频数据集，适合日常任务学习。",
     "description": "**RH20T** is a high-quality home robot video dataset jointly released by **Stanford University and Google**, containing **20,000 RGB-D video clips** covering 120+ daily tasks.\n\nCollected in real home environments, spanning cleaning, organizing, cooking, and other daily scenarios. Each video comes with motion trajectory annotations, suitable for robot imitation learning and video prediction research.",
@@ -363,7 +363,7 @@
     "type": "open",
     "links": {
       "official": "https://robopen.github.io/roboset/",
-      "paper": "https://arxiv.org/abs/2209.13053"
+      "paper": "https://arxiv.org/abs/1910.11215"
     },
     "notes": "适合策略学习、扩散模型研究。多视角数据便于3D理解。",
     "description": "**RoboSet** is a multi-view robot manipulation dataset.\n\nProvides multi-camera viewpoint robot manipulation video and trajectory data, suitable for 3D manipulation understanding and multi-view policy learning.",
@@ -434,7 +434,7 @@
     "type": "open",
     "links": {
       "official": "https://libero-project.github.io",
-      "paper": "https://arxiv.org/abs/2306.08640"
+      "paper": "https://arxiv.org/abs/2306.03310"
     },
     "notes": "长程任务 benchmark，适合指令跟随和任务规划研究。",
     "description": "**LIBERO** is a lifelong robot learning benchmark proposed by Stanford / AI2.\n\nDefines **130 language-conditioned manipulation tasks** across 5 generalization dimensions (scene, object, layout, task composition, unseen tasks). Provides 50+ hours of human teleoperation demonstrations, supporting continual learning evaluation.",
@@ -937,7 +937,7 @@
     "type": "open",
     "links": {
       "official": "https://maniskill2.github.io",
-      "paper": "https://arxiv.org/abs/2304.04442"
+      "paper": "https://arxiv.org/abs/2302.04659"
     },
     "notes": "基于 SAPIEN 的高质量仿真数据，支持点云输入。",
     "description": "**ManiSkill2** is a general-purpose robot manipulation benchmark proposed by Peking University.\n\nBuilt in the SAPIEN engine with **2,000+ objects and 4,000+ task variants**, supporting rigid-body, articulated, and fluid manipulation. Features GPU-parallel rendering for accelerated data collection and a novel task generation pipeline that automatically produces large volumes of diverse training data.",
@@ -1013,7 +1013,7 @@
     "type": "open",
     "links": {
       "official": "https://github.com/mees/calvin",
-      "paper": "https://arxiv.org/abs/2207.04744"
+      "paper": "https://arxiv.org/abs/2112.03227"
     },
     "notes": "语言条件 long-horizon 任务，适合指令理解和执行研究。",
     "description": "**CALVIN** is a language-conditioned long-sequence robot manipulation benchmark proposed by ETH Zurich.\n\nDefines standardized task definition format, evaluation protocol, and data splits (ABCD four-fold), testing policy generalization on unseen environments, unseen instructions, and unseen objects. Built on PyBullet simulation, providing 20,000+ teleoperation demonstration trajectories.",
@@ -1186,7 +1186,7 @@
     "type": "open",
     "links": {
       "official": "https://ario-dataset.github.io",
-      "paper": "https://arxiv.org/abs/2410.00010"
+      "paper": "https://arxiv.org/abs/2408.10899"
     },
     "notes": "大规模日常操纵数据，适合泛化策略学习。",
     "description": "**ARIO** (All Robots In One) is a large-scale multi-embodiment robot dataset.\n\nIntegrates manipulation data from diverse robot morphologies, providing standardized data format and joint training pipelines, suitable for cross-embodiment foundation model pre-training.",
@@ -1259,7 +1259,7 @@
     "type": "open",
     "links": {
       "official": "https://robotics-transformer.github.io",
-      "paper": "https://arxiv.org/abs/2212.05680"
+      "paper": "https://arxiv.org/abs/2212.06817"
     },
     "notes": "RT-1 训练数据，适合真实机器人策略学习。",
     "description": "**RT-1 Training Data** is the companion dataset for Google DeepMind's Robotics Transformer model.\n\nContains large-scale real robot manipulation data across multiple tasks and scenes, serving as the core training data source for RT-1 and RT-2 models.",
@@ -1495,82 +1495,6 @@
     "benchmarks": []
   },
   {
-    "id": "t-diffusion-data",
-    "name": "T-Diffusion Data",
-    "institution": "Google DeepMind",
-    "robotType": [
-      "机械臂"
-    ],
-    "task": [
-      "操作",
-      "交互"
-    ],
-    "modality": [
-      "视觉",
-      "动作"
-    ],
-    "type": "open",
-    "links": {
-      "official": "https://arxiv.org/abs/2502.00836",
-      "paper": "https://arxiv.org/abs/2309.12664"
-    },
-    "notes": "扩散模型在机器人操纵中的应用，适合动作生成研究。",
-    "scale": "多任务操纵数据",
-    "description": "**T-Diffusion Training Data** is the companion robot manipulation dataset for temporal diffusion models.\n\nProvides long-sequence robot manipulation trajectories, suitable for diffusion policy training and temporal action prediction research.",
-    "license": "开源（详见官方链接）",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "多任务操纵数据",
-      "compression": "未知",
-      "schema": "episode → step → observation（RGB + proprioception）/ action（end-effector pose + gripper）, HDF5（用于 Diffusion Policy 训练）",
-      "layout": "按 episode 分 HDF5 文件；兼容 robomimic 目录结构",
-      "index": "HDF5 内部属性；无独立索引文件",
-      "format": "HDF5 v2.0（robomimic 兼容）"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉",
-        "动作"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "2 种任务类型",
-      "episodes": "多任务操纵数据",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2024
-    },
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "遥操作采集",
-      "annotation": "人工标注",
-      "realWorld": "100%真机",
-      "hasSplit": true
-    },
-    "standards": [
-      "rlds",
-      "oxe-schema"
-    ],
-    "tags": [],
-    "usage": {
-      "load": "import h5py\nwith h5py.File('episode.hdf5', 'r') as f:\n    imgs = f['obs/agentview_image'][:]\n    actions = f['actions'][:]\n    states = f['obs/robot0_eef_pos'][:]",
-      "deps": [
-        "h5py",
-        "numpy",
-        "opencv-python"
-      ],
-      "preprocess": "HDF5 格式兼容 robomimic；图像 84×84；动作 7 维 delta pose + gripper"
-    },
-    "year": 2023,
-    "vlaCompatible": [
-      "rt-2"
-    ],
-    "benchmarks": []
-  },
-  {
     "id": "agibot-world",
     "name": "AGIBOT WORLD 2026",
     "institution": "智元机器人（AGIBOT）",
@@ -1704,7 +1628,7 @@
     "type": "open",
     "links": {
       "official": "http://www.robomind.cn/",
-      "paper": "https://arxiv.org/abs/2410.10000"
+      "paper": "https://arxiv.org/abs/2412.13877"
     },
     "notes": "国内统一人形数据协议基准。RoboMIND 2.0已发布(2025.12)，新增31万+双臂轨迹、触觉增强。",
     "description": "**RoboMIND** is China's unified humanoid data protocol benchmark, jointly built by multiple research institutions.\n\n**RoboMIND 2.0** was released in December 2025, adding **310K+ dual-arm trajectories** and tactile enhancement. Scale: **60K+ minutes of real robot data**, covering humanoid manipulation tasks with multi-platform joint training support.",
@@ -1772,75 +1696,6 @@
       "pi0",
       "gr00t"
     ],
-    "benchmarks": []
-  },
-  {
-    "id": "damo-solo",
-    "name": "DAMO-SOLO",
-    "institution": "阿里达摩院",
-    "robotType": [
-      "机械臂"
-    ],
-    "task": [
-      "操作"
-    ],
-    "modality": [
-      "视觉"
-    ],
-    "type": "open",
-    "links": {
-      "official": "https://damo.alibaba.com/labs/robot",
-      "paper": "https://arxiv.org/abs/2410.00001"
-    },
-    "notes": "阿里达摩院工业机器人操纵数据集，适合工业场景研究。",
-    "scale": "工业操纵场景",
-    "description": "**DAMO Solo** is a single-arm robot manipulation dataset released by DAMO Academy.\n\nContains multimodal data from single-arm manipulation tasks, suitable for single-arm policy learning and imitation learning research.",
-    "license": "开源（详见官方链接）",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "工业操纵场景",
-      "compression": "未知",
-      "schema": "episode → step → observation（RGB-D + proprioception）/ action（single-arm 6-DoF + gripper）, HDF5",
-      "layout": "HDF5 格式；按 task 分文件",
-      "index": "HDF5 内部 attribute；task name 为分组键",
-      "format": "HDF5 v2.0"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "工业操纵场景",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2024
-    },
-    "github": "",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "遥操作采集",
-      "annotation": "人工标注",
-      "realWorld": "100%真机",
-      "hasSplit": true
-    },
-    "standards": [
-      "rlds"
-    ],
-    "tags": [],
-    "usage": {
-      "load": "import h5py\nwith h5py.File('damo_solo_demo.hdf5', 'r') as f:\n    actions = f['actions'][:]\n    imgs = f['obs/agentview_image'][:]",
-      "deps": [
-        "h5py",
-        "numpy"
-      ],
-      "preprocess": "HDF5 格式；单臂 6-DoF"
-    },
-    "year": 2024,
-    "vlaCompatible": [],
     "benchmarks": []
   },
   {
@@ -2357,7 +2212,7 @@
     "type": "open",
     "links": {
       "official": "https://graspnet.net",
-      "paper": "https://arxiv.org/abs/1912.04204"
+      "paper": "https://openaccess.thecvf.com/content_CVPR_2020/papers/Fang_GraspNet-1Billion_A_Large-Scale_Benchmark_for_General_Object_Grasping_CVPR_2020_paper.pdf"
     },
     "notes": "超大规模抓取检测数据集。",
     "description": "**GraspNet-1Billion** is the largest robot grasping benchmark dataset to date.\n\nContains **1 billion+ grasp pose annotations**, covering 190+ objects, with RGB-D images and point cloud data. Suitable for general grasp detection, grasp planning, and unknown-object grasping research.",
@@ -2654,7 +2509,7 @@
     "type": "open",
     "links": {
       "official": "https://github.com/ZZongzheng0918/Dexora",
-      "paper": "https://arxiv.org/abs/2410.00002"
+      "paper": "https://arxiv.org/abs/2605.18722"
     },
     "notes": "ICRA 2026，36-DoF双臂灵巧手操作数据集，HuggingFace开源，347种物体。",
     "description": "**DexORA** is a 36-DoF dual-arm dexterous manipulation dataset published at **ICRA 2026**, open-sourced on HuggingFace.\n\nFeatures **347 objects**, with **12.2K real robot + 100K simulation** trajectories. Covers dual-arm manipulation and precise assembly tasks, suitable for dexterous policy learning and Sim-to-Real transfer research.",
@@ -4319,7 +4174,7 @@
     "type": "open",
     "links": {
       "official": "https://scenefun3d.github.io/",
-      "paper": "https://arxiv.org/abs/2404.12345"
+      "paper": "https://openaccess.thecvf.com/content/CVPR2024/papers/Delitzas_SceneFun3D_Fine-Grained_Functionality_and_Affordance_Understanding_in_3D_Scenes_CVPR_2024_paper.pdf"
     },
     "notes": "ETH/Microsoft CVPR 2024 Oral，首个精细 3D 场景功能理解数据集。Faro 激光扫描仪捕捉 710 个真实室内场景，标注了把手、旋钮、按钮、开关等细小可交互元素。AFUN 在 SceneFun3D 的 3D 运动预测（n=721）上取得 SOTA。",
     "description": "**SceneFun3D** 是 ETH Zürich / Google / TUM / Microsoft 联合发表于 CVPR 2024 (Oral) 的精细 3D 场景功能理解数据集。\n\n**规模**：**710** 个高精度 3D 室内场景（Faro 激光扫描仪采集，远超 RGB-D 重建精度），**14,800+** 精细交互标注，**3,000+** 自然语言任务描述，覆盖 **9** 个可供性类别（旋转、钩拉、推按等）。\n\n**独特之处**：标注了传统 RGB-D 重建（ScanNet/Matterport3D）中不可见的细小功能元素——门把手、旋钮、按钮、开关、拨杆等。\n\n**三大基准任务**：\n1. **Functionality Segmentation**：3D 点云中分割功能元素并预测可供性标签\n2. **Task-Driven Affordance Grounding**：根据自然语言任务描述定位功能元素\n3. **3D Motion Estimation**：预测交互所需的运动参数（运动类型、轴、原点）\n\n**协议**：CC BY-NC-SA 4.0。\n\nAFUN 使用 SceneFun3D 作为训练数据源和 3D 运动测试集（n=721），在 ADE/FDE/CIM 三个指标上全面超越 General Flow 等基线。",
@@ -5138,7 +4993,7 @@
     "type": "open",
     "links": {
       "official": "https://huggingface.co/datasets/InternRobotics/MotionMillion",
-      "paper": "https://arxiv.org/abs/2507.10000"
+      "paper": "https://openaccess.thecvf.com/content/ICCV2025/papers/Fan_Go_to_Zero_Towards_Zero-shot_Motion_Generation_with_Million-scale_Data_ICCV_2025_paper.pdf"
     },
     "notes": "上海 AI 实验室 2025，人体动捕转人形动作数据。200 万+ 动作序列（20 倍于现有数据集），覆盖武术/健身/表演/舞蹈/体育等百余种。20+ 风格语义标注，GPT-4o 增强。配套 Scamo7B 文本-动作生成模型。Intern-Robotics 模型/数据集总下载量超 110 万次。",
     "description": "InternHumanoid MotionMillions 是上海 AI 实验室于 2025 年发布的超大规模人形机器人运动数据集。规模：200 万+ 动作序列（是现有人体动作数据集的 20 倍以上），总时长超 2,000 小时，百余种动作类别。动作覆盖：武术（23.7%）、健身（26.4%）、表演（17.5%）、舞蹈（14.9%）、体育（2.4%）等。每个动作配备 20+ 种不同风格语义描述（情绪/体态/风格/环境），叠加 GPT-4o 自动标注，分布多样性提升 200%。配套工具：InternHumanoid 跨本体人形机器人全身运动控制工具链；Scamo7B 文本-动作基础生成模型（7B 参数）。协议：Apache 2.0。",
@@ -6008,7 +5863,7 @@
     "type": "open",
     "links": {
       "official": "https://clvrai.github.io/furniture-bench/",
-      "paper": "https://arxiv.org/abs/2306.11929"
+      "paper": "https://arxiv.org/abs/2305.12821"
     },
     "notes": "Long-horizon furniture assembly benchmark, 5+ IKEA models, 550h human data. OXE member. Imitation learning ≤42% success rate, exposing limitations of current methods.",
     "description": "FurnitureBench is a real-world long-horizon furniture assembly benchmark published by **UT Austin** and **NVIDIA Research**.\n\nIt features **5+ IKEA-style** 3D-printed furniture models and over **550 hours** of human teleoperation demonstrations. Tasks involve grasping, insertion, and screwing — fine-grained long-horizon manipulation. It serves as a standard benchmark for evaluating long-sequence robot manipulation capability.\n\nState-of-the-art imitation learning achieves ≤42% success, exposing significant shortcomings of current approaches.",
@@ -6267,7 +6122,7 @@
     "type": "open",
     "links": {
       "official": "https://sites.google.com/view/hydra-il-2023",
-      "paper": "https://arxiv.org/abs/2301.13379"
+      "paper": "https://proceedings.mlr.press/v229/belkhale23a/belkhale23a.pdf"
     },
     "notes": "Hybrid action space imitation learning: sparse waypoints + dense low-level actions. OXE member. Coffee/toast/dish sorting tasks. Reduces distribution shift by 40%.",
     "description": "Stanford HYDRA is a household robot manipulation dataset published by **Stanford University**.\n\nIt collects teleoperation demonstrations for multi-task household scenarios including **coffee making**, **toast making**, and **dish sorting**. HYDRA uses a hybrid action space (sparse waypoints + dense low-level actions) with dynamic switching and action relabeling to reduce distribution shift by **40%**.\n\nIt is a member of the **Open X-Embodiment** dataset collection.",
@@ -6418,7 +6273,7 @@
     "type": "open",
     "links": {
       "official": "https://github.com/columbia-ai-robotics/diffusion_policy",
-      "paper": "https://arxiv.org/abs/2301.10677"
+      "paper": "https://arxiv.org/abs/2303.04137"
     },
     "notes": "Standard Diffusion Policy benchmark. Push T-block to target pose → exit zone. 15 task variants. 46.9% higher success rate achieved.",
     "description": "The Columbia PushT Dataset is a precision manipulation dataset published by **Columbia University**, serving as the standard benchmark for **Diffusion Policy**.\n\nIt contains **15 task variants**, with the core task being pushing a T-shaped block to a target pose and then moving to an exit zone. Diffusion Policy uses iterative denoising to generate action sequences, achieving **46.9%** higher success rate with real-time inference.\n\nThis dataset has become the de facto standard for evaluating diffusion-based generative manipulation policies.",
@@ -6559,7 +6414,7 @@
     "type": "open",
     "links": {
       "official": "https://askforalfred.com/",
-      "paper": "https://arxiv.org/abs/1912.01734"
+      "paper": "https://openaccess.thecvf.com/content_CVPR_2020/papers/Shridhar_ALFRED_A_Benchmark_for_Interpreting_Grounded_Instructions_for_Everyday_Tasks_CVPR_2020_paper.pdf"
     },
     "notes": "Classic simulated household instruction-following benchmark. 8,055 expert demos + 25,743 NL instructions. Avg 50 steps per task. First-person vision.",
     "description": "ALFRED (Action Learning From REalistic Directions) is a classic simulated household task instruction dataset published by **USC** and **Allen Institute for AI**.\n\nIt contains **8,055** expert demonstrations and **25,743** high/low-level natural language instructions covering multi-step tasks in simulated home environments, averaging **50 action steps** per task. Using first-person visual input, models must map vision and language instructions to action sequences.\n\nALFRED is a classic benchmark in embodied instruction following, widely used for evaluating long-horizon planning in VLN and VLA models.",
@@ -6709,7 +6564,7 @@
     "type": "open",
     "links": {
       "official": "https://play-fusion.github.io/",
-      "paper": "https://arxiv.org/abs/2306.14847"
+      "paper": "https://proceedings.mlr.press/v229/chen23c/chen23c.pdf"
     },
     "notes": "OXE member. Unstructured play data for skill discovery: grill/table/dishwasher. Diffusion model + discrete skill bottleneck.",
     "description": "CMU Play Fusion is an unstructured robot manipulation dataset published by **Carnegie Mellon University**.\n\nIt collects data by letting a robot freely play in **3 complex scenes** (grill, dining table, dishwasher), then uses a diffusion model with a discrete skill bottleneck to discover interpretable and generalizable skills from unstructured play data.\n\nIt is a member of **Open X-Embodiment**.",
@@ -6790,7 +6645,7 @@
     "type": "open",
     "links": {
       "official": "https://play-to-policy.github.io/",
-      "paper": "https://arxiv.org/abs/2307.05924"
+      "paper": "https://arxiv.org/abs/2210.10047"
     },
     "notes": "OXE member, Play-to-Policy. Converts unstructured human play into goal-conditioned policies. Zero-shot generalization. Toy kitchen.",
     "description": "NYU Franka Play is a Play-to-Policy dataset published by **New York University**.\n\nIt collects unstructured play data by having humans freely operate a Franka robot in a toy kitchen, then converts it into goal-conditioned policies enabling zero-shot generalization.\n\nIt is a member of **Open X-Embodiment**, with core scenes including microwave/oven door, stove knobs, and pot manipulation.",
@@ -6870,7 +6725,7 @@
     "type": "open",
     "links": {
       "official": "https://sites.google.com/view/berkeley-ur5/home",
-      "paper": "https://arxiv.org/abs/1909.06972"
+      "paper": "https://arxiv.org/abs/1911.04052"
     },
     "notes": "OXE member. UR5 adaptive manipulation: 4 tasks (pick-place, wiping, stacking, precise grasping). Deformable objects.",
     "description": "Berkeley Autolab UR5 is an adaptive robot manipulation research platform dataset published by **UC Berkeley**.\n\nIt collects data on **4 manipulation tasks** using a UR5 robot: simple pick-and-place, cloth wiping, cup stacking, and bottle pick-and-place requiring precise 6DoF rotation. It focuses on deformable object handling and human-robot collaboration.\n\nIt is a member of **Open X-Embodiment**.",
@@ -6950,7 +6805,7 @@
     "type": "open",
     "links": {
       "official": "https://sites.google.com/berkeley.edu/fanuc-manipulation",
-      "paper": "https://arxiv.org/abs/2106.13228"
+      "paper": "https://sites.google.com/berkeley.edu/fanuc-manipulation"
     },
     "notes": "OXE member. FANUC Mate 200iD industrial robot. Multi-view, proprioception, language instructions. Visuomotor training + vision model fine-tuning.",
     "description": "Berkeley Fanuc Manipulation is an industrial robot manipulation dataset published by **UC Berkeley**.\n\nIt uses a **FANUC Mate 200iD** industrial robot to collect multi-view video, proprioceptive data, and language instructions. Tasks include drawer opening/closing, object grasping, door closing, computer closing, and object pushing.\n\nIt is a member of **Open X-Embodiment**.",
@@ -7183,7 +7038,7 @@
     "type": "open",
     "links": {
       "official": "https://roboturk.stanford.edu/dataset_real.html",
-      "paper": "https://arxiv.org/abs/1911.04036"
+      "paper": "https://arxiv.org/abs/1811.02790"
     },
     "notes": "Crowdsourced teleoperation: 2,144 real Sawyer demos across 3 tasks (laundry, tower building, search). Scalable imitation learning.",
     "description": "RoboTurk is a crowdsourced robot teleoperation dataset published by **Stanford University**.\n\nIt collected **2,144** real Sawyer robot teleoperation demonstrations via the RoboTurk crowdsourcing platform, covering **3 tasks**: flattening laundry, building towers from bowls, and searching for objects.\n\nIt demonstrated the feasibility of large-scale crowdsourced robot data collection for imitation learning.",
@@ -7327,7 +7182,7 @@
     "type": "open",
     "links": {
       "official": "https://sites.google.com/view/mime-cmu",
-      "paper": "https://arxiv.org/abs/1808.06249"
+      "paper": "https://proceedings.neurips.cc/paper_files/paper/2001/file/f1981e4bd8a0d6d8462016d2fc6276b3-Paper.pdf"
     },
     "notes": "Early human-robot interaction dataset. 8,260 demos across 20 tasks, from simple pushing to complex household item stacking.",
     "description": "MIME (CMU) is an early human-robot interaction demonstration dataset published by **Carnegie Mellon University**.\n\nIt contains **8,260** human-robot interaction demonstrations covering **20** different manipulation tasks, from simple object pushing to complex household item stacking. Each demo includes video, state, and action data.",
@@ -7469,7 +7324,7 @@
     "type": "open",
     "links": {
       "official": "https://robotwin-benchmark.github.io/",
-      "paper": "https://arxiv.org/abs/2509.05884"
+      "paper": "https://arxiv.org/abs/2506.18088"
     },
     "notes": "Simulated bimanual manipulation benchmark. 147 categories, 731 objects, 50 tasks, 100K+ trajectories. Same team as ACE-Ego.",
     "description": "RoboTwin 2.0 is a simulated bimanual manipulation benchmark published by **ACE Robotics** and **CUHK**.\n\nIt contains **100K+** bimanual manipulation trajectories across **50 tasks**, using the RoboTwin-OD object dataset spanning **147 categories** and **731 unique objects** with rich semantic annotations.\n\nIt is from the same team as ACE-Ego, focusing on standardized evaluation of bimanual coordination.",
@@ -7543,7 +7398,7 @@
     "type": "open",
     "links": {
       "official": "https://anonymous-robovqa.github.io/",
-      "paper": "https://arxiv.org/abs/2403.12996"
+      "paper": "https://arxiv.org/abs/2311.00899"
     },
     "notes": "RGB-D scene graphs for long-horizon tasks. 3 office buildings, language-guided execution, 89% real-world success.",
     "description": "RoboVQA is an RGB-D scene graph dataset published by **Stanford University**.\n\nIt converts RGB-D inputs into actionable scene graphs, enabling robots to understand and execute long-horizon user requests across **3 office buildings**. Through scene graph reasoning, it achieves **89%** real-world success rate for language-guided task execution.",
@@ -7614,7 +7469,7 @@
     "type": "open",
     "links": {
       "official": "https://developer.qualcomm.com/software/ai-datasets/something-something",
-      "paper": "https://arxiv.org/abs/1706.04261"
+      "paper": "https://openaccess.thecvf.com/content_ICCV_2017/papers/Goyal_The_Something_Something_ICCV_2017_paper.pdf"
     },
     "notes": "⚠️ Human activity data, NOT a robot dataset. 220K videos, 174 action classes. Used by VLA community for visual representation pretraining.",
     "description": "Something-Something V2 is a large-scale human action understanding video dataset published by **TwentyBN**.\n\nIt contains **220,847** videos covering **174** fine-grained action categories (e.g., 'picking something up', 'putting something down', 'pushing something'). Each video shows human hands performing basic object manipulation actions.\n\n⚠️ **Note: This is human activity data, not a robot dataset.** It is frequently used by the VLA community for visual representation pretraining to help models understand basic manipulation semantics.",
@@ -7679,7 +7534,7 @@
     "type": "open",
     "links": {
       "official": "http://youcook2.eecs.umich.edu/",
-      "paper": "https://arxiv.org/abs/1703.09788"
+      "paper": "https://doi.org/10.1609/aaai.v32i1.12342"
     },
     "notes": "⚠️ Human activity data, NOT a robot dataset. 2,000 untrimmed cooking videos, 89 recipes. Used for long-sequence task planning research.",
     "description": "YouCook2 is a task-oriented cooking instructional video dataset published by **University of Michigan**.\n\nIt contains **2,000** long untrimmed videos covering **89** cooking recipes. Each video shows a human completing a full dish from start to finish, with natural language narration and action sequences.\n\n⚠️ **Note: This is human activity data, not a robot dataset.** It is commonly used for long-sequence task planning and procedural understanding research.",
@@ -7744,7 +7599,7 @@
     "type": "open",
     "links": {
       "official": "https://fouheylab.eecs.umich.edu/~dandans/projects/100DOH/",
-      "paper": "https://arxiv.org/abs/2006.05638"
+      "paper": "https://openaccess.thecvf.com/content_CVPR_2020/papers/Shan_Understanding_Human_Hands_in_Contact_at_Internet_Scale_CVPR_2020_paper.pdf"
     },
     "notes": "⚠️ Human activity data, NOT a robot dataset. 27.3K YouTube videos, 131 days of hand-object interaction footage. For hand detection and manipulation understanding.",
     "description": "100DOH (100 Days of Hands) is a large-scale hand-object interaction video dataset published by **University of Michigan**.\n\nIt collects **27.3K** YouTube videos spanning 11 categories of daily interactions, with nearly **131 days** of interaction footage. Annotations focus on hand contact and hand-object 2D bounding boxes, covering both egocentric and exocentric views.\n\n⚠️ **Note: This is human activity data, not a robot dataset.** It is commonly used to train hand detection and manipulation understanding models.",
@@ -7810,7 +7665,7 @@
     "type": "open",
     "links": {
       "official": "https://epic-kitchens.github.io/",
-      "paper": "https://arxiv.org/abs/2006.13256"
+      "paper": "https://ieeexplore.ieee.org/abstract/document/9084270"
     },
     "notes": "⚠️ Human activity data, NOT a robot dataset. Egocentric kitchen operations, 100h head-mounted camera. Used by VLA community for visual representation pretraining.",
     "description": "EPIC-KITCHENS-100 is a large-scale egocentric kitchen operation dataset published by **University of Bristol** and **University of Toronto**.\n\nIt contains **100 hours**, **20 million frames**, and **90K actions** across **700 videos** of varying lengths. All videos are captured with a head-mounted camera in **45 different** kitchen environments, recording long-duration unscripted daily activities.\n\n⚠️ **Note: This is human activity data, not a robot dataset.** Used by the VLA community (e.g., RoboMirror) for egocentric visual representation pretraining.",
@@ -7877,7 +7732,7 @@
     "type": "open",
     "links": {
       "official": "https://assembly-101.github.io/",
-      "paper": "https://arxiv.org/abs/2203.14712"
+      "paper": "https://openaccess.thecvf.com/content/CVPR2022/papers/Sener_Assembly101_A_Large-Scale_Multi-View_Video_Dataset_for_Understanding_Procedural_Activities_CVPR_2022_paper.pdf"
     },
     "notes": "⚠️ Human activity data, NOT a robot dataset. 101 toy cars, 100K coarse + 1M fine actions, 18M 3D hand poses. Highly relevant to robot assembly tasks.",
     "description": "Assembly101 is a fine-grained assembly action dataset published by **University of Bristol**.\n\nIt records people assembling and disassembling **101** 'take-apart' toy cars, with synchronized **8 static** and **4 egocentric** camera views. Sequences are annotated with **100K+** coarse-grained action segments, **1M** fine-grained actions, and **18M** 3D hand poses.\n\n⚠️ **Note: This is human activity data, not a robot dataset.** However, it is highly relevant to robot assembly tasks — 3D hand poses can inform dexterous manipulation policies.",
@@ -7944,7 +7799,7 @@
     "type": "open",
     "links": {
       "official": "https://motion-x-dataset.github.io/",
-      "paper": "https://arxiv.org/abs/2307.00818"
+      "paper": "https://proceedings.neurips.cc/paper_files/paper/2023/file/4f8e27f6036c1d8b4a66b5b3a947dd7b-Paper-Datasets_and_Benchmarks.pdf"
     },
     "notes": "⚠️ Human motion data, NOT a robot dataset. 15.6M full-body poses, 81.1K sequences with SMPL-X. Reference for humanoid robot whole-body control via RoboMirror-style retargeting.",
     "description": "Motion-X is a large-scale 3D full-body human motion dataset published by **Tsinghua University** and **Shanghai AI Lab**.\n\nIt contains **15.6M** full-body poses and **81.1K** motion sequences annotated with **SMPL-X** parameters (including hand poses), along with action labels, text labels, and RGB video.\n\n⚠️ **Note: This is human motion data, not a robot dataset.** However, via RoboMirror-style retargeting, it can be transferred to humanoid robots for training whole-body locomotion and manipulation policies.",
@@ -8012,7 +7867,7 @@
     "type": "open",
     "links": {
       "official": "https://ego-exo4d-data.org/",
-      "paper": "https://arxiv.org/abs/2311.18259"
+      "paper": "https://openaccess.thecvf.com/content/CVPR2024/papers/Grauman_Ego-Exo4D_Understanding_Skilled_Human_Activity_from_First-_and_Third-Person_Perspectives_CVPR_2024_paper.pdf"
     },
     "notes": "⚠️ Human activity data, NOT a robot dataset. Synchronized egocentric + exocentric views, 1,286h of skilled activities (sports/music/repair). Used by RoboMirror for robot skill learning.",
     "description": "Ego-Exo4D is a large-scale multi-view skilled human activity dataset published by **Meta AI** and 13 universities.\n\nIt simultaneously captures **egocentric** and **exocentric** views of skilled human activities (sports, music, dance, bike repair, etc.). **740 participants** across **13 cities** performed activities in **123 natural scenes**, totaling **1,286 hours**.\n\n⚠️ **Note: This is human activity data, not a robot dataset.** It is used by methods like RoboMirror for robot skill learning — the egocentric perspective is particularly suited for training visuomotor policies.",
@@ -8227,7 +8082,7 @@
     "type": "open",
     "links": {
       "official": "https://github.com/ubisoft/ubisoft-laforge-animation-dataset",
-      "paper": "https://arxiv.org/abs/1907.03318"
+      "paper": "https://dl.acm.org/doi/10.1145/3386569.3392480"
     },
     "notes": "⚠️ Human motion data, NOT a robot dataset. Ubisoft animation dataset. 77 sequences, 496K frames, 17 themes (dance, martial arts, falls, obstacles). AstraBrain-WBC 0.5 training source, retargeted to Unitree G1.",
     "description": "LAFAN1 is a high-quality motion capture dataset published by **Ubisoft La Forge** for human motion prediction and generation research.\n\nIt contains **77** motion sequences, approximately **496K frames** (~4.6 hours), spanning **17 themes**: obstacles, walking, dance, fall & recovery, aiming, crawling, running, fight, jumps, push & stumble, sprint, etc. Recorded from **5** actors in a motion capture studio.\n\n⚠️ **Note: This is human motion data, not a robot dataset.** In humanoid robotics, LAFAN1 is widely used for motion retargeting — both AstraBrain-WBC 0.5 and the Unitree LAFAN1 Retargeting Dataset use LAFAN1 as source data.",
