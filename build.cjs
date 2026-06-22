@@ -791,9 +791,13 @@ function buildAll(lang) {
         bestModel: e.benchmark.model,
         bestSize: e.benchmark.modelSize,
         bestSuite: e.benchmark.suite,
-        allResults: []
+        allResults: [],
+        totalScore: 0,
+        count: 0,
       };
       byKey[key].allResults.push(e.benchmark);
+      byKey[key].totalScore += e.benchmark.score;
+      byKey[key].count += 1;
       if ((bm.higherIsBetter !== false && e.benchmark.score > byKey[key].bestScore) ||
           (bm.higherIsBetter === false && e.benchmark.score < byKey[key].bestScore)) {
         byKey[key].bestScore = e.benchmark.score;
@@ -802,6 +806,12 @@ function buildAll(lang) {
         byKey[key].bestSuite = e.benchmark.suite;
       }
     });
+    // For model ranking, use average score across all suites
+    if (rankBy === 'model') {
+      Object.values(byKey).forEach(v => {
+        v.bestScore = Math.round(v.totalScore / v.count * 10) / 10;
+      });
+    }
     const ranked = Object.values(byKey).sort((a, b) =>
       (bm.higherIsBetter !== false ? 1 : -1) * (b.bestScore - a.bestScore)
     );
@@ -818,7 +828,7 @@ function buildAll(lang) {
       rowsHTML += '<tr class="leaderboard-row" style="' + (i > 0 ? 'border-top:1px solid var(--border)' : '') + '">';
       rowsHTML += '<td class="leaderboard-rank ' + rankClass + '">' + (i + 1) + '</td>';
       rowsHTML += '<td>' + (rankBy === 'model'
-        ? '<span class="leaderboard-ds-name">' + esc(entry.key) + '</span><div class="leaderboard-ds-org">' + esc(entry.bestSuite || '') + '</div>'
+        ? '<span class="leaderboard-ds-name">' + esc(entry.key) + '</span><div class="leaderboard-ds-org">' + entry.count + (isEn ? ' suites avg' : ' 个环境平均') + '</div>'
         : '<a href="/datasets/' + esc(entry.dataset.id) + '/" class="leaderboard-ds-name">' + esc(entry.dataset.name) + '</a><div class="leaderboard-ds-org">' + esc(entry.dataset.institution || '') + '</div>') + '</td>';
       rowsHTML += '<td><span class="leaderboard-model">' + esc(entry.bestModel) + '</span> <span class="leaderboard-model-size">(' + esc(entry.bestSize) + ')</span></td>';
       rowsHTML += '<td style="text-align:right"><div style="display:flex;align-items:center;gap:8px;justify-content:flex-end"><div class="leaderboard-score-bar"><div class="leaderboard-score-fill" style="width:' + pct + '%;background:' + barColor + '"></div></div><span class="leaderboard-score-val">' + entry.bestScore + (bm.unit || '%') + '</span></div></td>';
