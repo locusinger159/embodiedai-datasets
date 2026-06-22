@@ -80,17 +80,17 @@ function keywordBoost(item, keywords) {
 function search(queryVec, query) {
   const keywords = extractKeywords(query);
 
-  const scored = (arr, k) =>
+  const scored = (arr, k, typeBonus) =>
     arr.map(item => {
       const embScore = Math.round(cosineSim(queryVec, item.vec) * 100);
-      const boost = keywordBoost(item, keywords);
+      const boost = (typeBonus || 0) + keywordBoost(item, keywords);
       return { ...item, score: embScore + boost, _emb: embScore, _kw: boost };
     })
     .sort((a, b) => b.score - a.score)
     .slice(0, k)
     .map(({ vec, _emb, _kw, ...rest }) => rest);
 
-  const papers = scored(paperEmbeddings.papers || [], 8);
+  const papers = scored(paperEmbeddings.papers || [], 8, 10);  // +10 boost for papers
 
   return {
     datasets: scored(embeddings.datasets, 5),
@@ -122,12 +122,19 @@ async function assistant(query, history, apiKey, model) {
   // 1. Embedding search
   const vec = await embedQuery(query, embedKey);
   const results = search(vec, query);
-  const allResults = [
+  // Merge all results, but ensure papers get at least 2 slots
+  const datasetResults = [
     ...results.datasets.map(d => ({ ...d, type: 'dataset' })),
     ...results.standards.map(s => ({ ...s, type: 'standard' })),
     ...results.tools.map(t => ({ ...t, type: 'tool' })),
-    ...results.papers.map(p => ({ ...p, type: 'paper', name: p.title, notes: p.text })),
-  ].sort((a, b) => b.score - a.score).slice(0, 10);
+  ].sort((a, b) => b.score - a.score);
+
+  const paperResults = results.papers.map(p => ({ ...p, type: 'paper', name: p.title, notes: p.text }));
+
+  const allResults = [
+    ...datasetResults.slice(0, 8),
+    ...paperResults.slice(0, 2),  // Reserve 2 slots for papers
+  ].sort((a, b) => b.score - a.score);
 
   // 2. Build context for LLM
   const contextParts = allResults.map((r, i) => {
@@ -141,7 +148,7 @@ async function assistant(query, history, apiKey, model) {
 
   const systemPrompt = `你是 Superdata RobotAI 的 AI 助手，专门帮助用户从具身智能数据集导航站中找到合适的数据集、数据标准和工具/平台。
 
-网站收录 96 个数据集、22 个标准、18 个工具、90 篇论文知识库。
+网站收录 94 个数据集、22 个标准、18 个工具、122 篇论文知识库。
 
 根据用户的问题，以下是从数据库中检索到的最相关内容:
 
