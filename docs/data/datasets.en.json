@@ -6886,7 +6886,7 @@
     "type": "open",
     "links": {
       "official": "https://sites.google.com/view/cablerouting/home",
-      "paper": "https://arxiv.org/abs/2210.06679"
+      "paper": "https://arxiv.org/abs/2307.08927"
     },
     "notes": "Hierarchical imitation learning for cable routing through clips. Autonomous failure recovery. Interactive fine-tuning for new scenarios.",
     "description": "Berkeley Cable Routing is a precision manipulation dataset published by **UC Berkeley**.\n\nIt trains a robot to route cable through tightly-fitting clips using a hierarchical imitation learning framework — high-level sequencing of reusable visuomotor primitives and low-level precise execution. The system autonomously recovers from failures and adapts to new scenarios via interactive fine-tuning.",

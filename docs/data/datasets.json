@@ -6886,7 +6886,7 @@
     "type": "open",
     "links": {
       "official": "https://sites.google.com/view/cablerouting/home",
-      "paper": "https://arxiv.org/abs/2210.06679"
+      "paper": "https://arxiv.org/abs/2307.08927"
     },
     "notes": "分层模仿学习实现线缆穿夹。高层视觉运动原语排序 + 低层执行，自主故障恢复，交互式微调适应新场景。",
     "description": "Berkeley Cable Routing 是由 **UC Berkeley** 发布的线缆穿夹精密操作数据集。\n\n该数据集训练机器人将线缆穿过多个紧密排列的夹子，使用分层模仿学习框架——**高层**对可复用的视觉运动原语进行排序，**低层**执行精确操作。系统能自主从故障中恢复，并通过交互式微调适应新场景。\n\n该工作展示了仅需少量演示即可实现鲁棒精密操作的可行性。",
