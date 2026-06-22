@@ -53,13 +53,14 @@ function callBailian(texts) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
       model: 'text-embedding-v4',
-      input: { texts },
-      parameters: { text_type: 'document' },
+      input: texts,
+      dimensions: 2048,
+      encoding_format: 'float',
     });
 
     const req = https.request({
       hostname: 'dashscope.aliyuncs.com',
-      path: '/api/v1/services/embeddings/text-embedding/text-embedding',
+      path: '/compatible-mode/v1/embeddings',
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${DASHSCOPE_KEY}`,
@@ -72,7 +73,7 @@ function callBailian(texts) {
         try {
           const json = JSON.parse(data);
           if (json.code) return reject(new Error(`${json.code}: ${json.message}`));
-          resolve(json.output.embeddings.map(e => e.embedding));
+          resolve(json.data.map(d => d.embedding));
         } catch (e) { reject(e); }
       });
     });
