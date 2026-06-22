@@ -779,20 +779,30 @@ function buildAll(lang) {
         if (b.benchmarkId === ss.id) entries.push({ dataset: d, benchmark: b });
       });
     });
-    // Group by training dataset, best model per dataset
-    const byDataset = {};
+    // Group by training dataset (or model, if benchmark is MLLM eval)
+    const rankBy = ss.benchmarkMeta.rankBy || 'dataset';
+    const byKey = {};
     entries.forEach(e => {
-      const did = e.dataset.id;
-      if (!byDataset[did]) byDataset[did] = { dataset: e.dataset, bestScore: e.benchmark.score, bestModel: e.benchmark.model, bestSize: e.benchmark.modelSize, allResults: [] };
-      byDataset[did].allResults.push(e.benchmark);
-      if ((bm.higherIsBetter !== false && e.benchmark.score > byDataset[did].bestScore) ||
-          (bm.higherIsBetter === false && e.benchmark.score < byDataset[did].bestScore)) {
-        byDataset[did].bestScore = e.benchmark.score;
-        byDataset[did].bestModel = e.benchmark.model;
-        byDataset[did].bestSize = e.benchmark.modelSize;
+      const key = rankBy === 'model' ? e.benchmark.model : e.dataset.id;
+      if (!byKey[key]) byKey[key] = {
+        key: key,
+        dataset: e.dataset,
+        bestScore: e.benchmark.score,
+        bestModel: e.benchmark.model,
+        bestSize: e.benchmark.modelSize,
+        bestSuite: e.benchmark.suite,
+        allResults: []
+      };
+      byKey[key].allResults.push(e.benchmark);
+      if ((bm.higherIsBetter !== false && e.benchmark.score > byKey[key].bestScore) ||
+          (bm.higherIsBetter === false && e.benchmark.score < byKey[key].bestScore)) {
+        byKey[key].bestScore = e.benchmark.score;
+        byKey[key].bestModel = e.benchmark.model;
+        byKey[key].bestSize = e.benchmark.modelSize;
+        byKey[key].bestSuite = e.benchmark.suite;
       }
     });
-    const ranked = Object.values(byDataset).sort((a, b) =>
+    const ranked = Object.values(byKey).sort((a, b) =>
       (bm.higherIsBetter !== false ? 1 : -1) * (b.bestScore - a.bestScore)
     );
 
@@ -807,7 +817,9 @@ function buildAll(lang) {
       const rankClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
       rowsHTML += '<tr class="leaderboard-row" style="' + (i > 0 ? 'border-top:1px solid var(--border)' : '') + '">';
       rowsHTML += '<td class="leaderboard-rank ' + rankClass + '">' + (i + 1) + '</td>';
-      rowsHTML += '<td><a href="/datasets/' + esc(entry.dataset.id) + '/" class="leaderboard-ds-name">' + esc(entry.dataset.name) + '</a><div class="leaderboard-ds-org">' + esc(entry.dataset.institution || '') + '</div></td>';
+      rowsHTML += '<td>' + (rankBy === 'model'
+        ? '<span class="leaderboard-ds-name">' + esc(entry.key) + '</span><div class="leaderboard-ds-org">' + esc(entry.bestSuite || '') + '</div>'
+        : '<a href="/datasets/' + esc(entry.dataset.id) + '/" class="leaderboard-ds-name">' + esc(entry.dataset.name) + '</a><div class="leaderboard-ds-org">' + esc(entry.dataset.institution || '') + '</div>') + '</td>';
       rowsHTML += '<td><span class="leaderboard-model">' + esc(entry.bestModel) + '</span> <span class="leaderboard-model-size">(' + esc(entry.bestSize) + ')</span></td>';
       rowsHTML += '<td style="text-align:right"><div style="display:flex;align-items:center;gap:8px;justify-content:flex-end"><div class="leaderboard-score-bar"><div class="leaderboard-score-fill" style="width:' + pct + '%;background:' + barColor + '"></div></div><span class="leaderboard-score-val">' + entry.bestScore + (bm.unit || '%') + '</span></div></td>';
       rowsHTML += '</tr>';
@@ -829,10 +841,14 @@ function buildAll(lang) {
       meta: `<title>${esc(ss.name)} 排行榜 | Superdata RobotAI</title><meta name="description" content="${esc(ss.name)} benchmark leaderboard: ${ranked.length} training datasets ranked by best model score">`,
       nav: getActiveNav('benchmarks'),
       BENCHMARK_NAME: esc(ss.name),
-      BENCHMARK_DESC: isEn ? ('Ranking of training datasets by best model performance on ' + esc(ss.name) + '. Higher score = better training data for this benchmark.') : ('训练数据集在 ' + esc(ss.name) + ' 上的最佳模型性能排名。分数越高 = 该训练集在这个 benchmark 上越有效。'),
+      BENCHMARK_DESC: rankBy === 'model'
+        ? (isEn ? ('Model ranking on ' + esc(ss.name) + '. Higher score = better embodied AI capability.') : ('模型在 ' + esc(ss.name) + ' 上的排名。分数越高 = 具身智能能力越强。'))
+        : (isEn ? ('Ranking of training datasets by best model performance on ' + esc(ss.name) + '. Higher score = better training data for this benchmark.') : ('训练数据集在 ' + esc(ss.name) + ' 上的最佳模型性能排名。分数越高 = 该训练集在这个 benchmark 上越有效。')),
       BENCHMARK_METRIC: bm.metricEn || bm.metric || '成功率',
       BENCHMARK_UNIT: bm.unit || '%',
       BENCHMARK_ORG: esc(ss.org || ''),
+      BM_COL_TRAINING: rankBy === 'model' ? (isEn ? 'Model' : '模型') : (isEn ? 'Training Dataset' : '训练数据集'),
+      BM_COL_MODEL: rankBy === 'model' ? (isEn ? 'Best Suite Score' : '最佳套件得分') : (isEn ? 'Best Model' : '最佳模型'),
       LEADERBOARD_ROWS: rowsHTML,
     }));
   }

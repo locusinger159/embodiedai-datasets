@@ -1438,7 +1438,8 @@
       "metric": "成功率",
       "metricEn": "Success Rate",
       "unit": "%",
-      "higherIsBetter": true
+      "higherIsBetter": true,
+      "rankBy": "model"
     }
   }
 ]
