@@ -1412,5 +1412,33 @@
       "unit": "%",
       "higherIsBetter": true
     }
+  },
+  {
+    "id": "embodied-bench",
+    "name": "EmbodiedBench",
+    "fullName": "EmbodiedBench: Comprehensive Benchmarking for Embodied Agents",
+    "org": "UIUC / Northwestern / Purdue",
+    "type": "benchmark",
+    "openness": "open",
+    "links": {
+      "site": "https://arxiv.org/abs/2502.09560",
+      "paper": "https://arxiv.org/abs/2502.09560"
+    },
+    "desc": "EmbodiedBench is a comprehensive benchmark for evaluating MLLMs on embodied AI tasks. It integrates 4 simulation environments (EB-ALFRED/EB-Habitat/EB-Navigation/EB-Manipulation) and evaluates 6 core capabilities.",
+    "scene": [
+      "sim"
+    ],
+    "modalities": [
+      "视觉",
+      "语言",
+      "动作"
+    ],
+    "license": "MIT",
+    "benchmarkMeta": {
+      "metric": "成功率",
+      "metricEn": "Success Rate",
+      "unit": "%",
+      "higherIsBetter": true
+    }
   }
 ]
