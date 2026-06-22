@@ -132,7 +132,7 @@ async function assistant(query, history, apiKey, model) {
   const paperResults = results.papers.map(p => ({ ...p, type: 'paper', name: p.title, notes: p.text }));
 
   const allResults = [
-    ...datasetResults.slice(0, 8),
+    ...datasetResults.slice(0, 6),
     ...paperResults.slice(0, 2),  // Reserve 2 slots for papers
   ].sort((a, b) => b.score - a.score);
 
@@ -140,7 +140,7 @@ async function assistant(query, history, apiKey, model) {
   const contextParts = allResults.map((r, i) => {
     const icon = r.type === 'dataset' ? '📊' : r.type === 'standard' ? '📐' : r.type === 'tool' ? '🔧' : '📄';
     if (r.type === 'paper') {
-      return `[${i + 1}] ${icon} **${r.title?.substring(0, 100) || '未知论文'}**\n   类型: 学术论文\n   相关数据集: ${r.dataset || '通用'}\n   摘要: ${(r.text || '').substring(0, 200)}`;
+      return `[${i + 1}] ${icon} **${r.title?.substring(0, 80) || '未知论文'}**\n   类型: 学术论文\n   相关数据集: ${r.dataset || '通用'}\n   摘要: ${(r.text || '').substring(0, 150)}`;
     }
     return `[${i + 1}] ${icon} **${r.name}** (${r.institution || '未知机构'})\n   类型: ${r.type === 'dataset' ? '数据集' : r.type === 'standard' ? '数据标准' : '工具/平台'}\n   简介: ${(r.notes || '').substring(0, 150)}\n` +
       (r.id ? `   链接: https://superdata-robotai.com/${r.type === 'tool' ? 'tools' : 'datasets'}/${r.id}/\n` : '');
@@ -161,10 +161,13 @@ ${contextParts}
 4. 如有多个相关结果，做横向对比
 5. 用中文回复`;
 
-  // 3. Build messages
+  // 3. Build messages — strip system msgs + limit history to prevent overflow
+  const cleanHistory = (history || [])
+    .filter(m => m.role !== 'system')
+    .slice(-4);
   const messages = [
     { role: 'system', content: systemPrompt },
-    ...(history || []).slice(-6), // keep last 6 history messages
+    ...cleanHistory,
     { role: 'user', content: query },
   ];
 
@@ -180,11 +183,13 @@ ${contextParts}
       messages,
       max_tokens: 1200,
       temperature: 0.3,
+      max_input_tokens: 16000,
     }),
   });
 
   if (!resp.ok) {
     const err = await resp.text();
+    console.error(`DeepSeek API ${resp.status}: ${err.substring(0, 500)}`);
     throw new Error(`DeepSeek API ${resp.status}: ${err.substring(0, 200)}`);
   }
 
