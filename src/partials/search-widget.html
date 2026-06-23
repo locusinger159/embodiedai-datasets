@@ -77,6 +77,11 @@
     </div>
     <div class="search-panel-input">
       <input type="text" id="aiSearchInput" placeholder="描述你的需求，如：人形机器人双臂操作数据集..." />
+      <select id="aiModelSelect" style="width:auto;padding:0 8px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:var(--white);color:var(--text-primary);cursor:pointer;flex-shrink:0">
+        <option value="deepseek-v4-flash">DeepSeek V4 Flash</option>
+        <option value="deepseek-chat">DeepSeek V3</option>
+        <option value="deepseek-reasoner">DeepSeek R1</option>
+      </select>
       <button id="aiSearchSubmit">搜索</button>
     </div>
     <div class="search-panel-body" id="aiSearchBody">
@@ -234,7 +239,7 @@
         var cres = await fetch(CHAT_API, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query: q, history: chatHistory.slice(0, -1) })
+          body: JSON.stringify({ query: q, history: chatHistory.slice(0, -1), model: document.getElementById('aiModelSelect').value })
         });
         if (!cres.ok) throw new Error('HTTP ' + cres.status);
         var cdata = await cres.json();

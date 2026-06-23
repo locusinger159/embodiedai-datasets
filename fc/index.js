@@ -257,7 +257,7 @@ const server = http.createServer(async (req, res) => {
         const apiKey = process.env.DEEPSEEK_API_KEY;
         if (!apiKey) { json(res, 500, { error: 'DEEPSEEK_API_KEY not configured' }); return; }
 
-        const result = await assistant(query, parsed.history, apiKey, process.env.DEEPSEEK_MODEL);
+        const result = await assistant(query, parsed.history, apiKey, parsed.model || process.env.DEEPSEEK_MODEL);
         json(res, 200, { ...result, query });
         return;
       }
