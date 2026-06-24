@@ -194,7 +194,6 @@ document.getElementById('searchInput').addEventListener('keypress',function(e){i
 document.querySelectorAll('.view-btn').forEach(function(b){b.addEventListener('click',function(){state.view=this.dataset.view;document.querySelectorAll('.view-btn').forEach(function(x){x.classList.remove('active')});this.classList.add('active');update()});if(b.dataset.view===state.view){b.classList.add('active');b.parentElement.querySelectorAll('.view-btn').forEach(function(x){if(x!==b)x.classList.remove('active')})}});
 document.getElementById('selectAll').addEventListener('change',function(){var f=filterData();if(this.checked)f.forEach(function(s){selectedIds.add(s.id)});else selectedIds.clear();updateCompareBar();update()});
 document.getElementById('compareModal').addEventListener('click',function(e){if(e.target===this)closeCompare()});
-window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>50?'rgba(11,15,26,0.95)':'rgba(11,15,26,0.85)';n.style.boxShadow=y>50?'0 4px 20px rgba(0,0,0,0.3)':'none'});
 
 update();
 </script>

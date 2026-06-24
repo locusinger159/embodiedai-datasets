@@ -91,7 +91,6 @@ GitHub 链接：
 <script>
 document.querySelectorAll('.method-tab').forEach(function(t){t.addEventListener('click',function(){var m=this.dataset.method;document.querySelectorAll('.method-tab').forEach(function(x){x.classList.remove('active')});this.classList.add('active');document.querySelectorAll('.method-content').forEach(function(x){x.classList.remove('active')});document.getElementById(m+'-content').classList.add('active')})});
 function copyEmail(){navigator.clipboard.writeText('embodisets@163.com').then(function(){var b=document.querySelector('.copy-btn');var t=b.querySelector('.copy-text');b.classList.add('copied');t.textContent='已复制';setTimeout(function(){b.classList.remove('copied');t.textContent='复制邮箱'},2000)})}
-window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>50?'rgba(11,15,26,0.95)':'rgba(11,15,26,0.85)';n.style.boxShadow=y>50?'0 4px 20px rgba(0,0,0,0.3)':'none'})
 </script>
 </body>
 </html>

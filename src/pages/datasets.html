@@ -167,8 +167,6 @@ function closeCompareDS(){document.getElementById('compareModalDS').classList.re
 document.getElementById('selectAllDS').addEventListener('change',function(){var f=filterData();if(this.checked)f.forEach(function(d){selectedDS.add(d.id)});else selectedDS.clear();updateCompareBarDS();update()});
 document.getElementById('compareModalDS').addEventListener('click',function(e){if(e.target===this)closeCompareDS()});
 
-window.addEventListener('scroll',function(){var n=document.querySelector('.navbar'),y=window.scrollY;n.style.background=y>50?'rgba(11,15,26,0.95)':'rgba(11,15,26,0.85)';n.style.boxShadow=y>50?'0 4px 20px rgba(0,0,0,0.3)':'none'});
-
 update();
 </script>
 </body>

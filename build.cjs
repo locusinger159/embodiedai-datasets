@@ -562,7 +562,7 @@ function buildAll(lang) {
     meta: `<title>${ui.siteTitle}</title><meta name="description" content="${ui.siteDesc}"><meta name="keywords" content="具身智能,机器人数据集,人形机器人,机械臂,开源数据集,机器人学习"><meta property="og:title" content="${ui.siteTitle}"><meta property="og:description" content="${ui.siteDesc}"><meta property="og:type" content="website">`,
     nav: getActiveNav('home'),
     STAT_TOTAL: String(totalDatasets), STAT_ORGS: String(allOrgs.size), STAT_TYPES: String(allRobotTypes.size), STAT_STANDARDS: String(totalStandards),
-    PARTNERS: partnerNames.map(n => `<span class="partner-item">${n}</span>`).join('\n'),
+    PARTNERS_MARQUEE: partnerNames.concat(partnerNames).map(n => `<span class="partner-item">${n}</span>`).join('\n'),
     BLOG_CARDS: blogCardsHTML
   }));
 
