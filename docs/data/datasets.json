@@ -8950,7 +8950,7 @@
     "type": "open",
     "links": {
       "huggingface": "https://huggingface.co/datasets/lerobot/xarm_lift_medium",
-      "paper": "https://arxiv.org/abs/2202.00767"
+      "paper": "https://arxiv.org/abs/2203.04955"
     },
     "notes": "xArm 7-DoF 机械臂仿真数据集，基于 TD-MPC (ICML 2022)。LeRobot 生态内置 benchmark 之一，84×84 RGB + 4 维状态 + 3 维动作。",
     "description": "xArm 提升操作数据集是 LeRobot 生态中的仿真机械臂操作数据集。基于 TD-MPC (Temporal Difference Learning for Model Predictive Control, ICML 2022) 论文，使用 xArm 7-DoF 机械臂在仿真环境中执行物体提升 (lifting) 操作。包含 800 个 episode，约 20,000 帧，观测为 84×84 RGB 图像 + 4 维本体状态，动作为 3 维末端控制，以 LeRobot 标准 Parquet 格式存储。",
