@@ -57,8 +57,8 @@ embodiedai-datasets/
 │       ├── formats.html           #   格式全景图
 │       └── standard-proposal.html #   标准草案
 ├── docs/data/
-│   ├── datasets.json / datasets.en.json       # 63 个数据集
-│   ├── standards.json / standards.en.json     # 19 个标准
+│   ├── datasets.json / datasets.en.json       # 94 个数据集
+│   ├── standards.json / standards.en.json     # 23 个标准
 │   ├── tools.json / tools.en.json             # 18 个工具
 │   └── blog.json                              # 博客文章
 ├── src/pages/
@@ -131,6 +131,16 @@ embodiedai-datasets/
 - 🔀 Pull Request：直接编辑 `docs/data/datasets.json`
 
 ## 版本记录
+
+### v2.14 (2026-06-24)
+
+- 🎨 **UI 全面视觉升级** — Hero 区域 Mesh 渐变光球 + 点阵纹理替代旧粒子动画，首页 feature 卡片带序号角标 + 彩色顶条 + stagger 逐帧渐入
+- 🏃 **合作机构跑马灯** — 底部机构列表改为无限滚动，hover 暂停，两侧渐变遮罩
+- ⬆️ **返回顶部按钮** — 左下角固定按钮，滚动 >500px 出现，IntersectionObserver 驱动渐入动画
+- 🧭 **Navbar 增强** — 毛玻璃 saturate 强化 + 滚动背景加深脚本集中化（从 10 个页面收敛到 footer 单处）
+- 📄 **详情页微交互** — 信息卡片 + 相关数据集卡片 hover 渐变顶条，changelog 时间轴渐变色 + 首节点脉冲动画
+- ♿ **无障碍支持** — `prefers-reduced-motion` 媒体查询，尊重系统动画偏好
+- 🧹 **代码清理** — 删除 10 个页面中的重复内联 navbar 脚本、旧粒子动画 CSS 残留、未使用 CSS 变量、废弃 partners-grid 样式
 
 ### v2.13 (2026-06-22)
 
