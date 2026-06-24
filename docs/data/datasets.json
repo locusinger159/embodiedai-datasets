@@ -5832,7 +5832,7 @@
         "suite": "FurnitureBench (9 tasks, low random)",
         "model": "IQL-R3M",
         "modelSize": "—",
-        "score": 40.0,
+        "score": 40,
         "metric": "success_rate",
         "metricLabel": "成功率",
         "unit": "%",
@@ -5848,7 +5848,7 @@
         "suite": "FurnitureBench (9 tasks, low random)",
         "model": "BC-ResNet18",
         "modelSize": "—",
-        "score": 25.0,
+        "score": 25,
         "metric": "success_rate",
         "metricLabel": "成功率",
         "unit": "%",
@@ -6390,7 +6390,7 @@
         "suite": "EB-Habitat",
         "model": "GPT-4o",
         "modelSize": "—",
-        "score": 59.0,
+        "score": 59,
         "metric": "success_rate",
         "metricLabel": "成功率",
         "unit": "%",
@@ -6438,7 +6438,7 @@
         "suite": "EB-ALFRED",
         "model": "GPT-4o-mini",
         "modelSize": "—",
-        "score": 24.0,
+        "score": 24,
         "metric": "success_rate",
         "metricLabel": "成功率",
         "unit": "%",
@@ -6534,7 +6534,7 @@
         "suite": "EB-Navigation",
         "model": "Claude-3.7-Sonnet",
         "modelSize": "—",
-        "score": 50.0,
+        "score": 50,
         "metric": "success_rate",
         "metricLabel": "成功率",
         "unit": "%",
@@ -6566,7 +6566,7 @@
         "suite": "EB-ALFRED",
         "model": "Claude-3.5-Sonnet",
         "modelSize": "—",
-        "score": 64.0,
+        "score": 64,
         "metric": "success_rate",
         "metricLabel": "成功率",
         "unit": "%",
@@ -6582,7 +6582,7 @@
         "suite": "EB-Habitat",
         "model": "Claude-3.5-Sonnet",
         "modelSize": "—",
-        "score": 68.0,
+        "score": 68,
         "metric": "success_rate",
         "metricLabel": "成功率",
         "unit": "%",
@@ -6854,7 +6854,7 @@
         "suite": "EB-Navigation",
         "model": "Qwen-VL-Max",
         "modelSize": "—",
-        "score": 50.0,
+        "score": 50,
         "metric": "success_rate",
         "metricLabel": "成功率",
         "unit": "%",
@@ -6870,7 +6870,7 @@
         "suite": "EB-Manipulation",
         "model": "Qwen-VL-Max",
         "modelSize": "—",
-        "score": 18.0,
+        "score": 18,
         "metric": "success_rate",
         "metricLabel": "成功率",
         "unit": "%",
@@ -8628,5 +8628,974 @@
     "github": "https://github.com/IDEA-Research/Motion-X",
     "huggingface": "",
     "benchmarks": []
+  },
+  {
+    "id": "g1-camera-packaging",
+    "name": "G1 摄像头包装数据集",
+    "institution": "宇树科技 (Unitree Robotics)",
+    "scale": "未明确轨迹数，3视角 RGB 视频",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "RGB",
+      "状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "huggingface": "https://huggingface.co/datasets/unitreerobotics/G1_CameraPackaging_Dataset",
+      "github": "https://github.com/unitreerobotics/avp_teleoperate"
+    },
+    "notes": "Unitree G1 人形机器人 + Dex3-1 三指灵巧手，Apple Vision Pro 遥操作采集。头部立体摄像头 + 左右手腕 RealSense D405，分辨率 640×480。宇树开源的 5 大 G1 操作数据集之一。",
+    "description": "G1 摄像头包装数据集由**宇树科技 (Unitree Robotics)** 于 2024 年底开源。使用配备三指灵巧手 (Dex3-1) 的 Unitree G1 人形机器人，通过 **Apple Vision Pro** 遥操作收集。包含 3 路摄像头（头部立体 + 左右手腕各一个 RealSense D405），分辨率为 640×480。任务为将摄像头放入包装盒的精细操作，是宇树 G1 全系列 5 大开源数据集之一。",
+    "license": "Apache 2.0",
+    "year": 2024,
+    "dataFormat": "LeRobot / Parquet",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "真机实测",
+      "hasSplit": false
+    },
+    "tags": [
+      "遥操作",
+      "灵巧手",
+      "LeRobot",
+      "人形机器人",
+      "双臂"
+    ],
+    "citation": {
+      "year": 2024,
+      "venue": "HuggingFace"
+    }
+  },
+  {
+    "id": "g1-dex1-red-gripper",
+    "name": "G1 Dex1 红夹爪桌面操作数据集",
+    "institution": "宇树科技 (Unitree Robotics)",
+    "scale": "约 17 万帧，351 个 episode",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "RGB",
+      "状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "huggingface": "https://huggingface.co/datasets/unitreerobotics/G1_Dex1_MountCameraRedGripper_Dataset",
+      "github": "https://github.com/unitreerobotics/avp_teleoperate"
+    },
+    "notes": "G1 搭载 Dex1 三指红色夹爪与头戴双目相机，执行多种桌面操作任务。17 万帧操作数据，涵盖物品抓取与放置。",
+    "description": "该数据集由宇树科技发布，Unitree G1 人形机器人搭载 Dex1 三指红色夹爪与头戴双目相机，通过遥操作采集多种桌面操作任务的演示数据。总计约 17 万帧，351 个 episode，是 G1 系列数据集中规模较大的之一。数据格式为 LeRobot 兼容的 Parquet，可直接用于模仿学习训练。",
+    "license": "Apache 2.0",
+    "year": 2024,
+    "dataFormat": "LeRobot / Parquet",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "真机实测",
+      "hasSplit": false
+    },
+    "tags": [
+      "遥操作",
+      "LeRobot",
+      "人形机器人",
+      "桌面操作"
+    ],
+    "citation": {
+      "year": 2024,
+      "venue": "HuggingFace"
+    }
+  },
+  {
+    "id": "g1-dex1-mount-camera",
+    "name": "G1 Dex1 头戴相机操作数据集",
+    "institution": "宇树科技 (Unitree Robotics)",
+    "scale": "351 episodes, 389,708 帧, 1,404 个视频",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "RGB",
+      "状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "huggingface": "https://huggingface.co/datasets/unitreerobotics/G1_Dex1_MountCamera_Dataset",
+      "github": "https://github.com/unitreerobotics/avp_teleoperate"
+    },
+    "notes": "G1 全系列最大的单数据集，389K 帧 + 1404 视频，30fps。覆盖多种桌面操作任务。",
+    "description": "该数据集是宇树 G1 系列中规模最大的单数据集，包含 351 个 episode、389,708 帧图像和 1,404 个视频，帧率为 30fps。使用 Dex1 三指灵巧手与头戴双目相机采集，覆盖多种桌面操作任务，数据格式为 LeRobot 标准 Parquet。",
+    "license": "Apache 2.0",
+    "year": 2024,
+    "dataFormat": "LeRobot / Parquet",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "真机实测",
+      "hasSplit": false
+    },
+    "tags": [
+      "遥操作",
+      "LeRobot",
+      "人形机器人",
+      "桌面操作"
+    ],
+    "citation": {
+      "year": 2024,
+      "venue": "HuggingFace"
+    }
+  },
+  {
+    "id": "g1-block-stacking",
+    "name": "G1 三色积木堆叠数据集",
+    "institution": "宇树科技 (Unitree Robotics)",
+    "scale": "未明确，三视角 RGB+状态+动作",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "RGB",
+      "状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "huggingface": "https://huggingface.co/datasets/unitreerobotics/G1_BlockStacking_Dataset",
+      "github": "https://github.com/unitreerobotics/avp_teleoperate"
+    },
+    "notes": "G1 搭载三指灵巧手，堆叠红/黄/绿三色木块。3 路摄像头：头部立体 + 左右手腕。宇树 5 大 G1 数据集之一。",
+    "description": "G1 三色积木堆叠数据集由宇树科技发布，使用配备三指灵巧手 (Dex3-1) 的 Unitree G1 人形机器人，通过 Apple Vision Pro 遥操作采集。任务为堆叠红色、黄色和绿色木块，使用三路摄像头（头部立体 + 左右手腕各一个）提供多视角观测。是宇树 G1 系列 5 大开源操作数据集之一。",
+    "license": "Apache 2.0",
+    "year": 2024,
+    "dataFormat": "LeRobot / Parquet",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "真机实测",
+      "hasSplit": false
+    },
+    "tags": [
+      "遥操作",
+      "灵巧手",
+      "LeRobot",
+      "人形机器人"
+    ],
+    "citation": {
+      "year": 2024,
+      "venue": "HuggingFace"
+    }
+  },
+  {
+    "id": "z1-dual-dex1-stack-box",
+    "name": "Z1 双臂 Dex1 堆箱数据集",
+    "institution": "宇树科技 (Unitree Robotics)",
+    "scale": "未明确轨迹数，Parquet 格式",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "RGB",
+      "状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "huggingface": "https://huggingface.co/datasets/unitreerobotics/Z1_Dual_Dex1_StackBox_Dataset_V2"
+    },
+    "notes": "宇树 Z1 双臂机器人搭载 Dex1 灵巧手执行堆箱任务。V2 版本，数据质量较第一版有显著提升。",
+    "description": "Z1 双臂 Dex1 堆箱数据集由宇树科技发布，使用 Z1 双臂机器人搭载 Dex1 灵巧手执行箱子堆叠任务。数据集为 V2 改进版本，相比第一版在数据质量和任务多样性上有显著提升。数据以 LeRobot 兼容的 Parquet 格式存储，可直接用于模仿学习和强化学习训练。",
+    "license": "Apache 2.0",
+    "year": 2024,
+    "dataFormat": "LeRobot / Parquet",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "真机实测",
+      "hasSplit": false
+    },
+    "tags": [
+      "遥操作",
+      "LeRobot",
+      "双臂",
+      "灵巧手"
+    ],
+    "citation": {
+      "year": 2024,
+      "venue": "HuggingFace"
+    }
+  },
+  {
+    "id": "z1-dual-dex1-cleanup-pencils",
+    "name": "Z1 双臂 Dex1 清理铅笔数据集",
+    "institution": "宇树科技 (Unitree Robotics)",
+    "scale": "未明确轨迹数，Parquet 格式",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "RGB",
+      "状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "huggingface": "https://huggingface.co/datasets/unitreerobotics/Z1_Dual_Dex1_CleanupPencils_Dataset"
+    },
+    "notes": "宇树 Z1 双臂机器人执行铅笔清理和收纳任务。精细操作场景，适合灵巧操作研究。",
+    "description": "Z1 双臂 Dex1 清理铅笔数据集由宇树科技发布，Z1 双臂机器人搭载 Dex1 灵巧手执行铅笔清理和收纳任务。数据集聚焦精细操作场景，对灵巧手控制和双臂协调提出了较高要求，适合用于灵巧操作和双臂协作的模仿学习研究。",
+    "license": "Apache 2.0",
+    "year": 2024,
+    "dataFormat": "LeRobot / Parquet",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "真机实测",
+      "hasSplit": false
+    },
+    "tags": [
+      "遥操作",
+      "LeRobot",
+      "双臂",
+      "灵巧手",
+      "精细操作"
+    ],
+    "citation": {
+      "year": 2024,
+      "venue": "HuggingFace"
+    }
+  },
+  {
+    "id": "g1-dual-arm-grasping",
+    "name": "G1 双臂抓取数据集",
+    "institution": "宇树科技 (Unitree Robotics)",
+    "scale": "未明确轨迹数",
+    "robotType": [
+      "人形机器人"
+    ],
+    "task": [
+      "抓取"
+    ],
+    "modality": [
+      "RGB",
+      "状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "huggingface": "https://huggingface.co/datasets/unitreerobotics/UnitreeG1_DualArmGrasping",
+      "github": "https://github.com/unitreerobotics/avp_teleoperate"
+    },
+    "notes": "G1 人形机器人双臂灵巧手抓取红色木块。遥操作采集，头部双目视觉。",
+    "description": "G1 双臂抓取数据集由宇树科技发布，Unitree G1 人形机器人通过遥操作执行双臂抓取红色木块任务。配备头部双目视觉系统和双臂灵巧手，是研究人形机器人双臂协调抓取的实用数据集。",
+    "license": "Apache 2.0",
+    "year": 2024,
+    "dataFormat": "LeRobot / Parquet",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "真机实测",
+      "hasSplit": false
+    },
+    "tags": [
+      "遥操作",
+      "LeRobot",
+      "人形机器人",
+      "双臂",
+      "抓取"
+    ],
+    "citation": {
+      "year": 2024,
+      "venue": "HuggingFace"
+    }
+  },
+  {
+    "id": "xarm-lift-medium",
+    "name": "xArm 提升操作数据集 (LeRobot)",
+    "institution": "LeRobot (HuggingFace)",
+    "scale": "800 episodes, 20,000 帧",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "RGB",
+      "状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "huggingface": "https://huggingface.co/datasets/lerobot/xarm_lift_medium",
+      "paper": "https://arxiv.org/abs/2202.00767"
+    },
+    "notes": "xArm 7-DoF 机械臂仿真数据集，基于 TD-MPC (ICML 2022)。LeRobot 生态内置 benchmark 之一，84×84 RGB + 4 维状态 + 3 维动作。",
+    "description": "xArm 提升操作数据集是 LeRobot 生态中的仿真机械臂操作数据集。基于 TD-MPC (Temporal Difference Learning for Model Predictive Control, ICML 2022) 论文，使用 xArm 7-DoF 机械臂在仿真环境中执行物体提升 (lifting) 操作。包含 800 个 episode，约 20,000 帧，观测为 84×84 RGB 图像 + 4 维本体状态，动作为 3 维末端控制，以 LeRobot 标准 Parquet 格式存储。",
+    "license": "Apache 2.0",
+    "year": 2022,
+    "dataFormat": "LeRobot / Parquet",
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": false
+    },
+    "tags": [
+      "仿真",
+      "LeRobot",
+      "TD-MPC",
+      "模仿学习"
+    ],
+    "citation": {
+      "year": 2022,
+      "venue": "ICML",
+      "bibtex": "@inproceedings{hansen2022tdmpc,\n  title={TD-MPC: Temporal Difference Learning for Model Predictive Control},\n  author={Hansen, Nicklas and Su, Hao and Wang, Xiaolong},\n  booktitle={ICML},\n  year={2022}\n}"
+    },
+    "vlaCompatible": [
+      "openvla"
+    ]
+  },
+  {
+    "id": "aloha-sim-insertion-scripted",
+    "name": "ALOHA 仿真插入数据集 (脚本版)",
+    "institution": "LeRobot (HuggingFace)",
+    "scale": "50 条轨迹, ~25,000 帧, 96×96 俯视 RGB",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "装配"
+    ],
+    "modality": [
+      "RGB",
+      "状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "huggingface": "https://huggingface.co/datasets/lerobot/aloha_sim_insertion_scripted"
+    },
+    "notes": "双臂 ALOHA 仿真环境，全部演示由确定性脚本自动生成（零人工）。50 条插头-插孔装配轨迹，~25K 帧 96×96 俯视图像。适合作为基线 benchmark。",
+    "description": "ALOHA 仿真插入数据集（脚本版）是 LeRobot 生态中的双臂 ALOHA 仿真数据集。所有演示轨迹均由确定性脚本自动生成，零人工参与。任务为双臂协作的插头-插孔精细装配，包含 50 条轨迹和约 25,000 帧 96×96 俯视 RGB 图像。数据以 LeRobot 标准格式存储，适合作为模仿学习算法的基准测试。",
+    "license": "Apache 2.0",
+    "year": 2024,
+    "dataFormat": "LeRobot / Parquet",
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": false
+    },
+    "tags": [
+      "仿真",
+      "LeRobot",
+      "ALOHA",
+      "双臂",
+      "装配",
+      "精细操作"
+    ],
+    "citation": {
+      "year": 2024,
+      "venue": "HuggingFace"
+    }
+  },
+  {
+    "id": "aloha-sim-insertion-human",
+    "name": "ALOHA 仿真插入数据集 (人类演示版)",
+    "institution": "LeRobot (HuggingFace)",
+    "scale": "50 条人类演示, ~25,000 帧, 96×96 俯视 RGB",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "装配"
+    ],
+    "modality": [
+      "RGB",
+      "状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "huggingface": "https://huggingface.co/datasets/lerobot/aloha_sim_insertion_human"
+    },
+    "notes": "双臂 ALOHA 仿真环境插头-插孔装配，50 条人类遥操作演示（对比脚本版）。更真实的操作变异性和执行风格。",
+    "description": "ALOHA 仿真插入数据集（人类演示版）是 LeRobot 生态中的双臂 ALOHA 仿真数据集，与脚本版形成对比。50 条轨迹均由人类遥操作演示采集，而非脚本自动生成，因此具有更真实的操作变异性和多样化的执行风格。任务为双臂协作的插头-插孔精细装配，包含约 25,000 帧 96×96 俯视 RGB 图像。适合与脚本版对比研究人类演示与自动演示对策略学习的影响。",
+    "license": "Apache 2.0",
+    "year": 2024,
+    "dataFormat": "LeRobot / Parquet",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "仿真",
+      "hasSplit": false
+    },
+    "tags": [
+      "仿真",
+      "LeRobot",
+      "ALOHA",
+      "双臂",
+      "装配",
+      "遥操作"
+    ],
+    "citation": {
+      "year": 2024,
+      "venue": "HuggingFace"
+    },
+    "vlaCompatible": [
+      "act"
+    ]
+  },
+  {
+    "id": "box-pnp-lerobot",
+    "name": "Box Pick-and-Place 数据集 (LeRobot)",
+    "institution": "LeRobot (HuggingFace)",
+    "scale": "100 episodes, 33,943 帧, 300 视频",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "抓取"
+    ],
+    "modality": [
+      "RGB",
+      "状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "huggingface": "https://huggingface.co/datasets/lerobot/box_pnp"
+    },
+    "notes": "LeRobot 格式机械臂 pick-and-place 基准数据集。100 条轨迹，30fps，含机器人动作、状态观测和多种图像观测。",
+    "description": "Box Pick-and-Place 是 LeRobot 生态中的机械臂拾取-放置基准数据集。包含 100 个 episode、33,943 帧和 300 个视频，帧率为 30fps。数据集以 Parquet 格式存储机器人动作、本体状态观测和多种图像观测，是一个结构良好的小规模模仿学习基准。",
+    "license": "Apache 2.0",
+    "year": 2024,
+    "dataFormat": "LeRobot / Parquet",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "真机实测",
+      "hasSplit": false
+    },
+    "tags": [
+      "LeRobot",
+      "抓取",
+      "模仿学习"
+    ],
+    "citation": {
+      "year": 2024,
+      "venue": "HuggingFace"
+    }
+  },
+  {
+    "id": "orange-cube-pnp-force",
+    "name": "Orange Cube Pick-and-Place 带力反馈数据集",
+    "institution": "LeRobot (HuggingFace)",
+    "scale": "100 episodes, 19,340 帧, 303 视频",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "抓取"
+    ],
+    "modality": [
+      "RGB",
+      "状态",
+      "动作",
+      "力触"
+    ],
+    "type": "open",
+    "links": {
+      "huggingface": "https://huggingface.co/datasets/lerobot/orange_cube_pnp_with_force"
+    },
+    "notes": "LeRobot 机械臂抓取橙色方块数据集，含力/力矩反馈信号。100 条轨迹，303 个视频。带力反馈的 pick-and-place 稀有基准。",
+    "description": "Orange Cube Pick-and-Place 带力反馈数据集是 LeRobot 生态中的一个特殊机械臂操作数据集。与常规 pick-and-place 数据集不同，它包含了力/力矩反馈信号，可用于训练力控策略。任务为抓取和放置橙色方块，包含 100 个训练 episode、19,340 帧和 303 个视频，以 LeRobot 标准 Parquet 格式存储。力反馈信号的加入使其成为研究接触-rich 操作的稀有基准。",
+    "license": "Apache 2.0",
+    "year": 2024,
+    "dataFormat": "LeRobot / Parquet",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "真机实测",
+      "hasSplit": false
+    },
+    "tags": [
+      "LeRobot",
+      "抓取",
+      "力反馈",
+      "模仿学习"
+    ],
+    "citation": {
+      "year": 2024,
+      "venue": "HuggingFace"
+    }
+  },
+  {
+    "id": "arctic",
+    "name": "ARCTIC 双臂灵巧手操作数据集",
+    "institution": "苏黎世联邦理工学院 (ETH Zurich)",
+    "scale": "2,100,000 帧 RGB, 10 名被试, 11 类关节物体, 339 段序列",
+    "robotType": [
+      "灵巧手"
+    ],
+    "task": [
+      "操作",
+      "交互"
+    ],
+    "modality": [
+      "RGB",
+      "3D手部网格",
+      "3D物体网格",
+      "接触标注"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://arctic.is.tue.mpg.de",
+      "paper": "https://arxiv.org/abs/2204.13662",
+      "github": "https://github.com/zc-alexfan/arctic"
+    },
+    "notes": "CVPR 2023。首个同时捕获双手 + SMPL-X 全身 + 关节物体 3D 标注的数据集。8 个固定视角 + 1 个第一人称视角，2800×2000 高分辨率。",
+    "description": "ARCTIC (ARticulated objeCTs in InteraCtion) 是苏黎世联邦理工学院 (ETH Zurich)、阿姆斯特丹大学和马普所于 CVPR 2023 发布的大规模双臂灵巧手-物体交互数据集。包含 2.1M 帧 RGB 图像（2800×2000 分辨率）、10 名被试、11 类关节物体（剪刀、笔记本电脑、翻盖手机等）和 339 段交互序列。使用 54 台 Vicon Vantage-16 红外相机做 MoCap，提供 MANO 手部 3D 网格、SMPL-X 全身姿态和关节物体 3D 网格的精确标注。该数据集推动了多个下游工作（ArtiGrasp、DexMachina、Text2HOI 等），是灵巧操作领域的核心基准。",
+    "license": "CC BY-NC 4.0",
+    "year": 2023,
+    "dataFormat": "自定义 (图像 + 3D标注)",
+    "quality": {
+      "collection": "多源聚合",
+      "annotation": "人工标注",
+      "realWorld": "真机实测",
+      "hasSplit": true
+    },
+    "tags": [
+      "灵巧手",
+      "双臂",
+      "3D标注",
+      "CVPR",
+      "ETH",
+      "运动捕捉"
+    ],
+    "citation": {
+      "year": 2023,
+      "venue": "CVPR",
+      "bibtex": "@inproceedings{fan2023arctic,\n  title={ARCTIC: A Dataset for Dexterous Bimanual Hand-Object Manipulation},\n  author={Fan, Zicong and Taheri, Omid and Tzionas, Dimitrios and Kocabas, Muhammed and Kaufmann, Manuel and Black, Michael J. and Hilliges, Otmar},\n  booktitle={CVPR},\n  year={2023}\n}"
+    }
+  },
+  {
+    "id": "molmoact-dataset",
+    "name": "MolmoAct 视觉-语言-动作数据集",
+    "institution": "Allen Institute for AI (Ai2)",
+    "scale": "10,000+ 条高质量 Franka 轨迹, 93 类任务, 15 个家居场景",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "交互",
+      "抓取"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "语言",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://allenai.org/blog/molmoact",
+      "paper": "https://arxiv.org/abs/2508.07917",
+      "github": "https://github.com/allenai/molmoact",
+      "huggingface": "https://huggingface.co/datasets/allenai/MolmoAct-Dataset"
+    },
+    "notes": "Allen AI 2025 年发布的百万级 VLA 数据集。三阶段推理架构（感知→规划→控制），LeRobot 格式，Apache 2.0 完全开源。MolmoAct-7B 在 LIBERO 达 86.6%，在 SimplerEnv 达 70.5%。",
+    "description": "MolmoAct 是 Allen Institute for AI (Ai2) 于 2025 年发布的大规模视觉-语言-动作 (VLA) 数据集，配套 MolmoAct 动作推理模型。数据集包含 10,000+ 条高质量单臂 Franka 机器人轨迹，覆盖 93 个独特操作任务和 15 个家居场景（厨房、浴室、卧室、客厅、桌面等）。数据以 LeRobot 格式发布，Apache 2.0 完全开源。MolmoAct-7B 模型在 LIBERO benchmark 上达到 86.6% 平均成功率，在 SimplerEnv 零样本评估达 70.5%。Ai2 后续还发布了 MolmoAct 2，新增 700+ 小时双臂操作数据。",
+    "license": "Apache 2.0",
+    "year": 2025,
+    "dataFormat": "LeRobot",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "真机实测",
+      "hasSplit": true
+    },
+    "tags": [
+      "VLA",
+      "LeRobot",
+      "Franka",
+      "家居",
+      "开源大模型",
+      "多模态"
+    ],
+    "citation": {
+      "year": 2025,
+      "venue": "arXiv",
+      "bibtex": "@article{deng2025molmoact,\n  title={MolmoAct: Action Reasoning Models that can Reason in Space},\n  author={Deng, Yuquan and others},\n  journal={arXiv preprint arXiv:2508.07917},\n  year={2025}\n}"
+    },
+    "vlaCompatible": [
+      "openvla"
+    ]
+  },
+  {
+    "id": "dexcap",
+    "name": "DexCap 灵巧手数据手套采集系统与数据集",
+    "institution": "斯坦福大学 (Stanford University)",
+    "scale": "90 分钟操作演示（擦拭 30min + 包装 60min）",
+    "robotType": [
+      "灵巧手"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "3D手部姿态",
+      "6-DoF腕部姿态"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://dex-cap.github.io",
+      "paper": "https://arxiv.org/abs/2403.07788",
+      "github": "https://github.com/j96w/DexCap",
+      "huggingface": "https://huggingface.co/datasets/chenwangj/DexCap-Data"
+    },
+    "notes": "RSS 2024。便携式手部动作捕捉系统：EMF 手套 + 腕部 SLAM 相机 + 胸部 RGB-D LiDAR。60Hz 实时采集，含 DexIL 模仿学习基线。CC BY 4.0。",
+    "description": "DexCap 是斯坦福大学 The Movement Lab 和 Vision and Learning Lab 于 RSS 2024 发布的便携式灵巧手动作捕捉系统与数据集。硬件系统由三部分组成：EMF (电磁场) 手套追踪手指关节、腕部 RealSense T265 + SLAM 追踪 6-DoF 腕部姿态、胸部 RGB-D LiDAR 相机捕获 3D 环境。支持 60Hz 实时数据流，可在任意真实环境中采集。数据集包含擦拭 (30 分钟) 和包装 (60 分钟) 两个任务的人类演示，提供 raw .zip + 处理后的 .hdf5 (robomimic 兼容) 两种格式。配套 DexIL 算法通过逆运动学将人手重定向到机器人手，并训练基于点云的 Diffusion Policy。CC BY 4.0 开源。",
+    "license": "CC BY 4.0",
+    "year": 2024,
+    "dataFormat": "HDF5 (robomimic) / ZIP",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "真机实测",
+      "hasSplit": false
+    },
+    "tags": [
+      "灵巧手",
+      "运动捕捉",
+      "RSS",
+      "Stanford",
+      "Diffusion Policy",
+      "遥操作"
+    ],
+    "citation": {
+      "year": 2024,
+      "venue": "RSS",
+      "bibtex": "@article{wang2024dexcap,\n  title={DexCap: Scalable and Portable Mocap Data Collection System for Dexterous Manipulation},\n  author={Wang, Chen and Shi, Haochen and Wang, Weizhuo and Zhang, Ruohan and Fei-Fei, Li and Liu, C. Karen},\n  journal={arXiv preprint arXiv:2403.07788},\n  year={2024},\n  note={RSS 2024}\n}"
+    }
+  },
+  {
+    "id": "bridgevla",
+    "name": "BridgeVLA 3D 操作数据集",
+    "institution": "字节跳动 (ByteDance)",
+    "scale": "未明确轨迹数，3D 点云投影 + 自然语言指令",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "3D点云",
+      "语言",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://aihub.caict.ac.cn/datasets/bytedance-doubao/BridgeVLA",
+      "paper": "https://arxiv.org/abs/2506.07961"
+    },
+    "notes": "字节跳动 BridgeVLA 模型配套数据集。将 3D 点云投影为 2D 图像并结合自然语言指令，面向机器人 3D 操作任务的 VLA 训练。",
+    "description": "BridgeVLA 是字节跳动 (ByteDance) 于 2025 年发布的 VLA 模型 BridgeVLA 的配套数据集。该数据集的核心创新在于将 3D 点云投影为 2D 图像表示，并结合自然语言指令进行训练，实现了高效的 3D 操作学习。BridgeVLA 模型在输入-输出对齐上采用独特设计，使 VLM 能直接输出机器人动作，在多个 3D 操作 benchmark 上取得优异表现。数据包含多视角 RGB、深度、3D 点云和语言指令，格式为 LeRobot 兼容。",
+    "license": "未明确",
+    "year": 2025,
+    "dataFormat": "LeRobot",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "真机实测",
+      "hasSplit": false
+    },
+    "tags": [
+      "VLA",
+      "3D操作",
+      "点云",
+      "字节跳动",
+      "视觉语言动作"
+    ],
+    "citation": {
+      "year": 2025,
+      "venue": "arXiv",
+      "bibtex": "@article{bridgevla2025,\n  title={BridgeVLA: Input-Output Alignment for Efficient 3D Manipulation Learning with Vision-Language Models},\n  author={ByteDance},\n  journal={arXiv preprint arXiv:2506.07961},\n  year={2025}\n}"
+    },
+    "vlaCompatible": [
+      "openvla"
+    ]
+  },
+  {
+    "id": "fastumi-100k",
+    "name": "FastUMI-100K 大规模多模态操作数据集",
+    "institution": "上海人工智能实验室",
+    "scale": "100,000+ 条演示轨迹, ~600 小时交互, 54 类任务",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "抓取",
+      "交互"
+    ],
+    "modality": [
+      "RGB",
+      "状态",
+      "动作",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "paper": "https://arxiv.org/abs/2510.08022",
+      "github": "https://github.com/MrKeee/FastUMI-100K"
+    },
+    "notes": "上海 AI Lab 联合多所高校 (西北工大/上交/同济/西交利物浦) 于 2025 年发布。UMI 风格数据集，10 万+ 演示、54 任务、数百种物体。多视角腕部鱼眼相机 + 末端状态 + 文本标注。",
+    "description": "FastUMI-100K 是由**上海人工智能实验室**联合西北工业大学、上海交通大学、同济大学、西交利物浦大学、星辰机器人和中电信人工智能研究院等单位于 2025 年发布的大规模多模态机器人操作数据集。该数据集基于 FastUMI 硬件解耦的传感器增强演示采集系统（替换了 GoPro 的 VIO 管线为 RealSense T265），包含超过 **10 万条演示轨迹**（约 600 小时交互数据），覆盖 **54 类操作任务**和数百种家居物品。每条轨迹长 120-500 帧，提供多视角腕部鱼眼图像、末端执行器状态和文本标注。数据集具身无关，可用于多种机器人平台的模仿学习。",
+    "license": "未明确",
+    "year": 2025,
+    "dataFormat": "LeRobot / 自定义",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "真机实测",
+      "hasSplit": true
+    },
+    "tags": [
+      "UMI",
+      "大规模",
+      "多任务",
+      "上海AI Lab",
+      "模仿学习",
+      "腕部相机"
+    ],
+    "citation": {
+      "year": 2025,
+      "venue": "arXiv",
+      "bibtex": "@article{liu2025fastumi,\n  title={FastUMI-100K: Advancing Data-driven Robotic Manipulation with a Large-scale UMI-style Dataset},\n  author={Liu, Kehui and Jia, Zhongjie and Li, Yang and others},\n  journal={arXiv preprint arXiv:2510.08022},\n  year={2025}\n}"
+    }
+  },
+  {
+    "id": "clvr-jaco-play",
+    "name": "CLVR Jaco Play 遥控机器人数据集",
+    "institution": "KAIST (韩国科学技术院)",
+    "scale": "1,085 段遥操作演示, ~14.87 GB",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "抓取"
+    ],
+    "modality": [
+      "RGB",
+      "状态",
+      "动作",
+      "语言"
+    ],
+    "type": "open",
+    "links": {
+      "github": "https://github.com/clvrai/clvr_jaco_play_dataset"
+    },
+    "notes": "KAIST CLVR Lab + USC 联合发布 (2023)。Kinova Jaco 2 机械臂遥操作，10Hz 采集，含自然语言目标描述。CC-BY-4.0。",
+    "description": "CLVR Jaco Play 数据集由 KAIST CLVR Lab（Joseph J. Lim 教授）和南加州大学 (USC) 于 2023 年联合发布。使用 Kinova Jaco 2 机械臂通过遥操作收集 **1,085 段**操作演示，数据频率为 10Hz，总大小约 14.87 GB。每段数据包含前向/顶部两路 RGB 相机观测、末端笛卡尔位姿与速度、关节位置，以及描述目标任务的**自然语言指令**。数据以 CC-BY-4.0 协议开源，通过 GitHub + Google Drive 分发。",
+    "license": "CC BY 4.0",
+    "year": 2023,
+    "dataFormat": "HDF5",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "真机实测",
+      "hasSplit": false
+    },
+    "tags": [
+      "遥操作",
+      "Kinova",
+      "KAIST",
+      "语言指令",
+      "模仿学习"
+    ],
+    "citation": {
+      "year": 2023,
+      "venue": "GitHub",
+      "bibtex": "@software{dass2023jacoplay,\n  author={Dass, Shivin and Yapeter, Jullian and Zhang, Jesse and Zhang, Jiahui and Pertsch, Karl and Nikolaidis, Stefanos and Lim, Joseph J.},\n  title={CLVR Jaco Play Dataset},\n  url={https://github.com/clvrai/clvr_jaco_play_dataset},\n  version={1.0.0},\n  year={2023}\n}"
+    }
+  },
+  {
+    "id": "rldg",
+    "name": "RLDG 强化学习蒸馏通用策略数据集",
+    "institution": "加州大学伯克利分校 (UC Berkeley)",
+    "scale": "多任务 RL 专家策略生成的高质量操作数据",
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "抓取"
+    ],
+    "modality": [
+      "RGB",
+      "状态",
+      "动作"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://generalist-distillation.github.io",
+      "paper": "https://arxiv.org/abs/2412.09858"
+    },
+    "notes": "RSS 2025 (Best Paper Finalist)。通过 RL 专家策略蒸馏生成高质量机器人通用策略训练数据，替代人类遥操作。",
+    "description": "RLDG (Robotic Generalist Policy Distillation via Reinforcement Learning) 是 UC Berkeley 于 RSS 2025 发表的工作（入选 Best Paper Finalist）。该工作的核心思想是用强化学习训练专家策略，然后通过这些专家策略自动生成高质量操作演示数据来训练通用策略，从而替代昂贵的人类遥操作数据收集。数据集覆盖多种机械臂操作和抓取任务，由 RL 专家自动生成，质量接近人类演示但成本大幅降低。是研究用 RL 扩展机器人数据的代表性工作。",
+    "license": "未明确",
+    "year": 2025,
+    "dataFormat": "自定义",
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "tags": [
+      "强化学习",
+      "策略蒸馏",
+      "RSS",
+      "Berkeley",
+      "通用策略"
+    ],
+    "citation": {
+      "year": 2025,
+      "venue": "RSS",
+      "bibtex": "@inproceedings{rldg2025,\n  title={RLDG: Robotic Generalist Policy Distillation via Reinforcement Learning},\n  author={UC Berkeley},\n  booktitle={RSS},\n  year={2025}\n}"
+    }
+  },
+  {
+    "id": "realdex",
+    "name": "RealDex 真实灵巧手抓取数据集",
+    "institution": "上海科技大学 (ShanghaiTech)",
+    "scale": "2,630 条抓取序列, ~59,000 抓取姿态, ~955K 帧",
+    "robotType": [
+      "灵巧手"
+    ],
+    "task": [
+      "抓取"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "3D点云",
+      "状态"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://4dvlab.github.io/RealDex_page/",
+      "paper": "https://arxiv.org/abs/2402.13853"
+    },
+    "notes": "IJCAI 2024。首个真实采集的灵巧手抓取数据集。UR10e + Shadow Hand (24DOF) + 4 Azure Kinect。52 种物体，955K 帧多视角 RGB-D。基于扩散模型 + MLLM 选择。",
+    "description": "RealDex 是上海科技大学 4DVLab（马月昕教授课题组）于 IJCAI 2024 (CCF-A) 发表的真实灵巧手抓取数据集。使用 UR10e 机械臂搭载 Shadow Right Hand (24 自由度、20 个电机) 灵巧手，配备 4 台 Azure Kinect RGB-D 相机多视角拍摄，人类通过 ShadowHand 遥操作手套实时操控。数据集包含 **52 种物体**的 **2,630 条抓取运动序列**、约 59,000 个抓取姿态和约 955K 帧 RGB-D 图像。该数据集采用扩散模型生成候选抓取姿态，再用 MLLM 选择最符合人类习惯的姿态，是首个真实采集的灵巧手抓取数据集。",
+    "license": "CC BY-NC 4.0",
+    "year": 2024,
+    "dataFormat": "自定义 (RGB-D + 3D 姿态)",
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "真机实测",
+      "hasSplit": true
+    },
+    "tags": [
+      "灵巧手",
+      "抓取",
+      "IJCAI",
+      "上海科大",
+      "ShadowHand",
+      "扩散模型",
+      "MLLM"
+    ],
+    "citation": {
+      "year": 2024,
+      "venue": "IJCAI",
+      "bibtex": "@inproceedings{realdex2024,\n  title={RealDex: Towards Human-like Grasping for Robotic Dexterous Hand},\n  author={ShanghaiTech 4DVLab},\n  booktitle={IJCAI},\n  year={2024},\n  doi={10.24963/ijcai.2024/758}\n}"
+    }
+  },
+  {
+    "id": "grand-tour",
+    "name": "GrandTour 野外四足机器人多模态数据集",
+    "institution": "苏黎世联邦理工学院 (ETH Zurich)",
+    "scale": "49 条任务序列, 室内/城市/工业/自然 4 类环境",
+    "robotType": [
+      "四足机器人"
+    ],
+    "task": [
+      "导航",
+      "运动控制"
+    ],
+    "modality": [
+      "RGB",
+      "深度",
+      "LiDAR",
+      "IMU",
+      "GNSS"
+    ],
+    "type": "open",
+    "links": {
+      "official": "https://grand-tour.leggedrobotics.com",
+      "paper": "https://arxiv.org/abs/2602.18164",
+      "github": "https://github.com/leggedrobotics/grand_tour_dataset",
+      "huggingface": "https://huggingface.co/datasets/leggedrobotics/grand_tour_dataset"
+    },
+    "notes": "ETH RSL 发布的全球最大野外四足机器人多模态数据集。ANYmal D + Boxi 传感器套件 (3 LiDAR + 10 RGB + 7 Depth + 8 IMU + GNSS/INS)。厘米级 RTK-GNSS 真值。",
+    "description": "GrandTour 是苏黎世联邦理工学院机器人系统实验室 (ETH RSL) 于 2026 年发布的大规模野外四足机器人多模态数据集。使用 ANYbotics ANYmal-D 四足机器人搭载自研 Boxi 多模态传感器套件，在 **49 条任务**中穿越室内、城市、工业和自然（阿尔卑斯山、森林、废墟）等多种环境，涵盖不同天气和光照条件。传感器配置包括 3 个 LiDAR、10 个 RGB 相机、7 个深度相机、8 个 IMU、12 个本体传感器和 GNSS/INS，真值由 RTK-GNSS + Leica 全站仪提供厘米级精度。数据以 Zarr 格式存储在 HuggingFace 上，是目前公开规模最大的野外四足机器人多模态数据集。",
+    "license": "CC BY 4.0",
+    "year": 2026,
+    "dataFormat": "Zarr",
+    "quality": {
+      "collection": "真机实测",
+      "annotation": "自动标注",
+      "realWorld": "真机实测",
+      "hasSplit": false
+    },
+    "tags": [
+      "四足机器人",
+      "SLAM",
+      "多模态",
+      "ETH",
+      "野外",
+      "导航",
+      "ANYmal"
+    ],
+    "citation": {
+      "year": 2026,
+      "venue": "arXiv (IJRR 在审)",
+      "bibtex": "@article{frey_tuna2026grandtour,\n  title={GrandTour: A Legged Robotics Dataset in the Wild for Multi-Modal Perception and State Estimation},\n  author={Frey, Jonas and Tuna, Turcan and Fu, Frank and Patterson, Katharine and Xu, Tianao and Fallon, Maurice and Cadena, Cesar and Hutter, Marco},\n  journal={arXiv preprint arXiv:2602.18164},\n  year={2026},\n  note={under review for IJRR}\n}"
+    }
   }
 ]

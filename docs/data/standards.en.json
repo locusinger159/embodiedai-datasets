@@ -1441,5 +1441,129 @@
       "higherIsBetter": true,
       "rankBy": "model"
     }
+  },
+  {
+    "id": "mfe-etp",
+    "name": "MFE-ETP",
+    "fullName": "Multi-modal Foundation models Evaluation for Embodied Task Planning",
+    "org": "天津大学智能与计算学部 + MILA",
+    "type": "benchmark",
+    "openness": "open",
+    "scene": [
+      "sim"
+    ],
+    "modalities": [
+      "RGB",
+      "语言",
+      "3D场景"
+    ],
+    "license": "未明确",
+    "desc": "**MFE-ETP** 是天津大学智能与计算学部联合蒙特利尔学习算法研究所 (MILA) 于 2024 年发布的多模态基础模型具身任务规划综合评估基准。\n\n包含 **1,184 个高质量测试案例**，覆盖 **100 个具身任务**，从 BEHAVIOR-100 和 VirtualHome 平台收集典型家庭任务数据并经人工精细化标注。评估维度包括：对象理解 (OU)、时空感知 (STP)、任务理解 (TU) 和具身推理 (ER) 四大能力。\n\n支持 6 种题型：开放词汇问答、单选、多选、排序、是非判断和规划问答。6 个 SOTA MLLM (BLIP-2/MiniGPT-4/InstructBLIP/GPT-4V/LLaVA-1.5/MiniCPM) 在所有维度上显著落后于人类水平，主要瓶颈为物体类型识别和空间感知。",
+    "links": {
+      "site": "https://mfe-etp.github.io",
+      "paper": "https://arxiv.org/abs/2407.05047"
+    },
+    "year": 2024,
+    "datasetIds": [],
+    "datasetCount": 0,
+    "requirements": {
+      "MUST": [
+        "覆盖 OU/STP/TU/ER 四大评估维度",
+        "100 个具身任务全覆盖",
+        "1,184 个测试案例完整标注"
+      ],
+      "SHOULD": [
+        "多模态基础模型零样本推理评测",
+        "支持 6 种题型评测"
+      ],
+      "MAY": [
+        "扩展到更多真实家庭场景"
+      ]
+    }
+  },
+  {
+    "id": "ewmbench",
+    "name": "EWMBench",
+    "fullName": "Embodied World Model Benchmark",
+    "org": "上海交通大学 + AgiBot + 新加坡国立大学 + 哈工大",
+    "type": "benchmark",
+    "openness": "open",
+    "scene": [
+      "real",
+      "sim"
+    ],
+    "modalities": [
+      "RGB",
+      "语言",
+      "动作",
+      "3D点云"
+    ],
+    "license": "CC BY-NC-SA 4.0",
+    "desc": "**EWMBench** 是 AgiBot、上海交通大学、新加坡国立大学和哈尔滨工业大学于 2025 年联合发布的具身世界模型评测基准（BMVC 2025）。\n\n基于 **AgiBot-World** 百万级真实机器人操作数据，精选 **300+ 组 720p 视频片段**，评估具身世界模型生成物理合理视频预测的能力。三维度评测：**视觉场景一致性**（DINOv2 微调 + patch embedding 余弦相似度）、**运动正确性**（对称 Hausdorff 距离 + 归一化 DTW + 动力学一致性 Wasserstein 距离）、**语义对齐与多样性**（MLLM captioning + BLEU/CLIP + 逻辑错误检测）。\n\n评测 7 个模型（OpenSora 2.0/LTX/COSMOS-7B/Kling-1.6/Hailuo/EnerVerse），领域适配模型 (EnerVerse 4.70/5) 显著优于商业模型。CC BY-NC-SA 4.0 开源。",
+    "links": {
+      "site": "https://github.com/AgibotTech/EWMBench",
+      "paper": "https://arxiv.org/abs/2505.09694",
+      "github": "https://github.com/AgibotTech/EWMBench"
+    },
+    "year": 2025,
+    "datasetIds": [
+      "agibot-world"
+    ],
+    "datasetCount": 1,
+    "requirements": {
+      "MUST": [
+        "视觉场景一致性 (DINOv2 patch similarity)",
+        "运动正确性 (HSD + nDTW + DYN)",
+        "语义对齐与多样性 (MLLM captioning + BLEU/CLIP)"
+      ],
+      "SHOULD": [
+        "30 个候选样本 × 4-10 原子子动作",
+        "10 类家庭/商业/工业任务"
+      ],
+      "MAY": [
+        "扩展到更多世界模型和任务类型"
+      ]
+    }
+  },
+  {
+    "id": "artvip",
+    "name": "ArtVIP",
+    "fullName": "Articulated-object digital assets with Visual realism, modular Interaction, and Physical fidelity",
+    "org": "北京人形机器人创新中心 + 北京市建筑设计研究院",
+    "type": "format",
+    "openness": "open",
+    "scene": [
+      "sim"
+    ],
+    "modalities": [
+      "3D模型",
+      "RGB",
+      "物理参数"
+    ],
+    "license": "Apache 2.0",
+    "desc": "**ArtVIP** 是北京人形机器人创新中心联合北京市建筑设计研究院于 2025 年发布的高保真铰接物体数字资产数据集（ICLR 2026）。\n\n初始版本含 **26 个类别 206 种高精度铰接物体**（v1.3 已扩展至 428 个），涵盖橱柜、烤箱、折叠椅、抽屉、电风扇、剪刀、冰箱、转椅、洗衣机等日常铰接结构。所有模型以 **USD (Universal Scene Description)** 格式发布，可直接导入 NVIDIA Isaac Sim。\n\n**三大特性：** 视觉保真度（精确几何网格 + 高分辨率纹理，CLIP 空间分布与真实世界对齐度提升 47%）、物理保真度（刚度/阻尼/摩擦力/质量/转动惯量/碰撞体积毫米级标定，冰箱门磁吸、转椅差速转向精确复现）、全场景交互（灯光开关、物体操作与环境的物理-视觉联动）。\n\n仅用仿真数据训练的 Diffusion Policy 零样本迁移至真实 Franka 开门成功率达 30%，混合少量真机数据后跃升至 80%。Apache 2.0 开源。",
+    "links": {
+      "site": "https://x-humanoid-artvip.github.io",
+      "paper": "https://arxiv.org/abs/2506.04941",
+      "github": "https://huggingface.co/datasets/X-Humanoid/ArtVIP"
+    },
+    "year": 2025,
+    "datasetIds": [],
+    "datasetCount": 0,
+    "requirements": {
+      "MUST": [
+        "26 类 206+ 铰接物体 USD 格式",
+        "视觉保真度: 精确几何网格 + 高分辨率纹理",
+        "物理保真度: 刚度/阻尼/摩擦力/碰撞体积毫米级标定"
+      ],
+      "SHOULD": [
+        "NVIDIA Isaac Sim 直接导入",
+        "6 个数字孪生场景 + 6 个可交互场景"
+      ],
+      "MAY": [
+        "扩展到 428+ 铰接物体 (v1.3)",
+        "增加更多家居场景"
+      ]
+    }
   }
 ]
