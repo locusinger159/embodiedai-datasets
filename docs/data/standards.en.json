@@ -1473,5 +1473,47 @@
         "支持人形机器人和灵巧手任务"
       ]
     }
+  },
+  {
+    "id": "bddl",
+    "name": "BDDL",
+    "fullName": "BEHAVIOR Domain Definition Language",
+    "org": "Stanford Vision and Learning Lab",
+    "type": "format",
+    "openness": "open",
+    "scene": [
+      "sim"
+    ],
+    "modalities": [
+      "3D模型",
+      "语言"
+    ],
+    "license": "CC BY 4.0",
+    "desc": "**BDDL (BEHAVIOR Domain Definition Language)** 是 Stanford Vision and Learning Lab 提出的面向具身智能任务的形式化定义语言，是 **BEHAVIOR Benchmark** 的核心任务规范格式。\n\nBDDL 基于**对象中心的谓词逻辑**，每个活动由三部分定义：(1) 分类对象列表（按 WordNet synset 标注），(2) 初始条件（空间关系如 、 + 物体状态如 、），(3) 目标条件（支持  及自定义量词 、）。\n\n**与 PDDL 的关键区别**：BDDL 不含动作符号，不做符号规划——它只定义「世界是什么样」和「成功长什么样」，具体怎么做到由 agent 决定。这种解耦设计使同一 BDDL 定义可生成无限多种具体场景实例（通过 iGibson 2.0 / OmniGibson 的自动采样）。\n\n**进度指标**：目标成功度由 satisfiable 逻辑文字比例计算，支持部分进度追踪（如「已经切好了苹果，但还没放到桌上」也算完成了一半）。\n\nBDDL 已在 **BEHAVIOR-1K**（1,000 个家居任务）中全面使用，并可通过形式化翻译到 Fiacre/nuXmv 进行安全关键行为的模型检查。",
+    "links": {
+      "site": "https://stanfordvl.github.io/behavior/activities.html",
+      "github": "https://github.com/StanfordVL/BEHAVIOR"
+    },
+    "year": 2021,
+    "datasetIds": [
+      "behavior-1k"
+    ],
+    "datasetCount": 1,
+    "requirements": {
+      "MUST": [
+        "基于对象中心的谓词逻辑",
+        "定义初始状态（空间关系 + 物体状态）和目标条件",
+        "支持逻辑运算符（∧ ∨ ¬ ∀ ∃）"
+      ],
+      "SHOULD": [
+        "支持部分进度追踪（逻辑文字 satisfiable 比例）",
+        "与 iGibson 2.0 / OmniGibson 仿真器集成",
+        "自动采样生成多样化场景实例"
+      ],
+      "MAY": [
+        "形式化验证（Fiacre/nuXmv 翻译）",
+        "支持自定义量词（for_n/for_pairs）"
+      ]
+    }
   }
 ]
