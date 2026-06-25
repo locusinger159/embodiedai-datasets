@@ -912,8 +912,8 @@
     "id": "libero-plus",
     "name": "LIBERO-Plus",
     "fullName": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
-    "org": "复旦大学 + 同济大学",
-    "institution": "复旦大学 + 同济大学",
+    "org": "复旦大学 / 同济大学",
+    "institution": "复旦大学 / 同济大学",
     "type": "benchmark",
     "openness": "open",
     "links": {
