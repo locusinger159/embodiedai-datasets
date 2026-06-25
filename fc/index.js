@@ -148,7 +148,7 @@ async function assistant(query, history, apiKey, model) {
 
   const systemPrompt = `你是 Superdata RobotAI 的 AI 助手，专门帮助用户从具身智能数据集导航站中找到合适的数据集、数据标准和工具/平台。
 
-网站收录 115 个数据集、26 个标准、18 个工具、137 篇论文知识库。
+网站收录 116 个数据集、28 个标准、18 个工具、137 篇论文知识库。
 
 根据用户的问题，以下是从数据库中检索到的最相关内容:
 

@@ -38,8 +38,8 @@
 
 | 维度 | 数量 |
 |------|------|
-| 数据集 | 94 |
-| 数据标准 / 评测基准 | 23 |
+| 数据集 | 116 |
+| 数据标准 / 评测基准 | 28 |
 | 工具 / 平台 | 18 |
 | Benchmark 排行榜 | 6（LIBERO / EmbodiedBench / CALVIN / RLBench / SimplerEnv / FurnitureBench） |
 | Benchmark 论文数据 | 61 条 |
@@ -119,7 +119,7 @@
    │        ↓
    │    调用百炼 text-embedding-v4 把 query 转向量
    │        ↓
-   │    与 fc/embeddings.json 中预计算的 94+23+18 条向量做余弦相似度
+   │    与 fc/embeddings.json 中预计算的 116+28+18 条向量做余弦相似度
    │        ↓
    │    关键词加权（robotType/task/modality 命中加分，上限 +20）
    │        ↓
@@ -139,8 +139,8 @@
 ```
 dist/                           # 中文站根
 ├── index.html                  # 首页
-├── datasets/                   # 数据集列表 + 94 个详情页
-├── standards/                  # 标准列表 + 23 个详情页
+├── datasets/                   # 数据集列表 + 116 个详情页
+├── standards/                  # 标准列表 + 28 个详情页
 ├── benchmarks/                 # 6 个排行榜
 ├── tools/                      # 工具列表 + 18 个详情页
 ├── recommend/                  # 反向推荐向导
@@ -165,9 +165,9 @@ embodiedai-datasets/
 ├── docs/
 │   ├── .vitepress/                 # VitePress 旧版残留（已弃用，保留兼容）
 │   ├── data/                       # ★ 核心数据源
-│   │   ├── datasets.json           # 94 个数据集（中文）
+│   │   ├── datasets.json           # 116 个数据集（中文）
 │   │   ├── datasets.en.json        # 英文镜像
-│   │   ├── standards.json          # 23 个标准 / 评测基准
+│   │   ├── standards.json          # 28 个标准 / 评测基准
 │   │   ├── standards.en.json
 │   │   ├── tools.json              # 18 个工具 / 平台
 │   │   ├── tools.en.json
@@ -272,7 +272,7 @@ finalScore = cosineSim(queryVec, itemVec) * 100
 
 | 脚本 | 语言 | 职责 |
 |------|------|------|
-| `embed.cjs` | Node.js | 调百炼 API 把 94 数据集 + 23 标准 + 18 工具转 2048 维向量，输出 `dist/embeddings.json` |
+| `embed.cjs` | Node.js | 调百炼 API 把 116 数据集 + 28 标准 + 18 工具转 2048 维向量，输出 `dist/embeddings.json` |
 | `embed-papers.cjs` | Node.js | 把 `papers_text.json` 中的论文分块批量嵌入，输出 `fc/embeddings_papers.json` |
 | `extract-papers.py` | Python | 用 PyMuPDF (`fitz`) 从 `papers/*.pdf` 抽文本，按 500 字分块（每篇最多 10 块），输出 `fc/papers_text.json` |
 | `validate.cjs` | Node.js | 6 大校验：JSON 解析 / 必填字段 / 跨语言 ID 一致性 / 年份覆盖 / 受控词汇 / URL 格式；可选 `--links` 跑 HTTP HEAD 检查 |
@@ -747,7 +747,7 @@ https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run
 
 #### 10.2.1 构建产物体积
 
-**现状**：94 个数据集详情页 × 平均 30KB = ~2.8MB，加上英文版共 ~6MB。
+**现状**：116 个数据集详情页 × 平均 30KB = ~2.8MB，加上英文版共 ~6MB。
 
 **建议**：
 
@@ -859,7 +859,7 @@ https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run
 项目当前是**纯公益开源项目**，许可证为 CC BY-NC-SA 4.0（数据）+ AGPL-3.0（代码），明确禁止商业使用。这形成了：
 
 **优势**：
-- 数据集质量高（94 条人工精选 + 虚构扫描）
+- 数据集质量高（116 条人工精选 + 虚构扫描）
 - 已建立专家品牌（v2.13，3 个月迭代 13 版）
 - 独家内容壁垒：137 篇论文知识库、6 个 Benchmark 排行榜、VLA 兼容性标注
 - AI 搜索 + 反向推荐形成差异化
@@ -897,7 +897,7 @@ https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run
 **产品 1：企业数据集选型咨询**
 
 - 企业场景：机器人公司需要选数据集训练 VLA，但不知道哪些合适；
-- 服务：基于站内 94 数据集 + 反向推荐引擎，提供定制化选型报告；
+- 服务：基于站内 116 数据集 + 反向推荐引擎，提供定制化选型报告；
 - 定价：5-20W / 项目，含数据集对比、成本估算、合规风险分析。
 
 **产品 2：数据集合规审计**
@@ -929,7 +929,7 @@ https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run
 
 **产品 1：具身智能数据格式标准认证**
 
-- 基于站内 23 个标准 + `standard-proposal.html` 中的社区草案，推动行业标准落地；
+- 基于站内 28 个标准 + `standard-proposal.html` 中的社区草案，推动行业标准落地；
 - 提供认证服务：数据集符合标准 → 颁发认证徽章；
 - 定价：认证费 1-5W / 数据集。
 
@@ -981,7 +981,7 @@ https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run
 
 1. **上线邮件订阅**：在首页和博客页加订阅框，用 ConvertKit / Mailchimp 免费版起步，沉淀私域流量；
 2. **开放赞助位**：在 footer 和博客侧栏加「赞助伙伴」位，接受机器人公司赞助（非广告，类似 OSS sponsor）；
-3. **发布首份行业报告**：基于 94 数据集 + 6 benchmark，发布《2026 具身智能数据集行业报告》，免费版引流 + 付费版深度分析（199 元）。
+3. **发布首份行业报告**：基于 116 数据集 + 6 benchmark，发布《2026 具身智能数据集行业报告》，免费版引流 + 付费版深度分析（199 元）。
 
 ---
 
