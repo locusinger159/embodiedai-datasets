@@ -148,7 +148,7 @@ async function assistant(query, history, apiKey, model) {
 
   const systemPrompt = `你是 Superdata RobotAI 的 AI 助手，专门帮助用户从具身智能数据集导航站中找到合适的数据集、数据标准和工具/平台。
 
-网站收录 94 个数据集、22 个标准、18 个工具、122 篇论文知识库。
+网站收录 115 个数据集、26 个标准、18 个工具、137 篇论文知识库。
 
 根据用户的问题，以下是从数据库中检索到的最相关内容:
 
@@ -171,7 +171,21 @@ ${contextParts}
     { role: 'user', content: query },
   ];
 
-  // 4. Call DeepSeek API (OpenAI-compatible)
+  // 4. Estimate tokens and truncate if needed (prevent context overflow)
+  // Rough estimate: 1 Chinese char ≈ 1 token, 1 English word ≈ 1.3 tokens
+  const estTokens = (s) => typeof s === 'string' ? Math.ceil(s.length * 0.8) : 0;
+  let totalEst = estTokens(systemPrompt) + messages.reduce((sum, m) => sum + estTokens(m.content), 0);
+  // DeepSeek V4 Flash context: 128K, keep total under 24K for safety
+  while (totalEst > 24000 && systemPrompt.length > 500) {
+    // Truncate context parts one by one
+    const lastIdx = systemPrompt.lastIndexOf('\n   简介:');
+    if (lastIdx === -1) break;
+    systemPrompt = systemPrompt.substring(0, systemPrompt.lastIndexOf('[')) + '（部分检索结果已截断以控制上下文长度）';
+    totalEst = estTokens(systemPrompt) + messages.reduce((sum, m) => sum + estTokens(m.content), 0);
+  }
+  messages[0] = { role: 'system', content: systemPrompt };
+
+  // 5. Call DeepSeek API (OpenAI-compatible)
   const resp = await fetch('https://api.deepseek.com/v1/chat/completions', {
     method: 'POST',
     headers: {
@@ -183,7 +197,6 @@ ${contextParts}
       messages,
       max_tokens: 1200,
       temperature: 0.3,
-      max_input_tokens: 16000,
     }),
   });
 
