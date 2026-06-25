@@ -10,7 +10,7 @@
 
 - 📊 收录 **116** 个数据集
 - 📐 收录 **28** 个数据标准与评测基准
-- 🏆 **6 个 Benchmark 排行榜**（LIBERO / EmbodiedBench / CALVIN / RLBench / SimplerEnv / FurnitureBench），61 条论文数据
+- 🏆 **12 个 Benchmark 排行榜**（LIBERO / CALVIN / RLBench / Meta-World / VLABench / RoboTwin / SimplerEnv / FurnitureBench / EmbodiedBench / LIBERO-Plus / LIBERO-PRO / RoboChallenge），335 条模型排行数据
 - 🧠 **AI 论文知识库** — 137 篇学术论文全文嵌入，AI 助手可回答方法论级问题
 - 🔧 收录 **18** 个工具与平台
 - 🤖 覆盖 **8** 大机器人类型：人形机器人、机械臂、移动机器人、四足机器人、多机型、触觉传感、灵巧手、通用
@@ -23,7 +23,7 @@
 - **AI 语义搜索** — 全站右下角 🔍 浮动搜索，自然语言输入，百炼 text-embedding-v4（2048 维）+ 关键词加权混合检索
 - **反向推荐** — 🎯 6 步配置向导（任务→机器人→模态→场景→VLA→获取），加权打分推荐 Top 8，6 个快捷预设
 - **VLA 框架兼容性** — 标注 7 大 VLA 框架（π0、OpenVLA、GR00T N1、Octo、RT-2、RDT-1B、ACT），数据集详情页和列表页直观展示
-- **Benchmark 排行榜** — 🏆 6 个标准 benchmark 独立排行榜，61 条论文数据可溯源，支持训练集排名和模型排名双模式
+- **Benchmark 排行榜** — 🏆 12 个标准 benchmark 独立排行榜，335 条模型排行数据可溯源，支持模型排名和训练集排名双模式
 - **论文知识库** — 🧠 137 篇学术论文全文嵌入 AI 助手，回答方法论、实验设计、技术细节等深度问题
 - **数据集详情页** — 每个数据集独立页面，含信息卡片、VLA 兼容性、Benchmark 评测、Schema 图、传感器规格、BibTeX 引用、相关推荐
 - **数据集对比** — 多选横向对比（最多 4 个），高亮差异字段
@@ -56,17 +56,23 @@ embodiedai-datasets/
 │       ├── blog.html / blog-detail.html
 │       ├── formats.html           #   格式全景图
 │       └── standard-proposal.html #   标准草案
-├── docs/data/
+├── docs/data/                          # JSON 数据（从 SQLite 自动导出）
 │   ├── datasets.json / datasets.en.json       # 116 个数据集
 │   ├── standards.json / standards.en.json     # 28 个标准
 │   ├── tools.json / tools.en.json             # 18 个工具
 │   └── blog.json                              # 博客文章
-├── src/pages/
-│   └── recommend.html                         # 反向推荐页（6步向导+加权打分）
+├── data/
+│   └── embodiedai.db                    # ★ SQLite 数据库（唯一数据源）
 ├── scripts/
 │   ├── embed.cjs                 #   嵌入生成脚本（百炼 text-embedding-v4）
+│   ├── embed-papers.cjs          #   论文嵌入生成
+│   ├── extract-papers.py         #   论文 PDF 全文提取
 │   ├── validate.cjs              #   数据校验（JSON schema / 必填字段 / 跨语言一致性 / URL）
-│   └── scan-fiction-risk.py      #   AI 虚构数据风险扫描（多维度打分）
+│   ├── scan-fiction-risk.py      #   AI 虚构数据风险扫描
+│   ├── normalize.cjs             #   数据规范性清洗
+│   ├── migrate.cjs               #   JSON → SQLite 迁移
+│   ├── export.cjs                #   SQLite → JSON 导出
+│   └── schema.sql                #   数据库 DDL
 ├── fc/
 │   ├── index.js                  #   阿里云 FC 搜索后端
 │   ├── package.json
@@ -131,6 +137,14 @@ embodiedai-datasets/
 - 🔀 Pull Request：直接编辑 `docs/data/datasets.json`
 
 ## 版本记录
+
+### v2.15 (2026-06-25)
+
+- 🗄️ **SQLite 数据库管理** — JSON→SQLite 迁移，`data/embodiedai.db` 为唯一数据源，6 张表 + changelog 变更追溯，Node.js 内置 `node:sqlite` 零依赖
+- 🏆 **Benchmark 排行榜扩充** — 6→12 个：新增 VLABench / RoboTwin 2.0 / Meta-World / LIBERO-Plus / LIBERO-PRO / RoboChallenge，335 条模型排行数据，支持 `rankBy: model` 模式
+- 🏷️ **数据规范性治理** — 定义 `docs/SCHEMA.md` 标准字段规范，许可证统一为 SPDX 标识符（22→13 种），`org→institution` / `desc→description` / `official→site` 字段名跨实体对齐，`dataFormat` 类型统一为 string
+- 📐 **数据标准扩充** — 23→28 个：新增 ManiSkill3 / BDDL / PDDL / LIBERO-Plus / LIBERO-PRO / VLABench / RoboTwin / RoboChallenge，移除 DROID（非标准），合并 OpenUSD+USD
+- 🎛️ **导航栏优化** — 「全部数据集」→「数据集」，提交入口移入数据集页面
 
 ### v2.14 (2026-06-24)
 
