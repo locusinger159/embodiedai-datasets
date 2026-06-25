@@ -84,7 +84,7 @@
   {
     "id": "igibson",
     "name": "iGibson",
-    "institution": "斯坦福大学",
+    "institution": "斯坦福大学 (Stanford University)",
     "description": "**iGibson（Interactive Gibson）**是 Stanford Vision and Learning Lab 开发的交互式 3D 家居仿真环境。\n\n基于 **Bullet** 物理引擎，提供 15 个完整的交互式家居场景（门、抽屉、开关、家具等可交互物体），支持机器人导航、操作和交互任务。\n\n**v2.2（2024）** 新增 Tiago 机器人支持、ROS 集成、物体中心动作原语、原语动作接口。\n\n**后继项目**：**OmniGibson**（基于 NVIDIA Omniverse）是该团队当前重点开发的新一代平台，支持更高质量的渲染和物理仿真。",
     "toolType": "仿真器",
     "type": "open",
@@ -190,7 +190,7 @@
   {
     "id": "gibson",
     "name": "Gibson",
-    "institution": "斯坦福大学",
+    "institution": "斯坦福大学 (Stanford University)",
     "description": "**Gibson Environment（GibsonEnv）**是 Stanford Vision and Learning Lab 开发的真实 3D 场景仿真平台。\n\n基于真实 3D 扫描数据重建室内场景，提供 RGB、深度、语义分割等传感器仿真。配套 **Matterport3D** 数据集使用，是具身导航领域的经典仿真环境。\n\n**后继版本**：**iGibson**（增加物理交互 + 物体操作能力）和 **OmniGibson**（基于 NVIDIA Omniverse 的新一代平台）。MIT 协议开源。",
     "toolType": "仿真器",
     "type": "open",

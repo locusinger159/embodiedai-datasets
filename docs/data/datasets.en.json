@@ -348,7 +348,7 @@
   {
     "id": "libero",
     "name": "Libero",
-    "institution": "斯坦福大学",
+    "institution": "斯坦福大学 (Stanford University)",
     "description": "**LIBERO** 是由 Stanford / AI2 提出的终生机器人学习基准。\n\n定义了 **130 个语言条件操作任务**，覆盖 5 大维度泛化测试（场景、物体、布局、任务组合、未见任务）。提供 50+ 小时人类遥操作演示，支持连续学习评估。",
     "modality": [
       "视觉"
