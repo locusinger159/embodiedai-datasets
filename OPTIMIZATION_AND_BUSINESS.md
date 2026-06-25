@@ -236,7 +236,7 @@ function initFilter({ data, filters, render, pageSize = 15 }) {
 | 中文站 HTML | ~3.5MB | 94 详情页 × 30KB + 列表页 + 其他 |
 | 英文站 HTML | ~3.5MB | 同上 |
 | `embeddings.json` | ~300KB | 73 实体 × 2048 维 × 4 字节 |
-| `embeddings_papers.json` | ~8MB | 1220 chunk × 2048 维 × 4 字节 |
+| `embeddings_papers.json` | ~8MB | 152 chunk × 2048 维 × 4 字节 |
 | 静态资源 | ~500KB | Logo PNG + 字体缓存 |
 | **总计** | **~16MB** | |
 
@@ -767,14 +767,14 @@ Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; 
 2. **AI 搜索 + 反向推荐**：独家的 6 步向导 + LLM 助手；
 3. **VLA 兼容性标注**：7 大框架兼容矩阵，竞品无；
 4. **Benchmark 排行榜**：6 个标准 benchmark 可溯源排名；
-5. **论文知识库**：122 篇论文全文嵌入，可回答方法论问题；
+5. **论文知识库**：137 篇论文全文嵌入，可回答方法论问题；
 6. **中文市场**：具身智能中文内容最全。
 
 ### 7.4 护城河分析
 
 **短期护城河（0-12 月）**
 - 数据量 + 质量：94 数据集 × 20 字段的人工精选，需 3-6 月复制；
-- 论文知识库：122 篇论文嵌入，需 1-2 月复制；
+- 论文知识库：137 篇论文嵌入，需 1-2 月复制；
 - 中文 SEO：关键词已占据 Google / 百度首页，需 6-12 月追赶。
 
 **中期护城河（12-24 月）**

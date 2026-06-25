@@ -43,7 +43,7 @@
 | 工具 / 平台 | 18 |
 | Benchmark 排行榜 | 6（LIBERO / EmbodiedBench / CALVIN / RLBench / SimplerEnv / FurnitureBench） |
 | Benchmark 论文数据 | 61 条 |
-| AI 论文知识库 | 122 篇全文嵌入 |
+| AI 论文知识库 | 137 篇全文嵌入 |
 | 覆盖机构 | 72 |
 | 机器人类型 | 8 大类 |
 | 任务类型 | 18 种 |
@@ -181,7 +181,7 @@ embodiedai-datasets/
 │   ├── index.js                    # HTTP 服务（搜索 + LLM 助手）
 │   ├── package.json
 │   ├── embeddings.json             # 数据集/标准/工具的预计算向量
-│   ├── embeddings_papers.json      # 122 篇论文的向量索引
+│   ├── embeddings_papers.json      # 137 篇论文的向量索引
 │   └── papers_text.json            # 论文 PDF 抽取后的文本块
 ├── scripts/                        # ★ 数据治理工具链
 │   ├── embed.cjs                   # 生成 embeddings.json
@@ -772,7 +772,7 @@ https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run
 **建议**：
 
 - 评估 `bge-m3` 或 `Qwen3-Embedding-8B`（开源），可本地部署降成本；
-- 对论文知识库（122 篇 × 10 chunk = 1220 条）考虑量化到 int8，体积减少 75%。
+- 对论文知识库（137 篇 × 10 chunk = 152 条）考虑量化到 int8，体积减少 75%。
 
 ### 10.3 数据治理层面
 
@@ -861,7 +861,7 @@ https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run
 **优势**：
 - 数据集质量高（94 条人工精选 + 虚构扫描）
 - 已建立专家品牌（v2.13，3 个月迭代 13 版）
-- 独家内容壁垒：122 篇论文知识库、6 个 Benchmark 排行榜、VLA 兼容性标注
+- 独家内容壁垒：137 篇论文知识库、6 个 Benchmark 排行榜、VLA 兼容性标注
 - AI 搜索 + 反向推荐形成差异化
 
 **约束**：
@@ -1002,7 +1002,7 @@ https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run
 | v2.10 | 2026-06-17 | 康养护理数据集、防虚构体系 |
 | v2.11 | 2026-06-19 | +29 数据集、VLA 兼容性、反向推荐 |
 | v2.12 | 2026-06-21 | Benchmark 排行榜、LICENSE 双许可 |
-| v2.13 | 2026-06-22 | 论文知识库（122 篇）、Benchmark 体系优化 |
+| v2.13 | 2026-06-22 | 论文知识库（137 篇）、Benchmark 体系优化 |
 
 ---
 
