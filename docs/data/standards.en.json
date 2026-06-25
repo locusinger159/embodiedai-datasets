@@ -1526,10 +1526,10 @@
     }
   },
   {
-    "id": "artvip",
-    "name": "ArtVIP",
-    "fullName": "Articulated-object digital assets with Visual realism, modular Interaction, and Physical fidelity",
-    "org": "北京人形机器人创新中心 + 北京市建筑设计研究院",
+    "id": "usd",
+    "name": "USD",
+    "fullName": "Universal Scene Description",
+    "org": "Pixar / OpenUSD Alliance (NVIDIA, Apple, Adobe, Autodesk)",
     "type": "format",
     "openness": "open",
     "scene": [
@@ -1537,32 +1537,36 @@
     ],
     "modalities": [
       "3D模型",
+      "物理参数",
       "RGB",
-      "物理参数"
+      "材质"
     ],
-    "license": "Apache 2.0",
-    "desc": "**ArtVIP** 是北京人形机器人创新中心联合北京市建筑设计研究院于 2025 年发布的高保真铰接物体数字资产数据集（ICLR 2026）。\n\n初始版本含 **26 个类别 206 种高精度铰接物体**（v1.3 已扩展至 428 个），涵盖橱柜、烤箱、折叠椅、抽屉、电风扇、剪刀、冰箱、转椅、洗衣机等日常铰接结构。所有模型以 **USD (Universal Scene Description)** 格式发布，可直接导入 NVIDIA Isaac Sim。\n\n**三大特性：** 视觉保真度（精确几何网格 + 高分辨率纹理，CLIP 空间分布与真实世界对齐度提升 47%）、物理保真度（刚度/阻尼/摩擦力/质量/转动惯量/碰撞体积毫米级标定，冰箱门磁吸、转椅差速转向精确复现）、全场景交互（灯光开关、物体操作与环境的物理-视觉联动）。\n\n仅用仿真数据训练的 Diffusion Policy 零样本迁移至真实 Franka 开门成功率达 30%，混合少量真机数据后跃升至 80%。Apache 2.0 开源。",
+    "license": "Apache 2.0 (OpenUSD)",
+    "desc": "**USD (Universal Scene Description)** 是 Pixar 开发、现由 **OpenUSD 联盟**（NVIDIA、Apple、Adobe、Autodesk 等）维护的开放式 3D 场景描述与交换格式。\n\n作为机器人仿真领域的核心数据资产格式，USD 支持完整的 3D 场景层次结构（几何网格、材质、纹理、灯光、物理属性、动画），可实现跨工具的无损数据交换。**NVIDIA Isaac Sim** 原生支持 USD，**NVIDIA Omniverse** 将其作为核心数据格式。\n\n在具身智能领域，USD 正成为**仿真数字资产的事实标准**：ArtVIP（206+ 铰接物体）、NVIDIA GR00T 仿真环境、PhysicalAI-SimReady-Warehouse 等数据集均以 USD 格式发布。\n\nUSD 支持变体 (variants)、图层 (layers)、引用 (references) 等高级特性，允许在单一文件中管理物体的多种形态和配置，极大地降低了机器人仿真场景的构建成本。",
     "links": {
-      "site": "https://x-humanoid-artvip.github.io",
-      "paper": "https://arxiv.org/abs/2506.04941",
-      "github": "https://huggingface.co/datasets/X-Humanoid/ArtVIP"
+      "site": "https://openusd.org",
+      "github": "https://github.com/PixarAnimationStudios/OpenUSD"
     },
-    "year": 2025,
-    "datasetIds": [],
-    "datasetCount": 0,
+    "year": 2016,
+    "datasetIds": [
+      "artvip",
+      "physicalai-simready-warehouse-01"
+    ],
+    "datasetCount": 2,
     "requirements": {
       "MUST": [
-        "26 类 206+ 铰接物体 USD 格式",
-        "视觉保真度: 精确几何网格 + 高分辨率纹理",
-        "物理保真度: 刚度/阻尼/摩擦力/碰撞体积毫米级标定"
+        "基于 USD 文件格式（.usd/.usda/.usdc/.usdz）",
+        "支持 3D 几何网格与材质定义",
+        "支持物理属性（碰撞体积、质量、摩擦系数等）"
       ],
       "SHOULD": [
-        "NVIDIA Isaac Sim 直接导入",
-        "6 个数字孪生场景 + 6 个可交互场景"
+        "支持变体 (variants) 管理多种物体形态",
+        "支持图层 (layers) 和引用 (references) 组合场景",
+        "兼容 NVIDIA Isaac Sim 导入"
       ],
       "MAY": [
-        "扩展到 428+ 铰接物体 (v1.3)",
-        "增加更多家居场景"
+        "支持动画与骨骼绑定",
+        "支持 USDZ 格式（AR 预览）"
       ]
     }
   }
