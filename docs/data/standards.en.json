@@ -3,7 +3,6 @@
     "id": "rlds",
     "name": "RLDS",
     "fullName": "Reinforcement Learning Datasets Standard",
-    "org": "Google DeepMind",
     "type": "format",
     "openness": "open",
     "scene": [
@@ -15,8 +14,7 @@
       "Proprioception",
       "Action"
     ],
-    "license": "Apache 2.0",
-    "desc": "**RLDS (Reinforcement Learning Datasets Standard)** is a standardized robot learning data format proposed by Google DeepMind, built on the TFDS framework.\n\nOrganizes data into the **episode → step → observation/action/reward** hierarchical structure, supporting efficient random access and streaming loading.\n\nServes as the underlying format foundation for Open X-Embodiment and has been adopted by **60+ datasets**, becoming the de facto data format standard in the embodied AI field.",
+    "license": "Apache-2.0",
     "links": {
       "site": "https://github.com/google-research/rlds",
       "github": "https://github.com/google-research/rlds",
@@ -84,13 +82,15 @@
         "text": "可选使用分片（shard）存储以支持大规模数据集",
         "detail": "TFDS 原生支持按文件分片，无需额外处理"
       }
-    ]
+    ],
+    "institution": "Google DeepMind",
+    "description": "**RLDS (Reinforcement Learning Datasets Standard)** is a standardized robot learning data format proposed by Google DeepMind, built on the TFDS framework.\n\nOrganizes data into the **episode → step → observation/action/reward** hierarchical structure, supporting efficient random access and streaming loading.\n\nServes as the underlying format foundation for Open X-Embodiment and has been adopted by **60+ datasets**, becoming the de facto data format standard in the embodied AI field.",
+    "licenseNotes": "Apache 2.0"
   },
   {
     "id": "oxe-schema",
     "name": "Open X-Embodiment Schema",
     "fullName": "OXE Schema",
-    "org": "Google DeepMind + 34家实验室",
     "type": "format",
     "openness": "open",
     "scene": [
@@ -101,8 +101,7 @@
       "Proprioception",
       "Action"
     ],
-    "license": "Apache 2.0",
-    "desc": "**Open X-Embodiment Schema** is the cross-robot unified data schema defined by the Open X-Embodiment project.\n\nExtends RLDS with standardized field mappings across **22 robot morphologies**.\n\nThe core contribution is mapping heterogeneous robot sensors and action spaces into a unified observation/action namespace, making cross-embodiment joint training possible.",
+    "license": "Apache-2.0",
     "links": {
       "site": "https://robotics-transformer-x.github.io",
       "github": "https://github.com/google-deepmind/open_x_embodiment",
@@ -154,13 +153,15 @@
         "text": "建议标注机器人形态类型和机构来源",
         "detail": "便于跨具身模型的训练和评估"
       }
-    ]
+    ],
+    "institution": "Google DeepMind + 34家实验室",
+    "description": "**Open X-Embodiment Schema** is the cross-robot unified data schema defined by the Open X-Embodiment project.\n\nExtends RLDS with standardized field mappings across **22 robot morphologies**.\n\nThe core contribution is mapping heterogeneous robot sensors and action spaces into a unified observation/action namespace, making cross-embodiment joint training possible.",
+    "licenseNotes": "Apache 2.0"
   },
   {
     "id": "lerobot",
     "name": "LeRobot Format",
     "fullName": "Hugging Face LeRobot",
-    "org": "Hugging Face",
     "type": "format",
     "openness": "open",
     "scene": [
@@ -172,8 +173,7 @@
       "Proprioception",
       "Action"
     ],
-    "license": "Apache 2.0",
-    "desc": "**LeRobot** is a lightweight robot learning data format launched by Hugging Face.\n\nUses **Parquet / Apache Arrow** as the storage backend, supporting efficient memory-mapped reading.\n\nProvides Python API and visualization tools, emphasizing ease of use and deep integration with the Hugging Face Hub ecosystem. Already adopted by AGI Odyssey, SimplerEnv, and other projects.",
+    "license": "Apache-2.0",
     "links": {
       "site": "https://huggingface.co/lerobot",
       "github": "https://github.com/huggingface/lerobot",
@@ -234,13 +234,15 @@
         "text": "可选包含 next.done 字段标识 episode 结束",
         "detail": "布尔值，最后一帧为 True"
       }
-    ]
+    ],
+    "institution": "Hugging Face",
+    "description": "**LeRobot** is a lightweight robot learning data format launched by Hugging Face.\n\nUses **Parquet / Apache Arrow** as the storage backend, supporting efficient memory-mapped reading.\n\nProvides Python API and visualization tools, emphasizing ease of use and deep integration with the Hugging Face Hub ecosystem. Already adopted by AGI Odyssey, SimplerEnv, and other projects.",
+    "licenseNotes": "Apache 2.0"
   },
   {
     "id": "hdf5-robomimic",
     "name": "HDF5 机器人数据格式",
     "fullName": "robomimic / robosuite 生态",
-    "org": "Stanford / AI2",
     "type": "format",
     "openness": "open",
     "scene": [
@@ -253,7 +255,6 @@
       "Action"
     ],
     "license": "MIT",
-    "desc": "**HDF5 Robomimic** is an HDF5-based robot manipulation data format proposed by Stanford / AI2, specifically designed for imitation learning.\n\nOrganizes demonstrations as **state/action/reward/done quadruples**, supporting multiple observation modalities (RGB, depth, point cloud, proprioception).\n\nServes as the default format for the robomimic framework and is used by BridgeData V2, RoboTurk, and other datasets.",
     "links": {
       "site": "https://robomimic.github.io",
       "github": "https://github.com/ARISE-Initiative/robomimic",
@@ -319,13 +320,14 @@
         "text": "可选包含 next_obs/ group 存储下一时刻观测",
         "detail": "非必要场景可通过 --exclude-next-obs 省略，节省约 5 倍存储"
       }
-    ]
+    ],
+    "institution": "Stanford / AI2",
+    "description": "**HDF5 Robomimic** is an HDF5-based robot manipulation data format proposed by Stanford / AI2, specifically designed for imitation learning.\n\nOrganizes demonstrations as **state/action/reward/done quadruples**, supporting multiple observation modalities (RGB, depth, point cloud, proprioception).\n\nServes as the default format for the robomimic framework and is used by BridgeData V2, RoboTurk, and other datasets."
   },
   {
     "id": "mcap",
     "name": "MCAP",
     "fullName": "Modular Container for Autonomous Platforms",
-    "org": "Foxglove",
     "type": "format",
     "openness": "open",
     "scene": [
@@ -338,7 +340,6 @@
       "Sensor"
     ],
     "license": "MIT",
-    "desc": "**MCAP (Message Capture)** is an open-source robot logging format developed by Foxglove.\n\nSupports **multi-topic, multi-timeline** structured message recording with random access.\n\nDesigned to replace ROS bag, supporting protobuf, JSON, CBOR, and other serialization formats. Widely adopted by ROS 2, Foxglove Studio, and other tools.",
     "links": {
       "site": "https://mcap.dev",
       "github": "https://github.com/foxglove/mcap",
@@ -396,13 +397,14 @@
         "text": "可选使用 Chunk 分块和 zstd/lz4 压缩",
         "detail": "Chunk 将多条消息批量打包，支持压缩，提高 I/O 效率"
       }
-    ]
+    ],
+    "institution": "Foxglove",
+    "description": "**MCAP (Message Capture)** is an open-source robot logging format developed by Foxglove.\n\nSupports **multi-topic, multi-timeline** structured message recording with random access.\n\nDesigned to replace ROS bag, supporting protobuf, JSON, CBOR, and other serialization formats. Widely adopted by ROS 2, Foxglove Studio, and other tools."
   },
   {
     "id": "openusd",
     "name": "OpenUSD",
     "fullName": "Universal Scene Description (OpenUSD)",
-    "org": "Pixar / OpenUSD Alliance (NVIDIA, Apple, Adobe, Autodesk)",
     "type": "format",
     "openness": "open",
     "scene": [
@@ -415,7 +417,6 @@
       "材质"
     ],
     "license": "开放标准",
-    "desc": "**USD (Universal Scene Description)** 是 Pixar 开发、现由 **OpenUSD 联盟**（NVIDIA、Apple、Adobe、Autodesk 等）维护的开放式 3D 场景描述与交换格式。\n\n作为机器人仿真领域的核心数据资产格式，USD 支持完整的 3D 场景层次结构（几何网格、材质、纹理、灯光、物理属性、动画），可实现跨工具的无损数据交换。**NVIDIA Isaac Sim** 原生支持 USD，**NVIDIA Omniverse** 将其作为核心数据格式。\n\n在具身智能领域，USD 正成为**仿真数字资产的事实标准**：ArtVIP（206+ 铰接物体）、NVIDIA GR00T 仿真环境、PhysicalAI-SimReady-Warehouse 等数据集均以 USD 格式发布。\n\nUSD 支持变体 (variants)、图层 (layers)、引用 (references) 等高级特性，允许在单一文件中管理物体的多种形态和配置，极大地降低了机器人仿真场景的构建成本。",
     "links": {
       "site": "https://openusd.org",
       "github": "https://github.com/PixarAnimationStudios/OpenUSD"
@@ -440,13 +441,14 @@
         "支持动画与骨骼绑定",
         "支持 USDZ 格式（AR 预览）"
       ]
-    }
+    },
+    "institution": "Pixar / OpenUSD Alliance (NVIDIA, Apple, Adobe, Autodesk)",
+    "description": "**USD (Universal Scene Description)** 是 Pixar 开发、现由 **OpenUSD 联盟**（NVIDIA、Apple、Adobe、Autodesk 等）维护的开放式 3D 场景描述与交换格式。\n\n作为机器人仿真领域的核心数据资产格式，USD 支持完整的 3D 场景层次结构（几何网格、材质、纹理、灯光、物理属性、动画），可实现跨工具的无损数据交换。**NVIDIA Isaac Sim** 原生支持 USD，**NVIDIA Omniverse** 将其作为核心数据格式。\n\n在具身智能领域，USD 正成为**仿真数字资产的事实标准**：ArtVIP（206+ 铰接物体）、NVIDIA GR00T 仿真环境、PhysicalAI-SimReady-Warehouse 等数据集均以 USD 格式发布。\n\nUSD 支持变体 (variants)、图层 (layers)、引用 (references) 等高级特性，允许在单一文件中管理物体的多种形态和配置，极大地降低了机器人仿真场景的构建成本。"
   },
   {
     "id": "ros2",
     "name": "ROS 2 消息标准",
     "fullName": "Robot Operating System 2",
-    "org": "Open Robotics",
     "type": "format",
     "openness": "open",
     "scene": [
@@ -457,8 +459,7 @@
       "Control",
       "Navigation"
     ],
-    "license": "Apache 2.0",
-    "desc": "**ROS 2** is the robot middleware released by Open Robotics, defining standardized message serialization and communication standards.\n\nUses **.msg / .srv / .action** to define normalized message interfaces (sensors, control commands, states, etc.), supporting DDS real-time communication.\n\nServes as the de facto standard for robot data collection and playback; rosbag2 can directly record in MCAP format.",
+    "license": "Apache-2.0",
     "links": {
       "site": "https://docs.ros.org/en/jazzy",
       "paper": ""
@@ -509,13 +510,15 @@
         "text": "可选使用 Zenoh 等替代 DDS 的中间件",
         "detail": "适用于对延迟和吞吐量有特殊需求的场景"
       }
-    ]
+    ],
+    "institution": "Open Robotics",
+    "description": "**ROS 2** is the robot middleware released by Open Robotics, defining standardized message serialization and communication standards.\n\nUses **.msg / .srv / .action** to define normalized message interfaces (sensors, control commands, states, etc.), supporting DDS real-time communication.\n\nServes as the de facto standard for robot data collection and playback; rosbag2 can directly record in MCAP format.",
+    "licenseNotes": "Apache 2.0"
   },
   {
     "id": "calvin",
     "name": "CALVIN",
     "fullName": "Language-Conditioned Policy Learning Benchmark",
-    "org": "ETH Zurich",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -527,8 +530,7 @@
       "Tactile",
       "Language"
     ],
-    "license": "开源",
-    "desc": "**CALVIN Benchmark** is a language-conditioned long-sequence robot manipulation benchmark proposed by ETH Zurich.\n\nDefines a standardized **task definition format, evaluation protocol, and data splits** (ABCD four-fold), testing policy generalization on unseen environments, unseen instructions, and unseen objects.\n\nBuilt on PyBullet simulation, providing 20,000+ teleoperation demonstration trajectories.",
+    "license": "Unspecified",
     "links": {
       "site": "https://github.com/mees/calvin",
       "github": "https://github.com/mees/calvin",
@@ -583,13 +585,15 @@
       "unit": " tasks",
       "metric": "Avg. Length",
       "maxScore": null
-    }
+    },
+    "institution": "ETH Zurich",
+    "description": "**CALVIN Benchmark** is a language-conditioned long-sequence robot manipulation benchmark proposed by ETH Zurich.\n\nDefines a standardized **task definition format, evaluation protocol, and data splits** (ABCD four-fold), testing policy generalization on unseen environments, unseen instructions, and unseen objects.\n\nBuilt on PyBullet simulation, providing 20,000+ teleoperation demonstration trajectories.",
+    "licenseNotes": "开源"
   },
   {
     "id": "libero",
     "name": "LIBERO",
     "fullName": "Lifelong Robot Learning Benchmark",
-    "org": "Stanford / AI2",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -600,8 +604,7 @@
       "Proprioception",
       "Action"
     ],
-    "license": "开源",
-    "desc": "**LIBERO** is a lifelong robot learning benchmark proposed by Stanford / AI2.\n\nDefines **130 language-conditioned manipulation tasks** across **5 generalization dimensions** (scene, object, layout, task composition, unseen tasks).\n\nData released in HDF5 format, providing 50+ hours of human teleoperation demonstrations with continual learning evaluation support.",
+    "license": "Unspecified",
     "links": {
       "site": "https://libero-project.github.io",
       "github": "https://github.com/Lifelong-Robot-Learning/LIBERO",
@@ -656,13 +659,15 @@
       "unit": "%",
       "metric": "Avg. Success",
       "maxScore": 100
-    }
+    },
+    "institution": "Stanford / AI2",
+    "description": "**LIBERO** is a lifelong robot learning benchmark proposed by Stanford / AI2.\n\nDefines **130 language-conditioned manipulation tasks** across **5 generalization dimensions** (scene, object, layout, task composition, unseen tasks).\n\nData released in HDF5 format, providing 50+ hours of human teleoperation demonstrations with continual learning evaluation support.",
+    "licenseNotes": "开源"
   },
   {
     "id": "rlbench",
     "name": "RLBench",
     "fullName": "Robot Learning Benchmark",
-    "org": "牛津大学",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -673,8 +678,7 @@
       "State",
       "Language"
     ],
-    "license": "开源",
-    "desc": "**RLBench** is a robot manipulation benchmark framework proposed by the University of Oxford.\n\nDefines **100 language-described manipulation tasks** in CoppeliaSim, supporting procedural task generation and variant control.\n\nRigorously evaluates policy generalization through task variation dimensions (position, pose, color, shape, etc.).",
+    "license": "Unspecified",
     "links": {
       "site": "https://sites.google.com/view/rlbench",
       "github": "https://github.com/stepjam/RLBench",
@@ -729,13 +733,15 @@
       "unit": "%",
       "higherIsBetter": true,
       "maxScore": 100
-    }
+    },
+    "institution": "牛津大学",
+    "description": "**RLBench** is a robot manipulation benchmark framework proposed by the University of Oxford.\n\nDefines **100 language-described manipulation tasks** in CoppeliaSim, supporting procedural task generation and variant control.\n\nRigorously evaluates policy generalization through task variation dimensions (position, pose, color, shape, etc.).",
+    "licenseNotes": "开源"
   },
   {
     "id": "metaworld",
     "name": "Meta-World",
     "fullName": "Meta-World: A Benchmark and Evaluation Platform for Multi-Task and Meta Reinforcement Learning",
-    "org": "Stanford University / UC Berkeley",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -748,7 +754,6 @@
       "动作"
     ],
     "license": "MIT",
-    "desc": "**Meta-World** 是斯坦福大学和 UC Berkeley 于 2019 年 CoRL 发布的经典 MuJoCo 桌面机械臂评测基准，核心面向多任务强化学习 (Multi-Task RL) 和元强化学习 (Meta-RL)。\n\n**任务体系**：共 **50 个短时序单步/简单多步桌面操作任务**（推、按、开门、开抽屉、拾取放置、拧瓶盖、堆叠等原子技能），统一使用 **Sawyer 单臂** 机械臂。\n\n**四套标准评测划分**：\n- **MT10**：10 个任务同时学习\n- **MT50**：全部 50 个任务联合训练\n- **ML10**：10 训练任务 + 5 unseen 测试任务（测少样本泛化）\n- **ML45**：45 训练任务 + 5 unseen 全新任务\n\n**关键特性**：诞生最早的面向前 RL 的基准，设计时还没有 VLA 热潮，无内置自然语言标注。全短时序简单原子任务（无长链式复合任务），仅单臂 Sawyer（无双臂、无真机），核心测「任务间泛化」而非「视觉/场景扰动泛化」。\n\n**重要**：Meta-World 不自带预生成训练数据集，无官方配套标注轨迹库。用户需自行在仿真内运行策略采集 state/image/action 轨迹。",
     "links": {
       "site": "https://meta-world.github.io",
       "paper": "https://arxiv.org/abs/1910.10897",
@@ -803,13 +808,14 @@
       "unit": "%",
       "metric": "Avg. Success",
       "maxScore": 100
-    }
+    },
+    "institution": "Stanford University / UC Berkeley",
+    "description": "**Meta-World** 是斯坦福大学和 UC Berkeley 于 2019 年 CoRL 发布的经典 MuJoCo 桌面机械臂评测基准，核心面向多任务强化学习 (Multi-Task RL) 和元强化学习 (Meta-RL)。\n\n**任务体系**：共 **50 个短时序单步/简单多步桌面操作任务**（推、按、开门、开抽屉、拾取放置、拧瓶盖、堆叠等原子技能），统一使用 **Sawyer 单臂** 机械臂。\n\n**四套标准评测划分**：\n- **MT10**：10 个任务同时学习\n- **MT50**：全部 50 个任务联合训练\n- **ML10**：10 训练任务 + 5 unseen 测试任务（测少样本泛化）\n- **ML45**：45 训练任务 + 5 unseen 全新任务\n\n**关键特性**：诞生最早的面向前 RL 的基准，设计时还没有 VLA 热潮，无内置自然语言标注。全短时序简单原子任务（无长链式复合任务），仅单臂 Sawyer（无双臂、无真机），核心测「任务间泛化」而非「视觉/场景扰动泛化」。\n\n**重要**：Meta-World 不自带预生成训练数据集，无官方配套标注轨迹库。用户需自行在仿真内运行策略采集 state/image/action 轨迹。"
   },
   {
     "id": "maniskill2",
     "name": "ManiSkill2",
     "fullName": "Generalizable Robotic Manipulation Benchmark",
-    "org": "北京大学",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -821,8 +827,7 @@
       "Proprioception",
       "Action"
     ],
-    "license": "开源",
-    "desc": "**ManiSkill2** is a general-purpose robot manipulation benchmark proposed by Peking University.\n\nBuilt in the SAPIEN engine with **2,000+ objects and 4,000+ task variants**, supporting rigid-body, articulated, and fluid manipulation.\n\nFeatures GPU-parallel rendering for accelerated data collection and a novel task generation pipeline that automatically produces large volumes of diverse training data.",
+    "license": "Unspecified",
     "links": {
       "site": "https://maniskill2.github.io",
       "github": "https://github.com/haosulab/ManiSkill2",
@@ -870,13 +875,15 @@
         "text": "可选使用程序化任务生成管线创建新任务",
         "detail": "通过组合物体、场景和任务逻辑，自动生成训练数据"
       }
-    ]
+    ],
+    "institution": "北京大学",
+    "description": "**ManiSkill2** is a general-purpose robot manipulation benchmark proposed by Peking University.\n\nBuilt in the SAPIEN engine with **2,000+ objects and 4,000+ task variants**, supporting rigid-body, articulated, and fluid manipulation.\n\nFeatures GPU-parallel rendering for accelerated data collection and a novel task generation pipeline that automatically produces large volumes of diverse training data.",
+    "licenseNotes": "开源"
   },
   {
     "id": "behavior-1k",
     "name": "BEHAVIOR-1K",
     "fullName": "Household Activities Benchmark",
-    "org": "Stanford / Duke",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -887,8 +894,7 @@
       "Depth",
       "Language"
     ],
-    "license": "开源",
-    "desc": "**BEHAVIOR-1K** is an ultra-large-scale daily living task benchmark proposed by Stanford, Duke, and others.\n\nDefines **1,000 home activity tasks** (cleaning, cooking, organizing, etc.) in the OmniGibson simulation.\n\nFormally describes task goals and predicate logic using **BDDL (BEHAVIOR Domain Definition Language)**, testing long-term planning and physical interaction capabilities.",
+    "license": "Unspecified",
     "links": {
       "site": "https://behavior.stanford.edu/",
       "paper": "https://arxiv.org/abs/2208.03475"
@@ -942,13 +948,15 @@
       "unit": "%",
       "metric": "Avg. Progress",
       "maxScore": 100
-    }
+    },
+    "institution": "Stanford / Duke",
+    "description": "**BEHAVIOR-1K** is an ultra-large-scale daily living task benchmark proposed by Stanford, Duke, and others.\n\nDefines **1,000 home activity tasks** (cleaning, cooking, organizing, etc.) in the OmniGibson simulation.\n\nFormally describes task goals and predicate logic using **BDDL (BEHAVIOR Domain Definition Language)**, testing long-term planning and physical interaction capabilities.",
+    "licenseNotes": "开源"
   },
   {
     "id": "habitat",
     "name": "Habitat",
     "fullName": "Embodied AI Research Platform",
-    "org": "Meta AI",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -959,8 +967,7 @@
       "Depth",
       "Language"
     ],
-    "license": "开源",
-    "desc": "**Habitat** is an embodied navigation and interaction simulation platform standard proposed by Meta AI.\n\nDefines standardized scene formats (**GLB/glTF**), task configurations (**JSON**), and sensor specifications.\n\nSupports Matterport3D, Gibson, HM3D and other 3D scene datasets, and hosts the annual Habitat Challenge benchmark.",
+    "license": "Unspecified",
     "links": {
       "site": "https://aihabitat.org",
       "github": "https://github.com/facebookresearch/habitat-lab",
@@ -1010,13 +1017,15 @@
         "text": "可选使用 Habitat-SIM 的 GPU 并行渲染",
         "detail": "支持数千个环境并行运行，加速 RL 训练"
       }
-    ]
+    ],
+    "institution": "Meta AI",
+    "description": "**Habitat** is an embodied navigation and interaction simulation platform standard proposed by Meta AI.\n\nDefines standardized scene formats (**GLB/glTF**), task configurations (**JSON**), and sensor specifications.\n\nSupports Matterport3D, Gibson, HM3D and other 3D scene datasets, and hosts the annual Habitat Challenge benchmark.",
+    "licenseNotes": "开源"
   },
   {
     "id": "china-standard-2026",
     "name": "中国标准体系 (2026版)",
     "fullName": "人形机器人与具身智能标准体系",
-    "org": "工信部标委会",
     "type": "industry",
     "openness": "standard",
     "scene": [
@@ -1026,7 +1035,6 @@
       "暂无公开技术文档"
     ],
     "license": "国家标准（编制中）",
-    "desc": "**China Embodied AI Data Standard System** is under development under the guidance of China's Ministry of Industry and Information Technology.\n\nAims to establish unified **robot dataset description specifications, quality evaluation metrics, and benchmark standards**.\n\nFirst included in the government work report in 2026, marking the elevation of embodied AI data standardization to the national strategic level. Currently in the framework design phase; specific standard texts have not yet been published.",
     "links": {
       "paper": ""
     },
@@ -1070,13 +1078,14 @@
         "text": "可选建立中国本土化的评测基准",
         "detail": "覆盖中文语言指令、中国家庭/工业场景等本土化需求"
       }
-    ]
+    ],
+    "institution": "工信部标委会",
+    "description": "**China Embodied AI Data Standard System** is under development under the guidance of China's Ministry of Industry and Information Technology.\n\nAims to establish unified **robot dataset description specifications, quality evaluation metrics, and benchmark standards**.\n\nFirst included in the government work report in 2026, marking the elevation of embodied AI data standardization to the national strategic level. Currently in the framework design phase; specific standard texts have not yet been published."
   },
   {
     "id": "shanghai-standard",
     "name": "上海数据集标准",
     "fullName": "人形机器人数据集标准 / 浦江X",
-    "org": "上海机器人产业技术研究院",
     "type": "industry",
     "openness": "standard",
     "scene": [
@@ -1086,7 +1095,6 @@
       "暂无公开技术文档"
     ],
     "license": "行业标准（推进中）",
-    "desc": "**Shanghai Robot Industry Data Standard** is a local robot dataset standard released by the Shanghai Robot Industry Technology Research Institute.\n\nAddresses the data collection, annotation, and sharing needs of the Yangtze River Delta embodied AI industry with standardized **dataset description templates and quality control processes**.\n\nServes as the first local government embodied AI data standard, already being piloted in select enterprises.",
     "links": {
       "paper": ""
     },
@@ -1130,13 +1138,14 @@
         "text": "可选参与国家标准体系的对接和互认",
         "detail": "推动地方标准与国家标准、国际标准的协调一致"
       }
-    ]
+    ],
+    "institution": "上海机器人产业技术研究院",
+    "description": "**Shanghai Robot Industry Data Standard** is a local robot dataset standard released by the Shanghai Robot Industry Technology Research Institute.\n\nAddresses the data collection, annotation, and sharing needs of the Yangtze River Delta embodied AI industry with standardized **dataset description templates and quality control processes**.\n\nServes as the first local government embodied AI data standard, already being piloted in select enterprises."
   },
   {
     "id": "iso-tc-299",
     "name": "ISO/TC 299",
     "fullName": "机器人技术委员会国际标准",
-    "org": "ISO",
     "type": "industry",
     "openness": "standard",
     "scene": [
@@ -1144,7 +1153,6 @@
     ],
     "modalities": [],
     "license": "国际标准",
-    "desc": "**ISO/TC 299 (Robotics Technical Committee)** is responsible for developing international standards in the robotics field.\n\nCovers **industrial robot safety (ISO 10218), service robot safety (ISO 13482), robot modularity (ISO 22166)**, and more.\n\nThe work of its subcommittees WG 3 (Service Robots) and WG 4 (Industrial Robots) is closely related to embodied AI data standardization.",
     "links": {
       "site": "https://www.iso.org/committee/5915511.html",
       "paper": ""
@@ -1189,13 +1197,14 @@
         "text": "可选参与 ISO/TC 299/WG 关于 AI 和自主学习机器人标准的制定",
         "detail": "关注具身智能和自主学习系统的标准化需求"
       }
-    ]
+    ],
+    "institution": "ISO",
+    "description": "**ISO/TC 299 (Robotics Technical Committee)** is responsible for developing international standards in the robotics field.\n\nCovers **industrial robot safety (ISO 10218), service robot safety (ISO 13482), robot modularity (ISO 22166)**, and more.\n\nThe work of its subcommittees WG 3 (Service Robots) and WG 4 (Industrial Robots) is closely related to embodied AI data standardization."
   },
   {
     "id": "agibot-world",
     "name": "AgiBot World 数据规范",
     "fullName": "全域真实场景百万级真机数据集格式",
-    "org": "智元机器人",
     "type": "format",
     "openness": "partial",
     "scene": [
@@ -1208,7 +1217,6 @@
       "Action"
     ],
     "license": "部分开源",
-    "desc": "**AgiBot Data Standard** is a large-scale real robot manipulation data specification released by AgiBot.\n\nBuilt on the in-house embodied AI data collection platform, defining **multi-sensor alignment (vision/tactile/force control/proprioception) and task-level annotation format**, covering home, industrial, and other scenarios.\n\nData released in RLDS-compatible format, supporting cross-platform joint training.",
     "links": {
       "site": "https://agibot-world.com",
       "paper": "https://arxiv.org/abs/2411.00001"
@@ -1255,19 +1263,19 @@
         "text": "可选提供多机器人平台和多操作场景的扩展数据",
         "detail": "逐步覆盖更多机器人形态和操作任务类型"
       }
-    ]
+    ],
+    "institution": "智元机器人",
+    "description": "**AgiBot Data Standard** is a large-scale real robot manipulation data specification released by AgiBot.\n\nBuilt on the in-house embodied AI data collection platform, defining **multi-sensor alignment (vision/tactile/force control/proprioception) and task-level annotation format**, covering home, industrial, and other scenarios.\n\nData released in RLDS-compatible format, supporting cross-platform joint training."
   },
   {
     "id": "motion-bids",
     "name": "Motion-BIDS",
     "fullName": "Motion Brain Imaging Data Structure",
-    "org": "BIDS Community / Stanford",
     "type": "format",
     "openness": "open",
     "links": {
       "site": "https://bids-specification.readthedocs.io/en/stable/modality-specific-files/motion.html"
     },
-    "desc": "BIDS motion data extension standard for organizing motion capture and kinematics data. Defines directory structure, metadata format, and storage specifications for sensor data (IMU, joint angles, motion trajectories, etc.). Applicable to standardized sharing of human motion and robot kinematics data.",
     "scene": [
       "general"
     ],
@@ -1276,20 +1284,21 @@
       "IMU",
       "本体状态"
     ],
-    "license": "CC BY 4.0"
+    "license": "CC-BY-4.0",
+    "institution": "BIDS Community / Stanford",
+    "description": "BIDS motion data extension standard for organizing motion capture and kinematics data. Defines directory structure, metadata format, and storage specifications for sensor data (IMU, joint angles, motion trajectories, etc.). Applicable to standardized sharing of human motion and robot kinematics data.",
+    "licenseNotes": "CC BY 4.0"
   },
   {
     "id": "simpler-env",
     "name": "SimplerEnv",
     "fullName": "SimplerEnv Evaluation Suite",
-    "org": "Stanford / Google DeepMind",
     "type": "benchmark",
     "openness": "open",
     "links": {
       "site": "https://github.com/simpler-env/SimplerEnv",
       "github": "https://github.com/simpler-env/SimplerEnv"
     },
-    "desc": "SimplerEnv 是用于评估机器人操作策略的仿真评测套件，包含 Fractal、Bridge 等多个真实环境的高保真仿真复现。GR00T N1 和 pi0 等模型使用 SimplerEnv 进行后训练评估。",
     "scene": [
       "sim"
     ],
@@ -1306,20 +1315,20 @@
       "unit": "%",
       "higherIsBetter": true,
       "maxScore": 100
-    }
+    },
+    "institution": "Stanford / Google DeepMind",
+    "description": "SimplerEnv 是用于评估机器人操作策略的仿真评测套件，包含 Fractal、Bridge 等多个真实环境的高保真仿真复现。GR00T N1 和 pi0 等模型使用 SimplerEnv 进行后训练评估。"
   },
   {
     "id": "furniture-bench",
     "name": "FurnitureBench",
     "fullName": "FurnitureBench Benchmark",
-    "org": "UT Austin / NVIDIA Research",
     "type": "benchmark",
     "openness": "open",
     "links": {
       "site": "https://clvrai.github.io/furniture-bench/",
       "github": "https://github.com/clvrai/furniture-bench"
     },
-    "desc": "FurnitureBench 是真实机器人长序列家具装配基准，包含 9 款 IKEA 风格 3D 打印家具模型的装配任务。评估机器人在长序列操作中的抓取、插入、拧螺丝等精细操作能力。",
     "scene": [
       "real"
     ],
@@ -1336,20 +1345,20 @@
       "unit": "%",
       "higherIsBetter": true,
       "maxScore": 100
-    }
+    },
+    "institution": "UT Austin / NVIDIA Research",
+    "description": "FurnitureBench 是真实机器人长序列家具装配基准，包含 9 款 IKEA 风格 3D 打印家具模型的装配任务。评估机器人在长序列操作中的抓取、插入、拧螺丝等精细操作能力。"
   },
   {
     "id": "embodied-bench",
     "name": "EmbodiedBench",
     "fullName": "EmbodiedBench: Comprehensive Benchmarking for Embodied Agents",
-    "org": "UIUC / Northwestern / Purdue",
     "type": "benchmark",
     "openness": "open",
     "links": {
       "site": "https://arxiv.org/abs/2502.09560",
       "paper": "https://arxiv.org/abs/2502.09560"
     },
-    "desc": "EmbodiedBench 是面向多模态大模型 (MLLM) 的综合具身评测基准。融合 4 大仿真环境（EB-ALFRED/EB-Habitat/EB-Navigation/EB-Manipulation），评估 6 大核心能力。注意：评测对象为通用 LLM（GPT-4o/Claude/Gemini），非机器人 VLA 模型，作为具身智能「大脑」层的参考维度。",
     "scene": [
       "sim"
     ],
@@ -1366,13 +1375,14 @@
       "higherIsBetter": true,
       "rankBy": "model",
       "maxScore": 100
-    }
+    },
+    "institution": "UIUC / Northwestern / Purdue",
+    "description": "EmbodiedBench 是面向多模态大模型 (MLLM) 的综合具身评测基准。融合 4 大仿真环境（EB-ALFRED/EB-Habitat/EB-Navigation/EB-Manipulation），评估 6 大核心能力。注意：评测对象为通用 LLM（GPT-4o/Claude/Gemini），非机器人 VLA 模型，作为具身智能「大脑」层的参考维度。"
   },
   {
     "id": "mfe-etp",
     "name": "MFE-ETP",
     "fullName": "Multi-modal Foundation models Evaluation for Embodied Task Planning",
-    "org": "天津大学智能与计算学部 + MILA",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -1383,8 +1393,7 @@
       "语言",
       "3D场景"
     ],
-    "license": "未明确",
-    "desc": "**MFE-ETP** 是天津大学智能与计算学部联合蒙特利尔学习算法研究所 (MILA) 于 2024 年发布的多模态基础模型具身任务规划综合评估基准。\n\n包含 **1,184 个高质量测试案例**，覆盖 **100 个具身任务**，从 BEHAVIOR-100 和 VirtualHome 平台收集典型家庭任务数据并经人工精细化标注。评估维度包括：对象理解 (OU)、时空感知 (STP)、任务理解 (TU) 和具身推理 (ER) 四大能力。\n\n支持 6 种题型：开放词汇问答、单选、多选、排序、是非判断和规划问答。6 个 SOTA MLLM (BLIP-2/MiniGPT-4/InstructBLIP/GPT-4V/LLaVA-1.5/MiniCPM) 在所有维度上显著落后于人类水平，主要瓶颈为物体类型识别和空间感知。",
+    "license": "Unspecified",
     "links": {
       "site": "https://mfe-etp.github.io",
       "paper": "https://arxiv.org/abs/2407.05047"
@@ -1405,13 +1414,15 @@
       "MAY": [
         "扩展到更多真实家庭场景"
       ]
-    }
+    },
+    "institution": "天津大学智能与计算学部 + MILA",
+    "description": "**MFE-ETP** 是天津大学智能与计算学部联合蒙特利尔学习算法研究所 (MILA) 于 2024 年发布的多模态基础模型具身任务规划综合评估基准。\n\n包含 **1,184 个高质量测试案例**，覆盖 **100 个具身任务**，从 BEHAVIOR-100 和 VirtualHome 平台收集典型家庭任务数据并经人工精细化标注。评估维度包括：对象理解 (OU)、时空感知 (STP)、任务理解 (TU) 和具身推理 (ER) 四大能力。\n\n支持 6 种题型：开放词汇问答、单选、多选、排序、是非判断和规划问答。6 个 SOTA MLLM (BLIP-2/MiniGPT-4/InstructBLIP/GPT-4V/LLaVA-1.5/MiniCPM) 在所有维度上显著落后于人类水平，主要瓶颈为物体类型识别和空间感知。",
+    "licenseNotes": "未明确"
   },
   {
     "id": "ewmbench",
     "name": "EWMBench",
     "fullName": "Embodied World Model Benchmark",
-    "org": "上海交通大学 + AgiBot + 新加坡国立大学 + 哈工大",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -1424,8 +1435,7 @@
       "动作",
       "3D点云"
     ],
-    "license": "CC BY-NC-SA 4.0",
-    "desc": "**EWMBench** 是 AgiBot、上海交通大学、新加坡国立大学和哈尔滨工业大学于 2025 年联合发布的具身世界模型评测基准（BMVC 2025）。\n\n基于 **AgiBot-World** 百万级真实机器人操作数据，精选 **300+ 组 720p 视频片段**，评估具身世界模型生成物理合理视频预测的能力。三维度评测：**视觉场景一致性**（DINOv2 微调 + patch embedding 余弦相似度）、**运动正确性**（对称 Hausdorff 距离 + 归一化 DTW + 动力学一致性 Wasserstein 距离）、**语义对齐与多样性**（MLLM captioning + BLEU/CLIP + 逻辑错误检测）。\n\n评测 7 个模型（OpenSora 2.0/LTX/COSMOS-7B/Kling-1.6/Hailuo/EnerVerse），领域适配模型 (EnerVerse 4.70/5) 显著优于商业模型。CC BY-NC-SA 4.0 开源。",
+    "license": "CC-BY-NC-SA-4.0",
     "links": {
       "site": "https://github.com/AgibotTech/EWMBench",
       "paper": "https://arxiv.org/abs/2505.09694",
@@ -1449,13 +1459,15 @@
       "MAY": [
         "扩展到更多世界模型和任务类型"
       ]
-    }
+    },
+    "institution": "上海交通大学 + AgiBot + 新加坡国立大学 + 哈工大",
+    "description": "**EWMBench** 是 AgiBot、上海交通大学、新加坡国立大学和哈尔滨工业大学于 2025 年联合发布的具身世界模型评测基准（BMVC 2025）。\n\n基于 **AgiBot-World** 百万级真实机器人操作数据，精选 **300+ 组 720p 视频片段**，评估具身世界模型生成物理合理视频预测的能力。三维度评测：**视觉场景一致性**（DINOv2 微调 + patch embedding 余弦相似度）、**运动正确性**（对称 Hausdorff 距离 + 归一化 DTW + 动力学一致性 Wasserstein 距离）、**语义对齐与多样性**（MLLM captioning + BLEU/CLIP + 逻辑错误检测）。\n\n评测 7 个模型（OpenSora 2.0/LTX/COSMOS-7B/Kling-1.6/Hailuo/EnerVerse），领域适配模型 (EnerVerse 4.70/5) 显著优于商业模型。CC BY-NC-SA 4.0 开源。",
+    "licenseNotes": "CC BY-NC-SA 4.0"
   },
   {
     "id": "maniskill3",
     "name": "ManiSkill3",
     "fullName": "GPU Parallelized Robotics Simulation and Rendering for Generalizable Embodied AI",
-    "org": "Hillbot Inc. / Hao Su Lab, UC San Diego",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -1468,8 +1480,7 @@
       "本体状态",
       "动作"
     ],
-    "license": "Apache 2.0",
-    "desc": "**ManiSkill3** 是 SAPIEN 平台上最新的 GPU 并行化机器人仿真与评测基准（arxiv 2410.00425, 2024），由 Hillbot Inc. 和 UC San Diego Hao Su Lab 开发。\n\n相比 ManiSkill2 的 CPU 架构，ManiSkill3 实现 **GPU 并行化**，单张 RTX 4090 可达 **30,000+ FPS**（RGBD + 语义分割），是 Isaac Lab 等仿真器的 10-1000 倍。仅需 4.4 GB GPU 显存即可运行 128 个并行环境。\n\n**12 个任务域**：桌面操作、移动操作、绘图/清洁、灵巧手操作、人形机器人、铰接物体（橱柜/抽屉）、YCB 杂乱场景抓取等。场景素材来自 AI2THOR、ReplicaCAD、PartNet Mobility 和 YCB 数据集。\n\n**Real2Sim 评估**：GPU 加速评估真实机器人策略（Octo、RT-1-X），比实时快 60-100 倍，与现实世界的成功率相关系数 0.9284。内置 4 个 SIMPLER 环境（CoRL 2024）。\n\n提供百万级演示帧（来自运动规划、RL 和遥操作），配套 PPO/SAC/TD-MPC2/BC/Diffusion Policy/Octo/RDT-1B 等基线。前身 ManiSkill1（NeurIPS 2021）、ManiSkill2（ICLR 2023）。",
+    "license": "Apache-2.0",
     "links": {
       "site": "https://maniskill.ai",
       "paper": "https://arxiv.org/abs/2410.00425",
@@ -1494,13 +1505,15 @@
         "集成 SIMPLER 环境",
         "支持人形机器人和灵巧手任务"
       ]
-    }
+    },
+    "institution": "Hillbot Inc. / Hao Su Lab, UC San Diego",
+    "description": "**ManiSkill3** 是 SAPIEN 平台上最新的 GPU 并行化机器人仿真与评测基准（arxiv 2410.00425, 2024），由 Hillbot Inc. 和 UC San Diego Hao Su Lab 开发。\n\n相比 ManiSkill2 的 CPU 架构，ManiSkill3 实现 **GPU 并行化**，单张 RTX 4090 可达 **30,000+ FPS**（RGBD + 语义分割），是 Isaac Lab 等仿真器的 10-1000 倍。仅需 4.4 GB GPU 显存即可运行 128 个并行环境。\n\n**12 个任务域**：桌面操作、移动操作、绘图/清洁、灵巧手操作、人形机器人、铰接物体（橱柜/抽屉）、YCB 杂乱场景抓取等。场景素材来自 AI2THOR、ReplicaCAD、PartNet Mobility 和 YCB 数据集。\n\n**Real2Sim 评估**：GPU 加速评估真实机器人策略（Octo、RT-1-X），比实时快 60-100 倍，与现实世界的成功率相关系数 0.9284。内置 4 个 SIMPLER 环境（CoRL 2024）。\n\n提供百万级演示帧（来自运动规划、RL 和遥操作），配套 PPO/SAC/TD-MPC2/BC/Diffusion Policy/Octo/RDT-1B 等基线。前身 ManiSkill1（NeurIPS 2021）、ManiSkill2（ICLR 2023）。",
+    "licenseNotes": "Apache 2.0"
   },
   {
     "id": "bddl",
     "name": "BDDL",
     "fullName": "BEHAVIOR Domain Definition Language",
-    "org": "Stanford Vision and Learning Lab",
     "type": "format",
     "openness": "open",
     "scene": [
@@ -1510,8 +1523,7 @@
       "3D模型",
       "语言"
     ],
-    "license": "CC BY 4.0",
-    "desc": "**BDDL (BEHAVIOR Domain Definition Language)** 是 Stanford Vision and Learning Lab 提出的面向具身智能任务的形式化定义语言，是 **BEHAVIOR Benchmark** 的核心任务规范格式。\n\nBDDL 基于**对象中心的谓词逻辑**，每个活动由三部分定义：(1) 分类对象列表（按 WordNet synset 标注），(2) 初始条件（空间关系如 、 + 物体状态如 、），(3) 目标条件（支持  及自定义量词 、）。\n\n**与 PDDL 的关键区别**：BDDL 不含动作符号，不做符号规划——它只定义「世界是什么样」和「成功长什么样」，具体怎么做到由 agent 决定。这种解耦设计使同一 BDDL 定义可生成无限多种具体场景实例（通过 iGibson 2.0 / OmniGibson 的自动采样）。\n\n**进度指标**：目标成功度由 satisfiable 逻辑文字比例计算，支持部分进度追踪（如「已经切好了苹果，但还没放到桌上」也算完成了一半）。\n\nBDDL 已在 **BEHAVIOR-1K**（1,000 个家居任务）中全面使用，并可通过形式化翻译到 Fiacre/nuXmv 进行安全关键行为的模型检查。",
+    "license": "CC-BY-4.0",
     "links": {
       "site": "https://stanfordvl.github.io/behavior/activities.html",
       "github": "https://github.com/StanfordVL/BEHAVIOR"
@@ -1536,13 +1548,15 @@
         "形式化验证（Fiacre/nuXmv 翻译）",
         "支持自定义量词（for_n/for_pairs）"
       ]
-    }
+    },
+    "institution": "Stanford Vision and Learning Lab",
+    "description": "**BDDL (BEHAVIOR Domain Definition Language)** 是 Stanford Vision and Learning Lab 提出的面向具身智能任务的形式化定义语言，是 **BEHAVIOR Benchmark** 的核心任务规范格式。\n\nBDDL 基于**对象中心的谓词逻辑**，每个活动由三部分定义：(1) 分类对象列表（按 WordNet synset 标注），(2) 初始条件（空间关系如 、 + 物体状态如 、），(3) 目标条件（支持  及自定义量词 、）。\n\n**与 PDDL 的关键区别**：BDDL 不含动作符号，不做符号规划——它只定义「世界是什么样」和「成功长什么样」，具体怎么做到由 agent 决定。这种解耦设计使同一 BDDL 定义可生成无限多种具体场景实例（通过 iGibson 2.0 / OmniGibson 的自动采样）。\n\n**进度指标**：目标成功度由 satisfiable 逻辑文字比例计算，支持部分进度追踪（如「已经切好了苹果，但还没放到桌上」也算完成了一半）。\n\nBDDL 已在 **BEHAVIOR-1K**（1,000 个家居任务）中全面使用，并可通过形式化翻译到 Fiacre/nuXmv 进行安全关键行为的模型检查。",
+    "licenseNotes": "CC BY 4.0"
   },
   {
     "id": "pddl",
     "name": "PDDL",
     "fullName": "Planning Domain Definition Language",
-    "org": "International Planning Competition (IPC) / AI Planning Community",
     "type": "format",
     "openness": "open",
     "scene": [
@@ -1553,7 +1567,6 @@
       "语言"
     ],
     "license": "开放标准（无版权限制）",
-    "desc": "**PDDL (Planning Domain Definition Language)** 是 AI 任务规划领域的奠基性标准语言，自 1998 年首届国际规划竞赛 (IPC) 沿用至今。采用类 Lisp 语法，是具身智能和机器人任务规划的**高层抽象标准**。\n\n**核心设计**：双文件架构——**Domain 文件**定义世界规则（类型、谓词、动作的前置条件与效果），**Problem 文件**定义具体场景（物体、初始状态、目标状态）。更换任务只需改 Problem 文件，Domain 可复用。\n\n**与 BDDL 的关系**：PDDL 含动作符号，用于生成规划（HOW）；BDDL 不含动作符号，用于定义场景语义和评测（WHAT）。两者互补——BDDL 定义的具身任务可以作为 PDDL 规划器的目标状态。\n\n**在机器人领域的应用**：Tiago 服务机器人（居家整理）、NIST 装配与分拣竞赛 (ARIAC)、双臂协作（一个手臂拧螺丝、另一个扶瓶子）、工业产线再规划。通过 ROS 与底层运动规划、感知模块集成。\n\n**版本演进**：PDDL 1.2 (STRIPS 子集) → PDDL 2.1 (时态动作 + 数值 fluents) → PDDL 2.2 (派生谓词) → PDDL 3.0 (状态轨迹约束) → PDDL 3.1 (object fluents)。主流规划器：Fast-Downward、POPF、LPG。\n\n虽起源于经典 AI 规划而非具身智能，但 PDDL 仍然是连接**符号推理**与**物理执行**的关键桥梁，几乎所有需要任务级推理的机器人系统都会用到它的概念体系。",
     "links": {
       "site": "https://en.wikipedia.org/wiki/Planning_Domain_Definition_Language",
       "paper": "https://github.com/pellierd/pddl4j"
@@ -1576,13 +1589,14 @@
         "支持 ADL 高级特性（析取、全称量词、条件效果）",
         "支持偏好约束 (:preferences) 和状态轨迹约束 (PDDL 3.0+)"
       ]
-    }
+    },
+    "institution": "International Planning Competition (IPC) / AI Planning Community",
+    "description": "**PDDL (Planning Domain Definition Language)** 是 AI 任务规划领域的奠基性标准语言，自 1998 年首届国际规划竞赛 (IPC) 沿用至今。采用类 Lisp 语法，是具身智能和机器人任务规划的**高层抽象标准**。\n\n**核心设计**：双文件架构——**Domain 文件**定义世界规则（类型、谓词、动作的前置条件与效果），**Problem 文件**定义具体场景（物体、初始状态、目标状态）。更换任务只需改 Problem 文件，Domain 可复用。\n\n**与 BDDL 的关系**：PDDL 含动作符号，用于生成规划（HOW）；BDDL 不含动作符号，用于定义场景语义和评测（WHAT）。两者互补——BDDL 定义的具身任务可以作为 PDDL 规划器的目标状态。\n\n**在机器人领域的应用**：Tiago 服务机器人（居家整理）、NIST 装配与分拣竞赛 (ARIAC)、双臂协作（一个手臂拧螺丝、另一个扶瓶子）、工业产线再规划。通过 ROS 与底层运动规划、感知模块集成。\n\n**版本演进**：PDDL 1.2 (STRIPS 子集) → PDDL 2.1 (时态动作 + 数值 fluents) → PDDL 2.2 (派生谓词) → PDDL 3.0 (状态轨迹约束) → PDDL 3.1 (object fluents)。主流规划器：Fast-Downward、POPF、LPG。\n\n虽起源于经典 AI 规划而非具身智能，但 PDDL 仍然是连接**符号推理**与**物理执行**的关键桥梁，几乎所有需要任务级推理的机器人系统都会用到它的概念体系。"
   },
   {
     "id": "libero-plus",
     "name": "LIBERO-Plus",
     "fullName": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
-    "org": "复旦大学 + 同济大学",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -1593,8 +1607,7 @@
       "语言",
       "动作"
     ],
-    "license": "Apache 2.0",
-    "desc": "**LIBERO-Plus** 是复旦大学和同济大学于 2025 年 10 月发布的 VLA 模型鲁棒性深度评测基准（arxiv 2510.13626），是对 LIBERO 基准的**系统化鲁棒性扩展**。\n\nLIBERO 标准评测中 VLA 模型可达 90-98% 成功率，但 **LIBERO-Plus 揭示这些分数掩盖了严重的脆弱性**——在轻微扰动下，性能从 95% 跌至 30% 以下。\n\n**7 大扰动维度**（10,030 个任务，L1-L5 难度分级）：(1) 物体布局（混淆物/位移）、(2) 相机视角（位置/方向/FOV）、(3) 机器人初始状态、(4) 语言指令（LLM 改写）、(5) 光照条件（强度/方向/色温/阴影）、(6) 背景纹理、(7) 传感器噪声（抖动/高斯模糊）。\n\n**核心发现**：多数模型对相机视角变化极度脆弱（OpenVLA: 0.8%, π0: 13.8%）；模型实质上是「视觉-动作」而非「视觉-语言-动作」模型（空白指令实验几乎不影响性能）；模型记忆位置而非理解语义（位移目标物体导致严重失败）；腕部相机显著提升鲁棒性。评测了 OpenVLA、π0、RIPT-VLA、NORA、UniVLA 等 8 个模型。",
+    "license": "Apache-2.0",
     "links": {
       "site": "https://github.com/sylvestf/LIBERO-plus",
       "paper": "https://arxiv.org/abs/2510.13626",
@@ -1627,13 +1640,15 @@
       "unit": "",
       "metric": "Total",
       "maxScore": null
-    }
+    },
+    "institution": "复旦大学 + 同济大学",
+    "description": "**LIBERO-Plus** 是复旦大学和同济大学于 2025 年 10 月发布的 VLA 模型鲁棒性深度评测基准（arxiv 2510.13626），是对 LIBERO 基准的**系统化鲁棒性扩展**。\n\nLIBERO 标准评测中 VLA 模型可达 90-98% 成功率，但 **LIBERO-Plus 揭示这些分数掩盖了严重的脆弱性**——在轻微扰动下，性能从 95% 跌至 30% 以下。\n\n**7 大扰动维度**（10,030 个任务，L1-L5 难度分级）：(1) 物体布局（混淆物/位移）、(2) 相机视角（位置/方向/FOV）、(3) 机器人初始状态、(4) 语言指令（LLM 改写）、(5) 光照条件（强度/方向/色温/阴影）、(6) 背景纹理、(7) 传感器噪声（抖动/高斯模糊）。\n\n**核心发现**：多数模型对相机视角变化极度脆弱（OpenVLA: 0.8%, π0: 13.8%）；模型实质上是「视觉-动作」而非「视觉-语言-动作」模型（空白指令实验几乎不影响性能）；模型记忆位置而非理解语义（位移目标物体导致严重失败）；腕部相机显著提升鲁棒性。评测了 OpenVLA、π0、RIPT-VLA、NORA、UniVLA 等 8 个模型。",
+    "licenseNotes": "Apache 2.0"
   },
   {
     "id": "vlabench",
     "name": "VLABench",
     "fullName": "VLABench: A Benchmark for Vision-Language-Action Models with Diverse Robotic Primitives",
-    "org": "VLABench Team",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -1645,8 +1660,7 @@
       "动作",
       "语言"
     ],
-    "license": "Apache 2.0",
-    "desc": "**VLABench** 是一个面向视觉-语言-动作 (VLA) 模型的综合评测基准，涵盖多种机器人操作原语和复杂任务场景。\n\n**6 个评测 Track**：\n1. Track 1 — In Distribution（分布内泛化）\n2. Track 2 — Cross Category（跨类别泛化）\n3. Track 3 — Common Sense（常识推理）\n4. Track 4 — Semantic Instruction（语义指令理解）\n5. Track 5 — Unseen Object（未见物体泛化）\n6. Track 6 — Unseen Texture（未见纹理泛化）\n\n全面评估 VLA 模型的泛化能力、常识推理和语义理解。数据格式支持 **LeRobot** 和 **RLDS**。论文已被顶会收录。",
+    "license": "Apache-2.0",
     "links": {
       "paper": "https://arxiv.org/abs/2412.18194",
       "site": "https://vlabench.github.io"
@@ -1670,13 +1684,15 @@
       "unit": "%",
       "metric": "Avg. Success",
       "maxScore": 100
-    }
+    },
+    "institution": "VLABench Team",
+    "description": "**VLABench** 是一个面向视觉-语言-动作 (VLA) 模型的综合评测基准，涵盖多种机器人操作原语和复杂任务场景。\n\n**6 个评测 Track**：\n1. Track 1 — In Distribution（分布内泛化）\n2. Track 2 — Cross Category（跨类别泛化）\n3. Track 3 — Common Sense（常识推理）\n4. Track 4 — Semantic Instruction（语义指令理解）\n5. Track 5 — Unseen Object（未见物体泛化）\n6. Track 6 — Unseen Texture（未见纹理泛化）\n\n全面评估 VLA 模型的泛化能力、常识推理和语义理解。数据格式支持 **LeRobot** 和 **RLDS**。论文已被顶会收录。",
+    "licenseNotes": "Apache 2.0"
   },
   {
     "id": "meta-world",
     "name": "Meta-World",
     "fullName": "Meta-World",
-    "org": "UC Berkeley / Stanford",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -1687,7 +1703,6 @@
       "动作"
     ],
     "license": "See paper",
-    "desc": "**Meta-World** 是一个具身智能评测基准。Tianhe Yu, et al. CoRL 2020",
     "links": {
       "paper": "https://arxiv.org/abs/1910.10897",
       "github": "https://github.com/Farama-Foundation/Metaworld",
@@ -1705,13 +1720,14 @@
         "多维度评测"
       ],
       "MAY": []
-    }
+    },
+    "institution": "UC Berkeley / Stanford",
+    "description": "**Meta-World** 是一个具身智能评测基准。Tianhe Yu, et al. CoRL 2020"
   },
   {
     "id": "robotwin",
     "name": "RoboTwin 2.0",
     "fullName": "RoboTwin 2.0: Dual-Arm Robot Manipulation Benchmark with Digital Twin Calibration",
-    "org": "RoboTwin Team / Tsinghua University",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -1723,8 +1739,7 @@
       "动作",
       "语言"
     ],
-    "license": "Apache 2.0",
-    "desc": "**RoboTwin 2.0** 是清华大学等机构发布的双臂机器人操作评测基准，基于数字孪生技术构建高保真仿真环境。\n\n评测包含多个双臂协作任务，分 **Easy** 和 **Hard** 两级难度，评估模型在复杂双臂操作中的精确控制能力。数据格式支持 **LeRobot** 和 **RLDS**，可直接用于 VLA 模型训练和评测。\n\n**核心特点**：高保真数字孪生环境（物理参数毫米级标定）、双臂协作任务（需要精确的双手协调）、两级难度分级（Easy/Hard 覆盖从基础到复杂操作）。",
+    "license": "Apache-2.0",
     "links": {
       "paper": "https://arxiv.org/abs/2501.12345",
       "github": "https://github.com/robotwin/robotwin2"
@@ -1748,13 +1763,15 @@
       "unit": "%",
       "metric": "Easy",
       "maxScore": 100
-    }
+    },
+    "institution": "RoboTwin Team / Tsinghua University",
+    "description": "**RoboTwin 2.0** 是清华大学等机构发布的双臂机器人操作评测基准，基于数字孪生技术构建高保真仿真环境。\n\n评测包含多个双臂协作任务，分 **Easy** 和 **Hard** 两级难度，评估模型在复杂双臂操作中的精确控制能力。数据格式支持 **LeRobot** 和 **RLDS**，可直接用于 VLA 模型训练和评测。\n\n**核心特点**：高保真数字孪生环境（物理参数毫米级标定）、双臂协作任务（需要精确的双手协调）、两级难度分级（Easy/Hard 覆盖从基础到复杂操作）。",
+    "licenseNotes": "Apache 2.0"
   },
   {
     "id": "libero-pro",
     "name": "LIBERO-PRO",
     "fullName": "LIBERO-PRO: Probing the Robustness and Generalization of VLA Models on LIBERO",
-    "org": "LIBERO-PRO Team",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -1765,8 +1782,7 @@
       "动作",
       "语言"
     ],
-    "license": "Apache 2.0",
-    "desc": "**LIBERO-PRO** 是对 LIBERO 基准的鲁棒性与泛化性深度探测（arxiv 2510.03827, 2025）。\n\n评测 **4 个维度 × 5 个子维度 = 20 个细粒度指标**：\n- **Goal**：目标条件变异（Obj/Pos/Sem/Task/Env）\n- **Spatial**：空间布局变异（Obj/Pos/Sem/Task/Env）\n- **L10**：LIBERO-10 长期任务变异（Obj/Pos/Sem/Task/Env）\n- **Object**：物体属性变异（Obj/Pos/Sem/Task/Env）\n\n系统揭示 VLA 模型在对象换位、空间偏移、语义变异、任务泛化和环境迁移下的脆弱性，与 LIBERO-Plus（7 维扰动鲁棒性评测）互补。",
+    "license": "Apache-2.0",
     "links": {
       "paper": "https://arxiv.org/abs/2510.03827",
       "github": "https://github.com/Zxy-MLlab/LIBERO-PRO"
@@ -1783,13 +1799,15 @@
         "多维度评测"
       ],
       "MAY": []
-    }
+    },
+    "institution": "LIBERO-PRO Team",
+    "description": "**LIBERO-PRO** 是对 LIBERO 基准的鲁棒性与泛化性深度探测（arxiv 2510.03827, 2025）。\n\n评测 **4 个维度 × 5 个子维度 = 20 个细粒度指标**：\n- **Goal**：目标条件变异（Obj/Pos/Sem/Task/Env）\n- **Spatial**：空间布局变异（Obj/Pos/Sem/Task/Env）\n- **L10**：LIBERO-10 长期任务变异（Obj/Pos/Sem/Task/Env）\n- **Object**：物体属性变异（Obj/Pos/Sem/Task/Env）\n\n系统揭示 VLA 模型在对象换位、空间偏移、语义变异、任务泛化和环境迁移下的脆弱性，与 LIBERO-Plus（7 维扰动鲁棒性评测）互补。",
+    "licenseNotes": "Apache 2.0"
   },
   {
     "id": "robochallenge",
     "name": "RoboChallenge",
     "fullName": "RoboChallenge: Large-Scale Real-Robot Embodied AI Benchmark",
-    "org": "RoboChallenge Consortium",
     "type": "benchmark",
     "openness": "open",
     "scene": [
@@ -1801,8 +1819,7 @@
       "动作",
       "语言"
     ],
-    "license": "CC BY 4.0",
-    "desc": "**RoboChallenge Table30** 是全球首个大规模远程真机评测平台，核心解决「仿真高分、真机拉胯」的 Sim2Real 鸿沟。\n\n**硬件体系**：支持 4 类主流真机集群（共 10 台远程机器人）——UR5 6DoF 单臂、Franka Panda 7DoF 单臂、Magic Aloha 双臂协同、ARX-5 国产单臂。全部搭载多台 RGBD 深度相机，统一视觉采集标准。\n\n**Table30 基准任务**：初代 30 个桌面单臂操作任务（拾取摆放、分类、工具使用、遮挡泛化、多步骤长时序操作），V2 升级版新增 18 个双臂任务。双维度打分：任务整体成功率 + 过程完成度得分。\n\n**配套数据集**：每个任务开放约 1000 条人工遥操作真机轨迹（视觉 + 语言 + 动作标注），用于模型微调训练。注意：RoboChallenge 本质是评测平台，数据集只是附属训练素材。\n\n**官方定义**：大规模真实机器人具身智能评测基准，区别于所有 MuJoCo 仿真基准。",
+    "license": "CC-BY-4.0",
     "links": {
       "site": "https://robochallenge.ai",
       "paper": "https://arxiv.org/abs/2510.17950",
@@ -1828,6 +1845,9 @@
       "unit": " pts",
       "metric": "Avg. Score",
       "maxScore": null
-    }
+    },
+    "institution": "RoboChallenge Consortium",
+    "description": "**RoboChallenge Table30** 是全球首个大规模远程真机评测平台，核心解决「仿真高分、真机拉胯」的 Sim2Real 鸿沟。\n\n**硬件体系**：支持 4 类主流真机集群（共 10 台远程机器人）——UR5 6DoF 单臂、Franka Panda 7DoF 单臂、Magic Aloha 双臂协同、ARX-5 国产单臂。全部搭载多台 RGBD 深度相机，统一视觉采集标准。\n\n**Table30 基准任务**：初代 30 个桌面单臂操作任务（拾取摆放、分类、工具使用、遮挡泛化、多步骤长时序操作），V2 升级版新增 18 个双臂任务。双维度打分：任务整体成功率 + 过程完成度得分。\n\n**配套数据集**：每个任务开放约 1000 条人工遥操作真机轨迹（视觉 + 语言 + 动作标注），用于模型微调训练。注意：RoboChallenge 本质是评测平台，数据集只是附属训练素材。\n\n**官方定义**：大规模真实机器人具身智能评测基准，区别于所有 MuJoCo 仿真基准。",
+    "licenseNotes": "CC BY 4.0"
   }
 ]

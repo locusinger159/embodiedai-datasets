@@ -12,14 +12,10 @@
       "操作",
       "装配"
     ],
-    "modality": [
-      "仿真状态",
-      "视觉"
-    ],
     "type": "open",
     "links": {
-      "official": "https://robosuite.ai",
-      "paper": "https://arxiv.org/abs/2009.12293"
+      "paper": "https://arxiv.org/abs/2009.12293",
+      "site": "https://robosuite.ai"
     },
     "notes": "Modular robot simulation framework maintained by Stanford/UT Austin/NVIDIA GEAR. MuJoCo-based. v1.5 (2024) adds humanoid support, custom robot composition, whole-body controllers, Isaac Sim rendering. 9+ standard tasks, 7 robot models, Gymnasium API.",
     "description": "**RoboSuite** is a modular simulation framework for robot learning, originally developed by Stanford Vision and Learning Lab and now maintained by the **ARISE Initiative (Stanford / UT Austin / NVIDIA GEAR)**.\n\nBuilt on the **MuJoCo** physics engine with standardized benchmark environments.\n\n**v1.5 (Oct 2024) Highlights**:\n- Humanoid robot and diverse embodiment support\n- Custom robot composition (programmatic assembly of new designs)\n- Composite controllers (IK + operational space + joint-space whole-body control)\n- NVIDIA Isaac Sim integration for photorealistic rendering\n\n**Core Features**: 9+ standardized manipulation tasks (Lift, Stack, Nut Assembly, Door, etc.), 7 robot arms + 8 gripper models, multi-modal sensors (RGB, depth, proprioception), Gymnasium API compatible. Sister project **robomimic** for human demo collection and imitation learning.",
@@ -80,7 +76,11 @@
           "url": "https://github.com/ARISE-Initiative/robosuite/tree/master/robosuite/demos"
         }
       ]
-    }
+    },
+    "modalities": [
+      "仿真状态",
+      "视觉"
+    ]
   },
   {
     "id": "isaac-sim-dataset",
@@ -92,14 +92,9 @@
     "task": [
       "操作"
     ],
-    "modality": [
-      "视觉",
-      "点云",
-      "深度"
-    ],
     "type": "partial",
     "links": {
-      "official": "https://developer.nvidia.com/isaac-sim"
+      "site": "https://developer.nvidia.com/isaac-sim"
     },
     "notes": "NVIDIA's high-performance robot simulation toolkit on Omniverse. OpenUSD-based pipelines for parallel scene generation, domain randomization, sensor simulation, and policy training. Core simulation platform for the GR00T model series.",
     "description": "**NVIDIA Isaac Sim** is a high-performance robot simulation toolkit built on the **Omniverse** platform.\n\nConstructs simulation data pipelines based on **OpenUSD**, supporting large-scale parallel scene generation, domain randomization, physics-grade sensor simulation (RGB-D, LiDAR, IMU, etc.), and RL/imitation learning policy training.\n\nServes as the core simulation data generation and training/validation platform for NVIDIA's **GR00T** series humanoid robot foundation models. Deeply integrated with Isaac Lab (formerly Isaac Gym) for GPU-accelerated massively parallel simulation.",
@@ -159,7 +154,12 @@
           "url": "https://github.com/isaac-sim/IsaacSim"
         }
       ]
-    }
+    },
+    "modalities": [
+      "视觉",
+      "点云",
+      "深度"
+    ]
   },
   {
     "id": "habitat",
@@ -171,14 +171,10 @@
     "task": [
       "导航"
     ],
-    "modality": [
-      "视觉",
-      "深度"
-    ],
     "type": "open",
     "links": {
-      "official": "https://aihabitat.org",
-      "paper": "https://arxiv.org/abs/2310.13724"
+      "paper": "https://arxiv.org/abs/2310.13724",
+      "site": "https://aihabitat.org"
     },
     "notes": "Meta AI's high-performance embodied navigation & interaction simulation platform. Habitat 3.0 (2023) supports human-robot collaboration, VR human-in-the-loop, social navigation & rearrangement. HM3D, MatterPort3D, Replica datasets. Annual Habitat Challenge.",
     "description": "**Habitat** is a high-performance embodied navigation and interaction simulation platform from **Meta AI** (formerly Facebook AI).\n\n**Habitat 3.0 (2023)** introduces human-robot collaboration tasks, high-fidelity human avatar simulation (articulated skeletons + surface rendering), human-in-the-loop interaction (VR/keyboard-mouse), and two core collaboration tasks: Social Navigation and Social Rearrangement.\n\n**Architecture**: Habitat-Sim (high-performance 3D simulator supporting HM3D, MatterPort3D, Gibson, Replica scene datasets) + Habitat-Lab (modular task definition & training library) + Habitat Challenge (annual CVPR Embodied AI Workshop benchmark). Fetch robot achieves 8,000+ steps/second.",
@@ -239,7 +235,11 @@
           "url": "https://aihabitat.org/tutorial/"
         }
       ]
-    }
+    },
+    "modalities": [
+      "视觉",
+      "深度"
+    ]
   },
   {
     "id": "igibson",
@@ -253,15 +253,10 @@
       "操作",
       "家居"
     ],
-    "modality": [
-      "视觉",
-      "深度",
-      "物理"
-    ],
     "type": "open",
     "links": {
-      "official": "https://stanfordvl.github.io/iGibson",
-      "paper": "https://arxiv.org/abs/2010.08628"
+      "paper": "https://arxiv.org/abs/2010.08628",
+      "site": "https://stanfordvl.github.io/iGibson"
     },
     "notes": "StanfordVL interactive 3D home simulation environment (Bullet physics). 15 fully interactive home scenes with manipulable objects (doors, drawers, switches). v2.2 (2024) adds Tiago robot, ROS integration. Successor: OmniGibson (NVIDIA Omniverse).",
     "description": "**iGibson (Interactive Gibson)** is an interactive 3D home simulation environment developed by Stanford Vision and Learning Lab.\n\nBased on the **Bullet** physics engine, providing 15 fully interactive home scenes (doors, drawers, switches, furniture, etc.) for robot navigation, manipulation, and interaction tasks.\n\n**v2.2 (2024)** added Tiago robot support, ROS integration, object-centric action primitives, and primitive action interface.\n\n**Successor Project**: **OmniGibson** (built on NVIDIA Omniverse) is the team's current next-generation platform, supporting higher-quality rendering and physics simulation.",
@@ -324,7 +319,12 @@
           "url": "https://github.com/StanfordVL/iGibson"
         }
       ]
-    }
+    },
+    "modalities": [
+      "视觉",
+      "深度",
+      "物理"
+    ]
   },
   {
     "id": "sapien",
@@ -336,14 +336,10 @@
     "task": [
       "操作"
     ],
-    "modality": [
-      "视觉",
-      "点云"
-    ],
     "type": "open",
     "links": {
-      "official": "https://maniskill.ai/",
-      "paper": "https://arxiv.org/abs/2410.00425"
+      "paper": "https://arxiv.org/abs/2410.00425",
+      "site": "https://maniskill.ai/"
     },
     "notes": "UCSD Hao Su Lab's GPU-parallelized robotics simulation & rendering platform. ManiSkill3 (RSS 2025) achieves 30,000+ FPS, 20+ robot morphologies. SAPIEN 3.0 engine with heterogeneous massively parallel simulation. pip install mani_skill.",
     "description": "**SAPIEN** is an interactive 3D part-level simulation platform developed by UCSD Hao Su Lab, and **ManiSkill** built on top of it is the state-of-the-art GPU-parallelized robotics simulation and benchmark framework.\n\n**ManiSkill3 (RSS 2025) Key Features**:\n- GPU-parallel simulation + rendering at **30,000+ FPS** (RGB-D + segmentation)\n- 2-3x better GPU memory efficiency than Isaac Lab (128 parallel envs: 4.4GB vs 14.1GB)\n- 12 environment categories, **20+ robots** (humanoids, mobile manipulators, quadrupeds, dexterous hands, etc.)\n- Built-in ReplicaCAD, AI2THOR scenes, heterogeneous parallel simulation support\n- RL (PPO/SAC/TD-MPC2), imitation learning (BC/Diffusion Policy), VLA (Octo/RDT/RT-x) baselines\n\nSAPIEN 3.0 engine provides 2,000+ high-quality 3D models with part-level articulation. Install: pip install --upgrade mani_skill.",
@@ -401,7 +397,11 @@
           "url": "https://github.com/haosulab/SAPIEN"
         }
       ]
-    }
+    },
+    "modalities": [
+      "视觉",
+      "点云"
+    ]
   },
   {
     "id": "coppeliasim",
@@ -413,12 +413,9 @@
     "task": [
       "操作"
     ],
-    "modality": [
-      "视觉"
-    ],
     "type": "open",
     "links": {
-      "official": "https://www.coppeliarobotics.com/"
+      "site": "https://www.coppeliarobotics.com/"
     },
     "notes": "Cross-platform robot simulation environment (formerly V-REP). V4.10.0 (May 2025), MuJoCo V3.2.6 integration for 2-10x speedup. Multi-engine support (Bullet/ODE/Vortex/Newton). Rich model library & sensor simulation. RLBench backend.",
     "description": "**CoppeliaSim** (formerly V-REP) is a cross-platform general-purpose robot simulation environment developed and maintained by Coppelia Robotics.\n\n**Latest V4.10.0 (May 2025)**, featuring MuJoCo V3.2.6 integration for **2-10x simulation speedup** and new adhesion functionality.\n\n**Core Features**: Multiple physics engine support (Bullet, ODE, Vortex, Newton, MuJoCo), rich robot model library and sensor simulation (vision, depth, force, IMU, etc.), Python/C/C++/MATLAB/ROS multi-language APIs. Serves as the backend simulation platform for **RLBench** and is widely used in robot learning and control research.",
@@ -473,7 +470,10 @@
           "url": "https://github.com/CoppeliaRobotics/coppeliaSimLib"
         }
       ]
-    }
+    },
+    "modalities": [
+      "视觉"
+    ]
   },
   {
     "id": "pytouch",
@@ -485,13 +485,10 @@
     "task": [
       "交互"
     ],
-    "modality": [
-      "触觉"
-    ],
     "type": "open",
     "links": {
-      "official": "https://facebookresearch.github.io/PyTouch/",
-      "paper": "https://arxiv.org/abs/2105.12791"
+      "paper": "https://arxiv.org/abs/2105.12791",
+      "site": "https://facebookresearch.github.io/PyTouch/"
     },
     "notes": "Meta AI's first ML library for touch processing. PyTorch-based with pre-trained models for touch detection, slip detection, object pose estimation, and contact area estimation. Supports DIGIT, OmniTact, GelSight. pip install pytouch.",
     "description": "**PyTouch** is Meta AI's (Facebook Research) first dedicated machine learning library for tactile sensing.\n\nBuilt on **PyTorch** with the following pre-trained models:\n- Touch/Contact Detection\n- Slip Detection\n- Object Pose Estimation\n- Contact Area Estimation\n\nSupports **DIGIT, OmniTact, GelSight** and other major optical tactile sensors. Companion **TACTO** tactile simulator generates synthetic data for model training.\nInstall: pip install pytouch.",
@@ -547,7 +544,10 @@
           "url": "https://arxiv.org/abs/2105.02934"
         }
       ]
-    }
+    },
+    "modalities": [
+      "触觉"
+    ]
   },
   {
     "id": "gibson",
@@ -559,14 +559,10 @@
     "task": [
       "导航"
     ],
-    "modality": [
-      "视觉",
-      "深度"
-    ],
     "type": "open",
     "links": {
-      "official": "http://gibsonenv.stanford.edu",
-      "paper": "https://arxiv.org/abs/1808.10654"
+      "paper": "https://arxiv.org/abs/1808.10654",
+      "site": "http://gibsonenv.stanford.edu"
     },
     "notes": "StanfordVL realistic 3D scene simulation environment. Indoor scenes from real 3D scans for navigation, perception & interaction. Used with Matterport3D. iGibson is the interactive successor. MIT licensed.",
     "description": "**Gibson Environment (GibsonEnv)** is a realistic 3D scene simulation platform developed by Stanford Vision and Learning Lab.\n\nReconstructs indoor scenes from real 3D scan data, with RGB, depth, semantic segmentation, and other sensor simulation. Used alongside the **Matterport3D** dataset as a classic simulation environment in embodied navigation.\n\n**Successors**: **iGibson** (adds physical interaction + object manipulation) and **OmniGibson** (next-gen platform built on NVIDIA Omniverse). MIT licensed open source.",
@@ -621,7 +617,11 @@
           "url": "https://github.com/StanfordVL/GibsonEnv"
         }
       ]
-    }
+    },
+    "modalities": [
+      "视觉",
+      "深度"
+    ]
   },
   {
     "id": "robomimic",
@@ -633,15 +633,10 @@
     "task": [
       "操作"
     ],
-    "modality": [
-      "视觉",
-      "动作",
-      "本体状态"
-    ],
     "type": "open",
     "links": {
-      "official": "https://robomimic.github.io",
-      "paper": "https://arxiv.org/abs/2108.01974"
+      "paper": "https://arxiv.org/abs/2108.01974",
+      "site": "https://robomimic.github.io"
     },
     "notes": "Imitation learning data processing framework. Converts raw robot data → standardized HDF5. Dataset conversion, observation extraction, splitting, download management. v0.5.0 (June 2025) adds Diffusion Policy, multi-dataset training, language-conditioned policies. Standard format for BridgeData V2, RoboTurk.",
     "description": "**robomimic** is the premier robot imitation learning data processing and training framework maintained by the ARISE Initiative — one of the most central data tooling pieces in the embodied AI ecosystem.\n\n**Data Processing Pipeline** (raw data → training-ready):\n1. Collect human demos (robosuite's collect_human_demonstrations.py)\n2. Format conversion (convert_robosuite.py → robomimic-compatible HDF5)\n3. Observation extraction (dataset_states_to_obs.py, replay MuJoCo states to generate image observations)\n4. Dataset splitting (split_train_val.py, 90-10 split)\n5. Training (train.py, supports BC/BC-RNN/BC-Transformer/Diffusion Policy/IQL)\n\n**HDF5 Standard Structure**: demo_N → states/actions/rewards/dones/obs/next_obs, actions normalized to [-1, 1], images as uint8 channel-last (H, W, C).\n\n**v0.5.0 (June 2025)**: Diffusion Policy, multi-dataset training, language-conditioned policies.\nv0.4.0 (March 2025): robosuite v1.5 compatibility, datasets migrated to HuggingFace.\n\nInstall: pip install robomimic\nGitHub: https://github.com/ARISE-Initiative/robomimic",
@@ -704,7 +699,12 @@
           "url": "https://github.com/ARISE-Initiative/robomimic"
         }
       ]
-    }
+    },
+    "modalities": [
+      "视觉",
+      "动作",
+      "本体状态"
+    ]
   },
   {
     "id": "tacto",
@@ -717,15 +717,10 @@
     "task": [
       "交互"
     ],
-    "modality": [
-      "触觉",
-      "RGB",
-      "深度"
-    ],
     "type": "open",
     "links": {
-      "official": "https://github.com/facebookresearch/tacto",
-      "paper": "https://arxiv.org/abs/2012.08456"
+      "paper": "https://arxiv.org/abs/2012.08456",
+      "site": "https://github.com/facebookresearch/tacto"
     },
     "notes": "Meta AI's open-source optical tactile sensor simulator. Generates synthetic tactile data (RGB+depth, >100FPS) for DIGIT, OmniTact, GelSight. PyBullet-based. Companion simulator to PyTouch. pip install tacto.",
     "description": "**TACTO** is an open-source optical tactile sensor simulator developed by Meta AI (Facebook Research), published in IEEE RA-L 2022.\n\n**Core Capabilities**:\n- High-speed rendering: **>100 FPS** high-resolution tactile images (RGB + depth)\n- Multi-sensor support: **DIGIT, OmniTact, GelSight** — three major optical tactile sensors\n- Physics engine integration: native **PyBullet** support, extensible to other engines\n- Modular design: configurable sensor geometry (size, resolution, lighting)\n\n**Relationship with PyTouch**: TACTO generates synthetic tactile training data → PyTouch processes real tactile data. Together they form a complete tactile perception toolchain.\n\nInstall: pip install tacto\nCommunity: touch-sensing.org #TACTO channel",
@@ -787,7 +782,12 @@
           "url": "https://github.com/facebookresearch/tacto"
         }
       ]
-    }
+    },
+    "modalities": [
+      "触觉",
+      "RGB",
+      "深度"
+    ]
   },
   {
     "id": "foxglove",
@@ -799,16 +799,10 @@
     "task": [
       "交互"
     ],
-    "modality": [
-      "视觉",
-      "深度",
-      "LiDAR",
-      "本体状态"
-    ],
     "type": "partial",
     "links": {
-      "official": "https://foxglove.dev",
-      "paper": ""
+      "paper": "",
+      "site": "https://foxglove.dev"
     },
     "notes": "Robotics data visualization & debugging platform. MCAP/rosbag playback, 3D scenes, time-series plotting. Went closed-source (BUSL-1.1) after Feb 2024. Open-source fork: Lichtblick (BMW, Apache 2.0). MCAP is the default ROS 2 storage format.",
     "description": "**Foxglove** is the leading robotics data visualization and debugging platform, natively supporting **MCAP** format (ROS 2 Iron+ default storage) recording, playback, and analysis.\n\n**Features**: 3D scene visualization, time-series plotting, multi-file merged playback, H.264/H.265 video decoding, Jupyter Notebook integration. Supports ROS 1/2 bag → MCAP conversion.\n\n**License Status**: After February 2024 (v1.87.0), relicensed under **BUSL-1.1 (commercial)**. Free tier provides basic viewing; Pro plans from $20/month.\n\n**Open-Source Successors**:\n- **Lichtblick** (maintained by BMW): GitHub 692⭐, Apache 2.0, most active open-source fork. Desktop + browser support, compatible with Foxglove bridge protocol.\n  Download: https://github.com/Lichtblick-Suite/lichtblick\n- **Trillium** (Robotnik Automation): MPL 2.0, ~40% smaller build, more resource-friendly.\n  Download: https://github.com/RobotnikAutomation/trillium\n\nMCAP CLI tools remain Apache 2.0 open source: https://github.com/foxglove/mcap",
@@ -843,7 +837,13 @@
           "url": "https://docs.foxglove.dev/"
         }
       ]
-    }
+    },
+    "modalities": [
+      "视觉",
+      "深度",
+      "LiDAR",
+      "本体状态"
+    ]
   },
   {
     "id": "pybullet",
@@ -858,13 +858,9 @@
       "操作",
       "运动控制"
     ],
-    "modality": [
-      "仿真状态",
-      "RGB"
-    ],
     "links": {
-      "official": "https://pybullet.org/",
-      "github": "https://github.com/bulletphysics/bullet3"
+      "github": "https://github.com/bulletphysics/bullet3",
+      "site": "https://pybullet.org/"
     },
     "notes": "PyBullet 是 Bullet 物理引擎的 Python 封装，`pip install pybullet` 即装即用。广泛用于强化学习研究（MetaWorld、CALVIN、RLBench 均基于或兼容 PyBullet）。支持 URDF 导入、VR 遥操作、实时可视化，是 RL 快速原型开发的首选物理引擎。",
     "description": "**PyBullet** 是 Bullet Physics SDK 的 Python 接口，由 Erwin Coumans（Bullet 创始人，前 Google Robotics）维护。\n\n**核心特性**：\n- **零配置安装**：`pip install pybullet` 即可，跨平台（Win/Mac/Linux）\n- **100+ 内置示例**：涵盖刚体、软体、铰接、碰撞检测等\n- **URDF/SDF 支持**：直接加载标准机器人模型\n- **VR 遥操作**：支持 HTC Vive、Oculus 等 VR 头显\n- **zlib 许可证**：极宽松，可商用\n\n**应用场景**：强化学习环境（Gymnasium API 兼容）、机器人运动规划、多体动力学仿真。\n\n**局限**：单线程 CPU 仿真，大规模并行训练受限（推荐迁移到 MuJoCo MJX 或 Isaac Lab）。\n\n**协议**：zlib（等同于 MIT）。",
@@ -926,7 +922,11 @@
           "url": "https://github.com/bulletphysics/bullet3"
         }
       ]
-    }
+    },
+    "modalities": [
+      "仿真状态",
+      "RGB"
+    ]
   },
   {
     "id": "mujoco",
@@ -944,18 +944,13 @@
       "运动控制",
       "抓取"
     ],
-    "modality": [
-      "仿真状态",
-      "RGB",
-      "深度"
-    ],
     "links": {
-      "official": "https://mujoco.org/",
-      "github": "https://github.com/google-deepmind/mujoco"
+      "github": "https://github.com/google-deepmind/mujoco",
+      "site": "https://mujoco.org/"
     },
     "notes": "MuJoCo（Multi-Joint dynamics with Contact）是 Google DeepMind 的旗舰物理引擎，Apache 2.0 开源。MJX 版本在 GPU 上实现并行加速，Playground 获 RSS 2025 杰出 Demo 奖。MetaWorld、robosuite、DM Control、SKRL 等生态基于 MuJoCo。月下载量 38 万+。",
     "description": "**MuJoCo** 原为 Roboti LLC 开发，2021 年被 Google DeepMind 收购并完全免费开源（Apache 2.0）。\n\n**核心特性**：\n- **GPU 加速（MJX）**：基于 JAX/XLA 的并行物理仿真，单 GPU 可并行 100 环境\n- **MuJoCo Playground**：RSS 2025 Outstanding Demo Award，分分钟级训练收敛\n- **高保真接触力学**：凸 Gauss 原理 + 隐式积分，比 Bullet 更稳定\n- **丰富的机器人模型库**：MuJoCo Menagerie 提供 50+ 高质量 URDF/MJCF 模型\n- **Gemini Robotics SDK 集成**：直接对接 Google VLA 模型训练\n\n**协议**：Apache 2.0。\n\n**注意**：NVIDIA 与 DeepMind、Disney 正联合开发下一代 Newton 物理引擎（基于 MuJoCo-Warp），兼容 Isaac Lab。",
-    "license": "Apache 2.0",
+    "license": "Apache-2.0",
     "github": "https://github.com/google-deepmind/mujoco",
     "huggingface": "",
     "citation": {
@@ -1016,7 +1011,13 @@
           "url": "https://github.com/google-deepmind/mujoco_menagerie"
         }
       ]
-    }
+    },
+    "modalities": [
+      "仿真状态",
+      "RGB",
+      "深度"
+    ],
+    "licenseNotes": "Apache 2.0"
   },
   {
     "id": "webots",
@@ -1034,19 +1035,13 @@
       "导航",
       "运动控制"
     ],
-    "modality": [
-      "仿真状态",
-      "RGB",
-      "深度",
-      "LiDAR"
-    ],
     "links": {
-      "official": "https://cyberbotics.com/",
-      "github": "https://github.com/cyberbotics/webots"
+      "github": "https://github.com/cyberbotics/webots",
+      "site": "https://cyberbotics.com/"
     },
     "notes": "Webots 是 Cyberbotics（EPFL 衍生公司）开发的跨平台机器人仿真器，Apache 2.0 开源。支持 40+ 机器人模型、ROS 2 集成、云端 Webots.cloud 运行、C/C++/Python/Java/MATLAB 多语言 API。2025 年发布 R2025a 版本。",
     "description": "**Webots** 是 Cyberbotics 自 1998 年起持续开发的商业化机器人仿真器，2018 年完全开源（Apache 2.0）。\n\n**核心特性**：\n- **40+ 预置机器人模型**：含 NAO、Pepper、UR、Franka、KUKA、Boston Dynamics 等\n- **ROS 2 深度集成**：webots_ros2 包支持 MoveIt2、ros2_control、topic 桥接\n- **多语言 API**：C、C++、Python、Java、MATLAB、ROS\n- **云端仿真**：Webots.cloud 支持浏览器中运行仿真（WebGL/WebSocket）\n- **物理引擎可换**：内置 ODE，可选 Bullet\n- **OpenStreetMap 导入**：直接加载真实地图\n\n**协议**：Apache 2.0（核心），部分资产模型另有许可。",
-    "license": "Apache 2.0",
+    "license": "Apache-2.0",
     "github": "https://github.com/cyberbotics/webots",
     "huggingface": "",
     "citation": {
@@ -1107,7 +1102,14 @@
           "url": "https://github.com/cyberbotics/webots"
         }
       ]
-    }
+    },
+    "modalities": [
+      "仿真状态",
+      "RGB",
+      "深度",
+      "LiDAR"
+    ],
+    "licenseNotes": "Apache 2.0"
   },
   {
     "id": "isaac-lab",
@@ -1128,16 +1130,9 @@
       "导航",
       "装配"
     ],
-    "modality": [
-      "仿真状态",
-      "RGB",
-      "深度",
-      "触觉",
-      "视觉"
-    ],
     "links": {
-      "official": "https://isaac-sim.github.io/IsaacLab/",
-      "github": "https://github.com/isaac-sim/IsaacLab"
+      "github": "https://github.com/isaac-sim/IsaacLab",
+      "site": "https://isaac-sim.github.io/IsaacLab/"
     },
     "notes": "NVIDIA Isaac Lab 是 GPU 加速的机器人学习框架，v2.3 GA（2025 Q4），基于 Isaac Sim 5.1。集成 Newton 物理引擎、GR00T VLA 模型、SkillGen 数据生成。支持 Boston Dynamics Atlas、Figure AI 等多家人形机器人。与已有的 Isaac Sim 条目互补（Isaac Sim 为底层仿真平台，Isaac Lab 为上层 RL 训练框架）。",
     "description": "**Isaac Lab**（前身 Orbit）是 NVIDIA 于 2025 年正式发布的 GPU 加速机器人学习框架，基于 Isaac Sim 构建。\n\n**核心特性**：\n- **GPU 并行 RL**：单 GPU 并行数千环境，MJX 和 Newton 双物理后端\n- **Newton 物理引擎（Beta）**：与 DeepMind/Disney 联合开发，开源 GPU 加速，支持可微物理\n- **SkillGen 数据生成**：GPU 加速的无碰撞运动规划，结合人类输入生成演示数据\n- **GR00T VLA 集成**：直接对接 GR00T N1.6 模型训练和 Sim-to-Real 部署\n- **全身控制**：Pink IK 求解器、人形机器人躯干旋转、双臂协调\n- **Arena 基准框架**：大规模 GPU 并行策略评测\n\n**与 Isaac Sim 的区别**：Isaac Sim 是通用仿真/渲染平台（已有条目），Isaac Lab 是在其上的 RL/IL 专用训练框架。\n\n**协议**：BSD-3-Clause。",
@@ -1209,7 +1204,14 @@
           "url": "https://github.com/isaac-sim/IsaacLab"
         }
       ]
-    }
+    },
+    "modalities": [
+      "仿真状态",
+      "RGB",
+      "深度",
+      "触觉",
+      "视觉"
+    ]
   },
   {
     "id": "gazebo",
@@ -1228,20 +1230,13 @@
       "导航",
       "运动控制"
     ],
-    "modality": [
-      "仿真状态",
-      "RGB",
-      "深度",
-      "LiDAR",
-      "视觉"
-    ],
     "links": {
-      "official": "https://gazebosim.org/",
-      "github": "https://github.com/gazebosim/gz-sim"
+      "github": "https://github.com/gazebosim/gz-sim",
+      "site": "https://gazebosim.org/"
     },
     "notes": "Gazebo 是 ROS 生态标配机器人仿真器。Gazebo Classic 已 2025 年 1 月 EOL，现为 rebrand 后的 Gazebo Sim（Harmonic LTS 至 2028，Jetty LTS 至 2030）。原名 Ignition Gazebo。支持 ROS 2 Jazzy 官方集成，是机器人仿真的事实标准。",
     "description": "**Gazebo Sim**（原名 Ignition Gazebo，2023 年 rebrand）是 Open Robotics 开发的现代化机器人仿真平台，取代已退役的 Gazebo Classic。\n\n**版本与生命周期**：\n- **Harmonic（LTS）**：2023 年发布，支持至 2028 年 9 月，ROS 2 Humble/Jazzy 推荐\n- **Ionic**：2024 年发布，非 LTS，最新功能尝鲜\n- **Jetty（LTS）**：2025 年发布，新 LTS，支持至 2030 年\n\n**核心特性**：\n- **模块化架构**：物理/渲染/传感器/GUI 各自独立，可替换\n- **多物理引擎**：DART（默认）、Bullet、TPE\n- **ROS 2 深度集成**：ros_gz 桥接包，完全替代 Classic 时代的 ros_control 方案\n- **GPU 传感器渲染**：支持 RGB-D、LiDAR、热成像等\n- **SDFormat（SDF）**：下一代机器人描述格式，替代 URDF\n\n**注意**：Gazebo Classic 已停止维护，新项目应使用 Gazebo Sim (Harmonic/Jetty)。\n\n**协议**：Apache 2.0。",
-    "license": "Apache 2.0",
+    "license": "Apache-2.0",
     "github": "https://github.com/gazebosim/gz-sim",
     "huggingface": "",
     "citation": {
@@ -1303,7 +1298,15 @@
           "url": "https://github.com/gazebosim/gz-sim"
         }
       ]
-    }
+    },
+    "modalities": [
+      "仿真状态",
+      "RGB",
+      "深度",
+      "LiDAR",
+      "视觉"
+    ],
+    "licenseNotes": "Apache 2.0"
   },
   {
     "id": "rerun",
@@ -1317,15 +1320,9 @@
     "task": [
       "交互"
     ],
-    "modality": [
-      "RGB",
-      "深度",
-      "3D点云",
-      "视觉"
-    ],
     "links": {
-      "official": "https://rerun.io/",
-      "github": "https://github.com/rerun-io/rerun"
+      "github": "https://github.com/rerun-io/rerun",
+      "site": "https://rerun.io/"
     },
     "notes": "Rerun 是 Physical AI 时代的开源可视化数据栈，Rust 构建，Python/C++/Rust SDK。2025 年融 $17M，原生支持 LeRobot 数据集和 MCAP 格式。HuggingFace LeRobot 默认可视化工具，Meta/Google/Unitree 采用。与已有 Foxglove 互补。",
     "description": "**Rerun** 由前 Meta/Google 工程师创立（Stockholm），是面向 Physical AI 的开源可视化与数据基础设施。\n\n**核心特性**：\n- **多模态流式可视化**：RGB、深度、3D 点云、Tensor、文本同一时间轴内展示\n- **Python/C++/Rust SDK**：代码驱动，`rr.log()` 即可记录任意数据\n- **LeRobot 原生支持**（v0.22+）：HuggingFace 官方 LeRobot 默认 viewer\n- **MCAP 支持**（实验性）：直接拖放 ROS 2 bag 文件查看\n- **ECS 数据模型**（Entity Component System）：比 ROS topic/message 模型更灵活\n- **开源核心 + 商业云**：Apache 2.0 / MIT 双许可\n\n**与 Foxglove 的区别**：Foxglove 重平台化（Web 仪表盘、团队协作、数据管理），Rerun 重 SDK 驱动（代码即可视化，适合研究和开发调试）。两者互补。\n\n**协议**：Apache 2.0 / MIT。",
@@ -1393,7 +1390,13 @@
           "url": "https://github.com/rerun-io/rerun"
         }
       ]
-    }
+    },
+    "modalities": [
+      "RGB",
+      "深度",
+      "3D点云",
+      "视觉"
+    ]
   },
   {
     "id": "rviz",
@@ -1406,16 +1409,9 @@
     "task": [
       "交互"
     ],
-    "modality": [
-      "RGB",
-      "深度",
-      "3D点云",
-      "视觉",
-      "LiDAR"
-    ],
     "links": {
-      "official": "https://github.com/ros2/rviz",
-      "github": "https://github.com/ros2/rviz"
+      "github": "https://github.com/ros2/rviz",
+      "site": "https://github.com/ros2/rviz"
     },
     "notes": "RViz 是 ROS 生态的经典 3D 可视化工具，ROS 2 版本为 RViz2（BSD 开源）。支持 PointCloud、TF、RobotModel、Camera、LaserScan 等核心显示类型。2025 年持续维护（Jazzy v14 / Kilted v15），是 ROS 开发者不可或缺的调试工具。",
     "description": "**RViz（RViz2）**是 ROS/ROS 2 的标准 3D 可视化工具，由 Open Robotics 维护，BSD 开源。\n\n**核心特性**：\n- **丰富的显示类型**：PointCloud2、LaserScan、TF 坐标帧、RobotModel（URDF）、Camera 图像、Marker、Interactive Marker、Map 等\n- **可交互控件**：Interactive Marker 支持拖拽/旋转/点击操作，常用于标定和任务设定\n- **插件架构**：C++ 插件接口，可扩展自定义显示类型\n- **QoS 兼容**：支持 ROS 2 的 QoS 配置（reliable/best_effort 等）\n- **主题录制与回放**：配合 ros2 bag 使用\n\n**局限**：仅桌面端（需完整 ROS 环境），不支持 Web 浏览器，不支持多文件对比。\n\n**与 Foxglove/Rerun 的关系**：RViz 是经典 ROS 调试工具（深度集成），Foxglove 偏现代化平台（Web/协作），Rerun 偏 SDK 驱动（研究/开发）。三者互补覆盖不同场景。\n\n**协议**：BSD。",
@@ -1481,6 +1477,13 @@
           "url": "https://docs.ros.org/en/jazzy/Tutorials/Intermediate/RViz/RViz-Plugin-Tutorial.html"
         }
       ]
-    }
+    },
+    "modalities": [
+      "RGB",
+      "深度",
+      "3D点云",
+      "视觉",
+      "LiDAR"
+    ]
   }
 ]

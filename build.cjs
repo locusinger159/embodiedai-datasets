@@ -298,12 +298,12 @@ function buildAll(lang) {
 
     // Links
     let linksHTML = '<div class="section-block"><h2>{{SECTION_LINKS}}</h2><div class="links-section">';
-    if (ds.links?.official) linksHTML += `<a href="${esc(ds.links.official)}" target="_blank" class="link-card" rel="noopener">🌐 官方网站</a>`;
+    if (ds.links?.site || ds.links?.official) linksHTML += `<a href="${esc(ds.links.official)}" target="_blank" class="link-card" rel="noopener">🌐 官方网站</a>`;
     if (ds.links?.paper) linksHTML += `<a href="${esc(ds.links.paper)}" target="_blank" class="link-card" rel="noopener">📄 论文</a>`;
     if (ds.github) linksHTML += `<a href="${esc(ds.github)}" target="_blank" class="link-card" rel="noopener">💻 GitHub</a>`;
     if (ds.huggingface) linksHTML += `<a href="${esc(ds.huggingface)}" target="_blank" class="link-card" rel="noopener">🤗 HuggingFace</a>`;
     linksHTML += '</div></div>';
-    if (!ds.links?.official && !ds.links?.paper && !ds.github && !ds.huggingface) linksHTML = '';
+    if (!ds.links?.site || ds.links?.official && !ds.links?.paper && !ds.github && !ds.huggingface) linksHTML = '';
 
     // Citation
     let citationHTML = '';
@@ -511,14 +511,14 @@ function buildAll(lang) {
     }
 
     return buildPage('src/pages/standard-detail.html', {
-      meta: `<title>${esc(ss.name)} | Superdata RobotAI</title><meta name="description" content="${esc(ss.desc.substring(0, 160))}">`,
+      meta: `<title>${esc(ss.name)} | Superdata RobotAI</title><meta name="description" content="${esc((ss.description || ss.desc || '').substring(0, 160))}">`,
       nav: getActiveNav('standards'),
       NAME: esc(ss.name),
       FULLNAME: esc(ss.fullName || ''),
       TYPE_LABEL: tL[ss.type] || ss.type,
       TYPE_CLASS: tC[ss.type] || '',
-      ORGANIZATION: esc(ss.org),
-      DESCRIPTION: formatDescription(ss.desc),
+      ORGANIZATION: esc(ss.institution || ss.org),
+      DESCRIPTION: formatDescription(ss.description || ss.desc),
       LICENSE: esc(ss.license || '未知'),
       OPENNESS_CLASS: oC[ss.openness] || '',
       OPENNESS_DOT: oD[ss.openness] || '',
@@ -748,7 +748,7 @@ function buildAll(lang) {
           <div class="bm-card-icon">🏆</div>
           <div class="bm-card-header">
             <div class="bm-card-name">${esc(s.name)}</div>
-            <div class="bm-card-meta">${esc(s.org || '')}</div>
+            <div class="bm-card-meta">${esc(s.institution || s.org || '')}</div>
           </div>
         </div>
         <div class="bm-card-desc">${esc(desc.length > 120 ? desc.slice(0, 120) + '...' : desc)}</div>
@@ -867,7 +867,7 @@ function buildAll(lang) {
         : (isEn ? ('Ranking of training datasets by best model performance on ' + esc(ss.name) + '. Higher score = better training data for this benchmark.') : ('训练数据集在 ' + esc(ss.name) + ' 上的最佳模型性能排名。分数越高 = 该训练集在这个 benchmark 上越有效。')),
       BENCHMARK_METRIC: bm.metricEn || bm.metric || '成功率',
       BENCHMARK_UNIT: bm.unit || '%',
-      BENCHMARK_ORG: esc(ss.org || ''),
+      BENCHMARK_ORG: esc(ss.institution || ss.org || ''),
       BM_COL_TRAINING: rankBy === 'model' ? (isEn ? 'Model' : '模型') : (isEn ? 'Training Dataset' : '训练数据集'),
       BM_COL_MODEL: rankBy === 'model' ? (isEn ? 'Best Suite Score' : '最佳套件得分') : (isEn ? 'Best Model' : '最佳模型'),
       LEADERBOARD_ROWS: rowsHTML,

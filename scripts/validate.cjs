@@ -53,7 +53,8 @@ for (const [name, path] of Object.entries(files)) {
 console.log('\n📋 2. Required Fields');
 
 const DATASET_REQUIRED = ['id', 'name', 'institution', 'robotType', 'task', 'modality', 'type', 'links', 'year'];
-const STANDARD_REQUIRED = ['id', 'name', 'org', 'type', 'links'];
+const STANDARD_REQUIRED = ['id', 'name', 'type', 'links'];
+const STANDARD_INSTITUTION = ['institution', 'org'];
 const TOOL_REQUIRED = ['id', 'name', 'institution', 'toolType', 'links'];
 const BLOG_REQUIRED = ['id', 'title', 'date'];
 
@@ -68,7 +69,15 @@ function checkRequired(entries, required, entityType) {
 }
 
 if (data['datasets (zh)']) checkRequired(data['datasets (zh)'], DATASET_REQUIRED, 'Dataset');
-if (data['standards (zh)']) checkRequired(data['standards (zh)'], STANDARD_REQUIRED, 'Standard');
+if (data['standards (zh)']) {
+  checkRequired(data['standards (zh)'], STANDARD_REQUIRED, 'Standard');
+  // Standards must have either institution (new) or org (legacy)
+  for (const e of data['standards (zh)']) {
+    if (!e.institution && !e.org) {
+      err(`Standard "${e.name || e.id || '?'}" missing required field: institution (or legacy org)`);
+    }
+  }
+}
 if (data['tools (zh)']) checkRequired(data['tools (zh)'], TOOL_REQUIRED, 'Tool');
 if (data['blog']) checkRequired(data['blog'], BLOG_REQUIRED, 'Blog');
 
