@@ -401,76 +401,46 @@
   {
     "id": "openusd",
     "name": "OpenUSD",
-    "fullName": "Universal Scene Description",
-    "org": "NVIDIA / Pixar",
+    "fullName": "Universal Scene Description (OpenUSD)",
+    "org": "Pixar / OpenUSD Alliance (NVIDIA, Apple, Adobe, Autodesk)",
     "type": "format",
     "openness": "open",
     "scene": [
       "sim"
     ],
     "modalities": [
-      "3D Scene",
-      "Physics",
-      "Sensor"
+      "3D模型",
+      "物理参数",
+      "RGB",
+      "材质"
     ],
     "license": "开放标准",
-    "desc": "**OpenUSD (Universal Scene Description)** is a general-purpose 3D scene description format developed by Pixar and championed by NVIDIA.\n\nOrganizes 3D scene geometry, materials, lighting, and physical properties through a **Layer / Stage / Prim** hierarchy.\n\nNVIDIA Isaac Sim builds robot simulation data pipelines on OpenUSD, supporting large-scale parallel scene generation and domain randomization.",
+    "desc": "**USD (Universal Scene Description)** 是 Pixar 开发、现由 **OpenUSD 联盟**（NVIDIA、Apple、Adobe、Autodesk 等）维护的开放式 3D 场景描述与交换格式。\n\n作为机器人仿真领域的核心数据资产格式，USD 支持完整的 3D 场景层次结构（几何网格、材质、纹理、灯光、物理属性、动画），可实现跨工具的无损数据交换。**NVIDIA Isaac Sim** 原生支持 USD，**NVIDIA Omniverse** 将其作为核心数据格式。\n\n在具身智能领域，USD 正成为**仿真数字资产的事实标准**：ArtVIP（206+ 铰接物体）、NVIDIA GR00T 仿真环境、PhysicalAI-SimReady-Warehouse 等数据集均以 USD 格式发布。\n\nUSD 支持变体 (variants)、图层 (layers)、引用 (references) 等高级特性，允许在单一文件中管理物体的多种形态和配置，极大地降低了机器人仿真场景的构建成本。",
     "links": {
       "site": "https://openusd.org",
-      "paper": ""
+      "github": "https://github.com/PixarAnimationStudios/OpenUSD"
     },
     "year": 2016,
     "datasetIds": [
-      "isaac-sim-dataset",
-      "igibson",
-      "robocasa",
-      "arnold-benchmark"
+      "artvip"
     ],
-    "datasetCount": 4,
-    "requirements": [
-      {
-        "level": "must",
-        "category": "Prim 定义",
-        "text": "每个 Prim 必须有唯一的绝对路径（SdfPath）",
-        "detail": "如 /World/Characters/Mike/Body，以 / 分隔层级"
-      },
-      {
-        "level": "must",
-        "category": "Prim 定义",
-        "text": "每个 Prim 必须有 Specifier：def、over 或 class",
-        "detail": "def 定义具体实例，over 仅覆写，class 为抽象模板"
-      },
-      {
-        "level": "must",
-        "category": "Layer 组合",
-        "text": "多 Layer 组合必须遵循确定的强弱顺序",
-        "detail": "Root layer > sublayers > references > payloads，同一输入必须产生相同结果"
-      },
-      {
-        "level": "must",
-        "category": "文件格式",
-        "text": "必须支持 USDA（ASCII）、USDC（二进制）和 USDZ（打包）三种格式",
-        "detail": "AOUSD Core Spec 1.0 规定了逐字节级别的合规要求"
-      },
-      {
-        "level": "should",
-        "category": "Prim 定义",
-        "text": "建议为几何类 Prim 指定 typeName",
-        "detail": "如 Cube、Mesh、Xform、Scope，关联对应 Schema 以提供 fallback 属性值"
-      },
-      {
-        "level": "should",
-        "category": "3D 场景",
-        "text": "建议为可渲染 Prim 设置 purpose 和 visibility 元数据",
-        "detail": "purpose: default/render/proxy/guide，visibility: inherited/invisible"
-      },
-      {
-        "level": "may",
-        "category": "Prim 定义",
-        "text": "可选使用 instanceable 标记实现内存高效的实例化",
-        "detail": "适用于大量重复几何体（如植被、道具）"
-      }
-    ]
+    "datasetCount": 1,
+    "requirements": {
+      "MUST": [
+        "基于 USD 文件格式（.usd/.usda/.usdc/.usdz）",
+        "支持 3D 几何网格与材质定义",
+        "支持物理属性（碰撞体积、质量、摩擦系数等）"
+      ],
+      "SHOULD": [
+        "支持变体 (variants) 管理多种物体形态",
+        "支持图层 (layers) 和引用 (references) 组合场景",
+        "兼容 NVIDIA Isaac Sim 导入"
+      ],
+      "MAY": [
+        "支持动画与骨骼绑定",
+        "支持 USDZ 格式（AR 预览）"
+      ]
+    }
   },
   {
     "id": "ros2",
@@ -1456,51 +1426,6 @@
       ],
       "MAY": [
         "扩展到更多世界模型和任务类型"
-      ]
-    }
-  },
-  {
-    "id": "usd",
-    "name": "USD",
-    "fullName": "Universal Scene Description",
-    "org": "Pixar / OpenUSD Alliance (NVIDIA, Apple, Adobe, Autodesk)",
-    "type": "format",
-    "openness": "open",
-    "scene": [
-      "sim"
-    ],
-    "modalities": [
-      "3D模型",
-      "物理参数",
-      "RGB",
-      "材质"
-    ],
-    "license": "Apache 2.0 (OpenUSD)",
-    "desc": "**USD (Universal Scene Description)** 是 Pixar 开发、现由 **OpenUSD 联盟**（NVIDIA、Apple、Adobe、Autodesk 等）维护的开放式 3D 场景描述与交换格式。\n\n作为机器人仿真领域的核心数据资产格式，USD 支持完整的 3D 场景层次结构（几何网格、材质、纹理、灯光、物理属性、动画），可实现跨工具的无损数据交换。**NVIDIA Isaac Sim** 原生支持 USD，**NVIDIA Omniverse** 将其作为核心数据格式。\n\n在具身智能领域，USD 正成为**仿真数字资产的事实标准**：ArtVIP（206+ 铰接物体）、NVIDIA GR00T 仿真环境、PhysicalAI-SimReady-Warehouse 等数据集均以 USD 格式发布。\n\nUSD 支持变体 (variants)、图层 (layers)、引用 (references) 等高级特性，允许在单一文件中管理物体的多种形态和配置，极大地降低了机器人仿真场景的构建成本。",
-    "links": {
-      "site": "https://openusd.org",
-      "github": "https://github.com/PixarAnimationStudios/OpenUSD"
-    },
-    "year": 2016,
-    "datasetIds": [
-      "artvip",
-      "physicalai-simready-warehouse-01"
-    ],
-    "datasetCount": 2,
-    "requirements": {
-      "MUST": [
-        "基于 USD 文件格式（.usd/.usda/.usdc/.usdz）",
-        "支持 3D 几何网格与材质定义",
-        "支持物理属性（碰撞体积、质量、摩擦系数等）"
-      ],
-      "SHOULD": [
-        "支持变体 (variants) 管理多种物体形态",
-        "支持图层 (layers) 和引用 (references) 组合场景",
-        "兼容 NVIDIA Isaac Sim 导入"
-      ],
-      "MAY": [
-        "支持动画与骨骼绑定",
-        "支持 USDZ 格式（AR 预览）"
       ]
     }
   }
