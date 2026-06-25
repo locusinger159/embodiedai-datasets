@@ -1420,7 +1420,7 @@
   {
     "id": "rlbench",
     "name": "RLBench",
-    "institution": "牛津大学",
+    "institution": "牛津大学 (University of Oxford)",
     "description": "**RLBench** 是由牛津大学提出的机器人操作基准框架。\n\n在 CoppeliaSim 中定义了 **100 个带语言描述的操作任务**，支持程序化任务生成与变体控制。通过 task variation 维度（位置、姿态、颜色、形状等）严格评估策略的泛化能力。",
     "modality": [
       "视觉",

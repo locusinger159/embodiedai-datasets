@@ -322,8 +322,8 @@
     "id": "rlbench",
     "name": "RLBench",
     "fullName": "Robot Learning Benchmark",
-    "org": "牛津大学",
-    "institution": "牛津大学",
+    "org": "牛津大学 (University of Oxford)",
+    "institution": "牛津大学 (University of Oxford)",
     "type": "benchmark",
     "openness": "open",
     "links": {
