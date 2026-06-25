@@ -28,7 +28,7 @@ const UI = {
   zh: {
     siteTitle: 'Superdata RobotAI — 具身智能数据集导航',
     siteDesc: '全球具身智能、机器人、人形机器人数据集情报站',
-    home: '首页', datasets: '全部数据集', standards: '数据标准', tools: '工具/平台', submit: '提交数据集', blog: '技术博客',
+    home: '首页', datasets: '数据集', standards: '数据标准', tools: '工具/平台', blog: '技术博客',
     typeLabels: { open: '开源', partial: '部分开源', apply: '可申请', closed: '闭源' },
     robotLabels: { humanoid: '人形机器人', arm: '机械臂', mobile: '移动机器人', quadruped: '四足机器人', multi: '多机型', '触觉传感': '触觉传感', '仿真': '仿真', '灵巧手': '灵巧手', '通用': '通用' },
     taskLabels: { '操作': '操作', '抓取': '抓取', '导航': '导航', '装配': '装配', '家居': '家居', '交互': '交互', '运动控制': '运动控制', '可供性分割': '可供性分割', '3D运动预测': '3D运动预测', '接触点预测': '接触点预测', '人机交互': '人机交互', '物体交互': '物体交互', '3D场景理解': '3D场景理解', '语义分割': '语义分割', '语言推理': '语言推理', '康养护理': '康养护理', '人类操作': '人类操作', '动作捕捉': '动作捕捉' },
@@ -427,7 +427,7 @@ function buildAll(lang) {
       VLA_BADGES: vlaBadgesHTML,
       BENCHMARKS: benchmarksHTML,
       CHANGELOG: changelogHTML,
-      BACK_TO_DATASETS: isEn ? '← Back to Datasets' : '← 返回全部数据集',
+      BACK_TO_DATASETS: isEn ? '← Back to Datasets' : '← 返回数据集',
       SECTION_DATA_FORMAT: isEn ? 'Data Format' : '数据格式',
       SECTION_DATA_CONTENT: isEn ? 'Data Content' : '数据内容',
       SECTION_SENSORS: isEn ? 'Sensor Specifications' : '传感器规格',
