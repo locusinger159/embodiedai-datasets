@@ -806,10 +806,20 @@ function buildAll(lang) {
         byKey[key].bestSuite = e.benchmark.suite;
       }
     });
-    // For model ranking, use average score across all suites
+    // For model ranking: use 'Overall' suite score if present, else average non-Overall suites
     if (rankBy === 'model') {
       Object.values(byKey).forEach(v => {
-        v.bestScore = Math.round(v.totalScore / v.count * 10) / 10;
+        const overall = v.allResults.find(r => r.suite === 'Overall');
+        const suiteResults = v.allResults.filter(r => r.suite !== 'Overall');
+        if (overall) {
+          // Use the explicit 'Overall' entry as the primary ranking score
+          v.bestScore = overall.score;
+        } else if (suiteResults.length > 0) {
+          // Average across non-Overall suites (all on same scale)
+          const avg = suiteResults.reduce((s, r) => s + r.score, 0) / suiteResults.length;
+          v.bestScore = Math.round(avg * 10) / 10;
+        }
+        // Default: keep the best single score from initial pass
       });
     }
     const ranked = Object.values(byKey).sort((a, b) =>
@@ -831,7 +841,7 @@ function buildAll(lang) {
         ? '<span class="leaderboard-ds-name">' + esc(entry.key) + '</span><div class="leaderboard-ds-org">' + entry.count + (isEn ? ' suites avg' : ' 个环境平均') + '</div>'
         : '<a href="/datasets/' + esc(entry.dataset.id) + '/" class="leaderboard-ds-name">' + esc(entry.dataset.name) + '</a><div class="leaderboard-ds-org">' + esc(entry.dataset.institution || '') + '</div>') + '</td>';
       rowsHTML += '<td><span class="leaderboard-model">' + esc(entry.bestModel) + '</span> <span class="leaderboard-model-size">(' + esc(entry.bestSize) + ')</span></td>';
-      rowsHTML += '<td style="text-align:right"><div style="display:flex;align-items:center;gap:8px;justify-content:flex-end"><div class="leaderboard-score-bar"><div class="leaderboard-score-fill" style="width:' + pct + '%;background:' + barColor + '"></div></div><span class="leaderboard-score-val">' + entry.bestScore + (bm.unit || '%') + '</span></div></td>';
+      rowsHTML += '<td style="text-align:right"><div style="display:flex;align-items:center;gap:8px;justify-content:flex-end"><div class="leaderboard-score-bar"><div class="leaderboard-score-fill" style="width:' + pct + '%;background:' + barColor + '"></div></div><span class="leaderboard-score-val">' + entry.bestScore + (bm.unit != null && bm.unit !== undefined ? bm.unit : '%') + '</span></div></td>';
       rowsHTML += '</tr>';
       // Expandable sub-rows for all model results on this dataset
       if (entry.allResults.length > 1) {
@@ -840,7 +850,7 @@ function buildAll(lang) {
         entry.allResults.forEach(r => {
           const sp = Math.min(100, Math.max(0, r.score));
           var subLabel = (rankBy === 'model') ? esc(r.suite) : (esc(r.model) + ' (' + esc(r.modelSize) + ')');
-          rowsHTML += '<div class="leaderboard-sub-row"><span class="leaderboard-sub-model">' + subLabel + '</span><div class="leaderboard-sub-bar"><div class="leaderboard-sub-fill" style="width:' + sp + '%;background:' + (sp >= 80 ? 'var(--success)' : sp >= 60 ? 'var(--warning)' : 'var(--text-light)') + '"></div></div><span class="leaderboard-sub-score">' + r.score + (bm.unit || '%') + '</span><a href="' + esc(r.paper) + '" target="_blank" rel="noopener" style="font-size:11px;color:var(--text-light);text-decoration:none">📄</a></div>';
+          rowsHTML += '<div class="leaderboard-sub-row"><span class="leaderboard-sub-model">' + subLabel + '</span><div class="leaderboard-sub-bar"><div class="leaderboard-sub-fill" style="width:' + sp + '%;background:' + (sp >= 80 ? 'var(--success)' : sp >= 60 ? 'var(--warning)' : 'var(--text-light)') + '"></div></div><span class="leaderboard-sub-score">' + r.score + (bm.unit != null && bm.unit !== undefined ? bm.unit : '%') + '</span><a href="' + esc(r.paper) + '" target="_blank" rel="noopener" style="font-size:11px;color:var(--text-light);text-decoration:none">📄</a></div>';
         });
         rowsHTML += '</details></td></tr>';
       }

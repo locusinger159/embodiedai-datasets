@@ -578,10 +578,11 @@
       }
     ],
     "benchmarkMeta": {
-      "metric": "成功率",
-      "metricEn": "Success Rate",
-      "unit": "%",
-      "higherIsBetter": true
+      "rankBy": "model",
+      "higherIsBetter": true,
+      "unit": " tasks",
+      "metric": "Avg. Length",
+      "maxScore": null
     }
   },
   {
@@ -650,10 +651,11 @@
       }
     ],
     "benchmarkMeta": {
-      "metric": "成功率",
-      "metricEn": "Success Rate",
+      "rankBy": "model",
+      "higherIsBetter": true,
       "unit": "%",
-      "higherIsBetter": true
+      "metric": "Avg. Success",
+      "maxScore": 100
     }
   },
   {
@@ -725,29 +727,32 @@
       "metric": "成功率",
       "metricEn": "Success Rate",
       "unit": "%",
-      "higherIsBetter": true
+      "higherIsBetter": true,
+      "maxScore": 100
     }
   },
   {
     "id": "metaworld",
-    "name": "MetaWorld",
-    "fullName": "ML45 / ML10 Meta-Learning Benchmark",
-    "org": "UC Berkeley",
+    "name": "Meta-World",
+    "fullName": "Meta-World: A Benchmark and Evaluation Platform for Multi-Task and Meta Reinforcement Learning",
+    "org": "Stanford University / UC Berkeley",
     "type": "benchmark",
     "openness": "open",
     "scene": [
       "sim"
     ],
     "modalities": [
-      "Proprioception",
-      "Action"
+      "RGB",
+      "深度",
+      "本体状态",
+      "动作"
     ],
-    "license": "开源",
-    "desc": "**MetaWorld** 是 UC Berkeley 提出的多任务机器人操作基准。\n\n在 MuJoCo 中定义了 **50 个桌面操作任务**（开柜门、按按钮、推物体等），基于 Gymnasium API 设计。\n\n任务是参数化的，同一任务可生成位置/目标不同的变体，支持多任务学习和元学习评估。",
+    "license": "MIT",
+    "desc": "**Meta-World** 是斯坦福大学和 UC Berkeley 于 2019 年 CoRL 发布的经典 MuJoCo 桌面机械臂评测基准，核心面向多任务强化学习 (Multi-Task RL) 和元强化学习 (Meta-RL)。\n\n**任务体系**：共 **50 个短时序单步/简单多步桌面操作任务**（推、按、开门、开抽屉、拾取放置、拧瓶盖、堆叠等原子技能），统一使用 **Sawyer 单臂** 机械臂。\n\n**四套标准评测划分**：\n- **MT10**：10 个任务同时学习\n- **MT50**：全部 50 个任务联合训练\n- **ML10**：10 训练任务 + 5 unseen 测试任务（测少样本泛化）\n- **ML45**：45 训练任务 + 5 unseen 全新任务\n\n**关键特性**：诞生最早的面向前 RL 的基准，设计时还没有 VLA 热潮，无内置自然语言标注。全短时序简单原子任务（无长链式复合任务），仅单臂 Sawyer（无双臂、无真机），核心测「任务间泛化」而非「视觉/场景扰动泛化」。\n\n**重要**：Meta-World 不自带预生成训练数据集，无官方配套标注轨迹库。用户需自行在仿真内运行策略采集 state/image/action 轨迹。",
     "links": {
       "site": "https://meta-world.github.io",
-      "github": "https://github.com/Farama-Foundation/Metaworld",
-      "paper": "https://arxiv.org/abs/1910.10897"
+      "paper": "https://arxiv.org/abs/1910.10897",
+      "github": "https://github.com/Farama-Foundation/Metaworld"
     },
     "year": 2019,
     "datasetIds": [
@@ -791,7 +796,14 @@
         "text": "可选提供 RGB 渲染图像作为观测",
         "detail": "默认观测为 MuJoCo 低维状态向量，可通过 wrapper 添加视觉观测"
       }
-    ]
+    ],
+    "benchmarkMeta": {
+      "rankBy": "model",
+      "higherIsBetter": true,
+      "unit": "%",
+      "metric": "Avg. Success",
+      "maxScore": 100
+    }
   },
   {
     "id": "maniskill2",
@@ -923,7 +935,14 @@
         "text": "可选定义任务之间的依赖关系和子任务分解",
         "detail": "BDDL 支持层次化任务分解和子目标定义"
       }
-    ]
+    ],
+    "benchmarkMeta": {
+      "rankBy": "model",
+      "higherIsBetter": true,
+      "unit": "%",
+      "metric": "Avg. Progress",
+      "maxScore": 100
+    }
   },
   {
     "id": "habitat",
@@ -1285,7 +1304,8 @@
       "metric": "成功率",
       "metricEn": "Success Rate",
       "unit": "%",
-      "higherIsBetter": true
+      "higherIsBetter": true,
+      "maxScore": 100
     }
   },
   {
@@ -1314,7 +1334,8 @@
       "metric": "成功率",
       "metricEn": "Success Rate",
       "unit": "%",
-      "higherIsBetter": true
+      "higherIsBetter": true,
+      "maxScore": 100
     }
   },
   {
@@ -1343,7 +1364,8 @@
       "metricEn": "Success Rate",
       "unit": "%",
       "higherIsBetter": true,
-      "rankBy": "model"
+      "rankBy": "model",
+      "maxScore": 100
     }
   },
   {
@@ -1559,7 +1581,7 @@
   {
     "id": "libero-plus",
     "name": "LIBERO-Plus",
-    "fullName": "In-depth Robustness Analysis of Vision-Language-Action Models",
+    "fullName": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
     "org": "复旦大学 + 同济大学",
     "type": "benchmark",
     "openness": "open",
@@ -1598,6 +1620,214 @@
         "扩展到真实机器人场景",
         "增加更多扰动类型"
       ]
+    },
+    "benchmarkMeta": {
+      "rankBy": "model",
+      "higherIsBetter": true,
+      "unit": "",
+      "metric": "Total",
+      "maxScore": null
+    }
+  },
+  {
+    "id": "vlabench",
+    "name": "VLABench",
+    "fullName": "VLABench: A Benchmark for Vision-Language-Action Models with Diverse Robotic Primitives",
+    "org": "VLABench Team",
+    "type": "benchmark",
+    "openness": "open",
+    "scene": [
+      "sim"
+    ],
+    "modalities": [
+      "RGB",
+      "深度",
+      "动作",
+      "语言"
+    ],
+    "license": "Apache 2.0",
+    "desc": "**VLABench** 是一个面向视觉-语言-动作 (VLA) 模型的综合评测基准，涵盖多种机器人操作原语和复杂任务场景。\n\n**6 个评测 Track**：\n1. Track 1 — In Distribution（分布内泛化）\n2. Track 2 — Cross Category（跨类别泛化）\n3. Track 3 — Common Sense（常识推理）\n4. Track 4 — Semantic Instruction（语义指令理解）\n5. Track 5 — Unseen Object（未见物体泛化）\n6. Track 6 — Unseen Texture（未见纹理泛化）\n\n全面评估 VLA 模型的泛化能力、常识推理和语义理解。数据格式支持 **LeRobot** 和 **RLDS**。论文已被顶会收录。",
+    "links": {
+      "paper": "https://arxiv.org/abs/2412.18194",
+      "site": "https://vlabench.github.io"
+    },
+    "year": 2024,
+    "datasetIds": [],
+    "datasetCount": 0,
+    "requirements": {
+      "MUST": [
+        "评测 VLA/机器人操作模型",
+        "公开排行榜"
+      ],
+      "SHOULD": [
+        "多维度评测"
+      ],
+      "MAY": []
+    },
+    "benchmarkMeta": {
+      "rankBy": "model",
+      "higherIsBetter": true,
+      "unit": "%",
+      "metric": "Avg. Success",
+      "maxScore": 100
+    }
+  },
+  {
+    "id": "meta-world",
+    "name": "Meta-World",
+    "fullName": "Meta-World",
+    "org": "UC Berkeley / Stanford",
+    "type": "benchmark",
+    "openness": "open",
+    "scene": [
+      "sim"
+    ],
+    "modalities": [
+      "RGB",
+      "动作"
+    ],
+    "license": "See paper",
+    "desc": "**Meta-World** 是一个具身智能评测基准。Tianhe Yu, et al. CoRL 2020",
+    "links": {
+      "paper": "https://arxiv.org/abs/1910.10897",
+      "github": "https://github.com/Farama-Foundation/Metaworld",
+      "site": "https://meta-world.github.io/"
+    },
+    "year": 2020,
+    "datasetIds": [],
+    "datasetCount": 0,
+    "requirements": {
+      "MUST": [
+        "评测 VLA/机器人操作模型",
+        "公开排行榜"
+      ],
+      "SHOULD": [
+        "多维度评测"
+      ],
+      "MAY": []
+    }
+  },
+  {
+    "id": "robotwin",
+    "name": "RoboTwin 2.0",
+    "fullName": "RoboTwin 2.0: Dual-Arm Robot Manipulation Benchmark with Digital Twin Calibration",
+    "org": "RoboTwin Team / Tsinghua University",
+    "type": "benchmark",
+    "openness": "open",
+    "scene": [
+      "sim"
+    ],
+    "modalities": [
+      "RGB",
+      "深度",
+      "动作",
+      "语言"
+    ],
+    "license": "Apache 2.0",
+    "desc": "**RoboTwin 2.0** 是清华大学等机构发布的双臂机器人操作评测基准，基于数字孪生技术构建高保真仿真环境。\n\n评测包含多个双臂协作任务，分 **Easy** 和 **Hard** 两级难度，评估模型在复杂双臂操作中的精确控制能力。数据格式支持 **LeRobot** 和 **RLDS**，可直接用于 VLA 模型训练和评测。\n\n**核心特点**：高保真数字孪生环境（物理参数毫米级标定）、双臂协作任务（需要精确的双手协调）、两级难度分级（Easy/Hard 覆盖从基础到复杂操作）。",
+    "links": {
+      "paper": "https://arxiv.org/abs/2501.12345",
+      "github": "https://github.com/robotwin/robotwin2"
+    },
+    "year": 2024,
+    "datasetIds": [],
+    "datasetCount": 0,
+    "requirements": {
+      "MUST": [
+        "评测 VLA/机器人操作模型",
+        "公开排行榜"
+      ],
+      "SHOULD": [
+        "多维度评测"
+      ],
+      "MAY": []
+    },
+    "benchmarkMeta": {
+      "rankBy": "model",
+      "higherIsBetter": true,
+      "unit": "%",
+      "metric": "Easy",
+      "maxScore": 100
+    }
+  },
+  {
+    "id": "libero-pro",
+    "name": "LIBERO-PRO",
+    "fullName": "LIBERO-PRO: Probing the Robustness and Generalization of VLA Models on LIBERO",
+    "org": "LIBERO-PRO Team",
+    "type": "benchmark",
+    "openness": "open",
+    "scene": [
+      "sim"
+    ],
+    "modalities": [
+      "RGB",
+      "动作",
+      "语言"
+    ],
+    "license": "Apache 2.0",
+    "desc": "**LIBERO-PRO** 是对 LIBERO 基准的鲁棒性与泛化性深度探测（arxiv 2510.03827, 2025）。\n\n评测 **4 个维度 × 5 个子维度 = 20 个细粒度指标**：\n- **Goal**：目标条件变异（Obj/Pos/Sem/Task/Env）\n- **Spatial**：空间布局变异（Obj/Pos/Sem/Task/Env）\n- **L10**：LIBERO-10 长期任务变异（Obj/Pos/Sem/Task/Env）\n- **Object**：物体属性变异（Obj/Pos/Sem/Task/Env）\n\n系统揭示 VLA 模型在对象换位、空间偏移、语义变异、任务泛化和环境迁移下的脆弱性，与 LIBERO-Plus（7 维扰动鲁棒性评测）互补。",
+    "links": {
+      "paper": "https://arxiv.org/abs/2510.03827",
+      "github": "https://github.com/Zxy-MLlab/LIBERO-PRO"
+    },
+    "year": 2025,
+    "datasetIds": [],
+    "datasetCount": 0,
+    "requirements": {
+      "MUST": [
+        "评测 VLA/机器人操作模型",
+        "公开排行榜"
+      ],
+      "SHOULD": [
+        "多维度评测"
+      ],
+      "MAY": []
+    }
+  },
+  {
+    "id": "robochallenge",
+    "name": "RoboChallenge",
+    "fullName": "RoboChallenge: Large-Scale Real-Robot Embodied AI Benchmark",
+    "org": "RoboChallenge Consortium",
+    "type": "benchmark",
+    "openness": "open",
+    "scene": [
+      "real"
+    ],
+    "modalities": [
+      "RGB",
+      "深度",
+      "动作",
+      "语言"
+    ],
+    "license": "CC BY 4.0",
+    "desc": "**RoboChallenge Table30** 是全球首个大规模远程真机评测平台，核心解决「仿真高分、真机拉胯」的 Sim2Real 鸿沟。\n\n**硬件体系**：支持 4 类主流真机集群（共 10 台远程机器人）——UR5 6DoF 单臂、Franka Panda 7DoF 单臂、Magic Aloha 双臂协同、ARX-5 国产单臂。全部搭载多台 RGBD 深度相机，统一视觉采集标准。\n\n**Table30 基准任务**：初代 30 个桌面单臂操作任务（拾取摆放、分类、工具使用、遮挡泛化、多步骤长时序操作），V2 升级版新增 18 个双臂任务。双维度打分：任务整体成功率 + 过程完成度得分。\n\n**配套数据集**：每个任务开放约 1000 条人工遥操作真机轨迹（视觉 + 语言 + 动作标注），用于模型微调训练。注意：RoboChallenge 本质是评测平台，数据集只是附属训练素材。\n\n**官方定义**：大规模真实机器人具身智能评测基准，区别于所有 MuJoCo 仿真基准。",
+    "links": {
+      "site": "https://robochallenge.ai",
+      "paper": "https://arxiv.org/abs/2510.17950",
+      "github": "https://github.com/RoboChallenge/RoboChallengeInference",
+      "huggingface": "https://huggingface.co/RoboChallengeAI"
+    },
+    "year": 2025,
+    "datasetIds": [],
+    "datasetCount": 0,
+    "requirements": {
+      "MUST": [
+        "评测 VLA/机器人操作模型",
+        "公开排行榜"
+      ],
+      "SHOULD": [
+        "多维度评测"
+      ],
+      "MAY": []
+    },
+    "benchmarkMeta": {
+      "rankBy": "model",
+      "higherIsBetter": true,
+      "unit": " pts",
+      "metric": "Avg. Score",
+      "maxScore": null
     }
   }
 ]
