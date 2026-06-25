@@ -1555,5 +1555,49 @@
         "支持偏好约束 (:preferences) 和状态轨迹约束 (PDDL 3.0+)"
       ]
     }
+  },
+  {
+    "id": "libero-plus",
+    "name": "LIBERO-Plus",
+    "fullName": "In-depth Robustness Analysis of Vision-Language-Action Models",
+    "org": "复旦大学 + 同济大学",
+    "type": "benchmark",
+    "openness": "open",
+    "scene": [
+      "sim"
+    ],
+    "modalities": [
+      "RGB",
+      "语言",
+      "动作"
+    ],
+    "license": "Apache 2.0",
+    "desc": "**LIBERO-Plus** 是复旦大学和同济大学于 2025 年 10 月发布的 VLA 模型鲁棒性深度评测基准（arxiv 2510.13626），是对 LIBERO 基准的**系统化鲁棒性扩展**。\n\nLIBERO 标准评测中 VLA 模型可达 90-98% 成功率，但 **LIBERO-Plus 揭示这些分数掩盖了严重的脆弱性**——在轻微扰动下，性能从 95% 跌至 30% 以下。\n\n**7 大扰动维度**（10,030 个任务，L1-L5 难度分级）：(1) 物体布局（混淆物/位移）、(2) 相机视角（位置/方向/FOV）、(3) 机器人初始状态、(4) 语言指令（LLM 改写）、(5) 光照条件（强度/方向/色温/阴影）、(6) 背景纹理、(7) 传感器噪声（抖动/高斯模糊）。\n\n**核心发现**：多数模型对相机视角变化极度脆弱（OpenVLA: 0.8%, π0: 13.8%）；模型实质上是「视觉-动作」而非「视觉-语言-动作」模型（空白指令实验几乎不影响性能）；模型记忆位置而非理解语义（位移目标物体导致严重失败）；腕部相机显著提升鲁棒性。评测了 OpenVLA、π0、RIPT-VLA、NORA、UniVLA 等 8 个模型。",
+    "links": {
+      "site": "https://github.com/sylvestf/LIBERO-plus",
+      "paper": "https://arxiv.org/abs/2510.13626",
+      "github": "https://github.com/sylvestf/LIBERO-plus",
+      "huggingface": "https://huggingface.co/datasets/Sylvest/LIBERO-plus"
+    },
+    "year": 2025,
+    "datasetIds": [
+      "libero"
+    ],
+    "datasetCount": 1,
+    "requirements": {
+      "MUST": [
+        "7 大扰动维度全覆盖（布局/相机/状态/语言/光照/背景/噪声）",
+        "10,030 个任务，L1-L5 难度分级",
+        "与 LIBERO 标准评测结果可对比"
+      ],
+      "SHOULD": [
+        "8+ VLA 模型 baseline 结果",
+        "细粒度成功率报告（按维度和难度）"
+      ],
+      "MAY": [
+        "扩展到真实机器人场景",
+        "增加更多扰动类型"
+      ]
+    }
   }
 ]
