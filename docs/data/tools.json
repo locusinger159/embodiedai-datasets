@@ -3,966 +3,351 @@
     "id": "robosuite",
     "name": "RoboSuite",
     "institution": "UC Berkeley",
-    "scale": "多个仿真环境",
-    "robotType": [
-      "机械臂",
-      "仿真"
-    ],
-    "task": [
-      "操作",
-      "装配"
-    ],
-    "type": "open",
-    "links": {
-      "paper": "https://arxiv.org/abs/2009.12293",
-      "site": "https://robosuite.ai"
-    },
-    "notes": "Stanford/UT Austin/NVIDIA 维护的模块化机器人仿真框架，基于 MuJoCo 引擎。v1.5（2024）支持人形机器人、自定义组合机器人、全身控制器、Isaac Sim 渲染。9+ 标准操作任务，7 种机械臂模型，Gymnasium API 兼容。",
     "description": "**RoboSuite** 是由 Stanford Vision and Learning Lab 最初开发，现由 **ARISE Initiative（Stanford / UT Austin / NVIDIA GEAR）**联合维护的模块化机器人仿真框架。\n\n基于 **MuJoCo** 物理引擎，提供标准化的机器人学习基准环境。\n\n**v1.5（2024.10）更新亮点**：\n- 支持人形机器人等多种新型机器人形态\n- 自定义机器人组合（程序化组装新机器人设计）\n- 复合控制器（IK + 操作空间 + 关节空间全身控制）\n- 集成 NVIDIA Isaac Sim 实现照片级渲染\n\n**核心特性**：9+ 标准化操作任务（Lift、Stack、Nut Assembly、Door 等），7 种机械臂 + 8 种夹爪模型，多模态传感器（RGB、深度、本体状态），Gymnasium API 兼容。配套 sister project **robomimic** 用于人类演示数据采集与模仿学习。",
-    "license": "MIT",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "多个仿真环境",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [
-        "仿真状态",
-        "视觉"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "2 种任务类型",
-      "episodes": "多个仿真环境",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2020,
-      "venue": "arXiv",
-      "authors": "Zhu, Y. et al."
-    },
-    "github": "https://github.com/ARISE-Initiative/robosuite",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
-    },
-    "standards": [
-      "hdf5-robomimic"
-    ],
     "toolType": "训练框架",
-    "tutorial": {
-      "quickstart": "pip install robosuite\npython -c \"import robosuite; env = robosuite.make('Lift', robots='Panda'); env.reset()\"",
-      "deps": [
-        "robosuite",
-        "mujoco",
-        "numpy"
-      ],
-      "links": [
-        {
-          "name": "官方文档",
-          "url": "https://robosuite.ai/docs/overview.html"
-        },
-        {
-          "name": "快速入门",
-          "url": "https://robosuite.ai/docs/quickstart.html"
-        },
-        {
-          "name": "示例代码",
-          "url": "https://github.com/ARISE-Initiative/robosuite/tree/master/robosuite/demos"
-        }
-      ]
+    "type": "open",
+    "openness": "open",
+    "links": {
+      "site": "https://robosuite.ai",
+      "paper": "https://arxiv.org/abs/2009.12293"
     },
-    "modalities": [
+    "modality": [
       "仿真状态",
       "视觉"
-    ]
+    ],
+    "license": "MIT",
+    "scale": "多个仿真环境",
+    "dataFormat": "详见官方链接 — episode → step → observation → action",
+    "tags": [],
+    "notes": "Stanford/UT Austin/NVIDIA 维护的模块化机器人仿真框架，基于 MuJoCo 引擎。v1.5（2024）支持人形机器人、自定义组合机器人、全身控制器、Isaac Sim 渲染。9+ 标准操作任务，7 种机械臂模型，Gymnasium API 兼容。",
+    "citation": {
+      "bibtex": null,
+      "year": 2020,
+      "venue": "arXiv"
+    },
+    "changelog": []
   },
   {
     "id": "isaac-sim-dataset",
     "name": "Isaac Sim",
     "institution": "NVIDIA",
-    "robotType": [
-      "仿真"
-    ],
-    "task": [
-      "操作"
-    ],
+    "description": "**NVIDIA Isaac Sim** 是构建在 **Omniverse** 平台上的高性能机器人仿真工具包。\n\n基于 **OpenUSD** 构建仿真数据管线，支持大规模并行场景生成、域随机化、物理级传感器仿真（RGB-D、LiDAR、IMU 等）和强化学习/模仿学习策略训练。\n\n是 NVIDIA **GR00T** 系列人形机器人基础模型的核心仿真数据生成与训练验证平台。与 Isaac Lab（原 Isaac Gym）深度集成，支持 GPU 加速的大规模并行仿真。",
+    "toolType": "仿真器",
     "type": "partial",
+    "openness": "partial",
     "links": {
       "site": "https://developer.nvidia.com/isaac-sim"
     },
-    "notes": "NVIDIA Omniverse 平台上的机器人仿真工具包。基于 OpenUSD 构建仿真数据管线，支持大规模并行场景生成、域随机化、传感器仿真和策略训练。GR00T 系列模型的核心仿真平台。",
-    "description": "**NVIDIA Isaac Sim** 是构建在 **Omniverse** 平台上的高性能机器人仿真工具包。\n\n基于 **OpenUSD** 构建仿真数据管线，支持大规模并行场景生成、域随机化、物理级传感器仿真（RGB-D、LiDAR、IMU 等）和强化学习/模仿学习策略训练。\n\n是 NVIDIA **GR00T** 系列人形机器人基础模型的核心仿真数据生成与训练验证平台。与 Isaac Lab（原 Isaac Gym）深度集成，支持 GPU 加速的大规模并行仿真。",
-    "license": "NVIDIA 专有（免费用于开发/研究）",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉",
-        "点云",
-        "深度"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2023
-    },
-    "github": "https://github.com/isaac-sim/IsaacSim",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
-    },
-    "standards": [
-      "openusd"
-    ],
-    "toolType": "仿真器",
-    "tutorial": {
-      "quickstart": "# 通过 NVIDIA Omniverse Launcher 安装 Isaac Sim\n# 或 pip 安装基础库\npip install isaacsim\n# 启动后 File > Open Sample Scene 加载示例",
-      "deps": [
-        "isaacsim",
-        "numpy",
-        "torch"
-      ],
-      "links": [
-        {
-          "name": "官方文档",
-          "url": "https://docs.isaacsim.omniverse.nvidia.com/"
-        },
-        {
-          "name": "安装指南",
-          "url": "https://docs.isaacsim.omniverse.nvidia.com/latest/installation/index.html"
-        },
-        {
-          "name": "GitHub",
-          "url": "https://github.com/isaac-sim/IsaacSim"
-        }
-      ]
-    },
-    "modalities": [
+    "modality": [
       "视觉",
       "点云",
       "深度"
-    ]
+    ],
+    "license": "NVIDIA 专有（免费用于开发/研究）",
+    "dataFormat": "详见官方链接 — episode → step → observation → action",
+    "tags": [],
+    "notes": "NVIDIA Omniverse 平台上的机器人仿真工具包。基于 OpenUSD 构建仿真数据管线，支持大规模并行场景生成、域随机化、传感器仿真和策略训练。GR00T 系列模型的核心仿真平台。",
+    "citation": {
+      "bibtex": null,
+      "year": 2023,
+      "venue": null
+    },
+    "changelog": []
   },
   {
     "id": "habitat",
     "name": "Habitat",
     "institution": "Meta AI",
-    "robotType": [
-      "仿真"
-    ],
-    "task": [
-      "导航"
-    ],
-    "type": "open",
-    "links": {
-      "paper": "https://arxiv.org/abs/2310.13724",
-      "site": "https://aihabitat.org"
-    },
-    "notes": "Meta AI 具身导航与交互仿真平台。Habitat 3.0（2023）支持人机协作任务、VR 人机回环、社交导航与重排。适配 HM3D、MatterPort3D、Replica 等数据集，年度 Habitat Challenge 基准评测。",
     "description": "**Habitat** 是 Meta AI（原 Facebook AI）提出的高性能具身导航与交互仿真平台。\n\n**Habitat 3.0（2023）** 引入人机协作任务、高精度人体化身仿真（关节骨骼 + 表面渲染）、人机回环（VR/键鼠实时交互），以及社交导航（Social Navigation）和社交重排（Social Rearrangement）两类核心协作任务。\n\n**架构**：Habitat-Sim（高性能 3D 仿真器，支持 HM3D、MatterPort3D、Gibson、Replica 等场景数据集）+ Habitat-Lab（模块化任务定义与训练库）+ Habitat Challenge（CVPR Embodied AI Workshop 年度基准评测）。Fetch 机器人可达 8,000+ 步/秒。",
-    "license": "MIT",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉",
-        "深度"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2023,
-      "venue": "arXiv",
-      "authors": "Puig, X. et al."
-    },
-    "github": "https://github.com/facebookresearch/habitat-sim",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
-    },
-    "standards": [
-      "habitat"
-    ],
     "toolType": "仿真器",
-    "tutorial": {
-      "quickstart": "pip install habitat-sim habitat-lab\npython -c \"import habitat; print(habitat.__version__)\"",
-      "deps": [
-        "habitat-sim",
-        "habitat-lab",
-        "numpy"
-      ],
-      "links": [
-        {
-          "name": "官方文档",
-          "url": "https://aihabitat.org/docs/"
-        },
-        {
-          "name": "GitHub",
-          "url": "https://github.com/facebookresearch/habitat-sim"
-        },
-        {
-          "name": "示例教程",
-          "url": "https://aihabitat.org/tutorial/"
-        }
-      ]
+    "type": "open",
+    "openness": "open",
+    "links": {
+      "site": "https://aihabitat.org",
+      "paper": "https://arxiv.org/abs/2310.13724"
     },
-    "modalities": [
+    "modality": [
       "视觉",
       "深度"
-    ]
+    ],
+    "license": "MIT",
+    "dataFormat": "详见官方链接 — episode → step → observation → action",
+    "tags": [],
+    "notes": "Meta AI 具身导航与交互仿真平台。Habitat 3.0（2023）支持人机协作任务、VR 人机回环、社交导航与重排。适配 HM3D、MatterPort3D、Replica 等数据集，年度 Habitat Challenge 基准评测。",
+    "citation": {
+      "bibtex": null,
+      "year": 2023,
+      "venue": "arXiv"
+    },
+    "changelog": []
   },
   {
     "id": "igibson",
     "name": "iGibson",
     "institution": "斯坦福大学",
-    "robotType": [
-      "仿真"
-    ],
-    "task": [
-      "导航",
-      "操作",
-      "家居"
-    ],
-    "type": "open",
-    "links": {
-      "paper": "https://arxiv.org/abs/2010.08628",
-      "site": "https://stanfordvl.github.io/iGibson"
-    },
-    "notes": "StanfordVL 交互式 3D 家居仿真环境（Bullet 物理引擎）。15 个完整交互式家居场景，支持物体操作（门、抽屉、开关等）。v2.2（2024）支持 Tiago 机器人、ROS 集成。后继项目 OmniGibson（NVIDIA Omniverse 版）。",
     "description": "**iGibson（Interactive Gibson）**是 Stanford Vision and Learning Lab 开发的交互式 3D 家居仿真环境。\n\n基于 **Bullet** 物理引擎，提供 15 个完整的交互式家居场景（门、抽屉、开关、家具等可交互物体），支持机器人导航、操作和交互任务。\n\n**v2.2（2024）** 新增 Tiago 机器人支持、ROS 集成、物体中心动作原语、原语动作接口。\n\n**后继项目**：**OmniGibson**（基于 NVIDIA Omniverse）是该团队当前重点开发的新一代平台，支持更高质量的渲染和物理仿真。",
-    "license": "MIT",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉",
-        "深度",
-        "物理"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "3 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2021,
-      "venue": "IROS",
-      "authors": "Shen, B. et al."
-    },
-    "github": "https://github.com/StanfordVL/iGibson",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
-    },
-    "standards": [
-      "openusd",
-      "behavior-1k"
-    ],
     "toolType": "仿真器",
-    "tutorial": {
-      "quickstart": "pip install igibson\npython -m igibson.examples.environments.env_nonint_example",
-      "deps": [
-        "igibson",
-        "numpy",
-        "pybullet"
-      ],
-      "links": [
-        {
-          "name": "官方文档",
-          "url": "https://stanfordvl.github.io/iGibson/"
-        },
-        {
-          "name": "安装指南",
-          "url": "https://stanfordvl.github.io/iGibson/installation.html"
-        },
-        {
-          "name": "GitHub",
-          "url": "https://github.com/StanfordVL/iGibson"
-        }
-      ]
+    "type": "open",
+    "openness": "open",
+    "links": {
+      "site": "https://stanfordvl.github.io/iGibson",
+      "paper": "https://arxiv.org/abs/2010.08628"
     },
-    "modalities": [
+    "modality": [
       "视觉",
       "深度",
       "物理"
-    ]
+    ],
+    "license": "MIT",
+    "dataFormat": "详见官方链接 — episode → step → observation → action",
+    "tags": [],
+    "notes": "StanfordVL 交互式 3D 家居仿真环境（Bullet 物理引擎）。15 个完整交互式家居场景，支持物体操作（门、抽屉、开关等）。v2.2（2024）支持 Tiago 机器人、ROS 集成。后继项目 OmniGibson（NVIDIA Omniverse 版）。",
+    "citation": {
+      "bibtex": null,
+      "year": 2021,
+      "venue": "IROS"
+    },
+    "changelog": []
   },
   {
     "id": "sapien",
     "name": "SAPIEN",
     "institution": "斯坦福大学、上海交通大学",
-    "robotType": [
-      "仿真"
-    ],
-    "task": [
-      "操作"
-    ],
-    "type": "open",
-    "links": {
-      "paper": "https://arxiv.org/abs/2410.00425",
-      "site": "https://maniskill.ai/"
-    },
-    "notes": "UCSD Hao Su Lab 的 GPU 并行化机器人仿真与渲染平台。ManiSkill3（RSS 2025）达 30,000+ FPS，20+ 种机器人形态。SAPIEN 3.0 引擎支持异构大规模并行仿真。pip install mani_skill。",
     "description": "**SAPIEN** 是 UCSD Hao Su Lab 开发的交互式 3D 部件级仿真平台，其上的 **ManiSkill** 是目前最先进的 GPU 并行化机器人仿真与基准框架。\n\n**ManiSkill3（RSS 2025）核心特性**：\n- GPU 并行仿真 + 渲染达 **30,000+ FPS**（RGB-D + 分割）\n- GPU 内存使用 2-3 倍优于 Isaac Lab（128 并行环境：4.4GB vs 14.1GB）\n- 12 类环境、**20+ 种机器人**（人形、移动操作臂、四足、灵巧手等）\n- 内置 ReplicaCAD、AI2THOR 场景，支持异构并行仿真\n- 提供 RL（PPO/SAC/TD-MPC2）、模仿学习（BC/Diffusion Policy）、VLA（Octo/RDT/RT-x）基线\n\nSAPIEN 3.0 引擎提供 2,000+ 个带部件级关节信息的高质量 3D 模型。安装：pip install --upgrade mani_skill。",
-    "license": "MIT",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉",
-        "点云"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2024,
-      "venue": "RSS 2025",
-      "authors": "Tao, S. et al."
-    },
-    "github": "https://github.com/haosulab/ManiSkill",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
-    },
     "toolType": "仿真器",
-    "tutorial": {
-      "quickstart": "pip install sapien\npython -c \"import sapien.core as sapien; engine = sapien.Engine(); print('SAPIEN ready')\"",
-      "deps": [
-        "sapien",
-        "numpy",
-        "open3d"
-      ],
-      "links": [
-        {
-          "name": "官方文档",
-          "url": "https://sapien.ucsd.edu/docs/"
-        },
-        {
-          "name": "快速入门",
-          "url": "https://sapien.ucsd.edu/docs/latest/tutorial/basic/index.html"
-        },
-        {
-          "name": "GitHub",
-          "url": "https://github.com/haosulab/SAPIEN"
-        }
-      ]
+    "type": "open",
+    "openness": "open",
+    "links": {
+      "site": "https://maniskill.ai/",
+      "paper": "https://arxiv.org/abs/2410.00425"
     },
-    "modalities": [
+    "modality": [
       "视觉",
       "点云"
-    ]
+    ],
+    "license": "MIT",
+    "dataFormat": "详见官方链接 — episode → step → observation → action",
+    "tags": [],
+    "notes": "UCSD Hao Su Lab 的 GPU 并行化机器人仿真与渲染平台。ManiSkill3（RSS 2025）达 30,000+ FPS，20+ 种机器人形态。SAPIEN 3.0 引擎支持异构大规模并行仿真。pip install mani_skill。",
+    "citation": {
+      "bibtex": null,
+      "year": 2024,
+      "venue": "RSS 2025"
+    },
+    "changelog": []
   },
   {
     "id": "coppeliasim",
     "name": "CoppeliaSim",
     "institution": "Coppelia Robotics",
-    "robotType": [
-      "仿真"
-    ],
-    "task": [
-      "操作"
-    ],
+    "description": "**CoppeliaSim**（原 V-REP）是跨平台通用机器人仿真环境，由 Coppelia Robotics 公司开发维护。\n\n**最新版本 V4.10.0（2025.05）**，集成 MuJoCo V3.2.6 实现 **2-10 倍仿真速度提升**，新增 adhesion 功能。\n\n**核心特性**：支持多种物理引擎（Bullet、ODE、Vortex、Newton、MuJoCo），丰富的机器人模型库和传感器仿真（视觉、深度、力控、IMU 等），Python/C/C++/MATLAB/ROS 多语言 API。是 **RLBench** 等基准的底层仿真平台，广泛应用于机器人学习和控制研究。",
+    "toolType": "仿真器",
     "type": "open",
+    "openness": "open",
     "links": {
       "site": "https://www.coppeliarobotics.com/"
     },
-    "notes": "跨平台机器人仿真环境（原 V-REP）。V4.10.0（2025.05），集成 MuJoCo V3.2.6 实现 2-10x 仿真加速。支持 Bullet/ODE/Vortex/Newton 多引擎，含丰富机器人模型库与传感器仿真。RLBench 底层平台。",
-    "description": "**CoppeliaSim**（原 V-REP）是跨平台通用机器人仿真环境，由 Coppelia Robotics 公司开发维护。\n\n**最新版本 V4.10.0（2025.05）**，集成 MuJoCo V3.2.6 实现 **2-10 倍仿真速度提升**，新增 adhesion 功能。\n\n**核心特性**：支持多种物理引擎（Bullet、ODE、Vortex、Newton、MuJoCo），丰富的机器人模型库和传感器仿真（视觉、深度、力控、IMU 等），Python/C/C++/MATLAB/ROS 多语言 API。是 **RLBench** 等基准的底层仿真平台，广泛应用于机器人学习和控制研究。",
-    "license": "CoppeliaSim Edu 免费 / Commercial 付费",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2013,
-      "authors": "Rohmer, E. et al."
-    },
-    "github": "https://github.com/CoppeliaRobotics/coppeliaSimLib",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
-    },
-    "toolType": "仿真器",
-    "tutorial": {
-      "quickstart": "# 下载 CoppeliaSim 客户端: https://www.coppeliarobotics.com/downloads\n# Python 远程 API\npip install coppeliasim-zmqremoteapi-client\npython -c \"from coppeliasim_zmqremoteapi_client import RemoteAPIClient; print('Ready')\"",
-      "deps": [
-        "coppeliasim-zmqremoteapi-client",
-        "numpy"
-      ],
-      "links": [
-        {
-          "name": "官方文档",
-          "url": "https://manual.coppeliarobotics.com/"
-        },
-        {
-          "name": "下载",
-          "url": "https://www.coppeliarobotics.com/downloads"
-        },
-        {
-          "name": "GitHub",
-          "url": "https://github.com/CoppeliaRobotics/coppeliaSimLib"
-        }
-      ]
-    },
-    "modalities": [
+    "modality": [
       "视觉"
-    ]
+    ],
+    "license": "CoppeliaSim Edu 免费 / Commercial 付费",
+    "dataFormat": "详见官方链接 — episode → step → observation → action",
+    "tags": [],
+    "notes": "跨平台机器人仿真环境（原 V-REP）。V4.10.0（2025.05），集成 MuJoCo V3.2.6 实现 2-10x 仿真加速。支持 Bullet/ODE/Vortex/Newton 多引擎，含丰富机器人模型库与传感器仿真。RLBench 底层平台。",
+    "citation": {
+      "bibtex": null,
+      "year": 2013,
+      "venue": null
+    },
+    "changelog": []
   },
   {
     "id": "pytouch",
     "name": "PyTouch",
     "institution": "Meta AI（Facebook Research）",
-    "robotType": [
-      "触觉传感"
-    ],
-    "task": [
-      "交互"
-    ],
-    "type": "open",
-    "links": {
-      "paper": "https://arxiv.org/abs/2105.12791",
-      "site": "https://facebookresearch.github.io/PyTouch/"
-    },
-    "notes": "Meta AI 推出的首个触觉处理 ML 库。基于 PyTorch，提供触觉检测、滑移检测、物体姿态估计、接触面积估计等预训练模型。支持 DIGIT、OmniTact、GelSight 传感器。pip install pytouch。",
     "description": "**PyTouch** 是 Meta AI（Facebook Research）推出的首个专用于触觉处理的机器学习库。\n\n基于 **PyTorch** 构建，提供以下预训练模型：\n- 触觉接触检测（Touch/Contact Detection）\n- 滑移检测（Slip Detection）\n- 物体姿态估计（Object Pose Estimation）\n- 接触面积估计（Contact Area Estimation）\n\n支持 **DIGIT、OmniTact、GelSight** 等主流光学触觉传感器。配套 TACTO 触觉仿真器可生成合成触觉数据用于模型训练。\n安装：pip install pytouch。",
-    "license": "MIT",
-    "dataFormat": {
-      "storage": "PyTorch 模型 + Python 库",
-      "size": "pip 安装",
-      "compression": "N/A",
-      "schema": "sensor input → ML model → prediction"
-    },
-    "dataContent": {
-      "sensors": [
-        "触觉"
-      ],
-      "scenes": "触觉数据处理与感知",
-      "objects": "DIGIT / OmniTact / GelSight 传感器",
-      "tasks": "触觉感知（接触检测、滑移检测、姿态估计）",
-      "episodes": "N/A（工具库）",
-      "annotations": [
-        "预训练模型权重",
-        "触觉数据标注"
-      ]
-    },
-    "github": "https://github.com/facebookresearch/PyTouch",
-    "huggingface": "",
-    "citation": {
-      "year": 2021,
-      "venue": "ICRA",
-      "authors": "Lambeta, M. et al."
-    },
-    "changelog": [],
-    "quality": {
-      "collection": "N/A（工具库）",
-      "annotation": "预训练模型",
-      "realWorld": "N/A",
-      "hasSplit": false
-    },
     "toolType": "触觉模拟",
-    "tutorial": {
-      "quickstart": "pip install pytouch\npython -c \"from pytouch import PyTouch; pt = PyTouch(); print('PyTouch ready')\"",
-      "deps": [
-        "pytouch",
-        "torch",
-        "numpy"
-      ],
-      "links": [
-        {
-          "name": "官方文档",
-          "url": "https://pypi.org/project/pytouch/"
-        },
-        {
-          "name": "论文",
-          "url": "https://arxiv.org/abs/2105.02934"
-        }
-      ]
+    "type": "open",
+    "openness": "open",
+    "links": {
+      "site": "https://facebookresearch.github.io/PyTouch/",
+      "paper": "https://arxiv.org/abs/2105.12791"
     },
-    "modalities": [
+    "modality": [
       "触觉"
-    ]
+    ],
+    "license": "MIT",
+    "dataFormat": "PyTorch 模型 + Python 库 — sensor input → ML model → prediction",
+    "tags": [],
+    "notes": "Meta AI 推出的首个触觉处理 ML 库。基于 PyTorch，提供触觉检测、滑移检测、物体姿态估计、接触面积估计等预训练模型。支持 DIGIT、OmniTact、GelSight 传感器。pip install pytouch。",
+    "citation": {
+      "bibtex": null,
+      "year": 2021,
+      "venue": "ICRA"
+    },
+    "changelog": []
   },
   {
     "id": "gibson",
     "name": "Gibson",
     "institution": "斯坦福大学",
-    "robotType": [
-      "仿真"
-    ],
-    "task": [
-      "导航"
-    ],
-    "type": "open",
-    "links": {
-      "paper": "https://arxiv.org/abs/1808.10654",
-      "site": "http://gibsonenv.stanford.edu"
-    },
-    "notes": "StanfordVL 真实 3D 场景仿真环境。从真实 3D 扫描重建室内场景，支持导航、感知与交互研究。配套 Matterport3D 使用。iGibson 为其交互式后继版本。MIT 协议。",
     "description": "**Gibson Environment（GibsonEnv）**是 Stanford Vision and Learning Lab 开发的真实 3D 场景仿真平台。\n\n基于真实 3D 扫描数据重建室内场景，提供 RGB、深度、语义分割等传感器仿真。配套 **Matterport3D** 数据集使用，是具身导航领域的经典仿真环境。\n\n**后继版本**：**iGibson**（增加物理交互 + 物体操作能力）和 **OmniGibson**（基于 NVIDIA Omniverse 的新一代平台）。MIT 协议开源。",
-    "license": "MIT",
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "详见官方链接",
-      "compression": "未知",
-      "schema": "episode → step → observation → action"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉",
-        "深度"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "1 种任务类型",
-      "episodes": "详见官方链接",
-      "annotations": []
-    },
-    "citation": {
-      "year": 2018,
-      "venue": "CVPR",
-      "authors": "Xia, F. et al."
-    },
-    "github": "https://github.com/StanfordVL/gibsonenv",
-    "huggingface": "",
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
-    },
-    "standards": [
-      "habitat"
-    ],
     "toolType": "仿真器",
-    "tutorial": {
-      "quickstart": "# Gibson 已被 iGibson 取代\n# 建议使用 pip install igibson",
-      "deps": [
-        "igibson"
-      ],
-      "links": [
-        {
-          "name": "iGibson (替代)",
-          "url": "https://stanfordvl.github.io/iGibson/"
-        },
-        {
-          "name": "旧版 GitHub",
-          "url": "https://github.com/StanfordVL/GibsonEnv"
-        }
-      ]
+    "type": "open",
+    "openness": "open",
+    "links": {
+      "site": "http://gibsonenv.stanford.edu",
+      "paper": "https://arxiv.org/abs/1808.10654"
     },
-    "modalities": [
+    "modality": [
       "视觉",
       "深度"
-    ]
+    ],
+    "license": "MIT",
+    "dataFormat": "详见官方链接 — episode → step → observation → action",
+    "tags": [],
+    "notes": "StanfordVL 真实 3D 场景仿真环境。从真实 3D 扫描重建室内场景，支持导航、感知与交互研究。配套 Matterport3D 使用。iGibson 为其交互式后继版本。MIT 协议。",
+    "citation": {
+      "bibtex": null,
+      "year": 2018,
+      "venue": "CVPR"
+    },
+    "changelog": []
   },
   {
     "id": "robomimic",
     "name": "robomimic",
     "institution": "ARISE Initiative（Stanford / UT Austin / NVIDIA GEAR）",
-    "robotType": [
-      "机械臂"
-    ],
-    "task": [
-      "操作"
-    ],
-    "type": "open",
-    "links": {
-      "paper": "https://arxiv.org/abs/2108.01974",
-      "site": "https://robomimic.github.io"
-    },
-    "notes": "模仿学习数据处理框架。原始机器人数据 → 标准化 HDF5，含数据集转换/观测提取/切分/下载管理。v0.5.0（2025.06）支持 Diffusion Policy、多数据集联合训练、语言条件策略。BridgeData V2、RoboTurk 的标准格式。",
     "description": "**robomimic** 是 ARISE Initiative 维护的机器人模仿学习数据处理与训练框架，是具身智能数据生态中最核心的数据处理工具之一。\n\n**数据处理管线**（原始数据 → 训练就绪）：\n1. 采集人类演示（robosuite 的 collect_human_demonstrations.py）\n2. 格式转换（convert_robosuite.py → robomimic 兼容 HDF5）\n3. 观测提取（dataset_states_to_obs.py，从 MuJoCo 状态回放生成图像观测）\n4. 数据集切分（split_train_val.py，90-10 划分）\n5. 训练（train.py，支持 BC/BC-RNN/BC-Transformer/Diffusion Policy/IQL 等算法）\n\n**HDF5 标准结构**：demo_N → states/actions/rewards/dones/obs/next_obs，动作归一化至 [-1, 1]，图像为 uint8 channel-last (H, W, C)。\n\n**v0.5.0（2025.06）**：新增 Diffusion Policy、多数据集联合训练、语言条件策略支持。\nv0.4.0（2025.03）：robosuite v1.5 兼容，数据集迁移至 HuggingFace。\n\n下载：pip install robomimic\nGitHub：https://github.com/ARISE-Initiative/robomimic",
-    "license": "MIT",
-    "dataFormat": {
-      "storage": "HDF5（robomimic 兼容格式）",
-      "size": "代码库 + HuggingFace 托管数据集",
-      "compression": "可选 gzip",
-      "schema": "demo_N → states/actions/rewards/dones/obs/next_obs → low_dim + rgb"
-    },
-    "dataContent": {
-      "sensors": [
-        "视觉",
-        "动作",
-        "本体状态"
-      ],
-      "scenes": "robosuite + 自定义环境的机器人操作数据",
-      "objects": "N/A（数据处理框架）",
-      "tasks": "数据格式转换、观测提取、数据集管理、策略训练",
-      "episodes": "N/A（框架，非独立数据集）",
-      "annotations": [
-        "HDF5 结构化标注",
-        "filter keys 训练/验证划分"
-      ]
-    },
-    "github": "https://github.com/ARISE-Initiative/robomimic",
-    "huggingface": "",
-    "citation": {
-      "year": 2021,
-      "venue": "CoRL",
-      "authors": "Mandlekar, A. et al."
-    },
-    "changelog": [],
-    "quality": {
-      "collection": "N/A（数据处理框架）",
-      "annotation": "自动化观测提取与格式转换",
-      "realWorld": "N/A",
-      "hasSplit": true
-    },
     "toolType": "训练框架",
-    "tutorial": {
-      "quickstart": "pip install robomimic\npython -c \"import robomimic; print(robomimic.__version__)\"",
-      "deps": [
-        "robomimic",
-        "h5py",
-        "torch",
-        "numpy"
-      ],
-      "links": [
-        {
-          "name": "官方文档",
-          "url": "https://robomimic.github.io/"
-        },
-        {
-          "name": "数据集概览",
-          "url": "https://robomimic.github.io/docs/datasets/overview.html"
-        },
-        {
-          "name": "GitHub",
-          "url": "https://github.com/ARISE-Initiative/robomimic"
-        }
-      ]
+    "type": "open",
+    "openness": "open",
+    "links": {
+      "site": "https://robomimic.github.io",
+      "paper": "https://arxiv.org/abs/2108.01974"
     },
-    "modalities": [
+    "modality": [
       "视觉",
       "动作",
       "本体状态"
-    ]
+    ],
+    "license": "MIT",
+    "dataFormat": "HDF5（robomimic 兼容格式） — demo_N → states/actions/rewards/dones/obs/next_obs → low_dim + rgb",
+    "tags": [],
+    "notes": "模仿学习数据处理框架。原始机器人数据 → 标准化 HDF5，含数据集转换/观测提取/切分/下载管理。v0.5.0（2025.06）支持 Diffusion Policy、多数据集联合训练、语言条件策略。BridgeData V2、RoboTurk 的标准格式。",
+    "citation": {
+      "bibtex": null,
+      "year": 2021,
+      "venue": "CoRL"
+    },
+    "changelog": []
   },
   {
     "id": "tacto",
     "name": "TACTO",
     "institution": "Meta AI（Facebook Research）",
-    "robotType": [
-      "触觉传感",
-      "仿真"
-    ],
-    "task": [
-      "交互"
-    ],
-    "type": "open",
-    "links": {
-      "paper": "https://arxiv.org/abs/2012.08456",
-      "site": "https://github.com/facebookresearch/tacto"
-    },
-    "notes": "Meta AI 光学触觉传感器仿真器。为 DIGIT、OmniTact、GelSight 生成合成触觉数据（RGB+深度，>100FPS）。基于 PyBullet，PyTouch 的配套仿真器。pip install tacto。",
     "description": "**TACTO** 是 Meta AI（Facebook Research）开发的开源光学触觉传感器仿真器，发表于 IEEE RA-L 2022。\n\n**核心能力**：\n- 高速渲染：**>100 FPS** 生成高分辨率触觉图像（RGB + 深度）\n- 多传感器支持：**DIGIT、OmniTact、GelSight** 三种主流光学触觉传感器\n- 物理引擎集成：原生支持 **PyBullet**，可对接其他引擎\n- 模块化设计：可配置传感器几何参数（尺寸、分辨率、光照）\n\n**与 PyTouch 的关系**：TACTO 生成合成触觉训练数据 → PyTouch 处理真实触觉数据，二者形成完整的触觉感知工具链。\n\n安装：pip install tacto\n社区：touch-sensing.org #TACTO 频道",
-    "license": "MIT",
-    "dataFormat": {
-      "storage": "Python 库（PyBullet 渲染）",
-      "size": "pip 安装",
-      "compression": "N/A",
-      "schema": "sensor config → PyBullet simulation → RGB + depth tactile images"
-    },
-    "dataContent": {
-      "sensors": [
-        "触觉",
-        "RGB",
-        "深度"
-      ],
-      "scenes": "PyBullet 仿真环境中的触觉交互",
-      "objects": "DIGIT / OmniTact / GelSight 传感器模型",
-      "tasks": "合成触觉数据生成（RGB 触觉图像 + 深度图）",
-      "episodes": "N/A（仿真器，按需生成）",
-      "annotations": [
-        "自动生成的触觉图像与接触信息"
-      ]
-    },
-    "github": "https://github.com/facebookresearch/tacto",
-    "huggingface": "",
-    "citation": {
-      "year": 2022,
-      "venue": "IEEE RA-L",
-      "authors": "Wang, S. et al."
-    },
-    "changelog": [],
-    "quality": {
-      "collection": "仿真生成（PyBullet）",
-      "annotation": "自动渲染输出",
-      "realWorld": "仿真",
-      "hasSplit": false
-    },
     "toolType": "触觉模拟",
-    "tutorial": {
-      "quickstart": "pip install tacto\npython -c \"import tacto; print('TACTO ready')\"",
-      "deps": [
-        "tacto",
-        "pyrender",
-        "numpy",
-        "torch"
-      ],
-      "links": [
-        {
-          "name": "官方文档",
-          "url": "https://pypi.org/project/tacto/"
-        },
-        {
-          "name": "论文",
-          "url": "https://arxiv.org/abs/2012.08495"
-        },
-        {
-          "name": "GitHub",
-          "url": "https://github.com/facebookresearch/tacto"
-        }
-      ]
+    "type": "open",
+    "openness": "open",
+    "links": {
+      "site": "https://github.com/facebookresearch/tacto",
+      "paper": "https://arxiv.org/abs/2012.08456"
     },
-    "modalities": [
+    "modality": [
       "触觉",
       "RGB",
       "深度"
-    ]
+    ],
+    "license": "MIT",
+    "dataFormat": "Python 库（PyBullet 渲染） — sensor config → PyBullet simulation → RGB + depth tactile images",
+    "tags": [],
+    "notes": "Meta AI 光学触觉传感器仿真器。为 DIGIT、OmniTact、GelSight 生成合成触觉数据（RGB+深度，>100FPS）。基于 PyBullet，PyTouch 的配套仿真器。pip install tacto。",
+    "citation": {
+      "bibtex": null,
+      "year": 2022,
+      "venue": "IEEE RA-L"
+    },
+    "changelog": []
   },
   {
     "id": "foxglove",
     "name": "Foxglove / Lichtblick",
     "institution": "Foxglove（商业）/ BMW（开源 fork）",
-    "robotType": [
-      "多机型"
-    ],
-    "task": [
-      "交互"
-    ],
+    "description": "**Foxglove** 是领先的机器人数据可视化与调试平台，原生支持 **MCAP** 格式（ROS 2 Iron+ 默认存储格式）的录制、播放和分析。\n\n**功能**：3D 场景可视化、时序绘图、多文件合并播放、H.264/H.265 视频解码、Jupyter Notebook 集成。支持 ROS 1/2 bag 转 MCAP。\n\n**协议状态**：2024 年 2 月（v1.87.0）后转为 **BUSL-1.1 商业许可**，不再开源。免费套餐提供基础查看功能，专业版 $20/月起。\n\n**开源后继**：\n- **Lichtblick**（BMW 维护）：GitHub 692⭐，Apache 2.0，最活跃的开源 fork。支持桌面 + 浏览器，兼容 Foxglove bridge 协议。\n  下载：https://github.com/Lichtblick-Suite/lichtblick\n- **Trillium**（Robotnik Automation）：MPL 2.0，体积小 40%，资源更友好。\n  下载：https://github.com/RobotnikAutomation/trillium\n\nMCAP CLI 工具仍为 Apache 2.0 开源：https://github.com/foxglove/mcap",
+    "toolType": "可视化",
     "type": "partial",
+    "openness": "partial",
     "links": {
-      "paper": "",
       "site": "https://foxglove.dev"
     },
-    "notes": "机器人数据可视化与调试平台。支持 MCAP/rosbag 播放、3D 场景、时序绘图。2024.02 后商业闭源（BUSL-1.1），开源社区 fork：Lichtblick（BMW，Apache 2.0）。MCAP 格式为 ROS 2 默认存储格式。",
-    "description": "**Foxglove** 是领先的机器人数据可视化与调试平台，原生支持 **MCAP** 格式（ROS 2 Iron+ 默认存储格式）的录制、播放和分析。\n\n**功能**：3D 场景可视化、时序绘图、多文件合并播放、H.264/H.265 视频解码、Jupyter Notebook 集成。支持 ROS 1/2 bag 转 MCAP。\n\n**协议状态**：2024 年 2 月（v1.87.0）后转为 **BUSL-1.1 商业许可**，不再开源。免费套餐提供基础查看功能，专业版 $20/月起。\n\n**开源后继**：\n- **Lichtblick**（BMW 维护）：GitHub 692⭐，Apache 2.0，最活跃的开源 fork。支持桌面 + 浏览器，兼容 Foxglove bridge 协议。\n  下载：https://github.com/Lichtblick-Suite/lichtblick\n- **Trillium**（Robotnik Automation）：MPL 2.0，体积小 40%，资源更友好。\n  下载：https://github.com/RobotnikAutomation/trillium\n\nMCAP CLI 工具仍为 Apache 2.0 开源：https://github.com/foxglove/mcap",
-    "license": "BUSL-1.1（商业闭源）/ Lichtblick: Apache 2.0（开源）",
-    "github": "https://github.com/Lichtblick-Suite/lichtblick",
-    "huggingface": "",
-    "citation": {
-      "year": 2022
-    },
-    "changelog": [],
-    "quality": {
-      "collection": "N/A（可视化工具）",
-      "annotation": "N/A",
-      "realWorld": "N/A",
-      "hasSplit": false
-    },
-    "toolType": "可视化",
-    "tutorial": {
-      "quickstart": "# 下载 Foxglove Studio: https://foxglove.dev/download\n# 或使用浏览器版: https://studio.foxglove.dev/\n# 打开 MCAP/ROS bag 文件即可可视化",
-      "deps": [],
-      "links": [
-        {
-          "name": "下载 Studio",
-          "url": "https://foxglove.dev/download"
-        },
-        {
-          "name": "Web 版",
-          "url": "https://studio.foxglove.dev/"
-        },
-        {
-          "name": "文档",
-          "url": "https://docs.foxglove.dev/"
-        }
-      ]
-    },
-    "modalities": [
+    "modality": [
       "视觉",
       "深度",
       "LiDAR",
       "本体状态"
-    ]
+    ],
+    "license": "BUSL-1.1（商业闭源）/ Lichtblick: Apache 2.0（开源）",
+    "tags": [],
+    "notes": "机器人数据可视化与调试平台。支持 MCAP/rosbag 播放、3D 场景、时序绘图。2024.02 后商业闭源（BUSL-1.1），开源社区 fork：Lichtblick（BMW，Apache 2.0）。MCAP 格式为 ROS 2 默认存储格式。",
+    "citation": {
+      "bibtex": null,
+      "year": 2022,
+      "venue": null
+    },
+    "changelog": []
   },
   {
     "id": "pybullet",
     "name": "PyBullet",
     "institution": "Erwin Coumans / Google",
-    "type": "open",
-    "robotType": [
-      "仿真",
-      "机械臂"
-    ],
-    "task": [
-      "操作",
-      "运动控制"
-    ],
-    "links": {
-      "github": "https://github.com/bulletphysics/bullet3",
-      "site": "https://pybullet.org/"
-    },
-    "notes": "PyBullet 是 Bullet 物理引擎的 Python 封装，`pip install pybullet` 即装即用。广泛用于强化学习研究（MetaWorld、CALVIN、RLBench 均基于或兼容 PyBullet）。支持 URDF 导入、VR 遥操作、实时可视化，是 RL 快速原型开发的首选物理引擎。",
     "description": "**PyBullet** 是 Bullet Physics SDK 的 Python 接口，由 Erwin Coumans（Bullet 创始人，前 Google Robotics）维护。\n\n**核心特性**：\n- **零配置安装**：`pip install pybullet` 即可，跨平台（Win/Mac/Linux）\n- **100+ 内置示例**：涵盖刚体、软体、铰接、碰撞检测等\n- **URDF/SDF 支持**：直接加载标准机器人模型\n- **VR 遥操作**：支持 HTC Vive、Oculus 等 VR 头显\n- **zlib 许可证**：极宽松，可商用\n\n**应用场景**：强化学习环境（Gymnasium API 兼容）、机器人运动规划、多体动力学仿真。\n\n**局限**：单线程 CPU 仿真，大规模并行训练受限（推荐迁移到 MuJoCo MJX 或 Isaac Lab）。\n\n**协议**：zlib（等同于 MIT）。",
+    "toolType": "物理引擎",
+    "type": "open",
+    "openness": "open",
+    "links": {
+      "site": "https://pybullet.org/",
+      "github": "https://github.com/bulletphysics/bullet3"
+    },
+    "modality": [
+      "仿真状态",
+      "RGB"
+    ],
     "license": "zlib",
-    "github": "https://github.com/bulletphysics/bullet3",
-    "huggingface": "",
-    "citation": {
-      "year": 2016
-    },
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": false
-    },
-    "standards": [],
+    "dataFormat": "详见官方链接",
     "tags": [
       "仿真",
       "RL",
       "Sim-to-Real"
     ],
-    "changelog": [],
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "N/A",
-      "compression": "N/A",
-      "schema": ""
+    "notes": "PyBullet 是 Bullet 物理引擎的 Python 封装，`pip install pybullet` 即装即用。广泛用于强化学习研究（MetaWorld、CALVIN、RLBench 均基于或兼容 PyBullet）。支持 URDF 导入、VR 遥操作、实时可视化，是 RL 快速原型开发的首选物理引擎。",
+    "citation": {
+      "bibtex": null,
+      "year": 2016,
+      "venue": null
     },
-    "dataContent": {
-      "sensors": [
-        "仿真状态",
-        "RGB"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "",
-      "episodes": "",
-      "annotations": []
-    },
-    "scale": "",
-    "toolType": "物理引擎",
-    "tutorial": {
-      "quickstart": "pip install pybullet\npython -c \"import pybullet; pybullet.connect(pybullet.GUI); print('PyBullet ready')\"",
-      "deps": [
-        "pybullet",
-        "numpy"
-      ],
-      "links": [
-        {
-          "name": "官方文档",
-          "url": "https://pybullet.org/wordpress/"
-        },
-        {
-          "name": "快速入门指南",
-          "url": "https://docs.google.com/document/d/10sXEhzFRSnvFcl3XxNGhnD4N2SedqwdAvK3dsihxVUA/"
-        },
-        {
-          "name": "GitHub",
-          "url": "https://github.com/bulletphysics/bullet3"
-        }
-      ]
-    },
-    "modalities": [
-      "仿真状态",
-      "RGB"
-    ]
+    "changelog": []
   },
   {
     "id": "mujoco",
     "name": "MuJoCo",
     "institution": "Google DeepMind",
-    "type": "open",
-    "robotType": [
-      "仿真",
-      "机械臂",
-      "人形机器人",
-      "灵巧手"
-    ],
-    "task": [
-      "操作",
-      "运动控制",
-      "抓取"
-    ],
-    "links": {
-      "github": "https://github.com/google-deepmind/mujoco",
-      "site": "https://mujoco.org/"
-    },
-    "notes": "MuJoCo（Multi-Joint dynamics with Contact）是 Google DeepMind 的旗舰物理引擎，Apache 2.0 开源。MJX 版本在 GPU 上实现并行加速，Playground 获 RSS 2025 杰出 Demo 奖。MetaWorld、robosuite、DM Control、SKRL 等生态基于 MuJoCo。月下载量 38 万+。",
     "description": "**MuJoCo** 原为 Roboti LLC 开发，2021 年被 Google DeepMind 收购并完全免费开源（Apache 2.0）。\n\n**核心特性**：\n- **GPU 加速（MJX）**：基于 JAX/XLA 的并行物理仿真，单 GPU 可并行 100 环境\n- **MuJoCo Playground**：RSS 2025 Outstanding Demo Award，分分钟级训练收敛\n- **高保真接触力学**：凸 Gauss 原理 + 隐式积分，比 Bullet 更稳定\n- **丰富的机器人模型库**：MuJoCo Menagerie 提供 50+ 高质量 URDF/MJCF 模型\n- **Gemini Robotics SDK 集成**：直接对接 Google VLA 模型训练\n\n**协议**：Apache 2.0。\n\n**注意**：NVIDIA 与 DeepMind、Disney 正联合开发下一代 Newton 物理引擎（基于 MuJoCo-Warp），兼容 Isaac Lab。",
+    "toolType": "物理引擎",
+    "type": "open",
+    "openness": "open",
+    "links": {
+      "site": "https://mujoco.org/",
+      "github": "https://github.com/google-deepmind/mujoco"
+    },
+    "modality": [
+      "仿真状态",
+      "RGB",
+      "深度"
+    ],
     "license": "Apache-2.0",
-    "github": "https://github.com/google-deepmind/mujoco",
-    "huggingface": "",
-    "citation": {
-      "year": 2021
-    },
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": false
-    },
-    "standards": [],
+    "licenseNotes": "Apache 2.0",
+    "dataFormat": "详见官方链接",
     "tags": [
       "仿真",
       "RL",
@@ -970,187 +355,69 @@
       "VLA",
       "人形"
     ],
-    "changelog": [],
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "N/A",
-      "compression": "N/A",
-      "schema": ""
+    "notes": "MuJoCo（Multi-Joint dynamics with Contact）是 Google DeepMind 的旗舰物理引擎，Apache 2.0 开源。MJX 版本在 GPU 上实现并行加速，Playground 获 RSS 2025 杰出 Demo 奖。MetaWorld、robosuite、DM Control、SKRL 等生态基于 MuJoCo。月下载量 38 万+。",
+    "citation": {
+      "bibtex": null,
+      "year": 2021,
+      "venue": null
     },
-    "dataContent": {
-      "sensors": [
-        "仿真状态",
-        "RGB",
-        "深度"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "",
-      "episodes": "",
-      "annotations": []
-    },
-    "scale": "",
-    "toolType": "物理引擎",
-    "tutorial": {
-      "quickstart": "pip install mujoco\npython -c \"import mujoco; print(mujoco.__version__)\"",
-      "deps": [
-        "mujoco",
-        "numpy"
-      ],
-      "links": [
-        {
-          "name": "官方文档",
-          "url": "https://mujoco.readthedocs.io/"
-        },
-        {
-          "name": "MJX GPU 加速",
-          "url": "https://mujoco.readthedocs.io/en/stable/mjx.html"
-        },
-        {
-          "name": "模型库 (Menagerie)",
-          "url": "https://github.com/google-deepmind/mujoco_menagerie"
-        }
-      ]
-    },
-    "modalities": [
-      "仿真状态",
-      "RGB",
-      "深度"
-    ],
-    "licenseNotes": "Apache 2.0"
+    "changelog": []
   },
   {
     "id": "webots",
     "name": "Webots",
     "institution": "Cyberbotics (EPFL spin-off)",
-    "type": "open",
-    "robotType": [
-      "仿真",
-      "机械臂",
-      "移动机器人",
-      "人形机器人"
-    ],
-    "task": [
-      "操作",
-      "导航",
-      "运动控制"
-    ],
-    "links": {
-      "github": "https://github.com/cyberbotics/webots",
-      "site": "https://cyberbotics.com/"
-    },
-    "notes": "Webots 是 Cyberbotics（EPFL 衍生公司）开发的跨平台机器人仿真器，Apache 2.0 开源。支持 40+ 机器人模型、ROS 2 集成、云端 Webots.cloud 运行、C/C++/Python/Java/MATLAB 多语言 API。2025 年发布 R2025a 版本。",
     "description": "**Webots** 是 Cyberbotics 自 1998 年起持续开发的商业化机器人仿真器，2018 年完全开源（Apache 2.0）。\n\n**核心特性**：\n- **40+ 预置机器人模型**：含 NAO、Pepper、UR、Franka、KUKA、Boston Dynamics 等\n- **ROS 2 深度集成**：webots_ros2 包支持 MoveIt2、ros2_control、topic 桥接\n- **多语言 API**：C、C++、Python、Java、MATLAB、ROS\n- **云端仿真**：Webots.cloud 支持浏览器中运行仿真（WebGL/WebSocket）\n- **物理引擎可换**：内置 ODE，可选 Bullet\n- **OpenStreetMap 导入**：直接加载真实地图\n\n**协议**：Apache 2.0（核心），部分资产模型另有许可。",
-    "license": "Apache-2.0",
-    "github": "https://github.com/cyberbotics/webots",
-    "huggingface": "",
-    "citation": {
-      "year": 2025
-    },
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": false
-    },
-    "standards": [
-      "ros2"
-    ],
-    "tags": [
-      "仿真",
-      "Sim-to-Real",
-      "ROS"
-    ],
-    "changelog": [],
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "N/A",
-      "compression": "N/A",
-      "schema": ""
-    },
-    "dataContent": {
-      "sensors": [
-        "仿真状态",
-        "RGB",
-        "深度",
-        "LiDAR"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "",
-      "episodes": "",
-      "annotations": []
-    },
-    "scale": "",
     "toolType": "仿真器",
-    "tutorial": {
-      "quickstart": "# 下载 Webots: https://cyberbotics.com/#download\n# 或 pip 安装\npip install webots\n# 打开示例世界: File > Open Sample World",
-      "deps": [
-        "webots"
-      ],
-      "links": [
-        {
-          "name": "官方文档",
-          "url": "https://cyberbotics.com/doc/guide/index"
-        },
-        {
-          "name": "下载",
-          "url": "https://cyberbotics.com/#download"
-        },
-        {
-          "name": "GitHub",
-          "url": "https://github.com/cyberbotics/webots"
-        }
-      ]
+    "type": "open",
+    "openness": "open",
+    "links": {
+      "site": "https://cyberbotics.com/",
+      "github": "https://github.com/cyberbotics/webots"
     },
-    "modalities": [
+    "modality": [
       "仿真状态",
       "RGB",
       "深度",
       "LiDAR"
     ],
-    "licenseNotes": "Apache 2.0"
+    "license": "Apache-2.0",
+    "licenseNotes": "Apache 2.0",
+    "dataFormat": "详见官方链接",
+    "tags": [
+      "仿真",
+      "Sim-to-Real",
+      "ROS"
+    ],
+    "notes": "Webots 是 Cyberbotics（EPFL 衍生公司）开发的跨平台机器人仿真器，Apache 2.0 开源。支持 40+ 机器人模型、ROS 2 集成、云端 Webots.cloud 运行、C/C++/Python/Java/MATLAB 多语言 API。2025 年发布 R2025a 版本。",
+    "citation": {
+      "bibtex": null,
+      "year": 2025,
+      "venue": null
+    },
+    "changelog": []
   },
   {
     "id": "isaac-lab",
     "name": "Isaac Lab",
     "institution": "NVIDIA",
-    "type": "open",
-    "robotType": [
-      "仿真",
-      "机械臂",
-      "人形机器人",
-      "灵巧手",
-      "移动机器人"
-    ],
-    "task": [
-      "操作",
-      "运动控制",
-      "抓取",
-      "导航",
-      "装配"
-    ],
-    "links": {
-      "github": "https://github.com/isaac-sim/IsaacLab",
-      "site": "https://isaac-sim.github.io/IsaacLab/"
-    },
-    "notes": "NVIDIA Isaac Lab 是 GPU 加速的机器人学习框架，v2.3 GA（2025 Q4），基于 Isaac Sim 5.1。集成 Newton 物理引擎、GR00T VLA 模型、SkillGen 数据生成。支持 Boston Dynamics Atlas、Figure AI 等多家人形机器人。与已有的 Isaac Sim 条目互补（Isaac Sim 为底层仿真平台，Isaac Lab 为上层 RL 训练框架）。",
     "description": "**Isaac Lab**（前身 Orbit）是 NVIDIA 于 2025 年正式发布的 GPU 加速机器人学习框架，基于 Isaac Sim 构建。\n\n**核心特性**：\n- **GPU 并行 RL**：单 GPU 并行数千环境，MJX 和 Newton 双物理后端\n- **Newton 物理引擎（Beta）**：与 DeepMind/Disney 联合开发，开源 GPU 加速，支持可微物理\n- **SkillGen 数据生成**：GPU 加速的无碰撞运动规划，结合人类输入生成演示数据\n- **GR00T VLA 集成**：直接对接 GR00T N1.6 模型训练和 Sim-to-Real 部署\n- **全身控制**：Pink IK 求解器、人形机器人躯干旋转、双臂协调\n- **Arena 基准框架**：大规模 GPU 并行策略评测\n\n**与 Isaac Sim 的区别**：Isaac Sim 是通用仿真/渲染平台（已有条目），Isaac Lab 是在其上的 RL/IL 专用训练框架。\n\n**协议**：BSD-3-Clause。",
+    "toolType": "训练框架",
+    "type": "open",
+    "openness": "open",
+    "links": {
+      "site": "https://isaac-sim.github.io/IsaacLab/",
+      "github": "https://github.com/isaac-sim/IsaacLab"
+    },
+    "modality": [
+      "仿真状态",
+      "RGB",
+      "深度",
+      "触觉",
+      "视觉"
+    ],
     "license": "BSD-3-Clause",
-    "github": "https://github.com/isaac-sim/IsaacLab",
-    "huggingface": "",
-    "citation": {
-      "year": 2025,
-      "venue": "arXiv",
-      "authors": "Mittal, M. et al."
-    },
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": true
-    },
-    "standards": [],
+    "dataFormat": "详见官方链接",
     "tags": [
       "仿真",
       "RL",
@@ -1160,330 +427,115 @@
       "数据生成",
       "大规模"
     ],
-    "changelog": [],
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "N/A",
-      "compression": "N/A",
-      "schema": ""
+    "notes": "NVIDIA Isaac Lab 是 GPU 加速的机器人学习框架，v2.3 GA（2025 Q4），基于 Isaac Sim 5.1。集成 Newton 物理引擎、GR00T VLA 模型、SkillGen 数据生成。支持 Boston Dynamics Atlas、Figure AI 等多家人形机器人。与已有的 Isaac Sim 条目互补（Isaac Sim 为底层仿真平台，Isaac Lab 为上层 RL 训练框架）。",
+    "citation": {
+      "bibtex": null,
+      "year": 2025,
+      "venue": "arXiv"
     },
-    "dataContent": {
-      "sensors": [
-        "仿真状态",
-        "RGB",
-        "深度",
-        "触觉",
-        "视觉"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "",
-      "episodes": "",
-      "annotations": []
-    },
-    "scale": "",
-    "toolType": "训练框架",
-    "tutorial": {
-      "quickstart": "git clone https://github.com/isaac-sim/IsaacLab.git\ncd IsaacLab\n./isaaclab.sh --install\n./isaaclab.sh -p scripts/tutorials/00_sim/create_empty.py",
-      "deps": [
-        "isaacsim",
-        "torch",
-        "numpy"
-      ],
-      "links": [
-        {
-          "name": "官方文档",
-          "url": "https://isaac-sim.github.io/IsaacLab/"
-        },
-        {
-          "name": "安装指南",
-          "url": "https://isaac-sim.github.io/IsaacLab/main/source/setup/installation.html"
-        },
-        {
-          "name": "GitHub",
-          "url": "https://github.com/isaac-sim/IsaacLab"
-        }
-      ]
-    },
-    "modalities": [
-      "仿真状态",
-      "RGB",
-      "深度",
-      "触觉",
-      "视觉"
-    ]
+    "changelog": []
   },
   {
     "id": "gazebo",
     "name": "Gazebo Sim",
     "institution": "Open Robotics / Intrinsic",
-    "type": "open",
-    "robotType": [
-      "仿真",
-      "机械臂",
-      "移动机器人",
-      "人形机器人",
-      "多机型"
-    ],
-    "task": [
-      "操作",
-      "导航",
-      "运动控制"
-    ],
-    "links": {
-      "github": "https://github.com/gazebosim/gz-sim",
-      "site": "https://gazebosim.org/"
-    },
-    "notes": "Gazebo 是 ROS 生态标配机器人仿真器。Gazebo Classic 已 2025 年 1 月 EOL，现为 rebrand 后的 Gazebo Sim（Harmonic LTS 至 2028，Jetty LTS 至 2030）。原名 Ignition Gazebo。支持 ROS 2 Jazzy 官方集成，是机器人仿真的事实标准。",
     "description": "**Gazebo Sim**（原名 Ignition Gazebo，2023 年 rebrand）是 Open Robotics 开发的现代化机器人仿真平台，取代已退役的 Gazebo Classic。\n\n**版本与生命周期**：\n- **Harmonic（LTS）**：2023 年发布，支持至 2028 年 9 月，ROS 2 Humble/Jazzy 推荐\n- **Ionic**：2024 年发布，非 LTS，最新功能尝鲜\n- **Jetty（LTS）**：2025 年发布，新 LTS，支持至 2030 年\n\n**核心特性**：\n- **模块化架构**：物理/渲染/传感器/GUI 各自独立，可替换\n- **多物理引擎**：DART（默认）、Bullet、TPE\n- **ROS 2 深度集成**：ros_gz 桥接包，完全替代 Classic 时代的 ros_control 方案\n- **GPU 传感器渲染**：支持 RGB-D、LiDAR、热成像等\n- **SDFormat（SDF）**：下一代机器人描述格式，替代 URDF\n\n**注意**：Gazebo Classic 已停止维护，新项目应使用 Gazebo Sim (Harmonic/Jetty)。\n\n**协议**：Apache 2.0。",
-    "license": "Apache-2.0",
-    "github": "https://github.com/gazebosim/gz-sim",
-    "huggingface": "",
-    "citation": {
-      "year": 2023
-    },
-    "quality": {
-      "collection": "仿真生成",
-      "annotation": "自动标注",
-      "realWorld": "仿真",
-      "hasSplit": false
-    },
-    "standards": [
-      "ros2"
-    ],
-    "tags": [
-      "仿真",
-      "Sim-to-Real",
-      "ROS"
-    ],
-    "changelog": [],
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "N/A",
-      "compression": "N/A",
-      "schema": ""
-    },
-    "dataContent": {
-      "sensors": [
-        "仿真状态",
-        "RGB",
-        "深度",
-        "LiDAR",
-        "视觉"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "",
-      "episodes": "",
-      "annotations": []
-    },
-    "scale": "",
     "toolType": "仿真器",
-    "tutorial": {
-      "quickstart": "# Ubuntu 安装\nsudo apt install gz-harmonic\n# 启动空世界\ngz sim empty.sdf",
-      "deps": [
-        "gz-harmonic"
-      ],
-      "links": [
-        {
-          "name": "官方文档",
-          "url": "https://gazebosim.org/docs"
-        },
-        {
-          "name": "安装指南",
-          "url": "https://gazebosim.org/docs/harmonic/install_ubuntu"
-        },
-        {
-          "name": "GitHub",
-          "url": "https://github.com/gazebosim/gz-sim"
-        }
-      ]
+    "type": "open",
+    "openness": "open",
+    "links": {
+      "site": "https://gazebosim.org/",
+      "github": "https://github.com/gazebosim/gz-sim"
     },
-    "modalities": [
+    "modality": [
       "仿真状态",
       "RGB",
       "深度",
       "LiDAR",
       "视觉"
     ],
-    "licenseNotes": "Apache 2.0"
+    "license": "Apache-2.0",
+    "licenseNotes": "Apache 2.0",
+    "dataFormat": "详见官方链接",
+    "tags": [
+      "仿真",
+      "Sim-to-Real",
+      "ROS"
+    ],
+    "notes": "Gazebo 是 ROS 生态标配机器人仿真器。Gazebo Classic 已 2025 年 1 月 EOL，现为 rebrand 后的 Gazebo Sim（Harmonic LTS 至 2028，Jetty LTS 至 2030）。原名 Ignition Gazebo。支持 ROS 2 Jazzy 官方集成，是机器人仿真的事实标准。",
+    "citation": {
+      "bibtex": null,
+      "year": 2023,
+      "venue": null
+    },
+    "changelog": []
   },
   {
     "id": "rerun",
     "name": "Rerun",
     "institution": "Rerun AB (Stockholm)",
-    "type": "open",
-    "robotType": [
-      "多机型",
-      "通用"
-    ],
-    "task": [
-      "交互"
-    ],
-    "links": {
-      "github": "https://github.com/rerun-io/rerun",
-      "site": "https://rerun.io/"
-    },
-    "notes": "Rerun 是 Physical AI 时代的开源可视化数据栈，Rust 构建，Python/C++/Rust SDK。2025 年融 $17M，原生支持 LeRobot 数据集和 MCAP 格式。HuggingFace LeRobot 默认可视化工具，Meta/Google/Unitree 采用。与已有 Foxglove 互补。",
     "description": "**Rerun** 由前 Meta/Google 工程师创立（Stockholm），是面向 Physical AI 的开源可视化与数据基础设施。\n\n**核心特性**：\n- **多模态流式可视化**：RGB、深度、3D 点云、Tensor、文本同一时间轴内展示\n- **Python/C++/Rust SDK**：代码驱动，`rr.log()` 即可记录任意数据\n- **LeRobot 原生支持**（v0.22+）：HuggingFace 官方 LeRobot 默认 viewer\n- **MCAP 支持**（实验性）：直接拖放 ROS 2 bag 文件查看\n- **ECS 数据模型**（Entity Component System）：比 ROS topic/message 模型更灵活\n- **开源核心 + 商业云**：Apache 2.0 / MIT 双许可\n\n**与 Foxglove 的区别**：Foxglove 重平台化（Web 仪表盘、团队协作、数据管理），Rerun 重 SDK 驱动（代码即可视化，适合研究和开发调试）。两者互补。\n\n**协议**：Apache 2.0 / MIT。",
-    "license": "Apache 2.0 / MIT",
-    "github": "https://github.com/rerun-io/rerun",
-    "huggingface": "",
-    "citation": {
-      "year": 2024
+    "toolType": "可视化",
+    "type": "open",
+    "openness": "open",
+    "links": {
+      "site": "https://rerun.io/",
+      "github": "https://github.com/rerun-io/rerun"
     },
-    "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
-      "hasSplit": false
-    },
-    "standards": [
-      "mcap",
-      "lerobot"
+    "modality": [
+      "RGB",
+      "深度",
+      "3D点云",
+      "视觉"
     ],
+    "license": "Apache 2.0 / MIT",
+    "dataFormat": "详见官方链接",
     "tags": [
       "可视化",
       "LeRobot",
       "ROS",
       "多模态"
     ],
-    "changelog": [],
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "N/A",
-      "compression": "N/A",
-      "schema": ""
+    "notes": "Rerun 是 Physical AI 时代的开源可视化数据栈，Rust 构建，Python/C++/Rust SDK。2025 年融 $17M，原生支持 LeRobot 数据集和 MCAP 格式。HuggingFace LeRobot 默认可视化工具，Meta/Google/Unitree 采用。与已有 Foxglove 互补。",
+    "citation": {
+      "bibtex": null,
+      "year": 2024,
+      "venue": null
     },
-    "dataContent": {
-      "sensors": [
-        "RGB",
-        "深度",
-        "3D点云",
-        "视觉"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "",
-      "episodes": "",
-      "annotations": []
-    },
-    "scale": "",
-    "toolType": "可视化",
-    "tutorial": {
-      "quickstart": "pip install rerun-sdk\npython -c \"import rerun as rr; rr.init('test'); print('Rerun ready')\"",
-      "deps": [
-        "rerun-sdk",
-        "numpy"
-      ],
-      "links": [
-        {
-          "name": "官方文档",
-          "url": "https://rerun.io/docs"
-        },
-        {
-          "name": "Python API",
-          "url": "https://ref.rerun.io/docs/python"
-        },
-        {
-          "name": "GitHub",
-          "url": "https://github.com/rerun-io/rerun"
-        }
-      ]
-    },
-    "modalities": [
-      "RGB",
-      "深度",
-      "3D点云",
-      "视觉"
-    ]
+    "changelog": []
   },
   {
     "id": "rviz",
     "name": "RViz (RViz2)",
     "institution": "Open Robotics",
-    "type": "open",
-    "robotType": [
-      "多机型"
-    ],
-    "task": [
-      "交互"
-    ],
-    "links": {
-      "github": "https://github.com/ros2/rviz",
-      "site": "https://github.com/ros2/rviz"
-    },
-    "notes": "RViz 是 ROS 生态的经典 3D 可视化工具，ROS 2 版本为 RViz2（BSD 开源）。支持 PointCloud、TF、RobotModel、Camera、LaserScan 等核心显示类型。2025 年持续维护（Jazzy v14 / Kilted v15），是 ROS 开发者不可或缺的调试工具。",
     "description": "**RViz（RViz2）**是 ROS/ROS 2 的标准 3D 可视化工具，由 Open Robotics 维护，BSD 开源。\n\n**核心特性**：\n- **丰富的显示类型**：PointCloud2、LaserScan、TF 坐标帧、RobotModel（URDF）、Camera 图像、Marker、Interactive Marker、Map 等\n- **可交互控件**：Interactive Marker 支持拖拽/旋转/点击操作，常用于标定和任务设定\n- **插件架构**：C++ 插件接口，可扩展自定义显示类型\n- **QoS 兼容**：支持 ROS 2 的 QoS 配置（reliable/best_effort 等）\n- **主题录制与回放**：配合 ros2 bag 使用\n\n**局限**：仅桌面端（需完整 ROS 环境），不支持 Web 浏览器，不支持多文件对比。\n\n**与 Foxglove/Rerun 的关系**：RViz 是经典 ROS 调试工具（深度集成），Foxglove 偏现代化平台（Web/协作），Rerun 偏 SDK 驱动（研究/开发）。三者互补覆盖不同场景。\n\n**协议**：BSD。",
-    "license": "BSD",
-    "github": "https://github.com/ros2/rviz",
-    "huggingface": "",
-    "citation": {
-      "year": 2014
-    },
-    "quality": {
-      "collection": "未公开",
-      "annotation": "未公开",
-      "realWorld": "未公开",
-      "hasSplit": false
-    },
-    "standards": [
-      "ros2"
-    ],
-    "tags": [
-      "可视化",
-      "ROS",
-      "多模态"
-    ],
-    "changelog": [],
-    "dataFormat": {
-      "storage": "详见官方链接",
-      "size": "N/A",
-      "compression": "N/A",
-      "schema": ""
-    },
-    "dataContent": {
-      "sensors": [
-        "RGB",
-        "深度",
-        "3D点云",
-        "视觉",
-        "LiDAR"
-      ],
-      "scenes": "详见官方链接",
-      "objects": "详见官方链接",
-      "tasks": "",
-      "episodes": "",
-      "annotations": []
-    },
-    "scale": "",
     "toolType": "可视化",
-    "tutorial": {
-      "quickstart": "# 需要 ROS 2 环境\nsudo apt install ros-jazzy-rviz2\nros2 run rviz2 rviz2",
-      "deps": [
-        "ros-jazzy-rviz2"
-      ],
-      "links": [
-        {
-          "name": "ROS 2 文档",
-          "url": "https://docs.ros.org/en/jazzy/Tutorials/Intermediate/RViz/RViz-User-Guide/RViz-User-Guide.html"
-        },
-        {
-          "name": "GitHub",
-          "url": "https://github.com/ros2/rviz"
-        },
-        {
-          "name": "插件教程",
-          "url": "https://docs.ros.org/en/jazzy/Tutorials/Intermediate/RViz/RViz-Plugin-Tutorial.html"
-        }
-      ]
+    "type": "open",
+    "openness": "open",
+    "links": {
+      "site": "https://github.com/ros2/rviz",
+      "github": "https://github.com/ros2/rviz"
     },
-    "modalities": [
+    "modality": [
       "RGB",
       "深度",
       "3D点云",
       "视觉",
       "LiDAR"
-    ]
+    ],
+    "license": "BSD",
+    "dataFormat": "详见官方链接",
+    "tags": [
+      "可视化",
+      "ROS",
+      "多模态"
+    ],
+    "notes": "RViz 是 ROS 生态的经典 3D 可视化工具，ROS 2 版本为 RViz2（BSD 开源）。支持 PointCloud、TF、RobotModel、Camera、LaserScan 等核心显示类型。2025 年持续维护（Jazzy v14 / Kilted v15），是 ROS 开发者不可或缺的调试工具。",
+    "citation": {
+      "bibtex": null,
+      "year": 2014,
+      "venue": null
+    },
+    "changelog": []
   }
 ]
