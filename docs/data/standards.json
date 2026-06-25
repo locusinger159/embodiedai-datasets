@@ -1515,5 +1515,45 @@
         "支持自定义量词（for_n/for_pairs）"
       ]
     }
+  },
+  {
+    "id": "pddl",
+    "name": "PDDL",
+    "fullName": "Planning Domain Definition Language",
+    "org": "International Planning Competition (IPC) / AI Planning Community",
+    "type": "format",
+    "openness": "open",
+    "scene": [
+      "real",
+      "sim"
+    ],
+    "modalities": [
+      "语言"
+    ],
+    "license": "开放标准（无版权限制）",
+    "desc": "**PDDL (Planning Domain Definition Language)** 是 AI 任务规划领域的奠基性标准语言，自 1998 年首届国际规划竞赛 (IPC) 沿用至今。采用类 Lisp 语法，是具身智能和机器人任务规划的**高层抽象标准**。\n\n**核心设计**：双文件架构——**Domain 文件**定义世界规则（类型、谓词、动作的前置条件与效果），**Problem 文件**定义具体场景（物体、初始状态、目标状态）。更换任务只需改 Problem 文件，Domain 可复用。\n\n**与 BDDL 的关系**：PDDL 含动作符号，用于生成规划（HOW）；BDDL 不含动作符号，用于定义场景语义和评测（WHAT）。两者互补——BDDL 定义的具身任务可以作为 PDDL 规划器的目标状态。\n\n**在机器人领域的应用**：Tiago 服务机器人（居家整理）、NIST 装配与分拣竞赛 (ARIAC)、双臂协作（一个手臂拧螺丝、另一个扶瓶子）、工业产线再规划。通过 ROS 与底层运动规划、感知模块集成。\n\n**版本演进**：PDDL 1.2 (STRIPS 子集) → PDDL 2.1 (时态动作 + 数值 fluents) → PDDL 2.2 (派生谓词) → PDDL 3.0 (状态轨迹约束) → PDDL 3.1 (object fluents)。主流规划器：Fast-Downward、POPF、LPG。\n\n虽起源于经典 AI 规划而非具身智能，但 PDDL 仍然是连接**符号推理**与**物理执行**的关键桥梁，几乎所有需要任务级推理的机器人系统都会用到它的概念体系。",
+    "links": {
+      "site": "https://en.wikipedia.org/wiki/Planning_Domain_Definition_Language",
+      "paper": "https://github.com/pellierd/pddl4j"
+    },
+    "year": 1998,
+    "datasetIds": [],
+    "datasetCount": 0,
+    "requirements": {
+      "MUST": [
+        "Domain + Problem 双文件架构",
+        "基于 STRIPS 的动作模型（前置条件 → 效果）",
+        "支持类型系统 (:typing) 和谓词逻辑"
+      ],
+      "SHOULD": [
+        "支持时态动作 (:durative-actions) 和数值优化 (:fluents)",
+        "与主流规划器兼容（Fast-Downward / POPF）",
+        "可通过 ROS 与机器人执行层集成"
+      ],
+      "MAY": [
+        "支持 ADL 高级特性（析取、全称量词、条件效果）",
+        "支持偏好约束 (:preferences) 和状态轨迹约束 (PDDL 3.0+)"
+      ]
+    }
   }
 ]
