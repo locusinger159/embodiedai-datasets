@@ -95,7 +95,7 @@
   {
     "id": "bridge-data-v2",
     "name": "BridgeData V2",
-    "institution": "UC Berkeley RAIL",
+    "institution": "加州大学伯克利分校 (UC Berkeley)",
     "description": "BridgeData V2 是由 **UC Berkeley RAIL 实验室**发布的大规模机器人操作数据集，包含 **85,000 条**真实机器人操作轨迹。\n\n数据集通过低成本 WidowX 机械臂在多样化的桌面操作场景中采集，涵盖抓取、放置、推拉、叠放等基本操作技能。\n\n该数据集广泛应用于小样本模仿学习、扩散策略和机器人基础模型训练，数据质量高且任务多样性丰富，是当前最常用的操作学习数据集之一。",
     "modality": [
       "视觉",
@@ -281,7 +281,7 @@
   {
     "id": "roboset",
     "name": "RoboSet (MobRob)",
-    "institution": "Carnegie Mellon University",
+    "institution": "卡内基梅隆大学 (CMU)",
     "description": "**RoboSet** 是多视角机器人操作数据集。\n\n提供多相机视角的机器人操作视频和轨迹数据，适用于 3D 操作理解和多视角策略学习。",
     "modality": [
       "多视角视觉"
@@ -1354,7 +1354,7 @@
   {
     "id": "meta-world",
     "name": "MetaWorld",
-    "institution": "Meta AI / UC Berkeley",
+    "institution": "Meta AI / 加州大学伯克利分校 (UC Berkeley)",
     "description": "**MetaWorld** 是由 UC Berkeley 提出的多任务机器人操作基准。\n\n在 MuJoCo 中定义了 **50 个桌面操作任务**（开柜门、按按钮、推物体等），基于 Gymnasium API 设计。任务是参数化的，同一任务可生成位置/目标不同的变体，支持多任务学习和元学习评估。",
     "modality": [
       "仿真状态"
@@ -1549,7 +1549,7 @@
   {
     "id": "maniskill2",
     "name": "ManiSkill2",
-    "institution": "斯坦福大学 / 清华大学",
+    "institution": "斯坦福大学 / 清华大学 (Tsinghua University)",
     "description": "**ManiSkill2** 是由北京大学提出的通用机器人操作基准。\n\n在 SAPIEN 引擎中构建了 **2,000+ 物体、4,000+ 任务变体**，支持刚体、铰链和流体操作。提供 GPU 并行渲染加速数据采集，独创任务生成管线可自动生成大量多样化训练数据。",
     "modality": [
       "点云",
@@ -1619,7 +1619,7 @@
   {
     "id": "calvin",
     "name": "CALVIN",
-    "institution": "Bosch Center for AI / 图宾根大学",
+    "institution": "博世人工智能中心 (Bosch Center for AI) / 图宾根大学 (University of Tübingen)",
     "description": "**CALVIN** 是由 ETH Zurich 提出的语言条件长序列机器人操作基准。\n\n定义了一套标准化的任务定义格式、评估协议和数据划分（ABCD 四分割），测试策略在未见环境、未见指令、未见物体上的泛化能力。基于 PyBullet 仿真，提供 20,000+ 条遥操作演示数据。",
     "modality": [
       "视觉",
@@ -1956,7 +1956,7 @@
   {
     "id": "ario",
     "name": "ARIO",
-    "institution": "Carnegie Mellon University",
+    "institution": "卡内基梅隆大学 (CMU)",
     "description": "**ARIO** 是 All Robots In One 大规模多具身机器人数据集。\n\n整合了多种机器人形态的操作数据，提供标准化数据格式和联合训练管线，适用于跨具身基础模型预训练。",
     "modality": [
       "视觉"
@@ -2189,7 +2189,7 @@
   {
     "id": "agibot-world",
     "name": "AGIBOT WORLD 2026",
-    "institution": "智元机器人（AGIBOT）",
+    "institution": "智元机器人 (AGIBOT)",
     "description": "**AGIBOT WORLD 2026** 是智元机器人（AGIBOT）于 2026 年 4 月正式开源的大规模具身智能数据集，定位为首个覆盖具身智能全域研究的开源数据底座，分五阶段持续发布。\n\n**硬件平台**：基于自研 **精灵 G2（Sprite G2）** 通用人形机器人，集成高性能关节执行器、多模态传感器（多视角 RGB-D、触觉、LiDAR、IMU、力传感器）和高性能域控制器。\n\n**采集方式**：100% 真实场景 + 真人遥操作。采用超视距第一人称遥操作 + 全身控制（WBC），操作员以机器人视角实时操控，手臂、腰部、手部协同运作。引入力控采集，记录接触动力学和力反馈。\n\n**场景覆盖**：家居、酒店餐饮、商业空间、安防、工业物流等复杂真实环境，含遮挡、逆光、动态人流等真实干扰。\n\n**两阶段发布**：\n- 第一期（2026.04）：模仿学习数据，数百小时真实世界数据，含任务描述、动作序列、原子技能标签、物体标注，保留错误恢复轨迹\n- 第二期（2026.06.03）：**行业首个聚焦物理交互的开源具身数据集**，面向世界模型和神经仿真器。主动保留抓取失败、物体滑落、碰撞、液体飞溅、布料变形等「失败」数据，实验证实加入失败数据后世界模型的物理一致性显著提升\n\n**配套生态**：Genie Sim 3.0 仿真器 + GE-Sim 2.0 世界模型 + GO-2 基座模型 + 1:1 数字孪生仿真数据同步开源。\n\n**下载**：https://huggingface.co/datasets/agibot-world/AgiBotWorld2026\n项目主页：https://agibot-world.com",
     "modality": [
       "RGB",
@@ -2379,7 +2379,7 @@
   {
     "id": "gr-1-dataset",
     "name": "Fourier ActionNet（GR-1 真机数据集）",
-    "institution": "傅利叶智能（Fourier Intelligence）",
+    "institution": "傅利叶智能 (Fourier Intelligence)",
     "description": "**Fourier ActionNet（GR-1 真机数据集）**是傅利叶智能于 **2025 年 3 月**正式开源的全尺寸人形机器人全量操作数据集。\n\n**数据规模**：**3 万+** 真机遥操作轨迹（约 140 小时交互数据），覆盖 GR-1（GR1-T1/T2）和 GR-2 机型。\n\n**采集方式**：Apple Vision Pro 作为遥操作主控设备，搭配 OAK-D W 97 相机提供第一人称视角。数据格式为 **HDF5（关节状态）+ MP4（RGB 视频）+ MKV（深度视频）**。\n\n**标注与任务**：采用 Qwen2.5-VL-7B 视觉语言模型自动标注 + 人工二次核验。覆盖取放、倾倒、开柜门、精密放置、噪声泛化操作等任务。\n\n**训练框架**：适配 **LeRobot、ACT、DP、iDP3** 等主流训练框架，配套全流程工具链（数据采集 → 标注 → 训练 → 部署）。\n\n**协议**：数据集 CC BY-NC-SA 4.0（非商用开源），训练/部署工具链 Apache 2.0。遥操作源码开源：https://github.com/FFTAI/teleoperation\n\nNVIDIA 另发布了 GR-1 仿真数据集系列，见「NVIDIA GR-1 仿真数据集」条目。商用授权联系：gr_opensource@fftai.com。全身行走数据暂未全量放出。",
     "modality": [
       "RGB",
@@ -2551,7 +2551,7 @@
   {
     "id": "h1-dataset",
     "name": "Unitree LAFAN1 Retargeting Dataset（宇树全身运动重定向数据集）",
-    "institution": "宇树科技（Unitree）",
+    "institution": "宇树科技 (Unitree Robotics)",
     "description": "宇树科技（Unitree）于 **2024 年底**发布的全身运动开源数据集，将 Ubisoft 的 LAFAN1 动作捕捉数据通过数值优化（Interaction Mesh + 逆运动学）重定向到 **H1（19 关节）、H1-2（25 关节）、G1（29 关节）**三种人形机器人平台。\n\n**技术方法**：基于 **Pinocchio** 刚体动力学库（Maestro Consortium）进行运动学重定向，约束条件包括末端执行器姿态、关节位置/速度限制和防脚滑。重定向仅考虑运动学约束，不含动力学约束或执行器限制，实际部署需结合全身控制（MPC 或强化学习）。\n\n**数据格式**：**30FPS 的 CSV 文件**，每行对应一帧，按顺序记录根关节（XYZ + 四元数）及各关节角度。包含舞蹈、踢腿等多种动作序列。\n\n**配套工具**：提供基于 Pinocchio + **rerun-sdk** 的可视化脚本（rerun_visualize.py）。协议：动作数据 **CC BY-NC-ND 4.0**，工具代码 MIT。\n\n**下载**：\n- 官方：https://huggingface.co/datasets/unitreerobotics/LAFAN1_Retargeting_Dataset\n- 镜像：https://huggingface.co/datasets/lvhaidong/LAFAN1_Retargeting_Dataset\n- ModelScope：https://www.modelscope.cn/datasets/AI-ModelScope/LAFAN1_Retargeting_Dataset\n\n**影响**：该数据集已在 **2025 年春晚**宇树机器人舞蹈表演中被用作训练基础。Stanford 等机构的论文 **Retargeting Matters**（arXiv:2510.02252，2025）系统性评估了重定向质量对强化学习策略的影响，将其作为高质量基线对比，项目页：https://jaraujo98.github.io/retargeting_matters",
     "modality": [
       "动作"
@@ -2629,7 +2629,7 @@
   {
     "id": "unifolm-wbt-dataset",
     "name": "UnifoLM-WBT 全身遥操作真机数据集",
-    "institution": "宇树科技（Unitree）",
+    "institution": "宇树科技 (Unitree Robotics)",
     "description": "**UnifoLM-WBT（Whole-Body Teleoperation）数据集**是宇树科技于 **2026 年 3 月**发布的 G1 人形机器人旗舰级全身遥操作真机数据集，是全球头部人形机器人厂商首次完全开源高质量全身遥操作数据。\n\n**数据规模**：截至 2026 年 3 月，**340+ 小时**真机采集数据，**189 万条动作轨迹**，持续高频滚动更新。\n\n**核心特色**：强调 **全身协同（whole-body coordination）**——同时记录双足行走、重心动态调整与指尖精细操作，非上下肢分拆采集。这在人形机器人数据集中极为少见，直接支撑全身 VLA 模型训练。\n\n**场景覆盖**：真实家庭与工业开放场景——衣物收纳、家电操作、餐具整理等日常任务。\n\n**数据格式**：行业通用 **RLDS 格式**，可直接用于 Open X-Embodiment 生态和主流 VLA 模型训练。\n协议：**Apache 2.0**（完全开源，可商用）。\n\n**下载**：https://huggingface.co/collections/unitreerobotics/unifolm-wbt-dataset\n\n**UnifoLM 全链路生态**：\n- UnifoLM-WMA-0（2025.09）：世界模型动作框架（仿真引擎）\n- UnifoLM-VLA-0（2026.01）：基于 Qwen2.5-VL-7B 的具身大模型，支持自然语言指令完成 12 大类复杂操作\n- UnifoLM-WBT-Dataset（2026.03）：本数据集，真机全身遥操作\n\n形成「仿真框架 → 大模型 → 真机数据」全链路开源训练栈。",
     "modality": [
       "RGB",
@@ -2711,7 +2711,7 @@
   {
     "id": "digit-dataset",
     "name": "DIGIT Dataset",
-    "institution": "MIT",
+    "institution": "麻省理工学院 (MIT)",
     "description": "**Digit Dataset** 是基于 GelSight Digit 触觉传感器的操作数据集。\n\n包含大量指尖触觉采集数据，适用于触觉感知、接触状态估计和灵巧操作策略学习。",
     "modality": [
       "触觉"
@@ -2842,7 +2842,7 @@
   {
     "id": "graspnet-1billion",
     "name": "GraspNet-1Billion",
-    "institution": "清华大学",
+    "institution": "清华大学 (Tsinghua University)",
     "description": "**GraspNet-1Billion** 是目前规模最大的机器人抓取基准数据集。\n\n包含 **10 亿+ 抓取姿态标注**，覆盖 190+ 物体，提供 RGB-D 图像和点云数据。适用于通用抓取检测、抓取规划和 unknown-object grasping 研究。",
     "modality": [
       "视觉",
@@ -2910,7 +2910,7 @@
   {
     "id": "dexnet-2-0",
     "name": "DexNet 2.0",
-    "institution": "UC Berkeley",
+    "institution": "加州大学伯克利分校 (UC Berkeley)",
     "description": "**Dex-Net 2.0** 是 UC Berkeley 发布的抓取规划数据集与基准。\n\n基于物理仿真和深度学习，提供 **670 万+ 抓取标注**，涵盖多种机械夹爪和物体形状。适用于鲁棒抓取检测和抓取规划研究。",
     "modality": [
       "视觉",
@@ -3194,7 +3194,7 @@
   {
     "id": "realsource",
     "name": "RealSource",
-    "institution": "睿尔曼（RealMan）",
+    "institution": "睿尔曼 (RealMan)",
     "description": "**RealSource** 是由 RoboCo 团队发布的真实物体 3D 扫描数据集。\n\n包含大量日常物品的高精度 3D 模型，适用于机器人抓取仿真、Sim-to-Real 迁移和场景重建研究。",
     "modality": [
       "RGB",
@@ -3264,7 +3264,7 @@
   {
     "id": "10kh-realomni",
     "name": "10Kh RealOmni-Open",
-    "institution": "简智机器人（GenRobot）",
+    "institution": "简智机器人 (GenRobot)",
     "description": "**10KH RealOmni** 是一个全向视角的机器人操作数据集。\n\n提供多视角 RGB-D 视频和动作轨迹，覆盖桌面操作和移动操作场景，适用于多视角策略学习。",
     "modality": [
       "视觉",
@@ -3408,7 +3408,7 @@
   {
     "id": "openlet",
     "name": "OpenLET",
-    "institution": "乐聚机器人 / 上海交大等",
+    "institution": "乐聚机器人 (Leju Robot) / 上海交通大学 (SJTU)",
     "description": "**OpenLET** 是一个开放的人形机器人运动学习数据集与基准。\n\n提供标准化的全身运动轨迹和评估协议，支持跨机型运动策略迁移和全身控制研究。数据集下载指南见 OpenAtom 社区。",
     "modality": [
       "视觉",
@@ -3480,7 +3480,7 @@
   {
     "id": "uniact",
     "name": "UniACT",
-    "institution": "AMAP CV Lab (高德)",
+    "institution": "高德 AMAP CV Lab",
     "description": "**UniACT** 是由高德 AMAP CV Lab 发布的跨具身机器人操作数据集，随 ABot-M0 开源。\n\n该数据集整合并标准化了 **6 个主流开源数据集**（Open X-Embodiment、OXE-AugE、AgiBot-Beta、RoboCoin、RoboMind、Galaxea），覆盖 **20+ 种机器人形态**，总计 **600 万+ 轨迹、9,500+ 小时**数据。\n\nUniACT 的核心贡献在于**统一动作表示**：将所有异构数据转换为末端执行器增量动作（delta pose）+ 旋转向量（rotation vector），并填充至标准双臂格式，从而实现跨具身的 VLA 模型预训练。该数据集是 ABot-M0 模型的训练基础。",
     "modality": [
       "视觉",
@@ -3743,7 +3743,7 @@
   {
     "id": "droid",
     "name": "DROID",
-    "institution": "Stanford / Google / UC Berkeley 等 18 机构联合",
+    "institution": "斯坦福大学 (Stanford University) / Google / 加州大学伯克利分校 (UC Berkeley)",
     "description": "**DROID（Distributed Robot Interaction Dataset）**是 2024 年 3 月由 Stanford、Google、UC Berkeley 等 **18 个研究机构**联合发布的大规模真实环境机器人操作数据集。\n\n**采集规模**：50 名数据采集员在 **52 栋建筑、564 个场景**中使用统一 Franka Panda 机械臂平台，历时 12 个月采集了 **76,000+ 条操作轨迹**（350 交互小时），含成功轨迹 ~76K + 失败轨迹 ~16K。\n\n**数据内容**：每段轨迹含 3 个相机视角、深度信息、相机标定和语言标注。\n\n**格式与影响**：以 RLDS 格式发布（1.7TB），兼容 Open X-Embodiment 生态。实验表明 DROID 联合训练可将策略性能、鲁棒性和泛化能力平均提升约 **20%**。",
     "modality": [
       "视觉",
@@ -3833,7 +3833,7 @@
   {
     "id": "mimicgen",
     "name": "MimicGen",
-    "institution": "NVIDIA Research",
+    "institution": "NVIDIA",
     "description": "**MimicGen** 是 NVIDIA Research 在 **CoRL 2023** 发表的数据生成系统，可在仿真环境中从少量人类演示（每任务 10 条）自动合成大规模、多样化的机器人操作数据集。\n\n**数据构成**：包含 source（120 条人类演示）、core（26,000 条生成数据，26 种分布变体）、robot（16,000 条，4 种不同机械臂）、object（2,000 条，不同物体）和 large_interpolation（6,000 条高难度）五种类型，总计 **48,000+ 条**演示轨迹。\n\n数据以 HDF5 格式发布在 Hugging Face，兼容 **robomimic** 框架，可直接用于 BC、BC-RNN、BC-Transformer 等模仿学习算法。",
     "modality": [
       "视觉",
@@ -3921,7 +3921,7 @@
   {
     "id": "robocasa",
     "name": "RoboCasa",
-    "institution": "UT Austin / NVIDIA Research",
+    "institution": "德克萨斯大学奥斯汀分校 (UT Austin) / NVIDIA",
     "description": "**RoboCasa** 是 UT Austin 与 NVIDIA Research 在 **RSS 2024** 发布的大规模家居任务仿真框架与数据集。\n\n**场景规模**：基于 MuJoCo 物理引擎 + NVIDIA Omniverse 渲染，包含 **2,500+ 个 3D 资产**（153+ 物体类别）、**120 个独特厨房场景**（10 种平面图 × 12 种建筑风格）、**100 个任务**（25 个原子任务 + 75 个 LLM 生成的复合任务）。\n\n**数据生成**：利用 MimicGen 从少量人类演示自动生成 **10 万+ 轨迹**，支持移动机械臂与人形机器人等多种形态。\n\n生成式 AI 辅助（Luma.ai 生成 3D 物体，MidJourney 生成纹理做域随机化），训练策略可 sim-to-real 迁移至真实机器人。",
     "modality": [
       "视觉",
@@ -4009,7 +4009,7 @@
   {
     "id": "arnold-benchmark",
     "name": "ARNOLD",
-    "institution": "UCLA / 北京大学 / 清华大学 / BIGAI",
+    "institution": "加州大学洛杉矶分校 (UCLA) / 北京大学 (Peking University) / 清华大学 (Tsinghua University) / 北京通用人工智能研究院 (BIGAI)",
     "description": "**ARNOLD**（A Benchmark for Language-Grounded Task Learning With Continuous States in Realistic 3D Scenes）是 **ICCV 2023** 发布、CVPR 2024 Embodied AI Workshop 举办挑战赛的语言条件操作基准。\n\n**核心特色**：不同于传统离散目标（开/关），ARNOLD 聚焦**连续目标状态**（如打开抽屉 50%、将瓶子举到特定高度、旋转到指定角度），更贴近真实操作需求。\n\n**基准规模**：在 NVIDIA Isaac Sim 中构建了 20 个逼真 3D 室内场景、40 种物体、8 个语言条件任务（拾放、旋转、开关抽屉/柜门、倒水/移水），含 **~10K 专家演示**及模板生成的语言指令。\n\n基准评估显示当前最先进的语言条件策略模型在未见场景、物体和目标状态的泛化上仍面临巨大挑战。",
     "modality": [
       "视觉",
@@ -4097,7 +4097,7 @@
   {
     "id": "robonet",
     "name": "RoboNet",
-    "institution": "UC Berkeley / Stanford / UPenn / CMU",
+    "institution": "加州大学伯克利分校 (UC Berkeley) / 斯坦福大学 (Stanford University) / 宾夕法尼亚大学 (UPenn) / 卡内基梅隆大学 (CMU)",
     "description": "**RoboNet** 是由 UC Berkeley、Stanford、UPenn、CMU 四所高校联合发布的大规模多机器人交互数据集，发表于 **CoRL 2019**，被誉为「机器人界的 ImageNet」。\n\n**数据规模**：包含 **1,500 万+ 视频帧**，来自 7 种不同机器人平台、113 个相机视角，总计 **162,417 条示例**。\n\n**格式**：以 TFDS 格式发布（完整 ~36GB），提供 64×64 和 128×128 两种分辨率。\n\n核心思想是通过跨机器人、跨场景的大规模视频预测学习可泛化的物理世界动力学先验，推动机器人学习从单一任务向通用操作能力演进。",
     "modality": [
       "视觉",
@@ -4181,7 +4181,7 @@
   {
     "id": "ego4d",
     "name": "Ego4D",
-    "institution": "Meta AI / UT Austin / CMU 等 13 所高校",
+    "institution": "Meta AI / 德克萨斯大学奥斯汀分校 (UT Austin) / 卡内基梅隆大学 (CMU)",
     "description": "**Ego4D** 是由 Meta AI（FAIR）联合全球 **13 所高校**于 **CVPR 2022** 发布的世界最大第一人称（Egocentric）视频数据集与基准。\n\n**采集规模**：931 名相机佩戴者在全球 9 个国家 74 个地点采集了 **3,670 小时**连续日常视频（~7TB），含 **380 万条**叙述文本对。\n\n**五大基准任务**：情景记忆（Episodic Memory）、手物交互（Hand-Object Manipulation）、视听对话（Audio-Visual Conversation）、社交交互（Social Interaction）、活动预测（Activity Forecasting），直接映射到机器人感知、规划与交互能力。\n\n配套 **EgoVLP**（NeurIPS 2022）预训练框架。下载需在官网签署数据使用协议。",
     "modality": [
       "视觉",
@@ -4357,7 +4357,7 @@
   {
     "id": "3doi-dataset",
     "name": "3DOI",
-    "institution": "University of Michigan",
+    "institution": "密歇根大学 (University of Michigan)",
     "description": "**3DOI（3D Object Interaction）**是密歇根大学于 ICCV 2023 提出的 3D 物体交互理解数据集。\n\n**规模**：约 **1 万张** RGB 图像，来源涵盖互联网视频、第一人称视频及 3D 数据集渲染。\n\n**标注内容**：交互查询点、可供性关键点、2D 边界框、关节类型（旋转/平移/固定）、可移动性、夹具标签。\n\n**核心任务**：从单张 RGB 图像 + 查询点，预测可供性分割掩码和 3D 交互 affordance map。\n\n**测试拆分**：3DOI（标准）和 3DOI Easy（简化）两个测试集。\n\nAFUN 在 3DOI 分割任务上大幅超越所有基线。",
     "modality": [
       "RGB",
@@ -4436,7 +4436,7 @@
   {
     "id": "hova-500k",
     "name": "HOVA-500K",
-    "institution": "HKUST (Guangzhou)",
+    "institution": "香港科技大学（广州）(HKUST)",
     "description": "**HOVA-500K（Human-Object Visual Affordance 500K）**是 HKUST（广州）于 2025 年发布的大规模视觉可供性数据集，伴随 GLOVER++ 模型。\n\n**规模**：**50 万** 张 RGB 图像，覆盖 **1,726** 个物体类别和 **675** 个动作/动词类别，是目前最大规模的 visual affordance 数据集。\n\n**采集方式**：从 Ego4D、EPIC-KITCHENS 等第一人称人类视频中检测手-物接触帧，通过 homography 反投影将接触点映射到无遮挡帧，实现毫米级交互点标注。\n\n**标注**：point-level Gaussian heatmap（非区域掩码），以接触点为中心的高斯热力图，精度可达毫米级。\n\n**关联模型**：GLOVER++（全局-局部可供性训练框架），仅 8.1M 可训练参数，在真实机器人零样本操作中达 73.3% 成功率。\n\nAFUN 将 HOVA-500K 的 point-level 标注转换为分割掩码用于训练，并在其测试集上取得 SOTA。",
     "modality": [
       "RGB"
@@ -4513,7 +4513,7 @@
   {
     "id": "reasonaff",
     "name": "ReasonAFF",
-    "institution": "Shanghai AI Lab / ShanghaiTech",
+    "institution": "上海人工智能实验室 (Shanghai AI Lab) / 上海科技大学 (ShanghaiTech)",
     "description": "**ReasonAFF** 是上海 AI Lab 于 2025 年伴随 Affordance-R1 模型发布的推理级可供性数据集。\n\n**数据来源**：基于 InstructPart 数据集，通过 GPT-4o 将原来的直接指令（如 'segment the lid'）改写为隐含推理问题（如 'Where would you place your hand if you wanted to open this trash can?'）。\n\n**规模**：覆盖 **48** 个物体类别、**30** 个可供性类别，每条数据包含推理指令 + 可供性分割掩码 + 边界框 + 中心点。\n\n**核心创新**：将可供性分割从纯视觉任务升级为视觉-语言推理任务，需要模型先理解任务语义再定位操作部位。\n\n**关联模型**：Affordance-R1，采用纯强化学习（GRPO）训练，零样本泛化到 AGD20K/UMD 等 OOD 数据集。\n\nAFUN 在 ReasonAFF 上取得 gIoU 67.41 / cIoU 62.72 的 SOTA 成绩。",
     "modality": [
       "RGB",
@@ -4593,7 +4593,7 @@
   {
     "id": "instructpart",
     "name": "InstructPart",
-    "institution": "CMU Robotics Institute",
+    "institution": "卡内基梅隆大学 (CMU)",
     "description": "**InstructPart** 是 CMU 机器人研究所于 ACL 2025 (Main) 提出的任务导向部件分割基准。\n\n**规模**：**2,400** 张真实世界图像，覆盖 **48** 个物体类别、**44** 个部件类别、**30** 个可供性类别、**37** 个动作类别。\n\n**标注**：**9,600** 条人工标注任务指令（含专家标注 + GPT-polished + 人工核验），像素级分割掩码。\n\n**两大任务**：\n1. **TRPS（Task Reasoning Part Segmentation）**——给定任务指令+图像，推理并分割出正确操作部件（如 '拉开微波炉需要碰哪个部位？'）\n2. **ORPS（Oracle Referring Part Segmentation）**——给定直接部件/物体指代，分割对应部件（如 '水龙头的把手'）\n\n**协议**：CC BY 4.0。\n\nAFUN 在 InstructPart 上与 ReasonAFF 一起作为核心可供性分割评测基准。",
     "modality": [
       "RGB",
@@ -4672,7 +4672,7 @@
   {
     "id": "scenefun3d",
     "name": "SceneFun3D",
-    "institution": "ETH Zürich / Google / TUM / Microsoft",
+    "institution": "苏黎世联邦理工学院 (ETH Zurich) / Google / 慕尼黑工业大学 (TUM) / Microsoft",
     "description": "**SceneFun3D** 是 ETH Zürich / Google / TUM / Microsoft 联合发表于 CVPR 2024 (Oral) 的精细 3D 场景功能理解数据集。\n\n**规模**：**710** 个高精度 3D 室内场景（Faro 激光扫描仪采集，远超 RGB-D 重建精度），**14,800+** 精细交互标注，**3,000+** 自然语言任务描述，覆盖 **9** 个可供性类别（旋转、钩拉、推按等）。\n\n**独特之处**：标注了传统 RGB-D 重建（ScanNet/Matterport3D）中不可见的细小功能元素——门把手、旋钮、按钮、开关、拨杆等。\n\n**三大基准任务**：\n1. **Functionality Segmentation**：3D 点云中分割功能元素并预测可供性标签\n2. **Task-Driven Affordance Grounding**：根据自然语言任务描述定位功能元素\n3. **3D Motion Estimation**：预测交互所需的运动参数（运动类型、轴、原点）\n\n**协议**：CC BY-NC-SA 4.0。\n\nAFUN 使用 SceneFun3D 作为训练数据源和 3D 运动测试集（n=721），在 ADE/FDE/CIM 三个指标上全面超越 General Flow 等基线。",
     "modality": [
       "RGB",
@@ -4758,7 +4758,7 @@
   {
     "id": "robomind2",
     "name": "RoboMIND 2.0",
-    "institution": "北京人形机器人创新中心 / 北京大学",
+    "institution": "北京人形机器人创新中心 / 北京大学 (Peking University)",
     "description": "**RoboMIND 2.0** 是北京人形机器人创新中心与北京大学于 2025 年 12 月发布的超大规模多模态真实机器人操作数据集，是 RoboMIND 1.0 (RSS 2025) 的全面升级。\n\n**数据规模**：**31 万+** 演示轨迹、**1,000+** 小时操作数据、**759** 种精细任务、**1,139** 种交互物体、覆盖 **11** 个核心场景（工业分拣、化学实验室、家庭厨房、家电交互等）。\n\n**多形态覆盖**：**6 种机器人形态**——Franka Emika Panda、UR5e、AgileX 轮式双臂平台、'天工'全尺寸人形机器人（含灵巧手）、'天轶'轮式人形机器人、ARX 轮式机器人。\n\n**多模态感知**：\n- **视觉**：多视角 RGB-D\n- **触觉**：1.2 万条触觉增强片段（法向力 + 切向力），行业首次大规模集成\n- **语言**：Gemini 辅助生成的精细任务描述\n- **本体感知**：完整关节状态\n\n**训练框架**：配套 MIND-2 分层架构——慢系统（VLM 推理规划）+ 快系统（VLA 实时控制），采用 Implicit Q-Learning 离线 RL 训练。\n\n**协议**：CC BY-NC 4.0。\n\nAFUN 使用 RoboMIND2 作为训练数据源，并将其测试集（n=156）作为域外（out-of-domain）3D 运动评测基准。",
     "modality": [
       "RGB",
@@ -4858,7 +4858,7 @@
   {
     "id": "hoi4d",
     "name": "HOI4D",
-    "institution": "Tsinghua University / Peking University",
+    "institution": "清华大学 (Tsinghua University) / 北京大学 (Peking University)",
     "description": "**HOI4D（4D Egocentric Human-Object Interaction）**是清华大学与北京大学于 CVPR 2022 发布的大规模 4D 第一人称人-物交互数据集。\n\n**规模**：**240 万** RGB-D 第一人称视频帧、**4,000+** 交互序列、**800** 个物体实例（16 类别，含刚体和铰接物体）、**610** 个不同室内场景。\n\n**采集方式**：头戴式 Intel RealSense D455 + Kinect v2 采集，9 名参与者在自然室内环境中进行日常操作。\n\n**标注**：逐帧全景分割、运动分割、3D 手部姿态、类别级物体 6-DoF 位姿（含铰接物体关节状态）、动作分割标签。\n\n**三大基准任务**：\n1. 4D 动态点云序列语义分割\n2. 类别级物体位姿跟踪\n3. 第一人称动作分割\n\n**协议**：CC BY-NC-SA 4.0。\n\nAFUN 将 HOI4D 作为人类第一人称（human egocentric）训练数据源，从中提取 2,165 个动作区间用于可供性学习。",
     "modality": [
       "RGB",
@@ -5024,7 +5024,7 @@
   {
     "id": "bc-z",
     "name": "BC-Z",
-    "institution": "Google / Everyday Robots / UC Berkeley / Stanford",
+    "institution": "Google / Everyday Robots / 加州大学伯克利分校 (UC Berkeley) / 斯坦福大学 (Stanford University)",
     "description": "**BC-Z（BC-Zero）**是 Google Robotics、Everyday Robots、UC Berkeley 和 Stanford 于 2022 年联合发布的大规模机器人模仿学习数据集。\n\n**规模**：**39,350** 条训练轨迹 + **3,914** 条验证轨迹，覆盖 **100 种** 桌面操作任务（抓取、开抽屉、摆物件、倒水等），累计 125 小时机器人操作数据。\n\n**采集方式**：7 名操作员通过 DAgger（Dataset Aggregation）方式远程操控 12 台 Franka Panda 机械臂，交替执行自主策略和遥操作干预。\n\n**数据格式**：TFDS（TensorFlow Datasets），每条轨迹包含：RGB 图像观测 (171×213)、末端执行器 3D 位置残差 + 轴角旋转残差 + 夹爪开合、自然语言任务指令 + 512 维 Universal Sentence Encoder 嵌入。\n\n**核心特性**：零样本任务泛化——通过语言描述或人类操作视频即可执行训练中未见过的任务。是 OpenVLA、RT-1 等 VLA 模型的核心预训练子集。\n\n**协议**：CC BY 4.0。",
     "modality": [
       "RGB",
@@ -5108,7 +5108,7 @@
   {
     "id": "aloha-dataset",
     "name": "ALOHA 数据集",
-    "institution": "Stanford / Google DeepMind",
+    "institution": "斯坦福大学 (Stanford University) / Google DeepMind",
     "description": "**ALOHA（A Low-cost Open-source Hardware System for Bimanual Teleoperation）**是 Stanford 于 2023 年提出的低成本双臂遥操作平台，配套数据集已成为精细操作领域的标杆基准。\n\n**平台组成**：\n- **ALOHA Stationary**：双 ViperX 300 机械臂（6-DoF + 夹爪），桌面固定\n- **Mobile ALOHA**：ALOHA 双臂 + AgileX Tracer 移动底盘，支持移动操作\n- **ALOHA 2**（Google DeepMind 2024）：26,000+ 演示轨迹，5 项高难度灵巧任务\n\n**数据集组成**：\n- **ALOHA Sim 数据集**（~5 GB，Google Drive）：仿真 Transfer Cube / Bimanual Insertion 任务的脚本演示 + 人类遥操作数据\n- **Mobile ALOHA 数据集**（50+ GB，TFDS）：真实场景下 7 类家务任务（炒虾、擦桌子、叠衣服等）\n- **LeRobot ALOHA 子集**（HuggingFace）：`lerobot/aloha_static_coffee` 等多个标准化子集\n\n**适配算法**：ACT、Diffusion Policy、VINN、DiT-Policy、π0 等。\n\n**协议**：MIT（代码），CC BY 4.0（数据）。",
     "modality": [
       "RGB",
@@ -5280,7 +5280,7 @@
   {
     "id": "kairos-homeworld",
     "name": "Kairos-HomeWorld",
-    "institution": "大晓机器人 (ACE Robotics) / 香港中文大学",
+    "institution": "大晓机器人 (ACE Robotics) / 香港中文大学 (CUHK)",
     "description": "Kairos-HomeWorld 是大晓机器人（ACE Robotics）联合香港中文大学于 2025 年 6 月发布的全球首个中国家庭专属全屋 3D 仿真数据集。规模：30 万真实中国住宅户型、5,000 套完整可交互全屋仿真场景、50,000+ 可交互物体资产。中国特色：相比国际数据集（北美/欧洲为主），Kairos-HomeWorld 专为中国家庭设计——南北通透户型、封闭式厨房、独立洗衣阳台、干湿分离卫生间、玄关鞋柜、不规整老房户型等。四阶段层级生成架构：全局结构到局部细节到闭环验证到交互增强。通过 VLM 自动检测并修正物理违规。应用：批量生成仿真居家数据，做全屋机器人导航 + 家务任务。协议：开源。",
     "modality": [
       "RGB",
@@ -5533,7 +5533,7 @@
   {
     "id": "dexgraspvla",
     "name": "DexGraspVLA 数据集",
-    "institution": "Psi-Robot / 北京大学",
+    "institution": "星尘智能 (Psi-Robot) / 北京大学 (Peking University)",
     "description": "DexGraspVLA 数据集是 Psi-Robot 与北京大学于 2025 年提出的灵巧手抓取 VLA 框架的配套数据集。包含：DexGraspVLA 人类演示 51 条真实遥操作轨迹（~7.3 GB）；DexGraspNet 3.0（DexVLG/ICCV 2025）1.7 亿仿真抓取姿态覆盖 174,000 物体含部件级语义标注；DexGrasp Anything（CVPR 2025）340 万+ 抓取姿态 15,000+ 物体。分层架构（VLM 高层规划 + Diffusion 低层控制），杂乱场景 90%+ 成功率，支持透明/异形物体。协议：CC BY 4.0。",
     "modality": [
       "RGB",
@@ -5618,7 +5618,7 @@
   {
     "id": "graspvla-syngrasp",
     "name": "GraspVLA / SynGrasp-1B",
-    "institution": "Galbot / 北京大学 / 港大 / 北京智源",
+    "institution": "银河通用 (Galbot) / 北京大学 (Peking University) / 香港大学 (HKU) / 北京智源人工智能研究院 (BAAI)",
     "description": "GraspVLA / SynGrasp-1B 是 Galbot、北京大学、港大和北京智源于 CoRL 2025 发布的十亿级合成抓取数据集。规模：10 亿帧合成抓取数据，覆盖 10,000+ 物体（240 类别，来自 Objaverse）。生成管线：MuJoCo 物理仿真稳定抓取 + BoDex 反掌抓取生成 + CuRobo 无碰撞轨迹规划 + Isaac Sim 光追真实渲染。关键能力：零样本合成类别 93.3% 真实世界成功率；零样本互联网类别 86.6%；透明物体 86.6%（AnyGrasp 仅 10%）通过 RGB 多视角 + 语义推理绕过深度传感器局限；少样本微调 100 条 demo 即从 30% 提升到 90%。协议：CC BY 4.0。",
     "modality": [
       "RGB",
@@ -5703,7 +5703,7 @@
   {
     "id": "openrobocare",
     "name": "OpenRoboCare",
-    "institution": "Cornell University (EmPRISE Lab)",
+    "institution": "康奈尔大学 (Cornell University)",
     "description": "OpenRoboCare 是由康奈尔大学 EmPRISE Lab 发布的全球首个面向机器人护理的**多模态专家演示数据集**，发表于 IROS 2025。\n\n该数据集邀请了 **21 位持证职业治疗师**，在两具医院级人体模型（女性「Simple Susie」17kg，男性「Rescue Randy」68kg）上执行 **15 项核心护理任务**，涵盖五大 ADL 类别：沐浴、如厕、穿衣、转移、梳洗。\n\n**五大模态**：(1) 3 台 Intel RealSense D435i 相机的 RGB-D 视频（15Hz）；(2) 12 相机 OptiTrack 动捕系统追踪护理师和模型的 2D/3D 姿态；(3) Pupil Labs 眼镜记录护理师眼动注视点（120Hz）；(4) 每具模型内置 44 点定制电阻式触觉皮肤，记录接触力（60Hz）；(5) 专家标注的层级时序动作标签（任务→子任务→动作组件）。\n\n**核心发现**：论文提炼出 3 条护理原则（预定位、预判、效率优先）和 4 项护理技术（桥接策略、分段翻身、轮椅转移后仰、关键控制点稳定）。触觉数据显示力范围从 0.1-2N（轻柔擦浴）到 20-30+N（转移/翻身）。\n\nYOLOv11 姿态估计在此数据上零样本 mAP 仅 ~2%，微调后大幅提升，说明该数据集具有高度领域特异性和遮挡挑战。\n\n**协议**：BSD-3-Clause（学术免费，企业需遵守协议）。AWS Open Data 托管，可直接从 S3 下载。",
     "modality": [
       "RGB",
@@ -5794,7 +5794,7 @@
   {
     "id": "etri-activity3d-livinglab",
     "name": "ETRI-Activity3D-LivingLab",
-    "institution": "ETRI（韩国电子通信研究院）",
+    "institution": "韩国电子通信研究院 (ETRI)",
     "description": "ETRI-Activity3D 是由韩国电子通信研究院（ETRI）发布的**大规模老年人日常活动 RGB-D 数据集**，发表于 IROS 2020。LivingLab 扩展版进一步在**真实居家环境**中采集数据，发表于 IEEE ROMAN 2021。\n\n该数据集是首个在老年人真实居住环境中采集的 3D 动作识别数据集（非实验室环境）。使用 Kinect v2 传感器采集 RGB 视频（1920×1080）、深度图和 25 关节 3D 骨骼数据，总计 112,620 条样本，100 名受试者（50 名老年人 + 50 名年轻人），覆盖 55 种日常动作类别。\n\n**55 种动作类别涵盖**：饮食（叉子进食、喝水、倒水、服药）、烹饪（切菜、削皮、使用燃气灶）、卫生（刷牙、洗手、洗脸、梳头、化妆）、穿衣（穿脱外套、穿脱鞋、戴眼镜）、家务（吸尘、擦桌、拖地、晾衣、洗碗）、沟通（打电话、玩手机、用电脑）、阅读书写（读书看报、手写）、社交（握手、拥抱、挥手、鞠躬）、运动（徒手操、颈部转动、按摩）以及安全关键动作（跌倒、躺下）。\n\nLivingLab 扩展版专门针对**领域迁移**问题——帮助在受控环境中训练的模型适应真实居家部署场景。这对居家养老监护机器人的实际落地至关重要。",
     "modality": [
       "RGB",
@@ -5877,7 +5877,7 @@
   {
     "id": "kfall",
     "name": "KFall",
-    "institution": "KAIST（韩国科学技术院）",
+    "institution": "韩国科学技术院 (KAIST)",
     "description": "KFall 是由 KAIST 工业与系统工程系发布的**大规模可穿戴惯性传感器跌倒检测数据集**，发表于 Frontiers in Aging Neuroscience（2021）。\n\n该数据集是**首个面向跌倒前检测（pre-impact fall detection）的公开数据集**。大多数现有公开数据集（SisFall、tFall、MobiFall 等）仅适用于跌倒后检测，而 KFall 通过同步 90fps 视频标注精确的跌倒时刻，使算法能够在跌倒冲击发生前做出预测——这对老年人安全监护至关重要。\n\n**数据采集**：32 名韩国年轻成人（24.9±3.7 岁），腰部后方佩戴 LPMS-B2 9 轴惯性传感器（加速度计 + 陀螺仪 + 磁力计 + 欧拉角），100Hz 采样率。同步使用 Raspberry Pi HQ 相机（90fps）录制视频用于跌倒时刻标注。\n\n**动作类型**：15 种模拟跌倒（前倒、后倒、侧倒、滑倒、绊倒、晕倒等）+ 21 种日常生活动作（走路、坐下、站起、弯腰、上下楼梯、躺下等）。\n\n**基准性能**：深度学习模型（CNN-LSTM）达到 99.32% 灵敏度和 99.01% 特异度；SVM 达到 99.77% 灵敏度。后人在此数据集上将阈值法准确率优化至 99.5%，并在 FARSEEING 真实老年人跌倒数据上验证（71.4% 灵敏度，5/7 检测）。\n\n**局限**：受试者为年轻人（非真实老年人），模拟跌倒与真实跌倒存在运动模式差异。但其跌倒前时序标注的独特性使其成为该领域的核心基准数据集。",
     "modality": [
       "IMU",
@@ -5956,7 +5956,7 @@
   {
     "id": "ec-ar",
     "name": "EC-AR（Elderly Care Action Recognition）",
-    "institution": "郑州大学",
+    "institution": "郑州大学 (Zhengzhou University)",
     "description": "EC-AR（Elderly Care Action Recognition）是由郑州大学发布的**面向养老护理机器人的动作识别数据集**，发表于 Advanced Intelligent Systems（2023），CC BY 4.0 开源协议。\n\n该数据集专门针对老年人护理场景中的典型动作类别设计，填补了通用动作识别数据集（如 Kinetics、NTU RGB+D）在养老领域覆盖不足的空白。数据模态包含 RGB 视频和人体骨骼关键点两种形式（RGB-Skeleton 视频和纯 Skeleton 视频），适配多流架构。\n\n配套论文提出了**骨骼引导的多流 3D CNN 架构**（双 Light-SlowFast 网络 + ResNet-18 骨干），在 EC-AR 上实现了优异的动作识别性能。该架构的设计理念——利用骨骼信息引导 RGB 特征的注意力——对养老护理机器人的实时动作理解具有重要参考价值。\n\n**应用场景**：健康监测（跌倒检测）、日常生活辅助（识别坐、站、进食等状态）、异常行为检测（长时间不动、倾斜姿势等）。",
     "modality": [
       "RGB",
@@ -6034,7 +6034,7 @@
   {
     "id": "medmassage-12k",
     "name": "MedMassage-12K",
-    "institution": "中科院自动化所 / 北京航空航天大学",
+    "institution": "中科院自动化所 (CASIA) / 北京航空航天大学 (Beihang University)",
     "description": "MedMassage-12K 是由中科院自动化所、北京航空航天大学、佐治亚理工学院等联合发布的**全球首个面向机器人穴位按摩的视觉-语言数据集**，配套论文 HMR-1 发表于 arXiv（2026年3月）。\n\n该数据集包含 **12,190 张穴位按摩图像**（原始 1,030 张 + 数据增强），覆盖人体 **60 个不同按摩穴位**，在自然光、昏暗、明亮等多种光照条件下采集。同时提供 **174,177 对穴位问答对**（原始 15,092 对 + 增强），用于训练 VLM 的穴位定位能力。\n\n**HMR-1 分层按摩框架**：(1) 高层穴位定位模块（HLGM）——基于 Qwen-VL 理解自然语言指令并精确定位穴位坐标；(2) 低层控制模块（LLCM）——将定位结果转化为 Franka Panda 机械臂的 6-DOF 执行轨迹，含逆运动学求解、RANSAC 平面拟合和碰撞路径规划。\n\n**关键实验结果**：通用 MLLM（Qwen-VL-Max、GPT-4o）在穴位定位任务上几乎完全失败（IoU=0.5 时 Qwen-VL-Max 0%、GPT-4o 0.07%），而经过 MedMassage-12K 微调后的 HMR-1 在 IoU=0.5 下达到 **81.42% 成功率**，IoU=0.3 下达到 87.60%。充分验证了该数据集在具身医疗领域的实用价值。\n\n代码和数据开源：github.com/Xiaofeng-Han-Res/HMR-1",
     "modality": [
       "RGB",
@@ -6115,7 +6115,7 @@
   {
     "id": "ceti-age-kinematics",
     "name": "CeTI-Age-Kinematics",
-    "institution": "TU Dresden / KIT（卡尔斯鲁厄理工学院）",
+    "institution": "德累斯顿工业大学 (TU Dresden) / 卡尔斯鲁厄理工学院 (KIT)",
     "description": "CeTI-Age-Kinematics 是由德累斯顿工业大学（TU Dresden）和卡尔斯鲁厄理工学院（KIT）联合发布的**老年人 vs 年轻人全身运动学对比数据集**，发表于 Nature Scientific Data（2025年3月），CC BY 4.0 协议。\n\n该数据集是极少数同时采集**老年人和年轻人全身日常任务运动学数据**的公开资源。32 名受试者（20 名老年人 66-75 岁，12 名年轻人 19-28 岁，性别均衡），穿戴 Rokoko Smartsuit Pro（19 个 IMU 传感器）+ Smartgloves（每手 7 个传感器）共 **33 个传感器**，100Hz 采样率。\n\n**30 项日常任务覆盖 9 大类**：校准姿势、搬运工具箱、伸手-抓取-转移、伸手-抓取-交接-转移、开关门、伸手/挂钩任务、5 次坐站测试（5RSTST，临床级跌倒风险评估）、上肢任务和**步行/步态任务**。每种任务分自定速度和快速两种条件执行，并区分真实物体和虚拟物体的操作。\n\n**数据格式**：Motion-BIDS 国际标准（TSV + BVH 文件），附带人体测量学和空间测量数据。Figshare 开放下载。\n\n**对康复机器人的价值**：(1) 步态任务（w01-w04）揭示了年龄相关的步态运动学差异，适配步态康复机器人；(2) 坐站测试是临床验证的下肢功能评估指标；(3) 轴向躯干旋转、平衡控制和目标导向伸手任务为康复评估提供量化基准；(4) 手部精细运动数据支持年龄相关的精细运动退化研究。",
     "modality": [
       "IMU",
@@ -6274,7 +6274,7 @@
   {
     "id": "furniture-bench",
     "name": "Furniture Bench",
-    "institution": "UT Austin / NVIDIA Research",
+    "institution": "德克萨斯大学奥斯汀分校 (UT Austin) / NVIDIA",
     "description": "FurnitureBench 是由 **UT Austin** 和 **NVIDIA Research** 联合发布的真实机器人长序列家具装配基准。\n\n该数据集包含 **5+ 款 IKEA 风格**3D 打印家具模型的装配数据，超过 **550 小时**的人类遥操作演示。任务涉及抓取、插入、拧螺丝等精细操作，是评估机器人长序列操作能力的标准 benchmark。\n\n当前最先进的模仿学习方法在该 benchmark 上成功率不超过 42%，暴露了现有方法在长序列任务上的显著不足。",
     "modality": [
       "视觉",
@@ -6373,7 +6373,7 @@
   {
     "id": "vima",
     "name": "VIMA",
-    "institution": "Stanford / NVIDIA",
+    "institution": "斯坦福大学 (Stanford University) / NVIDIA",
     "description": "VIMA-BENCH 是由 **Stanford** 和 **NVIDIA** 联合发布的大规模多模态机器人学习基准。\n\n该数据集包含 **60 万+**专家演示轨迹，涵盖程序生成的桌面操作任务，支持图文视频混合 prompt。定义了 **4 级泛化协议**（placement / combinatorial / novel object / novel task）来评估模型的零样本泛化能力。\n\nVIMA 模型使用 Transformer 架构直接处理多模态 token，在视觉推理、模仿学习等任务上显著超越现有方法。",
     "modality": [
       "视觉",
@@ -6446,7 +6446,7 @@
   {
     "id": "qt-opt",
     "name": "QT-Opt",
-    "institution": "Google / UC Berkeley",
+    "institution": "Google / 加州大学伯克利分校 (UC Berkeley)",
     "description": "QT-Opt 是由 **Google** 和 **UC Berkeley** 联合发布的经典机器人抓取数据集。\n\n该数据集包含超过 **58 万次**真实世界抓取试验，由 **7 台 Kuka 机器人**在数月的持续运行中采集。使用分布式深度强化学习训练，最终达到 **96%** 的抓取成功率，能够泛化到未见过的物体。\n\n这是机器人学习领域的里程碑式工作，证明了大规模真实世界 RL 训练的可行性。",
     "modality": [
       "视觉",
@@ -6516,7 +6516,7 @@
   {
     "id": "stanford-hydra",
     "name": "Stanford HYDRA",
-    "institution": "Stanford University",
+    "institution": "斯坦福大学 (Stanford University)",
     "description": "Stanford HYDRA 是由 **Stanford University** 发布的家用机器人操作数据集。\n\n该数据集收集了多任务家用场景下的遥操作演示，包括**制作咖啡**、**烤面包**、**摆盘**等长序列任务。HYDRA 使用混合动作空间（稀疏 waypoint + 稠密底层动作），通过动态切换和动作重标注减少 **40%** 的分布偏移。\n\n属于 **Open X-Embodiment** 成员数据集。",
     "modality": [
       "视觉",
@@ -6592,7 +6592,7 @@
   {
     "id": "tidybot",
     "name": "TidyBot",
-    "institution": "Princeton University",
+    "institution": "普林斯顿大学 (Princeton University)",
     "description": "TidyBot 是由 **Princeton University** 发布的 LLM 驱动的个性化家居整理数据集。\n\n该系统使用大语言模型从少量用户示例中推断个性化整理偏好，控制移动操作机器人将物品放入合适的收纳容器。在真实世界测试中达到 **85%** 的任务成功率。\n\n该工作是 LLM + 机器人操作的代表性应用，展示了语言模型在物理世界任务中的推理和泛化能力。",
     "modality": [
       "视觉",
@@ -6662,7 +6662,7 @@
   {
     "id": "columbia-pusht",
     "name": "Columbia PushT Dataset",
-    "institution": "Columbia University",
+    "institution": "哥伦比亚大学 (Columbia University)",
     "description": "Columbia PushT Dataset 是由 **Columbia University** 发布的精密操作数据集，作为 **Diffusion Policy** 方法的标准 benchmark。\n\n该数据集包含 **15 个任务**，核心任务是推动 T 形块到目标位姿后移动到出口区域。Diffusion Policy 使用迭代去噪生成动作序列，在此数据集上达到 **46.9%** 的更高成功率和实时推理能力。\n\n该数据集已成为评估扩散生成式操作策略的事实标准。",
     "modality": [
       "视觉",
@@ -6729,7 +6729,7 @@
   {
     "id": "dobbe",
     "name": "DobbE",
-    "institution": "NYU / Meta AI",
+    "institution": "纽约大学 (NYU) / Meta AI",
     "description": "DobbE 是由 **NYU** 和 **Meta AI** 联合发布的去中心化家居机器人学习数据集。\n\n该数据集在 **109 个真实家庭**中采集了 7 类家居任务的数据（开关门/抽屉、抓取把手、物品拿放、随机游走），使用自制的低成本采集工具（the Stick）。DobbE 使用自适应预训练表示 (HPR)，支持机器人在 **20 分钟**内学会新任务，达到 **81%** 的成功率。\n\n该项目开放了数据、模型和硬件设计，推动家居机器人技术的民主化。",
     "modality": [
       "视觉",
@@ -6798,7 +6798,7 @@
   {
     "id": "alfred",
     "name": "ALFRED",
-    "institution": "USC / Allen Institute for AI",
+    "institution": "南加州大学 (USC) / 艾伦人工智能研究所 (AI2)",
     "description": "ALFRED (Action Learning From REalistic Directions) 是由 **USC** 和 **Allen Institute for AI** 联合发布的经典模拟家居任务指令数据集。\n\n该数据集包含 **8,055 条**专家演示和 **25,743 条**高层/低层自然语言指令，任务覆盖模拟家庭环境中的多步操作，每个任务平均 **50 个动作步骤**。使用第一人称视觉输入，要求模型将视觉和语言指令映射为操作序列。\n\nALFRED 是具身指令跟随领域的经典 benchmark，广泛用于评估 VLN 和 VLA 模型的长期任务规划能力。",
     "modality": [
       "视觉",
@@ -7222,7 +7222,7 @@
   {
     "id": "behavior-1k",
     "name": "Behavior-1K",
-    "institution": "Stanford University",
+    "institution": "斯坦福大学 (Stanford University)",
     "description": "BEHAVIOR-1K 是由 **Stanford University** 发布的大规模日常活动仿真基准。\n\n该数据集通过调研人类需求，收集了人类最希望机器人协助完成的 **1000 种活动**（费力活动排名最高，愉快活动排名最低）。包含 **50+ 场景**和 **5000+ 个**带有物理和语义属性标注的物体。\n\n该基准旨在推动通用家用机器人的发展，是目前规模最大、最全面的日常活动仿真基准之一。",
     "modality": [
       "视觉",
@@ -7320,7 +7320,7 @@
   {
     "id": "cmu-play-fusion",
     "name": "CMU Play Fusion",
-    "institution": "Carnegie Mellon University",
+    "institution": "卡内基梅隆大学 (CMU)",
     "description": "CMU Play Fusion 是由 **Carnegie Mellon University** 发布的非结构化机器人操作数据集。\n\n该数据集通过让机器人在 **3 个复杂场景**（烧烤台、餐桌、洗碗池）中自由玩耍来收集数据，使用扩散模型和离散技能瓶颈从 play data 中发现可解释和可泛化的技能。\n\n属于 **Open X-Embodiment** 成员数据集，展示了从非结构化交互数据中学习可泛化操作技能的可行路径。",
     "modality": [
       "视觉",
@@ -7397,7 +7397,7 @@
   {
     "id": "nyu-franka-play",
     "name": "NYU Franka Play",
-    "institution": "New York University",
+    "institution": "纽约大学 (NYU)",
     "description": "NYU Franka Play 是由 **New York University** 发布的 Play-to-Policy 数据集。\n\n该数据集通过让人类在玩具厨房中自由操作 Franka 机器人来收集非结构化的 play data，然后通过 Play-to-Policy 框架将其转化为目标条件策略，实现零样本泛化的操作任务。\n\n属于 **Open X-Embodiment** 成员数据集，核心场景包括开关微波炉门、烤箱门、转动灶台旋钮、移动锅等。",
     "modality": [
       "视觉",
@@ -7474,7 +7474,7 @@
   {
     "id": "berkeley-autolab-ur5",
     "name": "Berkeley Autolab UR5",
-    "institution": "UC Berkeley",
+    "institution": "加州大学伯克利分校 (UC Berkeley)",
     "description": "Berkeley Autolab UR5 是由 **UC Berkeley** 发布的自适应机器人操作研究平台数据集。\n\n该数据集使用 UR5 机器人收集了 **4 种操作任务**的数据：简单取放毛绒玩具、擦拭布料、堆叠杯子、需要精确 6DoF 旋转的瓶子取放。专注于变形物体处理和人类机器人协作场景。\n\n属于 **Open X-Embodiment** 成员数据集。",
     "modality": [
       "视觉",
@@ -7549,7 +7549,7 @@
   {
     "id": "berkeley-fanuc-manipulation",
     "name": "Berkeley Fanuc Manipulation",
-    "institution": "UC Berkeley",
+    "institution": "加州大学伯克利分校 (UC Berkeley)",
     "description": "Berkeley Fanuc Manipulation 是由 **UC Berkeley** 发布的工业机器人操作数据集。\n\n该数据集使用 **FANUC Mate 200iD** 工业机器人收集多视角视频、本体感知数据和语言指令。任务包括开关抽屉、抓取物体、关门、关电脑和推动物体等。\n\n属于 **Open X-Embodiment** 成员数据集，可用于训练 visuomotor 策略、微调视觉模型和指令条件动作生成。",
     "modality": [
       "视觉",
@@ -7625,7 +7625,7 @@
   {
     "id": "berkeley-cable-routing",
     "name": "Berkeley Cable Routing",
-    "institution": "UC Berkeley",
+    "institution": "加州大学伯克利分校 (UC Berkeley)",
     "description": "Berkeley Cable Routing 是由 **UC Berkeley** 发布的线缆穿夹精密操作数据集。\n\n该数据集训练机器人将线缆穿过多个紧密排列的夹子，使用分层模仿学习框架——**高层**对可复用的视觉运动原语进行排序，**低层**执行精确操作。系统能自主从故障中恢复，并通过交互式微调适应新场景。\n\n该工作展示了仅需少量演示即可实现鲁棒精密操作的可行性。",
     "modality": [
       "视觉",
@@ -7695,7 +7695,7 @@
   {
     "id": "cmu-stretch",
     "name": "CMU Stretch",
-    "institution": "Carnegie Mellon University",
+    "institution": "卡内基梅隆大学 (CMU)",
     "description": "CMU Stretch 是由 **Carnegie Mellon University** 发布的视觉可供性机器人操作数据集。\n\n该数据集基于 VRB (Vision-Robotics Bridge) 框架，从人类视频中学习视觉可供性（affordance），然后将这些知识迁移到机器人策略中。使用 Hello Robot Stretch 机器人在 **10+ 真实家居任务**中验证，仅需少量演示即可实现跨任务泛化。\n\n属于 **Open X-Embodiment** 成员数据集。",
     "modality": [
       "视觉",
@@ -7769,7 +7769,7 @@
   {
     "id": "roboturk",
     "name": "RoboTurk",
-    "institution": "Stanford University",
+    "institution": "斯坦福大学 (Stanford University)",
     "description": "RoboTurk 是由 **Stanford University** 发布的众包机器人遥操作数据集。\n\n该数据集通过 RoboTurk 众包平台收集了 **2,144 个**真实 Sawyer 机器人的遥操作演示，覆盖 **3 种操作任务**：抚平衣物、搭塔（叠碗）和搜索物体。\n\nRoboTurk 平台证明了大规模众包机器人数据采集的可行性，为可扩展的模仿学习提供数据基础。",
     "modality": [
       "视觉",
@@ -7837,7 +7837,7 @@
   {
     "id": "robomimic",
     "name": "RoboMimic",
-    "institution": "Stanford University",
+    "institution": "斯坦福大学 (Stanford University)",
     "description": "RoboMimic 是由 **Stanford University** 发布的机器人操作模仿学习基准数据集。\n\n该数据集提供 **模拟和真实环境**下的多阶段操作任务的高质量人类演示轨迹，专为评估**离线模仿学习**和**离线强化学习**算法而设计。包含多种难度级别的任务（lift / can / square / transport），覆盖单手和双手操作。\n\nRoboMimic 已成为离线机器人学习领域最广泛使用的 benchmark 之一。",
     "modality": [
       "视觉",
@@ -7908,7 +7908,7 @@
   {
     "id": "mime-cmu",
     "name": "MIME (CMU)",
-    "institution": "Carnegie Mellon University",
+    "institution": "卡内基梅隆大学 (CMU)",
     "description": "MIME (CMU) 是由 **Carnegie Mellon University** 发布的早期人机交互演示数据集。\n\n该数据集包含 **8,260 个**人机交互演示，覆盖 **20 种**不同的机器人操作任务，从简单的推动物体到复杂的堆叠家用物品。每个演示包含视频、状态和动作数据。\n\n该数据集是机器人模仿学习领域早期的重要数据资源，支持从人类演示中学习复杂操作策略。",
     "modality": [
       "视觉",
@@ -7976,7 +7976,7 @@
   {
     "id": "maniwav",
     "name": "ManiWAV",
-    "institution": "Stanford University / Columbia University",
+    "institution": "斯坦福大学 (Stanford University) / 哥伦比亚大学 (Columbia University)",
     "description": "ManiWAV 是由 **Stanford University** 和 **Columbia University** 联合发布的手持式机器人数据采集设备及配套数据集。\n\n该设备在采集人类操作演示时同步记录**音频**和**视觉**反馈，音频信号提供了关于接触状态、材料属性和任务进度的丰富信息。数据集支持训练融合音频-视觉的机器人操作策略。\n\n该工作展示了音频模态在机器人操作中的独特价值，特别是在接触丰富任务中。",
     "modality": [
       "视觉",
@@ -8046,7 +8046,7 @@
   {
     "id": "robotwin-2",
     "name": "RoboTwin 2.0",
-    "institution": "RoboTwin Team / Tsinghua University",
+    "institution": "RoboTwin Team / 清华大学 (Tsinghua University)",
     "description": "**RoboTwin 2.0** 是一个双臂机器人操作评测基准，基于数字孪生技术构建高保真仿真环境。评测包含多个双臂协作任务，分 Easy 和 Hard 两级难度。Easy 任务测试基础双臂协调（搬运、放置），Hard 任务要求精确的双臂配合（装配、工具传递）。核心特点：高保真数字孪生环境（物理参数毫米级标定）、双臂协作任务（精确的双手时空协调）、两级难度分级。当前 x-VLA（0.9b）以 Easy 70%/Hard 39% 居榜首，Pi0（3b）以 46.4%/16.3% 排第二。支持 LeRobot 和 RLDS 格式。",
     "modality": [
       "RGB",
@@ -8157,7 +8157,7 @@
   {
     "id": "robovqa",
     "name": "RoboVQA",
-    "institution": "Stanford University",
+    "institution": "斯坦福大学 (Stanford University)",
     "description": "RoboVQA 是由 **Stanford University** 发布的 RGB-D 场景图数据集。\n\n该数据集将 RGB-D 输入转化为可操作的场景图（scene graph），使机器人能够理解和执行跨 **3 栋办公楼**的长时间跨度的用户请求。通过场景图推理实现语言引导的任务执行，达到 **89%** 的真实世界成功率。\n\n该工作展示了结构化场景表示在长序列机器人任务中的独特价值。",
     "modality": [
       "视觉",
@@ -8230,7 +8230,7 @@
   {
     "id": "something-something-v2",
     "name": "Something-Something V2",
-    "institution": "TwentyBN / Qualcomm",
+    "institution": "TwentyBN / 高通 (Qualcomm)",
     "description": "Something-Something V2 是由 **TwentyBN** 发布的大规模人类动作理解视频数据集。\n\n该数据集包含 **220,847 个**视频，覆盖 **174 个**细粒度动作类别（如「拿起某物」「放下某物」「推开某物」）。每个视频展示人类手部执行基本物体操作动作。\n\n⚠️ **注意：这是人类操作数据，不是机器人数据集。** 常被 VLA 社区用于视觉表征预训练，帮助模型理解基本操作语义。",
     "modality": [
       "视觉",
@@ -8297,7 +8297,7 @@
   {
     "id": "youcook2",
     "name": "YouCook2",
-    "institution": "University of Michigan",
+    "institution": "密歇根大学 (University of Michigan)",
     "description": "YouCook2 是由 **University of Michigan** 发布的面向任务的烹饪教学视频数据集。\n\n该数据集包含 **2,000 个**长未修剪视频，覆盖 **89 个**烹饪食谱。每个视频展示人类从头到尾完成一道菜的全过程，包含自然语言旁白和动作序列。\n\n⚠️ **注意：这是人类操作数据，不是机器人数据集。** 常用于长序列任务规划和程序理解研究，对机器人学习中的时间推理有参考价值。",
     "modality": [
       "视觉",
@@ -8368,7 +8368,7 @@
   {
     "id": "100doh",
     "name": "100DOH",
-    "institution": "University of Michigan",
+    "institution": "密歇根大学 (University of Michigan)",
     "description": "100DOH (100 Days of Hands) 是由 **University of Michigan** 发布的大规模手-物交互视频数据集。\n\n该数据集从 YouTube 收集了 **27.3K 个**视频（覆盖 11 个类别的日常互动），包含接近 **131 天**的日常互动镜头。重点标注手部接触和手-物 2D 边界框，涵盖第一人称和第三人称视角。\n\n⚠️ **注意：这是人类操作数据，不是机器人数据集。** 常用于训练手部检测和操作理解模型，为机器人灵巧操作提供感知基础。",
     "modality": [
       "视觉",
@@ -8437,7 +8437,7 @@
   {
     "id": "epic-kitchens-100",
     "name": "EPIC-KITCHENS-100",
-    "institution": "University of Bristol / University of Toronto",
+    "institution": "布里斯托大学 (University of Bristol) / 多伦多大学 (University of Toronto)",
     "description": "EPIC-KITCHENS-100 是由 **University of Bristol** 和 **University of Toronto** 联合发布的大规模自我中心厨房操作数据集。\n\n该数据集包含 **100 小时**、**2,000 万帧**、**9 万个动作**片段，分布在 **700 个**长度不一的视频中。所有视频使用头戴式摄像机在 **45 种**不同的厨房环境中捕捉长时间的非脚本化日常活动。\n\n⚠️ **注意：这是人类操作数据，不是机器人数据集。** 被 VLA 社区（如 RoboMirror）用于自我中心视觉表征预训练，支持机器人模仿学习。",
     "modality": [
       "视觉",
@@ -8508,7 +8508,7 @@
   {
     "id": "assembly101",
     "name": "Assembly101",
-    "institution": "University of Bristol",
+    "institution": "布里斯托大学 (University of Bristol)",
     "description": "Assembly101 是由 **University of Bristol** 发布的精细装配动作数据集。\n\n该数据集记录了人们组装和拆卸 **101 款**「可拆卸」玩具车的过程，同时包含 **8 个静态**和 **4 个自我中心**视角录像。序列标注了超过 **10 万个**粗粒度动作片段、**100 万个**细粒度动作片段和 **1,800 万个** 3D 手部姿态。\n\n⚠️ **注意：这是人类操作数据，不是机器人数据集。** 但与机器人装配任务高度相关，3D 手部姿态可用于训练灵巧操作策略。",
     "modality": [
       "视觉",
@@ -8580,7 +8580,7 @@
   {
     "id": "motion-x",
     "name": "Motion-X",
-    "institution": "Tsinghua University / Shanghai AI Lab",
+    "institution": "清华大学 (Tsinghua University) / 上海人工智能实验室 (Shanghai AI Lab)",
     "description": "Motion-X 是由 **Tsinghua University** 和 **Shanghai AI Lab** 联合发布的大规模 3D 全身人体运动数据集。\n\n该数据集包含 **1,560 万个**全身姿态和 **81,100 个**动作片段的 **SMPL-X** 参数标注（含手部姿态），提供动作标签、文本标签及 RGB 视频等多模态信息。\n\n⚠️ **注意：这是人类运动数据，不是机器人数据集。** 但通过 RoboMirror 等方法可重定向到人形机器人，用于训练全身运动控制策略。是人形机器人运动生成的重要参考数据。",
     "modality": [
       "视觉",
@@ -8651,7 +8651,7 @@
   {
     "id": "ego-exo4d",
     "name": "Ego-Exo4D",
-    "institution": "Meta AI / 13 所高校",
+    "institution": "Meta AI / 多所高校联合",
     "description": "Ego-Exo4D 是由 **Meta AI** 联合全球 13 所高校发布的大规模多视角熟练技能数据集。\n\n该数据集同时捕捉**自我中心**和**外部视角**的熟练人类活动视频（运动、音乐、舞蹈、自行车维修等）。来自全球 **13 个城市**的 **740 名**参与者在 **123 种**自然场景中完成了这些活动，总时长达 **1,286 小时**。\n\n⚠️ **注意：这是人类操作数据，不是机器人数据集。** 被 RoboMirror 等方法用于学习机器人技能，自我中心视角特别适合训练 visuomotor 策略。",
     "modality": [
       "视觉",
@@ -8726,7 +8726,7 @@
   {
     "id": "amass",
     "name": "AMASS",
-    "institution": "Max Planck Institute / CMU / ETH Zürich",
+    "institution": "马普所 (Max Planck Institute) / 卡内基梅隆大学 (CMU) / 苏黎世联邦理工学院 (ETH Zurich)",
     "description": "AMASS (Archive of Motion Capture as Surface Shapes) 是由 **Max Planck Institute**、**CMU** 和 **ETH Zürich** 联合发布的大规模人体运动数据集。\n\n该数据集统一了 **15 个**不同的动作捕捉数据源（如 CMU MoCap、HumanEva、KIT、BMLrub 等），涵盖超过 **40 小时**的动作数据、**11,000+ 个**动作序列和约 **720 万帧**，覆盖 **300+ 个**对象。所有数据统一使用 **SMPL/SMPL-X** 人体模型参数表示。\n\n⚠️ **注意：这是人类运动数据，不是机器人数据集。** 但它是人形机器人运动控制领域的标准基准数据集，广泛用于训练和评估全身运动跟踪、重定向和模仿学习算法。AstraBrain-WBC 0.5 论文将 AMASS 作为对比基准（其训练数据比 AMASS 高出两个数量级）。",
     "modality": [
       "视觉",
@@ -8798,7 +8798,7 @@
   {
     "id": "phuma",
     "name": "PHUMA",
-    "institution": "KAIST (DAVIAN Robotics)",
+    "institution": "韩国科学技术院 (KAIST)",
     "description": "PHUMA (Physically-grounded HUMAnoid locomotion dataset) 是由 **KAIST DAVIAN Robotics** 实验室发布的大规模物理感知人形机器人运动数据集。\n\n该数据集包含 **73 小时**的动作数据、**76,000+ 个**运动片段，面向 **Unitree G1** 和 **H1-2** 人形机器人。PHUMA 通过物理感知筛选管线过滤了约 **70%** 的原始 Humanoid-X 数据中的伪影（抖动、漂浮、穿地、滑步、关节越界），并使用自研 PhySINK 重定向方法确保物理合理性。\n\n⚠️ **注意：这是人类运动重定向数据，不是机器人真机数据。** 在模仿学习基准中，PHUMA 的成功率分别是 AMASS 和 Humanoid-X 的 **1.2×** 和 **2.1×**。被 AstraBrain-WBC 0.5 和 NVIDIA ProtoMotions 使用。",
     "modality": [
       "视觉",
@@ -8942,7 +8942,7 @@
   {
     "id": "motion-x-plus",
     "name": "Motion-X++",
-    "institution": "Tsinghua University / IDEA / JHU / CUHK-Shenzhen",
+    "institution": "清华大学 (Tsinghua University) / 粤港澳大湾区数字经济研究院 (IDEA) / 约翰霍普金斯大学 (JHU) / 香港中文大学（深圳）(CUHK-Shenzhen)",
     "description": "Motion-X++ 是由 **Tsinghua University**、**IDEA**、**JHU** 和 **CUHK-Shenzhen** 联合发布的 Motion-X 数据集的大幅扩展版本。\n\n相比原版 Motion-X（15.6M 帧），Motion-X++ 包含 **120.5K 个**运动片段、**1,950 万帧**、**180.9 小时**数据，并新增 **80.8K RGB 视频**和 **45.3K 音频**样本。使用 GPT-4V 进行逐帧级语义标注，支持文本/音频驱动的全身运动生成。\n\n⚠️ **注意：这是人类运动数据，不是机器人数据集。** 被 AstraBrain-WBC 0.5 作为训练数据源之一，用于人形机器人全身运动控制研究。数据集需申请授权后从 HuggingFace 下载。",
     "modality": [
       "视觉",
@@ -9655,7 +9655,7 @@
   {
     "id": "molmoact-dataset",
     "name": "MolmoAct 视觉-语言-动作数据集",
-    "institution": "Allen Institute for AI (Ai2)",
+    "institution": "艾伦人工智能研究所 (AI2)",
     "description": "MolmoAct 是 Allen Institute for AI (Ai2) 于 2025 年发布的大规模视觉-语言-动作 (VLA) 数据集，配套 MolmoAct 动作推理模型。数据集包含 10,000+ 条高质量单臂 Franka 机器人轨迹，覆盖 93 个独特操作任务和 15 个家居场景（厨房、浴室、卧室、客厅、桌面等）。数据以 LeRobot 格式发布，Apache 2.0 完全开源。MolmoAct-7B 模型在 LIBERO benchmark 上达到 86.6% 平均成功率，在 SimplerEnv 零样本评估达 70.5%。Ai2 后续还发布了 MolmoAct 2，新增 700+ 小时双臂操作数据。",
     "modality": [
       "RGB",
@@ -9818,7 +9818,7 @@
   {
     "id": "fastumi-100k",
     "name": "FastUMI-100K 大规模多模态操作数据集",
-    "institution": "上海人工智能实验室",
+    "institution": "上海人工智能实验室 (Shanghai AI Lab)",
     "description": "FastUMI-100K 是由**上海人工智能实验室**联合西北工业大学、上海交通大学、同济大学、西交利物浦大学、星辰机器人和中电信人工智能研究院等单位于 2025 年发布的大规模多模态机器人操作数据集。该数据集基于 FastUMI 硬件解耦的传感器增强演示采集系统（替换了 GoPro 的 VIO 管线为 RealSense T265），包含超过 **10 万条演示轨迹**（约 600 小时交互数据），覆盖 **54 类操作任务**和数百种家居物品。每条轨迹长 120-500 帧，提供多视角腕部鱼眼图像、末端执行器状态和文本标注。数据集具身无关，可用于多种机器人平台的模仿学习。",
     "modality": [
       "RGB",
@@ -9871,7 +9871,7 @@
   {
     "id": "clvr-jaco-play",
     "name": "CLVR Jaco Play 遥控机器人数据集",
-    "institution": "KAIST (韩国科学技术院)",
+    "institution": "韩国科学技术院 (KAIST)",
     "description": "CLVR Jaco Play 数据集由 KAIST CLVR Lab（Joseph J. Lim 教授）和南加州大学 (USC) 于 2023 年联合发布。使用 Kinova Jaco 2 机械臂通过遥操作收集 **1,085 段**操作演示，数据频率为 10Hz，总大小约 14.87 GB。每段数据包含前向/顶部两路 RGB 相机观测、末端笛卡尔位姿与速度、关节位置，以及描述目标任务的**自然语言指令**。数据以 CC-BY-4.0 协议开源，通过 GitHub + Google Drive 分发。",
     "modality": [
       "RGB",
@@ -10438,7 +10438,7 @@
   {
     "id": "metaworld",
     "name": "Meta-World",
-    "institution": "Stanford University / UC Berkeley",
+    "institution": "斯坦福大学 (Stanford University) / 加州大学伯克利分校 (UC Berkeley)",
     "description": "**Meta-World** 是 Stanford/UC Berkeley 于 CoRL 2019 发布的经典 MuJoCo 桌面机械臂评测基准。共 50 个短时序单步/简单多步桌面操作任务（推、按、开门、开抽屉、拾取放置、拧瓶盖、堆叠等原子技能），统一使用 Sawyer 单臂机械臂。四套评测划分：MT10（10 个任务同时学习）、MT50（全部 50 个任务联合训练）、ML10（10 训练 + 5 unseen 测试任务）、ML45（45 训练 + 5 unseen 全新任务）。核心测「任务间泛化」而非视觉/场景扰动泛化。重要：不自带预生成训练数据集，需自行在仿真内采集轨迹。由 Farama 基金会维护（metaworld.farama.org）。当前 pi0(Flow-Noise) 以 85.8% 居榜首。",
     "modality": [
       "RGB",
@@ -10765,7 +10765,7 @@
   {
     "id": "libero-plus",
     "name": "LIBERO-Plus",
-    "institution": "复旦大学 / 同济大学",
+    "institution": "复旦大学 (Fudan University) / 同济大学 (Tongji University)",
     "description": "**LIBERO-Plus** 是复旦大学和同济大学于 2025 年发布的 VLA 鲁棒性深度分析基准（arxiv 2510.13626）。7 大扰动维度（10,030 个任务）：相机视角、机器人初始状态、语言指令、光照条件、背景纹理、传感器噪声、物体布局。核心发现：标准 LIBERO 95%+ 成功率的模型在扰动下暴跌至 30% 以下。OpenVLA 相机视角变化后仅 0.8%。模型实质是视觉-动作而非视觉-语言-动作模型。与 LIBERO-PRO 互补——LIBERO-Plus 侧重感知扰动，LIBERO-PRO 侧重任务结构泛化。",
     "modality": [
       "RGB",

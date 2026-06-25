@@ -18,7 +18,7 @@ const standards = JSON.parse(fs.readFileSync('docs/data/standards.json', 'utf8')
 
 // Compute stats (for final log)
 const totalDatasets = datasets.length;
-const allOrgs = new Set(datasets.map(d => d.institution).filter(Boolean));
+const allOrgs = new Set(datasets.flatMap(d => (d.institution || '').split(' / ').map(s => s.trim()).filter(Boolean)).filter(Boolean));
 const allRobotTypes = new Set(datasets.flatMap(d => d.robotType || []));
 const totalStandards = standards.length;
 const partnerNames = [...allOrgs].slice(0, 12);
@@ -94,7 +94,7 @@ function buildAll(lang) {
 
   // Compute stats for this language
   const totalDatasets = dataDatasets.length;
-  const allOrgs = new Set(dataDatasets.map(d => d.institution).filter(Boolean));
+  const allOrgs = new Set(dataDatasets.flatMap(d => (d.institution || '').split(' / ').map(s => s.trim()).filter(Boolean)).filter(Boolean));
   const allRobotTypes = new Set(dataDatasets.flatMap(d => d.robotType || []));
   const totalStandards = dataStandards.length;
   const partnerNames = [...allOrgs].slice(0, 12);

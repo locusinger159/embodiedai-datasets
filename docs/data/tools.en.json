@@ -2,7 +2,7 @@
   {
     "id": "robosuite",
     "name": "RoboSuite",
-    "institution": "UC Berkeley",
+    "institution": "加州大学伯克利分校 (UC Berkeley)",
     "description": "**RoboSuite** 是由 Stanford Vision and Learning Lab 最初开发，现由 **ARISE Initiative（Stanford / UT Austin / NVIDIA GEAR）**联合维护的模块化机器人仿真框架。\n\n基于 **MuJoCo** 物理引擎，提供标准化的机器人学习基准环境。\n\n**v1.5（2024.10）更新亮点**：\n- 支持人形机器人等多种新型机器人形态\n- 自定义机器人组合（程序化组装新机器人设计）\n- 复合控制器（IK + 操作空间 + 关节空间全身控制）\n- 集成 NVIDIA Isaac Sim 实现照片级渲染\n\n**核心特性**：9+ 标准化操作任务（Lift、Stack、Nut Assembly、Door 等），7 种机械臂 + 8 种夹爪模型，多模态传感器（RGB、深度、本体状态），Gymnasium API 兼容。配套 sister project **robomimic** 用于人类演示数据采集与模仿学习。",
     "toolType": "训练框架",
     "type": "open",
@@ -217,7 +217,7 @@
   {
     "id": "robomimic",
     "name": "robomimic",
-    "institution": "ARISE Initiative（Stanford / UT Austin / NVIDIA GEAR）",
+    "institution": "ARISE Initiative（Stanford / 德克萨斯大学奥斯汀分校 (UT Austin) / NVIDIA GEAR）",
     "description": "**robomimic** 是 ARISE Initiative 维护的机器人模仿学习数据处理与训练框架，是具身智能数据生态中最核心的数据处理工具之一。\n\n**数据处理管线**（原始数据 → 训练就绪）：\n1. 采集人类演示（robosuite 的 collect_human_demonstrations.py）\n2. 格式转换（convert_robosuite.py → robomimic 兼容 HDF5）\n3. 观测提取（dataset_states_to_obs.py，从 MuJoCo 状态回放生成图像观测）\n4. 数据集切分（split_train_val.py，90-10 划分）\n5. 训练（train.py，支持 BC/BC-RNN/BC-Transformer/Diffusion Policy/IQL 等算法）\n\n**HDF5 标准结构**：demo_N → states/actions/rewards/dones/obs/next_obs，动作归一化至 [-1, 1]，图像为 uint8 channel-last (H, W, C)。\n\n**v0.5.0（2025.06）**：新增 Diffusion Policy、多数据集联合训练、语言条件策略支持。\nv0.4.0（2025.03）：robosuite v1.5 兼容，数据集迁移至 HuggingFace。\n\n下载：pip install robomimic\nGitHub：https://github.com/ARISE-Initiative/robomimic",
     "toolType": "训练框架",
     "type": "open",
