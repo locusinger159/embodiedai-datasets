@@ -209,7 +209,7 @@
   {
     "id": "rh20t",
     "name": "RH20T",
-    "institution": "斯坦福大学 / Google",
+    "institution": "斯坦福大学 (Stanford University) / Google",
     "description": "RH20T 是由**斯坦福大学和 Google** 联合发布的高质量居家机器人视频数据集，包含 **20,000 个 RGB-D 视频片段**，覆盖 120+ 个日常任务。\n\n数据集在真实家庭环境中采集，涵盖清洁、整理、烹饪等多种日常场景。每段视频配有动作轨迹标注，适用于机器人模仿学习和视频预测研究。",
     "modality": [
       "RGB",
@@ -1549,7 +1549,7 @@
   {
     "id": "maniskill2",
     "name": "ManiSkill2",
-    "institution": "斯坦福大学 / 清华大学 (Tsinghua University)",
+    "institution": "斯坦福大学 (Stanford University) / 清华大学 (Tsinghua University)",
     "description": "**ManiSkill2** 是由北京大学提出的通用机器人操作基准。\n\n在 SAPIEN 引擎中构建了 **2,000+ 物体、4,000+ 任务变体**，支持刚体、铰链和流体操作。提供 GPU 并行渲染加速数据采集，独创任务生成管线可自动生成大量多样化训练数据。",
     "modality": [
       "点云",
@@ -2295,7 +2295,7 @@
   {
     "id": "robomind",
     "name": "RoboMIND",
-    "institution": "北京人形机器人创新中心",
+    "institution": "北京人形机器人创新中心 (Beijing Humanoid Robot Innovation Center)",
     "description": "**RoboMIND** 是国内统一人形数据协议基准，由多家研究机构联合构建。\n\n**RoboMIND 2.0** 已于 2025 年 12 月发布，新增 **31 万+ 双臂轨迹**和触觉增强，数据规模达 **6 万+ 分钟真机数据**，覆盖人形机器人操作任务，支持多平台联合训练。",
     "modality": [
       "视觉",
@@ -2777,7 +2777,7 @@
   {
     "id": "tactip-datasets",
     "name": "TacTip Datasets",
-    "institution": "布里斯托大学",
+    "institution": "布里斯托大学 (University of Bristol)",
     "description": "**TacTip 触觉数据集**是由 Bristol Robotics Laboratory（Nathan Lepora 团队）发布的系列光学触觉传感器数据集。\n\nTacTip 是一种仿生柔性光学触觉传感器，通过 3D 打印的仿指纹结构 + 内部摄像头追踪接触形变来感知触觉信息。\n\n**主要数据集**：\n- Bristol 数据仓库：触觉伺服、超分辨率、主动触觉感知等多个数据集，含 tactip-127 和 tactip-331 两种规格\n- Sussex Figshare（2025）：光学触觉纹理分类数据集，15 种纹理，TacTip 拖拽采集，~100FPS\n\n**下载**：\n- Bristol 官方：https://data.bristol.ac.uk/data/ （搜索 TacTip）\n- 纹理分类：https://sussex.figshare.com/articles/dataset/Optical_Tactile_TacTip_Dataset_for_texture_classification/26935696\n\n协议：UK Non-Commercial Government Licence（非商用免费）。",
     "modality": [
       "触觉"
@@ -4758,7 +4758,7 @@
   {
     "id": "robomind2",
     "name": "RoboMIND 2.0",
-    "institution": "北京人形机器人创新中心 / 北京大学 (Peking University)",
+    "institution": "北京人形机器人创新中心 (Beijing Humanoid Robot Innovation Center) / 北京大学 (Peking University)",
     "description": "**RoboMIND 2.0** 是北京人形机器人创新中心与北京大学于 2025 年 12 月发布的超大规模多模态真实机器人操作数据集，是 RoboMIND 1.0 (RSS 2025) 的全面升级。\n\n**数据规模**：**31 万+** 演示轨迹、**1,000+** 小时操作数据、**759** 种精细任务、**1,139** 种交互物体、覆盖 **11** 个核心场景（工业分拣、化学实验室、家庭厨房、家电交互等）。\n\n**多形态覆盖**：**6 种机器人形态**——Franka Emika Panda、UR5e、AgileX 轮式双臂平台、'天工'全尺寸人形机器人（含灵巧手）、'天轶'轮式人形机器人、ARX 轮式机器人。\n\n**多模态感知**：\n- **视觉**：多视角 RGB-D\n- **触觉**：1.2 万条触觉增强片段（法向力 + 切向力），行业首次大规模集成\n- **语言**：Gemini 辅助生成的精细任务描述\n- **本体感知**：完整关节状态\n\n**训练框架**：配套 MIND-2 分层架构——慢系统（VLM 推理规划）+ 快系统（VLA 实时控制），采用 Implicit Q-Learning 离线 RL 训练。\n\n**协议**：CC BY-NC 4.0。\n\nAFUN 使用 RoboMIND2 作为训练数据源，并将其测试集（n=156）作为域外（out-of-domain）3D 运动评测基准。",
     "modality": [
       "RGB",
@@ -10079,7 +10079,7 @@
   {
     "id": "artvip",
     "name": "ArtVIP 高保真铰接物体数字资产数据集",
-    "institution": "北京人形机器人创新中心 / 北京市建筑设计研究院",
+    "institution": "北京人形机器人创新中心 (Beijing Humanoid Robot Innovation Center) / 北京市建筑设计研究院 (Beijing Institute of Architectural Design)",
     "description": "ArtVIP (Articulated-object digital assets with Visual realism, modular Interaction, and Physical fidelity) 是**北京人形机器人创新中心**联合**北京市建筑设计研究院**于 2025 年发布的高保真铰接物体数字资产数据集，已被 ICLR 2026 收录。\n\n数据集包含 **26 个类别、206 种高精度铰接物体**（橱柜、烤箱、折叠椅、冰箱、洗衣机等），v1.3 已扩展至 428 种。所有模型以 **USD (Universal Scene Description)** 格式发布，可直接导入 NVIDIA Isaac Sim 进行机器人仿真训练。\n\n三大核心特性：**视觉保真度**（精确几何网格 + 高分辨率纹理，CLIP 空间分布与真实世界对齐度提升 47%）、**物理保真度**（刚度、阻尼、摩擦力、质量、转动惯量、碰撞体积经毫米级标定，冰箱门磁吸、转椅差速转向精确复现）、**全场景交互**（灯光开关、物体操作与环境的物理-视觉联动）。\n\nSim2Real 验证：仅用仿真数据训练的 Diffusion Policy 零样本迁移至真实 Franka 机械臂开门成功率达 **30%**，混合少量真机数据后跃升至 **80%**。是机器人仿真训练和 Sim2Real 研究的核心数字资产。",
     "modality": [
       "3D模型",

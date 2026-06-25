@@ -113,8 +113,8 @@
     "id": "hdf5-robomimic",
     "name": "HDF5 机器人数据格式",
     "fullName": "robomimic / robosuite 生态",
-    "org": "斯坦福大学 (Stanford University) / AI2",
-    "institution": "斯坦福大学 (Stanford University) / AI2",
+    "org": "斯坦福大学 (Stanford University) / 艾伦人工智能研究所 (AI2)",
+    "institution": "斯坦福大学 (Stanford University) / 艾伦人工智能研究所 (AI2)",
     "type": "format",
     "openness": "open",
     "links": {
@@ -285,8 +285,8 @@
     "id": "libero",
     "name": "LIBERO",
     "fullName": "Lifelong Robot Learning Benchmark",
-    "org": "斯坦福大学 (Stanford University) / AI2",
-    "institution": "斯坦福大学 (Stanford University) / AI2",
+    "org": "斯坦福大学 (Stanford University) / 艾伦人工智能研究所 (AI2)",
+    "institution": "斯坦福大学 (Stanford University) / 艾伦人工智能研究所 (AI2)",
     "type": "benchmark",
     "openness": "open",
     "links": {
@@ -421,8 +421,8 @@
     "id": "behavior-1k",
     "name": "BEHAVIOR-1K",
     "fullName": "Household Activities Benchmark",
-    "org": "斯坦福大学 (Stanford University) / Duke",
-    "institution": "斯坦福大学 (Stanford University) / Duke",
+    "org": "斯坦福大学 (Stanford University) / 杜克大学 (Duke University)",
+    "institution": "斯坦福大学 (Stanford University) / 杜克大学 (Duke University)",
     "type": "benchmark",
     "openness": "open",
     "links": {
