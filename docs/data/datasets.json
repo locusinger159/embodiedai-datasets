@@ -2233,7 +2233,7 @@
       "gr00t"
     ],
     "quality": {
-      "collection": "真机遥操作采集（全身控制 + 力控）",
+      "collection": "遥操作采集",
       "annotation": "自动 + 人工核验（DaaS 工业质检管线）",
       "realWorld": "真机实测（100% 真实场景）",
       "hasSplit": true
@@ -2419,7 +2419,7 @@
       "gr00t"
     ],
     "quality": {
-      "collection": "遥操作采集（真机实采）",
+      "collection": "遥操作采集",
       "annotation": "动作标签",
       "realWorld": "真机实测",
       "hasSplit": false
@@ -2503,7 +2503,7 @@
       "gr00t"
     ],
     "quality": {
-      "collection": "仿真生成（Isaac Sim + Robocasa）",
+      "collection": "仿真生成",
       "annotation": "自动标注（含语言指令）",
       "realWorld": "仿真",
       "hasSplit": true
@@ -2581,7 +2581,7 @@
       "gr00t"
     ],
     "quality": {
-      "collection": "动作捕捉重定向（运动学仿真）",
+      "collection": "动作捕捉",
       "annotation": "自动标注（运动学重定向输出）",
       "realWorld": "仿真（运动学级，非动力学）",
       "hasSplit": false
@@ -2664,7 +2664,7 @@
       "gr00t"
     ],
     "quality": {
-      "collection": "真机遥操作采集（全身协同）",
+      "collection": "遥操作采集",
       "annotation": "自动标注 + 语言指令",
       "realWorld": "真机实测",
       "hasSplit": false
@@ -2738,7 +2738,7 @@
     "notes": "DIGIT 触觉传感器数据集，适合视觉-触觉融合。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "遥操作采集",
+      "collection": "多源聚合",
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -2803,7 +2803,7 @@
     "notes": "Bristol Robotics Lab 光学触觉传感器数据集系列。TacTip 仿生柔性触觉，3D 打印结构 + 内部摄像头追踪形变。包括触觉伺服、超分辨率、纹理分类等多数据集。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "遥操作采集",
+      "collection": "多源聚合",
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -3367,7 +3367,7 @@
     "notes": "2025年发布，跨具身双臂操作数据集，421个任务，支持层级能力标注。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "遥操作采集",
+      "collection": "仿真生成",
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -3781,7 +3781,7 @@
       "gr00t"
     ],
     "quality": {
-      "collection": "遥操作采集",
+      "collection": "UMI 便携采集",
       "annotation": "人工标注（语言指令）",
       "realWorld": "100%真机（非实验室多场景）",
       "hasSplit": true
@@ -4212,7 +4212,7 @@
     "notes": "CVPR 2022。全球最大第一人称视频数据集。5 大基准（情景记忆、手物交互、视听对话、社交、活动预测）。需签署数据使用协议。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "多源聚合",
+      "collection": "人类视频 (Ego)",
       "annotation": "人工标注（多轮多语言）",
       "realWorld": "100%真实第一人称",
       "hasSplit": true
@@ -4308,7 +4308,7 @@
     "notes": "NVIDIA IROS 2023，首个类别级 6-DoF 位姿 + 可供性标注的真实物体数据集。提供像素级 3D handle affordance 分割、物体 6-DoF 位姿、2D/3D 重建网格。AFUN 在 HANDAL-Mini/Easy/Hard 三个测试集上取得 SOTA。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "人工采集（真实桌面场景）",
+      "collection": "动作捕捉",
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -4470,7 +4470,7 @@
     "notes": "HKUST 2025 (GLOVER++)，当前最大规模的视觉可供性数据集。从 Ego4D/EPIC-KITCHENS 等人类视频自动提取手-物接触帧并回投标注。AFUN 在 HOVA-500K 可供性分割上取得 SOTA，并在其基础上转换生成了分割训练数据。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "多源聚合（Ego4D/EPIC-KITCHENS 自动标注）",
+      "collection": "人类视频 (Ego)",
       "annotation": "自动标注（半自动化管线）",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -4548,7 +4548,7 @@
     "notes": "上海 AI Lab 2025 (Affordance-R1)，基于 InstructPart 扩展的推理级可供性数据集。将直接指令改写为隐含推理问题（如 '打开垃圾桶应该碰哪里？'），考验 MLLM 的 Chain-of-Thought 可供性推理。AFUN 在 ReasonAFF 上大幅超越 Seg-Zero/Vision Reasoner/Qwen2.5VL 等基线。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "基于 InstructPart 扩展",
+      "collection": "多源聚合",
       "annotation": "自动标注（GPT-4o）+ 人工验证",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -4628,7 +4628,7 @@
     "notes": "CMU ACL 2025 Main，首个桥接任务导向交互与部件分割的基准。含 9,600 条人工标注任务指令（TRPS 任务推理部件分割 + ORPS 指代部件分割）。AFUN 在 InstructPart 可供性分割上取得 SOTA。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "人工采集（真实场景）",
+      "collection": "仿真生成",
       "annotation": "人工标注 + GPT 辅助 + 人工核验",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -4711,7 +4711,7 @@
     "notes": "ETH/Microsoft CVPR 2024 Oral，首个精细 3D 场景功能理解数据集。Faro 激光扫描仪捕捉 710 个真实室内场景，标注了把手、旋钮、按钮、开关等细小可交互元素。AFUN 在 SceneFun3D 的 3D 运动预测（n=721）上取得 SOTA。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "人工采集（Faro 激光扫描 + ARKit RGB-D）",
+      "collection": "多源聚合",
       "annotation": "人工标注",
       "realWorld": "100%真机（真实室内场景）",
       "hasSplit": true
@@ -4808,7 +4808,7 @@
       "gr00t"
     ],
     "quality": {
-      "collection": "人工遥操作采集 + Isaac Sim 数字孪生",
+      "collection": "仿真生成",
       "annotation": "自动标注（Gemini 语言标注）+ 人工核验",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -4895,7 +4895,7 @@
     "notes": "清华/北大 CVPR 2022，首个大规模 4D 第一人称人-物交互数据集。含全景分割、运动分割、3D 手部姿态、类别级 6-DoF 物体位姿。AFUN 将其作为人类第一人称训练数据源（1,020 episodes）。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "人工采集（头戴设备，自然室内环境）",
+      "collection": "人类视频 (Ego)",
       "annotation": "半自动标注 + 人工核验",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -4979,7 +4979,7 @@
     "notes": "Microsoft 2025，规模化 VLA 预训练数据集。从 EPIC-KITCHENS 和 Ego4D 人类活动视频中提取操作片段，提供逐帧 SLAM 相机内外参。AFUN 的最大训练数据源（129,433 条拟合曲线）。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "多源聚合（EPIC-KITCHENS + Ego4D）",
+      "collection": "人类视频 (Ego)",
       "annotation": "自动标注（VLM + SAM3 跟踪 + 深度反投影）",
       "realWorld": "100%真机（人类第一人称视频）",
       "hasSplit": true
@@ -5064,7 +5064,7 @@
       "rdt-1b"
     ],
     "quality": {
-      "collection": "人工遥操作采集（DAgger）",
+      "collection": "遥操作采集",
       "annotation": "人工标注（自然语言任务指令）",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -5150,7 +5150,7 @@
       "pi0"
     ],
     "quality": {
-      "collection": "人工遥操作采集 + 仿真生成",
+      "collection": "仿真生成",
       "annotation": "自动标注（动作记录）",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -5234,7 +5234,7 @@
     "notes": "上海 AI 实验室 2025，最大规模可模拟 3D 室内场景数据集。~40K 场景、196 万物体，20% 可交互（冰箱/微波炉/抽屉）。可导入 GRUtopia/InternUtopia 和 Isaac Sim 一键生成仿真场景，InternVLA-N1 配套数据集。15 类居家场景。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "Real2Sim + 程序化生成 + 人工设计",
+      "collection": "仿真生成",
       "annotation": "自动标注 + 人工核验",
       "realWorld": "仿真",
       "hasSplit": true
@@ -5318,7 +5318,7 @@
     "notes": "大晓机器人 + 港中文 2025.6，全球首个中国家庭专属全屋 3D 数据集。纯正中式家装（玄关鞋柜、封闭厨房、干湿分离卫浴、阳台），30 万真实户型 + 5 千全屋可交互仿真场景。用于批量生成全屋导航 + 家务训练数据。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "真实户型 + 程序化生成",
+      "collection": "遥操作采集",
       "annotation": "自动标注（VLM 验证）",
       "realWorld": "仿真",
       "hasSplit": true
@@ -5405,7 +5405,7 @@
       "gr00t"
     ],
     "quality": {
-      "collection": "多源聚合（真机遥操作 + 合成生成 + 互联网视频）",
+      "collection": "多源聚合",
       "annotation": "自动标注（VLM + 逆动力学推断）",
       "realWorld": "100%真机（遥操作层）",
       "hasSplit": true
@@ -5486,7 +5486,7 @@
       "gr00t"
     ],
     "quality": {
-      "collection": "人体动捕 + 视频提取",
+      "collection": "动作捕捉",
       "annotation": "自动标注（GPT-4o）+ 人工核验",
       "realWorld": "100%真机（MoCap）",
       "hasSplit": true
@@ -5573,7 +5573,7 @@
       "openvla"
     ],
     "quality": {
-      "collection": "人工遥操作 + 仿真生成",
+      "collection": "仿真生成",
       "annotation": "自动标注（仿真）+ 人工标注（遥操作）",
       "realWorld": "100%真机（遥操作）",
       "hasSplit": true
@@ -5657,7 +5657,7 @@
       "openvla"
     ],
     "quality": {
-      "collection": "仿真生成（MuJoCo + Isaac Sim 光追）",
+      "collection": "仿真生成",
       "annotation": "自动标注",
       "realWorld": "仿真",
       "hasSplit": true
@@ -5740,7 +5740,7 @@
     "notes": "全球唯一专业康复师示范护理多模态数据集。21位职业治疗师在人体模型上执行翻身、擦浴、穿衣、喂饭、轮椅转移等15项核心护理任务。含触觉压力传感+动捕骨骼+眼动追踪。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "职业治疗师遥操作演示",
+      "collection": "人类视频 (Ego)",
       "annotation": "专家层级标注",
       "realWorld": "100% 真机（人体模型+传感器）",
       "hasSplit": true
@@ -5827,7 +5827,7 @@
     "notes": "55种老年人居家日常动作数据集，Kinect RGB-D+3D骨骼，真实居家环境采集，适配居家监护机器人动作识别。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "真实居家环境录制",
+      "collection": "人类视频 (Ego)",
       "annotation": "人工标注动作类别",
       "realWorld": "100% 真实居家",
       "hasSplit": true
@@ -5908,7 +5908,7 @@
     "notes": "首个面向跌倒前检测的公开IMU数据集。腰后9轴惯性传感器100Hz采集，同步90fps视频标注跌倒时刻。深度学习基准99.3%灵敏度。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "实验室模拟录制",
+      "collection": "人类视频 (Ego)",
       "annotation": "视频同步标注跌倒时刻",
       "realWorld": "模拟跌倒（非真实跌倒）",
       "hasSplit": true
@@ -5987,7 +5987,7 @@
     "notes": "面向养老护理机器人的动作识别数据集，含RGB视频+人体骨骼双模态。配套多流3D CNN架构，CC BY 4.0开源。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "模拟护理场景录制",
+      "collection": "人类视频 (Ego)",
       "annotation": "人工标注动作类别",
       "realWorld": "模拟环境",
       "hasSplit": true
@@ -6067,7 +6067,7 @@
     "notes": "全球首个穴位按摩VLM数据集。60个穴位12K图像+174K QA对。HMR-1分层按摩框架：Qwen-VL定位穴位+Franka Panda执行6-DOF按摩。IoU=0.5成功率81.4%。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "多光照条件实拍 + 数据增强",
+      "collection": "人类视频 (Ego)",
       "annotation": "专业穴位标注",
       "realWorld": "100% 真实拍摄",
       "hasSplit": true
@@ -6149,7 +6149,7 @@
     "notes": "Nature Scientific Data 发表的老年vs年轻人全身IMU运动学数据集。33个传感器100Hz，30项日常任务含步态和坐站测试。Motion-BIDS标准格式。CC BY 4.0。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "实验室标准化采集",
+      "collection": "动作捕捉",
       "annotation": "任务类型和条件标签",
       "realWorld": "100% 真人运动采集",
       "hasSplit": true
@@ -6311,7 +6311,7 @@
       "rdt-1b"
     ],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "仿真生成",
       "annotation": "部分人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -6553,7 +6553,7 @@
       "rt-2"
     ],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "遥操作采集",
       "annotation": "部分人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -6624,7 +6624,7 @@
     "notes": "LLM 从 few-shot 样例推断用户偏好，个性化整理收纳，85% 真实世界成功率。移动操作机器人。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "遥操作采集",
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": false
@@ -6692,7 +6692,7 @@
     "notes": "Diffusion Policy 标准 benchmark。推 T 形块到目标位姿 + 移动到出口。46.9% 更高成功率。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "遥操作采集",
       "annotation": "自动标注",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -6760,7 +6760,7 @@
     "notes": "去中心化家居机器人数据。109 个家庭，20 分钟学会一项任务，81% 成功率。开源硬件设计 + 数据。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "遥操作采集",
       "annotation": "部分人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -7358,7 +7358,7 @@
       "rdt-1b"
     ],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "遥操作采集",
       "annotation": "部分人工标注",
       "realWorld": "100%真机",
       "hasSplit": false
@@ -7435,7 +7435,7 @@
       "rdt-1b"
     ],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "遥操作采集",
       "annotation": "部分人工标注",
       "realWorld": "100%真机",
       "hasSplit": false
@@ -7511,7 +7511,7 @@
       "rdt-1b"
     ],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "遥操作采集",
       "annotation": "部分人工标注",
       "realWorld": "100%真机",
       "hasSplit": false
@@ -7587,7 +7587,7 @@
       "rdt-1b"
     ],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "遥操作采集",
       "annotation": "部分人工标注",
       "realWorld": "100%真机",
       "hasSplit": false
@@ -7657,7 +7657,7 @@
     "notes": "分层模仿学习实现线缆穿夹。高层视觉运动原语排序 + 低层执行，自主故障恢复，交互式微调适应新场景。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "遥操作采集",
       "annotation": "部分人工标注",
       "realWorld": "100%真机",
       "hasSplit": false
@@ -7732,7 +7732,7 @@
       "rdt-1b"
     ],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "遥操作采集",
       "annotation": "部分人工标注",
       "realWorld": "100%真机",
       "hasSplit": false
@@ -7800,7 +7800,7 @@
     "notes": "众包遥操作平台。2144 个真实 Sawyer 演示，3 任务（叠衣/搭塔/搜索），可扩展的模仿学习。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "遥操作采集",
       "annotation": "部分人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -7868,7 +7868,7 @@
     "notes": "开源人类演示机器人操作数据集。模拟+真实环境多阶段任务，评估离线模仿学习和强化学习算法。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "遥操作采集",
       "annotation": "部分人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -7939,7 +7939,7 @@
     "notes": "早期人机交互数据集。8260 个演示覆盖 20 种任务，从简单推物到复杂家居物品堆叠。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "遥操作采集",
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": false
@@ -8007,7 +8007,7 @@
     "notes": "ManiWAV 手持采集设备，同步音频+视觉反馈。从人类演示中学习接触丰富的操作策略。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "遥操作采集",
       "annotation": "自动标注",
       "realWorld": "100%真机",
       "hasSplit": false
@@ -8190,7 +8190,7 @@
     "notes": "将 RGB-D 转为可操作场景图，语言引导长序列任务执行。3 栋办公楼，89% 真实世界成功率。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "人工遥操作采集",
+      "collection": "多源聚合",
       "annotation": "人工标注",
       "realWorld": "100%真机",
       "hasSplit": true
@@ -8260,7 +8260,7 @@
     "notes": "⚠️ 人类操作数据，非机器人数据集。220K 视频 174 动作类，广泛用于动作理解预训练。VLA 社区用于训练视觉表征。",
     "vlaCompatible": [],
     "quality": {
-      "collection": null,
+      "collection": "人类视频 (Ego)",
       "annotation": null,
       "realWorld": null,
       "hasSplit": false
@@ -8329,7 +8329,7 @@
     "notes": "⚠️ 人类操作数据，非机器人数据集。2000 个未修剪烹饪视频 89 食谱。用于长序列任务规划研究。",
     "vlaCompatible": [],
     "quality": {
-      "collection": null,
+      "collection": "人类视频 (Ego)",
       "annotation": null,
       "realWorld": null,
       "hasSplit": false
@@ -8398,7 +8398,7 @@
     "notes": "⚠️ 人类操作数据，非机器人数据集。27.3K 视频检测手-物交互。用于训练手部检测和操作理解模型。",
     "vlaCompatible": [],
     "quality": {
-      "collection": null,
+      "collection": "人类视频 (Ego)",
       "annotation": null,
       "realWorld": null,
       "hasSplit": false
@@ -8468,7 +8468,7 @@
     "notes": "⚠️ 人类操作数据，非机器人数据集。自我中心厨房操作，100h 头戴摄像机。VLA 社区用于视觉表征预训练。",
     "vlaCompatible": [],
     "quality": {
-      "collection": null,
+      "collection": "人类视频 (Ego)",
       "annotation": null,
       "realWorld": null,
       "hasSplit": false
@@ -8540,7 +8540,7 @@
     "notes": "⚠️ 人类操作数据，非机器人数据集。101 款玩具车装配/拆卸，8+4 视角，18M 3D 手部姿态。与机器人装配任务直接相关。",
     "vlaCompatible": [],
     "quality": {
-      "collection": null,
+      "collection": "人类视频 (Ego)",
       "annotation": null,
       "realWorld": null,
       "hasSplit": false
@@ -8611,7 +8611,7 @@
     "notes": "⚠️ 人类运动数据，非机器人数据集。15.6M 全身 3D 姿态 SMPL-X，用于文本驱动动作生成。人形机器人参考使用。",
     "vlaCompatible": [],
     "quality": {
-      "collection": null,
+      "collection": "动作捕捉",
       "annotation": null,
       "realWorld": null,
       "hasSplit": false
@@ -8683,7 +8683,7 @@
     "notes": "⚠️ 人类操作数据，非机器人数据集。自我中心+外部视角同步，1286h 熟练技能（运动/音乐/维修）。RoboMirror 使用。",
     "vlaCompatible": [],
     "quality": {
-      "collection": null,
+      "collection": "人类视频 (Ego)",
       "annotation": null,
       "realWorld": null,
       "hasSplit": false
@@ -8758,7 +8758,7 @@
     "notes": "⚠️ 人类运动数据，非机器人数据集。人形机器人运动控制领域最广泛使用的公开基准数据集。AstraBrain-WBC 0.5 的训练数据比 AMASS 高出两个数量级。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "多源聚合",
+      "collection": "动作捕捉",
       "annotation": "自动标注",
       "realWorld": "100%真机（动作捕捉）",
       "hasSplit": true
@@ -8829,7 +8829,7 @@
     "notes": "⚠️ 人类运动数据（重定向），非机器人数据集。物理感知人形运动数据集，3× AMASS 规模。过滤 70% 抖动/漂浮/穿地的伪影数据。AstraBrain-WBC 0.5 训练数据源之一。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "多源聚合",
+      "collection": "动作捕捉",
       "annotation": "自动标注",
       "realWorld": "100%真机（动作捕捉重定向）",
       "hasSplit": true
@@ -8902,7 +8902,7 @@
     "notes": "⚠️ 人类运动数据，非机器人数据集。Ubisoft 动画数据集，17 类主题（舞蹈/武术/跌倒/障碍等）。AstraBrain-WBC 0.5 训练数据源之一，已重定向到宇树 G1。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "动作捕捉采集",
+      "collection": "动作捕捉",
       "annotation": "自动标注",
       "realWorld": "100%真机（动作捕捉）",
       "hasSplit": true
@@ -8976,7 +8976,7 @@
     "notes": "⚠️ 人类运动数据，非机器人数据集。Motion-X 的显著扩展版，新增 RGB 视频+音频，GPT-4V 语义标注。AstraBrain-WBC 0.5 训练数据源之一。需授权下载。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "多源聚合",
+      "collection": "动作捕捉",
       "annotation": "自动标注（GPT-4V）",
       "realWorld": "仿真（SMPL-X 拟合）",
       "hasSplit": true
@@ -9490,7 +9490,7 @@
       "act"
     ],
     "quality": {
-      "collection": "遥操作采集",
+      "collection": "仿真生成",
       "annotation": "人工标注",
       "realWorld": "仿真",
       "hasSplit": false
@@ -9855,7 +9855,7 @@
     "notes": "上海 AI Lab 联合多所高校 (西北工大/上交/同济/西交利物浦) 于 2025 年发布。UMI 风格数据集，10 万+ 演示、54 任务、数百种物体。多视角腕部鱼眼相机 + 末端状态 + 文本标注。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "遥操作采集",
+      "collection": "UMI 便携采集",
       "annotation": "人工标注",
       "realWorld": "真机实测",
       "hasSplit": true
@@ -10063,7 +10063,7 @@
     "notes": "ETH RSL 发布的全球最大野外四足机器人多模态数据集。ANYmal D + Boxi 传感器套件 (3 LiDAR + 10 RGB + 7 Depth + 8 IMU + GNSS/INS)。厘米级 RTK-GNSS 真值。",
     "vlaCompatible": [],
     "quality": {
-      "collection": "真机实测",
+      "collection": "多源聚合",
       "annotation": "自动标注",
       "realWorld": "真机实测",
       "hasSplit": false
