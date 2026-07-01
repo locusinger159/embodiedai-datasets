@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Superdata RobotAI Blog</title>
+  <link>https://superdata-robotai.com/blog/</link>
+  <description>具身智能数据集技术博客</description>
+  <language>zh-CN</language>
+<item><title>AstraBrain-WBC 0.5 深度解析：人形机器人「小脑」迈入 GPT 时代</title><link>https://superdata-robotai.com/blog/astrabrain-wbc-05/</link><description>银河通用发布全球首个人形机器人通用小脑 GPT 基座模型。20 亿帧人类动作数据 + 80.4M 参数 + GPT 式因果 Transformer，零样本泛化成功率 92.58%，首次在人形运控领域验证 Scaling Law。</description><pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate><guid>https://superdata-robotai.com/blog/astrabrain-wbc-05/</guid></item>
+<item><title>阿里发布首个具身大模型 Qwen-Robot 系列：Manip + Nav + World 三模型矩阵深度解析</title><link>https://superdata-robotai.com/blog/qwen-robot-series/</link><description>6月16日，阿里巴巴正式发布千问具身智能大模型 Qwen-Robot 系列。三大核心模型——操作 VLA（Manip）、导航 VLN（Nav）、世界模型（World）——首次为机器人提供了完整的手、脚、大脑通用底座。本文逐一拆解技术架构与评测数据。</description><pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate><guid>https://superdata-robotai.com/blog/qwen-robot-series/</guid></item>
+<item><title>GR-1 人形机器人数据生态深度测评：从真机遥操作到百万级合成轨迹</title><link>https://superdata-robotai.com/blog/gr1-dataset-review/</link><description>深度拆解 GR-1 人形机器人三大数据集：Fourier ActionNet（3 万真机轨迹）、NVIDIA GR-1 仿真（三子集）、GR00T N1 训练集（78 万合成轨迹）。含横向对比、训练效果分析、实战选型指南。</description><pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate><guid>https://superdata-robotai.com/blog/gr1-dataset-review/</guid></item>
+<item><title>新手 7 天落地项目：MuJoCo + π0-3.5B + BC-Z 子集｜Franka Panda 虚拟水杯抓取</title><link>https://superdata-robotai.com/blog/7day-vla-franka-cup-grasp/</link><description>无实体机械臂，纯电脑仿真：7 天时间，用 MuJoCo + π0-3.5B + BC-Z 数据集在 12G 显存显卡上实现 Franka Panda 虚拟水杯抓取 VLA 闭环。含详细命令、代码和调试指南。</description><pubDate>Fri, 05 Jun 2026 00:00:00 GMT</pubDate><guid>https://superdata-robotai.com/blog/7day-vla-franka-cup-grasp/</guid></item>
+<item><title>我们给一个纯静态网站接入了 AI 语义搜索，没有用向量数据库</title><link>https://superdata-robotai.com/blog/ai-semantic-search/</link><description>在 43 个数据集、19 个标准、11 个工具中做语义搜索，需要多少基础设施？我们的答案是：一个 1.1MB 的 JSON 文件 + 一个阿里云函数计算实例。</description><pubDate>Wed, 03 Jun 2026 00:00:00 GMT</pubDate><guid>https://superdata-robotai.com/blog/ai-semantic-search/</guid></item>
+<item><title>UniACT 数据集深度解析：高德如何用 600 万轨迹统一具身智能数据格式</title><link>https://superdata-robotai.com/blog/uniact-dataset-deep-dive/</link><description>高德 AMAP CV Lab 发布的 UniACT 数据集整合了 6 个主流开源数据集，覆盖 20+ 种机器人形态，通过统一的末端执行器增量动作+旋转向量格式，为 VLA 模型预训练提供了跨具身数据基础。</description><pubDate>Tue, 02 Jun 2026 00:00:00 GMT</pubDate><guid>https://superdata-robotai.com/blog/uniact-dataset-deep-dive/</guid></item>
+<item><title>欢迎来到 EmbodiedAI Datasets 博客</title><link>https://superdata-robotai.com/blog/hello-world/</link><description>这是第一篇博客文章，介绍具身智能数据集导航站的博客板块。</description><pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate><guid>https://superdata-robotai.com/blog/hello-world/</guid></item>
+</channel>
+</rss>
