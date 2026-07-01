@@ -45,6 +45,10 @@
     <div class="filter-chips" id="opennessFilters"></div>
   </div>
   <div class="filter-card">
+    <div class="filter-card-header"><span class="filter-card-icon">📡</span><span class="filter-card-label" id="labelCollection">采集方式</span></div>
+    <div class="filter-chips" id="collectionFilters"></div>
+  </div>
+  <div class="filter-card">
     <div class="filter-card-header"><span class="filter-card-icon">🏷️</span><span class="filter-card-label" id="labelTags">热门标签</span></div>
     <div class="filter-chips" id="tagFilters"></div>
   </div>
@@ -74,7 +78,7 @@
 <script>
 {{I18N_JS}}
 const DS = {{DATASETS_JSON}};
-var isMobile=window.innerWidth<=768;var state={search:'',robot:[],task:[],type:[],tags:[],page:1,ps:15,sort:'year',sortDir:'desc',view:isMobile?'card':'table'};
+var isMobile=window.innerWidth<=768;var state={search:'',robot:[],task:[],type:[],tags:[],collection:[],page:1,ps:15,sort:'year',sortDir:'desc',view:isMobile?'card':'table'};
 var I=window.I18N||{};var tL=I.typeLabels||{open:'开源',partial:'部分开源',apply:'可申请',closed:'闭源'};
 document.addEventListener('DOMContentLoaded',function(){var a=document.getElementById('labelRobot'),b=document.getElementById('labelTask'),c=document.getElementById('labelOpenness');if(a)a.textContent=I.robotType||a.textContent;if(b)b.textContent=I.taskType||b.textContent;if(c)c.textContent=I.openness||c.textContent;var d=document.getElementById('searchInput');if(d)d.placeholder=I.searchPlaceholder||d.placeholder;var e=document.getElementById('sortOptionName'),f=document.getElementById('sortOptionOrg'),y=document.getElementById('sortOptionYear');if(e)e.textContent=I.sortName||e.textContent;if(f)f.textContent=I.sortOrg||f.textContent;if(y)y.textContent=I.sortYear||y.textContent;var g=document.getElementById('clearFiltersBtn');if(g)g.textContent=I.clearFilters||g.textContent;var h=document.getElementById('compareModalTitle');if(h)h.textContent=I.compareTitle||h.textContent});
 var cL={open:'type-open',partial:'type-partial',apply:'type-partial',closed:'type-closed'};
@@ -97,6 +101,9 @@ function buildFilters(){
   document.getElementById('robotFilters').innerHTML=rts.map(function(r){var n=cnt('robotType',r);return '<button class="filter-chip'+(state.robot.includes(r)?' active':'')+'" data-f="robot" data-v="'+r+'">'+rL(r)+(n?'<span class="chip-count">'+n+'</span>':'')+'</button>'}).join('');
   document.getElementById('taskFilters').innerHTML=tks.map(function(t){var n=cnt('task',t);return '<button class="filter-chip'+(state.task.includes(t)?' active':'')+'" data-f="task" data-v="'+t+'">'+tL2(t)+(n?'<span class="chip-count">'+n+'</span>':'')+'</button>'}).join('');
   document.getElementById('opennessFilters').innerHTML=tps.map(function(t){var n=DS.filter(function(d){return d.type===t}).length;return '<button class="filter-chip'+(state.type.includes(t)?' active':'')+'" data-f="type" data-v="'+t+'">'+tL[t]+'<span class="chip-count">'+n+'</span></button>'}).join('');
+  // Collection method filter
+  var collections=[...new Set(DS.map(function(d){return (d.quality||{}).collection||'遥操作采集'}))].sort();
+  document.getElementById('collectionFilters').innerHTML=collections.map(function(c){var n=DS.filter(function(d){return (d.quality||{}).collection===c||(!d.quality&&c==='遥操作采集')}).length;return '<button class="filter-chip'+(state.collection.includes(c)?' active':'')+'" data-f="collection" data-v="'+c+'">'+c+(n?'<span class="chip-count">'+n+'</span>':'')+'</button>'}).join('');
   document.getElementById('tagFilters').innerHTML=allTags.map(function(t){var n=DS.filter(function(d){return (d.tags||[]).indexOf(t)>-1}).length;return '<button class="filter-chip'+(state.tags.includes(t)?' active':'')+'" data-f="tags" data-v="'+t+'">'+t+(n?'<span class="chip-count">'+n+'</span>':'')+'</button>'}).join('');
   bindFilterChips();
 }
@@ -114,6 +121,7 @@ function filterData(){
   if(state.task.length)r=r.filter(function(d){return state.task.some(function(v){return (d.task||[]).indexOf(v)>-1})});
   if(state.type.length)r=r.filter(function(d){return state.type.indexOf(d.type)>-1});
   if(state.tags.length)r=r.filter(function(d){return state.tags.some(function(v){return (d.tags||[]).indexOf(v)>-1})});
+  if(state.collection.length)r=r.filter(function(d){var c=(d.quality||{}).collection||'遥操作采集';return state.collection.indexOf(c)>-1});
   if(state.sort){r.sort(function(a,b){var va=state.sort==='year'?(a.year||0):(a[state.sort]||''),vb=state.sort==='year'?(b.year||0):(b[state.sort]||'');if(Array.isArray(va))va=va.join(',');if(Array.isArray(vb))vb=vb.join(',');var cmp=state.sort==='year'?va-vb:String(va).localeCompare(String(vb),'zh');return state.sortDir==='asc'?cmp:-cmp})}
   return r;
 }

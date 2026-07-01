@@ -10,7 +10,7 @@
       "动作"
     ],
     "robotType": [
-      "多机型"
+      "机械臂"
     ],
     "task": [
       "操作"
@@ -27,7 +27,6 @@
     "year": 2024,
     "tags": [
       "大规模",
-      "RLDS",
       "跨具身"
     ],
     "notes": "跨具身最大开源数据集，RT-X 训练必备。覆盖多种机器人形态，适合泛化学习研究。",
@@ -119,8 +118,7 @@
     "year": 2023,
     "tags": [
       "模仿学习",
-      "扩散策略",
-      "HDF5"
+      "扩散策略"
     ],
     "notes": "小样本学习、模仿学习常用。数据质量高，任务多样。",
     "vlaCompatible": [
@@ -1360,7 +1358,7 @@
       "仿真状态"
     ],
     "robotType": [
-      "仿真"
+      "机械臂"
     ],
     "task": [
       "操作"
@@ -1428,7 +1426,7 @@
       "点云"
     ],
     "robotType": [
-      "仿真"
+      "机械臂"
     ],
     "task": [
       "操作",
@@ -1556,8 +1554,7 @@
       "视觉"
     ],
     "robotType": [
-      "机械臂",
-      "仿真"
+      "机械臂"
     ],
     "task": [
       "操作"
@@ -2223,10 +2220,7 @@
     "tags": [
       "世界模型",
       "全身控制",
-      "遥操作",
-      "灵巧手",
-      "触觉",
-      "LiDAR"
+      "触觉"
     ],
     "notes": "智元机器人 AGIBOT WORLD 2026 真机数据集。100% 真实场景 + 遥操作采集，精灵 G2 平台，多模态（RGB-D + 触觉 + LiDAR + 力控）。两阶段开源（模仿学习 + 多样交互），行业首个聚焦物理交互的数据集。",
     "vlaCompatible": [
@@ -2319,9 +2313,7 @@
     "dataFormat": "详见官方链接 — episode → step → observation（RGB + depth + tactile + proprioception）/ action（dual-arm + gripper）/ language_instruction, RLDS",
     "year": 2024,
     "tags": [
-      "触觉",
-      "双臂",
-      "RLDS"
+      "触觉"
     ],
     "notes": "国内统一人形数据协议基准。RoboMIND 2.0已发布(2025.12)，新增31万+双臂轨迹、触觉增强。",
     "vlaCompatible": [
@@ -2407,12 +2399,7 @@
     "dataFormat": "HDF5（关节状态）+ MP4（RGB 视频）+ MKV（深度视频） — episode → step → state（joint / pose / hand）/ action（joint / pose / hand）, HDF5 + MP4/MKV",
     "year": 2024,
     "tags": [
-      "遥操作",
-      "灵巧手",
-      "双臂",
-      "LeRobot",
-      "ACT",
-      "DP"
+      "扩散策略"
     ],
     "notes": "傅利叶 GR-1 真机实测数据集（ActionNet），3万+ 遥操作轨迹，CC BY-NC-SA 4.0。双臂灵巧手抓取、开柜门、倾倒物料等多模态数据，适配 LeRobot、ACT、DP、iDP3 框架。",
     "vlaCompatible": [
@@ -2476,8 +2463,7 @@
       "深度"
     ],
     "robotType": [
-      "人形机器人",
-      "仿真"
+      "人形机器人"
     ],
     "task": [
       "操作",
@@ -2494,9 +2480,7 @@
     "dataFormat": "HDF5 + LeRobot 格式 — episode → step → observation / action（LeRobot 兼容）",
     "year": 2024,
     "tags": [
-      "仿真",
-      "世界模型",
-      "LeRobot"
+      "世界模型"
     ],
     "notes": "NVIDIA 官方 GR-1 仿真数据集系列，含 Arena（开微波炉精标注）和 GR00T-Teleop-Sim（24 个桌面遥操作任务）等仿真轨迹，用于训练 GR00T N1/N1.5/N1.6 人形机器人基础模型。",
     "vlaCompatible": [
@@ -2574,7 +2558,7 @@
     "year": 2024,
     "tags": [
       "运动控制",
-      "人形"
+      "人形机器人"
     ],
     "notes": "宇树官方开源全身运动数据集。将 LAFAN1 动作捕捉数据通过 Interaction Mesh + IK（Pinocchio 库）重定向到 H1/H1-2/G1 三种人形机器人。30FPS 关节配置 CSV，2025 年春晚舞蹈表演训练基础。",
     "vlaCompatible": [
@@ -2655,9 +2639,7 @@
     "year": 2026,
     "tags": [
       "全身控制",
-      "遥操作",
-      "世界模型",
-      "RLDS"
+      "世界模型"
     ],
     "notes": "宇树 2026 年 3 月开源的 G1 人形机器人全身遥操作真机数据集，340+ 小时、189 万条动作轨迹，Apache 2.0 协议，RLDS 格式。覆盖家庭与工业场景的全身协同操作（行走+抓取+放置）。",
     "vlaCompatible": [
@@ -2983,7 +2965,7 @@
       "深度"
     ],
     "robotType": [
-      "仿真"
+      "机械臂"
     ],
     "task": [
       "导航"
@@ -3070,7 +3052,7 @@
     "dataFormat": "详见官方链接 — episode → step → observation（RGB + depth + IMU + joint_state）/ action（full-body joint_targets + root_velocity）/ reward, HDF5",
     "year": 2025,
     "tags": [
-      "人形",
+      "人形机器人",
       "运动控制",
       "家居"
     ],
@@ -3146,8 +3128,6 @@
     "dataFormat": "详见官方链接 — episode → step → observation（multi-view RGB + depth + proprioception + tactile）/ action（36-DoF dual-arm dexterous + gripper）, HDF5",
     "year": 2024,
     "tags": [
-      "灵巧手",
-      "双臂",
       "Sim-to-Real"
     ],
     "notes": "ICRA 2026，36-DoF双臂灵巧手操作数据集，HuggingFace开源，347种物体。",
@@ -3342,7 +3322,7 @@
       "动作"
     ],
     "robotType": [
-      "多机型"
+      "机械臂"
     ],
     "task": [
       "操作",
@@ -3360,8 +3340,6 @@
     "dataFormat": "详见官方链接 — episode → step → observation（RGB + tactile + force_torque + proprioception）/ action（contact-rich manipulation）, RLDS",
     "year": 2025,
     "tags": [
-      "接触",
-      "力控",
       "触觉"
     ],
     "notes": "2025年发布，跨具身双臂操作数据集，421个任务，支持层级能力标注。",
@@ -3433,7 +3411,7 @@
     "dataFormat": "详见官方链接 — episode → step → observation（proprioception + base_pose）/ action（joint_positions, full-body locomotion + manipulation）, CSV/HDF5",
     "year": 2026,
     "tags": [
-      "人形"
+      "人形机器人"
     ],
     "notes": "2026年中国首个开源具身智能数据平台，含触觉灵巧操作+全身运动数据。 官网提供数据集说明书、配套SDK代码与标注文档。",
     "vlaCompatible": [],
@@ -3488,7 +3466,7 @@
       "动作"
     ],
     "robotType": [
-      "多机型"
+      "机械臂"
     ],
     "task": [
       "操作"
@@ -3594,10 +3572,7 @@
     "year": 2025,
     "tags": [
       "世界模型",
-      "VLA",
-      "RLDS",
-      "LeRobot",
-      "移动操作"
+      "VLA"
     ],
     "notes": "统一硬件采集、真实开放场景、细粒度语言标注。两个月下载量破 40 万次，全球同类数据集关注度最高之一。配套 G0 双系统 VLA 模型。",
     "vlaCompatible": [],
@@ -3668,7 +3643,7 @@
       "语言"
     ],
     "robotType": [
-      "多机型"
+      "机械臂"
     ],
     "task": [
       "操作"
@@ -3685,7 +3660,6 @@
     "year": 2025,
     "tags": [
       "大规模",
-      "RLDS",
       "跨具身"
     ],
     "notes": "基于 OXE 的跨机体数据增强衍生集。Cross-Painting 技术将真实轨迹重绘到 9 种虚拟机器人，视觉+运动学双保真，专为跨机体泛化设计。",
@@ -3768,7 +3742,6 @@
     "year": 2024,
     "tags": [
       "大规模",
-      "RLDS",
       "语言标注"
     ],
     "notes": "18 个实验室联合采集，Franka Panda 统一平台，含成功+失败轨迹。RLDS 格式兼容 OXE，训练策略泛化提升约 20%。",
@@ -3855,11 +3828,7 @@
     "scale": "4.8 万+ 演示，12 任务，4 种机械臂",
     "dataFormat": "HDF5（Hugging Face 托管） — demonstration → states / actions / rewards / dones (robomimic 兼容)",
     "year": 2023,
-    "tags": [
-      "数据生成",
-      "仿真",
-      "HDF5"
-    ],
+    "tags": [],
     "notes": "NVIDIA CoRL 2023。从少量人类演示自动生成大规模仿真轨迹，跨机器人、跨物体泛化。Hugging Face 托管，兼容 robomimic。",
     "vlaCompatible": [
       "pi0"
@@ -3947,8 +3916,6 @@
     "dataFormat": "HDF5（robosuite / robomimic 兼容） — demonstration → states / actions / rewards / dones",
     "year": 2024,
     "tags": [
-      "数据生成",
-      "仿真",
       "家居"
     ],
     "notes": "RSS 2024。大规模厨房仿真，2500+ 3D 资产，MimicGen 自动扩增，支持 sim-to-real 迁移。支持移动机械臂与人形机器人。",
@@ -4034,7 +4001,7 @@
     "year": 2023,
     "tags": [
       "语言标注",
-      "仿真基准"
+      "benchmark"
     ],
     "notes": "ICCV 2023 / CVPR 2024 Embodied AI Workshop。首个连续目标状态的 language-grounding 基准，NVIDIA Isaac Sim。",
     "vlaCompatible": [],
@@ -4104,7 +4071,7 @@
       "动作"
     ],
     "robotType": [
-      "多机型"
+      "机械臂"
     ],
     "task": [
       "操作"
@@ -4120,9 +4087,7 @@
     "dataFormat": "TFDS（TensorFlow Datasets） — episode → step → image (64×64 or 128×128) / state (5-dim end-effector) / action (5-dim delta)",
     "year": 2019,
     "tags": [
-      "大规模",
-      "视频理解",
-      "跨机器人"
+      "大规模"
     ],
     "notes": "CoRL 2019。被誉为「机器人界的 ImageNet」。TFDS 直接加载，跨多机器人视频预测。",
     "vlaCompatible": [
@@ -4188,7 +4153,7 @@
       "语言"
     ],
     "robotType": [
-      "多机型"
+      "机械臂"
     ],
     "task": [
       "操作",
@@ -4206,8 +4171,7 @@
     "dataFormat": "MP4 视频 + JSON 标注 — video_component → canonical_video → canonical_clip → frame（annotations: narration / FHO / NLQ / VQ / AV）, 30fps, 3670h",
     "year": 2022,
     "tags": [
-      "多模态",
-      "视频理解"
+      "多模态"
     ],
     "notes": "CVPR 2022。全球最大第一人称视频数据集。5 大基准（情景记忆、手物交互、视听对话、社交、活动预测）。需签署数据使用协议。",
     "vlaCompatible": [],
@@ -4280,10 +4244,9 @@
       "3D重建"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
-      "可供性分割",
       "抓取"
     ],
     "type": "open",
@@ -4298,12 +4261,9 @@
     "year": 2023,
     "tags": [
       "可供性",
-      "HDF5",
-      "3D重建",
       "语义分割",
       "功能理解",
-      "AFUN",
-      "位姿估计"
+      "AFUN"
     ],
     "notes": "NVIDIA IROS 2023，首个类别级 6-DoF 位姿 + 可供性标注的真实物体数据集。提供像素级 3D handle affordance 分割、物体 6-DoF 位姿、2D/3D 重建网格。AFUN 在 HANDAL-Mini/Easy/Hard 三个测试集上取得 SOTA。",
     "vlaCompatible": [],
@@ -4364,11 +4324,9 @@
       "3D点云"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
-      "可供性分割",
-      "3D运动预测",
       "物体交互"
     ],
     "type": "open",
@@ -4442,11 +4400,9 @@
       "RGB"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
-      "可供性分割",
-      "接触点预测",
       "物体交互"
     ],
     "type": "open",
@@ -4461,7 +4417,6 @@
     "year": 2025,
     "tags": [
       "可供性",
-      "视频学习",
       "第一人称",
       "AFUN",
       "大规模",
@@ -4521,11 +4476,10 @@
       "语言"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
-      "可供性分割",
-      "语言推理"
+      "操作"
     ],
     "type": "open",
     "openness": "open",
@@ -4601,12 +4555,10 @@
       "语言"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
-      "可供性分割",
-      "语义分割",
-      "语言推理"
+      "操作"
     ],
     "type": "open",
     "openness": "open",
@@ -4681,12 +4633,10 @@
       "语言"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
-      "3D场景理解",
-      "可供性分割",
-      "3D运动预测"
+      "操作"
     ],
     "type": "open",
     "openness": "open",
@@ -4705,8 +4655,7 @@
       "语义分割",
       "点云",
       "功能理解",
-      "AFUN",
-      "3D重建"
+      "AFUN"
     ],
     "notes": "ETH/Microsoft CVPR 2024 Oral，首个精细 3D 场景功能理解数据集。Faro 激光扫描仪捕捉 710 个真实室内场景，标注了把手、旋钮、按钮、开关等细小可交互元素。AFUN 在 SceneFun3D 的 3D 运动预测（n=721）上取得 SOTA。",
     "vlaCompatible": [],
@@ -4770,7 +4719,6 @@
     "robotType": [
       "人形机器人",
       "机械臂",
-      "多机型",
       "灵巧手"
     ],
     "task": [
@@ -4791,14 +4739,11 @@
     "dataFormat": "HDF5 + MP4 — episode → step → observation（RGB-D + tactile + proprioception）/ action（dual-arm + mobile_base）/ language_instruction",
     "year": 2025,
     "tags": [
-      "人形",
-      "双臂",
+      "人形机器人",
       "触觉",
-      "移动操作",
       "多模态",
       "VLA",
       "大规模",
-      "力控",
       "Sim-to-Real",
       "AFUN"
     ],
@@ -4866,12 +4811,10 @@
       "3D点云"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
-      "人机交互",
-      "3D运动预测",
-      "可供性分割"
+      "人机交互"
     ],
     "type": "open",
     "openness": "open",
@@ -4884,13 +4827,11 @@
     "dataFormat": "PNG（RGB-D 帧）+ NPY（点云）+ JSON（标注） — sequence → frame → RGB-D / point_cloud / panoptic_segmentation / 6D_object_pose / hand_pose / action_label",
     "year": 2022,
     "tags": [
-      "人机交互",
       "第一人称",
       "3D运动",
       "点云",
       "语义分割",
-      "AFUN",
-      "位姿估计"
+      "AFUN"
     ],
     "notes": "清华/北大 CVPR 2022，首个大规模 4D 第一人称人-物交互数据集。含全景分割、运动分割、3D 手部姿态、类别级 6-DoF 物体位姿。AFUN 将其作为人类第一人称训练数据源（1,020 episodes）。",
     "vlaCompatible": [],
@@ -4950,13 +4891,12 @@
       "语言"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
       "操作",
       "抓取",
-      "交互",
-      "可供性分割"
+      "交互"
     ],
     "type": "open",
     "openness": "open",
@@ -4968,9 +4908,7 @@
     "dataFormat": "MP4（源视频）+ JSON（SLAM 相机参数 + 标注） — video_clip → action_interval → RGB_frames + SLAM_camera_poses + object_track + Bézier_curve",
     "year": 2025,
     "tags": [
-      "视频学习",
       "第一人称",
-      "人机交互",
       "VLA",
       "Sim-to-Real",
       "AFUN",
@@ -5051,7 +4989,6 @@
     "tags": [
       "VLA",
       "语言标注",
-      "RLDS",
       "模仿学习",
       "Sim-to-Real"
     ],
@@ -5116,8 +5053,7 @@
       "视觉"
     ],
     "robotType": [
-      "机械臂",
-      "多机型"
+      "机械臂"
     ],
     "task": [
       "操作",
@@ -5135,14 +5071,10 @@
     "dataFormat": "HDF5 / LeRobot Parquet / TFDS — episode → step → observation（multi-view RGB + proprioception）/ action（dual-arm 14-DoF + gripper）",
     "year": 2023,
     "tags": [
-      "ACT",
-      "DP",
-      "LeRobot",
+      "扩散策略",
       "Sim-to-Real",
-      "双臂",
       "模仿学习",
-      "VLA",
-      "扩散策略"
+      "VLA"
     ],
     "notes": "Stanford 2023 (ACT)，低成本双臂操作平台。含仿真数据集（Google Drive）和真实 Mobile ALOHA 数据（HuggingFace LeRobot）。精细操作标杆（折叠布料、小件组装），ACT/Diffusion Policy/DiT-Policy 等算法标配基准。",
     "vlaCompatible": [
@@ -5205,13 +5137,11 @@
       "语义分割"
     ],
     "robotType": [
-      "仿真",
-      "多机型"
+      "机械臂"
     ],
     "task": [
       "导航",
-      "操作",
-      "3D场景理解"
+      "操作"
     ],
     "type": "open",
     "openness": "open",
@@ -5225,8 +5155,6 @@
     "year": 2025,
     "tags": [
       "3D场景",
-      "仿真",
-      "导航",
       "大规模",
       "Sim-to-Real",
       "语义分割"
@@ -5289,14 +5217,12 @@
       "仿真状态"
     ],
     "robotType": [
-      "仿真",
-      "多机型"
+      "机械臂"
     ],
     "task": [
       "导航",
       "操作",
-      "家居",
-      "3D场景理解"
+      "家居"
     ],
     "type": "open",
     "openness": "open",
@@ -5309,8 +5235,6 @@
     "year": 2025,
     "tags": [
       "3D场景",
-      "仿真",
-      "导航",
       "家居",
       "大规模",
       "Sim-to-Real"
@@ -5373,8 +5297,7 @@
       "视觉"
     ],
     "robotType": [
-      "人形机器人",
-      "仿真"
+      "人形机器人"
     ],
     "task": [
       "操作",
@@ -5392,12 +5315,11 @@
     "dataFormat": "LeRobot 格式 + HDF5 + MP4 — episode -> step -> observation（RGB + proprioception）/ action（full-body joint_targets）/ language_instruction",
     "year": 2025,
     "tags": [
-      "人形",
+      "人形机器人",
       "VLA",
       "Sim-to-Real",
       "大规模",
       "运动控制",
-      "仿真",
       "世界模型"
     ],
     "notes": "NVIDIA GTC 2025 发布，全球首个开源人形机器人基础模型 GR00T N1 的训练数据集。含 78 万合成轨迹（约等于 6,500 小时演示）、真实遥操作数据、互联网规模人类视频。含人形行走/搬物/开关家具等多样化任务。混合训练比纯真实数据性能提升 40%。",
@@ -5475,7 +5397,7 @@
     "dataFormat": "NPY / HDF5（SMPL 参数 + 关节角度） — motion_sequence -> frame -> joint_angles（full-body）/ semantic_labels（20+ dimensions）/ style_descriptions",
     "year": 2025,
     "tags": [
-      "人形",
+      "人形机器人",
       "运动控制",
       "大规模",
       "Sim-to-Real",
@@ -5542,8 +5464,7 @@
       "视觉"
     ],
     "robotType": [
-      "灵巧手",
-      "仿真"
+      "灵巧手"
     ],
     "task": [
       "抓取",
@@ -5560,11 +5481,9 @@
     "dataFormat": "HDF5 / NPY + PNG — episode -> step -> observation（RGB-D + proprioception）/ action（dexterous_hand_joints）/ language_prompt",
     "year": 2025,
     "tags": [
-      "灵巧手",
       "抓取",
       "VLA",
       "Sim-to-Real",
-      "仿真",
       "语言标注",
       "大规模"
     ],
@@ -5627,8 +5546,7 @@
       "视觉"
     ],
     "robotType": [
-      "机械臂",
-      "仿真"
+      "机械臂"
     ],
     "task": [
       "抓取",
@@ -5646,7 +5564,6 @@
     "year": 2025,
     "tags": [
       "抓取",
-      "仿真",
       "VLA",
       "大规模",
       "Sim-to-Real",
@@ -5713,7 +5630,7 @@
       "动作"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
       "康养护理"
@@ -5730,12 +5647,9 @@
     "year": 2025,
     "tags": [
       "康养护理",
-      "遥操作",
       "多模态",
       "触觉",
-      "动捕",
-      "眼动追踪",
-      "IROS"
+      "动作捕捉"
     ],
     "notes": "全球唯一专业康复师示范护理多模态数据集。21位职业治疗师在人体模型上执行翻身、擦浴、穿衣、喂饭、轮椅转移等15项核心护理任务。含触觉压力传感+动捕骨骼+眼动追踪。",
     "vlaCompatible": [],
@@ -5802,7 +5716,7 @@
       "动作"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
       "康养护理"
@@ -5818,11 +5732,7 @@
     "dataFormat": "NPZ / AVI — subject → session → RGB video / depth / skeleton (25 joints × 3D)",
     "year": 2021,
     "tags": [
-      "康养护理",
-      "动作识别",
-      "老年人",
-      "RGB-D",
-      "3D骨骼"
+      "康养护理"
     ],
     "notes": "55种老年人居家日常动作数据集，Kinect RGB-D+3D骨骼，真实居家环境采集，适配居家监护机器人动作识别。",
     "vlaCompatible": [],
@@ -5884,7 +5794,7 @@
       "动作"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
       "康养护理"
@@ -5899,11 +5809,7 @@
     "dataFormat": "CSV / MAT — subject → trial → accelerometer(3) / gyroscope(3) / magnetometer(3) / euler(3) × timestamp(100Hz)",
     "year": 2021,
     "tags": [
-      "康养护理",
-      "跌倒检测",
-      "可穿戴",
-      "IMU",
-      "老年人安全"
+      "康养护理"
     ],
     "notes": "首个面向跌倒前检测的公开IMU数据集。腰后9轴惯性传感器100Hz采集，同步90fps视频标注跌倒时刻。深度学习基准99.3%灵敏度。",
     "vlaCompatible": [],
@@ -5963,7 +5869,7 @@
       "动作"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
       "康养护理"
@@ -5978,11 +5884,7 @@
     "dataFormat": "MP4 / NPZ — video → RGB frames / skeleton frames (N joints × 3D)",
     "year": 2023,
     "tags": [
-      "康养护理",
-      "动作识别",
-      "老年人",
-      "3D CNN",
-      "骨骼"
+      "康养护理"
     ],
     "notes": "面向养老护理机器人的动作识别数据集，含RGB视频+人体骨骼双模态。配套多流3D CNN架构，CC BY 4.0开源。",
     "vlaCompatible": [],
@@ -6057,12 +5959,7 @@
     "dataFormat": "JPEG / JSON — image → acupoint_bbox / acupoint_name / QA_pairs",
     "year": 2026,
     "tags": [
-      "康养护理",
-      "按摩",
-      "穴位",
-      "VLM",
-      "Franka",
-      "医疗机器人"
+      "康养护理"
     ],
     "notes": "全球首个穴位按摩VLM数据集。60个穴位12K图像+174K QA对。HMR-1分层按摩框架：Qwen-VL定位穴位+Franka Panda执行6-DOF按摩。IoU=0.5成功率81.4%。",
     "vlaCompatible": [],
@@ -6122,7 +6019,7 @@
       "动作"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
       "康养护理",
@@ -6138,13 +6035,7 @@
     "dataFormat": "TSV / BVH (Motion-BIDS) — subject → session → task → IMU_data (33 sensors × 100Hz) / BVH_animation",
     "year": 2025,
     "tags": [
-      "康养护理",
-      "运动学",
-      "老年人",
-      "IMU",
-      "步态",
-      "康复",
-      "可穿戴"
+      "康养护理"
     ],
     "notes": "Nature Scientific Data 发表的老年vs年轻人全身IMU运动学数据集。33个传感器100Hz，30项日常任务含步态和坐站测试。Motion-BIDS标准格式。CC BY 4.0。",
     "vlaCompatible": [],
@@ -6225,7 +6116,7 @@
     "tags": [
       "大规模",
       "语言标注",
-      "VLA训练"
+      "VLA"
     ],
     "notes": "600K 语言标注轨迹，开放词汇多任务桌面操作。OXE 成员，广泛用于 VLA 训练。",
     "vlaCompatible": [
@@ -6399,8 +6290,7 @@
     "tags": [
       "多模态",
       "benchmark",
-      "大规模",
-      "仿真"
+      "大规模"
     ],
     "notes": "VIMA-BENCH 多模态 prompt 桌面操作 benchmark，600K 轨迹。支持图文视频混合提示，4 级泛化协议评估零样本能力。",
     "vlaCompatible": [
@@ -6542,8 +6432,7 @@
     "year": 2023,
     "tags": [
       "长序列",
-      "家居",
-      "混合动作"
+      "家居"
     ],
     "notes": "混合动作空间模仿学习，稀疏 waypoint + 稠密底层动作。OXE 成员，咖啡/烤面包/摆盘任务，减少 40% 分布偏移。",
     "vlaCompatible": [
@@ -6617,9 +6506,7 @@
     "dataFormat": "自定义 — episode → step → RGB + 动作 + 语言偏好",
     "year": 2023,
     "tags": [
-      "LLM",
-      "家居",
-      "个性化"
+      "家居"
     ],
     "notes": "LLM 从 few-shot 样例推断用户偏好，个性化整理收纳，85% 真实世界成功率。移动操作机器人。",
     "vlaCompatible": [],
@@ -6685,7 +6572,7 @@
     "dataFormat": "HDF5 / Zarr — episode → step → RGB / state / action",
     "year": 2023,
     "tags": [
-      "精密操作",
+      "精细操作",
       "benchmark",
       "扩散策略"
     ],
@@ -6753,9 +6640,7 @@
     "dataFormat": "自定义 — episode → step → RGB / action",
     "year": 2024,
     "tags": [
-      "家居",
-      "去中心化",
-      "低成本"
+      "家居"
     ],
     "notes": "去中心化家居机器人数据。109 个家庭，20 分钟学会一项任务，81% 成功率。开源硬件设计 + 数据。",
     "vlaCompatible": [],
@@ -6806,7 +6691,7 @@
       "动作"
     ],
     "robotType": [
-      "仿真"
+      "机械臂"
     ],
     "task": [
       "家居",
@@ -6823,10 +6708,8 @@
     "dataFormat": "JSON + 图像 — task → steps → RGB / action / language",
     "year": 2019,
     "tags": [
-      "指令跟随",
       "benchmark",
-      "长序列",
-      "仿真"
+      "长序列"
     ],
     "notes": "经典模拟家居 benchmark。8055 专家演示 + 25743 条自然语言指令，每个任务平均 50 步。第一人称视觉。",
     "vlaCompatible": [],
@@ -7230,8 +7113,7 @@
       "动作"
     ],
     "robotType": [
-      "仿真",
-      "多机型"
+      "机械臂"
     ],
     "task": [
       "家居",
@@ -7249,9 +7131,7 @@
     "year": 2024,
     "tags": [
       "大规模",
-      "仿真",
-      "基准",
-      "日常活动"
+      "benchmark"
     ],
     "notes": "大规模日常活动仿真基准。1000 种活动（含费力/愉快），50+ 场景，5000+ 标注物体，物理+语义标注。",
     "vlaCompatible": [],
@@ -7345,8 +7225,6 @@
     "dataFormat": "RLDS / TFDS — episode → step → observation / action",
     "year": 2023,
     "tags": [
-      "非结构化",
-      "技能发现",
       "OXE成员"
     ],
     "notes": "OXE 成员，非结构化 play data 驱动技能发现。烧烤/摆桌/洗碗 3 场景，扩散模型 + 离散技能瓶颈。",
@@ -7422,8 +7300,6 @@
     "dataFormat": "RLDS / TFDS — episode → step → observation / action / goal",
     "year": 2023,
     "tags": [
-      "非结构化",
-      "玩具厨房",
       "OXE成员"
     ],
     "notes": "OXE 成员，Play-to-Policy。将非结构化人类 play 转化为目标条件策略，零样本泛化。玩具厨房场景。",
@@ -7498,8 +7374,6 @@
     "dataFormat": "RLDS / TFDS — episode → step → observation / action",
     "year": 2019,
     "tags": [
-      "变形物体",
-      "自适应",
       "OXE成员"
     ],
     "notes": "OXE 成员，UR5 研究平台。变形物体处理 + 人机协作，4 种操作任务。",
@@ -7574,7 +7448,6 @@
     "dataFormat": "RLDS / TFDS — episode → step → observation / action / language",
     "year": 2021,
     "tags": [
-      "工业机器人",
       "多视角",
       "OXE成员"
     ],
@@ -7650,9 +7523,7 @@
     "dataFormat": "RLDS / TFDS — episode → step → observation / action / primitive_label",
     "year": 2022,
     "tags": [
-      "精密操作",
-      "分层学习",
-      "线缆"
+      "精细操作"
     ],
     "notes": "分层模仿学习实现线缆穿夹。高层视觉运动原语排序 + 低层执行，自主故障恢复，交互式微调适应新场景。",
     "vlaCompatible": [],
@@ -7720,7 +7591,6 @@
     "year": 2023,
     "tags": [
       "可供性",
-      "人-机器人迁移",
       "OXE成员"
     ],
     "notes": "OXE 成员。VRB 从人类视频学习视觉可供性，实现跨任务策略迁移。10+ 真实世界任务，最少演示。",
@@ -7792,11 +7662,7 @@
     "scale": "2144 个众包遥操作演示，Sawyer 机器人 3 任务",
     "dataFormat": "HDF5 — episode → step → observation / action",
     "year": 2019,
-    "tags": [
-      "众包",
-      "遥操作",
-      "Sawyer"
-    ],
+    "tags": [],
     "notes": "众包遥操作平台。2144 个真实 Sawyer 演示，3 任务（叠衣/搭塔/搜索），可扩展的模仿学习。",
     "vlaCompatible": [],
     "quality": {
@@ -7862,7 +7728,6 @@
     "year": 2021,
     "tags": [
       "benchmark",
-      "离线学习",
       "模仿学习"
     ],
     "notes": "开源人类演示机器人操作数据集。模拟+真实环境多阶段任务，评估离线模仿学习和强化学习算法。",
@@ -7932,10 +7797,7 @@
     "scale": "8260 人机交互演示，20 种不同机器人任务",
     "dataFormat": "自定义 — episode → step → video / state / action",
     "year": 2018,
-    "tags": [
-      "早期数据集",
-      "人机交互"
-    ],
+    "tags": [],
     "notes": "早期人机交互数据集。8260 个演示覆盖 20 种任务，从简单推物到复杂家居物品堆叠。",
     "vlaCompatible": [],
     "quality": {
@@ -7999,11 +7861,7 @@
     "scale": "手持式数据采集设备，同步音频+视觉反馈",
     "dataFormat": "自定义 — episode → step → audio / video / state / action",
     "year": 2024,
-    "tags": [
-      "音频",
-      "手持采集",
-      "接触丰富"
-    ],
+    "tags": [],
     "notes": "ManiWAV 手持采集设备，同步音频+视觉反馈。从人类演示中学习接触丰富的操作策略。",
     "vlaCompatible": [],
     "quality": {
@@ -8071,11 +7929,8 @@
     "dataFormat": "LeRobot / RLDS",
     "year": 2024,
     "tags": [
-      "双臂",
       "benchmark",
-      "数字孪生",
-      "VLA",
-      "操作"
+      "VLA"
     ],
     "notes": "数字孪生双臂操作评测基准。高保真仿真，Easy/Hard 两级。x-VLA 以 Easy 70%/Hard 39% 居榜首，Pi0 以 Easy 46.4%/Hard 16.3% 排第二。",
     "vlaCompatible": [],
@@ -8183,9 +8038,7 @@
     "dataFormat": "自定义 — scene → objects → relationships → task",
     "year": 2024,
     "tags": [
-      "场景图",
-      "长序列",
-      "语言引导"
+      "长序列"
     ],
     "notes": "将 RGB-D 转为可操作场景图，语言引导长序列任务执行。3 栋办公楼，89% 真实世界成功率。",
     "vlaCompatible": [],
@@ -8237,7 +8090,7 @@
       "动作"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
       "人类操作"
@@ -8252,11 +8105,7 @@
     "scale": "220,847 视频，174 动作类别",
     "dataFormat": "视频文件 + JSON — video → action_label",
     "year": 2017,
-    "tags": [
-      "人类数据",
-      "动作理解",
-      "视频"
-    ],
+    "tags": [],
     "notes": "⚠️ 人类操作数据，非机器人数据集。220K 视频 174 动作类，广泛用于动作理解预训练。VLA 社区用于训练视觉表征。",
     "vlaCompatible": [],
     "quality": {
@@ -8306,7 +8155,7 @@
       "动作"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
       "人类操作"
@@ -8322,8 +8171,6 @@
     "dataFormat": "视频文件 + JSON — video → segments → actions / narration",
     "year": 2018,
     "tags": [
-      "人类数据",
-      "烹饪",
       "长序列"
     ],
     "notes": "⚠️ 人类操作数据，非机器人数据集。2000 个未修剪烹饪视频 89 食谱。用于长序列任务规划研究。",
@@ -8375,7 +8222,7 @@
       "动作"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
       "人类操作"
@@ -8391,8 +8238,6 @@
     "dataFormat": "视频文件 + JSON — video → frames → hand_bbox / object_bbox",
     "year": 2020,
     "tags": [
-      "人类数据",
-      "手-物交互",
       "大规模"
     ],
     "notes": "⚠️ 人类操作数据，非机器人数据集。27.3K 视频检测手-物交互。用于训练手部检测和操作理解模型。",
@@ -8445,7 +8290,7 @@
       "动作"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
       "人类操作"
@@ -8461,9 +8306,7 @@
     "dataFormat": "视频文件 + CSV — video → segments → action / narration / object",
     "year": 2020,
     "tags": [
-      "人类数据",
-      "自我中心",
-      "厨房"
+      "第一人称"
     ],
     "notes": "⚠️ 人类操作数据，非机器人数据集。自我中心厨房操作，100h 头戴摄像机。VLA 社区用于视觉表征预训练。",
     "vlaCompatible": [],
@@ -8515,7 +8358,7 @@
       "动作"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
       "人类操作",
@@ -8532,9 +8375,7 @@
     "dataFormat": "视频文件 + JSON — video → segments → action / 3d_hand_pose / object_pose",
     "year": 2022,
     "tags": [
-      "人类数据",
       "装配",
-      "3D手部姿态",
       "多视角"
     ],
     "notes": "⚠️ 人类操作数据，非机器人数据集。101 款玩具车装配/拆卸，8+4 视角，18M 3D 手部姿态。与机器人装配任务直接相关。",
@@ -8603,10 +8444,8 @@
     "dataFormat": "NPZ + JSON + 视频 — sequence → poses / text / video",
     "year": 2023,
     "tags": [
-      "人类数据",
-      "全身运动",
-      "SMPL-X",
-      "人形机器人"
+      "全身控制",
+      "SMPL-X"
     ],
     "notes": "⚠️ 人类运动数据，非机器人数据集。15.6M 全身 3D 姿态 SMPL-X，用于文本驱动动作生成。人形机器人参考使用。",
     "vlaCompatible": [],
@@ -8659,7 +8498,7 @@
       "动作"
     ],
     "robotType": [
-      "通用"
+      "机械臂"
     ],
     "task": [
       "人类操作"
@@ -8675,10 +8514,8 @@
     "dataFormat": "视频文件 + JSON — video → take → egocentric / exocentric",
     "year": 2023,
     "tags": [
-      "人类数据",
       "多视角",
-      "熟练技能",
-      "自我中心"
+      "第一人称"
     ],
     "notes": "⚠️ 人类操作数据，非机器人数据集。自我中心+外部视角同步，1286h 熟练技能（运动/音乐/维修）。RoboMirror 使用。",
     "vlaCompatible": [],
@@ -8749,11 +8586,8 @@
     "dataFormat": "NPZ — sequence → poses (SMPL/SMPL-X) / shape / gender",
     "year": 2019,
     "tags": [
-      "人类数据",
       "动作捕捉",
-      "SMPL",
-      "人形机器人",
-      "基准"
+      "benchmark"
     ],
     "notes": "⚠️ 人类运动数据，非机器人数据集。人形机器人运动控制领域最广泛使用的公开基准数据集。AstraBrain-WBC 0.5 的训练数据比 AMASS 高出两个数量级。",
     "vlaCompatible": [],
@@ -8821,10 +8655,7 @@
     "dataFormat": "NPY — clip → frames → root_trans / root_ori / dof_pos",
     "year": 2025,
     "tags": [
-      "人类数据",
-      "人形机器人",
-      "运动控制",
-      "物理感知"
+      "运动控制"
     ],
     "notes": "⚠️ 人类运动数据（重定向），非机器人数据集。物理感知人形运动数据集，3× AMASS 规模。过滤 70% 抖动/漂浮/穿地的伪影数据。AstraBrain-WBC 0.5 训练数据源之一。",
     "vlaCompatible": [],
@@ -8893,11 +8724,7 @@
     "dataFormat": "BVH — file → frames → joint_hierarchy / rotations / root_positions",
     "year": 2019,
     "tags": [
-      "人类数据",
-      "动作捕捉",
-      "BVH",
-      "人形机器人",
-      "动画"
+      "动作捕捉"
     ],
     "notes": "⚠️ 人类运动数据，非机器人数据集。Ubisoft 动画数据集，17 类主题（舞蹈/武术/跌倒/障碍等）。AstraBrain-WBC 0.5 训练数据源之一，已重定向到宇树 G1。",
     "vlaCompatible": [],
@@ -8967,11 +8794,9 @@
     "dataFormat": "NPZ + MP4 + JSON — sequence → SMPL-X poses / RGB video / audio / text descriptions",
     "year": 2025,
     "tags": [
-      "人类数据",
-      "全身运动",
+      "全身控制",
       "SMPL-X",
-      "多模态",
-      "GPT标注"
+      "多模态"
     ],
     "notes": "⚠️ 人类运动数据，非机器人数据集。Motion-X 的显著扩展版，新增 RGB 视频+音频，GPT-4V 语义标注。AstraBrain-WBC 0.5 训练数据源之一。需授权下载。",
     "vlaCompatible": [],
@@ -9042,13 +8867,7 @@
     "scale": "未明确轨迹数，3视角 RGB 视频",
     "dataFormat": "LeRobot / Parquet",
     "year": 2024,
-    "tags": [
-      "遥操作",
-      "灵巧手",
-      "LeRobot",
-      "人形机器人",
-      "双臂"
-    ],
+    "tags": [],
     "notes": "Unitree G1 人形机器人 + Dex3-1 三指灵巧手，Apple Vision Pro 遥操作采集。头部立体摄像头 + 左右手腕 RealSense D405，分辨率 640×480。宇树开源的 5 大 G1 操作数据集之一。",
     "vlaCompatible": [],
     "quality": {
@@ -9091,12 +8910,7 @@
     "scale": "约 17 万帧，351 个 episode",
     "dataFormat": "LeRobot / Parquet",
     "year": 2024,
-    "tags": [
-      "遥操作",
-      "LeRobot",
-      "人形机器人",
-      "桌面操作"
-    ],
+    "tags": [],
     "notes": "G1 搭载 Dex1 三指红色夹爪与头戴双目相机，执行多种桌面操作任务。17 万帧操作数据，涵盖物品抓取与放置。",
     "vlaCompatible": [],
     "quality": {
@@ -9139,12 +8953,7 @@
     "scale": "351 episodes, 389,708 帧, 1,404 个视频",
     "dataFormat": "LeRobot / Parquet",
     "year": 2024,
-    "tags": [
-      "遥操作",
-      "LeRobot",
-      "人形机器人",
-      "桌面操作"
-    ],
+    "tags": [],
     "notes": "G1 全系列最大的单数据集，389K 帧 + 1404 视频，30fps。覆盖多种桌面操作任务。",
     "vlaCompatible": [],
     "quality": {
@@ -9187,12 +8996,7 @@
     "scale": "未明确，三视角 RGB+状态+动作",
     "dataFormat": "LeRobot / Parquet",
     "year": 2024,
-    "tags": [
-      "遥操作",
-      "灵巧手",
-      "LeRobot",
-      "人形机器人"
-    ],
+    "tags": [],
     "notes": "G1 搭载三指灵巧手，堆叠红/黄/绿三色木块。3 路摄像头：头部立体 + 左右手腕。宇树 5 大 G1 数据集之一。",
     "vlaCompatible": [],
     "quality": {
@@ -9234,12 +9038,7 @@
     "scale": "未明确轨迹数，Parquet 格式",
     "dataFormat": "LeRobot / Parquet",
     "year": 2024,
-    "tags": [
-      "遥操作",
-      "LeRobot",
-      "双臂",
-      "灵巧手"
-    ],
+    "tags": [],
     "notes": "宇树 Z1 双臂机器人搭载 Dex1 灵巧手执行堆箱任务。V2 版本，数据质量较第一版有显著提升。",
     "vlaCompatible": [],
     "quality": {
@@ -9282,10 +9081,6 @@
     "dataFormat": "LeRobot / Parquet",
     "year": 2024,
     "tags": [
-      "遥操作",
-      "LeRobot",
-      "双臂",
-      "灵巧手",
       "精细操作"
     ],
     "notes": "宇树 Z1 双臂机器人执行铅笔清理和收纳任务。精细操作场景，适合灵巧操作研究。",
@@ -9331,10 +9126,6 @@
     "dataFormat": "LeRobot / Parquet",
     "year": 2024,
     "tags": [
-      "遥操作",
-      "LeRobot",
-      "人形机器人",
-      "双臂",
       "抓取"
     ],
     "notes": "G1 人形机器人双臂灵巧手抓取红色木块。遥操作采集，头部双目视觉。",
@@ -9380,9 +9171,6 @@
     "dataFormat": "LeRobot / Parquet",
     "year": 2022,
     "tags": [
-      "仿真",
-      "LeRobot",
-      "TD-MPC",
       "模仿学习"
     ],
     "notes": "xArm 7-DoF 机械臂仿真数据集，基于 TD-MPC (ICML 2022)。LeRobot 生态内置 benchmark 之一，84×84 RGB + 4 维状态 + 3 维动作。",
@@ -9429,10 +9217,6 @@
     "dataFormat": "LeRobot / Parquet",
     "year": 2024,
     "tags": [
-      "仿真",
-      "LeRobot",
-      "ALOHA",
-      "双臂",
       "装配",
       "精细操作"
     ],
@@ -9478,12 +9262,7 @@
     "dataFormat": "LeRobot / Parquet",
     "year": 2024,
     "tags": [
-      "仿真",
-      "LeRobot",
-      "ALOHA",
-      "双臂",
-      "装配",
-      "遥操作"
+      "装配"
     ],
     "notes": "双臂 ALOHA 仿真环境插头-插孔装配，50 条人类遥操作演示（对比脚本版）。更真实的操作变异性和执行风格。",
     "vlaCompatible": [
@@ -9530,7 +9309,6 @@
     "dataFormat": "LeRobot / Parquet",
     "year": 2024,
     "tags": [
-      "LeRobot",
       "抓取",
       "模仿学习"
     ],
@@ -9578,9 +9356,7 @@
     "dataFormat": "LeRobot / Parquet",
     "year": 2024,
     "tags": [
-      "LeRobot",
       "抓取",
-      "力反馈",
       "模仿学习"
     ],
     "notes": "LeRobot 机械臂抓取橙色方块数据集，含力/力矩反馈信号。100 条轨迹，303 个视频。带力反馈的 pick-and-place 稀有基准。",
@@ -9629,12 +9405,7 @@
     "dataFormat": "自定义 (图像 + 3D标注)",
     "year": 2023,
     "tags": [
-      "灵巧手",
-      "双臂",
-      "3D标注",
-      "CVPR",
-      "ETH",
-      "运动捕捉"
+      "动作捕捉"
     ],
     "notes": "CVPR 2023。首个同时捕获双手 + SMPL-X 全身 + 关节物体 3D 标注的数据集。8 个固定视角 + 1 个第一人称视角，2800×2000 高分辨率。",
     "vlaCompatible": [],
@@ -9685,10 +9456,7 @@
     "year": 2025,
     "tags": [
       "VLA",
-      "LeRobot",
-      "Franka",
       "家居",
-      "开源大模型",
       "多模态"
     ],
     "notes": "Allen AI 2025 年发布的百万级 VLA 数据集。三阶段推理架构（感知→规划→控制），LeRobot 格式，Apache 2.0 完全开源。MolmoAct-7B 在 LIBERO 达 86.6%，在 SimplerEnv 达 70.5%。",
@@ -9739,12 +9507,7 @@
     "dataFormat": "HDF5 (robomimic) / ZIP",
     "year": 2024,
     "tags": [
-      "灵巧手",
-      "运动捕捉",
-      "RSS",
-      "Stanford",
-      "Diffusion Policy",
-      "遥操作"
+      "动作捕捉"
     ],
     "notes": "RSS 2024。便携式手部动作捕捉系统：EMF 手套 + 腕部 SLAM 相机 + 胸部 RGB-D LiDAR。60Hz 实时采集，含 DexIL 模仿学习基线。CC BY 4.0。",
     "vlaCompatible": [],
@@ -9792,10 +9555,7 @@
     "year": 2025,
     "tags": [
       "VLA",
-      "3D操作",
-      "点云",
-      "字节跳动",
-      "视觉语言动作"
+      "点云"
     ],
     "notes": "字节跳动 BridgeVLA 模型配套数据集。将 3D 点云投影为 2D 图像并结合自然语言指令，面向机器人 3D 操作任务的 VLA 训练。",
     "vlaCompatible": [
@@ -9845,12 +9605,9 @@
     "dataFormat": "LeRobot / 自定义",
     "year": 2025,
     "tags": [
-      "UMI",
       "大规模",
       "多任务",
-      "上海AI Lab",
-      "模仿学习",
-      "腕部相机"
+      "模仿学习"
     ],
     "notes": "上海 AI Lab 联合多所高校 (西北工大/上交/同济/西交利物浦) 于 2025 年发布。UMI 风格数据集，10 万+ 演示、54 任务、数百种物体。多视角腕部鱼眼相机 + 末端状态 + 文本标注。",
     "vlaCompatible": [],
@@ -9896,10 +9653,6 @@
     "dataFormat": "HDF5",
     "year": 2023,
     "tags": [
-      "遥操作",
-      "Kinova",
-      "KAIST",
-      "语言指令",
       "模仿学习"
     ],
     "notes": "KAIST CLVR Lab + USC 联合发布 (2023)。Kinova Jaco 2 机械臂遥操作，10Hz 采集，含自然语言目标描述。CC-BY-4.0。",
@@ -9946,11 +9699,7 @@
     "dataFormat": "自定义",
     "year": 2025,
     "tags": [
-      "强化学习",
-      "策略蒸馏",
-      "RSS",
-      "Berkeley",
-      "通用策略"
+      "强化学习"
     ],
     "notes": "RSS 2025 (Best Paper Finalist)。通过 RL 专家策略蒸馏生成高质量机器人通用策略训练数据，替代人类遥操作。",
     "vlaCompatible": [],
@@ -9996,13 +9745,7 @@
     "dataFormat": "自定义 (RGB-D + 3D 姿态)",
     "year": 2024,
     "tags": [
-      "灵巧手",
-      "抓取",
-      "IJCAI",
-      "上海科大",
-      "ShadowHand",
-      "扩散模型",
-      "MLLM"
+      "抓取"
     ],
     "notes": "IJCAI 2024。首个真实采集的灵巧手抓取数据集。UR10e + Shadow Hand (24DOF) + 4 Azure Kinect。52 种物体，955K 帧多视角 RGB-D。基于扩散模型 + MLLM 选择。",
     "vlaCompatible": [],
@@ -10052,13 +9795,7 @@
     "dataFormat": "Zarr",
     "year": 2026,
     "tags": [
-      "四足机器人",
-      "SLAM",
-      "多模态",
-      "ETH",
-      "野外",
-      "导航",
-      "ANYmal"
+      "多模态"
     ],
     "notes": "ETH RSL 发布的全球最大野外四足机器人多模态数据集。ANYmal D + Boxi 传感器套件 (3 LiDAR + 10 RGB + 7 Depth + 8 IMU + GNSS/INS)。厘米级 RTK-GNSS 真值。",
     "vlaCompatible": [],
@@ -10087,7 +9824,7 @@
       "物理参数"
     ],
     "robotType": [
-      "仿真"
+      "机械臂"
     ],
     "task": [
       "操作",
@@ -10105,13 +9842,7 @@
     "dataFormat": "USD",
     "year": 2025,
     "tags": [
-      "仿真",
-      "Sim2Real",
-      "ICLR",
-      "数字孪生",
-      "Isaac Sim",
-      "USD",
-      "铰接物体"
+      "Sim-to-Real"
     ],
     "notes": "ICLR 2026。206+ 种高保真铰接物体 USD 格式，可直接导入 NVIDIA Isaac Sim。三大特性：视觉保真度（CLIP 对齐度提升 47%）、物理保真度（刚度/阻尼/摩擦力毫米级标定）、全场景交互。Sim2Real: 仿真训练 Franka 零样本开门 30%，混合真机后 80%。Apache 2.0。",
     "vlaCompatible": [],
@@ -10141,7 +9872,7 @@
       "语言"
     ],
     "robotType": [
-      "多机型"
+      "机械臂"
     ],
     "task": [
       "操作",
@@ -10160,7 +9891,6 @@
     "tags": [
       "VLA",
       "benchmark",
-      "操作",
       "泛化",
       "多任务"
     ],
@@ -10465,10 +10195,7 @@
     "year": 2019,
     "tags": [
       "benchmark",
-      "Meta-RL",
-      "多任务",
-      "MuJoCo",
-      "CoRL"
+      "多任务"
     ],
     "notes": "CoRL 2019 经典 MuJoCo 基准。50 个 Sawyer 单臂原子操作任务。4 套划分（MT10/MT50/ML10/ML45），面向多任务 RL 和 Meta-RL。不自带训练数据。pi0(Flow-Noise) 以 85.8% 居榜首。",
     "vlaCompatible": [],
@@ -10792,7 +10519,7 @@
     "tags": [
       "benchmark",
       "LIBERO",
-      "鲁棒性",
+      "泛化",
       "VLA"
     ],
     "notes": "VLA 鲁棒性深度分析基准。7 维扰动（相机/状态/语言/光照/背景/噪声/布局），10,030 任务。揭示标准 LIBERO 95%+ 模型在扰动下暴跌至 30% 以下。",
@@ -11911,10 +11638,8 @@
     "dataFormat": "LeRobot",
     "year": 2025,
     "tags": [
-      "真机评测",
       "benchmark",
-      "Sim2Real",
-      "遥操作"
+      "Sim-to-Real"
     ],
     "notes": "全球首个大规模远程真机评测平台。4 类机械臂集群（UR5/Franka/Magic Aloha/ARX-5），真机在线提交打分。每任务约 1000 条遥操作轨迹。双维度打分。DM0 以 72.25 分居榜首。",
     "vlaCompatible": [],
@@ -12314,9 +12039,8 @@
     "tags": [
       "benchmark",
       "LIBERO",
-      "鲁棒性",
-      "VLA",
-      "泛化"
+      "泛化",
+      "VLA"
     ],
     "notes": "LIBERO 鲁棒性深度探测基准。20 个细粒度指标覆盖 Goal/Spatial/L10/Object 四维度。Pi0.5 以 0.53（总分 1.0）居榜首，OpenVLA 以 0.52 紧随。",
     "vlaCompatible": [],
