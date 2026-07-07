@@ -12057,5 +12057,650 @@
     },
     "licenseNotes": "Apache 2.0",
     "changelog": []
+  },
+  {
+    "id": "asu-table-top",
+    "name": "ASU Table Top",
+    "institution": "Arizona State University",
+    "description": "**ASU Table Top** 是 Arizona State University 于 CoRL 2023 发布的 UR5 桌面操作数据集。包含 110 条演示轨迹，任务为拾取、放置和旋转桌面物体。每帧含 224×224 RGB 观测、6 维关节状态和 10 维动作（关节速度 + 夹爪速度 + 终止标志），配备自然语言指令和 Universal Sentence Encoder 语言嵌入。数据集以 TFDS/RLDS 格式发布，约 738 MB。论文提出基于模块化注意力的语言条件策略架构。",
+    "modality": [
+      "RGB",
+      "本体状态",
+      "动作",
+      "语言"
+    ],
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "抓取"
+    ],
+    "type": "open",
+    "openness": "open",
+    "license": "MIT",
+    "links": {
+      "paper": "https://arxiv.org/abs/2306.08129"
+    },
+    "scale": "110 episodes, ~738 MB",
+    "dataFormat": "RLDS / TFDS",
+    "year": 2023,
+    "tags": [
+      "RLDS",
+      "语言标注",
+      "模仿学习"
+    ],
+    "notes": "UR5 桌面拾取/放置/旋转。110 条演示，224×224 RGB + 本体状态 + 语言指令。基于 TFDS/RLDS 格式。CoRL 2023。",
+    "vlaCompatible": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "真机实测",
+      "hasSplit": true
+    },
+    "citation": {
+      "bibtex": null,
+      "year": 2023,
+      "venue": "CoRL"
+    }
+  },
+  {
+    "id": "austin-buds",
+    "name": "Austin BUDS",
+    "institution": "UT Austin",
+    "description": "**Austin BUDS** (Bottom-Up Skill Discovery) 是 UT Austin RPL 实验室于 RA-L 2022 发布的长时程厨房操作数据集。使用 UR5 机械臂执行多步骤任务（取锅→放盘→用工具推合），包含 365 条演示。每帧含 128×128 俯视和腕部 RGB 图像 + 关节状态。基于无监督分层技能发现框架，可从无分割演示中自动发现可复用子技能。以 TFDS/RLDS 格式发布，MIT 许可证。",
+    "modality": [
+      "RGB",
+      "本体状态",
+      "动作"
+    ],
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "type": "open",
+    "openness": "open",
+    "license": "MIT",
+    "links": {
+      "paper": "https://arxiv.org/abs/2209.10674"
+    },
+    "scale": "365 episodes, ~1.49 GB",
+    "dataFormat": "RLDS / TFDS",
+    "year": 2022,
+    "tags": [
+      "RLDS",
+      "长序列",
+      "模仿学习"
+    ],
+    "notes": "UR5 长时程厨房操作（取锅→放盘→推合）。365 episodes，128×128 RGB（俯视+腕部）+ 关节状态。基于自底向上技能发现。RA-L 2022。",
+    "vlaCompatible": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "真机实测",
+      "hasSplit": true
+    },
+    "citation": {
+      "bibtex": null,
+      "year": 2022,
+      "venue": "RA-L"
+    }
+  },
+  {
+    "id": "austin-sailor",
+    "name": "Austin SAILOR",
+    "institution": "UT Austin",
+    "description": "**Austin SAILOR** 是 UT Austin RPL 于 CoRL 2022 发布的 Franka 桌面布置数据集。包含 240 条演示，任务为餐具摆放等桌面布置操作。每帧含 128×128 俯视和腕部 RGB 图像、末端执行器位姿（7 维）、夹爪状态和关节角度，配备自然语言指令和 Universal Sentence Encoder 嵌入。论文提出基于技能检索的模仿学习框架 SAILOR。以 TFDS/RLDS 格式发布。",
+    "modality": [
+      "RGB",
+      "本体状态",
+      "动作",
+      "语言"
+    ],
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作",
+      "家居"
+    ],
+    "type": "open",
+    "openness": "open",
+    "license": "MIT",
+    "links": {
+      "paper": "https://arxiv.org/abs/2210.06629"
+    },
+    "scale": "240 episodes, ~18.85 GB",
+    "dataFormat": "RLDS / TFDS",
+    "year": 2022,
+    "tags": [
+      "RLDS",
+      "语言标注",
+      "模仿学习",
+      "家居"
+    ],
+    "notes": "Franka 桌面布置任务。240 条演示，128×128 RGB + 腕部图像 + 7-DoF 动作 + 语言嵌入。基于技能检索的模仿学习。CoRL 2022。",
+    "vlaCompatible": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "真机实测",
+      "hasSplit": true
+    },
+    "citation": {
+      "bibtex": null,
+      "year": 2022,
+      "venue": "CoRL"
+    }
+  },
+  {
+    "id": "nyu-door-opening",
+    "name": "NYU Door Opening",
+    "institution": "New York University",
+    "description": "**NYU Door Opening** 是 NYU 于 CoRL 2022 发布的 Franka 门开启操作数据集。包含 435 条演示，任务为打开柜门和微波炉门。论文「The Surprising Effectiveness of Representation Learning for Door Opening」探索了表征学习对门开启这类接触丰富任务的惊人泛化能力。以 TFDS/RLDS 格式发布。",
+    "modality": [
+      "RGB",
+      "本体状态",
+      "动作"
+    ],
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "type": "open",
+    "openness": "open",
+    "license": "MIT",
+    "links": {
+      "paper": "https://arxiv.org/abs/2209.11144"
+    },
+    "scale": "435 episodes, ~7.12 GB",
+    "dataFormat": "RLDS / TFDS",
+    "year": 2022,
+    "tags": [
+      "RLDS",
+      "精细操作",
+      "模仿学习"
+    ],
+    "notes": "Franka 柜门/微波炉门开启。435 条演示，探索了模仿学习对门开启任务的惊人有效性。TFDS/RLDS 格式。CoRL 2022。",
+    "vlaCompatible": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "真机实测",
+      "hasSplit": true
+    },
+    "citation": {
+      "bibtex": null,
+      "year": 2022,
+      "venue": "CoRL"
+    }
+  },
+  {
+    "id": "taco-play",
+    "name": "Taco Play",
+    "institution": "University of Freiburg",
+    "description": "**Taco Play** 是 University of Freiburg 于 CoRL 2022 发布的 Franka 机器人自由交互数据集。包含 3,242 条无特定任务约束的「玩耍」演示——操作者通过 VR 遥操与玩具厨房自由交互（开关微波炉、转动旋钮、推拉抽屉等）。约 1% 数据附带自然语言标注（25 种结构化指令）。每帧含 RGB-D（静态+腕部相机）、15 维本体状态和 7 维绝对夹爪位姿动作。论文提出 Latent Plans for Task Agnostic Offline RL，后续被 HULC（ICRA 2023）用于语言-视觉可供性对齐。",
+    "modality": [
+      "RGB",
+      "深度",
+      "本体状态",
+      "动作",
+      "语言"
+    ],
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "type": "open",
+    "openness": "open",
+    "license": "MIT",
+    "links": {
+      "paper": "https://arxiv.org/abs/2210.14780"
+    },
+    "scale": "3,242 episodes, ~47.77 GB",
+    "dataFormat": "RLDS / TFDS",
+    "year": 2022,
+    "tags": [
+      "RLDS",
+      "语言标注",
+      "家居",
+      "大规模"
+    ],
+    "notes": "Franka 玩具厨房自由交互。3,242 条无任务约束的「玩耍」演示，25 种结构化语言指令。VR 遥操作采集。CoRL 2022。",
+    "vlaCompatible": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "自动标注",
+      "realWorld": "真机实测",
+      "hasSplit": true
+    },
+    "citation": {
+      "bibtex": null,
+      "year": 2022,
+      "venue": "CoRL"
+    }
+  },
+  {
+    "id": "toto-benchmark",
+    "name": "Toto",
+    "institution": "CMU / UW / NYU / Stanford / UC Berkeley",
+    "description": "**Toto** (Train Offline, Test Online) 是 CMU/UW/NYU/Stanford/UC Berkeley 联合发布的 Franka 桌面操作基准（ICRA 2023），并被 NeurIPS 2023 选为竞赛赛道。包含两个任务：**舀取**（用勺子从碗中舀取颗粒物，~1,895 轨迹）和**倾倒**（从杯子倒入目标杯中，~1,003 轨迹）。数据通过 HTC Vive 遥操作 + BC 策略 rollout + 轨迹回放三种方式采集。评测测试对未见物体（碗/杯）、未见材料（混合坚果/糖果）和新位置的泛化能力。每帧含 480×640 RGB、世界位移+旋转动作、关节状态和语言指令。",
+    "modality": [
+      "RGB",
+      "本体状态",
+      "动作",
+      "语言"
+    ],
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "type": "open",
+    "openness": "open",
+    "license": "MIT",
+    "links": {
+      "paper": "https://arxiv.org/abs/2302.07138",
+      "github": "https://github.com/AGI-Labs/toto_benchmark"
+    },
+    "scale": "~2,900 trajectories",
+    "dataFormat": "RLDS / TFDS",
+    "year": 2023,
+    "tags": [
+      "RLDS",
+      "语言标注",
+      "benchmark",
+      "模仿学习",
+      "泛化"
+    ],
+    "notes": "Franka 舀取+倾倒基准。~2,900 轨迹（Teleop+BC rollout），测试泛化到未见物体和材料。ICRA 2023 + NeurIPS 2023 竞赛。",
+    "vlaCompatible": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "真机实测",
+      "hasSplit": true
+    },
+    "citation": {
+      "bibtex": null,
+      "year": 2023,
+      "venue": "ICRA"
+    }
+  },
+  {
+    "id": "viola",
+    "name": "Viola",
+    "institution": "UT Austin",
+    "description": "**Viola** (Visuomotor Imitation via Object-centric LeArning) 是 UT Austin 于 CoRL 2022 发布的 Franka 厨房操作数据集。包含 150 条演示，任务为风格化厨房物体操作。每帧含 224×224 俯视和腕部 RGB 图像、16 维齐次矩阵 EE 状态、7 维关节角度和 512 维语言嵌入。论文提出基于物体候选区域的视觉运动模仿学习架构，通过物体中心表征提升策略精度。以 TFDS/RLDS 格式发布。",
+    "modality": [
+      "RGB",
+      "本体状态",
+      "动作",
+      "语言"
+    ],
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "type": "open",
+    "openness": "open",
+    "license": "MIT",
+    "links": {
+      "paper": "https://arxiv.org/abs/2210.00098"
+    },
+    "scale": "150 episodes, ~10.40 GB",
+    "dataFormat": "RLDS / TFDS",
+    "year": 2022,
+    "tags": [
+      "RLDS",
+      "语言标注",
+      "模仿学习",
+      "家居"
+    ],
+    "notes": "Franka 风格化厨房操作。150 条演示，224×224 RGB（俯视+腕部）+ 16 维 EE 状态 + 7 维关节 + 语言嵌入。CoRL 2022。",
+    "vlaCompatible": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "真机实测",
+      "hasSplit": true
+    },
+    "citation": {
+      "bibtex": null,
+      "year": 2022,
+      "venue": "CoRL"
+    }
+  },
+  {
+    "id": "brmdata",
+    "name": "BRMData",
+    "institution": "京东 (JD.com) / 北京理工大学",
+    "description": "**BRMData**（Bimanual-mobile Robot Manipulation Dataset）是京东联合北京理工大学于 2024 年发布的双臂移动机器人家庭任务数据集。使用 4 台 ARX-5 机械臂搭载 Tracer 差速移动底盘，配备 3 个 RGB-D 摄像头（左右腕部 + 中间固定）。包含 10 种递进难度任务（从简单瓶子拾取到复杂的瓶子交接、擦酒杯、垃圾回收、击掌等人机交互），每任务 50 条轨迹由人类遥操作采集。论文提出 Manipulation Efficiency Score (MES) 评估指标。是首个整合双臂协调+移动能力+人机交互的数据集。",
+    "modality": [
+      "RGB",
+      "深度",
+      "本体状态",
+      "动作"
+    ],
+    "robotType": [
+      "移动机器人"
+    ],
+    "task": [
+      "操作",
+      "家居",
+      "交互"
+    ],
+    "type": "open",
+    "openness": "open",
+    "license": "CC BY 4.0",
+    "links": {
+      "site": "https://embodiedrobot.github.io",
+      "paper": "https://arxiv.org/abs/2405.18860"
+    },
+    "scale": "10 类家庭任务, 每任务 50 条轨迹",
+    "dataFormat": "自定义",
+    "year": 2024,
+    "tags": [
+      "双臂",
+      "移动操作",
+      "家居",
+      "人机交互",
+      "大规模"
+    ],
+    "notes": "京东+北理工双臂移动机器人家庭任务数据集。4 台 ARX-5 机械臂 + 移动底盘，10 种递进难度任务（拾取→交接→擦杯→击掌）。3 视角 RGB-D。arxiv 2405.18860。",
+    "vlaCompatible": [],
+    "quality": {
+      "collection": "遥操作采集",
+      "annotation": "人工标注",
+      "realWorld": "真机实测",
+      "hasSplit": false
+    },
+    "citation": {
+      "bibtex": null,
+      "year": 2024,
+      "venue": "arXiv"
+    }
+  },
+  {
+    "id": "robofac",
+    "name": "RoboFAC",
+    "institution": "RoboFAC Team",
+    "description": "**RoboFAC**（Robotic Failure Analysis and Correction）是 2025 年发布的大规模失败分析数据集。包含 9,440 条操作轨迹（其中 9,000 条为失败轨迹、1,280 条为成功轨迹），覆盖 16 个任务和 53 个场景（仿真+真实），配有 78,623 个诊断 QA 对。核心价值在于：不是避而不谈失败，而是系统性地收集、标注和分析失败案例。配套的 RoboFAC 模型在失败诊断上优于 GPT-4o 34.1%，集成到 VLA 系统后平均提升 29.1% 真实任务成功率。是失败分析领域的标志性数据集。",
+    "modality": [
+      "RGB",
+      "语言",
+      "动作"
+    ],
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "操作"
+    ],
+    "type": "open",
+    "openness": "open",
+    "license": "CC BY 4.0",
+    "links": {
+      "paper": "https://arxiv.org/abs/2505.12224"
+    },
+    "scale": "9,440 条轨迹, 78,623 QA 对, 16 任务, 53 场景",
+    "dataFormat": "自定义",
+    "year": 2025,
+    "tags": [
+      "VLA",
+      "大规模",
+      "泛化",
+      "语言标注"
+    ],
+    "notes": "首个大规模失败分析数据集。9,000 失败 + 1,280 成功轨迹，78K QA 对。揭示 VLA 模型失败模式，提供纠正指令。arxiv 2505.12224。",
+    "vlaCompatible": [],
+    "quality": {
+      "collection": "多源聚合",
+      "annotation": "人工标注",
+      "realWorld": "真机实测",
+      "hasSplit": true
+    },
+    "citation": {
+      "bibtex": null,
+      "year": 2025,
+      "venue": "arXiv"
+    }
+  },
+  {
+    "id": "rp1m",
+    "name": "RP1M",
+    "institution": "Aalto University / MPI-IS / USC",
+    "description": "**RP1M** (Robot Piano 1 Million) 是 Aalto University、马普所和 USC 于 CoRL 2024 发布的双臂灵巧手弹钢琴数据集。使用两台 Shadow Robot Hands（共 48 个自由度）在仿真全尺寸 88 键钢琴上演奏约 2,000 首乐曲，生成约 100 万条专家轨迹。观测空间 1,144 维（手部状态+指尖位置+琴键状态+目标向量），动作空间 39 维（关节位置+前臂位置+延音踏板）。核心创新：通过最优传输 (Optimal Transport) 自动生成指法标注，无需昂贵的人工标注。是首个结合灵巧手+双臂协调+动态高速任务的大规模数据集。",
+    "modality": [
+      "本体状态",
+      "动作"
+    ],
+    "robotType": [
+      "灵巧手"
+    ],
+    "task": [
+      "运动控制",
+      "操作"
+    ],
+    "type": "open",
+    "openness": "open",
+    "license": "MIT",
+    "links": {
+      "site": "https://rp1m.github.io",
+      "paper": "https://arxiv.org/abs/2408.11048"
+    },
+    "scale": "~100 万专家轨迹, 约 2,000 首乐曲",
+    "dataFormat": "MuJoCo",
+    "year": 2024,
+    "tags": [
+      "灵巧手",
+      "双臂",
+      "大规模",
+      "运动控制",
+      "扩散策略"
+    ],
+    "notes": "双臂 Shadow Hands 弹钢琴。~1M 轨迹，1,144 维观测 + 39 维动作。自动指法标注（最优传输）。CoRL 2024。",
+    "vlaCompatible": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "citation": {
+      "bibtex": null,
+      "year": 2024,
+      "venue": "CoRL"
+    }
+  },
+  {
+    "id": "cornell-grasping",
+    "name": "Cornell Grasping Dataset",
+    "institution": "Cornell University",
+    "description": "**Cornell Grasping Dataset** 是 Cornell University 于 2013 年发布的经典机器人抓取检测数据集，被称为抓取检测领域的 \"Hello World\"。包含 240 个日常物体的 885 张 RGB-D 图像，约 8,000 个矩形抓取标注（平行夹爪）。定义了两种标准评测划分：图像级 (IW) 和物体级 (OW)。从 Lenz et al. 的 73.9% 到现代方法的 97.7% (IW)，见证了深度学习在抓取检测上的完整发展历程。至今几乎所有新的抓取检测方法仍会在此数据集上报告结果。",
+    "modality": [
+      "RGB",
+      "深度"
+    ],
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "抓取"
+    ],
+    "type": "open",
+    "openness": "open",
+    "license": "CC BY 4.0",
+    "links": {
+      "paper": "https://arxiv.org/abs/1301.3592"
+    },
+    "scale": "240 物体, 885 张 RGB-D 图像, ~8K 抓取标注",
+    "dataFormat": "PNG + 文本标注",
+    "year": 2013,
+    "tags": [
+      "抓取",
+      "benchmark"
+    ],
+    "notes": "2013 年经典，抓取检测的 \"Hello World\"。并行夹爪矩形抓取，图像级和物体级两种评测划分。被几乎所有抓取论文引用。",
+    "vlaCompatible": [],
+    "quality": {
+      "collection": "人工采集（真实场景）",
+      "annotation": "人工标注",
+      "realWorld": "真机实测",
+      "hasSplit": true
+    },
+    "citation": {
+      "bibtex": null,
+      "year": 2013,
+      "venue": "IJRR"
+    }
+  },
+  {
+    "id": "acronym",
+    "name": "ACRONYM",
+    "institution": "NVIDIA / University of Washington",
+    "description": "**ACRONYM** 是 NVIDIA 和华盛顿大学于 ICRA 2021 发布的大规模 6-DOF 抓取数据集。基于 ShapeNetSem 的 8,872 个 3D 物体（262 类），在 NVIDIA FleX 物理仿真器中生成 1,777 万个平行夹爪（Franka Panda）抓取姿态。采用反足点采样 + 物理晃动测试验证抓取稳定性（成功率 59.2%）。规模是此前最大抓取数据集的 100 倍以上。用它重新训练的模型抓取能力提升 2-3 倍。已成为 6-DOF 抓取领域的标杆数据集，引用量 290+。",
+    "modality": [
+      "3D模型",
+      "深度"
+    ],
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "抓取"
+    ],
+    "type": "open",
+    "openness": "open",
+    "license": "CC BY 4.0",
+    "links": {
+      "site": "https://sites.google.com/nvidia.com/graspdataset",
+      "paper": "https://arxiv.org/abs/2011.09584"
+    },
+    "scale": "1,777 万 6-DOF 抓取, 8,872 物体, 262 类别",
+    "dataFormat": "自定义（6-DOF 位姿 + 点云）",
+    "year": 2021,
+    "tags": [
+      "抓取",
+      "6-DOF",
+      "benchmark",
+      "大规模",
+      "Sim-to-Real"
+    ],
+    "notes": "NVIDIA+UW, ICRA 2021。1,777 万 6-DOF 抓取标注，基于 ShapeNetSem + FleX 物理仿真。Franka Panda 夹爪。引用 290+。",
+    "vlaCompatible": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "citation": {
+      "bibtex": null,
+      "year": 2021,
+      "venue": "ICRA"
+    }
+  },
+  {
+    "id": "grasp-anything",
+    "name": "Grasp-Anything",
+    "institution": "FPT Software AI Center / TU Wien / Imperial College",
+    "description": "**Grasp-Anything** 是 FPT Software AI Center 等机构于 CVPR 2024 发布的语言驱动大规模抓取数据集。利用 ChatGPT 生成场景描述 → Stable Diffusion 合成图像 → Segment Anything/VLPart 定位物体和部件 → 预训练网络自动标注抓取姿态，构建了 100 万+ 图像、300 万+ 物体和 1,000 万+ 条语言-抓取配对的数据集。后续扩展 Grasp-Anything-6D 提供 2 亿+ 3D 语言关联抓取。其核心方法是基于扩散模型的语言驱动抓取生成 (LGD)，在 Seen/Unseen/Harmonic Mean 上全面超越 GR-ConvNet、CLIPORT 等基线。",
+    "modality": [
+      "RGB",
+      "语言"
+    ],
+    "robotType": [
+      "机械臂"
+    ],
+    "task": [
+      "抓取"
+    ],
+    "type": "open",
+    "openness": "open",
+    "license": "CC BY 4.0",
+    "links": {
+      "site": "https://airvlab.github.io/grasp-anything",
+      "paper": "https://arxiv.org/abs/2406.09489"
+    },
+    "scale": "100 万+ 图像, 300 万+ 物体, 1,000 万+ 抓取指令",
+    "dataFormat": "图像 + JSON 标注",
+    "year": 2024,
+    "tags": [
+      "抓取",
+      "语言标注",
+      "扩散模型",
+      "benchmark",
+      "大规模"
+    ],
+    "notes": "CVPR 2024。首个语言驱动的大规模抓取数据集。ChatGPT+Stable Diffusion+Segment Anything 自动合成，含部件级标注。扩散模型基线。",
+    "vlaCompatible": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "citation": {
+      "bibtex": null,
+      "year": 2024,
+      "venue": "CVPR"
+    }
+  },
+  {
+    "id": "dex1b",
+    "name": "Dex1B",
+    "institution": "UC San Diego",
+    "description": "**Dex1B** 是 UC San Diego 于 RSS 2025 发布的十亿级灵巧手抓取数据集。覆盖 Shadow Hand、Inspire Hand 和 Ability Hand 三种灵巧手、6,000+ 个多样化物体（来自 Objaverse 和 PartNet-Mobility），总计 10 亿条抓取与关节操作演示——是此前最大数据集 DexGraspNet 的 700 倍。采用优化+生成模型的混合管线：先通过优化生成 500 万高质量种子演示，再训练 CVAE 模型 (DexSimple) 规模化扩展，辅以 SDF 几何约束防止手指穿透。在 DexGraspNet 基准上抓取成功率达 92.6%（比 DDG 67.5% 提升 22 个百分点），已实现 sim-to-real 迁移。",
+    "modality": [
+      "3D模型",
+      "本体状态"
+    ],
+    "robotType": [
+      "灵巧手"
+    ],
+    "task": [
+      "抓取",
+      "操作"
+    ],
+    "type": "open",
+    "openness": "open",
+    "license": "CC BY 4.0",
+    "links": {
+      "site": "https://jianglongye.com/dex1b",
+      "paper": "https://arxiv.org/abs/2506.17198"
+    },
+    "scale": "10 亿演示, 6,000+ 物体, 3 种灵巧手",
+    "dataFormat": "URDF + 关节轨迹",
+    "year": 2025,
+    "tags": [
+      "灵巧手",
+      "抓取",
+      "大规模",
+      "Sim-to-Real",
+      "benchmark"
+    ],
+    "notes": "RSS 2025, 十亿级灵巧手抓取数据集。Shadow/Inspire/Ability 三种手，CVAE+优化混合生成。抓取成功率 92.6%，比 DDG 提升 22pp。",
+    "vlaCompatible": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": true
+    },
+    "citation": {
+      "bibtex": null,
+      "year": 2025,
+      "venue": "RSS"
+    }
   }
 ]

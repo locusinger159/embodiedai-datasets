@@ -1164,5 +1164,180 @@
       "higherIsBetter": true
     },
     "datasetIds": []
+  },
+  {
+    "id": "home-robot",
+    "name": "HomeRobot",
+    "fullName": "HomeRobot: Open-Vocabulary Mobile Manipulation",
+    "org": "CMU / Georgia Tech",
+    "institution": "CMU / Georgia Tech",
+    "type": "benchmark",
+    "openness": "open",
+    "links": {
+      "site": "https://homerobot.org",
+      "paper": "https://arxiv.org/abs/2306.09144"
+    },
+    "year": 2023,
+    "desc": "**HomeRobot** 是 CMU 和 Georgia Tech 提出的开放词汇移动操作评测基准。基于 AI Habitat 仿真器，包含 7,892 个 3D 物体，涵盖家庭环境中的移动拾取-放置任务。核心评测开放词汇导航+操作能力——机器人需要在未见过的家庭场景中，根据自然语言指令找到目标物体并操作。是 OVMM (Open-Vocabulary Mobile Manipulation) 挑战赛的官方基准。",
+    "description": "**HomeRobot** 是 CMU 和 Georgia Tech 提出的开放词汇移动操作评测基准。基于 AI Habitat 仿真器，包含 7,892 个 3D 物体，涵盖家庭环境中的移动拾取-放置任务。核心评测开放词汇导航+操作能力——机器人需要在未见过的家庭场景中，根据自然语言指令找到目标物体并操作。是 OVMM (Open-Vocabulary Mobile Manipulation) 挑战赛的官方基准。",
+    "scene": [
+      "sim"
+    ],
+    "modalities": [
+      "RGB",
+      "深度",
+      "语言",
+      "动作"
+    ],
+    "requirements": {
+      "MUST": [
+        "开放词汇物体导航",
+        "移动拾取-放置操作"
+      ],
+      "SHOULD": [
+        "家庭场景泛化",
+        "未见物体识别"
+      ],
+      "MAY": []
+    }
+  },
+  {
+    "id": "manipulathor",
+    "name": "ManipulaTHOR",
+    "fullName": "ManipulaTHOR: A Framework for Visual Object Manipulation",
+    "org": "Allen Institute for AI (AI2)",
+    "institution": "Allen Institute for AI (AI2)",
+    "type": "benchmark",
+    "openness": "open",
+    "links": {
+      "site": "https://ai2thor.allenai.org/manipulathor/",
+      "paper": "https://arxiv.org/abs/2104.11213"
+    },
+    "year": 2021,
+    "desc": "**ManipulaTHOR** 是 Allen Institute for AI (AI2) 基于 AI2-THOR 仿真器发布的铰接物体操作基准。包含 2,600+ 个铰接物体（橱柜、抽屉、冰箱、微波炉等），覆盖 100+ 个室内场景。评测机器人在关节物体操作中的导航+操作联合能力——需要先导航到目标物体前，再执行打开/关闭/拾取等操作。是铰接物体操作领域的重要基准。",
+    "description": "**ManipulaTHOR** 是 Allen Institute for AI (AI2) 基于 AI2-THOR 仿真器发布的铰接物体操作基准。包含 2,600+ 个铰接物体（橱柜、抽屉、冰箱、微波炉等），覆盖 100+ 个室内场景。评测机器人在关节物体操作中的导航+操作联合能力——需要先导航到目标物体前，再执行打开/关闭/拾取等操作。是铰接物体操作领域的重要基准。",
+    "scene": [
+      "sim"
+    ],
+    "modalities": [
+      "RGB",
+      "深度",
+      "动作"
+    ],
+    "requirements": {
+      "MUST": [
+        "铰接物体操作",
+        "导航+操作联合评测"
+      ],
+      "SHOULD": [
+        "100+ 室内场景泛化"
+      ],
+      "MAY": []
+    }
+  },
+  {
+    "id": "bigym",
+    "name": "BiGym",
+    "fullName": "BiGym: A Benchmark for Bimanual Mobile Manipulation with Humanoid Robots",
+    "org": "BiGym Team",
+    "institution": "BiGym Team",
+    "type": "benchmark",
+    "openness": "open",
+    "links": {
+      "paper": "https://arxiv.org/abs/2405.11028"
+    },
+    "year": 2024,
+    "desc": "**BiGym** 是基于 MuJoCo 的人形机器人双臂移动操作评测基准。以 Unitree H1 人形机器人为平台，包含 40 个任务，覆盖桌面操作、搬运、开关家具等。评测人形机器人在双臂协调+全身运动控制方面的能力。是目前最全面的人形机器人操作基准之一。",
+    "description": "**BiGym** 是基于 MuJoCo 的人形机器人双臂移动操作评测基准。以 Unitree H1 人形机器人为平台，包含 40 个任务，覆盖桌面操作、搬运、开关家具等。评测人形机器人在双臂协调+全身运动控制方面的能力。是目前最全面的人形机器人操作基准之一。",
+    "scene": [
+      "sim"
+    ],
+    "modalities": [
+      "RGB",
+      "深度",
+      "本体状态",
+      "动作"
+    ],
+    "requirements": {
+      "MUST": [
+        "人形机器人双臂操作",
+        "40 个桌面+移动任务"
+      ],
+      "SHOULD": [
+        "双臂协调",
+        "全身运动控制"
+      ],
+      "MAY": []
+    }
+  },
+  {
+    "id": "humanoidbench",
+    "name": "HumanoidBench",
+    "fullName": "HumanoidBench: Simulated Humanoid Benchmark for Whole-Body Locomotion and Manipulation",
+    "org": "HumanoidBench Team",
+    "institution": "HumanoidBench Team",
+    "type": "benchmark",
+    "openness": "open",
+    "links": {
+      "paper": "https://arxiv.org/abs/2405.11028"
+    },
+    "year": 2024,
+    "desc": "**HumanoidBench** 是基于 MuJoCo 的人形机器人全身运动与操作评测基准。包含 27 个任务，覆盖行走、跑步、搬运、开门、上下楼梯等。使用高自由度人形机器人模型（如 Unitree H1），评测全身协调控制能力。是仿人机器人运动+操作联合评测的主力基准。",
+    "description": "**HumanoidBench** 是基于 MuJoCo 的人形机器人全身运动与操作评测基准。包含 27 个任务，覆盖行走、跑步、搬运、开门、上下楼梯等。使用高自由度人形机器人模型（如 Unitree H1），评测全身协调控制能力。是仿人机器人运动+操作联合评测的主力基准。",
+    "scene": [
+      "sim"
+    ],
+    "modalities": [
+      "RGB",
+      "深度",
+      "本体状态",
+      "动作"
+    ],
+    "requirements": {
+      "MUST": [
+        "全身运动+操作联合评测",
+        "27 个任务覆盖"
+      ],
+      "SHOULD": [
+        "人形机器人泛化",
+        "行走+操作协调"
+      ],
+      "MAY": []
+    }
+  },
+  {
+    "id": "humanoidgen",
+    "name": "HumanoidGen",
+    "fullName": "HumanoidGen: LLM-Generated Humanoid Task Benchmark",
+    "org": "HumanoidGen Team",
+    "institution": "HumanoidGen Team",
+    "type": "benchmark",
+    "openness": "open",
+    "links": {
+      "paper": "https://arxiv.org/abs/2501.00967"
+    },
+    "year": 2025,
+    "desc": "**HumanoidGen**（Hgen-Bench）是基于 SAPIEN 仿真器的 LLM 生成人形机器人任务基准。利用大语言模型自动生成 20 个多样化的人形操作任务，覆盖工具使用、物体搬运、场景交互等。代表了「AI 生成评测任务」这一新兴范式——利用 LLM 的创造力自动扩展基准覆盖范围，减少人工设计成本。",
+    "description": "**HumanoidGen**（Hgen-Bench）是基于 SAPIEN 仿真器的 LLM 生成人形机器人任务基准。利用大语言模型自动生成 20 个多样化的人形操作任务，覆盖工具使用、物体搬运、场景交互等。代表了「AI 生成评测任务」这一新兴范式——利用 LLM 的创造力自动扩展基准覆盖范围，减少人工设计成本。",
+    "scene": [
+      "sim"
+    ],
+    "modalities": [
+      "RGB",
+      "深度",
+      "动作",
+      "语言"
+    ],
+    "requirements": {
+      "MUST": [
+        "LLM 生成 20 个人形操作任务",
+        "SAPIEN 仿真器"
+      ],
+      "SHOULD": [
+        "任务多样性",
+        "自动评测"
+      ],
+      "MAY": []
+    }
   }
 ]
