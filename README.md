@@ -8,8 +8,8 @@
 
 专注收录全球具身智能、人形机器人、机械臂、移动机器人数据集情报。只做信息汇总与申请导航，助力算法研发。
 
-- 📊 收录 **116** 个数据集
-- 📐 收录 **28** 个数据标准与评测基准
+- 📊 收录 **135** 个数据集
+- 📐 收录 **38** 个数据标准与评测基准
 - 🏆 **12 个 Benchmark 排行榜**（LIBERO / CALVIN / RLBench / Meta-World / VLABench / RoboTwin / SimplerEnv / FurnitureBench / EmbodiedBench / LIBERO-Plus / LIBERO-PRO / RoboChallenge），335 条模型排行数据
 - 🧠 **AI 论文知识库** — 137 篇学术论文全文嵌入，AI 助手可回答方法论级问题
 - 🔧 收录 **18** 个工具与平台
@@ -57,8 +57,8 @@ embodiedai-datasets/
 │       ├── formats.html           #   格式全景图
 │       └── standard-proposal.html #   标准草案
 ├── docs/data/                          # JSON 数据（从 SQLite 自动导出）
-│   ├── datasets.json / datasets.en.json       # 116 个数据集
-│   ├── standards.json / standards.en.json     # 28 个标准
+│   ├── datasets.json / datasets.en.json       # 135 个数据集
+│   ├── standards.json / standards.en.json     # 38 个标准
 │   ├── tools.json / tools.en.json             # 18 个工具
 │   └── blog.json                              # 博客文章
 ├── data/
@@ -137,6 +137,14 @@ embodiedai-datasets/
 - 🔀 Pull Request：直接编辑 `docs/data/datasets.json`
 
 ## 版本记录
+
+### v2.16 (2026-07-07)
+
+- 📊 **数据集 121→135** — 从 5 篇综述论文中验证收录 14 个新数据集（TFDS 小型操作 7 个 + 轨迹 3 个 + 抓取 4 个）
+- 📐 **数据标准 33→38** — 新增 HomeRobot / ManipulaTHOR / BiGym / HumanoidBench / HumanoidGen
+- 🏷️ **侧边栏大整理** — 标签 130+→36，新增「采集方式」筛选器（遥操作/仿真/Ego/动捕/UMI/多源），机器人类型去掉仿真/通用，任务类型去掉纯感知
+- 📡 **quality.collection 规范化** — 34 种自由文本变体 → 6 个标准值
+- 📝 **5 篇综述论文入库** — 具身 AI 综合综述(2407.06886)、ARIO 标准(2408.10899)、机器人操作综述(2510.10903)、数据评估(2511.09119)、RoboMIND 2.0(2512.24653)
 
 ### v2.15 (2026-06-25)
 

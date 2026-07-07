@@ -4,7 +4,7 @@
 >
 > - 线上站点：[superdata-robotai.com](https://superdata-robotai.com)
 > - 仓库：[locusinger159/embodiedai-datasets](https://github.com/locusinger159/embodiedai-datasets)
-> - 当前版本：v2.13（2026-06-22）
+> - 当前版本：v2.16（2026-07-07）
 
 ---
 
