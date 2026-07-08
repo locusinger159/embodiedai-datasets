@@ -12102,7 +12102,8 @@
       "bibtex": null,
       "year": 2023,
       "venue": "CoRL"
-    }
+    },
+    "changelog": []
   },
   {
     "id": "austin-buds",
@@ -12146,7 +12147,8 @@
       "bibtex": null,
       "year": 2022,
       "venue": "RA-L"
-    }
+    },
+    "changelog": []
   },
   {
     "id": "austin-sailor",
@@ -12193,7 +12195,8 @@
       "bibtex": null,
       "year": 2022,
       "venue": "CoRL"
-    }
+    },
+    "changelog": []
   },
   {
     "id": "nyu-door-opening",
@@ -12237,7 +12240,8 @@
       "bibtex": null,
       "year": 2022,
       "venue": "CoRL"
-    }
+    },
+    "changelog": []
   },
   {
     "id": "taco-play",
@@ -12284,7 +12288,8 @@
       "bibtex": null,
       "year": 2022,
       "venue": "CoRL"
-    }
+    },
+    "changelog": []
   },
   {
     "id": "toto-benchmark",
@@ -12332,7 +12337,8 @@
       "bibtex": null,
       "year": 2023,
       "venue": "ICRA"
-    }
+    },
+    "changelog": []
   },
   {
     "id": "viola",
@@ -12378,7 +12384,8 @@
       "bibtex": null,
       "year": 2022,
       "venue": "CoRL"
-    }
+    },
+    "changelog": []
   },
   {
     "id": "brmdata",
@@ -12428,7 +12435,8 @@
       "bibtex": null,
       "year": 2024,
       "venue": "arXiv"
-    }
+    },
+    "changelog": []
   },
   {
     "id": "robofac",
@@ -12473,7 +12481,8 @@
       "bibtex": null,
       "year": 2025,
       "venue": "arXiv"
-    }
+    },
+    "changelog": []
   },
   {
     "id": "rp1m",
@@ -12520,7 +12529,8 @@
       "bibtex": null,
       "year": 2024,
       "venue": "CoRL"
-    }
+    },
+    "changelog": []
   },
   {
     "id": "cornell-grasping",
@@ -12562,7 +12572,8 @@
       "bibtex": null,
       "year": 2013,
       "venue": "IJRR"
-    }
+    },
+    "changelog": []
   },
   {
     "id": "acronym",
@@ -12608,7 +12619,8 @@
       "bibtex": null,
       "year": 2021,
       "venue": "ICRA"
-    }
+    },
+    "changelog": []
   },
   {
     "id": "grasp-anything",
@@ -12654,7 +12666,8 @@
       "bibtex": null,
       "year": 2024,
       "venue": "CVPR"
-    }
+    },
+    "changelog": []
   },
   {
     "id": "dex1b",
@@ -12701,6 +12714,7 @@
       "bibtex": null,
       "year": 2025,
       "venue": "RSS"
-    }
+    },
+    "changelog": []
   }
 ]

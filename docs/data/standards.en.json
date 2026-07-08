@@ -1199,7 +1199,8 @@
         "未见物体识别"
       ],
       "MAY": []
-    }
+    },
+    "datasetIds": []
   },
   {
     "id": "manipulathor",
@@ -1233,7 +1234,8 @@
         "100+ 室内场景泛化"
       ],
       "MAY": []
-    }
+    },
+    "datasetIds": []
   },
   {
     "id": "bigym",
@@ -1268,7 +1270,8 @@
         "全身运动控制"
       ],
       "MAY": []
-    }
+    },
+    "datasetIds": []
   },
   {
     "id": "humanoidbench",
@@ -1303,7 +1306,8 @@
         "行走+操作协调"
       ],
       "MAY": []
-    }
+    },
+    "datasetIds": []
   },
   {
     "id": "humanoidgen",
@@ -1338,6 +1342,58 @@
         "自动评测"
       ],
       "MAY": []
-    }
+    },
+    "datasetIds": []
+  },
+  {
+    "id": "gm-100",
+    "name": "GM-100",
+    "fullName": "The Great March 100: 100 Detail-oriented Tasks for Evaluating Embodied AI Agents",
+    "org": "上海交通大学 (Shanghai Jiao Tong University) / 蚂蚁灵波 (Robbyant) / SII / RHOS.ai",
+    "institution": "上海交通大学 (Shanghai Jiao Tong University) / 蚂蚁灵波 (Robbyant) / SII / RHOS.ai",
+    "type": "benchmark",
+    "openness": "open",
+    "links": {
+      "site": "https://rhos.ai/research/gm-100",
+      "paper": "https://arxiv.org/abs/2601.11421",
+      "github": "https://github.com/Robbyant/lingbot-vla",
+      "huggingface": "https://huggingface.co/datasets/robbyant/lingbot-GM-100"
+    },
+    "year": 2026,
+    "desc": "**GM-100（The Great March 100）**是上海交通大学人工智能学院李永露副教授团队联合蚂蚁灵波（Robbyant）、SII、RHOS.ai 发布的**真实机器人操作评测基准**，被业界称为具身智能的「统考卷」或「上海卷」。\n\n包含 **100 个精细设计的长尾操作任务**，基于人-物交互原语分析 + LLM 生成 + 专家筛选的系统化流水线构建，覆盖动态接触、工具使用、双臂协同、精细对准、易变形物体操作、折叠装配、排序整理等关键能力维度。\n\n提供 **~13,000 条真实机器人遥操作轨迹**（每任务约 100 条训练 + 30 条测试轨迹），支持 Agilex Cobot Magic 和 Dobot Xtrainer 两种机器人平台。\n\n创新性地引入**部分成功率（PSR）**指标，量化多步任务中子步骤的完成情况，配合传统成功率（SR）和动作预测误差，形成三维度评估体系，避免「非全即无」的粗糙判断。\n\n已对 Diffusion Policy、π₀、π₀.₅、GR00T N1、LingBot-VLA 等主流 VLA 模型进行基准测试，其中 LingBot-VLA 以 17.3% 跨本体成功率取得领先，π₀.₅ 为 13.0%。GM-100 被设计为社区驱动的开放评测平台，远期规划扩展至 300+ 任务，打造具身智能领域的「奥林匹克」。",
+    "description": "**GM-100（The Great March 100）**是上海交通大学人工智能学院李永露副教授团队联合蚂蚁灵波（Robbyant）、SII、RHOS.ai 发布的**真实机器人操作评测基准**，被业界称为具身智能的「统考卷」或「上海卷」。\n\n包含 **100 个精细设计的长尾操作任务**，基于人-物交互原语分析 + LLM 生成 + 专家筛选的系统化流水线构建，覆盖动态接触、工具使用、双臂协同、精细对准、易变形物体操作、折叠装配、排序整理等关键能力维度。\n\n提供 **~13,000 条真实机器人遥操作轨迹**（每任务约 100 条训练 + 30 条测试轨迹），支持 Agilex Cobot Magic 和 Dobot Xtrainer 两种机器人平台。\n\n创新性地引入**部分成功率（PSR）**指标，量化多步任务中子步骤的完成情况，配合传统成功率（SR）和动作预测误差，形成三维度评估体系，避免「非全即无」的粗糙判断。\n\n已对 Diffusion Policy、π₀、π₀.₅、GR00T N1、LingBot-VLA 等主流 VLA 模型进行基准测试，其中 LingBot-VLA 以 17.3% 跨本体成功率取得领先，π₀.₅ 为 13.0%。GM-100 被设计为社区驱动的开放评测平台，远期规划扩展至 300+ 任务，打造具身智能领域的「奥林匹克」。",
+    "license": "CC-BY-4.0",
+    "scene": [
+      "real"
+    ],
+    "modalities": [
+      "RGB",
+      "深度",
+      "本体状态",
+      "动作"
+    ],
+    "requirements": {
+      "MUST": [
+        "100 个长尾操作任务覆盖",
+        "真实机器人遥操作评测",
+        "部分成功率（PSR）三维度评估"
+      ],
+      "SHOULD": [
+        "跨本体泛化测试",
+        "多模型横向对比",
+        "社区驱动开放评测"
+      ],
+      "MAY": [
+        "扩展至 300+ 任务"
+      ]
+    },
+    "benchmarkMeta": {
+      "rankBy": "model",
+      "metric": "Avg. Success",
+      "unit": "%",
+      "higherIsBetter": true,
+      "maxScore": 100
+    },
+    "datasetIds": []
   }
 ]
