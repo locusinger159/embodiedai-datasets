@@ -8,7 +8,7 @@
 
 专注收录全球具身智能、人形机器人、机械臂、移动机器人数据集情报。只做信息汇总与申请导航，助力算法研发。
 
-- 📊 收录 **135** 个数据集
+- 📊 收录 **136** 个数据集
 - 📐 收录 **39** 个数据标准与评测基准
 - 🏆 **12 个 Benchmark 排行榜**（LIBERO / CALVIN / RLBench / Meta-World / VLABench / RoboTwin / SimplerEnv / FurnitureBench / EmbodiedBench / LIBERO-Plus / LIBERO-PRO / RoboChallenge），335 条模型排行数据
 - 🧠 **AI 论文知识库** — 137 篇学术论文全文嵌入，AI 助手可回答方法论级问题
@@ -57,7 +57,7 @@ embodiedai-datasets/
 │       ├── formats.html           #   格式全景图
 │       └── standard-proposal.html #   标准草案
 ├── docs/data/                          # JSON 数据（从 SQLite 自动导出）
-│   ├── datasets.json / datasets.en.json       # 135 个数据集
+│   ├── datasets.json / datasets.en.json       # 136 个数据集
 │   ├── standards.json / standards.en.json     # 39 个标准
 │   ├── tools.json / tools.en.json             # 18 个工具
 │   └── blog.json                              # 博客文章
@@ -140,7 +140,7 @@ embodiedai-datasets/
 
 ### v2.16 (2026-07-07)
 
-- 📊 **数据集 121→135** — 从 5 篇综述论文中验证收录 14 个新数据集（TFDS 小型操作 7 个 + 轨迹 3 个 + 抓取 4 个）
+- 📊 **数据集 121→136** — 从 5 篇综述论文中验证收录 14 个新数据集（TFDS 小型操作 7 个 + 轨迹 3 个 + 抓取 4 个）+ Kine2Go（Unitree Go2 四足运动学数据集）
 - 📐 **数据标准 33→39** — 新增 HomeRobot / ManipulaTHOR / BiGym / HumanoidBench / HumanoidGen / GM-100
 - 🏷️ **侧边栏大整理** — 标签 130+→36，新增「采集方式」筛选器（遥操作/仿真/Ego/动捕/UMI/多源），机器人类型去掉仿真/通用，任务类型去掉纯感知
 - 📡 **quality.collection 规范化** — 34 种自由文本变体 → 6 个标准值

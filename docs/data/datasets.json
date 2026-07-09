@@ -12716,5 +12716,52 @@
       "venue": "RSS"
     },
     "changelog": []
+  },
+  {
+    "id": "kine2go",
+    "name": "Kine2Go",
+    "institution": "NoMagic.AI / 华沙大学 (University of Warsaw)",
+    "description": "**Kine2Go** 是 NoMagic.AI 与华沙大学发布的 Unitree Go2 四足机器人运动学数据集。\n\n包含 **800 条多样化步态运动学轨迹**，源自 **40 种不同的运动策略（policies）**。数据生成管线先将多种四足形态的运动数据转换为 Go2 兼容格式，再通过强化学习训练策略跟踪参考运动，最后从策略 rollout 中采集带扰动的鲁棒运动学数据及对应的电机级动作指令。\n\n每条轨迹包含机器人的**关节位置、关节速度、IMU 读数**等运动学状态，以及**电机扭矩/位置指令**。主要面向模仿学习、行为克隆、强化学习等需要演示数据的方法，省去了研究者自行搭建采集管线的成本。\n\n是目前为数不多的专为 Unitree Go2 四足机器人设计的公开运动数据集。",
+    "modality": [
+      "本体状态",
+      "动作",
+      "IMU"
+    ],
+    "robotType": [
+      "四足机器人"
+    ],
+    "task": [
+      "运动控制"
+    ],
+    "type": "open",
+    "openness": "open",
+    "license": "Unspecified",
+    "links": {
+      "paper": "https://arxiv.org/abs/2606.14433"
+    },
+    "scale": "800 trajectories (40 policies)",
+    "dataFormat": "numpy/array (kinematic states + motor actions)",
+    "year": 2026,
+    "tags": [
+      "四足机器人",
+      "运动控制",
+      "模仿学习",
+      "强化学习",
+      "Unitree Go2"
+    ],
+    "notes": null,
+    "vlaCompatible": [],
+    "quality": {
+      "collection": "仿真生成",
+      "annotation": "自动标注",
+      "realWorld": "仿真",
+      "hasSplit": false
+    },
+    "citation": {
+      "bibtex": null,
+      "year": 2026,
+      "venue": "arXiv"
+    },
+    "changelog": []
   }
 ]
