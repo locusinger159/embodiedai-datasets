@@ -43,22 +43,23 @@ VAGUE_SCALE_PATTERNS = [
 ]
 
 # Known-good datasets that passed manual verification (from previous audits)
+# IDs must match datasets.json exactly — keep in sync when datasets are renamed.
 KNOWN_GOOD = {
-    'open-x-embodiment', 'bridgedata-v2', 'rh20t', 'roboSet',
-    'libero', 'metaworld', 'rlbench', 'maniskill2', 'calvin',
-    'ario', 'rt-1-data', 'robocat-data', 't-diffusion-data',
-    'agibot-world-2026', 'robomind', 'damo-solo',
-    'fourier-actionnet', 'nvidia-gr1-sim', 'unitree-lafan1',
-    'unifolm-wbt', 'digit-dataset', 'tactip-datasets',
-    'graspnet-1billion', 'dexnet-2', 'matterport3d',
+    'open-x-embodiment', 'bridge-data-v2', 'rh20t', 'roboset',
+    'libero', 'meta-world', 'rlbench', 'maniskill2', 'calvin',
+    'ario', 'rt-1-data', 'robocat-data',
+    'agibot-world', 'robomind',
+    'gr-1-dataset', 'nvidia-gr1-simulation', 'lafan1',
+    'unifolm-wbt-dataset', 'digit-dataset', 'tactip-datasets',
+    'graspnet-1billion', 'dexnet-2-0', 'matterport3d',
     'humanoid-everyday', 'dexora', 'realsource',
-    '10kh-realomni-open', 'robocoin', 'openlet', 'uniact',
-    'galaxea-god', 'oxe-auge', 'droid', 'mimicgen',
-    'robocasa', 'arnold', 'robonet', 'ego4d',
-    'handal', '3doi', 'hova-500k', 'reasonaff',
-    'instructpart', 'scenefun3d', 'robomind-2', 'hoi4d',
-    'vitra', 'bc-z', 'aloha', 'internscenes',
-    'kairos-homeworld', 'gr00t-n1', 'motionmillions',
+    '10kh-realomni', 'robocoin', 'openlet', 'uniact',
+    'galaxea-open-world', 'oxe-auge', 'droid', 'mimicgen',
+    'robocasa', 'arnold-benchmark', 'robonet', 'ego4d',
+    'handal-dataset', '3doi-dataset', 'hova-500k', 'reasonaff',
+    'instructpart', 'scenefun3d', 'robomind2', 'hoi4d',
+    'vitra', 'bc-z', 'aloha-dataset', 'internscenes',
+    'kairos-homeworld', 'groot-n1-dataset', 'internhumanoid-motionmillions',
     'dexgraspvla', 'graspvla-syngrasp',
 }
 
@@ -76,25 +77,26 @@ for d in datasets:
         flags.append('tags 为空')
 
     # 2. Thin notes
-    notes = d.get('notes', '')
+    notes = d.get('notes') or ''
     if len(notes) < 50:
         score += RISK_WEIGHTS['thin_notes']
         flags.append(f'notes 过短 ({len(notes)}字)')
 
     # 3. Thin description
-    desc = d.get('description', '')
+    desc = d.get('description') or ''
     if len(desc) < 200:
         score += RISK_WEIGHTS['thin_description']
         flags.append(f'description 过短 ({len(desc)}字)')
 
-    # 4. No official link
-    official = d.get('links', {}).get('official', '')
+    # 4. No official link (schema uses links.site; keep links.official for legacy data)
+    links = d.get('links') or {}
+    official = links.get('official') or links.get('site') or ''
     if not official:
         score += RISK_WEIGHTS['no_official_link']
         flags.append('无 official 链接')
 
     # 5. No paper
-    paper = d.get('links', {}).get('paper', '')
+    paper = links.get('paper', '') or ''
     if not paper:
         score += RISK_WEIGHTS['no_paper']
         flags.append('无 paper 链接')
@@ -108,26 +110,28 @@ for d in datasets:
         flags.append('无 changelog')
 
     # 7. No GitHub and no HuggingFace
-    has_gh = bool(d.get('github') or d.get('links', {}).get('github'))
-    has_hf = bool(d.get('huggingface') or d.get('links', {}).get('huggingface'))
+    has_gh = bool(d.get('github') or links.get('github'))
+    has_hf = bool(d.get('huggingface') or links.get('huggingface'))
     if not has_gh and not has_hf:
         score += RISK_WEIGHTS['no_github_no_hf']
         flags.append('无 GitHub 且无 HuggingFace')
 
     # 8. Vague scale
-    scale = d.get('scale', '')
+    scale = d.get('scale') or ''
     if any(re.search(p, scale) for p in VAGUE_SCALE_PATTERNS):
         score += RISK_WEIGHTS['vague_scale']
         flags.append(f'scale 模糊: "{scale}"')
 
     # 9. No citation
-    bib = d.get('citation', {}).get('bibtex', '')
+    citation = d.get('citation') or {}
+    bib = citation.get('bibtex') or ''
     if not bib:
         score += RISK_WEIGHTS['minimal_citation']
         flags.append('无 BibTeX 引用')
 
-    # 10. No year
-    if not d.get('year'):
+    # 10. No year (year lives in citation.year or bibtex, not top-level)
+    has_year = bool(citation.get('year')) or bool(re.search(r'year\s*=\s*\{?\d{4}', bib))
+    if not has_year:
         score += RISK_WEIGHTS['no_year']
         flags.append('缺少年份')
 

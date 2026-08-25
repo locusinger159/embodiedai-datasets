@@ -2134,7 +2134,6 @@
     "openness": "open",
     "license": "Unspecified",
     "links": {
-      "site": "https://arxiv.org/abs/2306.07878",
       "paper": "https://arxiv.org/abs/2306.11706"
     },
     "scale": "多机器人操纵数据",
@@ -2709,7 +2708,7 @@
     "license": "Unspecified",
     "links": {
       "site": "https://digit.ml",
-      "paper": "https://arxiv.org/abs/1905.04128"
+      "paper": "https://arxiv.org/abs/2005.14679"
     },
     "scale": null,
     "dataFormat": "详见官方链接 — contact_episode → frame → tactile_image（GelSight DIGIT, 640×480）/ force_torque（FT sensor）/ end-effector_pose, HDF5",
@@ -6108,7 +6107,7 @@
     "license": "Apache-2.0",
     "links": {
       "site": "https://interactive-language.github.io/",
-      "paper": "https://arxiv.org/abs/2206.03286"
+      "paper": "https://arxiv.org/abs/2210.06407"
     },
     "scale": "600K 语言标注轨迹，多种几何形状积木",
     "dataFormat": "RLDS / TFDS — episode → step → observation / action / language_instruction",
@@ -7792,7 +7791,7 @@
     "license": "MIT",
     "links": {
       "site": "https://sites.google.com/view/mime-cmu",
-      "paper": "https://proceedings.neurips.cc/paper_files/paper/2001/file/f1981e4bd8a0d6d8462016d2fc6276b3-Paper.pdf"
+      "paper": "https://arxiv.org/abs/1810.07121"
     },
     "scale": "8260 人机交互演示，20 种不同机器人任务",
     "dataFormat": "自定义 — episode → step → video / state / action",
@@ -7856,7 +7855,7 @@
     "license": "MIT",
     "links": {
       "site": "https://maniwav.github.io/",
-      "paper": "https://arxiv.org/abs/2406.11867"
+      "paper": "https://arxiv.org/abs/2406.19464"
     },
     "scale": "手持式数据采集设备，同步音频+视觉反馈",
     "dataFormat": "自定义 — episode → step → audio / video / state / action",
@@ -12080,7 +12079,7 @@
     "openness": "open",
     "license": "MIT",
     "links": {
-      "paper": "https://arxiv.org/abs/2306.08129"
+      "paper": "https://arxiv.org/abs/2211.08416"
     },
     "scale": "110 episodes, ~738 MB",
     "dataFormat": "RLDS / TFDS",
@@ -12125,7 +12124,7 @@
     "openness": "open",
     "license": "MIT",
     "links": {
-      "paper": "https://arxiv.org/abs/2209.10674"
+      "paper": "https://arxiv.org/abs/2109.13841"
     },
     "scale": "365 episodes, ~1.49 GB",
     "dataFormat": "RLDS / TFDS",
@@ -12172,7 +12171,7 @@
     "openness": "open",
     "license": "MIT",
     "links": {
-      "paper": "https://arxiv.org/abs/2210.06629"
+      "paper": "https://arxiv.org/abs/2210.11435"
     },
     "scale": "240 episodes, ~18.85 GB",
     "dataFormat": "RLDS / TFDS",
@@ -12218,7 +12217,7 @@
     "openness": "open",
     "license": "MIT",
     "links": {
-      "paper": "https://arxiv.org/abs/2209.11144"
+      "paper": "https://arxiv.org/abs/2112.01511"
     },
     "scale": "435 episodes, ~7.12 GB",
     "dataFormat": "RLDS / TFDS",
@@ -12265,7 +12264,7 @@
     "openness": "open",
     "license": "MIT",
     "links": {
-      "paper": "https://arxiv.org/abs/2210.14780"
+      "paper": "https://arxiv.org/abs/2209.08959"
     },
     "scale": "3,242 episodes, ~47.77 GB",
     "dataFormat": "RLDS / TFDS",
@@ -12312,7 +12311,7 @@
     "openness": "open",
     "license": "MIT",
     "links": {
-      "paper": "https://arxiv.org/abs/2302.07138",
+      "paper": "https://arxiv.org/abs/2303.00905",
       "github": "https://github.com/AGI-Labs/toto_benchmark"
     },
     "scale": "~2,900 trajectories",
@@ -12361,7 +12360,7 @@
     "openness": "open",
     "license": "MIT",
     "links": {
-      "paper": "https://arxiv.org/abs/2210.00098"
+      "paper": "https://arxiv.org/abs/2210.11339"
     },
     "scale": "150 episodes, ~10.40 GB",
     "dataFormat": "RLDS / TFDS",
