@@ -8,15 +8,15 @@
 
 专注收录全球具身智能、人形机器人、机械臂、移动机器人数据集情报。只做信息汇总与申请导航，助力算法研发。
 
-- 📊 收录 **136** 个数据集
-- 📐 收录 **39** 个数据标准与评测基准
+- 📊 收录 **148** 个数据集
+- 📐 收录 **38** 个数据标准与评测基准
 - 🏆 **12 个 Benchmark 排行榜**（LIBERO / CALVIN / RLBench / Meta-World / VLABench / RoboTwin / SimplerEnv / FurnitureBench / EmbodiedBench / LIBERO-Plus / LIBERO-PRO / RoboChallenge），335 条模型排行数据
-- 🧠 **AI 论文知识库** — 137 篇学术论文全文嵌入，AI 助手可回答方法论级问题
+- 🧠 **AI 论文知识库** — 152 篇学术论文全文嵌入，AI 助手可回答方法论级问题
 - 🔧 收录 **18** 个工具与平台
-- 🤖 覆盖 **8** 大机器人类型：人形机器人、机械臂、移动机器人、四足机器人、多机型、触觉传感、灵巧手、通用
-- 🎯 覆盖 **18** 种任务类型：操作、抓取、导航、装配、家居、交互、运动控制、动作捕捉、康养护理、人类操作 等
+- 🤖 覆盖 **6** 大机器人类型：人形机器人、机械臂、移动机器人、四足机器人、触觉传感、灵巧手
+- 🎯 覆盖 **12** 种任务类型：操作、家居、装配、交互、抓取、动作捕捉、运动控制、导航、物体交互、人机交互、康养护理、人类操作
 - 🏷️ 热门标签：世界模型、RLDS、遥操作、VLA、大规模、可供性 等
-- 🏛️ 数据来自 **77** 个全球顶级研究机构
+- 🏛️ 数据来自 **116** 个全球顶级研究机构
 
 ## 功能特性
 
@@ -24,13 +24,13 @@
 - **反向推荐** — 🎯 6 步配置向导（任务→机器人→模态→场景→VLA→获取），加权打分推荐 Top 8，6 个快捷预设
 - **VLA 框架兼容性** — 标注 7 大 VLA 框架（π0、OpenVLA、GR00T N1、Octo、RT-2、RDT-1B、ACT），数据集详情页和列表页直观展示
 - **Benchmark 排行榜** — 🏆 12 个标准 benchmark 独立排行榜，335 条模型排行数据可溯源，支持模型排名和训练集排名双模式
-- **论文知识库** — 🧠 137 篇学术论文全文嵌入 AI 助手，回答方法论、实验设计、技术细节等深度问题
+- **论文知识库** — 🧠 152 篇学术论文全文嵌入 AI 助手，回答方法论、实验设计、技术细节等深度问题
 - **数据集详情页** — 每个数据集独立页面，含信息卡片、VLA 兼容性、Benchmark 评测、Schema 图、传感器规格、BibTeX 引用、相关推荐
 - **数据集对比** — 多选横向对比（最多 4 个），高亮差异字段
 - **侧边栏筛选** — 280px 左侧筛选面板（机器人类型/任务/开放程度/热门标签），右侧列表展示，桌面端含 VLA 兼容列
-- **数据标准页** — 28 个行业标准/评测基准，每条含 RFC 2119 规范性要求（MUST/SHOULD/MAY），表格/卡片双视图
+- **数据标准页** — 38 个行业标准/评测基准，每条含 RFC 2119 规范性要求（MUST/SHOULD/MAY），表格/卡片双视图
 - **工具/平台** — 18 个仿真平台、物理引擎、训练框架、可视化工具，侧边栏按工具类型筛选
-- **技术博客** — 7 篇深度文章：AstraBrain-WBC 小脑 GPT 模型 / Qwen-Robot 矩阵解析 / 7 天 VLA 实战 / AI 搜索实践 / GR-1 测评 / UniACT 解析，RSS 订阅
+- **技术博客** — 8 篇深度文章：AstraBrain-WBC 小脑 GPT 模型 / Qwen-Robot 矩阵解析 / 7 天 VLA 实战 / AI 搜索实践 / GR-1 测评 / UniACT 解析 / 具身智能落地三支柱方法论，RSS 订阅
 - **英文站** — 全站英文版（`/en/`），中/EN 一键切换
 - **评论区** — 基于 giscus + GitHub Discussions
 
@@ -57,8 +57,8 @@ embodiedai-datasets/
 │       ├── formats.html           #   格式全景图
 │       └── standard-proposal.html #   标准草案
 ├── docs/data/                          # JSON 数据（从 SQLite 自动导出）
-│   ├── datasets.json / datasets.en.json       # 136 个数据集
-│   ├── standards.json / standards.en.json     # 39 个标准
+│   ├── datasets.json / datasets.en.json       # 148 个数据集
+│   ├── standards.json / standards.en.json     # 38 个标准
 │   ├── tools.json / tools.en.json             # 18 个工具
 │   └── blog.json                              # 博客文章
 ├── data/
@@ -138,6 +138,13 @@ embodiedai-datasets/
 
 ## 版本记录
 
+### v2.17 (2026-10-13)
+
+- 📊 **数据集 136→148** — 收录 12 个 2026 新发布数据集：Daimon-Infinity（戴盟 × DeepMind 触觉 VTLA）、PrimeBot XR-2 双臂 1500h、HiPHI（诺亦腾 600h 人体运动）、R2RI（机器人-机器人交互）、HapTile（触觉 VTLA）、Spa-Bench、MachEmbodied-Dex1.0（理想汽车）、EmbodiedCLBench（北大）、Humanoid-OmniOcc、EmbodiedSWE、DuoBench、UBTECH 挑战赛数据集
+- 🔗 **数据集 ↔ 标准交叉引用回补** — 80 个数据集补齐 `standards[]`（此前 0/136），25 个标准重建 `datasetIds[]` 并重算 `datasetCount`；依据为 OXE 官方成员清单 + dataFormat 布局证据 + 描述显式提及，宁缺毋滥不做模糊匹配
+- 🧹 **重复标准合并** — Meta-World 标准去重（删除 stub 版，保留完整版），39→38
+- 🔧 **全站数字对账** — README 机器人类型 8→6、任务 18→12、机构 77→116、论文 137→152 等全部校正
+
 ### v2.16 (2026-07-07)
 
 - 📊 **数据集 121→136** — 从 5 篇综述论文中验证收录 14 个新数据集（TFDS 小型操作 7 个 + 轨迹 3 个 + 抓取 4 个）+ Kine2Go（Unitree Go2 四足运动学数据集）
@@ -166,7 +173,7 @@ embodiedai-datasets/
 
 ### v2.13 (2026-06-22)
 
-- 🧠 **论文知识库** — 137 篇数据集论文全文嵌入，AI 助手升级为 Expert Agent。支持方法论级问答（「π0 用什么架构？」「ALOHA 动作空间多大？」），知识壁垒：fork 站拿不到论文库
+- 🧠 **论文知识库** — 152 篇数据集论文全文嵌入，AI 助手升级为 Expert Agent。支持方法论级问答（「π0 用什么架构？」「ALOHA 动作空间多大？」），知识壁垒：fork 站拿不到论文库
 - 🏆 **Benchmark 体系优化** — 5→6 个（新增 EmbodiedBench / MLLM 大脑层评测），35→61 条记录。清理 6 条不可溯源数据，全部 100% 论文可溯源
 - 🗑️ **数据质量治理** — 修复 35 个错误 arxiv 论文链接，删除 2 个 AI 虚构数据集（T-Diffusion Data / DAMO-SOLO），累计删除 5 个虚构条目
 - 🐛 **AI 助手多轮对话修复** — 解决 context overflow 导致 HTTP 500 的问题
