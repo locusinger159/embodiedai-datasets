@@ -59,16 +59,6 @@
   }
   window.addEventListener('scroll', onScroll, { passive:true });
   backToTop.addEventListener('click', function(){ window.scrollTo({ top:0, behavior:'smooth' }); });
-  // Navbar scroll background
-  var navbar = document.querySelector('.navbar');
-  if(navbar){
-    function onNavScroll(){
-      var y = window.pageYOffset || document.documentElement.scrollTop;
-      navbar.style.background = y > 50 ? 'rgba(11,15,26,0.95)' : 'rgba(11,15,26,0.85)';
-      navbar.style.boxShadow = y > 50 ? '0 4px 20px rgba(0,0,0,0.3)' : 'none';
-    }
-    window.addEventListener('scroll', onNavScroll, { passive:true });
-  }
   // Fade-in scroll animations with stagger
   if('IntersectionObserver' in window){
     var obs = new IntersectionObserver(function(entries){

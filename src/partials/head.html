@@ -42,7 +42,7 @@ p{max-width:70ch}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 32px}
 
 /* ---------- Navbar ---------- */
-.navbar{position:sticky;top:0;z-index:1000;height:64px;padding:0 32px;display:flex;align-items:center;gap:20px;background:rgba(247,244,238,.97);border-bottom:1px solid var(--hairline)}
+.navbar{position:sticky;top:0;z-index:1000;height:64px;padding:0 32px;display:flex;align-items:center;gap:20px;background:var(--paper);border-bottom:1px solid var(--hairline)}
 .nav-logo{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:600;letter-spacing:-.01em;white-space:nowrap}
 .nav-logo img{width:28px;height:28px;object-fit:contain}
 .nav-menu{display:flex;align-items:center;gap:2px;margin-left:8px}
@@ -577,23 +577,23 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="search"]:focus,se
 @media (max-width:768px){.blog-section{grid-template-columns:1fr}.info-card{border-right:none!important}}
 
 /* ---------- Footer ---------- */
-.footer{background:var(--footer-bg);color:var(--footer-text);padding:56px 32px 28px;margin-top:0}
+.footer{background:var(--raised);color:var(--ink);padding:56px 32px 28px;margin-top:0;border-top:1px solid var(--hairline)}
 .footer-content{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
 .footer-brand{max-width:340px}
 .footer-logo{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:600;margin-bottom:12px}
 .footer-logo img{width:28px;height:28px;object-fit:contain}
-.footer-desc{font-size:13px;line-height:1.7;color:var(--footer-muted);margin-bottom:16px}
+.footer-desc{font-size:13px;line-height:1.7;color:var(--ink-muted);margin-bottom:16px}
 .footer-social{display:flex;gap:8px}
-.social-link{width:32px;height:32px;border:1px solid rgba(243,244,246,.2);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--footer-muted);transition:color var(--t-fast),border-color var(--t-fast)}
-.social-link:hover{color:var(--footer-text);border-color:rgba(243,244,246,.5)}
+.social-link{width:32px;height:32px;border:1px solid var(--hairline-strong);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--ink-muted);transition:color var(--t-fast),border-color var(--t-fast)}
+.social-link:hover{color:var(--accent);border-color:var(--accent)}
 .social-link svg{width:15px;height:15px}
-.footer-section h4{font-size:12px;font-weight:500;color:var(--footer-muted);margin-bottom:12px;letter-spacing:0}
+.footer-section h4{font-size:12px;font-weight:500;color:var(--ink-muted);margin-bottom:12px;letter-spacing:0}
 .footer-links{display:flex;flex-direction:column;gap:8px}
-.footer-link{font-size:13px;color:var(--footer-text);opacity:.85;transition:opacity var(--t-fast)}
-.footer-link:hover{opacity:1;color:#fff}
-.footer-bottom{max-width:var(--maxw);margin:0 auto;padding-top:20px;border-top:1px solid rgba(243,244,246,.15);display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
-.footer-copyright{font-family:var(--mono);font-size:11px;color:var(--footer-muted)}
-.footer-disclaimer{font-size:11px;line-height:1.6;color:var(--footer-muted);max-width:520px;text-align:right}
+.footer-link{font-size:13px;color:var(--ink-soft);transition:color var(--t-fast)}
+.footer-link:hover{color:var(--ink)}
+.footer-bottom{max-width:var(--maxw);margin:0 auto;padding-top:20px;border-top:1px solid var(--hairline);display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.footer-copyright{font-family:var(--mono);font-size:11px;color:var(--ink-muted)}
+.footer-disclaimer{font-size:11px;line-height:1.6;color:var(--ink-muted);max-width:520px;text-align:right}
 .footer::before{display:none}
 .back-to-top{position:fixed;right:20px;bottom:20px;width:36px;height:36px;border:1px solid var(--hairline-strong);border-radius:50%;background:var(--surface);color:var(--ink-soft);display:none;align-items:center;justify-content:center;cursor:pointer;z-index:900;box-shadow:var(--shadow-sm)}
 .back-to-top.visible{display:flex}
