@@ -115,7 +115,7 @@
   "license": "CC-BY-4.0",
   "links": {
    "site": "https://rail-berkeley.github.io/bridgedata",
-   "paper": "https://arxiv.org/abs/2403.03954"
+   "paper": "https://arxiv.org/abs/2308.12952"
   },
   "scale": "85K 操纵轨迹",
   "dataFormat": "RLDS / TFDS — episode → step → observation (image/state) / action",
@@ -251,7 +251,7 @@
    "hasSplit": true
   },
   "citation": {
-   "bibtex": "@article{fang2023rh20t,\n  title={RH20T: A Robotic Dataset for Learning Diverse Skills in One Day},\n  author={Fang, Hao-Shu and others},\n  journal={arXiv preprint arXiv:2307.11795},\n  year={2023}\n}",
+   "bibtex": "@inproceedings{fang2023rh20t,\n  title={RH20T: A Comprehensive Robotic Dataset for Learning Diverse Skills in One-Shot},\n  author={Fang, Hao-Shu and Fang, Hongjie and Tang, Zhenyu and Liu, Jirong and Wang, Chenxi and Wang, Junbo and Zhu, Haoyi and Lu, Cewu},\n  booktitle={RSS Workshop on Learning for Task and Motion Planning (LTAMP)},\n  year={2023}\n}",
    "year": 2024,
    "venue": "RSS 2023"
   },
@@ -1462,7 +1462,7 @@
   "openness": "open",
   "license": "Unspecified",
   "links": {
-   "site": "https://sites.google.com/view/rlbench",
+   "site": "https://github.com/stepjam/RLBench",
    "paper": "https://arxiv.org/abs/1909.12271"
   },
   "scale": "100+ 任务",
@@ -2360,7 +2360,7 @@
   "openness": "open",
   "license": "Unspecified",
   "links": {
-   "site": "http://www.robomind.cn/",
+   "site": "https://x-humanoid-robomind.github.io/",
    "paper": "https://arxiv.org/abs/2412.13877"
   },
   "scale": "6W+ 分钟真机数据",
@@ -5841,7 +5841,7 @@
   "openness": "open",
   "license": "Unspecified",
   "links": {
-   "site": "https://ai4robot.github.io/etri-activity3d-en",
+   "site": "https://ai4robot.github.io/etri-activity3d",
    "paper": "https://arxiv.org/abs/2003.01920"
   },
   "scale": "112,620条样本，55种动作类别，100名受试者",
@@ -6331,7 +6331,7 @@
    "hasSplit": true
   },
   "citation": {
-   "bibtex": "@article{heo2023furniturebench,\n  title={FurnitureBench: Reproducible Real-World Benchmark for Long-Horizon Complex Manipulation},\n  author={Heo, Minho and Lee, Youngwoon and Lee, Doohyun and Lim, Joseph J},\n  journal={arXiv preprint arXiv:2306.11929},\n  year={2023}\n}",
+   "bibtex": "@inproceedings{heo2023furniturebench,\n  title={FurnitureBench: Reproducible Real-World Benchmark for Long-Horizon Complex Manipulation},\n  author={Heo, Minho and Lee, Youngwoon and Lee, Doohyun and Lim, Joseph J.},\n  booktitle={Robotics: Science and Systems (RSS)},\n  year={2023}\n}",
    "year": 2023,
    "venue": "RSS 2023"
   },
@@ -6551,7 +6551,7 @@
   "openness": "open",
   "license": "MIT",
   "links": {
-   "site": "https://sites.google.com/view/hydra-il-2023",
+   "site": "https://huggingface.co/datasets/lerobot/stanford_hydra_dataset",
    "paper": "https://proceedings.mlr.press/v229/belkhale23a/belkhale23a.pdf"
   },
   "scale": "多任务家用操作（咖啡、烤面包、摆盘）",
@@ -6575,7 +6575,7 @@
    "hasSplit": true
   },
   "citation": {
-   "bibtex": "@article{belkhale2023hydra,\n  title={HYDRA: Hybrid Robot Actions for Imitation Learning},\n  author={Belkhale, Suneel and Cui, Yuchen and Sadigh, Dorsa},\n  journal={arXiv preprint arXiv:2301.13379},\n  year={2023}\n}",
+   "bibtex": "@article{belkhale2023hydra,\n  title={HYDRA: Hybrid Robot Actions for Imitation Learning},\n  author={Belkhale, Suneel and Cui, Yuchen and Sadigh, Dorsa},\n  journal={arXiv preprint arXiv:2306.17237},\n  year={2023}\n}",
    "year": 2023,
    "venue": "CoRL 2023"
   },
@@ -6716,7 +6716,7 @@
    "hasSplit": true
   },
   "citation": {
-   "bibtex": "@article{chi2023diffusion,\n  title={Diffusion Policy: Visuomotor Policy Learning via Action Diffusion},\n  author={Chi, Cheng and Feng, Siyuan and Du, Yilun and Xu, Zhenjia and Cousineau, Eric and Burchfiel, Benjamin and Song, Shuran},\n  journal={arXiv preprint arXiv:2301.10677},\n  year={2023}\n}",
+   "bibtex": "@inproceedings{chi2023diffusion,\n  title={Diffusion Policy: Visuomotor Policy Learning via Action Diffusion},\n  author={Chi, Cheng and Xu, Zhenjia and Feng, Siyuan and Cousineau, Eric and Du, Yilun and Burchfiel, Benjamin and Tedrake, Russ and Song, Shuran},\n  booktitle={Robotics: Science and Systems (RSS)},\n  year={2023}\n}",
    "year": 2023,
    "venue": "RSS 2023"
   },
@@ -7460,9 +7460,9 @@
    "hasSplit": false
   },
   "citation": {
-   "bibtex": "@article{cui2023playtopolicy,\n  title={Play to Policy: Learning Goal-Conditioned Policies from Unstructured Play Data},\n  author={Cui, Zichen Jeff and Wang, Yibin and Shafiullah, Nur Muhammad and Pinto, Lerrel},\n  journal={arXiv preprint arXiv:2307.05924},\n  year={2023}\n}",
+   "bibtex": "@inproceedings{cui2023playtopolicy,\n  title={From Play to Policy: Conditional Behavior Generation from Uncurated Robot Data},\n  author={Cui, Zichen Jeff and Wang, Yibin and Shafiullah, Nur Muhammad Mahi and Pinto, Lerrel},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2023}\n}",
    "year": 2023,
-   "venue": "CoRL 2023"
+   "venue": "ICLR 2023"
   },
   "licenseNotes": "CC BY 4.0",
   "dataFormatDetail": {
@@ -7514,12 +7514,11 @@
   "openness": "open",
   "license": "CC-BY-4.0",
   "links": {
-   "site": "https://sites.google.com/view/berkeley-ur5/home",
-   "paper": "https://arxiv.org/abs/1911.04052"
+   "site": "https://www.tensorflow.org/datasets/catalog/berkeley_autolab_ur5"
   },
   "scale": "UR5 自适应操作，4 任务（取放/擦拭/堆叠/精确抓取）",
   "dataFormat": "RLDS / TFDS — episode → step → observation / action",
-  "year": 2019,
+  "year": 2023,
   "tags": [
    "OXE成员"
   ],
@@ -7538,9 +7537,9 @@
    "hasSplit": false
   },
   "citation": {
-   "bibtex": "@article{mandlekar2019scaling,\n  title={Scaling Robot Supervision to Hundreds of Hours with RoboTurk},\n  author={Mandlekar, Ajay and Xu, Danfei and Wong, Josiah and Nasiriany, Soroush and Wang, Chen and Kulkarni, Rohun and Fei-Fei, Li and Fox, Dieter and Zhu, Yuke and Mart{\\'\\i}n-Mart{\\'\\i}n, Roberto},\n  journal={arXiv preprint arXiv:1911.04036},\n  year={2019}\n}",
-   "year": 2019,
-   "venue": "CoRL 2019"
+   "bibtex": "@misc{chen2023berkeleyur5,\n  title={Berkeley UR5 Demonstration Dataset},\n  author={Chen, Lawrence Yunliang and Adebola, Simeon and Goldberg, Ken},\n  year={2023},\n  howpublished={\\url{https://sites.google.com/view/berkeley-ur5/home}}\n}",
+   "year": 2023,
+   "venue": "Dataset release"
   },
   "licenseNotes": "CC BY 4.0",
   "dataFormatDetail": {
@@ -7592,12 +7591,11 @@
   "openness": "open",
   "license": "MIT",
   "links": {
-   "site": "https://sites.google.com/berkeley.edu/fanuc-manipulation",
-   "paper": "https://sites.google.com/berkeley.edu/fanuc-manipulation"
+   "site": "https://www.tensorflow.org/datasets/catalog/berkeley_fanuc_manipulation"
   },
   "scale": "FANUC Mate 200iD 工业机器人，多视角操作演示",
   "dataFormat": "RLDS / TFDS — episode → step → observation / action / language",
-  "year": 2021,
+  "year": 2023,
   "tags": [
    "多视角",
    "OXE成员"
@@ -7617,9 +7615,9 @@
    "hasSplit": false
   },
   "citation": {
-   "bibtex": "@article{wang2021fanuc,\n  title={FANUC Manipulation Dataset},\n  author={Wang, Chen and others},\n  journal={arXiv preprint arXiv:2106.13228},\n  year={2021}\n}",
-   "year": 2021,
-   "venue": "—"
+   "bibtex": "@misc{zhu2023fanuc,\n  title={Fanuc Manipulation: A Dataset for Learning-based Manipulation with FANUC Mate 200iD Robot},\n  author={Zhu, Xinghao and Tian, Ran and Xu, Chenfeng and Huo, Mingxiao and Zhan, Wei and Tomizuka, Masayoshi and Ding, Mingyu},\n  year={2023}\n}",
+   "year": 2023,
+   "venue": "Dataset release"
   },
   "dataFormatDetail": {
    "storage": "RLDS / TFDS",
@@ -7671,12 +7669,12 @@
   "openness": "open",
   "license": "MIT",
   "links": {
-   "site": "https://sites.google.com/view/cablerouting/home",
+   "site": "https://www.tensorflow.org/datasets/catalog/berkeley_cable_routing",
    "paper": "https://arxiv.org/abs/2307.08927"
   },
   "scale": "线缆穿夹，分层模仿学习，自主故障恢复",
   "dataFormat": "RLDS / TFDS — episode → step → observation / action / primitive_label",
-  "year": 2022,
+  "year": 2024,
   "tags": [
    "精细操作"
   ],
@@ -7689,9 +7687,9 @@
    "hasSplit": false
   },
   "citation": {
-   "bibtex": "@article{luo2022cablerouting,\n  title={Hierarchical Imitation Learning for Cable Routing},\n  author={Luo, Jianlan and Dong, Siyuan and Schmeckpeper, Karl and Daniilidis, Kostas},\n  journal={arXiv preprint arXiv:2210.06679},\n  year={2022}\n}",
-   "year": 2022,
-   "venue": "CoRL 2022"
+   "bibtex": "@article{luo2024cablerouting,\n  title={Multi-Stage Cable Routing through Hierarchical Imitation Learning},\n  author={Luo, Jianlan and Xu, Charles and Geng, Xinyang and Feng, Gilbert and Fang, Kuan and Tan, Liam and Schaal, Stefan and Levine, Sergey},\n  journal={IEEE Transactions on Robotics},\n  volume={40},\n  pages={1476--1491},\n  year={2024}\n}",
+   "year": 2024,
+   "venue": "IEEE T-RO 2024"
   },
   "dataFormatDetail": {
    "storage": "RLDS / TFDS",
@@ -7835,9 +7833,9 @@
    "hasSplit": true
   },
   "citation": {
-   "bibtex": "@article{mandlekar2019roboturk,\n  title={RoboTurk: A Crowdsourcing Platform for Robotic Skill Learning through Imitation},\n  author={Mandlekar, Ajay and Xu, Danfei and Wong, Josiah and Nasiriany, Soroush and Wang, Chen and Kulkarni, Rohun and Fei-Fei, Li and Fox, Dieter and Zhu, Yuke and Mart{\\'\\i}n-Mart{\\'\\i}n, Roberto},\n  journal={arXiv preprint arXiv:1911.04036},\n  year={2019}\n}",
+   "bibtex": "@inproceedings{mandlekar2018roboturk,\n  title={RoboTurk: A Crowdsourcing Platform for Robotic Skill Learning through Imitation},\n  author={Mandlekar, Ajay and Zhu, Yuke and Garg, Animesh and Booher, Jonathan and Spero, Max and Tung, Albert and Gao, Julian and others},\n  booktitle={Conference on Robot Learning (CoRL)},\n  year={2018}\n}",
    "year": 2019,
-   "venue": "CoRL 2019"
+   "venue": "CoRL 2018"
   },
   "dataFormatDetail": {
    "storage": "HDF5",
@@ -7961,7 +7959,7 @@
   "openness": "open",
   "license": "MIT",
   "links": {
-   "site": "https://sites.google.com/view/mime-cmu",
+   "site": "https://proceedings.mlr.press/v87/sharma18a.html",
    "paper": "https://arxiv.org/abs/1810.07121"
   },
   "scale": "8260 人机交互演示，20 种不同机器人任务",
@@ -7977,7 +7975,7 @@
    "hasSplit": false
   },
   "citation": {
-   "bibtex": "@article{sharma2018mime,\n  title={MIME: Mutual Information Minimization and Entropy Maximization for Robust Few-Shot Learning},\n  author={Sharma, Pratyusha and Pathak, Deepak and Gupta, Abhinav},\n  journal={arXiv preprint arXiv:1808.06249},\n  year={2018}\n}",
+   "bibtex": "@inproceedings{sharma2018mime,\n  title={Multiple Interactions Made Easy (MIME): Large Scale Demonstrations Data for Imitation},\n  author={Sharma, Pratyusha and Mohan, Lekha and Pinto, Lerrel and Gupta, Abhinav},\n  booktitle={Conference on Robot Learning (CoRL)},\n  year={2018}\n}",
    "year": 2018,
    "venue": "CoRL 2018"
   },
@@ -8041,7 +8039,7 @@
    "hasSplit": false
   },
   "citation": {
-   "bibtex": "@article{huang2024maniwav,\n  title={ManiWAV: Learning Robot Manipulation from In-the-Wild Audio-Visual Data},\n  author={Huang, Zeyi and others},\n  journal={arXiv preprint arXiv:2406.11867},\n  year={2024}\n}",
+   "bibtex": "@inproceedings{liu2024maniwav,\n  title={ManiWAV: Learning Robot Manipulation from In-the-Wild Audio-Visual Data},\n  author={Liu, Zeyi and Chi, Cheng and Cousineau, Eric and Kuppuswamy, Naveen and Burchfiel, Benjamin and Song, Shuran},\n  booktitle={Conference on Robot Learning (CoRL)},\n  year={2024}\n}",
    "year": 2024,
    "venue": "CoRL 2024"
   },
@@ -8224,7 +8222,7 @@
    "hasSplit": true
   },
   "citation": {
-   "bibtex": "@article{robovqa2024,\n  title={RoboVQA: Multimodal Scene Graph Reasoning for Long-Horizon Robot Manipulation},\n  author={Stanford University},\n  journal={arXiv preprint arXiv:2403.12996},\n  year={2024}\n}",
+   "bibtex": "@inproceedings{sermanet2024robovqa,\n  title={RoboVQA: Multimodal Long-Horizon Reasoning for Robotics},\n  author={Sermanet, Pierre and Ding, Tianli and Zhao, Jeffrey and Xia, Fei and Dwibedi, Debidatta and Gopalakrishnan, Keerthana and Chan, Christine and Dulac-Arnold, Gabriel and Maddineni, Sharath and Joshi, Nikhil J. and Florence, Pete and Han, Wei and Baruch, Robert and Lu, Yao and Mirchandani, Suvir and Xu, Peng and Sanketi, Pannag and Hausman, Karol and Shafran, Izhak and Ichter, Brian and Cao, Yuan},\n  booktitle={Conference on Robot Learning (CoRL)},\n  year={2024}\n}",
    "year": 2024,
    "venue": "CoRL 2024"
   },
@@ -8406,7 +8404,7 @@
   "openness": "open",
   "license": "LicenseRef-Custom-Research",
   "links": {
-   "site": "https://fouheylab.eecs.umich.edu/~dandans/projects/100DOH/",
+   "site": "https://github.com/ddshan/hand_object_detector",
    "paper": "https://openaccess.thecvf.com/content_CVPR_2020/papers/Shan_Understanding_Human_Hands_in_Contact_at_Internet_Scale_CVPR_2020_paper.pdf"
   },
   "scale": "27.3K YouTube 视频，131 天手-物交互",
@@ -8424,7 +8422,7 @@
    "hasSplit": false
   },
   "citation": {
-   "bibtex": "@article{shan2020100doh,\n  title={Understanding Human Hands in Contact at Internet Scale},\n  author={Shan, Dandan and Geng, Jiaqi and Shu, Michelle and Fouhey, David F},\n  journal={arXiv preprint arXiv:2006.05638},\n  year={2020}\n}",
+   "bibtex": "@article{shan2020100doh,\n  title={Understanding Human Hands in Contact at Internet Scale},\n  author={Shan, Dandan and Geng, Jiaqi and Shu, Michelle and Fouhey, David F},\n  journal={arXiv preprint arXiv:2006.06669},\n  year={2020}\n}",
    "year": 2020,
    "venue": "CVPR 2020"
   },
@@ -9037,7 +9035,8 @@
   "license": "Apache-2.0",
   "links": {
    "github": "https://github.com/unitreerobotics/avp_teleoperate",
-   "huggingface": "https://huggingface.co/datasets/unitreerobotics/G1_CameraPackaging_Dataset"
+   "huggingface": "https://huggingface.co/datasets/unitreerobotics/G1_CameraPackaging_Dataset",
+   "site": "https://huggingface.co/datasets/unitreerobotics/G1_CameraPackaging_Dataset"
   },
   "scale": "未明确轨迹数，3视角 RGB 视频",
   "dataFormat": "LeRobot / Parquet",
@@ -9083,7 +9082,8 @@
   "license": "Apache-2.0",
   "links": {
    "github": "https://github.com/unitreerobotics/avp_teleoperate",
-   "huggingface": "https://huggingface.co/datasets/unitreerobotics/G1_Dex1_MountCameraRedGripper_Dataset"
+   "huggingface": "https://huggingface.co/datasets/unitreerobotics/G1_Dex1_MountCameraRedGripper_Dataset",
+   "site": "https://huggingface.co/datasets/unitreerobotics/G1_Dex1_MountCameraRedGripper_Dataset"
   },
   "scale": "约 17 万帧，351 个 episode",
   "dataFormat": "LeRobot / Parquet",
@@ -9129,7 +9129,8 @@
   "license": "Apache-2.0",
   "links": {
    "github": "https://github.com/unitreerobotics/avp_teleoperate",
-   "huggingface": "https://huggingface.co/datasets/unitreerobotics/G1_Dex1_MountCamera_Dataset"
+   "huggingface": "https://huggingface.co/datasets/unitreerobotics/G1_Dex1_MountCamera_Dataset",
+   "site": "https://huggingface.co/datasets/unitreerobotics/G1_Dex1_MountCamera_Dataset"
   },
   "scale": "351 episodes, 389,708 帧, 1,404 个视频",
   "dataFormat": "LeRobot / Parquet",
@@ -9175,7 +9176,8 @@
   "license": "Apache-2.0",
   "links": {
    "github": "https://github.com/unitreerobotics/avp_teleoperate",
-   "huggingface": "https://huggingface.co/datasets/unitreerobotics/G1_BlockStacking_Dataset"
+   "huggingface": "https://huggingface.co/datasets/unitreerobotics/G1_BlockStacking_Dataset",
+   "site": "https://huggingface.co/datasets/unitreerobotics/G1_BlockStacking_Dataset"
   },
   "scale": "未明确，三视角 RGB+状态+动作",
   "dataFormat": "LeRobot / Parquet",
@@ -9220,7 +9222,8 @@
   "openness": "open",
   "license": "Apache-2.0",
   "links": {
-   "huggingface": "https://huggingface.co/datasets/unitreerobotics/Z1_Dual_Dex1_StackBox_Dataset_V2"
+   "huggingface": "https://huggingface.co/datasets/unitreerobotics/Z1_Dual_Dex1_StackBox_Dataset_V2",
+   "site": "https://huggingface.co/datasets/unitreerobotics/Z1_Dual_Dex1_StackBox_Dataset_V2"
   },
   "scale": "未明确轨迹数，Parquet 格式",
   "dataFormat": "LeRobot / Parquet",
@@ -9265,7 +9268,8 @@
   "openness": "open",
   "license": "Apache-2.0",
   "links": {
-   "huggingface": "https://huggingface.co/datasets/unitreerobotics/Z1_Dual_Dex1_CleanupPencils_Dataset"
+   "huggingface": "https://huggingface.co/datasets/unitreerobotics/Z1_Dual_Dex1_CleanupPencils_Dataset",
+   "site": "https://huggingface.co/datasets/unitreerobotics/Z1_Dual_Dex1_CleanupPencils_Dataset"
   },
   "scale": "未明确轨迹数，Parquet 格式",
   "dataFormat": "LeRobot / Parquet",
@@ -9313,7 +9317,8 @@
   "license": "Apache-2.0",
   "links": {
    "github": "https://github.com/unitreerobotics/avp_teleoperate",
-   "huggingface": "https://huggingface.co/datasets/unitreerobotics/UnitreeG1_DualArmGrasping"
+   "huggingface": "https://huggingface.co/datasets/unitreerobotics/UnitreeG1_DualArmGrasping",
+   "site": "https://huggingface.co/datasets/unitreerobotics/UnitreeG1_DualArmGrasping"
   },
   "scale": "未明确轨迹数",
   "dataFormat": "LeRobot / Parquet",
@@ -9361,7 +9366,8 @@
   "license": "Apache-2.0",
   "links": {
    "paper": "https://arxiv.org/abs/2203.04955",
-   "huggingface": "https://huggingface.co/datasets/lerobot/xarm_lift_medium"
+   "huggingface": "https://huggingface.co/datasets/lerobot/xarm_lift_medium",
+   "site": "https://huggingface.co/datasets/lerobot/xarm_lift_medium"
   },
   "scale": "800 episodes, 20,000 帧",
   "dataFormat": "LeRobot / Parquet",
@@ -9410,7 +9416,8 @@
   "openness": "open",
   "license": "Apache-2.0",
   "links": {
-   "huggingface": "https://huggingface.co/datasets/lerobot/aloha_sim_insertion_scripted"
+   "huggingface": "https://huggingface.co/datasets/lerobot/aloha_sim_insertion_scripted",
+   "site": "https://huggingface.co/datasets/lerobot/aloha_sim_insertion_scripted"
   },
   "scale": "50 条轨迹, ~25,000 帧, 96×96 俯视 RGB",
   "dataFormat": "LeRobot / Parquet",
@@ -9458,7 +9465,8 @@
   "openness": "open",
   "license": "Apache-2.0",
   "links": {
-   "huggingface": "https://huggingface.co/datasets/lerobot/aloha_sim_insertion_human"
+   "huggingface": "https://huggingface.co/datasets/lerobot/aloha_sim_insertion_human",
+   "site": "https://huggingface.co/datasets/lerobot/aloha_sim_insertion_human"
   },
   "scale": "50 条人类演示, ~25,000 帧, 96×96 俯视 RGB",
   "dataFormat": "LeRobot / Parquet",
@@ -9508,7 +9516,8 @@
   "openness": "open",
   "license": "Apache-2.0",
   "links": {
-   "huggingface": "https://huggingface.co/datasets/lerobot/box_pnp"
+   "huggingface": "https://huggingface.co/datasets/lerobot/box_pnp",
+   "site": "https://huggingface.co/datasets/lerobot/box_pnp"
   },
   "scale": "100 episodes, 33,943 帧, 300 视频",
   "dataFormat": "LeRobot / Parquet",
@@ -9558,7 +9567,8 @@
   "openness": "open",
   "license": "Apache-2.0",
   "links": {
-   "huggingface": "https://huggingface.co/datasets/lerobot/orange_cube_pnp_with_force"
+   "huggingface": "https://huggingface.co/datasets/lerobot/orange_cube_pnp_with_force",
+   "site": "https://huggingface.co/datasets/lerobot/orange_cube_pnp_with_force"
   },
   "scale": "100 episodes, 19,340 帧, 303 视频",
   "dataFormat": "LeRobot / Parquet",
@@ -9821,7 +9831,8 @@
   "license": "Unspecified",
   "links": {
    "paper": "https://arxiv.org/abs/2510.08022",
-   "github": "https://github.com/MrKeee/FastUMI-100K"
+   "github": "https://github.com/MrKeee/FastUMI-100K",
+   "site": "https://github.com/MrKeee/FastUMI-100K"
   },
   "scale": "100,000+ 条演示轨迹, ~600 小时交互, 54 类任务",
   "dataFormat": "LeRobot / 自定义",
@@ -9872,7 +9883,8 @@
   "openness": "open",
   "license": "CC-BY-4.0",
   "links": {
-   "github": "https://github.com/clvrai/clvr_jaco_play_dataset"
+   "github": "https://github.com/clvrai/clvr_jaco_play_dataset",
+   "site": "https://github.com/clvrai/clvr_jaco_play_dataset"
   },
   "scale": "1,085 段遥操作演示, ~14.87 GB",
   "dataFormat": "HDF5",
@@ -10748,7 +10760,8 @@
   "links": {
    "paper": "https://arxiv.org/abs/2510.13626",
    "github": "https://github.com/sylvestf/LIBERO-plus",
-   "huggingface": "https://huggingface.co/datasets/Sylvest/LIBERO-plus"
+   "huggingface": "https://huggingface.co/datasets/Sylvest/LIBERO-plus",
+   "site": "https://huggingface.co/datasets/Sylvest/LIBERO-plus"
   },
   "scale": "7 大扰动维度，10,030 个任务",
   "dataFormat": "LeRobot",
@@ -11874,7 +11887,7 @@
    "site": "https://robochallenge.ai",
    "paper": "https://arxiv.org/abs/2510.17950",
    "github": "https://github.com/RoboChallenge/RoboChallengeInference",
-   "huggingface": "https://huggingface.co/RoboChallengeAI"
+   "huggingface": "https://huggingface.co/datasets/RoboChallenge/Table30"
   },
   "scale": "10 台真机集群，30 个任务（V2 扩至 48），每任务约 1000 条遥操作轨迹",
   "dataFormat": "LeRobot",
@@ -12580,7 +12593,8 @@
   "license": "MIT",
   "links": {
    "paper": "https://arxiv.org/abs/2303.00905",
-   "github": "https://github.com/AGI-Labs/toto_benchmark"
+   "github": "https://github.com/AGI-Labs/toto_benchmark",
+   "site": "https://github.com/AGI-Labs/toto_benchmark"
   },
   "scale": "~2,900 trajectories",
   "dataFormat": "RLDS / TFDS",
@@ -12868,7 +12882,7 @@
   "openness": "open",
   "license": "CC BY 4.0",
   "links": {
-   "site": "https://sites.google.com/nvidia.com/graspdataset",
+   "site": "https://github.com/NVlabs/acronym",
    "paper": "https://arxiv.org/abs/2011.09584"
   },
   "scale": "1,777 万 6-DOF 抓取, 8,872 物体, 262 类别",
@@ -12890,7 +12904,7 @@
    "hasSplit": true
   },
   "citation": {
-   "bibtex": null,
+   "bibtex": "@inproceedings{eppner2021acronym,\n  title={ACRONYM: A Large-Scale Grasp Dataset Based on Simulation},\n  author={Eppner, Clemens and Mousavian, Arsalan and Fox, Dieter},\n  booktitle={IEEE International Conference on Robotics and Automation (ICRA)},\n  year={2021}\n}",
    "year": 2021,
    "venue": "ICRA"
   },
@@ -13128,7 +13142,8 @@
   "license": "CC-BY-SA-4.0",
   "links": {
    "paper": "https://arxiv.org/abs/2609.03591",
-   "huggingface": "https://huggingface.co/datasets/challenge-2026/challenge_data"
+   "huggingface": "https://huggingface.co/datasets/challenge-2026/challenge_data",
+   "site": "https://huggingface.co/datasets/challenge-2026/challenge_data"
   },
   "scale": "~1,500h: 531.7h teleop (32,518 trajectories / 57.4M frames) + ~1,000h UMI data",
   "dataFormat": "详见官方链接（Hugging Face 托管）— episode → step → observation（RGB + proprioception）/ action（bimanual）",
@@ -13247,7 +13262,8 @@
   "links": {
    "paper": "https://arxiv.org/abs/2610.07117",
    "github": "https://github.com/MagriniGabriele/R2RI",
-   "huggingface": "https://huggingface.co/datasets/r2ri/R2RI"
+   "huggingface": "https://huggingface.co/datasets/r2ri/R2RI",
+   "site": "https://huggingface.co/datasets/r2ri/R2RI"
   },
   "scale": "~5,000 sequences / 6.5M frames / 120fps / 20 classes / 4 humanoid platforms",
   "dataFormat": "自定义（图像 + 标注）— sequence → frame → exocentric_RGB-D / egocentric_RGB-D / event_stream / 2D_pose / bbox",
@@ -13426,7 +13442,8 @@
   "links": {
    "paper": "https://arxiv.org/abs/2609.21449",
    "github": "https://github.com/MachEmbodied/ME-U0",
-   "huggingface": "https://huggingface.co/datasets/liuxuetao/MachEmbodied-Dex1.0-RoboTwin-Clean50-Tactile"
+   "huggingface": "https://huggingface.co/datasets/liuxuetao/MachEmbodied-Dex1.0-RoboTwin-Clean50-Tactile",
+   "site": "https://huggingface.co/datasets/liuxuetao/MachEmbodied-Dex1.0-RoboTwin-Clean50-Tactile"
   },
   "scale": "RoboTwin Clean50 tactile demonstrations (5,103 files, HDF5)",
   "dataFormat": "HDF5 — episode → step → observation（RGB + joint_action + tri-axis tactile force field + canonical tactile force field + support mask + tactile timing）/ language_instruction",
@@ -13483,7 +13500,8 @@
   "license": "Apache-2.0",
   "links": {
    "paper": "https://arxiv.org/abs/2610.13021",
-   "huggingface": "https://huggingface.co/datasets/PKU-VaLuE-Lab/EmbodiedCLBench"
+   "huggingface": "https://huggingface.co/datasets/PKU-VaLuE-Lab/EmbodiedCLBench",
+   "site": "https://huggingface.co/datasets/PKU-VaLuE-Lab/EmbodiedCLBench"
   },
   "scale": "Benchmark suite + Native Harnesses toolkit (2,053 files)",
   "dataFormat": "详见官方链接 — task_stream → task → episodes（持续学习协议与遗忘度量）",
@@ -13719,7 +13737,8 @@
   "openness": "open",
   "license": "Unspecified",
   "links": {
-   "huggingface": "https://huggingface.co/datasets/UBTECH-Robotics/challenge2026_dataset"
+   "huggingface": "https://huggingface.co/datasets/UBTECH-Robotics/challenge2026_dataset",
+   "site": "https://huggingface.co/datasets/UBTECH-Robotics/challenge2026_dataset"
   },
   "scale": "4 simulated tasks (LeRobot v3.0 format)",
   "dataFormat": "LeRobot v3.0 — episode → step → observation（RGB + depth + proprioception）/ action",

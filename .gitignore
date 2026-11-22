@@ -12,3 +12,6 @@ docs/strategy.md
 docs/phase1-plan.md
 docs/phase1-detail.md
 papers/
+
+data/*.db-wal
+data/*.db-shm

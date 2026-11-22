@@ -17,6 +17,9 @@
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
+const { execFile } = require('child_process');
+
+const PROXY_URL = process.env.HTTPS_PROXY || process.env.https_proxy || process.env.HTTP_PROXY || process.env.http_proxy;
 
 const RUN_LINKS = process.argv.includes('--links');
 let errors = 0;
@@ -191,14 +194,22 @@ console.log('\n📋 6. URL Format');
 if (data['datasets (zh)']) {
   for (const d of data['datasets (zh)']) {
     const official = d.links?.official;
+    const site = d.links?.site;
     const paper = d.links?.paper;
+    const github = d.links?.github || d.github;
     const hf = d.links?.huggingface || d.huggingface;
 
     if (official && !official.startsWith('http')) {
       err(`Dataset "${d.name}": official link not HTTP: ${official}`);
     }
+    if (site && !site.startsWith('http')) {
+      err(`Dataset "${d.name}": site link not HTTP: ${site}`);
+    }
     if (paper && !paper.startsWith('http')) {
       err(`Dataset "${d.name}": paper link not HTTP: ${paper}`);
+    }
+    if (github && !github.startsWith('http')) {
+      err(`Dataset "${d.name}": github link not HTTP: ${github}`);
     }
     // HuggingFace URL should use /datasets/ prefix
     if (hf && hf.includes('huggingface.co') && !hf.includes('/datasets/')) {
@@ -211,6 +222,7 @@ if (data['datasets (zh)']) {
 // --- 7. Link health (optional) ---
 if (RUN_LINKS) {
   console.log('\n📋 7. Link Health Check');
+  if (PROXY_URL) console.log(`  Using proxy: ${PROXY_URL}`);
 
   // Hosts that reliably reject HEAD — use GET with Range: bytes=0-0 instead
   const HEAD_UNFRIENDLY = ['arxiv.org', 'huggingface.co', 'openreview.net', 'sites.google.com',
@@ -223,9 +235,11 @@ if (RUN_LINKS) {
   if (data['datasets (zh)']) {
     for (const d of data['datasets (zh)']) {
       if (d.links?.official) allUrls.add(d.links.official);
+      if (d.links?.site) allUrls.add(d.links.site);
       if (d.links?.paper) allUrls.add(d.links.paper);
       if (d.links?.download) allUrls.add(d.links.download);
       if (d.links?.huggingface) allUrls.add(d.links.huggingface);
+      if (d.links?.github) allUrls.add(d.links.github);
       if (d.github) allUrls.add(d.github);
       if (d.huggingface) allUrls.add(d.huggingface);
     }
@@ -233,14 +247,27 @@ if (RUN_LINKS) {
   if (data['standards (zh)']) {
     for (const s of data['standards (zh)']) {
       if (s.links?.official) allUrls.add(s.links.official);
+      if (s.links?.site) allUrls.add(s.links.site);
       if (s.links?.paper) allUrls.add(s.links.paper);
+      if (s.links?.github) allUrls.add(s.links.github);
     }
   }
   if (data['tools (zh)']) {
     for (const t of data['tools (zh)']) {
       if (t.links?.official) allUrls.add(t.links.official);
+      if (t.links?.site) allUrls.add(t.links.site);
       if (t.links?.paper) allUrls.add(t.links.paper);
+      if (t.links?.github) allUrls.add(t.links.github);
       if (t.github) allUrls.add(t.github);
+    }
+  }
+  if (data['blog']) {
+    for (const b of data['blog']) {
+      for (const html of [b.contentHtml, b.contentHtmlEn]) {
+        for (const m of (html || '').matchAll(/href="(https?:\/\/[^"]+)"/g)) {
+          allUrls.add(m[1].replace(/&amp;/g, '&'));
+        }
+      }
     }
   }
 
@@ -259,6 +286,28 @@ if (RUN_LINKS) {
   }
 
   function checkUrlOnce(url, method) {
+    // When a proxy is configured, use curl (Node's http/https ignores proxy env vars).
+    if (PROXY_URL) {
+      return new Promise((resolve) => {
+        const timeoutMs = isSlow(url) ? 20000 : 10000;
+        const args = ['-sS', '-o', '/dev/null', '-w', '%{http_code}',
+          '--max-time', String(Math.ceil(timeoutMs / 1000)), '--connect-timeout', '10',
+          '-L', '-A', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+          '-x', PROXY_URL];
+        if (method === 'GET') args.push('-r', '0-0'); else args.push('--head');
+        args.push(url);
+        execFile('curl', args, { timeout: timeoutMs + 5000 }, (error, stdout, stderr) => {
+          const code = parseInt(String(stdout || '').trim(), 10);
+          if (error && error.killed) return resolve({ status: 'timeout' });
+          if (!code || Number.isNaN(code)) {
+            return resolve({ status: 'error', msg: String(stderr || (error && error.message) || 'curl failed').trim().slice(0, 120) });
+          }
+          if (code === 404 || code === 410) return resolve({ status: 'dead', code });
+          if (code >= 500) return resolve({ status: 'server_error', code });
+          return resolve({ status: 'ok', code });
+        });
+      });
+    }
     return new Promise((resolve) => {
       const lib = url.startsWith('https') ? https : http;
       const timeoutMs = isSlow(url) ? 20000 : 10000;

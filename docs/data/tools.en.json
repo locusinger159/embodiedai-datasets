@@ -196,7 +196,7 @@
     "type": "open",
     "openness": "open",
     "links": {
-      "site": "http://gibsonenv.stanford.edu",
+      "site": "https://github.com/StanfordVL/GibsonEnv",
       "paper": "https://arxiv.org/abs/1808.10654"
     },
     "modality": [

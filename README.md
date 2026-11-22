@@ -10,7 +10,7 @@
 
 - 📊 收录 **148** 个数据集
 - 📐 收录 **38** 个数据标准与评测基准
-- 🏆 **12 个 Benchmark 排行榜**（LIBERO / CALVIN / RLBench / Meta-World / VLABench / RoboTwin / SimplerEnv / FurnitureBench / EmbodiedBench / LIBERO-Plus / LIBERO-PRO / RoboChallenge），335 条模型排行数据
+- 🏆 **10 个 Benchmark 排行榜**（LIBERO / CALVIN / Meta-World / VLABench / RoboTwin / EmbodiedBench / LIBERO-Plus / RoboChallenge / BEHAVIOR-1K / GM-100），335 条模型排行数据
 - 🧠 **AI 论文知识库** — 152 篇学术论文全文嵌入，AI 助手可回答方法论级问题
 - 🔧 收录 **18** 个工具与平台
 - 🤖 覆盖 **6** 大机器人类型：人形机器人、机械臂、移动机器人、四足机器人、触觉传感、灵巧手
@@ -23,7 +23,7 @@
 - **AI 语义搜索** — 全站右下角 🔍 浮动搜索，自然语言输入，百炼 text-embedding-v4（2048 维）+ 关键词加权混合检索
 - **反向推荐** — 🎯 6 步配置向导（任务→机器人→模态→场景→VLA→获取），加权打分推荐 Top 8，6 个快捷预设
 - **VLA 框架兼容性** — 标注 7 大 VLA 框架（π0、OpenVLA、GR00T N1、Octo、RT-2、RDT-1B、ACT），数据集详情页和列表页直观展示
-- **Benchmark 排行榜** — 🏆 12 个标准 benchmark 独立排行榜，335 条模型排行数据可溯源，支持模型排名和训练集排名双模式
+- **Benchmark 排行榜** — 🏆 10 个标准 benchmark 独立排行榜，335 条模型排行数据可溯源，支持模型排名和训练集排名双模式
 - **论文知识库** — 🧠 152 篇学术论文全文嵌入 AI 助手，回答方法论、实验设计、技术细节等深度问题
 - **数据集详情页** — 每个数据集独立页面，含信息卡片、VLA 兼容性、Benchmark 评测、Schema 图、传感器规格、BibTeX 引用、相关推荐
 - **数据集对比** — 多选横向对比（最多 4 个），高亮差异字段
@@ -137,6 +137,14 @@ embodiedai-datasets/
 - 🔀 Pull Request：直接编辑 `docs/data/datasets.json`
 
 ## 版本记录
+
+### v2.18 (2026-11-22)
+
+- 🔗 **链接治理** — 清理全部死链/停靠域名/Google Sites 登录墙：RoboMIND 官网、ETRI-Activity3D、100DOH、Gibson、BDDL、RoboTwin、HomeRobot、RLBench、HYDRA、AUTOLab UR5、FANUC、Cable Routing、MIME、ACRONYM 等；21 个仅有 HF/GitHub 仓库的数据集补齐 `links.site`
+- 🧾 **引用纠错** — 修正 11 处 bibtex/论文错配：BridgeData V2 的 paper 曾指向 3D Diffusion Policy；FANUC 条目引用 HyperNeRF、MIME 引用另一篇同名论文、RoboTurk/RH20T/FurnitureBench/ManiWAV/RoboVQA 等 arXiv ID 均指向无关论文；AUTOLab/FANUC 改为真实的 2023 数据集引用
+- 🐛 **详情页链接渲染修复** — v2.15 字段改名后 `build.cjs` 仍读 `links.official`，导致所有数据集「官方网站」按钮 href 为 undefined；`links.github`/`links.huggingface` 也未被渲染；同步修复工具页链接与排行榜空 href
+- ✅ **验证增强** — `validate.cjs --links` 支持 `HTTPS_PROXY`（走 curl），本地可完整跑通；CI 新增 `href=""` / `href="undefined"` 检查；全站 391 个外链 0 死链、0 超时、0 警告
+- 📊 **README 对账** — Benchmark 排行榜 12→10（以实际生成页面为准，补上 BEHAVIOR-1K / GM-100，移除无页面的 RLBench / SimplerEnv / FurnitureBench / LIBERO-PRO）
 
 ### v2.17 (2026-10-13)
 

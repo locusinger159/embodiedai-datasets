@@ -407,7 +407,6 @@
   "type": "benchmark",
   "openness": "open",
   "links": {
-   "site": "https://sites.google.com/view/rlbench",
    "paper": "https://arxiv.org/abs/1909.12271",
    "github": "https://github.com/stepjam/RLBench"
   },
@@ -925,7 +924,7 @@
   "openness": "open",
   "links": {
    "site": "https://stanfordvl.github.io/behavior/activities.html",
-   "github": "https://github.com/StanfordVL/BEHAVIOR"
+   "github": "https://github.com/StanfordVL/BEHAVIOR-1K"
   },
   "year": 2021,
   "desc": "**BDDL (BEHAVIOR Domain Definition Language)** 是 Stanford Vision and Learning Lab 提出的面向具身智能任务的形式化定义语言，是 **BEHAVIOR Benchmark** 的核心任务规范格式。\n\nBDDL 基于**对象中心的谓词逻辑**，每个活动由三部分定义：(1) 分类对象列表（按 WordNet synset 标注），(2) 初始条件（空间关系如 、 + 物体状态如 、），(3) 目标条件（支持  及自定义量词 、）。\n\n**与 PDDL 的关键区别**：BDDL 不含动作符号，不做符号规划——它只定义「世界是什么样」和「成功长什么样」，具体怎么做到由 agent 决定。这种解耦设计使同一 BDDL 定义可生成无限多种具体场景实例（通过 iGibson 2.0 / OmniGibson 的自动采样）。\n\n**进度指标**：目标成功度由 satisfiable 逻辑文字比例计算，支持部分进度追踪（如「已经切好了苹果，但还没放到桌上」也算完成了一半）。\n\nBDDL 已在 **BEHAVIOR-1K**（1,000 个家居任务）中全面使用，并可通过形式化翻译到 Fiacre/nuXmv 进行安全关键行为的模型检查。",
@@ -1111,7 +1110,7 @@
   "openness": "open",
   "links": {
    "paper": "https://arxiv.org/abs/2506.18088",
-   "github": "https://github.com/robotwin/robotwin2"
+   "github": "https://github.com/RoboTwin-Platform/RoboTwin"
   },
   "year": 2024,
   "desc": "**RoboTwin 2.0** 是清华大学等机构发布的双臂机器人操作评测基准，基于数字孪生技术构建高保真仿真环境。\n\n评测包含多个双臂协作任务，分 **Easy** 和 **Hard** 两级难度，评估模型在复杂双臂操作中的精确控制能力。数据格式支持 **LeRobot** 和 **RLDS**，可直接用于 VLA 模型训练和评测。\n\n**核心特点**：高保真数字孪生环境（物理参数毫米级标定）、双臂协作任务（需要精确的双手协调）、两级难度分级（Easy/Hard 覆盖从基础到复杂操作）。",
@@ -1244,7 +1243,7 @@
   "type": "benchmark",
   "openness": "open",
   "links": {
-   "site": "https://homerobot.org",
+   "site": "https://github.com/facebookresearch/home-robot",
    "paper": "https://arxiv.org/abs/2306.11565"
   },
   "year": 2023,

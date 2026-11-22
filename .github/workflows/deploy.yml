@@ -40,6 +40,13 @@ jobs:
           done
           echo "  PASS: Div balance OK"
 
+          echo "== Checking bad hrefs =="
+          if grep -rn 'href="undefined"\|href=""' dist --include="*.html" | head -n 1; then
+            echo "  FAIL: Empty or undefined href found"
+            exit 1
+          fi
+          echo "  PASS: No bad hrefs"
+
           echo "== Checking entity counts =="
           ds_count=$(ls dist/datasets/*/index.html 2>/dev/null | wc -l | tr -d ' ')
           tool_count=$(ls dist/tools/*/index.html 2>/dev/null | wc -l | tr -d ' ')

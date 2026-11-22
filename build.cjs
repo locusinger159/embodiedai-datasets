@@ -279,7 +279,7 @@ function buildAll(lang) {
           benchmarksHTML += '<span style="font-weight:600;font-size:13px;min-width:100px">' + esc(r.model) + ' <span style="color:var(--text-light);font-weight:400;font-size:11px">(' + esc(r.modelSize) + ')</span></span>';
           benchmarksHTML += '<div style="flex:1;background:var(--light-bg);border-radius:6px;height:20px;overflow:hidden"><div style="height:100%;width:' + pct + '%;background:' + barColor + ';border-radius:6px;transition:width 0.5s"></div></div>';
           benchmarksHTML += '<span style="font-weight:700;font-size:14px;min-width:55px;text-align:right">' + r.score + (r.unit || '%') + '</span>';
-          benchmarksHTML += '<a href="' + esc(r.paper) + '" target="_blank" rel="noopener" title="' + esc(r.paperTitle || '') + '" style="font-size:11px;color:var(--text-light);text-decoration:none">📄</a>';
+          if (r.paper) benchmarksHTML += '<a href="' + esc(r.paper) + '" target="_blank" rel="noopener" title="' + esc(r.paperTitle || '') + '" style="font-size:11px;color:var(--text-light);text-decoration:none">📄</a>';
           if (r.conditions) benchmarksHTML += '<span style="font-size:11px;color:var(--text-light);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="' + esc(r.conditions) + '">' + esc(r.conditions) + '</span>';
           benchmarksHTML += '</div>';
         });
@@ -297,13 +297,16 @@ function buildAll(lang) {
     }
 
     // Links
+    const dSite = ds.links?.site || ds.links?.official;
+    const dGithub = ds.links?.github || ds.github;
+    const dHF = ds.links?.huggingface || ds.huggingface;
     let linksHTML = '<div class="section-block"><h2>{{SECTION_LINKS}}</h2><div class="links-section">';
-    if (ds.links?.site || ds.links?.official) linksHTML += `<a href="${esc(ds.links.official)}" target="_blank" class="link-card" rel="noopener">🌐 官方网站</a>`;
-    if (ds.links?.paper) linksHTML += `<a href="${esc(ds.links.paper)}" target="_blank" class="link-card" rel="noopener">📄 论文</a>`;
-    if (ds.github) linksHTML += `<a href="${esc(ds.github)}" target="_blank" class="link-card" rel="noopener">💻 GitHub</a>`;
-    if (ds.huggingface) linksHTML += `<a href="${esc(ds.huggingface)}" target="_blank" class="link-card" rel="noopener">🤗 HuggingFace</a>`;
+    if (dSite) linksHTML += `<a href="${esc(dSite)}" target="_blank" class="link-card" rel="noopener">🌐 ${isEn ? 'Official Site' : '官方网站'}</a>`;
+    if (ds.links?.paper) linksHTML += `<a href="${esc(ds.links.paper)}" target="_blank" class="link-card" rel="noopener">📄 ${isEn ? 'Paper' : '论文'}</a>`;
+    if (dGithub && dGithub !== dSite) linksHTML += `<a href="${esc(dGithub)}" target="_blank" class="link-card" rel="noopener">💻 GitHub</a>`;
+    if (dHF && dHF !== dSite) linksHTML += `<a href="${esc(dHF)}" target="_blank" class="link-card" rel="noopener">🤗 HuggingFace</a>`;
     linksHTML += '</div></div>';
-    if (!ds.links?.site || ds.links?.official && !ds.links?.paper && !ds.github && !ds.huggingface) linksHTML = '';
+    if (!dSite && !ds.links?.paper && !dGithub && !dHF) linksHTML = '';
 
     // Citation
     let citationHTML = '';
@@ -850,7 +853,7 @@ function buildAll(lang) {
         entry.allResults.forEach(r => {
           const sp = Math.min(100, Math.max(0, r.score));
           var subLabel = (rankBy === 'model') ? esc(r.suite) : (esc(r.model) + ' (' + esc(r.modelSize) + ')');
-          rowsHTML += '<div class="leaderboard-sub-row"><span class="leaderboard-sub-model">' + subLabel + '</span><div class="leaderboard-sub-bar"><div class="leaderboard-sub-fill" style="width:' + sp + '%;background:' + (sp >= 80 ? 'var(--success)' : sp >= 60 ? 'var(--warning)' : 'var(--text-light)') + '"></div></div><span class="leaderboard-sub-score">' + r.score + (bm.unit != null && bm.unit !== undefined ? bm.unit : '%') + '</span><a href="' + esc(r.paper) + '" target="_blank" rel="noopener" style="font-size:11px;color:var(--text-light);text-decoration:none">📄</a></div>';
+          rowsHTML += '<div class="leaderboard-sub-row"><span class="leaderboard-sub-model">' + subLabel + '</span><div class="leaderboard-sub-bar"><div class="leaderboard-sub-fill" style="width:' + sp + '%;background:' + (sp >= 80 ? 'var(--success)' : sp >= 60 ? 'var(--warning)' : 'var(--text-light)') + '"></div></div><span class="leaderboard-sub-score">' + r.score + (bm.unit != null && bm.unit !== undefined ? bm.unit : '%') + '</span>' + (r.paper ? '<a href="' + esc(r.paper) + '" target="_blank" rel="noopener" style="font-size:11px;color:var(--text-light);text-decoration:none">📄</a>' : '') + '</div>';
         });
         rowsHTML += '</details></td></tr>';
       }
@@ -906,11 +909,14 @@ function buildAll(lang) {
     const links = tool.links || {};
     const toolTypeLabel = (isEn ? { '仿真器': 'Simulator', '物理引擎': 'Physics Engine', '训练框架': 'RL/IL Framework', '可视化': 'Visualization', '触觉模拟': 'Tactile Sim' } : { '仿真器': '仿真器', '物理引擎': '物理引擎', '训练框架': '训练框架', '可视化': '可视化', '触觉模拟': '触觉模拟' })[tool.toolType] || tool.toolType || '-';
 
+    const toolSite = links.site || links.official;
+    const toolGithub = links.github || tool.github;
+    const toolHF = links.huggingface || tool.huggingface;
     let linksHTML = '<div class="section-block"><h2>' + (isEn ? 'Links' : '相关链接') + '</h2><div class="links-section">';
-    if (links.official) linksHTML += `<a href="${esc(links.official)}" target="_blank" class="link-card" rel="noopener">🏠 ${isEn ? 'Official Site' : '官方网站'}</a>`;
+    if (toolSite) linksHTML += `<a href="${esc(toolSite)}" target="_blank" class="link-card" rel="noopener">🏠 ${isEn ? 'Official Site' : '官方网站'}</a>`;
     if (links.paper) linksHTML += `<a href="${esc(links.paper)}" target="_blank" class="link-card" rel="noopener">📄 Paper</a>`;
-    if (tool.github) linksHTML += `<a href="${esc(tool.github)}" target="_blank" class="link-card" rel="noopener">💻 GitHub</a>`;
-    if (tool.huggingface) { const hf = tool.huggingface.startsWith('http') ? tool.huggingface : `https://huggingface.co/${tool.huggingface}`; linksHTML += `<a href="${esc(hf)}" target="_blank" class="link-card" rel="noopener">🤗 Hugging Face</a>`; }
+    if (toolGithub && toolGithub !== toolSite) linksHTML += `<a href="${esc(toolGithub)}" target="_blank" class="link-card" rel="noopener">💻 GitHub</a>`;
+    if (toolHF) { const hf = toolHF.startsWith('http') ? toolHF : `https://huggingface.co/${toolHF}`; if (hf !== toolSite) linksHTML += `<a href="${esc(hf)}" target="_blank" class="link-card" rel="noopener">🤗 Hugging Face</a>`; }
     linksHTML += '</div></div>';
 
     let citationHTML = '';
