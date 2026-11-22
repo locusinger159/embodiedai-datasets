@@ -1,69 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>{{HEAD}}
-<style>
-.detail-main { max-width:1400px; margin:0 auto; padding:120px 48px 60px; }
-.back-link { display:inline-flex; align-items:center; gap:6px; color:var(--text-secondary); font-size:14px; margin-bottom:24px; transition:color var(--transition-fast); }
-.back-link:hover { color:var(--primary); }
-.detail-header { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:8px; flex-wrap:wrap; }
-.detail-name { font-size:36px; font-weight:800; color:var(--text-primary); }
-.detail-org { font-size:18px; color:var(--text-secondary); margin-bottom:24px; }
-.detail-desc { font-size:16px; line-height:1.8; color:var(--text-primary); margin-bottom:24px; max-width:900px; }
-.detail-desc p { margin-bottom:16px; }
-.detail-desc p:last-child { margin-bottom:0; }
-.info-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-bottom:24px; }
-.info-card { position:relative; overflow:hidden; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:20px; transition:all var(--transition-normal); }
-.info-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, var(--primary), var(--accent)); opacity:0; transition:opacity var(--transition-normal); }
-.info-card:hover { transform:translateY(-3px); border-color:rgba(91,124,255,0.25); box-shadow:0 8px 32px rgba(91,124,255,0.1); }
-.info-card:hover::before { opacity:1; }
-.info-card-label { font-size:12px; font-weight:600; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px; }
-.info-card-value { font-size:16px; font-weight:600; color:var(--text-primary); }
-.section-block { margin-bottom:44px; }
-.usage-block { margin-bottom:44px; }
-.section-block h2 { font-size:22px; font-weight:700; margin-bottom:16px; padding-left:12px; border-left:4px solid var(--primary); }
-.schema-tree { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:28px; }
-.tree-node { display:flex; align-items:center; gap:8px; padding:6px 0; }
-.tree-line { width:20px; height:1px; background:var(--border); flex-shrink:0; }
-.tree-vert { width:1px; background:var(--border); flex-shrink:0; margin-left:10px; }
-.tree-label { padding:4px 12px; background:var(--light-bg); border-radius:6px; font-size:14px; font-family:'Inter',monospace; }
-.tree-label.root { background:var(--primary); color:var(--white); font-weight:600; }
-.data-content-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; }
-.content-card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:24px; }
-.content-card h3 { font-size:15px; font-weight:600; margin-bottom:12px; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px; }
-.content-stat { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); }
-.content-stat:last-child { border-bottom:none; }
-.content-stat-label { color:var(--text-secondary); font-size:14px; }
-.content-stat-value { font-weight:600; font-size:14px; }
-.links-section { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:20px; }
-.link-card { display:inline-flex; align-items:center; gap:8px; padding:14px 24px; background:var(--white); border:1px solid var(--border); border-radius:10px; font-weight:600; font-size:15px; transition:all var(--transition-fast); }
-.link-card:hover { border-color:var(--primary); color:var(--primary); background:rgba(91,124,255,0.03); transform:translateY(-2px); box-shadow:var(--shadow-sm); }
-.citation-box { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:24px; }
-.citation-box pre { font-family:'SF Mono','Fira Code','Inter',monospace; font-size:13px; line-height:1.6; color:var(--text-secondary); white-space:pre-wrap; overflow-x:auto; background:var(--light-bg); padding:16px; border-radius:8px; }
-.related-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:16px; }
-.related-card { position:relative; overflow:hidden; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:16px; transition:all var(--transition-normal); display:flex; flex-direction:column; height:100%; }
-.related-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, var(--primary), var(--accent)); opacity:0; transition:opacity var(--transition-normal); }
-.related-card:hover { border-color:var(--primary); transform:translateY(-2px); box-shadow:0 4px 16px rgba(91,124,255,0.1); }
-.related-card:hover::before { opacity:1; }
-.related-name { font-weight:600; font-size:15px; margin-bottom:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.related-org { font-size:13px; color:var(--text-secondary); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.related-meta { display:flex; gap:6px; margin-top:auto; padding-top:8px; flex-wrap:wrap; }
-.quality-badges { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px; }
-.quality-badge { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:20px; font-size:13px; font-weight:500; }
-.quality-badge.good { background:rgba(16,185,129,0.1); color:var(--success); }
-.quality-badge.info { background:rgba(91,124,255,0.1); color:var(--primary); }
-.quality-badge.warn { background:rgba(245,158,11,0.1); color:var(--warning); }
-.changelog { margin-bottom:40px; }
-.changelog-list { position:relative; padding-left:24px; }
-.changelog-list::before { content:''; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(180deg, var(--primary), var(--accent), rgba(0,210,255,0.2)); }
-.changelog-item { position:relative; margin-bottom:20px; padding-left:16px; }
-.changelog-item::before { content:''; position:absolute; left:-18px; top:6px; width:10px; height:10px; background:var(--primary); border-radius:50%; border:2px solid var(--white); }
-.changelog-item:first-child::before { animation:dotPulse 2s ease-in-out infinite; }
-@keyframes dotPulse { 0%,100%{box-shadow:0 0 0 0 rgba(91,124,255,0.4)} 50%{box-shadow:0 0 0 6px rgba(91,124,255,0)} }
-.changelog-date { font-size:13px; font-weight:600; color:var(--primary); margin-bottom:4px; }
-.changelog-text { font-size:14px; color:var(--text-secondary); }
-.empty-hint { color:var(--text-light); font-style:italic; font-size:14px; padding:16px 0; }
-@media (max-width:768px) { .detail-main{padding:100px 24px 40px} .detail-name{font-size:28px} .info-grid{grid-template-columns:1fr} .data-content-grid{grid-template-columns:1fr} }
-</style>
 </head>
 <body>
 {{NAVBAR}}
@@ -83,7 +20,7 @@
     <div class="info-card"><div class="info-card-label">{{LABEL_ROBOT_TYPE}}</div><div class="info-card-value">{{ROBOT_TYPES}}</div></div>
     <div class="info-card"><div class="info-card-label">{{LABEL_TASK_TYPE}}</div><div class="info-card-value">{{TASK_TYPES}}</div></div>
     <div class="info-card"><div class="info-card-label">{{LABEL_YEAR}}</div><div class="info-card-value">{{YEAR}}</div></div>
-    <div class="info-card"><div class="info-card-label">{{LABEL_MODALITY}}</div><div class="info-card-value">{{MODALITIES}}</div></div>
+    <div class="info-card info-card-wide"><div class="info-card-label">{{LABEL_MODALITY}}</div><div class="info-card-value">{{MODALITIES}}</div></div>
   </div>
 
   <!-- Quality Labels -->
@@ -99,12 +36,12 @@
   <div class="section-block">
     <h2>{{SECTION_DATA_FORMAT}}</h2>
     <div class="content-card">
-      <div class="content-stat"><span class="content-stat-label">存储格式</span><span class="content-stat-value">{{FORMAT_STORAGE}}</span></div>
-      <div class="content-stat"><span class="content-stat-label">数据规模</span><span class="content-stat-value">{{FORMAT_SIZE}}</span></div>
-      <div class="content-stat"><span class="content-stat-label">压缩方式</span><span class="content-stat-value">{{FORMAT_COMPRESSION}}</span></div>
-      <div class="content-stat"><span class="content-stat-label">文件布局</span><span class="content-stat-value">{{FORMAT_LAYOUT}}</span></div>
-      <div class="content-stat"><span class="content-stat-label">索引方式</span><span class="content-stat-value">{{FORMAT_INDEX}}</span></div>
-      <div class="content-stat"><span class="content-stat-label">格式版本</span><span class="content-stat-value">{{FORMAT_FORMAT}}</span></div>
+      <div class="content-stat"><span class="content-stat-label">{{LABEL_FORMAT_STORAGE}}</span><span class="content-stat-value">{{FORMAT_STORAGE}}</span></div>
+      <div class="content-stat"><span class="content-stat-label">{{LABEL_FORMAT_SIZE}}</span><span class="content-stat-value">{{FORMAT_SIZE}}</span></div>
+      <div class="content-stat"><span class="content-stat-label">{{LABEL_FORMAT_COMPRESSION}}</span><span class="content-stat-value">{{FORMAT_COMPRESSION}}</span></div>
+      <div class="content-stat"><span class="content-stat-label">{{LABEL_FORMAT_LAYOUT}}</span><span class="content-stat-value">{{FORMAT_LAYOUT}}</span></div>
+      <div class="content-stat"><span class="content-stat-label">{{LABEL_FORMAT_INDEX}}</span><span class="content-stat-value">{{FORMAT_INDEX}}</span></div>
+      <div class="content-stat"><span class="content-stat-label">{{LABEL_FORMAT_VERSION}}</span><span class="content-stat-value">{{FORMAT_FORMAT}}</span></div>
     </div>
     {{SCHEMA_TREE}}
   </div>
@@ -121,10 +58,10 @@
       </div>
       <div class="content-card">
         <h3>{{SECTION_DATA_STATS}}</h3>
-        <div class="content-stat"><span class="content-stat-label">场景数</span><span class="content-stat-value">{{CONTENT_SCENES}}</span></div>
-        <div class="content-stat"><span class="content-stat-label">物体数</span><span class="content-stat-value">{{CONTENT_OBJECTS}}</span></div>
-        <div class="content-stat"><span class="content-stat-label">任务数</span><span class="content-stat-value">{{CONTENT_TASKS}}</span></div>
-        <div class="content-stat"><span class="content-stat-label">轨迹/片段数</span><span class="content-stat-value">{{CONTENT_EPISODES}}</span></div>
+        <div class="content-stat"><span class="content-stat-label">{{LABEL_CONTENT_SCENES}}</span><span class="content-stat-value">{{CONTENT_SCENES}}</span></div>
+        <div class="content-stat"><span class="content-stat-label">{{LABEL_CONTENT_OBJECTS}}</span><span class="content-stat-value">{{CONTENT_OBJECTS}}</span></div>
+        <div class="content-stat"><span class="content-stat-label">{{LABEL_CONTENT_TASKS}}</span><span class="content-stat-value">{{CONTENT_TASKS}}</span></div>
+        <div class="content-stat"><span class="content-stat-label">{{LABEL_CONTENT_EPISODES}}</span><span class="content-stat-value">{{CONTENT_EPISODES}}</span></div>
       </div>
     </div>
     {{ANNOTATIONS}}

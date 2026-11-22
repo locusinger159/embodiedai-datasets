@@ -1,111 +1,114 @@
-<!-- AI Search Widget — floating button + search panel -->
+<!-- AI Search Widget — quiet toolbar + search/chat panel -->
 <style>
-.search-widget-btns { position:fixed; bottom:32px; right:32px; z-index:9999; display:flex; gap:8px; }
-.search-widget-btn {
-  height:40px; border-radius:20px; border:none; cursor:pointer;
-  display:flex; align-items:center; justify-content:center; gap:6px;
-  font-size:14px; font-weight:600; transition:all 0.2s; padding:0 16px;
-}
-.ai-btn { background:var(--primary); color:#fff; box-shadow:0 4px 16px rgba(91,124,255,0.35); }
-.ai-btn:hover { background:#4a6ae8; transform:translateY(-1px); box-shadow:0 6px 20px rgba(91,124,255,0.5); }
-.search-btn { background:var(--white); color:var(--text-secondary); border:1px solid var(--border); box-shadow:0 2px 8px rgba(0,0,0,0.06); }
-.search-btn:hover { border-color:var(--primary); color:var(--primary); transform:translateY(-1px); }
-@media (max-width:768px) { .search-widget-btns{ bottom:20px; right:16px } }
-.search-widget-overlay {
-  position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0.3);
-  display:none;
-}
-.search-widget-overlay.open {
-  display:block;
-  animation:fadeIn 0.25s ease;
-}
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-.search-widget-panel {
-  position:fixed; top:0; right:0; z-index:9999;
-  width:420px; max-width:100vw; height:100vh;
-  background:var(--white);
-  display:flex; flex-direction:column; overflow:hidden;
-  transform:translateX(100%);
-  transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);
-}
-.search-widget-overlay.open .search-widget-panel {
-  transform:translateX(0);
-  box-shadow:-8px 0 40px rgba(0,0,0,0.12);
-}
-.search-panel-header {
-  display:flex; align-items:center; justify-content:space-between;
-  padding:20px 24px 12px; border-bottom:1px solid var(--border);
-}
-.search-panel-title { font-size:18px; font-weight:700; }
-.search-panel-close { background:none; border:none; font-size:22px; cursor:pointer; color:var(--text-secondary); padding:4px 8px; border-radius:6px; }
-.search-panel-close:hover { background:var(--light-bg); }
-.search-panel-input { padding:12px 24px 16px; display:flex; gap:10px; }
-.search-panel-input input { flex:1; padding:12px 16px; border:1px solid var(--border); border-radius:10px; font-size:15px; outline:none; transition:border-color 0.2s; }
-.search-panel-input input:focus { border-color:var(--primary); }
-.search-panel-input button { padding:12px 20px; background:var(--primary); color:#fff; border:none; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; transition:opacity 0.2s; }
-.search-panel-input button:disabled { opacity:0.5; cursor:not-allowed; }
-.search-panel-body { flex:1; overflow-y:auto; padding:0 24px 100px; }
-.search-panel-body .loading { text-align:center; padding:40px 0; color:var(--text-secondary); }
-.search-panel-body .spinner { display:inline-block; width:32px; height:32px; border:3px solid var(--border); border-top-color:var(--primary); border-radius:50%; animation:spin 0.8s linear infinite; }
-@keyframes spin { to{transform:rotate(360deg)} }
-.search-result-section { margin-top:20px; }
-.search-result-section h3 { font-size:14px; font-weight:600; color:var(--text-secondary); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px; }
-.search-result-item { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border:1px solid var(--border); border-radius:10px; margin-bottom:8px; transition:all 0.2s; text-decoration:none; color:inherit; }
-.search-result-item:hover { border-color:var(--primary); background:rgba(91,124,255,0.02); }
-.search-result-score { width:44px; height:44px; border-radius:8px; background:var(--light-bg); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:var(--primary); flex-shrink:0; }
-.search-result-body { flex:1; min-width:0; }
-.search-result-name { font-size:15px; font-weight:600; margin-bottom:3px; }
-.search-result-name:hover { color:var(--primary); }
-.search-result-desc { font-size:13px; color:var(--text-secondary); line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-.search-result-tags { display:flex; gap:4px; margin-top:6px; flex-wrap:wrap; }
-.search-result-tags span { font-size:11px; padding:2px 8px; border-radius:4px; background:var(--light-bg); color:var(--text-secondary); }
-.search-empty { text-align:center; padding:40px 0; color:var(--text-secondary); font-size:14px; }
-.search-error { text-align:center; padding:20px 0; color:#e53e3e; font-size:14px; }
-@media (max-width:768px) { .search-widget-panel { width:100vw } }
+.search-widget-btns{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;gap:2px;padding:3px;background:var(--surface);border:1px solid var(--hairline);border-radius:var(--radius-md);box-shadow:var(--shadow-md)}
+.search-widget-btn{height:34px;border-radius:var(--radius-sm);border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:12px;font-weight:500;background:transparent;color:var(--ink-soft);padding:0 10px;transition:background-color var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}
+.search-widget-btn svg{width:15px;height:15px;flex-shrink:0}
+.search-widget-btn:hover{background:var(--raised);color:var(--ink)}
+.ai-btn{background:var(--ink);color:var(--paper)}
+.ai-btn:hover{background:#000;color:#fff}
+@media (max-width:768px){.search-widget-btns{bottom:12px;right:12px}}
+.search-widget-overlay{position:fixed;inset:0;z-index:9998;background:rgba(31,27,22,.35);display:none}
+.search-widget-overlay.open{display:block}
+.search-widget-panel{position:fixed;top:0;right:0;z-index:9999;width:440px;max-width:100vw;height:100vh;background:var(--paper);border-left:1px solid var(--hairline);display:flex;flex-direction:column;overflow:hidden;transform:translateX(100%);transition:transform var(--t-med) var(--ease)}
+.search-widget-overlay.open .search-widget-panel{transform:translateX(0);box-shadow:-12px 0 32px rgba(31,27,22,.12)}
+.search-panel-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--hairline)}
+.search-panel-title{font-size:16px;font-weight:500}
+.search-panel-close{width:32px;height:32px;border:none;background:none;font-size:18px;cursor:pointer;color:var(--ink-muted);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center}
+.search-panel-close:hover{background:var(--raised);color:var(--ink)}
+.search-panel-input{padding:12px 20px 14px;display:flex;gap:8px;border-bottom:1px solid var(--hairline)}
+.search-panel-input input{flex:1;min-width:0;height:40px;padding:0 12px;border:1px solid var(--hairline-strong);border-radius:var(--radius-md);font-size:14px;background:var(--surface)}
+.search-panel-input select{height:40px;padding:0 8px;border:1px solid var(--hairline);border-radius:var(--radius-md);font-size:12px;background:var(--surface);color:var(--ink-soft);cursor:pointer;flex-shrink:0}
+.search-panel-input button{height:40px;padding:0 16px;background:var(--accent);color:#fff;border:1px solid var(--accent);border-radius:var(--radius-md);font-size:13px;font-weight:500;cursor:pointer;flex-shrink:0}
+.search-panel-input button:hover{background:var(--accent-dark)}
+.search-panel-input button:disabled{opacity:.45;cursor:not-allowed}
+.search-panel-body{flex:1;overflow-y:auto;padding:16px 20px 80px}
+.search-panel-body .loading{text-align:center;padding:40px 0;color:var(--ink-muted);font-size:13px}
+.search-panel-body .spinner{display:inline-block;width:24px;height:24px;border:2px solid var(--hairline);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.search-result-section{margin-bottom:20px}
+.search-result-section h3{font-family:var(--mono);font-size:11px;font-weight:400;color:var(--ink-muted);margin-bottom:8px;text-transform:none;letter-spacing:0}
+.search-result-item{display:flex;align-items:flex-start;gap:12px;padding:12px;border:1px solid var(--hairline);border-radius:var(--radius-md);margin-bottom:6px;background:var(--surface);transition:border-color var(--t-fast);text-decoration:none;color:inherit}
+.search-result-item:hover{border-color:var(--hairline-strong);background:var(--surface)}
+.search-result-score{width:44px;height:36px;border-radius:var(--radius-sm);background:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--ink-soft);flex-shrink:0}
+.search-result-body{flex:1;min-width:0}
+.search-result-name{font-size:14px;font-weight:500;margin-bottom:2px}
+.search-result-name:hover{color:var(--accent)}
+.search-result-desc{font-size:12px;color:var(--ink-soft);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.search-result-tags{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.search-result-tags span{font-size:10px;padding:1px 5px;border:1px solid var(--hairline);border-radius:var(--radius-xs);color:var(--ink-muted)}
+.search-empty{text-align:center;padding:40px 0;color:var(--ink-muted);font-size:13px}
+.search-error{text-align:center;padding:20px 0;color:var(--danger);font-size:13px}
+.chat-message{padding:12px 14px;margin-bottom:10px;border-radius:var(--radius-md);line-height:1.7;font-size:14px;max-width:100%}
+.chat-message.user{background:var(--raised);color:var(--ink);margin-left:32px}
+.chat-message.assistant{background:var(--surface);border:1px solid var(--hairline);margin-right:12px}
+.chat-message.assistant a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.chat-message.assistant strong{color:var(--ink);font-weight:500}
+.chat-sources{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.chat-source{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;background:var(--surface);border:1px solid var(--hairline);border-radius:var(--radius-sm);font-size:11px;text-decoration:none;color:var(--ink);transition:border-color var(--t-fast)}
+.chat-source:hover{border-color:var(--accent);color:var(--accent)}
+.chat-source-type{font-family:var(--mono);font-size:10px;color:var(--ink-muted)}
+.chat-source-score{font-family:var(--mono);font-size:10px;color:var(--accent)}
+@media (max-width:768px){.search-widget-panel{width:100vw}.search-panel-input{flex-wrap:wrap}.search-panel-input input{flex:1 1 100%}.search-panel-input select,.search-panel-input button{flex:1 1 auto}}
 </style>
 
 <div class="search-widget-btns">
-  <button class="search-widget-btn ai-btn" id="aiChatBtn" title="AI 助手 — 智能对话推荐">💬 AI 助手</button>
-  <button class="search-widget-btn search-btn" id="aiSearchBtn" title="语义搜索">🔍 搜索</button>
+  <button class="search-widget-btn ai-btn" id="aiChatBtn" title="AI assistant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span id="aiChatBtnLabel">AI 助手</span>
+  </button>
+  <button class="search-widget-btn search-btn" id="aiSearchBtn" title="Semantic search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <span id="aiSearchBtnLabel">搜索</span>
+  </button>
 </div>
 
 <div class="search-widget-overlay" id="aiSearchOverlay">
   <div class="search-widget-panel">
     <div class="search-panel-header">
       <span class="search-panel-title" id="panelTitle">AI 助手</span>
-      <button class="search-panel-close" id="aiSearchClose">✕</button>
+      <button class="search-panel-close" id="aiSearchClose" aria-label="Close">×</button>
     </div>
     <div class="search-panel-input">
       <input type="text" id="aiSearchInput" placeholder="描述你的需求，如：人形机器人双臂操作数据集..." />
-      <select id="aiModelSelect" style="width:auto;padding:0 8px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:var(--white);color:var(--text-primary);cursor:pointer;flex-shrink:0">
+      <select id="aiModelSelect">
         <option value="deepseek-v4-flash">DeepSeek V4 Flash</option>
         <option value="deepseek-chat">DeepSeek V3</option>
         <option value="deepseek-reasoner">DeepSeek R1</option>
       </select>
       <button id="aiSearchSubmit">搜索</button>
     </div>
-    <div class="search-panel-body" id="aiSearchBody">
-      <div style="text-align:center;padding:40px 0;color:var(--text-light);font-size:14px">输入需求，AI 帮你在 58 个数据集、19 个标准、18 个工具中智能匹配</div>
-    </div>
+    <div class="search-panel-body" id="aiSearchBody"></div>
   </div>
 </div>
-
-<style>
-.chat-message { padding:12px 16px; margin-bottom:12px; border-radius:10px; line-height:1.7; font-size:14px; }
-.chat-message.user { background:var(--light-bg); color:var(--text-primary); }
-.chat-message.assistant { background:rgba(91,124,255,0.04); border:1px solid rgba(91,124,255,0.12); }
-.chat-message.assistant a { color:var(--primary); }
-.chat-message.assistant strong { color:var(--text-primary); }
-.chat-sources { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
-.chat-source { display:inline-flex; align-items:center; gap:4px; padding:4px 10px; background:var(--white); border:1px solid var(--border); border-radius:8px; font-size:12px; text-decoration:none; color:var(--text-primary); transition:all 0.15s; }
-.chat-source:hover { border-color:var(--primary); color:var(--primary); }
-.chat-source-score { font-size:10px; color:var(--primary); font-weight:600; }
-</style>
 
 <script>
 (function() {
   const SEARCH_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/search';
   const CHAT_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/assistant';
+  const isEn = (document.documentElement.lang || 'zh').toLowerCase().startsWith('en');
+  const L = isEn ? {
+    chat: 'AI assistant', search: 'Search', ask: 'Ask', panelChat: 'AI assistant', panelSearch: 'Semantic search',
+    chatPlaceholder: 'Ask about a dataset, e.g. what should I use for tabletop grasping?',
+    searchPlaceholder: 'Describe what you need, e.g. humanoid dual-arm manipulation datasets...',
+    chatEmpty: 'Ask a question to get dataset recommendations. Multi-turn context is kept.',
+    searchEmpty: 'Search across every dataset, standard, and tool in the index.',
+    datasets: 'Datasets', standards: 'Standards', tools: 'Tools',
+    user: 'You', loadingChat: 'Thinking...', loadingSearch: 'Searching...',
+    noResults: 'No matches. Try a different description.', minChars: 'Enter at least 2 characters.',
+    failed: 'Request failed', retry: 'Check your connection and try again.',
+    srcDataset: 'Dataset', srcStandard: 'Standard', srcTool: 'Tool'
+  } : {
+    chat: 'AI 助手', search: '搜索', ask: '提问', panelChat: 'AI 助手', panelSearch: '语义搜索',
+    chatPlaceholder: '向 AI 助手提问，如：我的机械臂要做桌面抓取，推荐什么数据集？',
+    searchPlaceholder: '描述你的需求，如：人形机器人双臂操作数据集...',
+    chatEmpty: '向 AI 助手提问，获取个性化数据集推荐。支持多轮对话，上下文自动关联。',
+    searchEmpty: '在全部数据集、标准与工具中检索。',
+    datasets: '数据集', standards: '标准', tools: '工具',
+    user: '你', loadingChat: 'AI 正在分析...', loadingSearch: '正在搜索...',
+    noResults: '未找到匹配结果，试试换一种描述？', minChars: '请输入至少 2 个字符',
+    failed: '请求失败', retry: '请检查网络连接，或稍后重试',
+    srcDataset: '数据集', srcStandard: '标准', srcTool: '工具'
+  };
 
   var chatBtn = document.getElementById('aiChatBtn');
   var searchBtn = document.getElementById('aiSearchBtn');
@@ -115,22 +118,21 @@
   var submit = document.getElementById('aiSearchSubmit');
   var body = document.getElementById('aiSearchBody');
   var panelTitle = document.getElementById('panelTitle');
-  var mode = 'chat'; // chat is default
+  var mode = 'chat';
   var chatHistory = [];
+
+  document.getElementById('aiChatBtnLabel').textContent = L.chat;
+  document.getElementById('aiSearchBtnLabel').textContent = L.search;
 
   function open(m) {
     mode = m;
     chatHistory = [];
     overlay.classList.add('open');
-    panelTitle.textContent = m === 'chat' ? 'AI 助手' : '语义搜索';
-    submit.textContent = m === 'chat' ? '提问' : '搜索';
-    input.placeholder = m === 'chat'
-      ? '向 AI 助手提问，如：我的机械臂要做桌面抓取，推荐什么数据集？'
-      : '描述你的需求，如：人形机器人双臂操作数据集...';
-    body.innerHTML = m === 'chat'
-      ? '<div style="text-align:center;padding:40px 0;color:var(--text-light);font-size:14px">向 AI 助手提问，获取个性化数据集推荐<br><small style="color:var(--text-light)">支持多轮对话，上下文自动关联</small></div>'
-      : '<div style="text-align:center;padding:40px 0;color:var(--text-light);font-size:14px">输入需求，AI 帮你在 58 个数据集、19 个标准、18 个工具中智能匹配</div>';
-    setTimeout(function() { input.focus(); }, 300);
+    panelTitle.textContent = m === 'chat' ? L.panelChat : L.panelSearch;
+    submit.textContent = m === 'chat' ? L.ask : L.search;
+    input.placeholder = m === 'chat' ? L.chatPlaceholder : L.searchPlaceholder;
+    body.innerHTML = '<div class="search-empty">' + (m === 'chat' ? L.chatEmpty : L.searchEmpty) + '</div>';
+    setTimeout(function() { input.focus(); }, 200);
   }
   function close() { overlay.classList.remove('open'); }
   function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -147,10 +149,10 @@
   function renderSearch(data) {
     var h = '';
     if (data.datasets && data.datasets.length) {
-      h += '<div class="search-result-section"><h3>📊 数据集推荐</h3>';
+      h += '<div class="search-result-section"><h3>' + L.datasets + '</h3>';
       data.datasets.forEach(function(d) {
         var tags = (d.robotType || []).concat(d.task || []).slice(0, 3);
-        h += '<a href="/datasets/' + d.id + '/" class="search-result-item" target="_blank">'
+        h += '<a href="' + (isEn ? '/en' : '') + '/datasets/' + d.id + '/" class="search-result-item" target="_blank">'
           + '<div class="search-result-score">' + d.score + '%</div>'
           + '<div class="search-result-body">'
           + '<div class="search-result-name">' + esc(d.name) + '</div>'
@@ -161,9 +163,9 @@
       h += '</div>';
     }
     if (data.standards && data.standards.length) {
-      h += '<div class="search-result-section"><h3>📏 相关标准</h3>';
+      h += '<div class="search-result-section"><h3>' + L.standards + '</h3>';
       data.standards.forEach(function(s) {
-        h += '<a href="/standards/' + s.id + '/" class="search-result-item" target="_blank">'
+        h += '<a href="' + (isEn ? '/en' : '') + '/standards/' + s.id + '/" class="search-result-item" target="_blank">'
           + '<div class="search-result-score">' + s.score + '%</div>'
           + '<div class="search-result-body"><div class="search-result-name">' + esc(s.name) + '</div>'
           + '<div class="search-result-desc">' + esc(s.notes || '') + '</div></div></a>';
@@ -171,16 +173,16 @@
       h += '</div>';
     }
     if (data.tools && data.tools.length) {
-      h += '<div class="search-result-section"><h3>🔧 相关工具</h3>';
+      h += '<div class="search-result-section"><h3>' + L.tools + '</h3>';
       data.tools.forEach(function(t) {
-        h += '<a href="/tools/' + t.id + '/" class="search-result-item" target="_blank">'
+        h += '<a href="' + (isEn ? '/en' : '') + '/tools/' + t.id + '/" class="search-result-item" target="_blank">'
           + '<div class="search-result-score">' + t.score + '%</div>'
           + '<div class="search-result-body"><div class="search-result-name">' + esc(t.name) + '</div>'
           + '<div class="search-result-desc">' + esc(t.notes || '') + '</div></div></a>';
       });
       h += '</div>';
     }
-    if (!h) h = '<div class="search-empty">未找到匹配结果，试试换一种描述？</div>';
+    if (!h) h = '<div class="search-empty">' + L.noResults + '</div>';
     body.innerHTML = h;
   }
 
@@ -188,26 +190,27 @@
     var h = '';
     chatHistory.forEach(function(msg) {
       if (msg.role === 'user') {
-        h += '<div class="chat-message user"><strong>你：</strong>' + esc(msg.content) + '</div>';
+        h += '<div class="chat-message user"><strong>' + L.user + '</strong><br>' + esc(msg.content) + '</div>';
       } else {
         h += '<div class="chat-message assistant">' + (msg.reply || '') + '</div>';
         if (msg.sources && msg.sources.length) {
           h += '<div class="chat-sources">';
           msg.sources.forEach(function(s) {
-            var url = '/' + (s.type === 'tool' ? 'tools' : s.type === 'standard' ? 'standards' : 'datasets') + '/' + s.id + '/';
-            h += '<a href="' + url + '" class="chat-source" target="_blank">' + (s.type === 'dataset' ? '📊' : s.type === 'standard' ? '📐' : '🔧') + ' ' + esc(s.name) + ' <span class="chat-source-score">' + s.score + '%</span></a>';
+            var kind = s.type === 'tool' ? 'tools' : s.type === 'standard' ? 'standards' : 'datasets';
+            var label = s.type === 'tool' ? L.srcTool : s.type === 'standard' ? L.srcStandard : L.srcDataset;
+            var url = (isEn ? '/en' : '') + '/' + kind + '/' + s.id + '/';
+            h += '<a href="' + url + '" class="chat-source" target="_blank"><span class="chat-source-type">' + label + '</span>' + esc(s.name) + ' <span class="chat-source-score">' + s.score + '%</span></a>';
           });
           h += '</div>';
         }
       }
     });
-    if (!h) h = '<div style="text-align:center;padding:40px 0;color:var(--text-light);font-size:14px">向 AI 助手提问，获取个性化数据集推荐</div>';
+    if (!h) h = '<div class="search-empty">' + L.chatEmpty + '</div>';
     body.innerHTML = h;
     body.scrollTop = body.scrollHeight;
   }
 
   function simpleMarkdown(text) {
-    // Bold, italic, links, lists
     return esc(text)
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
       .replace(/\n- /g, '\n<li>')
@@ -218,23 +221,22 @@
 
   async function doSubmit() {
     var q = input.value.trim();
-    if (q.length < 2) { body.innerHTML = '<div class="search-empty">请输入至少 2 个字符</div>'; return; }
+    if (q.length < 2) { body.innerHTML = '<div class="search-empty">' + L.minChars + '</div>'; return; }
     submit.disabled = true;
-    body.innerHTML = '<div class="loading"><div class="spinner"></div><div style="margin-top:12px">' + (mode === 'chat' ? 'AI 正在分析...' : '正在搜索...') + '</div></div>';
+    body.innerHTML = '<div class="loading"><div class="spinner"></div><div style="margin-top:12px">' + (mode === 'chat' ? L.loadingChat : L.loadingSearch) + '</div></div>';
 
     try {
       if (mode === 'search') {
         var res = await fetch(SEARCH_API, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query: q, lang: (document.documentElement.lang || 'zh').startsWith('en') ? 'en' : 'zh' })
+          body: JSON.stringify({ query: q, lang: isEn ? 'en' : 'zh' })
         });
         if (!res.ok) throw new Error('HTTP ' + res.status);
         var data = await res.json();
         if (data.error) throw new Error(data.error);
         renderSearch(data);
       } else {
-        // Chat mode — call assistant API
         chatHistory.push({ role: 'user', content: q });
         var cres = await fetch(CHAT_API, {
           method: 'POST',
@@ -250,7 +252,7 @@
       }
     } catch (err) {
       console.error('[Search] error:', err);
-      body.innerHTML = '<div class="search-error">请求失败：' + esc(err.message) + '<br><small>请检查网络连接，或稍后重试</small></div>';
+      body.innerHTML = '<div class="search-error">' + L.failed + '：' + esc(err.message) + '<br><small>' + L.retry + '</small></div>';
     }
     submit.disabled = false;
     setTimeout(function() { input.focus(); }, 100);

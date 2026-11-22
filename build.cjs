@@ -51,7 +51,7 @@ const UI = {
     siteDesc: 'A global intelligence hub for embodied AI, humanoid robots, and robotics datasets',
     home: 'Home', datasets: 'Datasets', standards: 'Standards', tools: 'Tools & Platforms', submit: 'Submit', blog: 'Blog',
     typeLabels: { open: 'Open', partial: 'Partial', apply: 'Apply', closed: 'Closed' },
-    robotLabels: { humanoid: 'Humanoid', arm: 'Arm', mobile: 'Mobile', quadruped: 'Quadruped', multi: 'Multi-Type', '触觉传感': 'Tactile', '仿真': 'Simulation', '灵巧手': 'Dexterous Hand', '通用': 'General' },
+    robotLabels: { humanoid: 'Humanoid', arm: 'Arm', mobile: 'Mobile', quadruped: 'Quadruped', multi: 'Multi-Type', '人形机器人': 'Humanoid', '机械臂': 'Arm', '移动机器人': 'Mobile', '四足机器人': 'Quadruped', '多机型': 'Multi-Type', '触觉传感': 'Tactile', '仿真': 'Simulation', '灵巧手': 'Dexterous Hand', '通用': 'General' },
     taskLabels: { '操作': 'Manipulation', '抓取': 'Grasping', '导航': 'Navigation', '装配': 'Assembly', '家居': 'Household', '交互': 'Interaction', '运动控制': 'Locomotion', '可供性分割': 'Affordance Seg.', '3D运动预测': '3D Motion', '接触点预测': 'Contact Pred.', '人机交互': 'HOI', '物体交互': 'Object Interact.', '3D场景理解': '3D Understanding', '语义分割': 'Segmentation', '语言推理': 'Lang. Reasoning', '康养护理': 'Healthcare', '人类操作': 'Human Activity', '动作捕捉': 'Motion Capture' },
     standardTypeLabels: { format: 'Data Format', benchmark: 'Benchmark', industry: 'Industry Standard', closed: 'Proprietary' },
     opennessLabels: { open: 'Fully Open', partial: 'Partially Open', standard: 'Industry Standard', closed: 'Proprietary' },
@@ -72,6 +72,41 @@ const UI = {
 function buildAll(lang) {
   const ui = UI[lang];
   const isEn = lang === 'en';
+
+  // English display helpers — the data is bilingual in structure but some
+  // institution/robot/quality values are still Chinese strings.
+  const modalityEn = { '视觉': 'Vision', '本体状态': 'Proprioception', '动作': 'Action', '深度': 'Depth', '语言': 'Language', '触觉': 'Tactile', '力觉': 'Force', '点云': 'Point cloud', '音频': 'Audio', 'RGB': 'RGB', 'IMU': 'IMU', 'LiDAR': 'LiDAR' };
+  const qualityEn = {
+    collection: { '遥操作采集': 'Teleoperation', '人工遥操作采集': 'Human teleoperation', '多源聚合': 'Multi-source', '仿真生成': 'Simulation', '未公开': 'Not disclosed', '人工采集（真实场景）': 'Human capture (real)', 'UMI 便携采集': 'UMI portable capture', '人类视频 (Ego)': 'Human video (ego)', '人类视频（Ego）': 'Human video (ego)', '动作捕捉': 'Motion capture', '真机遥操作': 'Real-robot teleoperation', '仿真合成': 'Simulation' },
+    annotation: { '人工标注': 'Manual', '部分人工标注': 'Partial manual', '自动标注': 'Automatic', '未公开': 'Not disclosed' },
+    realWorld: { '100%真机': '100% real', '仿真': 'Simulation', '未公开': 'Not disclosed' }
+  };
+  function displayInstitution(s) {
+    if (!isEn) return s || '';
+    const parts = String(s || '').split(' / ').map(part => {
+      const m = part.match(/\(([^)]+)\)/);
+      return (m ? m[1] : part).trim();
+    }).filter(Boolean);
+    return parts.join(' / ') || String(s || '');
+  }
+  function displayModality(m) { return isEn ? (modalityEn[m] || m) : m; }
+  function displayQuality(kind, v) { return isEn ? ((qualityEn[kind] || {})[v] || v) : v; }
+  function localizeDataset(d) {
+    if (!isEn) return d;
+    return {
+      ...d,
+      institution: displayInstitution(d.institution),
+      robotType: (d.robotType || []).map(r => ui.robotLabels[r] || r),
+      task: (d.task || []).map(t => ui.taskLabels[t] || t),
+      modality: (d.modality || []).map(displayModality),
+      quality: d.quality ? {
+        ...d.quality,
+        collection: displayQuality('collection', d.quality.collection),
+        annotation: displayQuality('annotation', d.quality.annotation),
+        realWorld: displayQuality('realWorld', d.quality.realWorld)
+      } : d.quality
+    };
+  }
 
   // Pick correct data files and partials
   const dataDatasets = isEn
@@ -120,6 +155,12 @@ function buildAll(lang) {
     for (const [key, val] of Object.entries(replacements)) {
       if (key === 'meta' || key === 'nav') continue;
       html = html.replace(new RegExp('\\{\\{' + key + '\\}\\}', 'g'), val);
+    }
+    if (isEn) {
+      // Templates use zh-rooted internal links; move content links under /en/.
+      // Navbar/footer already use /en/ links, so they are left untouched.
+      html = html.replace('<html lang="zh-CN">', '<html lang="en">');
+      html = html.replace(/(href=|location\.href=)(["'])\/(datasets|standards|tools|benchmarks|blog|submit|recommend|formats|standard-proposal)\//g, '$1$2/en/$3/');
     }
     // Inject search widget before </body> if available
     if (searchWidget) {
@@ -207,12 +248,12 @@ function buildAll(lang) {
   function buildDetailPage(ds) {
     const typeLabel = ui.typeLabels;
     const typeClass = { open:'type-open', partial:'type-partial', apply:'type-partial', closed:'type-closed' };
-    const df = ds.dataFormat || {};
+    const df = ds.dataFormatDetail || {};
     const dc = ds.dataContent || {};
     const cit = ds.citation || {};
 
     // Schema
-    const schemaHTML = buildSchemaTree(df.schema || (ds.modality||[]).join(' → '));
+    const schemaHTML = buildSchemaTree(df.schema || (typeof ds.dataFormat === 'string' ? ds.dataFormat : (ds.modality||[]).join(' → ')));
 
     // Sensors
     let sensorsHTML = '';
@@ -236,10 +277,10 @@ function buildAll(lang) {
     const collMap = {'遥操作采集':'good','人工遥操作采集':'good','多源聚合':'info','仿真生成':'info','未公开':'warn'};
     const annoMap = {'人工标注':'good','部分人工标注':'good','自动标注':'info','未公开':'warn'};
     const realMap = {'100%真机':'good','仿真':'info','未公开':'warn'};
-    if (q.collection) qb.push({label:'🤖 ' + q.collection, cls: collMap[q.collection] || 'info'});
-    if (q.annotation) qb.push({label:'✅ ' + q.annotation, cls: annoMap[q.annotation] || 'info'});
-    if (q.realWorld) qb.push({label:q.realWorld === '100%真机' ? '🏠 ' + q.realWorld : '💻 ' + q.realWorld, cls: realMap[q.realWorld] || 'info'});
-    if (q.hasSplit !== undefined) qb.push({label: q.hasSplit ? '📊 有数据划分' : '📊 无数据划分', cls: q.hasSplit ? 'good' : 'warn'});
+    if (q.collection) qb.push({label:displayQuality('collection', q.collection), cls: collMap[q.collection] || 'info'});
+    if (q.annotation) qb.push({label:displayQuality('annotation', q.annotation), cls: annoMap[q.annotation] || 'info'});
+    if (q.realWorld) qb.push({label:displayQuality('realWorld', q.realWorld), cls: realMap[q.realWorld] || 'info'});
+    if (q.hasSplit !== undefined) qb.push({label: q.hasSplit ? (isEn ? 'Split available' : '有数据划分') : (isEn ? 'No split' : '无数据划分'), cls: q.hasSplit ? 'good' : 'warn'});
     const qualityHTML = qb.length ? '<div class="quality-badges">' + qb.map(b => `<span class="quality-badge ${b.cls}">${b.label}</span>`).join('') + '</div>' : '';
 
     // VLA compatibility badges
@@ -248,8 +289,8 @@ function buildAll(lang) {
     const vlaCompat = ds.vlaCompatible || [];
     let vlaBadgesHTML = '';
     if (vlaCompat.length) {
-      vlaBadgesHTML = '<div class="section-block" style="margin-bottom:24px"><h2 style="font-size:16px;font-weight:600;margin-bottom:10px;padding-left:12px;border-left:4px solid var(--primary)">' + (isEn ? 'VLA Framework Compatibility' : 'VLA 框架兼容性') + '</h2><div class="quality-badges">' +
-        vlaCompat.map(v => `<span class="quality-badge info" title="${esc(vlaFL[v] || v)}" style="cursor:help">🧠 ${esc(vlaSL[v] || v)}</span>`).join('') +
+      vlaBadgesHTML = '<div class="section-block" style="margin-bottom:24px"><h2>' + (isEn ? 'VLA framework compatibility' : 'VLA 框架兼容性') + '</h2><div class="quality-badges">' +
+        vlaCompat.map(v => `<span class="quality-badge info" title="${esc(vlaFL[v] || v)}" style="cursor:help">${esc(vlaSL[v] || v)}</span>`).join('') +
         '</div></div>';
     }
 
@@ -257,35 +298,33 @@ function buildAll(lang) {
     const benchmarks = ds.benchmarks || [];
     let benchmarksHTML = '';
     if (benchmarks.length) {
-      // Group by benchmark suite
       const bySuite = {};
       benchmarks.forEach(b => {
         const key = b.benchmarkId + '|' + b.suite;
         if (!bySuite[key]) bySuite[key] = { id: b.benchmarkId, suite: b.suite, results: [] };
         bySuite[key].results.push(b);
       });
-      benchmarksHTML = '<div class="section-block"><h2>' + (isEn ? '🏆 Benchmark Results' : '🏆 Benchmark 评测表现') + '</h2>';
-      benchmarksHTML += '<p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">' + (isEn ? 'Scores achieved by models trained on this dataset, evaluated on standard benchmarks' : '使用该数据集训练的模型在标准 benchmark 上的得分') + '</p>';
+      benchmarksHTML = '<div class="section-block"><h2>' + (isEn ? 'Benchmark results' : 'Benchmark 评测表现') + '</h2>';
+      benchmarksHTML += '<p class="section-note">' + (isEn ? 'Scores achieved by models trained on this dataset, evaluated on standard benchmarks.' : '使用该数据集训练的模型在标准 benchmark 上的得分。') + '</p>';
       for (const key in bySuite) {
         const g = bySuite[key];
-        // Sort: higher is better
         g.results.sort((a,b) => (b.higherIsBetter !== false ? 1 : -1) * (b.score - a.score));
-        benchmarksHTML += '<div style="margin-bottom:20px"><h3 style="font-size:15px;font-weight:600;margin-bottom:8px">' + esc(g.suite) + '</h3>';
-        benchmarksHTML += '<div class="benchmark-table" style="background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden">';
-        g.results.forEach((r, i) => {
+        benchmarksHTML += '<div class="benchmark-group"><h3 class="benchmark-group-title">' + esc(g.suite) + '</h3>';
+        benchmarksHTML += '<div class="benchmark-table">';
+        g.results.forEach((r) => {
           const pct = Math.min(100, Math.max(0, r.score));
-          const barColor = pct >= 80 ? 'var(--success)' : pct >= 60 ? 'var(--warning)' : 'var(--text-light)';
-          benchmarksHTML += '<div style="display:flex;align-items:center;gap:12px;padding:10px 16px;' + (i > 0 ? 'border-top:1px solid var(--border)' : '') + '">';
-          benchmarksHTML += '<span style="font-weight:600;font-size:13px;min-width:100px">' + esc(r.model) + ' <span style="color:var(--text-light);font-weight:400;font-size:11px">(' + esc(r.modelSize) + ')</span></span>';
-          benchmarksHTML += '<div style="flex:1;background:var(--light-bg);border-radius:6px;height:20px;overflow:hidden"><div style="height:100%;width:' + pct + '%;background:' + barColor + ';border-radius:6px;transition:width 0.5s"></div></div>';
-          benchmarksHTML += '<span style="font-weight:700;font-size:14px;min-width:55px;text-align:right">' + r.score + (r.unit || '%') + '</span>';
-          if (r.paper) benchmarksHTML += '<a href="' + esc(r.paper) + '" target="_blank" rel="noopener" title="' + esc(r.paperTitle || '') + '" style="font-size:11px;color:var(--text-light);text-decoration:none">📄</a>';
-          if (r.conditions) benchmarksHTML += '<span style="font-size:11px;color:var(--text-light);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="' + esc(r.conditions) + '">' + esc(r.conditions) + '</span>';
+          const scoreText = (typeof r.score === 'number' ? r.score.toFixed(1) : r.score) + (r.unit || '%');
+          benchmarksHTML += '<div class="benchmark-row">';
+          benchmarksHTML += '<div class="benchmark-model">' + esc(r.model) + (r.modelSize ? ' <span class="benchmark-model-size">' + esc(r.modelSize) + '</span>' : '') + '</div>';
+          benchmarksHTML += '<div class="benchmark-bar"><div class="benchmark-fill" style="width:' + pct + '%"></div></div>';
+          benchmarksHTML += '<div class="benchmark-score">' + scoreText + '</div>';
+          if (r.paper) benchmarksHTML += '<a href="' + esc(r.paper) + '" target="_blank" rel="noopener" class="benchmark-link" title="' + esc(r.paperTitle || '') + '">' + (isEn ? 'Paper' : '论文') + '</a>';
+          if (r.conditions) benchmarksHTML += '<div class="benchmark-note">' + esc(r.conditions) + '</div>';
           benchmarksHTML += '</div>';
         });
         benchmarksHTML += '</div></div>';
       }
-      benchmarksHTML += '<p style="font-size:12px;color:var(--text-light);margin-top:8px">' + (isEn ? '📄 Click paper icon for source. ' : '📄 点击论文图标查看数据来源。') + '<a href="/benchmarks/' + benchmarks[0].benchmarkId + '/">' + (isEn ? 'View leaderboard →' : '查看完整排行榜 →') + '</a></p>';
+      benchmarksHTML += '<p class="section-note"><a href="/benchmarks/' + benchmarks[0].benchmarkId + '/">' + (isEn ? 'View full leaderboard →' : '查看完整排行榜 →') + '</a></p>';
       benchmarksHTML += '</div>';
     }
 
@@ -301,10 +340,10 @@ function buildAll(lang) {
     const dGithub = ds.links?.github || ds.github;
     const dHF = ds.links?.huggingface || ds.huggingface;
     let linksHTML = '<div class="section-block"><h2>{{SECTION_LINKS}}</h2><div class="links-section">';
-    if (dSite) linksHTML += `<a href="${esc(dSite)}" target="_blank" class="link-card" rel="noopener">🌐 ${isEn ? 'Official Site' : '官方网站'}</a>`;
-    if (ds.links?.paper) linksHTML += `<a href="${esc(ds.links.paper)}" target="_blank" class="link-card" rel="noopener">📄 ${isEn ? 'Paper' : '论文'}</a>`;
-    if (dGithub && dGithub !== dSite) linksHTML += `<a href="${esc(dGithub)}" target="_blank" class="link-card" rel="noopener">💻 GitHub</a>`;
-    if (dHF && dHF !== dSite) linksHTML += `<a href="${esc(dHF)}" target="_blank" class="link-card" rel="noopener">🤗 HuggingFace</a>`;
+    if (dSite) linksHTML += `<a href="${esc(dSite)}" target="_blank" class="link-card" rel="noopener">${isEn ? 'Official site' : '官方网站'}</a>`;
+    if (ds.links?.paper) linksHTML += `<a href="${esc(ds.links.paper)}" target="_blank" class="link-card" rel="noopener">${isEn ? 'Paper' : '论文'}</a>`;
+    if (dGithub && dGithub !== dSite) linksHTML += `<a href="${esc(dGithub)}" target="_blank" class="link-card" rel="noopener"> GitHub</a>`;
+    if (dHF && dHF !== dSite) linksHTML += `<a href="${esc(dHF)}" target="_blank" class="link-card" rel="noopener"> HuggingFace</a>`;
     linksHTML += '</div></div>';
     if (!dSite && !ds.links?.paper && !dGithub && !dHF) linksHTML = '';
 
@@ -332,15 +371,15 @@ function buildAll(lang) {
     if (related.length) {
       relatedHTML = related.map(r => {
         const rt = (r.robotType || []).slice(0, 2).map(t => `<span class="data-tag">${esc(t)}</span>`).join('');
-        return `<a href="/datasets/${esc(r.id)}/" class="related-card"><div class="related-name">${esc(r.name)}</div><div class="related-org">${esc(r.institution || '')}</div><div class="related-meta">${rt}</div></a>`;
+        return `<a href="/datasets/${esc(r.id)}/" class="related-card"><div class="related-name">${esc(r.name)}</div><div class="related-org">${esc(displayInstitution(r.institution))}</div><div class="related-meta">${rt}</div></a>`;
       }).join('');
     } else {
       relatedHTML = '<div class="empty-hint">{{EMPTY_RELATED}}</div>';
     }
 
-    const robotTypesHTML = (ds.robotType || []).map(t => `<span class="data-tag">${esc(t)}</span>`).join(' ') || '-';
-    const taskTypesHTML = (ds.task || []).map(t => `<span class="data-tag">${esc(t)}</span>`).join(' ') || '-';
-    const modalitiesHTML = (ds.modality || []).length ? (ds.modality || []).join('、') : '-';
+    const robotTypesHTML = (ds.robotType || []).map(t => `<span class="data-tag">${esc(ui.robotLabels[t] || t)}</span>`).join(' ') || '-';
+    const taskTypesHTML = (ds.task || []).map(t => `<span class="data-tag">${esc(ui.taskLabels[t] || t)}</span>`).join(' ') || '-';
+    const modalitiesHTML = (ds.modality || []).length ? (ds.modality || []).map(displayModality).join(isEn ? ' / ' : '、') : '-';
 
     // Related standards (by explicit standards field)
     const standardIds = ds.standards || [];
@@ -353,7 +392,7 @@ function buildAll(lang) {
       const tC2 = {format:'type-format',benchmark:'type-benchmark',industry:'type-industry'};
       relatedStandardsSectionHTML = '<div class="section-block"><h2>' + (isEn ? 'Data Standards' : '采用的数据标准') + '</h2><div class="related-grid">' +
         relatedStandards.map(s => {
-          return `<a href="/standards/${esc(s.id)}/" class="related-card"><div class="related-name">${esc(s.name)}</div><div class="related-org">${esc(s.org)}</div><div class="related-meta"><span class="std-type-badge ${tC2[s.type]||''}">${tL2[s.type]||s.type}</span></div></a>`;
+          return `<a href="/standards/${esc(s.id)}/" class="related-card"><div class="related-name">${esc(s.name)}</div><div class="related-org">${esc(displayInstitution(s.org))}</div><div class="related-meta"><span class="std-type-badge ${tC2[s.type]||''}">${tL2[s.type]||s.type}</span></div></a>`;
         }).join('') + '</div></div>';
     }
 
@@ -377,7 +416,7 @@ function buildAll(lang) {
       NAME: esc(ds.name),
       TYPE_LABEL: typeLabel[ds.type] || ds.type,
       TYPE_CLASS: typeClass[ds.type] || '',
-      INSTITUTION: esc(ds.institution || '未知机构'),
+      INSTITUTION: esc(displayInstitution(ds.institution || (isEn ? 'Unknown institution' : '未知机构'))),
       DESCRIPTION: formatDescription(ds.description || ds.notes || '暂无详细描述'),
       SCALE: esc(ds.scale || '暂无'),
       LICENSE: esc(ds.license || '未知'),
@@ -385,12 +424,12 @@ function buildAll(lang) {
       TASK_TYPES: taskTypesHTML,
       MODALITIES: modalitiesHTML,
       YEAR: String(ds.year || '—'),
-      FORMAT_STORAGE: esc(df.storage || '未知'),
+      FORMAT_STORAGE: esc(df.storage || (typeof ds.dataFormat === 'string' ? ds.dataFormat.split(/[—,，]/)[0].trim() : '未知')),
       FORMAT_SIZE: esc(df.size || ds.scale || '未知'),
       FORMAT_COMPRESSION: esc(df.compression || '未知'),
       FORMAT_LAYOUT: esc(df.layout || ''),
       FORMAT_INDEX: esc(df.index || ''),
-      FORMAT_FORMAT: esc(df.format || ''),
+      FORMAT_FORMAT: esc(df.format || (typeof ds.dataFormat === 'string' ? ds.dataFormat : '')),
       SCHEMA_TREE: schemaHTML
         ? '<div class="schema-tree" style="margin-top:16px">' + schemaHTML + '</div>'
         : '',
@@ -449,7 +488,17 @@ function buildAll(lang) {
       LABEL_ROBOT_TYPE: isEn ? 'Robot Type' : '机器人类型',
       LABEL_TASK_TYPE: isEn ? 'Task Type' : '任务类型',
       LABEL_YEAR: isEn ? 'Year' : '发布年份',
-      LABEL_MODALITY: isEn ? 'Modality' : '数据模态'
+      LABEL_MODALITY: isEn ? 'Modality' : '数据模态',
+      LABEL_FORMAT_STORAGE: isEn ? 'Storage format' : '存储格式',
+      LABEL_FORMAT_SIZE: isEn ? 'Data size' : '数据规模',
+      LABEL_FORMAT_COMPRESSION: isEn ? 'Compression' : '压缩方式',
+      LABEL_FORMAT_LAYOUT: isEn ? 'File layout' : '文件布局',
+      LABEL_FORMAT_INDEX: isEn ? 'Indexing' : '索引方式',
+      LABEL_FORMAT_VERSION: isEn ? 'Format version' : '格式版本',
+      LABEL_CONTENT_SCENES: isEn ? 'Scenes' : '场景数',
+      LABEL_CONTENT_OBJECTS: isEn ? 'Objects' : '物体数',
+      LABEL_CONTENT_TASKS: isEn ? 'Tasks' : '任务数',
+      LABEL_CONTENT_EPISODES: isEn ? 'Episodes / clips' : '轨迹/片段数'
     });
   }
 
@@ -471,24 +520,24 @@ function buildAll(lang) {
     let linksHTML = '';
     if (ss.links?.site || ss.links?.github) {
       linksHTML = '<div class="section-block"><h2>相关链接</h2><div class="links-section">';
-      if (ss.links?.site) linksHTML += `<a href="${esc(ss.links.site)}" target="_blank" class="link-card" rel="noopener">🌐 官方网站</a>`;
-      if (ss.links?.github) linksHTML += `<a href="${esc(ss.links.github)}" target="_blank" class="link-card" rel="noopener">💻 GitHub</a>`;
+      if (ss.links?.site) linksHTML += `<a href="${esc(ss.links.site)}" target="_blank" class="link-card" rel="noopener"> 官方网站</a>`;
+      if (ss.links?.github) linksHTML += `<a href="${esc(ss.links.github)}" target="_blank" class="link-card" rel="noopener"> GitHub</a>`;
       linksHTML += '</div></div>';
     }
 
     const relatedDSHTML = relatedDS.length
-      ? relatedDS.map(d => `<a href="/datasets/${esc(d.id)}/" class="related-card"><div class="related-name">${esc(d.name)}</div><div class="related-org">${esc(d.institution || '')}</div><div class="related-meta">${(d.robotType || []).slice(0, 2).map(t => `<span class="data-tag">${esc(t)}</span>`).join('')}</div></a>`).join('')
+      ? relatedDS.map(d => `<a href="/datasets/${esc(d.id)}/" class="related-card"><div class="related-name">${esc(d.name)}</div><div class="related-org">${esc(displayInstitution(d.institution))}</div><div class="related-meta">${(d.robotType || []).slice(0, 2).map(t => `<span class="data-tag">${esc(t)}</span>`).join('')}</div></a>`).join('')
       : '<div class="empty-hint">暂无关联数据集</div>';
 
     const scenesHTML = (ss.scene || []).map(s => `<span class="data-tag">${scL[s] || s}</span>`).join(' ') || '-';
-    const modalitiesHTML = (ss.modalities || []).length ? (ss.modalities || []).join('、') : '-';
+    const modalitiesHTML = (ss.modalities || []).length ? (ss.modalities || []).map(displayModality).join(isEn ? ' / ' : '、') : '-';
 
     // Requirements rendering
     const reqs = ss.requirements || [];
     let requirementsHTML = '';
     if (reqs.length) {
       const levelLabels = { must: isEn ? 'MUST' : '必须', should: isEn ? 'SHOULD' : '建议', may: isEn ? 'MAY' : '可选' };
-      const levelIcons = { must: '🔴', should: '🟡', may: '🟢' };
+      const levelIcons = { must: '', should: '', may: '' };
       var catMap = {};
       for (var ri = 0; ri < reqs.length; ri++) {
         var r = reqs[ri];
@@ -496,14 +545,14 @@ function buildAll(lang) {
         if (!catMap[cat]) catMap[cat] = [];
         catMap[cat].push(r);
       }
-      requirementsHTML = '<div class="section-block"><h2>' + (isEn ? '📋 Normative Requirements' : '📋 规范性要求') + '</h2><div class="requirements-list">';
+      requirementsHTML = '<div class="section-block"><h2>' + (isEn ? 'Normative Requirements' : '规范性要求') + '</h2><div class="requirements-list">';
       for (var catName in catMap) {
         var items = catMap[catName];
         requirementsHTML += '<div class="req-category"><div class="req-category-name">' + esc(catName) + '</div>';
         for (var ri2 = 0; ri2 < items.length; ri2++) {
           var r2 = items[ri2];
           requirementsHTML += '<div class="req-item req-' + esc(r2.level) + '">';
-          requirementsHTML += '<span class="req-badge req-badge-' + esc(r2.level) + '">' + (levelIcons[r2.level] || '') + ' ' + (levelLabels[r2.level] || r2.level) + '</span>';
+          requirementsHTML += '<span class="req-badge req-badge-' + esc(r2.level) + '">' + (levelLabels[r2.level] || r2.level) + '</span>';
           requirementsHTML += '<div class="req-body"><div class="req-text">' + esc(r2.text) + '</div>';
           if (r2.detail) requirementsHTML += '<div class="req-detail">' + esc(r2.detail) + '</div>';
           requirementsHTML += '</div></div>';
@@ -520,7 +569,16 @@ function buildAll(lang) {
       FULLNAME: esc(ss.fullName || ''),
       TYPE_LABEL: tL[ss.type] || ss.type,
       TYPE_CLASS: tC[ss.type] || '',
-      ORGANIZATION: esc(ss.institution || ss.org),
+      ORGANIZATION: esc(displayInstitution(ss.institution || ss.org)),
+      BACK_TO_STANDARDS: isEn ? '← Back to Standards' : '← 返回数据标准',
+      LABEL_ORG: isEn ? 'Organization' : '发布组织',
+      LABEL_STD_TYPE: isEn ? 'Standard type' : '标准类型',
+      LABEL_OPENNESS: isEn ? 'Access' : '开放程度',
+      LABEL_LICENSE: isEn ? 'License' : '许可证',
+      LABEL_SCENE: isEn ? 'Scene' : '适用场景',
+      LABEL_MODALITIES: isEn ? 'Modalities' : '数据模态',
+      SECTION_RELATED_DATASETS: isEn ? 'Related Datasets' : '关联数据集',
+      SECTION_DISCUSSION: isEn ? 'Discussion' : '讨论',
       DESCRIPTION: formatDescription(ss.description || ss.desc),
       LICENSE: esc(ss.license || '未知'),
       OPENNESS_CLASS: oC[ss.openness] || '',
@@ -560,12 +618,35 @@ function buildAll(lang) {
     }).join('');
   }
 
+  // Hero catalog preview — real entries, not a decorative illustration
+  const catalogPicks = ['open-x-embodiment', 'droid', 'libero', 'agibot-world'];
+  const catalogRows = catalogPicks
+    .map(id => dataDatasets.find(d => d.id === id))
+    .filter(Boolean)
+    .map(d => {
+      const typeLabel = d.type === 'open' ? (isEn ? 'Open' : '开源')
+        : d.type === 'partial' ? (isEn ? 'Partial' : '部分开源')
+        : (isEn ? 'Closed' : '闭源');
+      return `<div class="catalog-row">`
+        + `<div class="catalog-name">${esc(d.name)}</div>`
+        + `<div class="catalog-meta">${esc(displayInstitution(d.institution))} · ${esc((d.robotType || []).slice(0, 2).map(r => ui.robotLabels[r] || r).join(' / '))}</div>`
+        + `<div class="catalog-year">${d.year || ''}</div>`
+        + `<div class="catalog-type">${typeLabel}</div>`
+        + `</div>`;
+    }).join('');
+  const catalogPreview = `<div class="catalog-preview">`
+    + `<div class="catalog-preview-header"><span class="catalog-preview-title">Dataset index</span><span>${dataDatasets.length} ${isEn ? 'entries' : '条记录'}</span></div>`
+    + catalogRows
+    + `<div class="catalog-preview-footer"><span>Standards · Benchmarks · Tools</span><a href="${isEn ? '/en/datasets/' : '/datasets/'}">${isEn ? 'Browse all →' : '浏览全部 →'}</a></div>`
+    + `</div>`;
+
   fs.mkdirSync(outDir, { recursive: true });
-  fs.writeFileSync(`${outDir}/index.html`, buildPage(`${templateDir}index.html`, {
+  fs.writeFileSync(`${outDir}/index.html`, buildPage(`${templateDir}${isEn ? 'index-en.html' : 'index.html'}`, {
     meta: `<title>${ui.siteTitle}</title><meta name="description" content="${ui.siteDesc}"><meta name="keywords" content="具身智能,机器人数据集,人形机器人,机械臂,开源数据集,机器人学习"><meta property="og:title" content="${ui.siteTitle}"><meta property="og:description" content="${ui.siteDesc}"><meta property="og:type" content="website">`,
     nav: getActiveNav('home'),
     STAT_TOTAL: String(totalDatasets), STAT_ORGS: String(allOrgs.size), STAT_TYPES: String(allRobotTypes.size), STAT_STANDARDS: String(totalStandards),
-    PARTNERS_MARQUEE: partnerNames.concat(partnerNames).map(n => `<span class="partner-item">${n}</span>`).join('\n'),
+    PARTNERS_MARQUEE: partnerNames.map(n => `<span class="partner-item">${n}</span>`).join('\n'),
+    CATALOG_PREVIEW: catalogPreview,
     BLOG_CARDS: blogCardsHTML
   }));
 
@@ -577,13 +658,41 @@ function buildAll(lang) {
   vlaShortLabels: ui.vlaShortLabels,
   vlaLabels: ui.vlaLabels,
   searchPlaceholder: isEn ? 'Search dataset name, institution, task type...' : '搜索数据集名称、机构、任务类型...',
+  searchButton: isEn ? 'Search' : '搜索',
+  tableSelectAll: isEn ? 'Select all' : '全选',
+  tableName: isEn ? 'Dataset' : '数据集名称',
+  tableOrg: isEn ? 'Institution' : '机构',
+  tableYear: isEn ? 'Year' : '发布时间',
+  tableRobot: isEn ? 'Robot' : '机器人类型',
+  tableTask: isEn ? 'Task' : '任务类型',
+  tableOpenness: isEn ? 'Access' : '开放程度',
+  tableVla: isEn ? 'VLA' : 'VLA 兼容',
+  tableLinks: isEn ? 'Links' : '相关链接',
+  datasetsUnit: isEn ? 'datasets' : '个数据集',
+  compareLimit: isEn ? 'Up to 4 datasets can be compared' : '最多对比 4 个数据集',
+  cmpName: isEn ? 'Name' : '名称',
+  cmpOrg: isEn ? 'Institution' : '机构',
+  cmpScale: isEn ? 'Scale' : '规模',
+  cmpRobot: isEn ? 'Robot type' : '机器人类型',
+  cmpTask: isEn ? 'Task type' : '任务类型',
+  cmpModality: isEn ? 'Modality' : '模态',
+  cmpType: isEn ? 'Access' : '类型',
+  cmpFormat: isEn ? 'Data format' : '数据格式',
+  cmpSize: isEn ? 'Data size' : '数据大小',
+  cmpCompression: isEn ? 'Compression' : '压缩方式',
+  cmpSchema: isEn ? 'Schema' : 'Schema',
+  cmpCollection: isEn ? 'Collection' : '采集方式',
+  cmpAnnotation: isEn ? 'Annotation' : '标注方式',
+  cmpRealWorld: isEn ? 'Real-world share' : '真机占比',
+  cmpSplit: isEn ? 'Split' : '数据划分',
+  cmpLicense: isEn ? 'License' : '许可证',
   robotType: isEn ? 'Robot Type' : '机器人类型',
   taskType: isEn ? 'Task Type' : '任务类型',
   openness: isEn ? 'Access Level' : '开放程度',
   sortYear: isEn ? 'Time ↓' : '时间排序 ↓',
   sortName: isEn ? 'Name' : '名称排序',
   sortOrg: isEn ? 'Institution' : '机构排序',
-  clearFilters: isEn ? 'Clear Filters' : '清除筛选',
+  clearFilters: isEn ? 'Clear' : '清除筛选',
   compareTextPrefix: isEn ? 'Selected ' : '已选择 ',
   compareTextSuffix: isEn ? ' datasets' : ' 个数据集',
   compareBtn: isEn ? 'Compare' : '开始对比',
@@ -602,24 +711,28 @@ function buildAll(lang) {
   hasSplitNo: isEn ? 'No' : '无',
   noResults: isEn ? 'No matching datasets found.' : '没有匹配的数据集。',
   tagFilter: isEn ? 'Trending Tags' : '热门标签',
+  collectionType: isEn ? 'Collection' : '采集方式',
+  siteLabel: isEn ? 'Site' : '官网',
+  paperLabel: isEn ? 'Paper' : '论文',
+  viewDetail: isEn ? 'View →' : '查看 →',
   resultCount: isEn ? 'Found' : '找到',
   // Recommend page
   recTitle: isEn ? 'Reverse Recommendation' : '反向推荐',
   recSubtitle: isEn ? 'Describe your scenario — we recommend the best datasets' : '描述你的场景，我们推荐最合适的数据集',
   recPresetsLabel: isEn ? 'Quick Presets' : '快捷场景',
-  recPresetPickPlace: isEn ? '🍽️ Pick & Place Arm' : '🍽️ 桌面抓取（机械臂）',
-  recPresetNav: isEn ? '🗺️ Mobile Navigation' : '🗺️ 移动导航',
-  recPresetLoco: isEn ? '🚶 Humanoid Locomotion' : '🚶 人形运动控制',
-  recPresetBimanip: isEn ? '🤖 Bimanual (ALOHA)' : '🤖 双臂操作 (ALOHA)',
-  recPresetOpenvla: isEn ? '🧠 OpenVLA Compatible' : '🧠 OpenVLA 兼容',
-  recPresetHealthcare: isEn ? '🏥 Healthcare/Caregiving' : '🏥 康养护理',
+  recPresetPickPlace: isEn ? ' Pick & Place Arm' : ' 桌面抓取（机械臂）',
+  recPresetNav: isEn ? ' Mobile Navigation' : ' 移动导航',
+  recPresetLoco: isEn ? ' Humanoid Locomotion' : ' 人形运动控制',
+  recPresetBimanip: isEn ? ' Bimanual (ALOHA)' : ' 双臂操作 (ALOHA)',
+  recPresetOpenvla: isEn ? ' OpenVLA Compatible' : ' OpenVLA 兼容',
+  recPresetHealthcare: isEn ? ' Healthcare/Caregiving' : ' 康养护理',
   recStepTask: isEn ? 'What task do you want to do?' : '你要做什么任务？',
   recStepRobot: isEn ? 'What robot are you using?' : '你用什么机器人？',
   recStepModality: isEn ? 'What data modalities do you need?' : '你需要什么数据模态？',
   recStepScene: isEn ? 'Real robot or simulation?' : '真机还是仿真？',
   recStepVla: isEn ? 'Which VLA framework? (optional)' : '用哪个 VLA 框架？（可选）',
   recStepAccess: isEn ? 'Data access requirements?' : '数据获取限制？',
-  recBtnRecommend: isEn ? '🎲 Recommend →' : '🎲 给我推荐 →',
+  recBtnRecommend: isEn ? ' Recommend →' : ' 给我推荐 →',
   recBtnReset: isEn ? 'Reset' : '重置',
   recResultsTitle: isEn ? 'Recommendation Results' : '推荐结果',
   recFound: isEn ? 'Found' : '找到',
@@ -650,8 +763,12 @@ function buildAll(lang) {
   fs.writeFileSync(`${outDir}/datasets/index.html`, buildPage(`${templateDir}datasets.html`, {
     meta: `<title>${ui.datasets} | Superdata RobotAI</title><meta name="description" content="${isEn ? 'Browse all embodied AI and robotics datasets' : '浏览全部具身智能、机器人数据集'}">`,
     nav: getActiveNav('datasets'),
+    PAGE_TITLE: ui.datasets,
+    PAGE_SUBTITLE: isEn ? 'Browse embodied AI, robotics, and humanoid datasets' : '浏览全球具身智能、机器人、人形机器人数据集',
+    REC_BANNER: isEn ? 'Not sure which dataset fits? Try reverse recommendation' : '不知道哪个数据集适合你？试试反向推荐',
+    SUBMIT_BANNER: isEn ? 'Have a dataset to add? Submit it without Git' : '有数据集想收录？提交数据集，无需懂 Git',
     I18N_JS: i18nJS,
-    DATASETS_JSON: JSON.stringify(dataDatasets)
+    DATASETS_JSON: JSON.stringify(dataDatasets.map(localizeDataset))
   }));
 
   // ── Reverse Recommendation page ─────────────────────────
@@ -667,23 +784,23 @@ function buildAll(lang) {
     meta: `<title>${isEn ? 'Reverse Recommendation' : '反向推荐'} | Superdata RobotAI</title><meta name="description" content="${isEn ? 'Find the best dataset for your robot and task' : '根据你的机器人和任务，推荐最合适的数据集'}">`,
     nav: getActiveNav('datasets'),
     I18N_JS: recI18N,
-    DATASETS_JSON: JSON.stringify(dataDatasets),
-    REC_TITLE: isEn ? '🎯 Reverse Recommendation' : '🎯 反向推荐',
+    DATASETS_JSON: JSON.stringify(dataDatasets.map(localizeDataset)),
+    REC_TITLE: isEn ? ' Reverse Recommendation' : ' 反向推荐',
     REC_SUBTITLE: isEn ? 'Describe your scenario — we recommend the best datasets' : '描述你的场景，我们推荐最合适的数据集',
     REC_PRESETS_LABEL: isEn ? 'Quick Presets' : '快捷场景',
-    REC_PRESET_PICK_PLACE: isEn ? '🍽️ Pick & Place Arm' : '🍽️ 桌面抓取（机械臂）',
-    REC_PRESET_NAV: isEn ? '🗺️ Mobile Navigation' : '🗺️ 移动导航',
-    REC_PRESET_LOCO: isEn ? '🚶 Humanoid Locomotion' : '🚶 人形运动控制',
-    REC_PRESET_BIMANIP: isEn ? '🤖 Bimanual (ALOHA)' : '🤖 双臂操作 (ALOHA)',
-    REC_PRESET_OPENVLA: isEn ? '🧠 OpenVLA Compatible' : '🧠 OpenVLA 兼容',
-    REC_PRESET_HEALTHCARE: isEn ? '🏥 Healthcare/Caregiving' : '🏥 康养护理',
+    REC_PRESET_PICK_PLACE: isEn ? ' Pick & Place Arm' : ' 桌面抓取（机械臂）',
+    REC_PRESET_NAV: isEn ? ' Mobile Navigation' : ' 移动导航',
+    REC_PRESET_LOCO: isEn ? ' Humanoid Locomotion' : ' 人形运动控制',
+    REC_PRESET_BIMANIP: isEn ? ' Bimanual (ALOHA)' : ' 双臂操作 (ALOHA)',
+    REC_PRESET_OPENVLA: isEn ? ' OpenVLA Compatible' : ' OpenVLA 兼容',
+    REC_PRESET_HEALTHCARE: isEn ? ' Healthcare/Caregiving' : ' 康养护理',
     REC_STEP_TASK: isEn ? 'What task do you want to do?' : '你要做什么任务？',
     REC_STEP_ROBOT: isEn ? 'What robot are you using?' : '你用什么机器人？',
     REC_STEP_MODALITY: isEn ? 'What data modalities do you need?' : '你需要什么数据模态？',
     REC_STEP_SCENE: isEn ? 'Real robot or simulation?' : '真机还是仿真？',
     REC_STEP_VLA: isEn ? 'Which VLA framework? (optional)' : '用哪个 VLA 框架？（可选）',
     REC_STEP_ACCESS: isEn ? 'Data access requirements?' : '数据获取限制？',
-    REC_BTN_RECOMMEND: isEn ? '🎲 Recommend →' : '🎲 给我推荐 →',
+    REC_BTN_RECOMMEND: isEn ? ' Recommend →' : ' 给我推荐 →',
     REC_BTN_RESET: isEn ? 'Reset' : '重置',
     REC_RESULTS_TITLE: isEn ? 'Recommendation Results' : '推荐结果',
     REC_FOUND: isEn ? 'Found' : '找到',
@@ -723,6 +840,24 @@ function buildAll(lang) {
   fs.writeFileSync(`${outDir}/standards/index.html`, buildPage(`${templateDir}standards.html`, {
     meta: `<title>${ui.standards} | Superdata RobotAI</title><meta name="description" content="${isEn ? 'Industry data standards and benchmarks for embodied AI' : '具身智能行业数据标准与评测基准'}">`,
     nav: getActiveNav('standards'),
+    PAGE_TITLE: ui.standards,
+    PAGE_SUBTITLE: isEn ? 'Data formats, benchmarks, and industry standards for embodied AI' : '收录具身智能行业发布的数据格式标准、评测基准与行业标准',
+    SEARCH_PLACEHOLDER: isEn ? 'Search standard name, organization, keyword...' : '搜索标准名称、发布组织、关键词...',
+    SEARCH_BUTTON: isEn ? 'Search' : '搜索',
+    SORT_YEAR: isEn ? 'Time ↓' : '时间 ↓',
+    SORT_NAME: isEn ? 'Name' : '名称',
+    CLEAR: isEn ? 'Clear' : '清除',
+    FILTER_TYPE: isEn ? 'Standard type' : '标准类型',
+    FILTER_OPEN: isEn ? 'Access' : '开放程度',
+    FILTER_SCENE: isEn ? 'Scene' : '适用场景',
+    SELECT_ALL: isEn ? 'Select all' : '全选',
+    RESULT_FOUND: isEn ? 'Found' : '找到',
+    RESULT_UNIT: isEn ? 'standards' : '个标准',
+    COMPARE_PREFIX: isEn ? 'Selected' : '已选择',
+    COMPARE_SUFFIX: isEn ? 'standards' : '个标准',
+    COMPARE_BTN: isEn ? 'Compare' : '开始对比',
+    COMPARE_CLEAR: isEn ? 'Clear' : '清除',
+    COMPARE_TITLE: isEn ? 'Compare standards' : '标准对比',
     STANDARDS_JSON: JSON.stringify(dataStandards)
   }));
 
@@ -745,13 +880,13 @@ function buildAll(lang) {
         if ((d.benchmarks || []).some(b => b.benchmarkId === s.id)) dsCount++;
       });
       bmTotalDS += dsCount;
-      const desc = s.desc || '';
+      const desc = (s.desc || '').replace(/\*\*/g, '').replace(/\n+/g, ' ').trim();
       bmCardsHTML += `<a href="/benchmarks/${esc(s.id)}/" class="bm-card">
         <div class="bm-card-top">
-          <div class="bm-card-icon">🏆</div>
+          <div class="bm-card-icon"></div>
           <div class="bm-card-header">
             <div class="bm-card-name">${esc(s.name)}</div>
-            <div class="bm-card-meta">${esc(s.institution || s.org || '')}</div>
+            <div class="bm-card-meta">${esc(displayInstitution(s.institution || s.org || ''))}</div>
           </div>
         </div>
         <div class="bm-card-desc">${esc(desc.length > 120 ? desc.slice(0, 120) + '...' : desc)}</div>
@@ -764,7 +899,7 @@ function buildAll(lang) {
     fs.writeFileSync(`${outDir}/benchmarks/index.html`, buildPage(`${templateDir}benchmarks-list.html`, {
       meta: `<title>${isEn ? 'Benchmark Leaderboards' : 'Benchmark 排行榜'} | Superdata RobotAI</title><meta name="description" content="${isEn ? 'Embodied AI benchmark leaderboards: compare training datasets by model performance' : '具身智能 Benchmark 排行榜：按模型性能对比训练数据集'}">`,
       nav: getActiveNav('benchmarks'),
-      BM_TITLE: isEn ? '🏆 Benchmark Leaderboards' : '🏆 Benchmark 排行榜',
+      BM_TITLE: isEn ? ' Benchmark Leaderboards' : ' Benchmark 排行榜',
       BM_SUBTITLE: isEn ? 'Compare training datasets by model performance on standard benchmarks. Higher score = better training data.' : '按标准 benchmark 上的模型性能对比训练数据集。分数越高 = 训练数据越有效。',
       BM_RESULT_COUNT: (isEn ? 'Total ' : '共 ') + benchmarkStds.length + (isEn ? ' benchmarks, ' : ' 个评测基准，') + bmTotalDS + (isEn ? ' training datasets compared' : ' 个训练数据集参与对比'),
       BM_CARDS: bmCardsHTML,
@@ -832,28 +967,29 @@ function buildAll(lang) {
     // Build table rows
     let rowsHTML = '';
     if (ranked.length === 0) {
-      rowsHTML = '<tr><td colspan="4" style="padding:40px;text-align:center;color:var(--text-light)">' + (isEn ? '📋 No benchmark data yet. ' : '📋 暂无评测数据。') + '<a href="https://github.com/locusinger159/embodiedai-datasets/issues/new" style="color:var(--primary)">' + (isEn ? 'Submit results →' : '欢迎提交评测结果 →') + '</a></td></tr>';
+      rowsHTML = '<tr><td colspan="4" style="padding:40px;text-align:center;color:var(--text-light)">' + (isEn ? ' No benchmark data yet. ' : ' 暂无评测数据。') + '<a href="https://github.com/locusinger159/embodiedai-datasets/issues/new" style="color:var(--primary)">' + (isEn ? 'Submit results →' : '欢迎提交评测结果 →') + '</a></td></tr>';
     }
     ranked.forEach((entry, i) => {
       const pct = Math.min(100, Math.max(0, entry.bestScore));
-      const barColor = pct >= 80 ? 'var(--success)' : pct >= 60 ? 'var(--warning)' : 'var(--text-light)';
+      const scoreText = (typeof entry.bestScore === 'number' ? entry.bestScore.toFixed(1) : entry.bestScore) + (bm.unit != null && bm.unit !== undefined ? bm.unit : '%');
       const rankClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
-      rowsHTML += '<tr class="leaderboard-row" style="' + (i > 0 ? 'border-top:1px solid var(--border)' : '') + '">';
+      rowsHTML += '<tr class="leaderboard-row">';
       rowsHTML += '<td class="leaderboard-rank ' + rankClass + '">' + (i + 1) + '</td>';
       rowsHTML += '<td>' + (rankBy === 'model'
         ? '<span class="leaderboard-ds-name">' + esc(entry.key) + '</span><div class="leaderboard-ds-org">' + entry.count + (isEn ? ' suites avg' : ' 个环境平均') + '</div>'
         : '<a href="/datasets/' + esc(entry.dataset.id) + '/" class="leaderboard-ds-name">' + esc(entry.dataset.name) + '</a><div class="leaderboard-ds-org">' + esc(entry.dataset.institution || '') + '</div>') + '</td>';
       rowsHTML += '<td><span class="leaderboard-model">' + esc(entry.bestModel) + '</span> <span class="leaderboard-model-size">(' + esc(entry.bestSize) + ')</span></td>';
-      rowsHTML += '<td style="text-align:right"><div style="display:flex;align-items:center;gap:8px;justify-content:flex-end"><div class="leaderboard-score-bar"><div class="leaderboard-score-fill" style="width:' + pct + '%;background:' + barColor + '"></div></div><span class="leaderboard-score-val">' + entry.bestScore + (bm.unit != null && bm.unit !== undefined ? bm.unit : '%') + '</span></div></td>';
+      rowsHTML += '<td style="text-align:right"><div style="display:flex;align-items:center;gap:8px;justify-content:flex-end"><div class="leaderboard-score-bar"><div class="leaderboard-score-fill" style="width:' + pct + '%"></div></div><span class="leaderboard-score-val">' + scoreText + '</span></div></td>';
       rowsHTML += '</tr>';
       // Expandable sub-rows for all model results on this dataset
       if (entry.allResults.length > 1) {
-        rowsHTML += '<tr style="border-top:1px solid var(--border)"><td colspan="4"><details class="leaderboard-all-results"><summary>' + (isEn ? 'Show all ' : '展开全部 ') + entry.allResults.length + (isEn ? ' results' : ' 条结果') + '</summary>';
+        rowsHTML += '<tr><td colspan="4"><details class="leaderboard-all-results"><summary>' + (isEn ? 'Show all ' : '展开全部 ') + entry.allResults.length + (isEn ? ' results' : ' 条结果') + '</summary>';
         entry.allResults.sort((a,b) => (bm.higherIsBetter !== false ? 1 : -1) * (b.score - a.score));
         entry.allResults.forEach(r => {
           const sp = Math.min(100, Math.max(0, r.score));
           var subLabel = (rankBy === 'model') ? esc(r.suite) : (esc(r.model) + ' (' + esc(r.modelSize) + ')');
-          rowsHTML += '<div class="leaderboard-sub-row"><span class="leaderboard-sub-model">' + subLabel + '</span><div class="leaderboard-sub-bar"><div class="leaderboard-sub-fill" style="width:' + sp + '%;background:' + (sp >= 80 ? 'var(--success)' : sp >= 60 ? 'var(--warning)' : 'var(--text-light)') + '"></div></div><span class="leaderboard-sub-score">' + r.score + (bm.unit != null && bm.unit !== undefined ? bm.unit : '%') + '</span>' + (r.paper ? '<a href="' + esc(r.paper) + '" target="_blank" rel="noopener" style="font-size:11px;color:var(--text-light);text-decoration:none">📄</a>' : '') + '</div>';
+          const subScore = (typeof r.score === 'number' ? r.score.toFixed(1) : r.score) + (bm.unit != null && bm.unit !== undefined ? bm.unit : '%');
+          rowsHTML += '<div class="leaderboard-sub-row"><span class="leaderboard-sub-model">' + subLabel + '</span><div class="leaderboard-sub-bar"><div class="leaderboard-sub-fill" style="width:' + sp + '%"></div></div><span class="leaderboard-sub-score">' + subScore + '</span>' + (r.paper ? '<a href="' + esc(r.paper) + '" target="_blank" rel="noopener" class="link-btn">' + (isEn ? 'Paper' : '论文') + '</a>' : '') + '</div>';
         });
         rowsHTML += '</details></td></tr>';
       }
@@ -862,15 +998,21 @@ function buildAll(lang) {
     const dir = `${outDir}/benchmarks/${ss.id}`;
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(`${dir}/index.html`, buildPage(`${templateDir}benchmark.html`, {
-      meta: `<title>${esc(ss.name)} 排行榜 | Superdata RobotAI</title><meta name="description" content="${esc(ss.name)} benchmark leaderboard: ${ranked.length} training datasets ranked by best model score">`,
+      meta: `<title>${esc(ss.name)} ${isEn ? 'Leaderboard' : '排行榜'} | Superdata RobotAI</title><meta name="description" content="${esc(ss.name)} benchmark leaderboard: ${ranked.length} training datasets ranked by best model score">`,
       nav: getActiveNav('benchmarks'),
       BENCHMARK_NAME: esc(ss.name),
+      BENCHMARK_HEADING: isEn ? (esc(ss.name) + ' leaderboard') : (esc(ss.name) + ' 排行榜'),
+      BM_METRIC_LABEL: isEn ? 'Metric: ' : '指标：',
+      BM_UNIT_LABEL: isEn ? 'Unit: ' : '单位：',
+      BM_COL_SCORE: isEn ? 'Score' : '得分',
+      BM_FOOTER: isEn ? 'Scores come from published papers. Open a dataset for details and the full benchmark data. To submit a new result, open a GitHub issue or email us.' : '分数来源为已发表论文。点击数据集查看详情和完整 benchmark 数据。如需提交新的评测结果，请通过 GitHub Issue 或邮件联系。',
+      BENCHMARK_BACK: isEn ? '← Back to leaderboards' : '← 返回排行榜',
       BENCHMARK_DESC: rankBy === 'model'
         ? (isEn ? ('Model ranking on ' + esc(ss.name) + '. Higher score = better embodied AI capability.') : ('模型在 ' + esc(ss.name) + ' 上的排名。分数越高 = 具身智能能力越强。'))
         : (isEn ? ('Ranking of training datasets by best model performance on ' + esc(ss.name) + '. Higher score = better training data for this benchmark.') : ('训练数据集在 ' + esc(ss.name) + ' 上的最佳模型性能排名。分数越高 = 该训练集在这个 benchmark 上越有效。')),
       BENCHMARK_METRIC: bm.metricEn || bm.metric || '成功率',
       BENCHMARK_UNIT: bm.unit || '%',
-      BENCHMARK_ORG: esc(ss.institution || ss.org || ''),
+      BENCHMARK_ORG: esc(displayInstitution(ss.institution || ss.org || '')),
       BM_COL_TRAINING: rankBy === 'model' ? (isEn ? 'Model' : '模型') : (isEn ? 'Training Dataset' : '训练数据集'),
       BM_COL_MODEL: rankBy === 'model' ? (isEn ? 'Best Suite Score' : '最佳套件得分') : (isEn ? 'Best Model' : '最佳模型'),
       LEADERBOARD_ROWS: rowsHTML,
@@ -895,7 +1037,7 @@ function buildAll(lang) {
     nav: getActiveNav('tools'),
     TOOLS_PAGE_TITLE: isEn ? 'Tools & Platforms' : '工具/平台',
     TOOLS_PAGE_SUBTITLE: isEn ? 'Robotics simulation environments, data toolkits, and infrastructure' : '机器人仿真环境、数据处理工具链与基础设施',
-    TOOLS_JSON: JSON.stringify(dataTools),
+    TOOLS_JSON: JSON.stringify(isEn ? dataTools.map(t => ({...t, institution: displayInstitution(t.institution)})) : dataTools),
     I18N_JS: `window.I18N = ${JSON.stringify(toolsI18N)};`
   }));
 
@@ -913,10 +1055,10 @@ function buildAll(lang) {
     const toolGithub = links.github || tool.github;
     const toolHF = links.huggingface || tool.huggingface;
     let linksHTML = '<div class="section-block"><h2>' + (isEn ? 'Links' : '相关链接') + '</h2><div class="links-section">';
-    if (toolSite) linksHTML += `<a href="${esc(toolSite)}" target="_blank" class="link-card" rel="noopener">🏠 ${isEn ? 'Official Site' : '官方网站'}</a>`;
-    if (links.paper) linksHTML += `<a href="${esc(links.paper)}" target="_blank" class="link-card" rel="noopener">📄 Paper</a>`;
-    if (toolGithub && toolGithub !== toolSite) linksHTML += `<a href="${esc(toolGithub)}" target="_blank" class="link-card" rel="noopener">💻 GitHub</a>`;
-    if (toolHF) { const hf = toolHF.startsWith('http') ? toolHF : `https://huggingface.co/${toolHF}`; if (hf !== toolSite) linksHTML += `<a href="${esc(hf)}" target="_blank" class="link-card" rel="noopener">🤗 Hugging Face</a>`; }
+    if (toolSite) linksHTML += `<a href="${esc(toolSite)}" target="_blank" class="link-card" rel="noopener"> ${isEn ? 'Official Site' : '官方网站'}</a>`;
+    if (links.paper) linksHTML += `<a href="${esc(links.paper)}" target="_blank" class="link-card" rel="noopener"> Paper</a>`;
+    if (toolGithub && toolGithub !== toolSite) linksHTML += `<a href="${esc(toolGithub)}" target="_blank" class="link-card" rel="noopener"> GitHub</a>`;
+    if (toolHF) { const hf = toolHF.startsWith('http') ? toolHF : `https://huggingface.co/${toolHF}`; if (hf !== toolSite) linksHTML += `<a href="${esc(hf)}" target="_blank" class="link-card" rel="noopener"> Hugging Face</a>`; }
     linksHTML += '</div></div>';
 
     let citationHTML = '';
@@ -940,7 +1082,7 @@ function buildAll(lang) {
       if (tut.links && tut.links.length) {
         tutorialHTML += '<div class="links-section" style="margin-top:16px">';
         tut.links.forEach(function(l) {
-          tutorialHTML += '<a href="' + esc(l.url) + '" target="_blank" class="link-card" rel="noopener">📖 ' + esc(l.name) + '</a>';
+          tutorialHTML += '<a href="' + esc(l.url) + '" target="_blank" class="link-card" rel="noopener"> ' + esc(l.name) + '</a>';
         });
         tutorialHTML += '</div>';
       }
@@ -953,7 +1095,7 @@ function buildAll(lang) {
       NAME: esc(tool.name),
       TYPE_LABEL: typeLabel[tool.type] || tool.type,
       TYPE_CLASS: typeClass[tool.type] || '',
-      INSTITUTION: esc(tool.institution || ''),
+      INSTITUTION: esc(displayInstitution(tool.institution || '')),
       DESCRIPTION: formatDescription(tool.description || tool.notes || ''),
       LICENSE: esc(tool.license || '未知'),
       TOOL_TYPE: toolTypeLabel,
@@ -1032,16 +1174,51 @@ function buildAll(lang) {
     let standardCount = 0;
     const schemaDepths = {};
 
+    function normStorage(v) {
+      const x = String(v || '').toLowerCase();
+      if (/rlds|tfds/.test(x)) return 'RLDS / TFDS';
+      if (/lerobot|parquet/.test(x)) return isEn ? 'LeRobot / Parquet' : 'LeRobot / Parquet';
+      if (/hdf5/.test(x)) return 'HDF5';
+      if (/ros ?bag/.test(x)) return 'ROS bag';
+      if (/视频|mp4|mkv|video/.test(x)) return isEn ? 'Video + JSON' : '视频 + JSON';
+      if (/csv|json|png/.test(x)) return isEn ? 'Files (CSV/JSON/PNG)' : '文件 (CSV/JSON/PNG)';
+      if (/usd|glb|ply|obj/.test(x)) return isEn ? '3D assets' : '3D 资产';
+      if (/详见|unknown|未知|未公开|n\/a/.test(x)) return isEn ? 'Not specified' : '未注明';
+      if (/自定义|custom/.test(x)) return isEn ? 'Custom' : '自定义';
+      return isEn ? 'Other' : '其他';
+    }
+    function normSensor(v) {
+      const x = String(v || '').toLowerCase();
+      if (/rgb|视觉|vision/.test(x)) return isEn ? 'RGB / Vision' : 'RGB / 视觉';
+      if (/深度|depth/.test(x)) return isEn ? 'Depth' : '深度';
+      if (/本体状态|关节状态|关节编码器|proprio|sim state/.test(x)) return isEn ? 'Proprioception' : '本体状态';
+      if (/动作|action/.test(x)) return isEn ? 'Action' : '动作';
+      if (/语言|language/.test(x)) return isEn ? 'Language' : '语言';
+      if (/触觉|tactile/.test(x)) return isEn ? 'Tactile' : '触觉';
+      if (/力觉|力控|force/.test(x)) return isEn ? 'Force' : '力觉';
+      if (/imu/.test(x)) return 'IMU';
+      if (/lidar/.test(x)) return 'LiDAR';
+      if (/点云|point cloud/.test(x)) return isEn ? 'Point cloud' : '点云';
+      return isEn ? 'Other' : '其他';
+    }
+
     dss.forEach(d => {
-      const df = d.dataFormat || {};
+      const df = d.dataFormatDetail || {};
       const dc = d.dataContent || {};
-      const storage = df.storage || 'Unknown';
+      const rawFormat = typeof d.dataFormat === 'string' ? d.dataFormat : '';
+      const storage = normStorage(df.storage || (rawFormat ? rawFormat.split(/[—,，]/)[0].trim() : 'Unknown'));
       storageCounts[storage] = (storageCounts[storage] || 0) + 1;
-      const schema = df.schema || '';
-      const depth = schema.split('→').length;
-      schemaDepths[depth] = (schemaDepths[depth] || 0) + 1;
-      if (['RLDS', 'TFDS', 'HDF5'].some(s => (df.storage || '').includes(s))) standardCount++;
-      (dc.sensors || d.modality || []).forEach(s => { sensorCounts[s] = (sensorCounts[s] || 0) + 1; });
+      const schema = df.schema || rawFormat;
+      const depth = schema ? schema.split('→').length : 0;
+      const depthLabel = depth === 0 ? (isEn ? 'Not specified' : '未注明')
+        : depth >= 4 ? (isEn ? '4+ layers' : '4+ 层')
+        : (isEn ? depth + ' layer' + (depth > 1 ? 's' : '') : depth + ' 层');
+      schemaDepths[depthLabel] = (schemaDepths[depthLabel] || 0) + 1;
+      if (['RLDS / TFDS', 'HDF5', 'LeRobot / Parquet'].includes(storage)) standardCount++;
+      (dc.sensors || d.modality || []).forEach(s => {
+        const key = normSensor(s);
+        sensorCounts[key] = (sensorCounts[key] || 0) + 1;
+      });
     });
 
     return {
@@ -1068,12 +1245,14 @@ function buildAll(lang) {
     STAT_STORAGE_FORMATS: isEn ? 'Storage Formats' : '存储格式种类',
     STAT_SENSOR_TYPES: isEn ? 'Sensor Types' : '传感器类型数',
     STAT_STANDARD_RATIO: isEn ? 'Standard Format %' : '标准格式占比',
+    FORMATS_OTHER: isEn ? 'Other' : '其他',
+    FORMATS_DATASETS_UNIT: isEn ? 'datasets' : '个数据集',
   }));
 
   // ── Standard Proposal ────────────────────────────────────
   const proposalContent = isEn ? `
     <div class="disclaimer-box">
-      <p><strong>⚠️ This is a community draft — not an authoritative standard.</strong> Based on analysis of ` + dataDatasets.length + ` embodied AI datasets, we propose a unified data format. Feedback is welcome.</p>
+      <p><strong> This is a community draft — not an authoritative standard.</strong> Based on analysis of ` + dataDatasets.length + ` embodied AI datasets, we propose a unified data format. Feedback is welcome.</p>
     </div>
     <h2>1. Proposed Schema Structure</h2>
     <p>The recommended data hierarchy follows a nested episode-step structure, consistent with 90%+ of current datasets:</p>
@@ -1096,9 +1275,9 @@ function buildAll(lang) {
     <table class="comparison-table">
       <thead><tr><th>Format</th><th>Pros</th><th>Cons</th><th>Recommendation</th></tr></thead>
       <tbody>
-        <tr><td>RLDS / TFDS</td><td>Streaming, sharding, rich ecosystem</td><td>Heavy dependency, steep learning curve</td><td>✅ Primary standard</td></tr>
-        <tr><td>HDF5</td><td>Lightweight, widely supported</td><td>No built-in streaming</td><td>⚡ Lightweight alternative</td></tr>
-        <tr><td>Custom JSONL</td><td>Human-readable</td><td>No schema enforcement, slow I/O</td><td>❌ Not recommended</td></tr>
+        <tr><td>RLDS / TFDS</td><td>Streaming, sharding, rich ecosystem</td><td>Heavy dependency, steep learning curve</td><td>Primary standard</td></tr>
+        <tr><td>HDF5</td><td>Lightweight, widely supported</td><td>No built-in streaming</td><td>Lightweight alternative</td></tr>
+        <tr><td>Custom JSONL</td><td>Human-readable</td><td>No schema enforcement, slow I/O</td><td>Not recommended</td></tr>
       </tbody>
     </table>
     <h2>3. Required Metadata Fields</h2>
@@ -1121,7 +1300,7 @@ function buildAll(lang) {
     </ul>
   ` : `
     <div class="disclaimer-box">
-      <p><strong>⚠️ 这是一份社区草案，并非权威标准。</strong>基于对 ` + dataDatasets.length + ` 个具身智能数据集的分析，我们提出一个统一数据格式建议。欢迎提供反馈。</p>
+      <p><strong> 这是一份社区草案，并非权威标准。</strong>基于对 ` + dataDatasets.length + ` 个具身智能数据集的分析，我们提出一个统一数据格式建议。欢迎提供反馈。</p>
     </div>
     <h2>1. 推荐 Schema 结构</h2>
     <p>推荐采用嵌套的 episode-step 层级结构，与 90%+ 现有数据集的设计模式一致：</p>
@@ -1144,9 +1323,9 @@ function buildAll(lang) {
     <table class="comparison-table">
       <thead><tr><th>格式</th><th>优点</th><th>缺点</th><th>建议</th></tr></thead>
       <tbody>
-        <tr><td>RLDS / TFDS</td><td>流式读取、分片、生态成熟</td><td>依赖较重、学习曲线陡</td><td>✅ 主要标准</td></tr>
-        <tr><td>HDF5</td><td>轻量、广泛支持</td><td>无内置流式支持</td><td>⚡ 轻量替代</td></tr>
-        <tr><td>自定义 JSONL</td><td>人类可读</td><td>无 schema 约束、I/O 慢</td><td>❌ 不推荐</td></tr>
+        <tr><td>RLDS / TFDS</td><td>流式读取、分片、生态成熟</td><td>依赖较重、学习曲线陡</td><td>主要标准</td></tr>
+        <tr><td>HDF5</td><td>轻量、广泛支持</td><td>无内置流式支持</td><td>轻量替代</td></tr>
+        <tr><td>自定义 JSONL</td><td>人类可读</td><td>无 schema 约束、I/O 慢</td><td>不推荐</td></tr>
       </tbody>
     </table>
     <h2>3. 必需元数据字段</h2>

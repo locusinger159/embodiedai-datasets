@@ -1,113 +1,90 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>{{HEAD}}
-<style>
-.blog-home-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; max-width:1200px; margin:0 auto; padding:0 48px; }
-.blog-home-card { background:var(--white); border:1px solid var(--border); border-left:3px solid var(--primary); border-radius:16px; padding:28px; transition:all var(--transition-normal); display:flex; flex-direction:column; gap:12px; }
-.blog-home-card:nth-child(2) { border-left-color:var(--accent); }
-.blog-home-card:nth-child(3) { border-left-color:var(--accent-warm); }
-.blog-home-card:hover { border-color:rgba(91,124,255,0.3); box-shadow:var(--shadow-md); transform:translateY(-3px); }
-.blog-home-card-link { color:inherit; text-decoration:none; display:flex; flex-direction:column; gap:12px; height:100%; }
-.blog-home-card-title { font-size:18px; font-weight:700; color:var(--text-primary); line-height:1.4; }
-.blog-home-card-date { font-size:13px; color:var(--text-secondary); font-family:'Inter',monospace; }
-.blog-home-card-summary { font-size:14px; color:var(--text-secondary); line-height:1.6; flex:1; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-.blog-home-card-tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:auto; }
-.blog-home-card-tag { padding:3px 10px; background:rgba(91,124,255,0.08); color:var(--primary); border-radius:16px; font-size:11px; font-weight:500; transition:all var(--transition-fast); }
-.blog-home-card:hover .blog-home-card-tag { background:rgba(91,124,255,0.15); }
-@media (max-width:1024px) { .blog-home-grid{grid-template-columns:repeat(2, 1fr)} }
-@media (max-width:768px) { .blog-home-grid{grid-template-columns:1fr;padding:0 24px} }
-</style>
-</head>
+<head>{{HEAD}}</head>
 <body>
 {{NAVBAR}}
-<section class="hero dot-grid">
-  <div class="hero-mesh-bg">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    <div class="orb orb-4"></div>
-  </div>
+<section class="hero">
   <div class="hero-content">
     <div class="hero-text">
-      <div class="hero-badge"><span>全球机器人数据集情报站</span></div>
-      <h1 class="hero-title"><span>具身智能</span>数据集导航<br>一站式情报汇总</h1>
-      <p class="hero-subtitle">收录全球具身智能、人形机器人、机械臂、移动机器人数据集<br>提供完整字段信息、官方链接和论文引用，助力算法研发</p>
+      <div class="hero-badge">Dataset index · {{STAT_TOTAL}} entries</div>
+      <h1 class="hero-title"><span>具身智能数据</span>，一处查清</h1>
+      <p class="hero-subtitle">收录 {{STAT_TOTAL}} 个数据集、{{STAT_STANDARDS}} 个数据标准、10 个评测榜单与 {{STAT_ORGS}} 家机构。按机器人类型、任务、模态和 VLA 框架筛选，每条都附官方链接、论文与引用。</p>
       <div class="hero-stats">
-        <div class="stat-item"><div class="stat-number"><span class="counter" data-target="{{STAT_TOTAL}}">0</span><span class="accent">+</span></div><div class="stat-label">收录数据集</div></div>
-        <div class="stat-item"><div class="stat-number"><span class="counter" data-target="{{STAT_ORGS}}">0</span><span class="accent">+</span></div><div class="stat-label">合作机构</div></div>
-        <div class="stat-item"><div class="stat-number"><span class="counter" data-target="{{STAT_TYPES}}">0</span><span class="accent">种</span></div><div class="stat-label">机器人类型</div></div>
-        <div class="stat-item"><div class="stat-number"><span class="counter" data-target="{{STAT_STANDARDS}}">0</span><span class="accent">+</span></div><div class="stat-label">数据标准</div></div>
+        <div class="stat-item"><div class="stat-number">{{STAT_TOTAL}}</div><div class="stat-label">数据集</div></div>
+        <div class="stat-item"><div class="stat-number">{{STAT_ORGS}}</div><div class="stat-label">机构</div></div>
+        <div class="stat-item"><div class="stat-number">{{STAT_TYPES}}</div><div class="stat-label">机器人类型</div></div>
+        <div class="stat-item"><div class="stat-number">{{STAT_STANDARDS}}</div><div class="stat-label">数据标准</div></div>
       </div>
       <div class="hero-cta">
-        <a href="/datasets/" class="btn btn-primary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          查看全部数据集
+        <a href="/datasets/" class="btn btn-primary">查看全部数据集
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
-        <a href="/submit/" class="btn btn-ghost">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M12 5v14M5 12h14"/></svg>
-          提交数据集
-        </a>
+        <a href="/recommend/" class="btn btn-ghost">反向推荐</a>
       </div>
     </div>
-    <div class="hero-mascot">
-      <div class="mascot-container">
-        <div class="mascot-glow"></div>
-        <div class="mascot-robot">
-          <img src="/学生bot.png" alt="Robot Mascot" style="width:280px;height:280px;filter:drop-shadow(0 20px 40px rgba(0,0,0,0.3));">
-        </div>
-      </div>
-    </div>
+    <div class="hero-preview">{{CATALOG_PREVIEW}}</div>
   </div>
 </section>
 
-<section class="section section-light">
-  <div class="section-header scroll-animate">
-    <span class="section-tag">✨ 核心优势</span>
-    <h2 class="section-title">为什么选择我们</h2>
-    <p class="section-desc">专注收录全球具身智能数据集，助力算法研发</p>
+<section class="section">
+  <div class="section-header">
+    <span class="section-tag">索引能力</span>
+    <h2 class="section-title">这个索引能做什么</h2>
+    <p class="section-desc">从选数据到复现实验，把分散在各处的数据集信息整理成一张可筛选、可对比、可追溯的索引。</p>
   </div>
   <div class="features-grid">
-    <div class="feature-card fade-in fade-in-delay-1"><span class="feature-card-number">01</span><div class="feature-icon">🧠</div><h3 class="feature-title">VLA 框架兼容性</h3><p class="feature-desc">标注 7 大 VLA 框架（π0 / OpenVLA / GR00T / Octo / RT-2 / RDT-1B / ACT），直接知道哪些数据集可用于训练</p></div>
-    <div class="feature-card fade-in fade-in-delay-2"><span class="feature-card-number">02</span><div class="feature-icon">🎯</div><h3 class="feature-title">反向推荐</h3><p class="feature-desc">不知道用哪个数据集？描述任务+机器人+模态，打分推荐 Top 8 + 匹配理由</p></div>
-    <div class="feature-card fade-in fade-in-delay-3"><span class="feature-card-number">03</span><div class="feature-icon">💬</div><h3 class="feature-title">AI 智能助手</h3><p class="feature-desc">自然语言对话式搜索，对比分析多个数据集，引用来源链接</p></div>
-    <div class="feature-card fade-in fade-in-delay-1"><span class="feature-card-number">04</span><div class="feature-icon">📊</div><h3 class="feature-title">116 个数据集</h3><p class="feature-desc">覆盖 77 家机构、8 种机器人、18 种任务类型，全球最全中文具身智能数据集导航</p></div>
-    <div class="feature-card fade-in fade-in-delay-2"><span class="feature-card-number">05</span><div class="feature-icon">🔍</div><h3 class="feature-title">多维筛选对比</h3><p class="feature-desc">机器人类型 / 任务 / 模态 / VLA / 开放程度精确筛选 + 多选横向对比</p></div>
-    <div class="feature-card fade-in fade-in-delay-3"><span class="feature-card-number">06</span><div class="feature-icon">📐</div><h3 class="feature-title">28 个数据标准</h3><p class="feature-desc">RLDS / LeRobot / OXE-Schema 等行业标准 + LIBERO / CALVIN / VLABench 等评测基准</p></div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
+      <h3 class="feature-title">按 VLA 框架筛选</h3>
+      <p class="feature-desc">标注 π0、OpenVLA、GR00T N1、Octo、RT-2、RDT-1B、ACT，直接判断数据集能否用于训练。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+      <h3 class="feature-title">反向推荐</h3>
+      <p class="feature-desc">描述任务、机器人、模态与获取限制，按匹配度推荐 Top 8，并给出匹配理由。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <h3 class="feature-title">AI 助手</h3>
+      <p class="feature-desc">自然语言提问，跨数据集对比，回答附来源链接；底层检索 152 篇论文与全部索引条目。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg></div>
+      <h3 class="feature-title">数据集与标准</h3>
+      <p class="feature-desc">{{STAT_TOTAL}} 个数据集、{{STAT_STANDARDS}} 个标准，附字段、规模、许可证、官方链接与基准成绩。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="18" rx="1"/></svg></div>
+      <h3 class="feature-title">多维筛选与对比</h3>
+      <p class="feature-desc">按机器人、任务、模态、开放程度与采集方式筛选，最多选 4 个数据集横向对比。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg></div>
+      <h3 class="feature-title">可追溯的引用</h3>
+      <p class="feature-desc">每条记录附论文、GitHub / HuggingFace 与 BibTeX；外链定期检查，失效链接会被替换或移除。</p>
+    </div>
   </div>
 </section>
 
-<!-- Blog Cards -->
-<section class="section" style="background:var(--white);">
-  <div class="section-header scroll-animate">
-    <span class="section-tag">📝 最新技术博客</span>
-    <h2 class="section-title">动手实践 & 深度解析</h2>
-    <p class="section-desc">从零搭建 VLA 仿真项目、数据集格式全景对比、行业趋势深度分析</p>
+<section class="section" style="background:var(--surface);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)">
+  <div class="section-header">
+    <span class="section-tag">技术博客</span>
+    <h2 class="section-title">动手实践与深度解析</h2>
+    <p class="section-desc">从零搭建 VLA 仿真项目、对比数据格式、拆解行业趋势。</p>
   </div>
-  <div class="blog-home-grid">
-    {{BLOG_CARDS}}
-  </div>
-  <div style="text-align:center;margin-top:32px;">
-    <a href="/blog/" class="btn btn-ghost">
-      查看全部博客
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" style="margin-left:4px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  <div class="blog-home-grid">{{BLOG_CARDS}}</div>
+  <div style="max-width:var(--maxw);margin:28px auto 0">
+    <a href="/blog/" class="btn btn-ghost">查看全部博客
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
     </a>
   </div>
 </section>
 
 <section class="partners-wrap">
   <h2 class="partners-title">数据来源机构</h2>
-  <div class="partners-marquee">
-    <div class="marquee-track">{{PARTNERS_MARQUEE}}</div>
-  </div>
+  <div class="partners-marquee"><div class="marquee-track">{{PARTNERS_MARQUEE}}</div></div>
 </section>
 
 {{FOOTER}}
-
-<script>
-(function(){
-  function animateCounter(el,target,d){var s=0,i=target/(d/16),c=setInterval(function(){s+=i;if(s>=target){el.textContent=target;clearInterval(c)}else{el.textContent=Math.floor(s)}},16)}
-  window.addEventListener('load',function(){document.querySelectorAll('.counter').forEach(function(c,i){setTimeout(function(){animateCounter(c,parseInt(c.getAttribute('data-target')),2000)},500+i*200)})})
-})();
-</script>
 </body>
 </html>

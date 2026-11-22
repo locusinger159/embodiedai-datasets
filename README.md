@@ -138,6 +138,16 @@ embodiedai-datasets/
 
 ## 版本记录
 
+### v2.19 (2026-11-22)
+
+- 🎨 **全站视觉重构（unslop / 研究目录方向）** — 暖纸底 + 墨色文字 + 单一深蓝强调色；IBM Plex Sans / IBM Plex Mono + Noto Sans SC；4px 网格、发丝线、小索引标签签名；移除光晕、渐变文字、粒子、emoji 图标与循环动画
+- 🏠 **首页重做** — 发光机器人 Hero 改为真实数据集目录预览（4 条真实条目）；6 个能力卡改为线图标与具体文案
+- 📄 **全站模板重做** — 数据集 / 标准 / 工具列表与详情、排行榜、格式全景、博客、提交、反向推荐、标准草案、AI / 搜索抽屉、页脚
+- 📱 **移动端修复** — 汉堡菜单、筛选单列、详情 / 推荐 / 提交不再横向溢出；浮动工具栏移动端改为图标按钮
+- 🌐 **英文站补全** — 新增 `index-en.html`；内部链接自动加 `/en/` 前缀；列表 / 详情 / 工具栏 UI 标签英文化（内容翻译仍待补）
+- 📊 **格式全景修复** — 改用 `dataFormatDetail` 并归一化存储 / 传感器类别：148 数据集、10 类存储、11 类传感器、43% 标准格式
+- 🧹 **细节清理** — 排行榜卡片 raw `**`、开放状态双点、空 href、对比栏 layout 动画、搜索面板移动端换行
+
 ### v2.18 (2026-11-22)
 
 - 🔗 **链接治理** — 清理全部死链/停靠域名/Google Sites 登录墙：RoboMIND 官网、ETRI-Activity3D、100DOH、Gibson、BDDL、RoboTwin、HomeRobot、RLBench、HYDRA、AUTOLab UR5、FANUC、Cable Routing、MIME、ACRONYM 等；21 个仅有 HF/GitHub 仓库的数据集补齐 `links.site`

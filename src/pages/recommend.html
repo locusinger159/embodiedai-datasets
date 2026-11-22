@@ -1,82 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>{{HEAD}}
-<style>
-.rec-main { max-width:1000px; margin:0 auto; padding:120px 48px 60px; }
-.rec-hero { margin-bottom:40px; }
-.rec-hero h1 { font-size:32px; font-weight:800; margin-bottom:8px; }
-.rec-hero p { font-size:16px; color:var(--text-secondary); max-width:600px; }
-
-.rec-wizard { background:var(--white); border:1px solid var(--border); border-radius:16px; padding:32px; margin-bottom:40px; }
-.rec-step { margin-bottom:24px; }
-.rec-step:last-child { margin-bottom:0; }
-.rec-step-label { font-size:14px; font-weight:600; color:var(--text-secondary); margin-bottom:8px; display:flex; align-items:center; gap:6px; }
-.rec-step-num { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:var(--primary); color:var(--white); font-size:12px; font-weight:700; }
-.rec-chips { display:flex; flex-wrap:wrap; gap:8px; }
-.rec-chip { padding:8px 18px; border-radius:20px; border:1.5px solid var(--border); background:var(--white); font-size:14px; cursor:pointer; transition:all 0.2s; color:var(--text-primary); font-family:inherit; }
-.rec-chip:hover { border-color:var(--primary); color:var(--primary); }
-.rec-chip.active { background:var(--primary); color:var(--white); border-color:var(--primary); }
-.rec-radio-group { display:flex; flex-wrap:wrap; gap:8px; }
-.rec-radio { padding:8px 18px; border-radius:20px; border:1.5px solid var(--border); background:var(--white); font-size:14px; cursor:pointer; transition:all 0.2s; color:var(--text-primary); font-family:inherit; }
-.rec-radio:hover { border-color:var(--primary); color:var(--primary); }
-.rec-radio.active { background:rgba(91,124,255,0.1); color:var(--primary); border-color:var(--primary); font-weight:600; }
-
-.rec-actions { display:flex; gap:12px; margin-top:28px; padding-top:24px; border-top:1px solid var(--border); }
-.rec-btn { padding:12px 32px; border-radius:10px; font-weight:700; font-size:15px; cursor:pointer; transition:all 0.2s; border:none; font-family:inherit; }
-.rec-btn-primary { background:var(--primary); color:var(--white); }
-.rec-btn-primary:hover { opacity:0.9; transform:translateY(-1px); box-shadow:0 4px 16px rgba(91,124,255,0.3); }
-.rec-btn-secondary { background:var(--light-bg); color:var(--text-secondary); }
-.rec-btn-secondary:hover { background:var(--border); }
-
-.rec-results { margin-bottom:60px; }
-.rec-results-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
-.rec-results-header h2 { font-size:22px; font-weight:700; }
-.rec-count { font-size:14px; color:var(--text-secondary); }
-.rec-result-card { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:24px; margin-bottom:16px; transition:all 0.2s; }
-.rec-result-card:hover { border-color:var(--primary); box-shadow:0 4px 20px rgba(91,124,255,0.06); }
-.rec-result-top { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:12px; }
-.rec-result-name { font-size:20px; font-weight:700; color:var(--text-primary); }
-.rec-result-org { font-size:14px; color:var(--text-secondary); margin-top:2px; }
-.rec-score { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:10px; font-weight:700; font-size:15px; flex-shrink:0; }
-.rec-score-high { background:rgba(16,185,129,0.1); color:var(--success); }
-.rec-score-mid { background:rgba(245,158,11,0.1); color:var(--warning); }
-.rec-score-low { background:rgba(107,114,128,0.1); color:var(--text-light); }
-.rec-reasons { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
-.rec-reason { display:inline-flex; align-items:center; gap:4px; padding:4px 10px; border-radius:14px; font-size:12px; font-weight:500; }
-.rec-reason.good { background:rgba(16,185,129,0.08); color:var(--success); }
-.rec-reason.info { background:rgba(91,124,255,0.08); color:var(--primary); }
-.rec-reason.warn { background:rgba(245,158,11,0.08); color:var(--warning); }
-.rec-result-desc { font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:12px; }
-.rec-result-footer { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
-.rec-result-footer .data-tag { font-size:11px; }
-.rec-result-link { display:inline-flex; align-items:center; gap:4px; padding:8px 16px; background:var(--primary); color:var(--white); border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; transition:all 0.2s; }
-.rec-result-link:hover { opacity:0.9; }
-.rec-empty { text-align:center; padding:60px 20px; color:var(--text-light); }
-.rec-empty-icon { font-size:48px; margin-bottom:16px; }
-.rec-empty h3 { font-size:18px; font-weight:600; margin-bottom:8px; color:var(--text-secondary); }
-.rec-empty p { font-size:14px; }
-
-.rec-presets { margin-bottom:16px; }
-.rec-presets-label { font-size:12px; font-weight:600; color:var(--text-light); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px; }
-.rec-presets-chips { display:flex; flex-wrap:wrap; gap:6px; }
-.rec-preset { padding:6px 14px; border-radius:16px; background:var(--light-bg); border:1px solid var(--border); font-size:13px; cursor:pointer; transition:all 0.2s; color:var(--text-secondary); font-family:inherit; white-space:nowrap; }
-.rec-preset:hover { border-color:var(--primary); color:var(--primary); background:rgba(91,124,255,0.04); }
-.rec-preset.active { background:rgba(91,124,255,0.08); color:var(--primary); border-color:var(--primary); }
-
-@media (max-width:768px) {
-  .rec-main { padding:100px 20px 40px; }
-  .rec-hero h1 { font-size:24px; }
-  .rec-wizard { padding:20px; }
-  .rec-result-top { flex-direction:column; }
-  .rec-score { align-self:flex-start; }
-}
-</style>
 </head>
 <body>
 {{NAVBAR}}
 <main class="rec-main">
   <div class="rec-hero">
-    <h1>🎯 {{REC_TITLE}}</h1>
+    <h1>{{REC_TITLE}}</h1>
     <p>{{REC_SUBTITLE}}</p>
   </div>
 
@@ -240,7 +170,7 @@ function applyPreset(id){
 function resetAll(){
   selected={tasks:[],robots:[],modalities:[],scene:null,vla:null,access:null};
   refreshUI();
-  document.getElementById('resultList').innerHTML='<div class="rec-empty"><div class="rec-empty-icon">🔍</div><h3>{{REC_EMPTY_TITLE}}</h3><p>{{REC_EMPTY_HINT}}</p></div>';
+  document.getElementById('resultList').innerHTML='<div class="rec-empty"><h3>{{REC_EMPTY_TITLE}}</h3><p>{{REC_EMPTY_HINT}}</p></div>';
   document.getElementById('resultCount').textContent='';
 }
 
@@ -300,7 +230,7 @@ function recommend(){
   document.getElementById('resultCount').textContent=(hasSelection?'{{REC_FOUND}} ':'{{REC_TOP}} ')+results.length+' {{REC_DATASETS}}';
 
   if(!results.length){
-    document.getElementById('resultList').innerHTML='<div class="rec-empty"><div class="rec-empty-icon">🤔</div><h3>{{REC_NO_RESULTS_TITLE}}</h3><p>{{REC_NO_RESULTS_HINT}}</p></div>';
+    document.getElementById('resultList').innerHTML='<div class="rec-empty"><h3>{{REC_NO_RESULTS_TITLE}}</h3><p>{{REC_NO_RESULTS_HINT}}</p></div>';
     return;
   }
 
@@ -310,9 +240,9 @@ function recommend(){
       +'<div class="rec-result-top">'
       +'<div><div class="rec-result-name">'+(i+1)+'. '+escHtml(r.d.name)+'</div>'
       +'<div class="rec-result-org">'+escHtml(r.d.institution||'')+' · '+escHtml(r.d.scale||'')+' · '+(r.d.year||'—')+'</div></div>'
-      +'<div class="rec-score '+cls+'">🏆 '+r.score+' {{REC_SCORE_UNIT}}</div>'
+      +'<div class="rec-score '+cls+'">'+r.score+' {{REC_SCORE_UNIT}}</div>'
       +'</div>'
-      +(r.reasons.length?'<div class="rec-reasons">'+r.reasons.map(function(w){return '<span class="rec-reason '+w.cls+'">'+(w.cls==='good'?'✅':w.cls==='warn'?'⚠️':'ℹ️')+' '+w.text+'</span>'}).join('')+'</div>':'')
+      +(r.reasons.length?'<div class="rec-reasons">'+r.reasons.map(function(w){return '<span class="rec-reason '+w.cls+'">'+w.text+'</span>'}).join('')+'</div>':'')
       +(r.d.notes?'<div class="rec-result-desc">'+escHtml(r.d.notes)+'</div>':'')
       +'<div class="rec-result-footer">'
       +'<span class="type-badge '+(r.d.type==='open'?'type-open':'type-partial')+'">'+escHtml(tL[r.d.type]||r.d.type)+'</span>'

@@ -5,17 +5,17 @@
 {{NAVBAR}}
 <section class="page-hero">
   <div class="page-hero-content">
-    <h1 class="page-hero-title">数据集</h1>
-    <p class="page-hero-subtitle">浏览全球具身智能、机器人、人形机器人数据集</p>
+    <h1 class="page-hero-title">{{PAGE_TITLE}}</h1>
+    <p class="page-hero-subtitle">{{PAGE_SUBTITLE}}</p>
     <div class="search-bar">
       <div class="search-input-wrapper">
-        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         <input type="text" class="search-input" placeholder="搜索数据集名称、机构、任务类型..." id="searchInput">
       </div>
-      <button class="search-btn" onclick="handleSearch()">搜索</button>
+      <button class="search-btn" onclick="handleSearch()" id="searchBtn">搜索</button>
     </div>
-    <a href="/recommend/" class="rec-banner-link">🎯 不知道哪个数据集适合你？试试<strong>反向推荐</strong> →</a>
-    <a href="/submit/" class="rec-banner-link" style="background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);margin-top:8px;display:inline-block">📤 有数据集想收录？<strong>提交数据集</strong>，无需懂 Git →</a>
+    <a href="/recommend/" class="rec-banner-link">{{REC_BANNER}}</a>
+    <a href="/submit/" class="rec-banner-link">{{SUBMIT_BANNER}}</a>
   </div>
 </section>
 
@@ -33,29 +33,29 @@
   </div>
   <span class="filter-result-count" id="resultCount" style="display:block;margin-bottom:10px"></span>
   <div class="filter-card">
-    <div class="filter-card-header"><span class="filter-card-icon">🤖</span><span class="filter-card-label" id="labelRobot">机器人类型</span></div>
+    <div class="filter-card-header"><span class="filter-card-label" id="labelRobot">机器人类型</span></div>
     <div class="filter-chips" id="robotFilters"></div>
   </div>
   <div class="filter-card">
-    <div class="filter-card-header"><span class="filter-card-icon">📋</span><span class="filter-card-label" id="labelTask">任务类型</span></div>
+    <div class="filter-card-header"><span class="filter-card-label" id="labelTask">任务类型</span></div>
     <div class="filter-chips" id="taskFilters"></div>
   </div>
   <div class="filter-card">
-    <div class="filter-card-header"><span class="filter-card-icon">🔓</span><span class="filter-card-label" id="labelOpenness">开放程度</span></div>
+    <div class="filter-card-header"><span class="filter-card-label" id="labelOpenness">开放程度</span></div>
     <div class="filter-chips" id="opennessFilters"></div>
   </div>
   <div class="filter-card">
-    <div class="filter-card-header"><span class="filter-card-icon">📡</span><span class="filter-card-label" id="labelCollection">采集方式</span></div>
+    <div class="filter-card-header"><span class="filter-card-label" id="labelCollection">采集方式</span></div>
     <div class="filter-chips" id="collectionFilters"></div>
   </div>
   <div class="filter-card">
-    <div class="filter-card-header"><span class="filter-card-icon">🏷️</span><span class="filter-card-label" id="labelTags">热门标签</span></div>
+    <div class="filter-card-header"><span class="filter-card-label" id="labelTags">热门标签</span></div>
     <div class="filter-chips" id="tagFilters"></div>
   </div>
 </aside>
 
 <main class="datasets-main">
-  <div class="table-view" id="tableView"><table class="d-table"><thead><tr><th style="width:40px"><input type="checkbox" class="std-checkbox" id="selectAllDS" title="全选"></th><th>数据集名称</th><th>机构</th><th style="width:72px">发布时间</th><th>机器人类型</th><th>任务类型</th><th>开放程度</th><th style="width:100px">VLA 兼容</th><th>相关链接</th></tr></thead><tbody id="datasetsTableBody"></tbody></table></div>
+  <div class="table-view" id="tableView"><table class="d-table"><thead><tr><th style="width:40px"><input type="checkbox" class="std-checkbox" id="selectAllDS" title="全选"></th><th id="thName">数据集名称</th><th id="thOrg">机构</th><th id="thYear" style="width:72px">发布时间</th><th id="thRobot">机器人类型</th><th id="thTask">任务类型</th><th id="thOpenness">开放程度</th><th id="thVla" style="width:100px">VLA 兼容</th><th id="thLinks">相关链接</th></tr></thead><tbody id="datasetsTableBody"></tbody></table></div>
   <div class="card-view" id="cardView"></div>
   <div class="pagination" id="pagination"></div>
 </main>
@@ -69,7 +69,7 @@
 
 <div class="compare-modal-overlay" id="compareModalDS">
   <div class="compare-modal">
-    <div class="compare-modal-header"><span class="compare-modal-title" id="compareModalTitle">数据集对比</span><button class="compare-close-btn" onclick="closeCompareDS()">✕</button></div>
+    <div class="compare-modal-header"><span class="compare-modal-title" id="compareModalTitle">数据集对比</span><button class="compare-close-btn" onclick="closeCompareDS()">×</button></div>
     <div id="compareContentDS"></div>
   </div>
 </div>
@@ -80,7 +80,7 @@
 const DS = {{DATASETS_JSON}};
 var isMobile=window.innerWidth<=768;var state={search:'',robot:[],task:[],type:[],tags:[],collection:[],page:1,ps:15,sort:'year',sortDir:'desc',view:isMobile?'card':'table'};
 var I=window.I18N||{};var tL=I.typeLabels||{open:'开源',partial:'部分开源',apply:'可申请',closed:'闭源'};
-document.addEventListener('DOMContentLoaded',function(){var a=document.getElementById('labelRobot'),b=document.getElementById('labelTask'),c=document.getElementById('labelOpenness');if(a)a.textContent=I.robotType||a.textContent;if(b)b.textContent=I.taskType||b.textContent;if(c)c.textContent=I.openness||c.textContent;var d=document.getElementById('searchInput');if(d)d.placeholder=I.searchPlaceholder||d.placeholder;var e=document.getElementById('sortOptionName'),f=document.getElementById('sortOptionOrg'),y=document.getElementById('sortOptionYear');if(e)e.textContent=I.sortName||e.textContent;if(f)f.textContent=I.sortOrg||f.textContent;if(y)y.textContent=I.sortYear||y.textContent;var g=document.getElementById('clearFiltersBtn');if(g)g.textContent=I.clearFilters||g.textContent;var h=document.getElementById('compareModalTitle');if(h)h.textContent=I.compareTitle||h.textContent});
+document.addEventListener('DOMContentLoaded',function(){var a=document.getElementById('labelRobot'),b=document.getElementById('labelTask'),c=document.getElementById('labelOpenness');if(a)a.textContent=I.robotType||a.textContent;if(b)b.textContent=I.taskType||b.textContent;if(c)c.textContent=I.openness||c.textContent;var d=document.getElementById('searchInput');if(d)d.placeholder=I.searchPlaceholder||d.placeholder;var e=document.getElementById('sortOptionName'),f=document.getElementById('sortOptionOrg'),y=document.getElementById('sortOptionYear');if(e)e.textContent=I.sortName||e.textContent;if(f)f.textContent=I.sortOrg||f.textContent;if(y)y.textContent=I.sortYear||y.textContent;var g=document.getElementById('clearFiltersBtn');if(g)g.textContent=I.clearFilters||g.textContent;var h=document.getElementById('compareModalTitle');if(h)h.textContent=I.compareTitle||h.textContent;var lc=document.getElementById('labelCollection');if(lc)lc.textContent=I.collectionType||lc.textContent;var lt=document.getElementById('labelTags');if(lt)lt.textContent=I.tagFilter||lt.textContent;var th={thName:I.tableName,thOrg:I.tableOrg,thYear:I.tableYear,thRobot:I.tableRobot,thTask:I.tableTask,thOpenness:I.tableOpenness,thVla:I.tableVla,thLinks:I.tableLinks};Object.keys(th).forEach(function(id){var el=document.getElementById(id);if(el&&th[id])el.textContent=th[id]});var sb=document.getElementById('searchBtn');if(sb)sb.textContent=I.searchButton||sb.textContent;var sa=document.getElementById('selectAllDS');if(sa)sa.title=I.tableSelectAll||sa.title});
 var cL={open:'type-open',partial:'type-partial',apply:'type-partial',closed:'type-closed'};
 var vlaS=I.vlaShortLabels||{};
 var vlaF=I.vlaLabels||{};
@@ -129,16 +129,16 @@ function filterData(){
 function renderTable(data){
   var start=(state.page-1)*state.ps,page=data.slice(start,start+state.ps);
   document.getElementById('datasetsTableBody').innerHTML=page.map(function(d){
-    var vlaBadges=(d.vlaCompatible||[]).slice(0,2).map(function(v){return '<span class="data-tag" style="font-size:10px;background:rgba(91,124,255,0.08);color:var(--primary);padding:2px 6px" title="'+(vlaF[v]||v)+'">'+(vlaS[v]||v)+'</span>'}).join('');
-    return '<tr class="'+(selectedDS.has(d.id)?'selected':'')+'"><td><input type="checkbox" class="std-checkbox" '+(selectedDS.has(d.id)?'checked':'')+' onchange="toggleDS(\''+d.id+'\')"></td><td><a href="/datasets/'+d.id+'/" class="data-name-cell"><div class="data-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>'+d.name+'</a></td><td class="data-org">'+(d.institution||'-')+'</td><td style="font-size:13px;color:var(--text-secondary);white-space:nowrap">'+(d.year||'-')+'</td><td><div class="data-tags">'+(d.robotType||[]).map(function(r){return '<span class="data-tag">'+rL(r)+'</span>'}).join('')+'</div></td><td><div class="data-tags">'+(d.task||[]).map(function(t){return '<span class="data-tag">'+tL2(t)+'</span>'}).join('')+'</div></td><td><span class="type-badge '+cL[d.type]+'">'+tL[d.type]+'</span></td><td>'+(vlaBadges?'<div class="data-tags">'+vlaBadges+'</div>':'-')+'</td><td><div class="data-links">'+(d.links&&d.links.official?'<a href="'+d.links.official+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>官网</a>':'')+(d.links&&d.links.paper?'<a href="'+d.links.paper+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>论文</a>':'')+'</div></td></tr>';
+    var vlaBadges=(d.vlaCompatible||[]).slice(0,2).map(function(v){return '<span class="data-tag"  title="'+(vlaF[v]||v)+'">'+(vlaS[v]||v)+'</span>'}).join('');
+    return '<tr class="'+(selectedDS.has(d.id)?'selected':'')+'"><td><input type="checkbox" class="std-checkbox" '+(selectedDS.has(d.id)?'checked':'')+' onchange="toggleDS(\''+d.id+'\')"></td><td><a href="/datasets/'+d.id+'/" class="data-name-cell"><div class="data-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>'+d.name+'</a></td><td class="data-org">'+(d.institution||'-')+'</td><td style="font-size:13px;color:var(--text-secondary);white-space:nowrap">'+(d.year||'-')+'</td><td><div class="data-tags">'+(d.robotType||[]).map(function(r){return '<span class="data-tag">'+rL(r)+'</span>'}).join('')+'</div></td><td><div class="data-tags">'+(d.task||[]).map(function(t){return '<span class="data-tag">'+tL2(t)+'</span>'}).join('')+'</div></td><td><span class="type-badge '+cL[d.type]+'">'+tL[d.type]+'</span></td><td>'+(vlaBadges?'<div class="data-tags">'+vlaBadges+'</div>':'-')+'</td><td><div class="data-links">'+(d.links&&(d.links.site||d.links.official)?'<a href="'+(d.links.site||d.links.official)+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>'+(I.siteLabel||'官网')+'</a>':'')+(d.links&&d.links.paper?'<a href="'+d.links.paper+'" target="_blank" class="link-btn" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>'+(I.paperLabel||'论文')+'</a>':'')+'</div></td></tr>';
   }).join('');
 }
 
 function renderCards(data){
   var start=(state.page-1)*state.ps,page=data.slice(start,start+state.ps);
   document.getElementById('cardView').innerHTML=page.map(function(d){
-    var vlaBadges=(d.vlaCompatible||[]).slice(0,3).map(function(v){return '<span class="data-tag card-tag" style="background:rgba(91,124,255,0.1);color:var(--primary)" title="'+(vlaF[v]||v)+'">🧠 '+(vlaS[v]||v)+'</span>'}).join('');
-    return '<div class="data-card'+(selectedDS.has(d.id)?' selected':'')+'" onclick="location.href=\'/datasets/'+d.id+'/\'" style="cursor:pointer;position:relative"><input type="checkbox" class="std-card-checkbox" '+(selectedDS.has(d.id)?'checked':'')+' onclick="event.stopPropagation()" onchange="toggleDS(\''+d.id+'\')"><div class="card-header"><div><div class="card-title">'+d.name+'</div><div class="card-org">'+(d.institution||'-')+' · '+(d.year||'—')+'</div></div><span class="type-badge '+cL[d.type]+'">'+tL[d.type]+'</span></div>'+(d.notes?'<p class="card-desc">'+d.notes+'</p>':'')+'<div class="card-meta"><span class="card-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>'+(d.robotType||[]).map(function(r){return rL(r)}).join(', ')+'</span></div>'+(vlaBadges?'<div class="data-tags" style="margin-top:6px">'+vlaBadges+'</div>':'')+'<div class="card-footer"><div class="data-tags">'+(d.tags||[]).slice(0,2).map(function(t){return '<span class="data-tag">'+t+'</span>'}).join('')+(d.task||[]).slice(0,2).map(function(t){return '<span class="data-tag card-tag">'+tL2(t)+'</span>'}).join('')+'</div><a href="/datasets/'+d.id+'/" class="link-btn">查看 →</a></div></div>';
+    var vlaBadges=(d.vlaCompatible||[]).slice(0,3).map(function(v){return '<span class="data-tag card-tag"  title="'+(vlaF[v]||v)+'">'+(vlaS[v]||v)+'</span>'}).join('');
+    return '<div class="data-card'+(selectedDS.has(d.id)?' selected':'')+'" onclick="location.href=\'/datasets/'+d.id+'/\'" style="cursor:pointer;position:relative"><input type="checkbox" class="std-card-checkbox" '+(selectedDS.has(d.id)?'checked':'')+' onclick="event.stopPropagation()" onchange="toggleDS(\''+d.id+'\')"><div class="card-header"><div><div class="card-title">'+d.name+'</div><div class="card-org">'+(d.institution||'-')+' · '+(d.year||'—')+'</div></div><span class="type-badge '+cL[d.type]+'">'+tL[d.type]+'</span></div>'+(d.notes?'<p class="card-desc">'+d.notes+'</p>':'')+'<div class="card-meta"><span class="card-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>'+(d.robotType||[]).map(function(r){return rL(r)}).join(', ')+'</span></div>'+(vlaBadges?'<div class="data-tags" style="margin-top:6px">'+vlaBadges+'</div>':'')+'<div class="card-footer"><div class="data-tags">'+(d.tags||[]).slice(0,2).map(function(t){return '<span class="data-tag">'+t+'</span>'}).join('')+(d.task||[]).slice(0,2).map(function(t){return '<span class="data-tag card-tag">'+tL2(t)+'</span>'}).join('')+'</div><a href="/datasets/'+d.id+'/" class="link-btn">'+(I.viewDetail||'查看 →')+'</a></div></div>';
   }).join('');
 }
 
@@ -157,7 +157,7 @@ function update(){
   var f=filterData();buildFilters();renderTable(f);renderCards(f);renderPagination(f);
   document.getElementById('tableView').style.display=state.view==='table'?'block':'none';
   document.getElementById('cardView').classList.toggle('active',state.view==='card');
-  document.getElementById('resultCount').textContent='找到 '+f.length+' 个数据集';
+  document.getElementById('resultCount').textContent=(I.resultCount||'找到')+' '+f.length+' '+(I.datasetsUnit||'个数据集');
 }
 
 function handleSearch(){state.search=document.getElementById('searchInput').value;state.page=1;update()}
@@ -167,10 +167,27 @@ document.getElementById('searchInput').addEventListener('keypress',function(e){i
 document.getElementById('sortSelect').addEventListener('change',function(){state.sort=this.value;state.sortDir='desc';update()});
 document.querySelectorAll('.view-btn').forEach(function(b){b.addEventListener('click',function(){state.view=this.dataset.view;document.querySelectorAll('.view-btn').forEach(function(x){x.classList.remove('active')});this.classList.add('active');update()});if(b.dataset.view===state.view){b.classList.add('active');b.parentElement.querySelectorAll('.view-btn').forEach(function(x){if(x!==b)x.classList.remove('active')})}});
 
-function toggleDS(id){if(selectedDS.has(id))selectedDS.delete(id);else{if(selectedDS.size>=4)return alert('最多对比 4 个数据集');selectedDS.add(id)}updateCompareBarDS();update()}
+function toggleDS(id){if(selectedDS.has(id))selectedDS.delete(id);else{if(selectedDS.size>=4)return alert(I.compareLimit||'最多对比 4 个数据集');selectedDS.add(id)}updateCompareBarDS();update()}
 function updateCompareBarDS(){var bar=document.getElementById('compareBarDS'),c=selectedDS.size;document.getElementById('compareCountDS').textContent=c;document.getElementById('compareBtnDS').disabled=c<2;bar.classList.toggle('visible',c>0);var cp=document.getElementById('compareTextPrefix');if(cp)cp.textContent=I.compareTextPrefix||cp.textContent;var cs=document.getElementById('compareTextSuffix');if(cs)cs.textContent=I.compareTextSuffix||cs.textContent;var cb=document.getElementById('compareBtnDS');if(cb)cb.textContent=I.compareBtn||cb.textContent;var cc=document.getElementById('compareClearBtn');if(cc)cc.textContent=I.compareClear||cc.textContent}
 function clearCompareDS(){selectedDS.clear();updateCompareBarDS();update();document.getElementById('selectAllDS').checked=false}
-function openCompareDS(){var items=DS.filter(function(d){return selectedDS.has(d.id)});if(items.length<2)return;if(items.length>4)items=items.slice(0,4);var fields=[{key:'name',label:'名称'},{key:'institution',label:'机构'},{key:'scale',label:'规模'},{key:'robotType',label:'机器人类型',fmt:function(v){return v.join(', ')}},{key:'task',label:'任务类型',fmt:function(v){return v.join(', ')}},{key:'modality',label:'模态',fmt:function(v){return v.join('、')}},{key:'type',label:'类型',fmt:function(v){return tL[v]}},{key:'dataFormat',label:(I&&I.formatStorage)||'存储格式',fmt:function(v){return (v||{}).storage||'-'}},{key:'dataFormat',label:(I&&I.formatSize)||'数据大小',fmt:function(v){return (v||{}).size||'-'}},{key:'dataFormat',label:(I&&I.formatCompression)||'压缩方式',fmt:function(v){return (v||{}).compression||'-'}},{key:'dataFormat',label:(I&&I.formatSchema)||'Schema',fmt:function(v){return (v||{}).schema||'-'}},{key:'quality',label:(I&&I.qualityCollection)||'采集方式',fmt:function(v){return (v||{}).collection||'-'}},{key:'quality',label:(I&&I.qualityAnnotation)||'标注方式',fmt:function(v){return (v||{}).annotation||'-'}},{key:'quality',label:(I&&I.qualityRealWorld)||'真机占比',fmt:function(v){return (v||{}).realWorld||'-'}},{key:'quality',label:(I&&I.qualityHasSplit)||'数据划分',fmt:function(v){return v&&v.hasSplit!==undefined?(v.hasSplit?(I&&I.hasSplitYes)||'有':(I&&I.hasSplitNo)||'无'):'-'}},{key:'license',label:'许可证'}];var h='<div style="padding:16px 32px;display:flex;align-items:center;gap:8px"><label style="font-size:14px;cursor:pointer"><input type="checkbox" id="highlightDiffDS" onchange="toggleHighlightDS()" style="margin-right:6px">'+(I.highlightDiff||'高亮不同')+'</label></div>';h+='<table class="compare-table" id="compareTableDS"><thead><tr><th></th>';items.forEach(function(d){h+='<th>'+d.name+'</th>'});h+='</tr></thead><tbody>';fields.forEach(function(f){var values=items.map(function(d){var v=f.fmt?f.fmt(d[f.key]||''):((d[f.key]||d.quality||{})[f.key]||d[f.key]||'-');return String(v)});var allSame=values.every(function(v){return v===values[0]});h+='<tr><td class="comp-field">'+f.label+'</td>';items.forEach(function(d,i){var v=values[i];h+='<td class="'+(allSame?'comp-same':'comp-diff')+'">'+v+'</td>'});h+='</tr>'});h+='</tbody></table>';document.getElementById('compareContentDS').innerHTML=h;document.getElementById('compareModalDS').classList.add('visible');document.getElementById('highlightDiffDS').checked=false}
+function openCompareDS(){var items=DS.filter(function(d){return selectedDS.has(d.id)});if(items.length<2)return;if(items.length>4)items=items.slice(0,4);var fields=[
+{key:'name',label:I.cmpName||'名称'},
+{key:'institution',label:I.cmpOrg||'机构'},
+{key:'scale',label:I.cmpScale||'规模'},
+{key:'robotType',label:I.cmpRobot||'机器人类型',fmt:function(v){return (v||[]).join(', ')}},
+{key:'task',label:I.cmpTask||'任务类型',fmt:function(v){return (v||[]).join(', ')}},
+{key:'modality',label:I.cmpModality||'模态',fmt:function(v){return (v||[]).join('、')}},
+{key:'type',label:I.cmpType||'类型',fmt:function(v){return tL[v]||v}},
+{key:'dataFormat',label:I.cmpFormat||'数据格式',get:function(d){return (d.dataFormatDetail&&d.dataFormatDetail.format)||d.dataFormat||'-'}},
+{key:'dataFormatDetail',label:I.cmpSize||'数据大小',get:function(d){return (d.dataFormatDetail||{}).size||'-'}},
+{key:'dataFormatDetail',label:I.cmpCompression||'压缩方式',get:function(d){return (d.dataFormatDetail||{}).compression||'-'}},
+{key:'dataFormatDetail',label:I.cmpSchema||'Schema',get:function(d){return (d.dataFormatDetail||{}).schema||'-'}},
+{key:'quality',label:I.cmpCollection||'采集方式',fmt:function(v){return (v||{}).collection||'-'}},
+{key:'quality',label:I.cmpAnnotation||'标注方式',fmt:function(v){return (v||{}).annotation||'-'}},
+{key:'quality',label:I.cmpRealWorld||'真机占比',fmt:function(v){return (v||{}).realWorld||'-'}},
+{key:'quality',label:I.cmpSplit||'数据划分',fmt:function(v){return v&&v.hasSplit!==undefined?(v.hasSplit?(I.hasSplitYes||'有'):(I.hasSplitNo||'无')):'-'}},
+{key:'license',label:I.cmpLicense||'许可证'}
+];var h='<div style="padding:16px 32px;display:flex;align-items:center;gap:8px"><label style="font-size:14px;cursor:pointer"><input type="checkbox" id="highlightDiffDS" onchange="toggleHighlightDS()" style="margin-right:6px">'+(I.highlightDiff||'高亮不同')+'</label></div>';h+='<table class="compare-table" id="compareTableDS"><thead><tr><th></th>';items.forEach(function(d){h+='<th>'+d.name+'</th>'});h+='</tr></thead><tbody>';fields.forEach(function(f){var values=items.map(function(d){var v=f.get?f.get(d):(f.fmt?f.fmt(d[f.key]||''):((d[f.key]||d.quality||{})[f.key]||d[f.key]||'-'));return String(v)});var allSame=values.every(function(v){return v===values[0]});h+='<tr><td class="comp-field">'+f.label+'</td>';items.forEach(function(d,i){var v=values[i];h+='<td class="'+(allSame?'comp-same':'comp-diff')+'">'+v+'</td>'});h+='</tr>'});h+='</tbody></table>';document.getElementById('compareContentDS').innerHTML=h;document.getElementById('compareModalDS').classList.add('visible');document.getElementById('highlightDiffDS').checked=false}
 function toggleHighlightDS(){var checked=document.getElementById('highlightDiffDS').checked;document.querySelectorAll('#compareTableDS .comp-same').forEach(function(td){td.style.opacity=checked?'0.25':'1'})}
 function closeCompareDS(){document.getElementById('compareModalDS').classList.remove('visible')}
 document.getElementById('selectAllDS').addEventListener('change',function(){var f=filterData();if(this.checked)f.forEach(function(d){selectedDS.add(d.id)});else selectedDS.clear();updateCompareBarDS();update()});

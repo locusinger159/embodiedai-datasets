@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>{{HEAD}}</head>
+<body>
+{{NAVBAR}}
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">Dataset index · {{STAT_TOTAL}} entries</div>
+      <h1 class="hero-title"><span>Embodied AI data</span>, in one index</h1>
+      <p class="hero-subtitle">{{STAT_TOTAL}} datasets, {{STAT_STANDARDS}} standards, 10 leaderboards, and {{STAT_ORGS}} institutions. Filter by robot, task, modality, and VLA framework. Every entry links to its official source, paper, and citation.</p>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-number">{{STAT_TOTAL}}</div><div class="stat-label">Datasets</div></div>
+        <div class="stat-item"><div class="stat-number">{{STAT_ORGS}}</div><div class="stat-label">Institutions</div></div>
+        <div class="stat-item"><div class="stat-number">{{STAT_TYPES}}</div><div class="stat-label">Robot types</div></div>
+        <div class="stat-item"><div class="stat-number">{{STAT_STANDARDS}}</div><div class="stat-label">Standards</div></div>
+      </div>
+      <div class="hero-cta">
+        <a href="/en/datasets/" class="btn btn-primary">Browse datasets
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="/en/recommend/" class="btn btn-ghost">Find a dataset</a>
+      </div>
+    </div>
+    <div class="hero-preview">{{CATALOG_PREVIEW}}</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <span class="section-tag">Index capabilities</span>
+    <h2 class="section-title">What this index does</h2>
+    <p class="section-desc">From choosing data to reproducing results: one filterable, comparable, and traceable index of embodied AI data.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
+      <h3 class="feature-title">Filter by VLA framework</h3>
+      <p class="feature-desc">π0, OpenVLA, GR00T N1, Octo, RT-2, RDT-1B, and ACT are tagged per dataset, so you can see what a dataset can train.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+      <h3 class="feature-title">Reverse recommendation</h3>
+      <p class="feature-desc">Describe your task, robot, modality, and access limits. Get the top 8 matches with the reasons behind each score.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <h3 class="feature-title">AI assistant</h3>
+      <p class="feature-desc">Ask in natural language, compare datasets, and get answers with source links. Backed by 152 indexed papers and every entry in the catalog.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg></div>
+      <h3 class="feature-title">Datasets and standards</h3>
+      <p class="feature-desc">{{STAT_TOTAL}} datasets and {{STAT_STANDARDS}} standards, with fields, scale, license, official links, and benchmark scores.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="18" rx="1"/></svg></div>
+      <h3 class="feature-title">Filter and compare</h3>
+      <p class="feature-desc">Filter by robot, task, modality, access, and collection method. Compare up to four datasets side by side.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg></div>
+      <h3 class="feature-title">Traceable citations</h3>
+      <p class="feature-desc">Every entry links to its paper, GitHub or HuggingFace source, and BibTeX. External links are checked; dead ones are replaced or removed.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--surface);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)">
+  <div class="section-header">
+    <span class="section-tag">Technical blog</span>
+    <h2 class="section-title">Build, compare, and explain embodied AI data</h2>
+    <p class="section-desc">VLA tutorials, data format comparisons, and deep dives into the datasets behind the models.</p>
+  </div>
+  <div class="blog-home-grid">{{BLOG_CARDS}}</div>
+  <div style="max-width:var(--maxw);margin:28px auto 0">
+    <a href="/en/blog/" class="btn btn-ghost">View all posts
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="partners-wrap">
+  <h2 class="partners-title">Institutions in the index</h2>
+  <div class="partners-marquee"><div class="marquee-track">{{PARTNERS_MARQUEE}}</div></div>
+</section>
+
+{{FOOTER}}
+</body>
+</html>
