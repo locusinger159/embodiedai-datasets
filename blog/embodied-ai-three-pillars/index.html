@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="canonical" href="https://superdata-robotai.com/blog/embodied-ai-three-pillars/">
+<link rel="alternate" hreflang="zh-CN" href="https://superdata-robotai.com/blog/embodied-ai-three-pillars/">
+<link rel="alternate" hreflang="en" href="https://superdata-robotai.com/en/blog/embodied-ai-three-pillars/">
+<link rel="alternate" hreflang="x-default" href="https://superdata-robotai.com/blog/embodied-ai-three-pillars/">
+<meta property="og:url" content="https://superdata-robotai.com/blog/embodied-ai-three-pillars/">
+<meta property="og:site_name" content="Superdata RobotAI">
+<meta property="og:image" content="https://superdata-robotai.com/%E5%AD%A6%E7%94%9Fbot.png">
+<meta name="twitter:card" content="summary">
+<meta property="og:title" content="具身智能为什么落不了地？问题不在模型，在你只盯着模型 | Superdata RobotAI">
+<meta property="og:description" content="具身智能项目落不了地，大部分原因是只盯着模型是不是高大上。本文从模型、数据、本体三个维度出发，提出从零到一落地具身智能项目的四步方法论：先定本体与任务边界，再搭数据管线，模型追求可迭代，用闭环指标替代演示成功率。">
+<meta property="og:type" content="website">
+<meta name="twitter:title" content="具身智能为什么落不了地？问题不在模型，在你只盯着模型 | Superdata RobotAI">
+<meta name="twitter:description" content="具身智能项目落不了地，大部分原因是只盯着模型是不是高大上。本文从模型、数据、本体三个维度出发，提出从零到一落地具身智能项目的四步方法论：先定本体与任务边界，再搭数据管线，模型追求可迭代，用闭环指标替代演示成功率。">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>具身智能为什么落不了地？问题不在模型，在你只盯着模型 | Superdata RobotAI</title><meta name="description" content="具身智能项目落不了地，大部分原因是只盯着模型是不是高大上。本文从模型、数据、本体三个维度出发，提出从零到一落地具身智能项目的四步方法论：先定本体与任务边界，再搭数据管线，模型追求可迭代，用闭环指标替代演示成功率。"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"具身智能为什么落不了地？问题不在模型，在你只盯着模型","description":"具身智能项目落不了地，大部分原因是只盯着模型是不是高大上。本文从模型、数据、本体三个维度出发，提出从零到一落地具身智能项目的四步方法论：先定本体与任务边界，再搭数据管线，模型追求可迭代，用闭环指标替代演示成功率。","datePublished":"2026-07-13","url":"https://superdata-robotai.com/blog/embodied-ai-three-pillars/","inLanguage":"zh-CN","author":{"@type":"Organization","name":"Superdata RobotAI"}}</script>
+<link rel="icon" type="image/png" href="/机器人.png">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var btn = document.getElementById('hamburgerBtn');
+  var menu = document.getElementById('navMenu');
+  if(btn && menu){
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ btn.classList.remove('open'); menu.classList.remove('open'); });
+    });
+  }
+
+  // Auto card view on mobile for datasets/standards
+  if(window.innerWidth <= 768){
+    if(typeof state !== 'undefined' && state && 'view' in state){ state.view = 'card';
+      if(typeof update === 'function') update();
+    }
+  }
+});
+</script>
+
+</head>
+<body>
+<nav class="navbar">
+  <a href="/" class="nav-logo">
+    <img src="/学生bot.png" alt="Logo">
+    <span class="nav-logo-text">Superdata RobotAI</span>
+  </a>
+  <div class="nav-menu" id="navMenu">
+    <a href="/" class="nav-link ">首页</a>
+    <a href="/datasets/" class="nav-link ">数据集</a>
+    <a href="/standards/" class="nav-link ">数据标准</a>
+    <a href="/benchmarks/" class="nav-link ">排行榜</a>
+    <a href="/tools/" class="nav-link ">工具/平台</a>
+    <a href="/blog/" class="nav-link active">技术博客</a>
+  </div>
+  <div class="nav-lang">
+    <a href="/" class="nav-lang-link active" title="中文">中</a>
+    <span class="nav-lang-sep">/</span>
+    <a href="/en/" class="nav-lang-link" title="English">EN</a>
+  </div>
+  <div class="nav-cta">
+    <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="btn btn-ghost">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+  <button class="hamburger-btn" id="hamburgerBtn" aria-label="菜单">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main class="detail-main">
+  <a href="/blog/" class="back-link">← 返回博客</a>
+  <div class="blog-detail">
+    <div class="blog-detail-header">
+      <h1 class="blog-detail-title">具身智能为什么落不了地？问题不在模型，在你只盯着模型</h1>
+      <div class="blog-detail-meta">
+        <span>2026-07-13</span>
+        <span>作者 Superdata RobotAI</span>
+      </div>
+      <div class="blog-detail-tags"><span class="blog-tag">具身智能</span><span class="blog-tag">落地实践</span><span class="blog-tag">VLA</span><span class="blog-tag">数据集</span><span class="blog-tag">机器人本体</span><span class="blog-tag">遥操作</span><span class="blog-tag">技术方法论</span></div>
+    </div>
+    <div class="blog-detail-content"><h2>一个被反复验证的教训</h2>
+
+<p>VLA、世界模型、机器人基础模型、强化学习策略——这些名词过去两年占据了具身智能领域几乎全部的话题。行业里有一种很自然的冲动：只要模型足够强，机器人就能像人一样干活。</p>
+
+<p>但现实是，<strong>具身智能不是把一个大模型接到机械臂上就结束了。</strong>真正走到部署现场，问题会从「模型能力强不强」变成一连串具体工程问题：机器人能不能理解指令？能不能生成可执行的运动？能不能在真实接触中稳定完成任务？</p>
+
+<p>很多团队换了七八版模型，机器人还是只能在固定角度、固定物体、固定光照下完成一次演示——因为模型的上下游从来没有被打通过。</p>
+
+<h2>三条腿的桌子，少一条都站不住</h2>
+
+<p>一个从零到一的具身智能项目，必须同时抓住三件事：<strong>模型、数据和本体。</strong></p>
+
+<ul>
+<li><strong>模型</strong>决定机器人怎样理解任务、生成动作。</li>
+<li><strong>数据</strong>决定模型从哪里获得经验，见过多少真实变化。</li>
+<li><strong>本体</strong>决定这些动作能不能在物理世界里稳定执行。</li>
+</ul>
+
+<p>更工程化地说，具身智能的基本链路是：</p>
+
+<blockquote><strong>感知输入 → 模型理解与决策 → 动作生成 → 本体执行 → 环境反馈 → 数据回流</strong></blockquote>
+
+<p>这条链路里，<strong>任何一段太弱，最终都会表现为「机器人不稳定」。</strong></p>
+
+<ul>
+<li>模型再强，如果数据是乱的，到现场就容易失效。</li>
+<li>数据再多，如果本体传感器漂、夹爪松、控制抖，采出来的数据也会很脏。</li>
+<li>本体再先进，如果模型不能理解任务，也只能完成有限的固定动作。</li>
+</ul>
+
+<p>三条腿的桌子，少一条都站不住。这就是为什么光换模型解决不了问题。</p>
+
+<h2>不要一上来就问「用哪个大模型」</h2>
+
+<p>从零到一安排项目，建议先问一个更朴素的问题：<strong>这台机器人要在什么场景里，稳定完成哪几类任务？</strong></p>
+
+<p>桌面整理、货架取放、实验室巡检、简单装配、家庭物品搬运——任务边界越清楚，模型、数据和本体才越容易对齐。任务泛化是有代价的：泛化半径越大，数据需求、本体复杂度和模型难度会同时指数级上升。早期项目最怕的不是技术不够强，而是「什么都想做，什么都做不稳」。</p>
+
+<h2>第一步：先定本体和任务边界</h2>
+
+<p><strong>本体是整个系统的地基，不能等到后面再补。</strong></p>
+
+<p>如果任务主要是桌面抓取，稳定的机械臂、可靠的两指夹爪、固定相机或腕部相机，往往比一上来追求灵巧手更稳。先把手眼标定、末端定位、夹爪闭合、轨迹平滑和急停链路跑通，项目才有继续迭代的基础。</p>
+
+<p>如果任务需要移动到不同位置，就要先算清楚底盘定位、避障、停靠精度和机械臂的工作空间。移动机械臂很多问题并不出在抓取算法——底盘定位精度差了几厘米，机械臂后面所有动作都跟着变难。</p>
+
+<p>人形机器人和灵巧手当然有想象空间，但在早期会把控制、维护、数据采集和安全问题同时放大。除非任务明确需要双腿、双臂或复杂手内操作，否则更稳的路线是：<strong>先用一个没那么炫但可靠的本体，把任务闭环做出来。</strong></p>
+
+<p>看本体时，重点不在参数堆得多高，而在几个指标能不能支撑任务：末端工具是否适合目标物体，自由度是否够用，控制器算力能否支撑视觉和运动控制，传感器精度是否够用，底层运动控制是否平滑可靠。</p>
+
+<h2>第二步：先搭数据管线，再谈大模型</h2>
+
+<p>数据是具身智能最容易被低估的部分。</p>
+
+<p>普通视觉模型的数据可以是图片和标签，语言模型的数据可以是文本。机器人数据更麻烦——因为它要把传感器、机器人状态、任务、动作和结果放在同一条时间线上。一条有价值的机器人数据里，通常要有图像、深度、关节角度、末端位姿、夹爪状态、控制指令、任务文本、时间戳和执行结果。</p>
+
+<p>这里有一个经典教训：<strong>garbage in, garbage out。</strong>数据如果是错的、乱的、时间不同步的，模型再好也只能学到混乱经验。</p>
+
+<p>从零到一阶段，最重要的事情是尽早搭起遥操作系统。哪怕一开始很粗糙，也要让人能稳定控制真实机器人完成任务，并把图像、状态、动作和结果记录下来。遥操作数据和目标本体天然对齐，特别适合训练机器人模仿动作。</p>
+
+<p>部署现场的自主执行日志、脚本策略采集、拖动示教和评测数据也要保留下来。egocentric 第一视角视频、互联网视频和仿真数据同样有价值，但用途不同：</p>
+
+<ul>
+<li><strong>第一视角和互联网视频</strong>适合补任务常识——人怎么观察、怎么安排步骤、怎么处理物体。</li>
+<li><strong>仿真数据</strong>适合规模化、低风险地生成场景变化，尤其适合强化学习和危险动作测试。</li>
+</ul>
+
+<p>但这些数据最终都要回到目标本体上校准，不能直接替代真机数据。</p>
+
+<p>数据管线里最容易被低估的是<strong>清洗和标注</strong>。成功样本要不要全收？失败样本怎么分类？操作者犹豫的动作要不要保留？夹爪碰到物体但没抓稳算什么状态？这些问题会直接影响模型学到什么。数据质量如果没人负责，后面每一次训练都会带着同一个坑。</p>
+
+<h2>第三步：模型先追求可迭代</h2>
+
+<p>模型路线可以分层安排：</p>
+
+<ul>
+<li><strong>上层模型</strong>负责理解语言、图像和任务目标。常见路线是 VLA（视觉-语言-动作模型），输出动作序列、末端位姿、关节目标或动作 token。</li>
+<li><strong>世界模型</strong>更关注「动作之后会发生什么」，适合做预测和方案选择。</li>
+<li><strong>强化学习</strong>更适合足式、灵巧手、动态平衡和复杂接触任务。</li>
+</ul>
+
+<p>但在落地早期，<strong>不建议把全部希望押在一个端到端大模型上。</strong>更现实的做法是先用分层架构跑通：上层模型负责理解指令和拆任务，下层策略负责抓取、移动、放置等技能，传统规划和控制模块负责安全约束、轨迹生成和硬件执行。</p>
+
+<p>这样做不够酷，但好调试。机器人抓错物体，可以查视觉和任务理解；抓对了但夹不住，可以查抓取姿态、末端工具和力控；轨迹生成正常但机器人抖，就查控制频率、驱动器和机械结构。端到端黑盒一旦出问题，你连从哪里查起都不知道。</p>
+
+<h3>训练分阶段，算力按需匹配</h3>
+
+<p>单任务策略或小模型微调，几十到几百条高质量示教数据就能起步。一张 RTX 4090、RTX 6000 Ada、L40S 或 A6000 级别显卡，已经能完成不少 ACT、Diffusion Policy 或小型策略实验。</p>
+
+<p>多任务 VLA 微调会明显吃更多数据和显存，通常需要 A100、H100 这类大显存训练卡；LoRA 等参数高效微调可以降低门槛，但全量训练或大 batch 训练会很快上到多机多卡。</p>
+
+<p>机器人基础模型预训练又是另一个量级——往往需要接近百万级机器人轨迹，叠加视频、仿真和多本体数据，并动用更大规模的 GPU 集群。</p>
+
+<p><strong>对大多数从零到一项目来说，早期真正应该追求的不是训练通用基础模型，而是让一个具体任务每天稳定进步。</strong></p>
+
+<h2>第四步：用闭环指标替代演示成功率</h2>
+
+<p>具身智能项目不能只看一次 demo 成不成功。</p>
+
+<p>演示视频可以只保留成功瞬间，但真实应用要面对每一次失败。更有价值的指标是：</p>
+
+<ul>
+<li>连续 100 次任务里成功多少次？</li>
+<li>失败集中在哪一步？</li>
+<li>失败以后能不能自动恢复？</li>
+<li>需要人工接管多少次？</li>
+<li>换一批物体以后成功率掉多少？</li>
+<li>单次任务平均耗时多少？</li>
+</ul>
+
+<p>这些才是落地真正的考题。一次漂亮的 demo 只能证明系统在某些条件下能工作；一套闭环指标才能证明系统在真实变化中靠得住。</p>
+
+<h2>三个维度的现实挑战</h2>
+
+<p>现阶段的主要挑战，也可以按模型、数据、本体三个维度来看：</p>
+
+<h3>模型：动作表示和失败恢复</h3>
+
+<p>输出末端位姿要解决逆解、碰撞和控制；输出关节动作又容易绑定具体本体；输出动作 token 看起来统一，但映射到不同机器人仍然麻烦。更难的是失败恢复——机器人不能只会从标准初始状态执行流程，还要知道当前偏到了哪里，下一步怎么补救。</p>
+
+<h3>数据：贵、散、脏</h3>
+
+<p>真实机器人采集需要设备、人和时间，遥操作会持续占用熟练操作员。不同机器人、不同实验室、不同格式的数据很难统一。真实数据里还有抖动、延迟、遮挡、失败和不完整标注。</p>
+
+<h3>本体：稳定性和维护成本</h3>
+
+<p>线缆拉扯、标定漂移、驱动器发热——这些看似无关紧要的问题会把项目拖进难以交付的泥潭。一个每天都要修的机器人，会拖垮模型和数据团队的节奏。</p>
+
+<h2>真正要盯住的</h2>
+
+<p>从零到一做具身智能项目，核心问题是三个环节能不能互相接上：</p>
+
+<ul>
+<li><strong>模型输出的动作</strong>，数据里要能记录和复现；</li>
+<li><strong>数据里暴露的失败</strong>，本体要能支持修正；</li>
+<li><strong>本体的能力边界</strong>，模型也要知道不能越过去。</li>
+</ul>
+
+<p><strong>如果一个项目每周都能把失败样本收回来，更新数据，调整策略，再让机器人在同一个任务上更稳定一点——它就是在往落地方向走。</strong></p>
+
+<p>反过来，如果模型换了一版又一版，机器人还是只能在固定角度、固定物体、固定光照下完成一次演示，那离真正落地还很远。</p>
+
+<p>具身智能最后拼的不是一次漂亮动作，而是<strong>机器人能不能在真实变化里反复把事情做成</strong>。</p>
+
+<hr>
+<p style="color:var(--text-light);font-size:13px;margin-top:32px">本文作者：Superdata RobotAI。Superdata RobotAI 是一个中英双语具身智能数据集导航站，收录全球 135+ 数据集、38 个基准标准与 18 个开发工具，提供 AI 语义搜索与智能助手。访问 <a href="https://superdata-robotai.com">superdata-robotai.com</a>。</p></div>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="/学生bot.png" alt="Logo">
+        Superdata RobotAI
+      </div>
+      <p class="footer-desc">专注收录全球具身智能、人形机器人、机械臂、移动机器人数据集情报。只做一件事：信息汇总 & 申请导航，助力算法研发。</p>
+      <div class="footer-social">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="social-link" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="mailto:embodisets@163.com" class="social-link" title="邮箱">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>快速链接</h4>
+      <div class="footer-links">
+        <a href="/" class="footer-link">首页</a>
+        <a href="/datasets/" class="footer-link">全部数据集</a>
+        <a href="/standards/" class="footer-link">数据标准</a>
+        <a href="/submit/" class="footer-link">提交数据集</a>
+        <a href="/blog/" class="footer-link">技术博客</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>资源</h4>
+      <div class="footer-links">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="footer-link">GitHub 仓库</a>
+        <a href="mailto:embodisets@163.com" class="footer-link">提交反馈</a>
+        <a href="/blog/" class="footer-link">技术博客</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>联系我们</h4>
+      <div class="footer-links">
+        <span class="footer-link">embodisets@163.com</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copyright">Copyright © 2026 Superdata RobotAI · <a href="https://github.com/locusinger159/embodiedai-datasets" style="color:inherit">CC BY-NC-SA 4.0</a></div>
+    <div class="footer-disclaimer">声明：本网站仅做信息导航，不提供任何数据集下载。数据集版权归原机构/作者所有。数据内容未经授权禁止商业使用。</div>
+  </div>
+</footer>
+<button class="back-to-top" id="backToTop" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+<script>
+(function(){
+  var backToTop = document.getElementById('backToTop');
+  if(!backToTop) return;
+  function onScroll(){
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    if(y > 500) backToTop.classList.add('visible');
+    else backToTop.classList.remove('visible');
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  backToTop.addEventListener('click', function(){ window.scrollTo({ top:0, behavior:'smooth' }); });
+  // Fade-in scroll animations with stagger
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold:0.1, rootMargin:'0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in, .scroll-animate').forEach(function(el){ obs.observe(el); });
+  } else {
+    document.querySelectorAll('.fade-in, .scroll-animate').forEach(function(el){ el.classList.add('visible'); });
+  }
+})();
+</script>
+
+<!-- AI Search Widget — quiet toolbar + search/chat panel -->
+
+
+<div class="search-widget-btns">
+  <button class="search-widget-btn ai-btn" id="aiChatBtn" title="AI assistant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span id="aiChatBtnLabel">AI 助手</span>
+  </button>
+  <button class="search-widget-btn search-btn" id="aiSearchBtn" title="Semantic search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <span id="aiSearchBtnLabel">搜索</span>
+  </button>
+</div>
+
+<div class="search-widget-overlay" id="aiSearchOverlay">
+  <div class="search-widget-panel">
+    <div class="search-panel-header">
+      <span class="search-panel-title" id="panelTitle">AI 助手</span>
+      <button class="search-panel-close" id="aiSearchClose" aria-label="Close">×</button>
+    </div>
+    <div class="search-panel-input">
+      <input type="text" id="aiSearchInput" placeholder="描述你的需求，如：人形机器人双臂操作数据集..." />
+      <select id="aiModelSelect">
+        <option value="deepseek-v4-flash">DeepSeek V4 Flash</option>
+        <option value="deepseek-chat">DeepSeek V3</option>
+        <option value="deepseek-reasoner">DeepSeek R1</option>
+      </select>
+      <button id="aiSearchSubmit">搜索</button>
+    </div>
+    <div class="search-panel-body" id="aiSearchBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const SEARCH_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/search';
+  const CHAT_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/assistant';
+  const isEn = (document.documentElement.lang || 'zh').toLowerCase().startsWith('en');
+  const L = isEn ? {
+    chat: 'AI assistant', search: 'Search', ask: 'Ask', panelChat: 'AI assistant', panelSearch: 'Semantic search',
+    chatPlaceholder: 'Ask about a dataset, e.g. what should I use for tabletop grasping?',
+    searchPlaceholder: 'Describe what you need, e.g. humanoid dual-arm manipulation datasets...',
+    chatEmpty: 'Ask a question to get dataset recommendations. Multi-turn context is kept.',
+    searchEmpty: 'Search across every dataset, standard, and tool in the index.',
+    datasets: 'Datasets', standards: 'Standards', tools: 'Tools',
+    user: 'You', loadingChat: 'Thinking...', loadingSearch: 'Searching...',
+    noResults: 'No matches. Try a different description.', minChars: 'Enter at least 2 characters.',
+    failed: 'Request failed', retry: 'Check your connection and try again.',
+    srcDataset: 'Dataset', srcStandard: 'Standard', srcTool: 'Tool'
+  } : {
+    chat: 'AI 助手', search: '搜索', ask: '提问', panelChat: 'AI 助手', panelSearch: '语义搜索',
+    chatPlaceholder: '向 AI 助手提问，如：我的机械臂要做桌面抓取，推荐什么数据集？',
+    searchPlaceholder: '描述你的需求，如：人形机器人双臂操作数据集...',
+    chatEmpty: '向 AI 助手提问，获取个性化数据集推荐。支持多轮对话，上下文自动关联。',
+    searchEmpty: '在全部数据集、标准与工具中检索。',
+    datasets: '数据集', standards: '标准', tools: '工具',
+    user: '你', loadingChat: 'AI 正在分析...', loadingSearch: '正在搜索...',
+    noResults: '未找到匹配结果，试试换一种描述？', minChars: '请输入至少 2 个字符',
+    failed: '请求失败', retry: '请检查网络连接，或稍后重试',
+    srcDataset: '数据集', srcStandard: '标准', srcTool: '工具'
+  };
+
+  var chatBtn = document.getElementById('aiChatBtn');
+  var searchBtn = document.getElementById('aiSearchBtn');
+  var overlay = document.getElementById('aiSearchOverlay');
+  var closeBtn = document.getElementById('aiSearchClose');
+  var input = document.getElementById('aiSearchInput');
+  var submit = document.getElementById('aiSearchSubmit');
+  var body = document.getElementById('aiSearchBody');
+  var panelTitle = document.getElementById('panelTitle');
+  var mode = 'chat';
+  var chatHistory = [];
+
+  document.getElementById('aiChatBtnLabel').textContent = L.chat;
+  document.getElementById('aiSearchBtnLabel').textContent = L.search;
+
+  function open(m) {
+    mode = m;
+    chatHistory = [];
+    overlay.classList.add('open');
+    panelTitle.textContent = m === 'chat' ? L.panelChat : L.panelSearch;
+    submit.textContent = m === 'chat' ? L.ask : L.search;
+    input.placeholder = m === 'chat' ? L.chatPlaceholder : L.searchPlaceholder;
+    body.innerHTML = '<div class="search-empty">' + (m === 'chat' ? L.chatEmpty : L.searchEmpty) + '</div>';
+    setTimeout(function() { input.focus(); }, 200);
+  }
+  function close() { overlay.classList.remove('open'); }
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  chatBtn.addEventListener('click', function() { open('chat'); });
+  searchBtn.addEventListener('click', function() { open('search'); });
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+    if (e.key === 'k' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); open('search'); }
+  });
+
+  function renderSearch(data) {
+    var h = '';
+    if (data.datasets && data.datasets.length) {
+      h += '<div class="search-result-section"><h3>' + L.datasets + '</h3>';
+      data.datasets.forEach(function(d) {
+        var tags = (d.robotType || []).concat(d.task || []).slice(0, 3);
+        h += '<a href="' + (isEn ? '/en' : '') + '/datasets/' + d.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + d.score + '%</div>'
+          + '<div class="search-result-body">'
+          + '<div class="search-result-name">' + esc(d.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(d.notes || '') + '</div>'
+          + '<div class="search-result-tags">' + tags.map(function(t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>'
+          + '</div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.standards && data.standards.length) {
+      h += '<div class="search-result-section"><h3>' + L.standards + '</h3>';
+      data.standards.forEach(function(s) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/standards/' + s.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + s.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(s.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(s.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.tools && data.tools.length) {
+      h += '<div class="search-result-section"><h3>' + L.tools + '</h3>';
+      data.tools.forEach(function(t) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/tools/' + t.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + t.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(t.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(t.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (!h) h = '<div class="search-empty">' + L.noResults + '</div>';
+    body.innerHTML = h;
+  }
+
+  function renderChatHistory() {
+    var h = '';
+    chatHistory.forEach(function(msg) {
+      if (msg.role === 'user') {
+        h += '<div class="chat-message user"><strong>' + L.user + '</strong><br>' + esc(msg.content) + '</div>';
+      } else {
+        h += '<div class="chat-message assistant">' + (msg.reply || '') + '</div>';
+        if (msg.sources && msg.sources.length) {
+          h += '<div class="chat-sources">';
+          msg.sources.forEach(function(s) {
+            var kind = s.type === 'tool' ? 'tools' : s.type === 'standard' ? 'standards' : 'datasets';
+            var label = s.type === 'tool' ? L.srcTool : s.type === 'standard' ? L.srcStandard : L.srcDataset;
+            var url = (isEn ? '/en' : '') + '/' + kind + '/' + s.id + '/';
+            h += '<a href="' + url + '" class="chat-source" target="_blank"><span class="chat-source-type">' + label + '</span>' + esc(s.name) + ' <span class="chat-source-score">' + s.score + '%</span></a>';
+          });
+          h += '</div>';
+        }
+      }
+    });
+    if (!h) h = '<div class="search-empty">' + L.chatEmpty + '</div>';
+    body.innerHTML = h;
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function simpleMarkdown(text) {
+    return esc(text)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n- /g, '\n<li>')
+      .replace(/\n(\d+)\. /g, '\n<li>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+  }
+
+  async function doSubmit() {
+    var q = input.value.trim();
+    if (q.length < 2) { body.innerHTML = '<div class="search-empty">' + L.minChars + '</div>'; return; }
+    submit.disabled = true;
+    body.innerHTML = '<div class="loading"><div class="spinner"></div><div style="margin-top:12px">' + (mode === 'chat' ? L.loadingChat : L.loadingSearch) + '</div></div>';
+
+    try {
+      if (mode === 'search') {
+        var res = await fetch(SEARCH_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, lang: isEn ? 'en' : 'zh' })
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        var data = await res.json();
+        if (data.error) throw new Error(data.error);
+        renderSearch(data);
+      } else {
+        chatHistory.push({ role: 'user', content: q });
+        var cres = await fetch(CHAT_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, history: chatHistory.slice(0, -1), model: document.getElementById('aiModelSelect').value })
+        });
+        if (!cres.ok) throw new Error('HTTP ' + cres.status);
+        var cdata = await cres.json();
+        if (cdata.error) throw new Error(cdata.error);
+        chatHistory.push({ role: 'assistant', reply: simpleMarkdown(cdata.reply), sources: cdata.sources });
+        renderChatHistory();
+        input.value = '';
+      }
+    } catch (err) {
+      console.error('[Search] error:', err);
+      body.innerHTML = '<div class="search-error">' + L.failed + '：' + esc(err.message) + '<br><small>' + L.retry + '</small></div>';
+    }
+    submit.disabled = false;
+    setTimeout(function() { input.focus(); }, 100);
+  }
+
+  submit.addEventListener('click', doSubmit);
+  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doSubmit(); });
+})();
+</script>
+
+</body>
+</html>

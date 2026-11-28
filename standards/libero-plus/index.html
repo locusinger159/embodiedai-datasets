@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="canonical" href="https://superdata-robotai.com/standards/libero-plus/">
+<link rel="alternate" hreflang="zh-CN" href="https://superdata-robotai.com/standards/libero-plus/">
+<link rel="alternate" hreflang="en" href="https://superdata-robotai.com/en/standards/libero-plus/">
+<link rel="alternate" hreflang="x-default" href="https://superdata-robotai.com/standards/libero-plus/">
+<meta property="og:url" content="https://superdata-robotai.com/standards/libero-plus/">
+<meta property="og:site_name" content="Superdata RobotAI">
+<meta property="og:image" content="https://superdata-robotai.com/%E5%AD%A6%E7%94%9Fbot.png">
+<meta name="twitter:card" content="summary">
+<meta property="og:title" content="LIBERO-Plus | Superdata RobotAI">
+<meta property="og:description" content="**LIBERO-Plus** 是复旦大学和同济大学于 2025 年 10 月发布的 VLA 模型鲁棒性深度评测基准（arxiv 2510.13626），是对 LIBERO 基准的**系统化鲁棒性扩展**。
+
+LIBERO 标准评测中 VLA 模型可达 90-98% 成功率，但 **LIBERO-Plus 揭示这些分数">
+<meta property="og:type" content="website">
+<meta name="twitter:title" content="LIBERO-Plus | Superdata RobotAI">
+<meta name="twitter:description" content="**LIBERO-Plus** 是复旦大学和同济大学于 2025 年 10 月发布的 VLA 模型鲁棒性深度评测基准（arxiv 2510.13626），是对 LIBERO 基准的**系统化鲁棒性扩展**。
+
+LIBERO 标准评测中 VLA 模型可达 90-98% 成功率，但 **LIBERO-Plus 揭示这些分数">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIBERO-Plus | Superdata RobotAI</title><meta name="description" content="**LIBERO-Plus** 是复旦大学和同济大学于 2025 年 10 月发布的 VLA 模型鲁棒性深度评测基准（arxiv 2510.13626），是对 LIBERO 基准的**系统化鲁棒性扩展**。
+
+LIBERO 标准评测中 VLA 模型可达 90-98% 成功率，但 **LIBERO-Plus 揭示这些分数">
+<link rel="icon" type="image/png" href="/机器人.png">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var btn = document.getElementById('hamburgerBtn');
+  var menu = document.getElementById('navMenu');
+  if(btn && menu){
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ btn.classList.remove('open'); menu.classList.remove('open'); });
+    });
+  }
+
+  // Auto card view on mobile for datasets/standards
+  if(window.innerWidth <= 768){
+    if(typeof state !== 'undefined' && state && 'view' in state){ state.view = 'card';
+      if(typeof update === 'function') update();
+    }
+  }
+});
+</script>
+
+</head>
+<body>
+<nav class="navbar">
+  <a href="/" class="nav-logo">
+    <img src="/学生bot.png" alt="Logo">
+    <span class="nav-logo-text">Superdata RobotAI</span>
+  </a>
+  <div class="nav-menu" id="navMenu">
+    <a href="/" class="nav-link ">首页</a>
+    <a href="/datasets/" class="nav-link ">数据集</a>
+    <a href="/standards/" class="nav-link active">数据标准</a>
+    <a href="/benchmarks/" class="nav-link ">排行榜</a>
+    <a href="/tools/" class="nav-link ">工具/平台</a>
+    <a href="/blog/" class="nav-link ">技术博客</a>
+  </div>
+  <div class="nav-lang">
+    <a href="/" class="nav-lang-link active" title="中文">中</a>
+    <span class="nav-lang-sep">/</span>
+    <a href="/en/" class="nav-lang-link" title="English">EN</a>
+  </div>
+  <div class="nav-cta">
+    <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="btn btn-ghost">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+  <button class="hamburger-btn" id="hamburgerBtn" aria-label="菜单">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main class="detail-main">
+  <a href="/standards/" class="back-link">← 返回数据标准</a>
+  <div class="detail-header">
+    <div><div class="detail-fullname">LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models</div><h1 class="detail-name">LIBERO-Plus</h1></div>
+    <span class="std-type-badge type-benchmark">评测基准</span>
+  </div>
+  <p class="detail-org">复旦大学 (Fudan University) / 同济大学 (Tongji University)</p>
+  <div class="detail-desc"><p><strong>LIBERO-Plus</strong> 是复旦大学和同济大学于 2025 年 10 月发布的 VLA 模型鲁棒性深度评测基准（arxiv 2510.13626），是对 LIBERO 基准的<strong>系统化鲁棒性扩展</strong>。</p><p>LIBERO 标准评测中 VLA 模型可达 90-98% 成功率，但 <strong>LIBERO-Plus 揭示这些分数掩盖了严重的脆弱性</strong>——在轻微扰动下，性能从 95% 跌至 30% 以下。</p><p><strong>7 大扰动维度</strong>（10,030 个任务，L1-L5 难度分级）：(1) 物体布局（混淆物/位移）、(2) 相机视角（位置/方向/FOV）、(3) 机器人初始状态、(4) 语言指令（LLM 改写）、(5) 光照条件（强度/方向/色温/阴影）、(6) 背景纹理、(7) 传感器噪声（抖动/高斯模糊）。</p><p><strong>核心发现</strong>：多数模型对相机视角变化极度脆弱（OpenVLA: 0.8%, π0: 13.8%）；模型实质上是「视觉-动作」而非「视觉-语言-动作」模型（空白指令实验几乎不影响性能）；模型记忆位置而非理解语义（位移目标物体导致严重失败）；腕部相机显著提升鲁棒性。评测了 OpenVLA、π0、RIPT-VLA、NORA、UniVLA 等 8 个模型。</p></div>
+
+  <!-- Requirements -->
+  
+
+  <div class="info-grid">
+    <div class="info-card"><div class="info-card-label">发布组织</div><div class="info-card-value">复旦大学 (Fudan University) / 同济大学 (Tongji University)</div></div>
+    <div class="info-card"><div class="info-card-label">标准类型</div><div class="info-card-value"><span class="std-type-badge type-benchmark">评测基准</span></div></div>
+    <div class="info-card"><div class="info-card-label">开放程度</div><div class="info-card-value"><span class="type-badge type-open">完全开源</span></div></div>
+    <div class="info-card"><div class="info-card-label">许可证</div><div class="info-card-value">Apache-2.0</div></div>
+    <div class="info-card"><div class="info-card-label">适用场景</div><div class="info-card-value"><span class="data-tag">仿真</span></div></div>
+    <div class="info-card"><div class="info-card-label">数据模态</div><div class="info-card-value">RGB、语言、动作</div></div>
+  </div>
+
+  <!-- Links -->
+  <div class="section-block"><h2>相关链接</h2><div class="links-section"><a href="https://github.com/sylvestf/LIBERO-plus" target="_blank" class="link-card" rel="noopener"> 官方网站</a><a href="https://github.com/sylvestf/LIBERO-plus" target="_blank" class="link-card" rel="noopener"> GitHub</a></div></div>
+
+  <!-- Related Datasets -->
+  <div class="section-block">
+    <h2>关联数据集</h2>
+    <div class="related-grid"><a href="/datasets/libero/" class="related-card"><div class="related-name">Libero</div><div class="related-org">斯坦福大学 (Stanford University)</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a><a href="/datasets/libero-plus/" class="related-card"><div class="related-name">LIBERO-Plus</div><div class="related-org">复旦大学 (Fudan University) / 同济大学 (Tongji University)</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a></div>
+  </div>
+
+  <!-- Comments -->
+  <div class="section-block">
+    <h2>讨论</h2>
+    <script src="https://giscus.app/client.js"
+      data-repo="locusinger159/embodiedai-datasets"
+      data-repo-id="R_kgDOSiiGSw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOSiiGS84C-Eki"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="/学生bot.png" alt="Logo">
+        Superdata RobotAI
+      </div>
+      <p class="footer-desc">专注收录全球具身智能、人形机器人、机械臂、移动机器人数据集情报。只做一件事：信息汇总 & 申请导航，助力算法研发。</p>
+      <div class="footer-social">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="social-link" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="mailto:embodisets@163.com" class="social-link" title="邮箱">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>快速链接</h4>
+      <div class="footer-links">
+        <a href="/" class="footer-link">首页</a>
+        <a href="/datasets/" class="footer-link">全部数据集</a>
+        <a href="/standards/" class="footer-link">数据标准</a>
+        <a href="/submit/" class="footer-link">提交数据集</a>
+        <a href="/blog/" class="footer-link">技术博客</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>资源</h4>
+      <div class="footer-links">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="footer-link">GitHub 仓库</a>
+        <a href="mailto:embodisets@163.com" class="footer-link">提交反馈</a>
+        <a href="/blog/" class="footer-link">技术博客</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>联系我们</h4>
+      <div class="footer-links">
+        <span class="footer-link">embodisets@163.com</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copyright">Copyright © 2026 Superdata RobotAI · <a href="https://github.com/locusinger159/embodiedai-datasets" style="color:inherit">CC BY-NC-SA 4.0</a></div>
+    <div class="footer-disclaimer">声明：本网站仅做信息导航，不提供任何数据集下载。数据集版权归原机构/作者所有。数据内容未经授权禁止商业使用。</div>
+  </div>
+</footer>
+<button class="back-to-top" id="backToTop" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+<script>
+(function(){
+  var backToTop = document.getElementById('backToTop');
+  if(!backToTop) return;
+  function onScroll(){
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    if(y > 500) backToTop.classList.add('visible');
+    else backToTop.classList.remove('visible');
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  backToTop.addEventListener('click', function(){ window.scrollTo({ top:0, behavior:'smooth' }); });
+  // Fade-in scroll animations with stagger
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold:0.1, rootMargin:'0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in, .scroll-animate').forEach(function(el){ obs.observe(el); });
+  } else {
+    document.querySelectorAll('.fade-in, .scroll-animate').forEach(function(el){ el.classList.add('visible'); });
+  }
+})();
+</script>
+
+
+<!-- AI Search Widget — quiet toolbar + search/chat panel -->
+
+
+<div class="search-widget-btns">
+  <button class="search-widget-btn ai-btn" id="aiChatBtn" title="AI assistant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span id="aiChatBtnLabel">AI 助手</span>
+  </button>
+  <button class="search-widget-btn search-btn" id="aiSearchBtn" title="Semantic search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <span id="aiSearchBtnLabel">搜索</span>
+  </button>
+</div>
+
+<div class="search-widget-overlay" id="aiSearchOverlay">
+  <div class="search-widget-panel">
+    <div class="search-panel-header">
+      <span class="search-panel-title" id="panelTitle">AI 助手</span>
+      <button class="search-panel-close" id="aiSearchClose" aria-label="Close">×</button>
+    </div>
+    <div class="search-panel-input">
+      <input type="text" id="aiSearchInput" placeholder="描述你的需求，如：人形机器人双臂操作数据集..." />
+      <select id="aiModelSelect">
+        <option value="deepseek-v4-flash">DeepSeek V4 Flash</option>
+        <option value="deepseek-chat">DeepSeek V3</option>
+        <option value="deepseek-reasoner">DeepSeek R1</option>
+      </select>
+      <button id="aiSearchSubmit">搜索</button>
+    </div>
+    <div class="search-panel-body" id="aiSearchBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const SEARCH_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/search';
+  const CHAT_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/assistant';
+  const isEn = (document.documentElement.lang || 'zh').toLowerCase().startsWith('en');
+  const L = isEn ? {
+    chat: 'AI assistant', search: 'Search', ask: 'Ask', panelChat: 'AI assistant', panelSearch: 'Semantic search',
+    chatPlaceholder: 'Ask about a dataset, e.g. what should I use for tabletop grasping?',
+    searchPlaceholder: 'Describe what you need, e.g. humanoid dual-arm manipulation datasets...',
+    chatEmpty: 'Ask a question to get dataset recommendations. Multi-turn context is kept.',
+    searchEmpty: 'Search across every dataset, standard, and tool in the index.',
+    datasets: 'Datasets', standards: 'Standards', tools: 'Tools',
+    user: 'You', loadingChat: 'Thinking...', loadingSearch: 'Searching...',
+    noResults: 'No matches. Try a different description.', minChars: 'Enter at least 2 characters.',
+    failed: 'Request failed', retry: 'Check your connection and try again.',
+    srcDataset: 'Dataset', srcStandard: 'Standard', srcTool: 'Tool'
+  } : {
+    chat: 'AI 助手', search: '搜索', ask: '提问', panelChat: 'AI 助手', panelSearch: '语义搜索',
+    chatPlaceholder: '向 AI 助手提问，如：我的机械臂要做桌面抓取，推荐什么数据集？',
+    searchPlaceholder: '描述你的需求，如：人形机器人双臂操作数据集...',
+    chatEmpty: '向 AI 助手提问，获取个性化数据集推荐。支持多轮对话，上下文自动关联。',
+    searchEmpty: '在全部数据集、标准与工具中检索。',
+    datasets: '数据集', standards: '标准', tools: '工具',
+    user: '你', loadingChat: 'AI 正在分析...', loadingSearch: '正在搜索...',
+    noResults: '未找到匹配结果，试试换一种描述？', minChars: '请输入至少 2 个字符',
+    failed: '请求失败', retry: '请检查网络连接，或稍后重试',
+    srcDataset: '数据集', srcStandard: '标准', srcTool: '工具'
+  };
+
+  var chatBtn = document.getElementById('aiChatBtn');
+  var searchBtn = document.getElementById('aiSearchBtn');
+  var overlay = document.getElementById('aiSearchOverlay');
+  var closeBtn = document.getElementById('aiSearchClose');
+  var input = document.getElementById('aiSearchInput');
+  var submit = document.getElementById('aiSearchSubmit');
+  var body = document.getElementById('aiSearchBody');
+  var panelTitle = document.getElementById('panelTitle');
+  var mode = 'chat';
+  var chatHistory = [];
+
+  document.getElementById('aiChatBtnLabel').textContent = L.chat;
+  document.getElementById('aiSearchBtnLabel').textContent = L.search;
+
+  function open(m) {
+    mode = m;
+    chatHistory = [];
+    overlay.classList.add('open');
+    panelTitle.textContent = m === 'chat' ? L.panelChat : L.panelSearch;
+    submit.textContent = m === 'chat' ? L.ask : L.search;
+    input.placeholder = m === 'chat' ? L.chatPlaceholder : L.searchPlaceholder;
+    body.innerHTML = '<div class="search-empty">' + (m === 'chat' ? L.chatEmpty : L.searchEmpty) + '</div>';
+    setTimeout(function() { input.focus(); }, 200);
+  }
+  function close() { overlay.classList.remove('open'); }
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  chatBtn.addEventListener('click', function() { open('chat'); });
+  searchBtn.addEventListener('click', function() { open('search'); });
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+    if (e.key === 'k' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); open('search'); }
+  });
+
+  function renderSearch(data) {
+    var h = '';
+    if (data.datasets && data.datasets.length) {
+      h += '<div class="search-result-section"><h3>' + L.datasets + '</h3>';
+      data.datasets.forEach(function(d) {
+        var tags = (d.robotType || []).concat(d.task || []).slice(0, 3);
+        h += '<a href="' + (isEn ? '/en' : '') + '/datasets/' + d.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + d.score + '%</div>'
+          + '<div class="search-result-body">'
+          + '<div class="search-result-name">' + esc(d.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(d.notes || '') + '</div>'
+          + '<div class="search-result-tags">' + tags.map(function(t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>'
+          + '</div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.standards && data.standards.length) {
+      h += '<div class="search-result-section"><h3>' + L.standards + '</h3>';
+      data.standards.forEach(function(s) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/standards/' + s.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + s.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(s.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(s.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.tools && data.tools.length) {
+      h += '<div class="search-result-section"><h3>' + L.tools + '</h3>';
+      data.tools.forEach(function(t) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/tools/' + t.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + t.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(t.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(t.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (!h) h = '<div class="search-empty">' + L.noResults + '</div>';
+    body.innerHTML = h;
+  }
+
+  function renderChatHistory() {
+    var h = '';
+    chatHistory.forEach(function(msg) {
+      if (msg.role === 'user') {
+        h += '<div class="chat-message user"><strong>' + L.user + '</strong><br>' + esc(msg.content) + '</div>';
+      } else {
+        h += '<div class="chat-message assistant">' + (msg.reply || '') + '</div>';
+        if (msg.sources && msg.sources.length) {
+          h += '<div class="chat-sources">';
+          msg.sources.forEach(function(s) {
+            var kind = s.type === 'tool' ? 'tools' : s.type === 'standard' ? 'standards' : 'datasets';
+            var label = s.type === 'tool' ? L.srcTool : s.type === 'standard' ? L.srcStandard : L.srcDataset;
+            var url = (isEn ? '/en' : '') + '/' + kind + '/' + s.id + '/';
+            h += '<a href="' + url + '" class="chat-source" target="_blank"><span class="chat-source-type">' + label + '</span>' + esc(s.name) + ' <span class="chat-source-score">' + s.score + '%</span></a>';
+          });
+          h += '</div>';
+        }
+      }
+    });
+    if (!h) h = '<div class="search-empty">' + L.chatEmpty + '</div>';
+    body.innerHTML = h;
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function simpleMarkdown(text) {
+    return esc(text)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n- /g, '\n<li>')
+      .replace(/\n(\d+)\. /g, '\n<li>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+  }
+
+  async function doSubmit() {
+    var q = input.value.trim();
+    if (q.length < 2) { body.innerHTML = '<div class="search-empty">' + L.minChars + '</div>'; return; }
+    submit.disabled = true;
+    body.innerHTML = '<div class="loading"><div class="spinner"></div><div style="margin-top:12px">' + (mode === 'chat' ? L.loadingChat : L.loadingSearch) + '</div></div>';
+
+    try {
+      if (mode === 'search') {
+        var res = await fetch(SEARCH_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, lang: isEn ? 'en' : 'zh' })
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        var data = await res.json();
+        if (data.error) throw new Error(data.error);
+        renderSearch(data);
+      } else {
+        chatHistory.push({ role: 'user', content: q });
+        var cres = await fetch(CHAT_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, history: chatHistory.slice(0, -1), model: document.getElementById('aiModelSelect').value })
+        });
+        if (!cres.ok) throw new Error('HTTP ' + cres.status);
+        var cdata = await cres.json();
+        if (cdata.error) throw new Error(cdata.error);
+        chatHistory.push({ role: 'assistant', reply: simpleMarkdown(cdata.reply), sources: cdata.sources });
+        renderChatHistory();
+        input.value = '';
+      }
+    } catch (err) {
+      console.error('[Search] error:', err);
+      body.innerHTML = '<div class="search-error">' + L.failed + '：' + esc(err.message) + '<br><small>' + L.retry + '</small></div>';
+    }
+    submit.disabled = false;
+    setTimeout(function() { input.focus(); }, 100);
+  }
+
+  submit.addEventListener('click', doSubmit);
+  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doSubmit(); });
+})();
+</script>
+
+</body>
+</html>

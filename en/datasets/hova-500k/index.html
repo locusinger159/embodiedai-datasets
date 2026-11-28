@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="canonical" href="https://superdata-robotai.com/en/datasets/hova-500k/">
+<link rel="alternate" hreflang="zh-CN" href="https://superdata-robotai.com/datasets/hova-500k/">
+<link rel="alternate" hreflang="en" href="https://superdata-robotai.com/en/datasets/hova-500k/">
+<link rel="alternate" hreflang="x-default" href="https://superdata-robotai.com/datasets/hova-500k/">
+<meta property="og:url" content="https://superdata-robotai.com/en/datasets/hova-500k/">
+<meta property="og:site_name" content="Superdata RobotAI">
+<meta property="og:image" content="https://superdata-robotai.com/%E5%AD%A6%E7%94%9Fbot.png">
+<meta name="twitter:card" content="summary">
+<meta property="og:title" content="HOVA-500K | Superdata RobotAI">
+<meta property="og:description" content="HKUST 2025 (GLOVER++)，当前最大规模的视觉可供性数据集。从 Ego4D/EPIC-KITCHENS 等人类视频自动提取手-物接触帧并回投标注。AFUN 在 HOVA-500K 可供性分割上取得 SOTA，并在其基础上转换生成了分割训练数据。">
+<meta property="og:type" content="website">
+<meta name="twitter:title" content="HOVA-500K | Superdata RobotAI">
+<meta name="twitter:description" content="HKUST 2025 (GLOVER++)，当前最大规模的视觉可供性数据集。从 Ego4D/EPIC-KITCHENS 等人类视频自动提取手-物接触帧并回投标注。AFUN 在 HOVA-500K 可供性分割上取得 SOTA，并在其基础上转换生成了分割训练数据。">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOVA-500K | Superdata RobotAI</title><meta name="description" content="HKUST 2025 (GLOVER++)，当前最大规模的视觉可供性数据集。从 Ego4D/EPIC-KITCHENS 等人类视频自动提取手-物接触帧并回投标注。AFUN 在 HOVA-500K 可供性分割上取得 SOTA，并在其基础上转换生成了分割训练数据。"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"HOVA-500K","description":"HKUST 2025 (GLOVER++)，当前最大规模的视觉可供性数据集。从 Ego4D/EPIC-KITCHENS 等人类视频自动提取手-物接触帧并回投标注。AFUN 在 HOVA-500K 可供性分割上取得 SOTA，并在其基础上转换生成了分割训练数据。","url":"https://superdata-robotai.com/en/datasets/hova-500k/","license":"https://creativecommons.org/licenses/by-nc/4.0/","creator":{"@type":"Organization","name":"HKUST"},"datePublished":"2025","keywords":"可供性, 第一人称, AFUN, 大规模, 跨具身, 物体交互","sameAs":"https://teleema.github.io/projects/GLOVER++"}</script>
+<link rel="icon" type="image/png" href="/机器人.png">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var btn = document.getElementById('hamburgerBtn');
+  var menu = document.getElementById('navMenu');
+  if(btn && menu){
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ btn.classList.remove('open'); menu.classList.remove('open'); });
+    });
+  }
+
+  // Auto card view on mobile for datasets/standards
+  if(window.innerWidth <= 768){
+    if(typeof state !== 'undefined' && state && 'view' in state){ state.view = 'card';
+      if(typeof update === 'function') update();
+    }
+  }
+});
+</script>
+
+</head>
+<body>
+<nav class="navbar">
+  <a href="/en/" class="nav-logo">
+    <img src="/学生bot.png" alt="Logo">
+    <span class="nav-logo-text">Superdata RobotAI</span>
+  </a>
+  <div class="nav-menu" id="navMenu">
+    <a href="/en/" class="nav-link ">Home</a>
+    <a href="/en/datasets/" class="nav-link active">Datasets</a>
+    <a href="/en/standards/" class="nav-link ">Standards</a>
+    <a href="/en/benchmarks/" class="nav-link ">Leaderboards</a>
+    <a href="/en/tools/" class="nav-link ">Tools</a>
+    <a href="/en/blog/" class="nav-link ">Blog</a>
+  </div>
+  <div class="nav-lang">
+    <a href="/" class="nav-lang-link" title="中文">中</a>
+    <span class="nav-lang-sep">/</span>
+    <a href="/en/" class="nav-lang-link active" title="English">EN</a>
+  </div>
+  <div class="nav-cta">
+    <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="btn btn-ghost">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+  <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main class="detail-main">
+  <a href="/en/datasets/" class="back-link">← Back to Datasets</a>
+  <div class="detail-header">
+    <div><h1 class="detail-name">HOVA-500K</h1></div>
+    <span class="type-badge type-open">Open</span>
+  </div>
+  <p class="detail-org">HKUST</p>
+  <div class="detail-desc"><p><strong>HOVA-500K（Human-Object Visual Affordance 500K）</strong>是 HKUST（广州）于 2025 年发布的大规模视觉可供性数据集，伴随 GLOVER++ 模型。</p><p><strong>规模</strong>：<strong>50 万</strong> 张 RGB 图像，覆盖 <strong>1,726</strong> 个物体类别和 <strong>675</strong> 个动作/动词类别，是目前最大规模的 visual affordance 数据集。</p><p><strong>采集方式</strong>：从 Ego4D、EPIC-KITCHENS 等第一人称人类视频中检测手-物接触帧，通过 homography 反投影将接触点映射到无遮挡帧，实现毫米级交互点标注。</p><p><strong>标注</strong>：point-level Gaussian heatmap（非区域掩码），以接触点为中心的高斯热力图，精度可达毫米级。</p><p><strong>关联模型</strong>：GLOVER++（全局-局部可供性训练框架），仅 8.1M 可训练参数，在真实机器人零样本操作中达 73.3% 成功率。</p><p>AFUN 将 HOVA-500K 的 point-level 标注转换为分割掩码用于训练，并在其测试集上取得 SOTA。</p></div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="info-card-label">Institution</div><div class="info-card-value">HKUST</div></div>
+    <div class="info-card"><div class="info-card-label">Scale</div><div class="info-card-value">50 万张 RGB 图像 + 1,726 物体类别 + 675 动作类别</div></div>
+    <div class="info-card"><div class="info-card-label">License</div><div class="info-card-value">CC-BY-NC-4.0</div></div>
+    <div class="info-card"><div class="info-card-label">Robot Type</div><div class="info-card-value"><span class="data-tag">Arm</span></div></div>
+    <div class="info-card"><div class="info-card-label">Task Type</div><div class="info-card-value"><span class="data-tag">Object Interact.</span></div></div>
+    <div class="info-card"><div class="info-card-label">Year</div><div class="info-card-value">2025</div></div>
+    <div class="info-card info-card-wide"><div class="info-card-label">Modality</div><div class="info-card-value">RGB</div></div>
+  </div>
+
+  <!-- Quality Labels -->
+  <div class="quality-badges"><span class="quality-badge info">Human video (ego)</span><span class="quality-badge info">自动标注（半自动化管线）</span><span class="quality-badge good">100% real</span><span class="quality-badge good">Split available</span></div>
+
+  <!-- VLA Compatibility -->
+  
+
+  <!-- Benchmark Results -->
+  
+
+  <!-- Data Format Schema -->
+  <div class="section-block">
+    <h2>Data Format</h2>
+    <div class="content-card">
+      <div class="content-stat"><span class="content-stat-label">Storage format</span><span class="content-stat-value">PNG + JSON（热力图标注）</span></div>
+      <div class="content-stat"><span class="content-stat-label">Data size</span><span class="content-stat-value">~120GB</span></div>
+      <div class="content-stat"><span class="content-stat-label">Compression</span><span class="content-stat-value">无</span></div>
+      <div class="content-stat"><span class="content-stat-label">File layout</span><span class="content-stat-value">按 image 分文件；每 PNG 配 NPY 热力图</span></div>
+      <div class="content-stat"><span class="content-stat-label">Indexing</span><span class="content-stat-value">object_category + action_category 双索引</span></div>
+      <div class="content-stat"><span class="content-stat-label">Format version</span><span class="content-stat-value">PNG（RGB）+ NPY（高斯热力图）</span></div>
+    </div>
+    <div class="schema-tree" style="margin-top:16px"><div class="tree-node" style="margin-left:0px"><span class="tree-label root">image</span></div><div class="tree-node" style="margin-left:24px"><span class="tree-line"></span><span class="tree-label">object_category</span></div><div class="tree-node" style="margin-left:24px"><span class="tree-line"></span><span class="tree-label">action_category</span></div><div class="tree-node" style="margin-left:48px"><span class="tree-line"></span><span class="tree-label">contact_heatmap（Gaussian keypoint）</span></div></div>
+  </div>
+
+  <!-- Usage -->
+  <div class="section-block usage-block"><h2>Usage</h2><div class="content-card"><h3>Load Data</h3><pre><code># HOVA-500K 提供高斯热力图标注
+import numpy as np
+heatmap = np.load('hova_heatmap.npy')  # 接触点高斯热力图
+img = cv2.imread('hova_image.jpg')
+# 来自 Ego4D/EPIC-KITCHENS 人类视频</code></pre><div style="margin-top:16px"><h3>Preprocessing Notes</h3><div style="font-size:14px;color:var(--text-secondary);line-height:1.8">50 万张图像；point-level 高斯热力图标注</div></div></div></div>
+
+  <div class="section-block">
+    <h2>Data Content</h2>
+    <div class="data-content-grid">
+      <div class="content-card">
+        <h3>Sensor Specifications</h3>
+        <div class="content-stat"><span class="content-stat-value" style="font-weight:400">RGB</span></div>
+      </div>
+      <div class="content-card">
+        <h3>Data Statistics</h3>
+        <div class="content-stat"><span class="content-stat-label">Scenes</span><span class="content-stat-value">Ego4D/EPIC-KITCHENS 等第一人称视频中的日常生活场景</span></div>
+        <div class="content-stat"><span class="content-stat-label">Objects</span><span class="content-stat-value">1,726 类日常物体</span></div>
+        <div class="content-stat"><span class="content-stat-label">Tasks</span><span class="content-stat-value">视觉可供性关键点预测、可供性分割、接触点预测</span></div>
+        <div class="content-stat"><span class="content-stat-label">Episodes / clips</span><span class="content-stat-value">500K 图像</span></div>
+      </div>
+    </div>
+    <div style="margin-top:16px"><div class="content-card"><h3>Annotations</h3><div class="data-tags"><span class="data-tag">接触点高斯热力图</span><span class="data-tag">物体类别</span><span class="data-tag">动作类别</span></div></div></div>
+    
+  </div>
+
+  <!-- Links -->
+  <div class="section-block"><h2>Links</h2><div class="links-section"><a href="https://teleema.github.io/projects/GLOVER++" target="_blank" class="link-card" rel="noopener">Official site</a><a href="https://arxiv.org/abs/2505.11865" target="_blank" class="link-card" rel="noopener">Paper</a></div></div>
+
+  <!-- Citation -->
+  
+
+  <!-- Changelog -->
+  
+
+  <!-- Related Standards -->
+  
+
+  <!-- Related Datasets -->
+  <div class="section-block">
+    <h2>Related Datasets</h2>
+    <div class="related-grid"><a href="/en/datasets/3doi-dataset/" class="related-card"><div class="related-name">3DOI</div><div class="related-org">University of Michigan</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a><a href="/en/datasets/reasonaff/" class="related-card"><div class="related-name">ReasonAFF</div><div class="related-org">Shanghai AI Lab / ShanghaiTech</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a><a href="/en/datasets/vitra/" class="related-card"><div class="related-name">VITRA</div><div class="related-org">Microsoft Research</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a><a href="/en/datasets/open-x-embodiment/" class="related-card"><div class="related-name">Open X-Embodiment</div><div class="related-org">Google DeepMind</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a><a href="/en/datasets/oxe-auge/" class="related-card"><div class="related-name">OXE-AugE</div><div class="related-org">独立研究团队</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a><a href="/en/datasets/handal-dataset/" class="related-card"><div class="related-name">HANDAL</div><div class="related-org">NVIDIA</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a></div>
+  </div>
+
+  <!-- Comments -->
+  <div class="section-block">
+    <h2>Discussion</h2>
+    <script src="https://giscus.app/client.js"
+      data-repo="locusinger159/embodiedai-datasets"
+      data-repo-id="R_kgDOSiiGSw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOSiiGS84C-Eki"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="/学生bot.png" alt="Logo">
+        Superdata RobotAI
+      </div>
+      <p class="footer-desc">A global intelligence hub for embodied AI, humanoid robots, robotic arms, and mobile robot datasets. We do one thing: information aggregation & access navigation, empowering algorithm R&D.</p>
+      <div class="footer-social">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="social-link" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="mailto:embodisets@163.com" class="social-link" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <div class="footer-links">
+        <a href="/en/" class="footer-link">Home</a>
+        <a href="/en/datasets/" class="footer-link">Datasets</a>
+        <a href="/en/standards/" class="footer-link">Standards</a>
+        <a href="/en/submit/" class="footer-link">Submit</a>
+        <a href="/en/blog/" class="footer-link">Blog</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>Resources</h4>
+      <div class="footer-links">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="footer-link">GitHub Repo</a>
+        <a href="mailto:embodisets@163.com" class="footer-link">Feedback</a>
+        <a href="/en/blog/" class="footer-link">Blog</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>Contact</h4>
+      <div class="footer-links">
+        <span class="footer-link">embodisets@163.com</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copyright">Copyright © 2026 Superdata RobotAI · <a href="https://github.com/locusinger159/embodiedai-datasets" style="color:inherit">CC BY-NC-SA 4.0</a></div>
+    <div class="footer-disclaimer">Disclaimer: This site provides information navigation only. No dataset downloads are offered. Dataset copyrights belong to their respective owners/authors. Unauthorized commercial use of metadata is prohibited.</div>
+  </div>
+</footer>
+
+
+<!-- AI Search Widget — quiet toolbar + search/chat panel -->
+
+
+<div class="search-widget-btns">
+  <button class="search-widget-btn ai-btn" id="aiChatBtn" title="AI assistant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span id="aiChatBtnLabel">AI 助手</span>
+  </button>
+  <button class="search-widget-btn search-btn" id="aiSearchBtn" title="Semantic search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <span id="aiSearchBtnLabel">搜索</span>
+  </button>
+</div>
+
+<div class="search-widget-overlay" id="aiSearchOverlay">
+  <div class="search-widget-panel">
+    <div class="search-panel-header">
+      <span class="search-panel-title" id="panelTitle">AI 助手</span>
+      <button class="search-panel-close" id="aiSearchClose" aria-label="Close">×</button>
+    </div>
+    <div class="search-panel-input">
+      <input type="text" id="aiSearchInput" placeholder="描述你的需求，如：人形机器人双臂操作数据集..." />
+      <select id="aiModelSelect">
+        <option value="deepseek-v4-flash">DeepSeek V4 Flash</option>
+        <option value="deepseek-chat">DeepSeek V3</option>
+        <option value="deepseek-reasoner">DeepSeek R1</option>
+      </select>
+      <button id="aiSearchSubmit">搜索</button>
+    </div>
+    <div class="search-panel-body" id="aiSearchBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const SEARCH_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/search';
+  const CHAT_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/assistant';
+  const isEn = (document.documentElement.lang || 'zh').toLowerCase().startsWith('en');
+  const L = isEn ? {
+    chat: 'AI assistant', search: 'Search', ask: 'Ask', panelChat: 'AI assistant', panelSearch: 'Semantic search',
+    chatPlaceholder: 'Ask about a dataset, e.g. what should I use for tabletop grasping?',
+    searchPlaceholder: 'Describe what you need, e.g. humanoid dual-arm manipulation datasets...',
+    chatEmpty: 'Ask a question to get dataset recommendations. Multi-turn context is kept.',
+    searchEmpty: 'Search across every dataset, standard, and tool in the index.',
+    datasets: 'Datasets', standards: 'Standards', tools: 'Tools',
+    user: 'You', loadingChat: 'Thinking...', loadingSearch: 'Searching...',
+    noResults: 'No matches. Try a different description.', minChars: 'Enter at least 2 characters.',
+    failed: 'Request failed', retry: 'Check your connection and try again.',
+    srcDataset: 'Dataset', srcStandard: 'Standard', srcTool: 'Tool'
+  } : {
+    chat: 'AI 助手', search: '搜索', ask: '提问', panelChat: 'AI 助手', panelSearch: '语义搜索',
+    chatPlaceholder: '向 AI 助手提问，如：我的机械臂要做桌面抓取，推荐什么数据集？',
+    searchPlaceholder: '描述你的需求，如：人形机器人双臂操作数据集...',
+    chatEmpty: '向 AI 助手提问，获取个性化数据集推荐。支持多轮对话，上下文自动关联。',
+    searchEmpty: '在全部数据集、标准与工具中检索。',
+    datasets: '数据集', standards: '标准', tools: '工具',
+    user: '你', loadingChat: 'AI 正在分析...', loadingSearch: '正在搜索...',
+    noResults: '未找到匹配结果，试试换一种描述？', minChars: '请输入至少 2 个字符',
+    failed: '请求失败', retry: '请检查网络连接，或稍后重试',
+    srcDataset: '数据集', srcStandard: '标准', srcTool: '工具'
+  };
+
+  var chatBtn = document.getElementById('aiChatBtn');
+  var searchBtn = document.getElementById('aiSearchBtn');
+  var overlay = document.getElementById('aiSearchOverlay');
+  var closeBtn = document.getElementById('aiSearchClose');
+  var input = document.getElementById('aiSearchInput');
+  var submit = document.getElementById('aiSearchSubmit');
+  var body = document.getElementById('aiSearchBody');
+  var panelTitle = document.getElementById('panelTitle');
+  var mode = 'chat';
+  var chatHistory = [];
+
+  document.getElementById('aiChatBtnLabel').textContent = L.chat;
+  document.getElementById('aiSearchBtnLabel').textContent = L.search;
+
+  function open(m) {
+    mode = m;
+    chatHistory = [];
+    overlay.classList.add('open');
+    panelTitle.textContent = m === 'chat' ? L.panelChat : L.panelSearch;
+    submit.textContent = m === 'chat' ? L.ask : L.search;
+    input.placeholder = m === 'chat' ? L.chatPlaceholder : L.searchPlaceholder;
+    body.innerHTML = '<div class="search-empty">' + (m === 'chat' ? L.chatEmpty : L.searchEmpty) + '</div>';
+    setTimeout(function() { input.focus(); }, 200);
+  }
+  function close() { overlay.classList.remove('open'); }
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  chatBtn.addEventListener('click', function() { open('chat'); });
+  searchBtn.addEventListener('click', function() { open('search'); });
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+    if (e.key === 'k' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); open('search'); }
+  });
+
+  function renderSearch(data) {
+    var h = '';
+    if (data.datasets && data.datasets.length) {
+      h += '<div class="search-result-section"><h3>' + L.datasets + '</h3>';
+      data.datasets.forEach(function(d) {
+        var tags = (d.robotType || []).concat(d.task || []).slice(0, 3);
+        h += '<a href="' + (isEn ? '/en' : '') + '/datasets/' + d.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + d.score + '%</div>'
+          + '<div class="search-result-body">'
+          + '<div class="search-result-name">' + esc(d.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(d.notes || '') + '</div>'
+          + '<div class="search-result-tags">' + tags.map(function(t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>'
+          + '</div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.standards && data.standards.length) {
+      h += '<div class="search-result-section"><h3>' + L.standards + '</h3>';
+      data.standards.forEach(function(s) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/standards/' + s.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + s.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(s.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(s.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.tools && data.tools.length) {
+      h += '<div class="search-result-section"><h3>' + L.tools + '</h3>';
+      data.tools.forEach(function(t) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/tools/' + t.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + t.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(t.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(t.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (!h) h = '<div class="search-empty">' + L.noResults + '</div>';
+    body.innerHTML = h;
+  }
+
+  function renderChatHistory() {
+    var h = '';
+    chatHistory.forEach(function(msg) {
+      if (msg.role === 'user') {
+        h += '<div class="chat-message user"><strong>' + L.user + '</strong><br>' + esc(msg.content) + '</div>';
+      } else {
+        h += '<div class="chat-message assistant">' + (msg.reply || '') + '</div>';
+        if (msg.sources && msg.sources.length) {
+          h += '<div class="chat-sources">';
+          msg.sources.forEach(function(s) {
+            var kind = s.type === 'tool' ? 'tools' : s.type === 'standard' ? 'standards' : 'datasets';
+            var label = s.type === 'tool' ? L.srcTool : s.type === 'standard' ? L.srcStandard : L.srcDataset;
+            var url = (isEn ? '/en' : '') + '/' + kind + '/' + s.id + '/';
+            h += '<a href="' + url + '" class="chat-source" target="_blank"><span class="chat-source-type">' + label + '</span>' + esc(s.name) + ' <span class="chat-source-score">' + s.score + '%</span></a>';
+          });
+          h += '</div>';
+        }
+      }
+    });
+    if (!h) h = '<div class="search-empty">' + L.chatEmpty + '</div>';
+    body.innerHTML = h;
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function simpleMarkdown(text) {
+    return esc(text)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n- /g, '\n<li>')
+      .replace(/\n(\d+)\. /g, '\n<li>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+  }
+
+  async function doSubmit() {
+    var q = input.value.trim();
+    if (q.length < 2) { body.innerHTML = '<div class="search-empty">' + L.minChars + '</div>'; return; }
+    submit.disabled = true;
+    body.innerHTML = '<div class="loading"><div class="spinner"></div><div style="margin-top:12px">' + (mode === 'chat' ? L.loadingChat : L.loadingSearch) + '</div></div>';
+
+    try {
+      if (mode === 'search') {
+        var res = await fetch(SEARCH_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, lang: isEn ? 'en' : 'zh' })
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        var data = await res.json();
+        if (data.error) throw new Error(data.error);
+        renderSearch(data);
+      } else {
+        chatHistory.push({ role: 'user', content: q });
+        var cres = await fetch(CHAT_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, history: chatHistory.slice(0, -1), model: document.getElementById('aiModelSelect').value })
+        });
+        if (!cres.ok) throw new Error('HTTP ' + cres.status);
+        var cdata = await cres.json();
+        if (cdata.error) throw new Error(cdata.error);
+        chatHistory.push({ role: 'assistant', reply: simpleMarkdown(cdata.reply), sources: cdata.sources });
+        renderChatHistory();
+        input.value = '';
+      }
+    } catch (err) {
+      console.error('[Search] error:', err);
+      body.innerHTML = '<div class="search-error">' + L.failed + '：' + esc(err.message) + '<br><small>' + L.retry + '</small></div>';
+    }
+    submit.disabled = false;
+    setTimeout(function() { input.focus(); }, 100);
+  }
+
+  submit.addEventListener('click', doSubmit);
+  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doSubmit(); });
+})();
+</script>
+
+</body>
+</html>

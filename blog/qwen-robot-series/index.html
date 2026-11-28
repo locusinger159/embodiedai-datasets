@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="canonical" href="https://superdata-robotai.com/blog/qwen-robot-series/">
+<link rel="alternate" hreflang="zh-CN" href="https://superdata-robotai.com/blog/qwen-robot-series/">
+<link rel="alternate" hreflang="en" href="https://superdata-robotai.com/en/blog/qwen-robot-series/">
+<link rel="alternate" hreflang="x-default" href="https://superdata-robotai.com/blog/qwen-robot-series/">
+<meta property="og:url" content="https://superdata-robotai.com/blog/qwen-robot-series/">
+<meta property="og:site_name" content="Superdata RobotAI">
+<meta property="og:image" content="https://superdata-robotai.com/%E5%AD%A6%E7%94%9Fbot.png">
+<meta name="twitter:card" content="summary">
+<meta property="og:title" content="阿里发布首个具身大模型 Qwen-Robot 系列：Manip + Nav + World 三模型矩阵深度解析 | Superdata RobotAI">
+<meta property="og:description" content="6月16日，阿里巴巴正式发布千问具身智能大模型 Qwen-Robot 系列。三大核心模型——操作 VLA（Manip）、导航 VLN（Nav）、世界模型（World）——首次为机器人提供了完整的手、脚、大脑通用底座。本文逐一拆解技术架构与评测数据。">
+<meta property="og:type" content="website">
+<meta name="twitter:title" content="阿里发布首个具身大模型 Qwen-Robot 系列：Manip + Nav + World 三模型矩阵深度解析 | Superdata RobotAI">
+<meta name="twitter:description" content="6月16日，阿里巴巴正式发布千问具身智能大模型 Qwen-Robot 系列。三大核心模型——操作 VLA（Manip）、导航 VLN（Nav）、世界模型（World）——首次为机器人提供了完整的手、脚、大脑通用底座。本文逐一拆解技术架构与评测数据。">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿里发布首个具身大模型 Qwen-Robot 系列：Manip + Nav + World 三模型矩阵深度解析 | Superdata RobotAI</title><meta name="description" content="6月16日，阿里巴巴正式发布千问具身智能大模型 Qwen-Robot 系列。三大核心模型——操作 VLA（Manip）、导航 VLN（Nav）、世界模型（World）——首次为机器人提供了完整的手、脚、大脑通用底座。本文逐一拆解技术架构与评测数据。"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"阿里发布首个具身大模型 Qwen-Robot 系列：Manip + Nav + World 三模型矩阵深度解析","description":"6月16日，阿里巴巴正式发布千问具身智能大模型 Qwen-Robot 系列。三大核心模型——操作 VLA（Manip）、导航 VLN（Nav）、世界模型（World）——首次为机器人提供了完整的手、脚、大脑通用底座。本文逐一拆解技术架构与评测数据。","datePublished":"2026-06-16","url":"https://superdata-robotai.com/blog/qwen-robot-series/","inLanguage":"zh-CN","author":{"@type":"Organization","name":"Superdata RobotAI"}}</script>
+<link rel="icon" type="image/png" href="/机器人.png">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var btn = document.getElementById('hamburgerBtn');
+  var menu = document.getElementById('navMenu');
+  if(btn && menu){
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ btn.classList.remove('open'); menu.classList.remove('open'); });
+    });
+  }
+
+  // Auto card view on mobile for datasets/standards
+  if(window.innerWidth <= 768){
+    if(typeof state !== 'undefined' && state && 'view' in state){ state.view = 'card';
+      if(typeof update === 'function') update();
+    }
+  }
+});
+</script>
+
+</head>
+<body>
+<nav class="navbar">
+  <a href="/" class="nav-logo">
+    <img src="/学生bot.png" alt="Logo">
+    <span class="nav-logo-text">Superdata RobotAI</span>
+  </a>
+  <div class="nav-menu" id="navMenu">
+    <a href="/" class="nav-link ">首页</a>
+    <a href="/datasets/" class="nav-link ">数据集</a>
+    <a href="/standards/" class="nav-link ">数据标准</a>
+    <a href="/benchmarks/" class="nav-link ">排行榜</a>
+    <a href="/tools/" class="nav-link ">工具/平台</a>
+    <a href="/blog/" class="nav-link active">技术博客</a>
+  </div>
+  <div class="nav-lang">
+    <a href="/" class="nav-lang-link active" title="中文">中</a>
+    <span class="nav-lang-sep">/</span>
+    <a href="/en/" class="nav-lang-link" title="English">EN</a>
+  </div>
+  <div class="nav-cta">
+    <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="btn btn-ghost">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+  <button class="hamburger-btn" id="hamburgerBtn" aria-label="菜单">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main class="detail-main">
+  <a href="/blog/" class="back-link">← 返回博客</a>
+  <div class="blog-detail">
+    <div class="blog-detail-header">
+      <h1 class="blog-detail-title">阿里发布首个具身大模型 Qwen-Robot 系列：Manip + Nav + World 三模型矩阵深度解析</h1>
+      <div class="blog-detail-meta">
+        <span>2026-06-16</span>
+        <span>作者 Superdata RobotAI</span>
+      </div>
+      <div class="blog-detail-tags"><span class="blog-tag">Qwen-Robot</span><span class="blog-tag">VLA</span><span class="blog-tag">VLN</span><span class="blog-tag">世界模型</span><span class="blog-tag">具身智能</span><span class="blog-tag">阿里</span><span class="blog-tag">千问</span><span class="blog-tag">模型发布</span></div>
+    </div>
+    <div class="blog-detail-content"><p>2026 年 6 月 16 日，阿里巴巴正式发布<strong>千问具身智能大模型 Qwen-Robot 系列</strong>，涵盖 VLA 操作模型 Qwen-RobotManip、VLN 移动模型 Qwen-RobotNav 与世界模型 Qwen-RobotWorld 三大核心模型。这是千问大模型家族<strong>首个完整的具身智能模型矩阵</strong>，三个模型分别赋予机器人操作、导航、环境认知能力，可独立部署也可协同运转。</p>
+
+<p>阿里云智能机器人业务部总经理付斌在发布会上表示：目标是为各类形态的机器人提供通用智能底座，从工业机械臂到服务人形机器人，从四足巡检到自动驾驶，都能通过这套模型获得感知、规划和执行能力。</p>
+
+<h2>模型矩阵总览</h2>
+
+<table>
+<thead><tr><th>模型</th><th>类型</th><th>核心能力</th><th>形象比喻</th></tr></thead>
+<tbody>
+<tr><td><strong>Qwen-RobotManip</strong></td><td>VLA（视觉-语言-动作）</td><td>操作与抓取</td><td>灵巧的手</td></tr>
+<tr><td><strong>Qwen-RobotNav</strong></td><td>VLN（视觉-语言导航）</td><td>移动与寻路</td><td>认路的脚</td></tr>
+<tr><td><strong>Qwen-RobotWorld</strong></td><td>世界模型</td><td>物理规律推演</td><td>会思考的大脑</td></tr>
+</tbody>
+</table>
+
+<h2>一、Qwen-RobotManip — 操作 VLA 模型</h2>
+
+<h3>技术架构</h3>
+<p>Qwen-RobotManip 基于千问 VLM 主干，在视觉编码器后接入<strong>扩散动作头（Diffusion Action Head）</strong>，将视觉-语言理解映射为连续的机器人关节控制指令。扩散头的作用是从噪声逐步去噪生成平滑的动作轨迹，相比直接回归方式，天然抑制动作抖动。</p>
+
+<h3>训练数据</h3>
+<p>关键数字：<strong>超 38,000 小时</strong>的<strong>开源数据</strong>预训练。这意味着 Qwen-RobotManip 没有依赖任何私有真机数据——全部训练语料来自公开可获取的数据集（Open X-Embodiment、DROID、ALOHA 等），这在 VLA 模型中相当罕见。Google RT-2 和 Physical Intelligence Pi0 均使用了大量内部私有数据，而 Qwen-RobotManip 是 100% 开源数据训练的。</p>
+
+<h3>评测成绩</h3>
+<p>在 <strong>RoboChallenge Table30 v1</strong> 真机多任务全球榜单中，Qwen-RobotManip 的两个版本<strong>包揽前两名</strong>：Lira 版本真实环境通用赛道成功率 45% 位列第一，Atlas 版本紧随其后。需要特别说明：这是<strong>真机评测</strong>（非仿真），30 个桌面操作任务涵盖取放、倾倒、开柜门、精密放置等，且评测环境与训练环境完全不同。</p>
+
+<h2>二、Qwen-RobotNav — 导航 VLN 模型</h2>
+
+<p>Qwen-RobotNav 基于 Qwen-VL 视觉语言模型构建，将五大导航任务统一至同一框架：指令跟随、目标导航、目标追踪、自动驾驶、多模态寻路。原生支持 LangChain、AutoGPT、MetaGPT 等多种智能体框架。发布会上展示了搭载 Qwen-RobotNav 的宇树 Go2 四足机器人完成寻物导航任务。</p>
+
+<h2>三、Qwen-RobotWorld — 世界模型</h2>
+
+<p>Qwen-RobotWorld 是三者中最具前沿性的模型。核心能力：给定当前观察和候选动作序列，预测执行该动作后的未来视觉状态和物理状态。三大应用场景：（1）训练数据生成——少量真机轨迹即可生成大量变体；（2）动作预推演——执行前先在脑内模拟，筛选最优方案；（3）异常预测——提前规避碰撞、滑落等风险。</p>
+
+<p>在实际部署中，Qwen-RobotWorld 与 Qwen-RobotManip 构成「生成-评估-选择」双模型协同循环，显著提升高精度装配和易碎物体抓取的成功率。</p>
+
+<h2>四、Qwen-RobotClaw — 智能体框架</h2>
+
+<p>阿里还披露了内部项目 Qwen-RobotClaw——将上述三个模型作为底层工具调用的智能体框架。高层规划将复杂任务分解为子任务序列，根据子任务类型自动调度对应模型，操作失败时自动调用 World 模型分析原因并重试，支持具身问答——用自然语言询问「为什么刚才没抓住？」系统给出基于视觉和物理的分析。目前尚未开源。</p>
+
+<h2>五、行业影响分析</h2>
+
+<h3>1. 开源数据路线的胜利</h3>
+<p>Qwen-RobotManip 用 100% 开源数据达到 RoboChallenge 真机榜单第一，直接证明：开源具身数据的质量和规模已经足以支撑顶级 VLA 模型的训练。这对依赖私有数据的企业是一记重击，对学术研究和小型团队则是巨大利好。</p>
+
+<h3>2. 与 NVIDIA GR00T 的对比</h3>
+<table>
+<thead><tr><th>维度</th><th>Qwen-Robot</th><th>NVIDIA GR00T</th></tr></thead>
+<tbody>
+<tr><td>操作模型</td><td>Qwen-RobotManip</td><td>GR00T N1/N1.5/N1.6</td></tr>
+<tr><td>导航模型</td><td>Qwen-RobotNav</td><td>（无独立导航模型）</td></tr>
+<tr><td>世界模型</td><td>Qwen-RobotWorld</td><td>（依赖 Isaac Sim 仿真）</td></tr>
+<tr><td>数据策略</td><td>100% 开源数据</td><td>合成 + 真机 + 视频混合</td></tr>
+<tr><td>硬件绑定</td><td>无（模型即服务）</td><td>NVIDIA GPU + Omniverse</td></tr>
+</tbody>
+</table>
+
+<h3>3. 对具身数据生态的推动</h3>
+<p>38,000 小时开源数据训练意味着阿里团队已经对全球主流开源具身数据集做了系统性的整合和标准化处理。如果阿里将这套数据处理管线开源，将极大降低 VLA 模型训练的数据门槛——类似 ImageNet 之于计算机视觉的历史作用。</p>
+
+<h2>六、开放问题</h2>
+<ul>
+<li><strong>模型权重何时开源？</strong>发布会上未明确公布开源时间表和协议。</li>
+<li><strong>38,000 小时具体用了哪些数据集？</strong>具体的数据集清单和配比尚未公开，对复现和验证非常重要。</li>
+<li><strong>真机泛化的上限在哪里？</strong>45% 的成功率虽然是 SOTA，但距离实际部署（>90%）仍有很大距离。</li>
+<li><strong>Qwen-RobotClaw 会开源吗？</strong>智能体框架的开源将是生态建设的关键一步。</li>
+</ul>
+
+<h2>参考资料</h2>
+<ul>
+<li>量子位：<a href="https://www.qbitai.com/2026/06/435873.html" target="_blank" rel="noopener">三连发！阿里发布首个具身大模型Qwen-Robot系列</a></li>
+<li>IT之家：<a href="https://www.ithome.com/0/964/748.htm" target="_blank" rel="noopener">阿里巴巴发布首个具身智能大模型 Qwen-Robot 系列</a></li>
+<li>品玩：<a href="https://www.pingwest.com/w/314720" target="_blank" rel="noopener">阿里巴巴发布 Qwen-Robot系列模型</a></li>
+<li>千问官网：<a href="https://qwen.ai/" target="_blank" rel="noopener">qwen.ai</a></li>
+</ul></div>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="/学生bot.png" alt="Logo">
+        Superdata RobotAI
+      </div>
+      <p class="footer-desc">专注收录全球具身智能、人形机器人、机械臂、移动机器人数据集情报。只做一件事：信息汇总 & 申请导航，助力算法研发。</p>
+      <div class="footer-social">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="social-link" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="mailto:embodisets@163.com" class="social-link" title="邮箱">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>快速链接</h4>
+      <div class="footer-links">
+        <a href="/" class="footer-link">首页</a>
+        <a href="/datasets/" class="footer-link">全部数据集</a>
+        <a href="/standards/" class="footer-link">数据标准</a>
+        <a href="/submit/" class="footer-link">提交数据集</a>
+        <a href="/blog/" class="footer-link">技术博客</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>资源</h4>
+      <div class="footer-links">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="footer-link">GitHub 仓库</a>
+        <a href="mailto:embodisets@163.com" class="footer-link">提交反馈</a>
+        <a href="/blog/" class="footer-link">技术博客</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>联系我们</h4>
+      <div class="footer-links">
+        <span class="footer-link">embodisets@163.com</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copyright">Copyright © 2026 Superdata RobotAI · <a href="https://github.com/locusinger159/embodiedai-datasets" style="color:inherit">CC BY-NC-SA 4.0</a></div>
+    <div class="footer-disclaimer">声明：本网站仅做信息导航，不提供任何数据集下载。数据集版权归原机构/作者所有。数据内容未经授权禁止商业使用。</div>
+  </div>
+</footer>
+<button class="back-to-top" id="backToTop" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+<script>
+(function(){
+  var backToTop = document.getElementById('backToTop');
+  if(!backToTop) return;
+  function onScroll(){
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    if(y > 500) backToTop.classList.add('visible');
+    else backToTop.classList.remove('visible');
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  backToTop.addEventListener('click', function(){ window.scrollTo({ top:0, behavior:'smooth' }); });
+  // Fade-in scroll animations with stagger
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold:0.1, rootMargin:'0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in, .scroll-animate').forEach(function(el){ obs.observe(el); });
+  } else {
+    document.querySelectorAll('.fade-in, .scroll-animate').forEach(function(el){ el.classList.add('visible'); });
+  }
+})();
+</script>
+
+<!-- AI Search Widget — quiet toolbar + search/chat panel -->
+
+
+<div class="search-widget-btns">
+  <button class="search-widget-btn ai-btn" id="aiChatBtn" title="AI assistant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span id="aiChatBtnLabel">AI 助手</span>
+  </button>
+  <button class="search-widget-btn search-btn" id="aiSearchBtn" title="Semantic search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <span id="aiSearchBtnLabel">搜索</span>
+  </button>
+</div>
+
+<div class="search-widget-overlay" id="aiSearchOverlay">
+  <div class="search-widget-panel">
+    <div class="search-panel-header">
+      <span class="search-panel-title" id="panelTitle">AI 助手</span>
+      <button class="search-panel-close" id="aiSearchClose" aria-label="Close">×</button>
+    </div>
+    <div class="search-panel-input">
+      <input type="text" id="aiSearchInput" placeholder="描述你的需求，如：人形机器人双臂操作数据集..." />
+      <select id="aiModelSelect">
+        <option value="deepseek-v4-flash">DeepSeek V4 Flash</option>
+        <option value="deepseek-chat">DeepSeek V3</option>
+        <option value="deepseek-reasoner">DeepSeek R1</option>
+      </select>
+      <button id="aiSearchSubmit">搜索</button>
+    </div>
+    <div class="search-panel-body" id="aiSearchBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const SEARCH_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/search';
+  const CHAT_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/assistant';
+  const isEn = (document.documentElement.lang || 'zh').toLowerCase().startsWith('en');
+  const L = isEn ? {
+    chat: 'AI assistant', search: 'Search', ask: 'Ask', panelChat: 'AI assistant', panelSearch: 'Semantic search',
+    chatPlaceholder: 'Ask about a dataset, e.g. what should I use for tabletop grasping?',
+    searchPlaceholder: 'Describe what you need, e.g. humanoid dual-arm manipulation datasets...',
+    chatEmpty: 'Ask a question to get dataset recommendations. Multi-turn context is kept.',
+    searchEmpty: 'Search across every dataset, standard, and tool in the index.',
+    datasets: 'Datasets', standards: 'Standards', tools: 'Tools',
+    user: 'You', loadingChat: 'Thinking...', loadingSearch: 'Searching...',
+    noResults: 'No matches. Try a different description.', minChars: 'Enter at least 2 characters.',
+    failed: 'Request failed', retry: 'Check your connection and try again.',
+    srcDataset: 'Dataset', srcStandard: 'Standard', srcTool: 'Tool'
+  } : {
+    chat: 'AI 助手', search: '搜索', ask: '提问', panelChat: 'AI 助手', panelSearch: '语义搜索',
+    chatPlaceholder: '向 AI 助手提问，如：我的机械臂要做桌面抓取，推荐什么数据集？',
+    searchPlaceholder: '描述你的需求，如：人形机器人双臂操作数据集...',
+    chatEmpty: '向 AI 助手提问，获取个性化数据集推荐。支持多轮对话，上下文自动关联。',
+    searchEmpty: '在全部数据集、标准与工具中检索。',
+    datasets: '数据集', standards: '标准', tools: '工具',
+    user: '你', loadingChat: 'AI 正在分析...', loadingSearch: '正在搜索...',
+    noResults: '未找到匹配结果，试试换一种描述？', minChars: '请输入至少 2 个字符',
+    failed: '请求失败', retry: '请检查网络连接，或稍后重试',
+    srcDataset: '数据集', srcStandard: '标准', srcTool: '工具'
+  };
+
+  var chatBtn = document.getElementById('aiChatBtn');
+  var searchBtn = document.getElementById('aiSearchBtn');
+  var overlay = document.getElementById('aiSearchOverlay');
+  var closeBtn = document.getElementById('aiSearchClose');
+  var input = document.getElementById('aiSearchInput');
+  var submit = document.getElementById('aiSearchSubmit');
+  var body = document.getElementById('aiSearchBody');
+  var panelTitle = document.getElementById('panelTitle');
+  var mode = 'chat';
+  var chatHistory = [];
+
+  document.getElementById('aiChatBtnLabel').textContent = L.chat;
+  document.getElementById('aiSearchBtnLabel').textContent = L.search;
+
+  function open(m) {
+    mode = m;
+    chatHistory = [];
+    overlay.classList.add('open');
+    panelTitle.textContent = m === 'chat' ? L.panelChat : L.panelSearch;
+    submit.textContent = m === 'chat' ? L.ask : L.search;
+    input.placeholder = m === 'chat' ? L.chatPlaceholder : L.searchPlaceholder;
+    body.innerHTML = '<div class="search-empty">' + (m === 'chat' ? L.chatEmpty : L.searchEmpty) + '</div>';
+    setTimeout(function() { input.focus(); }, 200);
+  }
+  function close() { overlay.classList.remove('open'); }
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  chatBtn.addEventListener('click', function() { open('chat'); });
+  searchBtn.addEventListener('click', function() { open('search'); });
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+    if (e.key === 'k' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); open('search'); }
+  });
+
+  function renderSearch(data) {
+    var h = '';
+    if (data.datasets && data.datasets.length) {
+      h += '<div class="search-result-section"><h3>' + L.datasets + '</h3>';
+      data.datasets.forEach(function(d) {
+        var tags = (d.robotType || []).concat(d.task || []).slice(0, 3);
+        h += '<a href="' + (isEn ? '/en' : '') + '/datasets/' + d.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + d.score + '%</div>'
+          + '<div class="search-result-body">'
+          + '<div class="search-result-name">' + esc(d.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(d.notes || '') + '</div>'
+          + '<div class="search-result-tags">' + tags.map(function(t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>'
+          + '</div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.standards && data.standards.length) {
+      h += '<div class="search-result-section"><h3>' + L.standards + '</h3>';
+      data.standards.forEach(function(s) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/standards/' + s.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + s.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(s.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(s.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.tools && data.tools.length) {
+      h += '<div class="search-result-section"><h3>' + L.tools + '</h3>';
+      data.tools.forEach(function(t) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/tools/' + t.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + t.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(t.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(t.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (!h) h = '<div class="search-empty">' + L.noResults + '</div>';
+    body.innerHTML = h;
+  }
+
+  function renderChatHistory() {
+    var h = '';
+    chatHistory.forEach(function(msg) {
+      if (msg.role === 'user') {
+        h += '<div class="chat-message user"><strong>' + L.user + '</strong><br>' + esc(msg.content) + '</div>';
+      } else {
+        h += '<div class="chat-message assistant">' + (msg.reply || '') + '</div>';
+        if (msg.sources && msg.sources.length) {
+          h += '<div class="chat-sources">';
+          msg.sources.forEach(function(s) {
+            var kind = s.type === 'tool' ? 'tools' : s.type === 'standard' ? 'standards' : 'datasets';
+            var label = s.type === 'tool' ? L.srcTool : s.type === 'standard' ? L.srcStandard : L.srcDataset;
+            var url = (isEn ? '/en' : '') + '/' + kind + '/' + s.id + '/';
+            h += '<a href="' + url + '" class="chat-source" target="_blank"><span class="chat-source-type">' + label + '</span>' + esc(s.name) + ' <span class="chat-source-score">' + s.score + '%</span></a>';
+          });
+          h += '</div>';
+        }
+      }
+    });
+    if (!h) h = '<div class="search-empty">' + L.chatEmpty + '</div>';
+    body.innerHTML = h;
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function simpleMarkdown(text) {
+    return esc(text)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n- /g, '\n<li>')
+      .replace(/\n(\d+)\. /g, '\n<li>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+  }
+
+  async function doSubmit() {
+    var q = input.value.trim();
+    if (q.length < 2) { body.innerHTML = '<div class="search-empty">' + L.minChars + '</div>'; return; }
+    submit.disabled = true;
+    body.innerHTML = '<div class="loading"><div class="spinner"></div><div style="margin-top:12px">' + (mode === 'chat' ? L.loadingChat : L.loadingSearch) + '</div></div>';
+
+    try {
+      if (mode === 'search') {
+        var res = await fetch(SEARCH_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, lang: isEn ? 'en' : 'zh' })
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        var data = await res.json();
+        if (data.error) throw new Error(data.error);
+        renderSearch(data);
+      } else {
+        chatHistory.push({ role: 'user', content: q });
+        var cres = await fetch(CHAT_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, history: chatHistory.slice(0, -1), model: document.getElementById('aiModelSelect').value })
+        });
+        if (!cres.ok) throw new Error('HTTP ' + cres.status);
+        var cdata = await cres.json();
+        if (cdata.error) throw new Error(cdata.error);
+        chatHistory.push({ role: 'assistant', reply: simpleMarkdown(cdata.reply), sources: cdata.sources });
+        renderChatHistory();
+        input.value = '';
+      }
+    } catch (err) {
+      console.error('[Search] error:', err);
+      body.innerHTML = '<div class="search-error">' + L.failed + '：' + esc(err.message) + '<br><small>' + L.retry + '</small></div>';
+    }
+    submit.disabled = false;
+    setTimeout(function() { input.focus(); }, 100);
+  }
+
+  submit.addEventListener('click', doSubmit);
+  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doSubmit(); });
+})();
+</script>
+
+</body>
+</html>

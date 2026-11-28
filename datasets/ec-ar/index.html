@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="canonical" href="https://superdata-robotai.com/datasets/ec-ar/">
+<link rel="alternate" hreflang="zh-CN" href="https://superdata-robotai.com/datasets/ec-ar/">
+<link rel="alternate" hreflang="en" href="https://superdata-robotai.com/en/datasets/ec-ar/">
+<link rel="alternate" hreflang="x-default" href="https://superdata-robotai.com/datasets/ec-ar/">
+<meta property="og:url" content="https://superdata-robotai.com/datasets/ec-ar/">
+<meta property="og:site_name" content="Superdata RobotAI">
+<meta property="og:image" content="https://superdata-robotai.com/%E5%AD%A6%E7%94%9Fbot.png">
+<meta name="twitter:card" content="summary">
+<meta property="og:title" content="EC-AR（Elderly Care Action Recognition） | Superdata RobotAI">
+<meta property="og:description" content="面向养老护理机器人的动作识别数据集，含RGB视频+人体骨骼双模态。配套多流3D CNN架构，CC BY 4.0开源。">
+<meta property="og:type" content="website">
+<meta name="twitter:title" content="EC-AR（Elderly Care Action Recognition） | Superdata RobotAI">
+<meta name="twitter:description" content="面向养老护理机器人的动作识别数据集，含RGB视频+人体骨骼双模态。配套多流3D CNN架构，CC BY 4.0开源。">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EC-AR（Elderly Care Action Recognition） | Superdata RobotAI</title><meta name="description" content="面向养老护理机器人的动作识别数据集，含RGB视频+人体骨骼双模态。配套多流3D CNN架构，CC BY 4.0开源。"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"EC-AR（Elderly Care Action Recognition）","description":"面向养老护理机器人的动作识别数据集，含RGB视频+人体骨骼双模态。配套多流3D CNN架构，CC BY 4.0开源。","url":"https://superdata-robotai.com/datasets/ec-ar/","license":"https://creativecommons.org/licenses/by/4.0/","creator":{"@type":"Organization","name":"郑州大学 (Zhengzhou University)"},"datePublished":"2023","keywords":"康养护理, 康养护理"}</script>
+<link rel="icon" type="image/png" href="/机器人.png">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var btn = document.getElementById('hamburgerBtn');
+  var menu = document.getElementById('navMenu');
+  if(btn && menu){
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ btn.classList.remove('open'); menu.classList.remove('open'); });
+    });
+  }
+
+  // Auto card view on mobile for datasets/standards
+  if(window.innerWidth <= 768){
+    if(typeof state !== 'undefined' && state && 'view' in state){ state.view = 'card';
+      if(typeof update === 'function') update();
+    }
+  }
+});
+</script>
+
+</head>
+<body>
+<nav class="navbar">
+  <a href="/" class="nav-logo">
+    <img src="/学生bot.png" alt="Logo">
+    <span class="nav-logo-text">Superdata RobotAI</span>
+  </a>
+  <div class="nav-menu" id="navMenu">
+    <a href="/" class="nav-link ">首页</a>
+    <a href="/datasets/" class="nav-link active">数据集</a>
+    <a href="/standards/" class="nav-link ">数据标准</a>
+    <a href="/benchmarks/" class="nav-link ">排行榜</a>
+    <a href="/tools/" class="nav-link ">工具/平台</a>
+    <a href="/blog/" class="nav-link ">技术博客</a>
+  </div>
+  <div class="nav-lang">
+    <a href="/" class="nav-lang-link active" title="中文">中</a>
+    <span class="nav-lang-sep">/</span>
+    <a href="/en/" class="nav-lang-link" title="English">EN</a>
+  </div>
+  <div class="nav-cta">
+    <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="btn btn-ghost">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+  <button class="hamburger-btn" id="hamburgerBtn" aria-label="菜单">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main class="detail-main">
+  <a href="/datasets/" class="back-link">← 返回数据集</a>
+  <div class="detail-header">
+    <div><h1 class="detail-name">EC-AR（Elderly Care Action Recognition）</h1></div>
+    <span class="type-badge type-open">开源</span>
+  </div>
+  <p class="detail-org">郑州大学 (Zhengzhou University)</p>
+  <div class="detail-desc"><p>EC-AR（Elderly Care Action Recognition）是由郑州大学发布的<strong>面向养老护理机器人的动作识别数据集</strong>，发表于 Advanced Intelligent Systems（2023），CC BY 4.0 开源协议。</p><p>该数据集专门针对老年人护理场景中的典型动作类别设计，填补了通用动作识别数据集（如 Kinetics、NTU RGB+D）在养老领域覆盖不足的空白。数据模态包含 RGB 视频和人体骨骼关键点两种形式（RGB-Skeleton 视频和纯 Skeleton 视频），适配多流架构。</p><p>配套论文提出了<strong>骨骼引导的多流 3D CNN 架构</strong>（双 Light-SlowFast 网络 + ResNet-18 骨干），在 EC-AR 上实现了优异的动作识别性能。该架构的设计理念——利用骨骼信息引导 RGB 特征的注意力——对养老护理机器人的实时动作理解具有重要参考价值。</p><p><strong>应用场景</strong>：健康监测（跌倒检测）、日常生活辅助（识别坐、站、进食等状态）、异常行为检测（长时间不动、倾斜姿势等）。</p></div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="info-card-label">机构</div><div class="info-card-value">郑州大学 (Zhengzhou University)</div></div>
+    <div class="info-card"><div class="info-card-label">规模</div><div class="info-card-value">老年人护理场景视频数据集，RGB + 骨骼双模态</div></div>
+    <div class="info-card"><div class="info-card-label">许可证</div><div class="info-card-value">CC-BY-4.0</div></div>
+    <div class="info-card"><div class="info-card-label">机器人类型</div><div class="info-card-value"><span class="data-tag">机械臂</span></div></div>
+    <div class="info-card"><div class="info-card-label">任务类型</div><div class="info-card-value"><span class="data-tag">康养护理</span></div></div>
+    <div class="info-card"><div class="info-card-label">发布年份</div><div class="info-card-value">2023</div></div>
+    <div class="info-card info-card-wide"><div class="info-card-label">数据模态</div><div class="info-card-value">RGB、动作</div></div>
+  </div>
+
+  <!-- Quality Labels -->
+  <div class="quality-badges"><span class="quality-badge info">人类视频 (Ego)</span><span class="quality-badge info">人工标注动作类别</span><span class="quality-badge info">模拟环境</span><span class="quality-badge good">有数据划分</span></div>
+
+  <!-- VLA Compatibility -->
+  
+
+  <!-- Benchmark Results -->
+  
+
+  <!-- Data Format Schema -->
+  <div class="section-block">
+    <h2>数据格式</h2>
+    <div class="content-card">
+      <div class="content-stat"><span class="content-stat-label">存储格式</span><span class="content-stat-value">MP4 / NPZ</span></div>
+      <div class="content-stat"><span class="content-stat-label">数据规模</span><span class="content-stat-value">约 10GB</span></div>
+      <div class="content-stat"><span class="content-stat-label">压缩方式</span><span class="content-stat-value">标准压缩</span></div>
+      <div class="content-stat"><span class="content-stat-label">文件布局</span><span class="content-stat-value">按动作类别分目录</span></div>
+      <div class="content-stat"><span class="content-stat-label">索引方式</span><span class="content-stat-value">提供 action_label.json</span></div>
+      <div class="content-stat"><span class="content-stat-label">格式版本</span><span class="content-stat-value">MP4 / NPZ — video → RGB frames / skeleton frames (N joints × 3D)</span></div>
+    </div>
+    <div class="schema-tree" style="margin-top:16px"><div class="tree-node" style="margin-left:0px"><span class="tree-label root">video</span></div><div class="tree-node" style="margin-left:24px"><span class="tree-line"></span><span class="tree-label">RGB frames</span></div><div class="tree-node" style="margin-left:24px"><span class="tree-line"></span><span class="tree-label">skeleton frames (N joints × 3D)</span></div></div>
+  </div>
+
+  <!-- Usage -->
+  <div class="section-block usage-block"><h2>快速上手</h2><div class="content-card"><h3>加载数据</h3><pre><code>视频为 MP4 格式，骨骼为 NPZ 格式，可用 OpenCV + numpy 读取。</code></pre><div style="margin-top:16px"><h3>预处理说明</h3><div style="font-size:14px;color:var(--text-secondary);line-height:1.8">视频需抽帧至固定 FPS（建议 15-30fps）。骨骼数据需归一化到以髋关节为原点的坐标系。RGB 帧和骨骼帧按时间戳对齐。</div></div></div></div>
+
+  <div class="section-block">
+    <h2>数据内容</h2>
+    <div class="data-content-grid">
+      <div class="content-card">
+        <h3>传感器规格</h3>
+        <div class="content-stat"><span class="content-stat-value" style="font-weight:400">RGB 相机</span></div><div class="content-stat"><span class="content-stat-value" style="font-weight:400">骨骼提取（预训练姿态估计器）</span></div>
+      </div>
+      <div class="content-card">
+        <h3>数据统计</h3>
+        <div class="content-stat"><span class="content-stat-label">场景数</span><span class="content-stat-value">模拟居家护理环境</span></div>
+        <div class="content-stat"><span class="content-stat-label">物体数</span><span class="content-stat-value">日常护理物品</span></div>
+        <div class="content-stat"><span class="content-stat-label">任务数</span><span class="content-stat-value">老年人护理典型动作（坐、站、进食、行走、跌倒等）</span></div>
+        <div class="content-stat"><span class="content-stat-label">轨迹/片段数</span><span class="content-stat-value">待确认</span></div>
+      </div>
+    </div>
+    <div style="margin-top:16px"><div class="content-card"><h3>标注信息</h3><div class="data-tags"><span class="data-tag">动作类别标签</span><span class="data-tag">人体骨骼关键点</span></div></div></div>
+    
+  </div>
+
+  <!-- Links -->
+  <div class="section-block"><h2>相关链接</h2><div class="links-section"><a href="https://doi.org/10.1002/aisy.202300326" target="_blank" class="link-card" rel="noopener">论文</a></div></div>
+
+  <!-- Citation -->
+  <div class="section-block"><h2>引用信息</h2><div class="citation-box"><pre>@article{ecar2023,
+  title={Skeleton-Guided Action Recognition with Multistream 3D Convolutional Neural Network for Elderly-Care Robot},
+  author={Zhang, Dawei and Zhang, Yanming and Zhou, Meng},
+  journal={Advanced Intelligent Systems},
+  volume={5},
+  number={12},
+  year={2023},
+  doi={10.1002/aisy.202300326}
+}</pre></div></div>
+
+  <!-- Changelog -->
+  <div class="changelog section-block"><h2>更新历史</h2><div class="changelog-list"><div class="changelog-item"><div class="changelog-date">2023-12</div><div class="changelog-text">首次发布，Advanced Intelligent Systems 发表</div></div></div></div>
+
+  <!-- Related Standards -->
+  
+
+  <!-- Related Datasets -->
+  <div class="section-block">
+    <h2>相关数据集</h2>
+    <div class="related-grid"><a href="/datasets/openrobocare/" class="related-card"><div class="related-name">OpenRoboCare</div><div class="related-org">康奈尔大学 (Cornell University)</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a><a href="/datasets/etri-activity3d-livinglab/" class="related-card"><div class="related-name">ETRI-Activity3D-LivingLab</div><div class="related-org">韩国电子通信研究院 (ETRI)</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a><a href="/datasets/kfall/" class="related-card"><div class="related-name">KFall</div><div class="related-org">韩国科学技术院 (KAIST)</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a><a href="/datasets/medmassage-12k/" class="related-card"><div class="related-name">MedMassage-12K</div><div class="related-org">中科院自动化所 (CASIA) / 北京航空航天大学 (Beihang University)</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a><a href="/datasets/ceti-age-kinematics/" class="related-card"><div class="related-name">CeTI-Age-Kinematics</div><div class="related-org">德累斯顿工业大学 (TU Dresden) / 卡尔斯鲁厄理工学院 (KIT)</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a><a href="/datasets/open-x-embodiment/" class="related-card"><div class="related-name">Open X-Embodiment</div><div class="related-org">Google DeepMind</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a></div>
+  </div>
+
+  <!-- Comments -->
+  <div class="section-block">
+    <h2>讨论</h2>
+    <script src="https://giscus.app/client.js"
+      data-repo="locusinger159/embodiedai-datasets"
+      data-repo-id="R_kgDOSiiGSw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOSiiGS84C-Eki"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="/学生bot.png" alt="Logo">
+        Superdata RobotAI
+      </div>
+      <p class="footer-desc">专注收录全球具身智能、人形机器人、机械臂、移动机器人数据集情报。只做一件事：信息汇总 & 申请导航，助力算法研发。</p>
+      <div class="footer-social">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="social-link" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="mailto:embodisets@163.com" class="social-link" title="邮箱">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>快速链接</h4>
+      <div class="footer-links">
+        <a href="/" class="footer-link">首页</a>
+        <a href="/datasets/" class="footer-link">全部数据集</a>
+        <a href="/standards/" class="footer-link">数据标准</a>
+        <a href="/submit/" class="footer-link">提交数据集</a>
+        <a href="/blog/" class="footer-link">技术博客</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>资源</h4>
+      <div class="footer-links">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="footer-link">GitHub 仓库</a>
+        <a href="mailto:embodisets@163.com" class="footer-link">提交反馈</a>
+        <a href="/blog/" class="footer-link">技术博客</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>联系我们</h4>
+      <div class="footer-links">
+        <span class="footer-link">embodisets@163.com</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copyright">Copyright © 2026 Superdata RobotAI · <a href="https://github.com/locusinger159/embodiedai-datasets" style="color:inherit">CC BY-NC-SA 4.0</a></div>
+    <div class="footer-disclaimer">声明：本网站仅做信息导航，不提供任何数据集下载。数据集版权归原机构/作者所有。数据内容未经授权禁止商业使用。</div>
+  </div>
+</footer>
+<button class="back-to-top" id="backToTop" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+<script>
+(function(){
+  var backToTop = document.getElementById('backToTop');
+  if(!backToTop) return;
+  function onScroll(){
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    if(y > 500) backToTop.classList.add('visible');
+    else backToTop.classList.remove('visible');
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  backToTop.addEventListener('click', function(){ window.scrollTo({ top:0, behavior:'smooth' }); });
+  // Fade-in scroll animations with stagger
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold:0.1, rootMargin:'0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in, .scroll-animate').forEach(function(el){ obs.observe(el); });
+  } else {
+    document.querySelectorAll('.fade-in, .scroll-animate').forEach(function(el){ el.classList.add('visible'); });
+  }
+})();
+</script>
+
+
+<!-- AI Search Widget — quiet toolbar + search/chat panel -->
+
+
+<div class="search-widget-btns">
+  <button class="search-widget-btn ai-btn" id="aiChatBtn" title="AI assistant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span id="aiChatBtnLabel">AI 助手</span>
+  </button>
+  <button class="search-widget-btn search-btn" id="aiSearchBtn" title="Semantic search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <span id="aiSearchBtnLabel">搜索</span>
+  </button>
+</div>
+
+<div class="search-widget-overlay" id="aiSearchOverlay">
+  <div class="search-widget-panel">
+    <div class="search-panel-header">
+      <span class="search-panel-title" id="panelTitle">AI 助手</span>
+      <button class="search-panel-close" id="aiSearchClose" aria-label="Close">×</button>
+    </div>
+    <div class="search-panel-input">
+      <input type="text" id="aiSearchInput" placeholder="描述你的需求，如：人形机器人双臂操作数据集..." />
+      <select id="aiModelSelect">
+        <option value="deepseek-v4-flash">DeepSeek V4 Flash</option>
+        <option value="deepseek-chat">DeepSeek V3</option>
+        <option value="deepseek-reasoner">DeepSeek R1</option>
+      </select>
+      <button id="aiSearchSubmit">搜索</button>
+    </div>
+    <div class="search-panel-body" id="aiSearchBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const SEARCH_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/search';
+  const CHAT_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/assistant';
+  const isEn = (document.documentElement.lang || 'zh').toLowerCase().startsWith('en');
+  const L = isEn ? {
+    chat: 'AI assistant', search: 'Search', ask: 'Ask', panelChat: 'AI assistant', panelSearch: 'Semantic search',
+    chatPlaceholder: 'Ask about a dataset, e.g. what should I use for tabletop grasping?',
+    searchPlaceholder: 'Describe what you need, e.g. humanoid dual-arm manipulation datasets...',
+    chatEmpty: 'Ask a question to get dataset recommendations. Multi-turn context is kept.',
+    searchEmpty: 'Search across every dataset, standard, and tool in the index.',
+    datasets: 'Datasets', standards: 'Standards', tools: 'Tools',
+    user: 'You', loadingChat: 'Thinking...', loadingSearch: 'Searching...',
+    noResults: 'No matches. Try a different description.', minChars: 'Enter at least 2 characters.',
+    failed: 'Request failed', retry: 'Check your connection and try again.',
+    srcDataset: 'Dataset', srcStandard: 'Standard', srcTool: 'Tool'
+  } : {
+    chat: 'AI 助手', search: '搜索', ask: '提问', panelChat: 'AI 助手', panelSearch: '语义搜索',
+    chatPlaceholder: '向 AI 助手提问，如：我的机械臂要做桌面抓取，推荐什么数据集？',
+    searchPlaceholder: '描述你的需求，如：人形机器人双臂操作数据集...',
+    chatEmpty: '向 AI 助手提问，获取个性化数据集推荐。支持多轮对话，上下文自动关联。',
+    searchEmpty: '在全部数据集、标准与工具中检索。',
+    datasets: '数据集', standards: '标准', tools: '工具',
+    user: '你', loadingChat: 'AI 正在分析...', loadingSearch: '正在搜索...',
+    noResults: '未找到匹配结果，试试换一种描述？', minChars: '请输入至少 2 个字符',
+    failed: '请求失败', retry: '请检查网络连接，或稍后重试',
+    srcDataset: '数据集', srcStandard: '标准', srcTool: '工具'
+  };
+
+  var chatBtn = document.getElementById('aiChatBtn');
+  var searchBtn = document.getElementById('aiSearchBtn');
+  var overlay = document.getElementById('aiSearchOverlay');
+  var closeBtn = document.getElementById('aiSearchClose');
+  var input = document.getElementById('aiSearchInput');
+  var submit = document.getElementById('aiSearchSubmit');
+  var body = document.getElementById('aiSearchBody');
+  var panelTitle = document.getElementById('panelTitle');
+  var mode = 'chat';
+  var chatHistory = [];
+
+  document.getElementById('aiChatBtnLabel').textContent = L.chat;
+  document.getElementById('aiSearchBtnLabel').textContent = L.search;
+
+  function open(m) {
+    mode = m;
+    chatHistory = [];
+    overlay.classList.add('open');
+    panelTitle.textContent = m === 'chat' ? L.panelChat : L.panelSearch;
+    submit.textContent = m === 'chat' ? L.ask : L.search;
+    input.placeholder = m === 'chat' ? L.chatPlaceholder : L.searchPlaceholder;
+    body.innerHTML = '<div class="search-empty">' + (m === 'chat' ? L.chatEmpty : L.searchEmpty) + '</div>';
+    setTimeout(function() { input.focus(); }, 200);
+  }
+  function close() { overlay.classList.remove('open'); }
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  chatBtn.addEventListener('click', function() { open('chat'); });
+  searchBtn.addEventListener('click', function() { open('search'); });
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+    if (e.key === 'k' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); open('search'); }
+  });
+
+  function renderSearch(data) {
+    var h = '';
+    if (data.datasets && data.datasets.length) {
+      h += '<div class="search-result-section"><h3>' + L.datasets + '</h3>';
+      data.datasets.forEach(function(d) {
+        var tags = (d.robotType || []).concat(d.task || []).slice(0, 3);
+        h += '<a href="' + (isEn ? '/en' : '') + '/datasets/' + d.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + d.score + '%</div>'
+          + '<div class="search-result-body">'
+          + '<div class="search-result-name">' + esc(d.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(d.notes || '') + '</div>'
+          + '<div class="search-result-tags">' + tags.map(function(t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>'
+          + '</div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.standards && data.standards.length) {
+      h += '<div class="search-result-section"><h3>' + L.standards + '</h3>';
+      data.standards.forEach(function(s) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/standards/' + s.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + s.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(s.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(s.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.tools && data.tools.length) {
+      h += '<div class="search-result-section"><h3>' + L.tools + '</h3>';
+      data.tools.forEach(function(t) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/tools/' + t.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + t.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(t.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(t.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (!h) h = '<div class="search-empty">' + L.noResults + '</div>';
+    body.innerHTML = h;
+  }
+
+  function renderChatHistory() {
+    var h = '';
+    chatHistory.forEach(function(msg) {
+      if (msg.role === 'user') {
+        h += '<div class="chat-message user"><strong>' + L.user + '</strong><br>' + esc(msg.content) + '</div>';
+      } else {
+        h += '<div class="chat-message assistant">' + (msg.reply || '') + '</div>';
+        if (msg.sources && msg.sources.length) {
+          h += '<div class="chat-sources">';
+          msg.sources.forEach(function(s) {
+            var kind = s.type === 'tool' ? 'tools' : s.type === 'standard' ? 'standards' : 'datasets';
+            var label = s.type === 'tool' ? L.srcTool : s.type === 'standard' ? L.srcStandard : L.srcDataset;
+            var url = (isEn ? '/en' : '') + '/' + kind + '/' + s.id + '/';
+            h += '<a href="' + url + '" class="chat-source" target="_blank"><span class="chat-source-type">' + label + '</span>' + esc(s.name) + ' <span class="chat-source-score">' + s.score + '%</span></a>';
+          });
+          h += '</div>';
+        }
+      }
+    });
+    if (!h) h = '<div class="search-empty">' + L.chatEmpty + '</div>';
+    body.innerHTML = h;
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function simpleMarkdown(text) {
+    return esc(text)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n- /g, '\n<li>')
+      .replace(/\n(\d+)\. /g, '\n<li>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+  }
+
+  async function doSubmit() {
+    var q = input.value.trim();
+    if (q.length < 2) { body.innerHTML = '<div class="search-empty">' + L.minChars + '</div>'; return; }
+    submit.disabled = true;
+    body.innerHTML = '<div class="loading"><div class="spinner"></div><div style="margin-top:12px">' + (mode === 'chat' ? L.loadingChat : L.loadingSearch) + '</div></div>';
+
+    try {
+      if (mode === 'search') {
+        var res = await fetch(SEARCH_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, lang: isEn ? 'en' : 'zh' })
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        var data = await res.json();
+        if (data.error) throw new Error(data.error);
+        renderSearch(data);
+      } else {
+        chatHistory.push({ role: 'user', content: q });
+        var cres = await fetch(CHAT_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, history: chatHistory.slice(0, -1), model: document.getElementById('aiModelSelect').value })
+        });
+        if (!cres.ok) throw new Error('HTTP ' + cres.status);
+        var cdata = await cres.json();
+        if (cdata.error) throw new Error(cdata.error);
+        chatHistory.push({ role: 'assistant', reply: simpleMarkdown(cdata.reply), sources: cdata.sources });
+        renderChatHistory();
+        input.value = '';
+      }
+    } catch (err) {
+      console.error('[Search] error:', err);
+      body.innerHTML = '<div class="search-error">' + L.failed + '：' + esc(err.message) + '<br><small>' + L.retry + '</small></div>';
+    }
+    submit.disabled = false;
+    setTimeout(function() { input.focus(); }, 100);
+  }
+
+  submit.addEventListener('click', doSubmit);
+  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doSubmit(); });
+})();
+</script>
+
+</body>
+</html>

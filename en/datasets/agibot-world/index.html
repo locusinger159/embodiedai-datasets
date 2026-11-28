@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="canonical" href="https://superdata-robotai.com/en/datasets/agibot-world/">
+<link rel="alternate" hreflang="zh-CN" href="https://superdata-robotai.com/datasets/agibot-world/">
+<link rel="alternate" hreflang="en" href="https://superdata-robotai.com/en/datasets/agibot-world/">
+<link rel="alternate" hreflang="x-default" href="https://superdata-robotai.com/datasets/agibot-world/">
+<meta property="og:url" content="https://superdata-robotai.com/en/datasets/agibot-world/">
+<meta property="og:site_name" content="Superdata RobotAI">
+<meta property="og:image" content="https://superdata-robotai.com/%E5%AD%A6%E7%94%9Fbot.png">
+<meta name="twitter:card" content="summary">
+<meta property="og:title" content="AGIBOT WORLD 2026 | Superdata RobotAI">
+<meta property="og:description" content="智元机器人 AGIBOT WORLD 2026 真机数据集。100% 真实场景 + 遥操作采集，精灵 G2 平台，多模态（RGB-D + 触觉 + LiDAR + 力控）。两阶段开源（模仿学习 + 多样交互），行业首个聚焦物理交互的数据集。">
+<meta property="og:type" content="website">
+<meta name="twitter:title" content="AGIBOT WORLD 2026 | Superdata RobotAI">
+<meta name="twitter:description" content="智元机器人 AGIBOT WORLD 2026 真机数据集。100% 真实场景 + 遥操作采集，精灵 G2 平台，多模态（RGB-D + 触觉 + LiDAR + 力控）。两阶段开源（模仿学习 + 多样交互），行业首个聚焦物理交互的数据集。">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGIBOT WORLD 2026 | Superdata RobotAI</title><meta name="description" content="智元机器人 AGIBOT WORLD 2026 真机数据集。100% 真实场景 + 遥操作采集，精灵 G2 平台，多模态（RGB-D + 触觉 + LiDAR + 力控）。两阶段开源（模仿学习 + 多样交互），行业首个聚焦物理交互的数据集。"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"AGIBOT WORLD 2026","description":"智元机器人 AGIBOT WORLD 2026 真机数据集。100% 真实场景 + 遥操作采集，精灵 G2 平台，多模态（RGB-D + 触觉 + LiDAR + 力控）。两阶段开源（模仿学习 + 多样交互），行业首个聚焦物理交互的数据集。","url":"https://superdata-robotai.com/en/datasets/agibot-world/","license":"https://www.apache.org/licenses/LICENSE-2.0","creator":{"@type":"Organization","name":"AGIBOT"},"datePublished":"2024","keywords":"世界模型, 全身控制, 触觉, 操作, 抓取, 家居, 交互","sameAs":"https://agibot-world.com"}</script>
+<link rel="icon" type="image/png" href="/机器人.png">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var btn = document.getElementById('hamburgerBtn');
+  var menu = document.getElementById('navMenu');
+  if(btn && menu){
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ btn.classList.remove('open'); menu.classList.remove('open'); });
+    });
+  }
+
+  // Auto card view on mobile for datasets/standards
+  if(window.innerWidth <= 768){
+    if(typeof state !== 'undefined' && state && 'view' in state){ state.view = 'card';
+      if(typeof update === 'function') update();
+    }
+  }
+});
+</script>
+
+</head>
+<body>
+<nav class="navbar">
+  <a href="/en/" class="nav-logo">
+    <img src="/学生bot.png" alt="Logo">
+    <span class="nav-logo-text">Superdata RobotAI</span>
+  </a>
+  <div class="nav-menu" id="navMenu">
+    <a href="/en/" class="nav-link ">Home</a>
+    <a href="/en/datasets/" class="nav-link active">Datasets</a>
+    <a href="/en/standards/" class="nav-link ">Standards</a>
+    <a href="/en/benchmarks/" class="nav-link ">Leaderboards</a>
+    <a href="/en/tools/" class="nav-link ">Tools</a>
+    <a href="/en/blog/" class="nav-link ">Blog</a>
+  </div>
+  <div class="nav-lang">
+    <a href="/" class="nav-lang-link" title="中文">中</a>
+    <span class="nav-lang-sep">/</span>
+    <a href="/en/" class="nav-lang-link active" title="English">EN</a>
+  </div>
+  <div class="nav-cta">
+    <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="btn btn-ghost">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+  <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main class="detail-main">
+  <a href="/en/datasets/" class="back-link">← Back to Datasets</a>
+  <div class="detail-header">
+    <div><h1 class="detail-name">AGIBOT WORLD 2026</h1></div>
+    <span class="type-badge type-open">Open</span>
+  </div>
+  <p class="detail-org">AGIBOT</p>
+  <div class="detail-desc"><p><strong>AGIBOT WORLD 2026</strong> 是智元机器人（AGIBOT）于 2026 年 4 月正式开源的大规模具身智能数据集，定位为首个覆盖具身智能全域研究的开源数据底座，分五阶段持续发布。</p><p><strong>硬件平台</strong>：基于自研 <strong>精灵 G2（Sprite G2）</strong> 通用人形机器人，集成高性能关节执行器、多模态传感器（多视角 RGB-D、触觉、LiDAR、IMU、力传感器）和高性能域控制器。</p><p><strong>采集方式</strong>：100% 真实场景 + 真人遥操作。采用超视距第一人称遥操作 + 全身控制（WBC），操作员以机器人视角实时操控，手臂、腰部、手部协同运作。引入力控采集，记录接触动力学和力反馈。</p><p><strong>场景覆盖</strong>：家居、酒店餐饮、商业空间、安防、工业物流等复杂真实环境，含遮挡、逆光、动态人流等真实干扰。</p><p><strong>两阶段发布</strong>：<br>- 第一期（2026.04）：模仿学习数据，数百小时真实世界数据，含任务描述、动作序列、原子技能标签、物体标注，保留错误恢复轨迹<br>- 第二期（2026.06.03）：<strong>行业首个聚焦物理交互的开源具身数据集</strong>，面向世界模型和神经仿真器。主动保留抓取失败、物体滑落、碰撞、液体飞溅、布料变形等「失败」数据，实验证实加入失败数据后世界模型的物理一致性显著提升</p><p><strong>配套生态</strong>：Genie Sim 3.0 仿真器 + GE-Sim 2.0 世界模型 + GO-2 基座模型 + 1:1 数字孪生仿真数据同步开源。</p><p><strong>下载</strong>：<a href="https://huggingface.co/datasets/agibot-world/AgiBotWorld2026" target="_blank" rel="noopener">https://huggingface.co/datasets/agibot-world/AgiBotWorld2026</a><br>项目主页：<a href="https://agibot-world.com" target="_blank" rel="noopener">https://agibot-world.com</a></p></div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="info-card-label">Institution</div><div class="info-card-value">AGIBOT</div></div>
+    <div class="info-card"><div class="info-card-label">Scale</div><div class="info-card-value">数百小时真机数据（五阶段持续发布），100+ 场景，精灵 G2 人形机器人平台</div></div>
+    <div class="info-card"><div class="info-card-label">License</div><div class="info-card-value">Apache-2.0</div></div>
+    <div class="info-card"><div class="info-card-label">Robot Type</div><div class="info-card-value"><span class="data-tag">Humanoid</span></div></div>
+    <div class="info-card"><div class="info-card-label">Task Type</div><div class="info-card-value"><span class="data-tag">Manipulation</span> <span class="data-tag">Grasping</span> <span class="data-tag">Household</span> <span class="data-tag">Interaction</span></div></div>
+    <div class="info-card"><div class="info-card-label">Year</div><div class="info-card-value">2024</div></div>
+    <div class="info-card info-card-wide"><div class="info-card-label">Modality</div><div class="info-card-value">RGB / Depth / Tactile / LiDAR / 力控 / Proprioception / Action / IMU</div></div>
+  </div>
+
+  <!-- Quality Labels -->
+  <div class="quality-badges"><span class="quality-badge good">Teleoperation</span><span class="quality-badge info">自动 + 人工核验（DaaS 工业质检管线）</span><span class="quality-badge info">真机实测（100% 真实场景）</span><span class="quality-badge good">Split available</span></div>
+
+  <!-- VLA Compatibility -->
+  <div class="section-block" style="margin-bottom:24px"><h2>VLA framework compatibility</h2><div class="quality-badges"><span class="quality-badge info" title="GR00T N1 (NVIDIA)" style="cursor:help">GR00T N1</span></div></div>
+
+  <!-- Benchmark Results -->
+  
+
+  <!-- Data Format Schema -->
+  <div class="section-block">
+    <h2>Data Format</h2>
+    <div class="content-card">
+      <div class="content-stat"><span class="content-stat-label">Storage format</span><span class="content-stat-value">HDF5 + LeRobot 格式（Hugging Face 托管）</span></div>
+      <div class="content-stat"><span class="content-stat-label">Data size</span><span class="content-stat-value">数百小时，五阶段持续发布</span></div>
+      <div class="content-stat"><span class="content-stat-label">Compression</span><span class="content-stat-value">标准压缩</span></div>
+      <div class="content-stat"><span class="content-stat-label">File layout</span><span class="content-stat-value">原始 HDF5（按 episode 分文件）+ LeRobot 转换版</span></div>
+      <div class="content-stat"><span class="content-stat-label">Indexing</span><span class="content-stat-value">原始 HDF5 attribute + 外部 Metadata.json；LeRobot 版含 meta/info.json</span></div>
+      <div class="content-stat"><span class="content-stat-label">Format version</span><span class="content-stat-value">HDF5 v2.0 + LeRobot Parquet v3.0</span></div>
+    </div>
+    <div class="schema-tree" style="margin-top:16px"><div class="tree-node" style="margin-left:0px"><span class="tree-label root">episode</span></div><div class="tree-node" style="margin-left:24px"><span class="tree-line"></span><span class="tree-label">step</span></div><div class="tree-node" style="margin-left:48px"><span class="tree-line"></span><span class="tree-label">observation（RGB-D/触觉/LiDAR/IMU/力/关节状态）</span></div><div class="tree-node" style="margin-left:48px"><span class="tree-line"></span><span class="tree-label">action</span></div></div>
+  </div>
+
+  <!-- Usage -->
+  <div class="section-block usage-block"><h2>Usage</h2><div class="content-card"><h3>Load Data</h3><pre><code># AgiBot 原始数据
+import h5py
+with h5py.File('agibot_episode.hdf5', 'r') as f:
+    joints = f['action/robot'][:]
+# LeRobot 转换版
+from lerobot.datasets import LeRobotDataset
+dataset = LeRobotDataset('agibot-world')</code></pre><div style="margin-top:16px"><h3>Preprocessing Notes</h3><div style="font-size:14px;color:var(--text-secondary);line-height:1.8">原始 HDF5 + LeRobot 双格式；G2 平台采集</div></div></div></div>
+
+  <div class="section-block">
+    <h2>Data Content</h2>
+    <div class="data-content-grid">
+      <div class="content-card">
+        <h3>Sensor Specifications</h3>
+        <div class="content-stat"><span class="content-stat-value" style="font-weight:400">RGB</span></div><div class="content-stat"><span class="content-stat-value" style="font-weight:400">深度</span></div><div class="content-stat"><span class="content-stat-value" style="font-weight:400">触觉</span></div><div class="content-stat"><span class="content-stat-value" style="font-weight:400">LiDAR</span></div><div class="content-stat"><span class="content-stat-value" style="font-weight:400">IMU</span></div><div class="content-stat"><span class="content-stat-value" style="font-weight:400">力传感器</span></div><div class="content-stat"><span class="content-stat-value" style="font-weight:400">本体状态</span></div><div class="content-stat"><span class="content-stat-value" style="font-weight:400">动作</span></div>
+      </div>
+      <div class="content-card">
+        <h3>Data Statistics</h3>
+        <div class="content-stat"><span class="content-stat-label">Scenes</span><span class="content-stat-value">家居、酒店餐饮、商业空间、安防、工业物流等 100+ 真实场景</span></div>
+        <div class="content-stat"><span class="content-stat-label">Objects</span><span class="content-stat-value">日常物品、工具、容器等，含 2D 边界框标注</span></div>
+        <div class="content-stat"><span class="content-stat-label">Tasks</span><span class="content-stat-value">自由形式遥操作任务（模仿学习 + 多样交互），含失败恢复轨迹</span></div>
+        <div class="content-stat"><span class="content-stat-label">Episodes / clips</span><span class="content-stat-value">数百小时真机数据（五阶段持续发布）</span></div>
+      </div>
+    </div>
+    <div style="margin-top:16px"><div class="content-card"><h3>Annotations</h3><div class="data-tags"><span class="data-tag">任务级描述</span><span class="data-tag">原子技能标签</span><span class="data-tag">2D 物体边界框</span><span class="data-tag">物体名称/颜色</span><span class="data-tag">语言指令</span></div></div></div>
+    
+  </div>
+
+  <!-- Links -->
+  <div class="section-block"><h2>Links</h2><div class="links-section"><a href="https://agibot-world.com" target="_blank" class="link-card" rel="noopener">Official site</a><a href="https://huggingface.co/datasets/agibot-world/AgiBotWorld2026" target="_blank" class="link-card" rel="noopener"> HuggingFace</a></div></div>
+
+  <!-- Citation -->
+  
+
+  <!-- Changelog -->
+  <div class="changelog section-block"><h2>Changelog</h2><div class="changelog-list"><div class="changelog-item"><div class="changelog-date">2024-12</div><div class="changelog-text">首次发布，100万+轨迹、2976小时数据</div></div><div class="changelog-item"><div class="changelog-date">2026</div><div class="changelog-text">2026年更新版发布，新增触觉和LiDAR模态</div></div></div></div>
+
+  <!-- Related Standards -->
+  <div class="section-block"><h2>Data Standards</h2><div class="related-grid"><a href="/en/standards/agibot-world/" class="related-card"><div class="related-name">AgiBot World 数据规范</div><div class="related-org">智元机器人</div><div class="related-meta"><span class="std-type-badge type-format">Data Format</span></div></a><a href="/en/standards/ewmbench/" class="related-card"><div class="related-name">EWMBench</div><div class="related-org">上海交通大学 + AgiBot + 新加坡国立大学 + 哈工大</div><div class="related-meta"><span class="std-type-badge type-benchmark">Benchmark</span></div></a><a href="/en/standards/lerobot/" class="related-card"><div class="related-name">LeRobot Format</div><div class="related-org">Hugging Face</div><div class="related-meta"><span class="std-type-badge type-format">Data Format</span></div></a><a href="/en/standards/rlds/" class="related-card"><div class="related-name">RLDS</div><div class="related-org">Google DeepMind</div><div class="related-meta"><span class="std-type-badge type-format">Data Format</span></div></a></div></div>
+
+  <!-- Related Datasets -->
+  <div class="section-block">
+    <h2>Related Datasets</h2>
+    <div class="related-grid"><a href="/en/datasets/galaxea-open-world/" class="related-card"><div class="related-name">Galaxea Open-World Dataset (GOD)</div><div class="related-org">Galaxea</div><div class="related-meta"><span class="data-tag">移动机器人</span></div></a><a href="/en/datasets/aloha-dataset/" class="related-card"><div class="related-name">ALOHA 数据集</div><div class="related-org">Stanford University / Google DeepMind</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a><a href="/en/datasets/vlabench/" class="related-card"><div class="related-name">VLABench</div><div class="related-org">VLABench Team</div><div class="related-meta"><span class="data-tag">机械臂</span></div></a><a href="/en/datasets/nvidia-gr1-simulation/" class="related-card"><div class="related-name">NVIDIA GR-1 仿真数据集</div><div class="related-org">NVIDIA</div><div class="related-meta"><span class="data-tag">人形机器人</span></div></a><a href="/en/datasets/groot-n1-dataset/" class="related-card"><div class="related-name">GR00T N1 官方数据集</div><div class="related-org">NVIDIA</div><div class="related-meta"><span class="data-tag">人形机器人</span></div></a><a href="/en/datasets/daimon-infinity/" class="related-card"><div class="related-name">Daimon-Infinity</div><div class="related-org">Daimon Robotics / Google DeepMind and 30+ institutions</div><div class="related-meta"><span class="data-tag">灵巧手</span><span class="data-tag">机械臂</span></div></a></div>
+  </div>
+
+  <!-- Comments -->
+  <div class="section-block">
+    <h2>Discussion</h2>
+    <script src="https://giscus.app/client.js"
+      data-repo="locusinger159/embodiedai-datasets"
+      data-repo-id="R_kgDOSiiGSw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOSiiGS84C-Eki"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="/学生bot.png" alt="Logo">
+        Superdata RobotAI
+      </div>
+      <p class="footer-desc">A global intelligence hub for embodied AI, humanoid robots, robotic arms, and mobile robot datasets. We do one thing: information aggregation & access navigation, empowering algorithm R&D.</p>
+      <div class="footer-social">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="social-link" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="mailto:embodisets@163.com" class="social-link" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <div class="footer-links">
+        <a href="/en/" class="footer-link">Home</a>
+        <a href="/en/datasets/" class="footer-link">Datasets</a>
+        <a href="/en/standards/" class="footer-link">Standards</a>
+        <a href="/en/submit/" class="footer-link">Submit</a>
+        <a href="/en/blog/" class="footer-link">Blog</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>Resources</h4>
+      <div class="footer-links">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="footer-link">GitHub Repo</a>
+        <a href="mailto:embodisets@163.com" class="footer-link">Feedback</a>
+        <a href="/en/blog/" class="footer-link">Blog</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>Contact</h4>
+      <div class="footer-links">
+        <span class="footer-link">embodisets@163.com</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copyright">Copyright © 2026 Superdata RobotAI · <a href="https://github.com/locusinger159/embodiedai-datasets" style="color:inherit">CC BY-NC-SA 4.0</a></div>
+    <div class="footer-disclaimer">Disclaimer: This site provides information navigation only. No dataset downloads are offered. Dataset copyrights belong to their respective owners/authors. Unauthorized commercial use of metadata is prohibited.</div>
+  </div>
+</footer>
+
+
+<!-- AI Search Widget — quiet toolbar + search/chat panel -->
+
+
+<div class="search-widget-btns">
+  <button class="search-widget-btn ai-btn" id="aiChatBtn" title="AI assistant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span id="aiChatBtnLabel">AI 助手</span>
+  </button>
+  <button class="search-widget-btn search-btn" id="aiSearchBtn" title="Semantic search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <span id="aiSearchBtnLabel">搜索</span>
+  </button>
+</div>
+
+<div class="search-widget-overlay" id="aiSearchOverlay">
+  <div class="search-widget-panel">
+    <div class="search-panel-header">
+      <span class="search-panel-title" id="panelTitle">AI 助手</span>
+      <button class="search-panel-close" id="aiSearchClose" aria-label="Close">×</button>
+    </div>
+    <div class="search-panel-input">
+      <input type="text" id="aiSearchInput" placeholder="描述你的需求，如：人形机器人双臂操作数据集..." />
+      <select id="aiModelSelect">
+        <option value="deepseek-v4-flash">DeepSeek V4 Flash</option>
+        <option value="deepseek-chat">DeepSeek V3</option>
+        <option value="deepseek-reasoner">DeepSeek R1</option>
+      </select>
+      <button id="aiSearchSubmit">搜索</button>
+    </div>
+    <div class="search-panel-body" id="aiSearchBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const SEARCH_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/search';
+  const CHAT_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/assistant';
+  const isEn = (document.documentElement.lang || 'zh').toLowerCase().startsWith('en');
+  const L = isEn ? {
+    chat: 'AI assistant', search: 'Search', ask: 'Ask', panelChat: 'AI assistant', panelSearch: 'Semantic search',
+    chatPlaceholder: 'Ask about a dataset, e.g. what should I use for tabletop grasping?',
+    searchPlaceholder: 'Describe what you need, e.g. humanoid dual-arm manipulation datasets...',
+    chatEmpty: 'Ask a question to get dataset recommendations. Multi-turn context is kept.',
+    searchEmpty: 'Search across every dataset, standard, and tool in the index.',
+    datasets: 'Datasets', standards: 'Standards', tools: 'Tools',
+    user: 'You', loadingChat: 'Thinking...', loadingSearch: 'Searching...',
+    noResults: 'No matches. Try a different description.', minChars: 'Enter at least 2 characters.',
+    failed: 'Request failed', retry: 'Check your connection and try again.',
+    srcDataset: 'Dataset', srcStandard: 'Standard', srcTool: 'Tool'
+  } : {
+    chat: 'AI 助手', search: '搜索', ask: '提问', panelChat: 'AI 助手', panelSearch: '语义搜索',
+    chatPlaceholder: '向 AI 助手提问，如：我的机械臂要做桌面抓取，推荐什么数据集？',
+    searchPlaceholder: '描述你的需求，如：人形机器人双臂操作数据集...',
+    chatEmpty: '向 AI 助手提问，获取个性化数据集推荐。支持多轮对话，上下文自动关联。',
+    searchEmpty: '在全部数据集、标准与工具中检索。',
+    datasets: '数据集', standards: '标准', tools: '工具',
+    user: '你', loadingChat: 'AI 正在分析...', loadingSearch: '正在搜索...',
+    noResults: '未找到匹配结果，试试换一种描述？', minChars: '请输入至少 2 个字符',
+    failed: '请求失败', retry: '请检查网络连接，或稍后重试',
+    srcDataset: '数据集', srcStandard: '标准', srcTool: '工具'
+  };
+
+  var chatBtn = document.getElementById('aiChatBtn');
+  var searchBtn = document.getElementById('aiSearchBtn');
+  var overlay = document.getElementById('aiSearchOverlay');
+  var closeBtn = document.getElementById('aiSearchClose');
+  var input = document.getElementById('aiSearchInput');
+  var submit = document.getElementById('aiSearchSubmit');
+  var body = document.getElementById('aiSearchBody');
+  var panelTitle = document.getElementById('panelTitle');
+  var mode = 'chat';
+  var chatHistory = [];
+
+  document.getElementById('aiChatBtnLabel').textContent = L.chat;
+  document.getElementById('aiSearchBtnLabel').textContent = L.search;
+
+  function open(m) {
+    mode = m;
+    chatHistory = [];
+    overlay.classList.add('open');
+    panelTitle.textContent = m === 'chat' ? L.panelChat : L.panelSearch;
+    submit.textContent = m === 'chat' ? L.ask : L.search;
+    input.placeholder = m === 'chat' ? L.chatPlaceholder : L.searchPlaceholder;
+    body.innerHTML = '<div class="search-empty">' + (m === 'chat' ? L.chatEmpty : L.searchEmpty) + '</div>';
+    setTimeout(function() { input.focus(); }, 200);
+  }
+  function close() { overlay.classList.remove('open'); }
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  chatBtn.addEventListener('click', function() { open('chat'); });
+  searchBtn.addEventListener('click', function() { open('search'); });
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+    if (e.key === 'k' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); open('search'); }
+  });
+
+  function renderSearch(data) {
+    var h = '';
+    if (data.datasets && data.datasets.length) {
+      h += '<div class="search-result-section"><h3>' + L.datasets + '</h3>';
+      data.datasets.forEach(function(d) {
+        var tags = (d.robotType || []).concat(d.task || []).slice(0, 3);
+        h += '<a href="' + (isEn ? '/en' : '') + '/datasets/' + d.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + d.score + '%</div>'
+          + '<div class="search-result-body">'
+          + '<div class="search-result-name">' + esc(d.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(d.notes || '') + '</div>'
+          + '<div class="search-result-tags">' + tags.map(function(t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>'
+          + '</div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.standards && data.standards.length) {
+      h += '<div class="search-result-section"><h3>' + L.standards + '</h3>';
+      data.standards.forEach(function(s) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/standards/' + s.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + s.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(s.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(s.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.tools && data.tools.length) {
+      h += '<div class="search-result-section"><h3>' + L.tools + '</h3>';
+      data.tools.forEach(function(t) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/tools/' + t.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + t.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(t.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(t.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (!h) h = '<div class="search-empty">' + L.noResults + '</div>';
+    body.innerHTML = h;
+  }
+
+  function renderChatHistory() {
+    var h = '';
+    chatHistory.forEach(function(msg) {
+      if (msg.role === 'user') {
+        h += '<div class="chat-message user"><strong>' + L.user + '</strong><br>' + esc(msg.content) + '</div>';
+      } else {
+        h += '<div class="chat-message assistant">' + (msg.reply || '') + '</div>';
+        if (msg.sources && msg.sources.length) {
+          h += '<div class="chat-sources">';
+          msg.sources.forEach(function(s) {
+            var kind = s.type === 'tool' ? 'tools' : s.type === 'standard' ? 'standards' : 'datasets';
+            var label = s.type === 'tool' ? L.srcTool : s.type === 'standard' ? L.srcStandard : L.srcDataset;
+            var url = (isEn ? '/en' : '') + '/' + kind + '/' + s.id + '/';
+            h += '<a href="' + url + '" class="chat-source" target="_blank"><span class="chat-source-type">' + label + '</span>' + esc(s.name) + ' <span class="chat-source-score">' + s.score + '%</span></a>';
+          });
+          h += '</div>';
+        }
+      }
+    });
+    if (!h) h = '<div class="search-empty">' + L.chatEmpty + '</div>';
+    body.innerHTML = h;
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function simpleMarkdown(text) {
+    return esc(text)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n- /g, '\n<li>')
+      .replace(/\n(\d+)\. /g, '\n<li>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+  }
+
+  async function doSubmit() {
+    var q = input.value.trim();
+    if (q.length < 2) { body.innerHTML = '<div class="search-empty">' + L.minChars + '</div>'; return; }
+    submit.disabled = true;
+    body.innerHTML = '<div class="loading"><div class="spinner"></div><div style="margin-top:12px">' + (mode === 'chat' ? L.loadingChat : L.loadingSearch) + '</div></div>';
+
+    try {
+      if (mode === 'search') {
+        var res = await fetch(SEARCH_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, lang: isEn ? 'en' : 'zh' })
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        var data = await res.json();
+        if (data.error) throw new Error(data.error);
+        renderSearch(data);
+      } else {
+        chatHistory.push({ role: 'user', content: q });
+        var cres = await fetch(CHAT_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, history: chatHistory.slice(0, -1), model: document.getElementById('aiModelSelect').value })
+        });
+        if (!cres.ok) throw new Error('HTTP ' + cres.status);
+        var cdata = await cres.json();
+        if (cdata.error) throw new Error(cdata.error);
+        chatHistory.push({ role: 'assistant', reply: simpleMarkdown(cdata.reply), sources: cdata.sources });
+        renderChatHistory();
+        input.value = '';
+      }
+    } catch (err) {
+      console.error('[Search] error:', err);
+      body.innerHTML = '<div class="search-error">' + L.failed + '：' + esc(err.message) + '<br><small>' + L.retry + '</small></div>';
+    }
+    submit.disabled = false;
+    setTimeout(function() { input.focus(); }, 100);
+  }
+
+  submit.addEventListener('click', doSubmit);
+  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doSubmit(); });
+})();
+</script>
+
+</body>
+</html>

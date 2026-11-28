@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="canonical" href="https://superdata-robotai.com/tools/">
+<link rel="alternate" hreflang="zh-CN" href="https://superdata-robotai.com/tools/">
+<link rel="alternate" hreflang="en" href="https://superdata-robotai.com/en/tools/">
+<link rel="alternate" hreflang="x-default" href="https://superdata-robotai.com/tools/">
+<meta property="og:url" content="https://superdata-robotai.com/tools/">
+<meta property="og:site_name" content="Superdata RobotAI">
+<meta property="og:image" content="https://superdata-robotai.com/%E5%AD%A6%E7%94%9Fbot.png">
+<meta name="twitter:card" content="summary">
+<meta property="og:title" content="工具/平台 | Superdata RobotAI">
+<meta property="og:description" content="机器人仿真平台、工具链与基础设施">
+<meta property="og:type" content="website">
+<meta name="twitter:title" content="工具/平台 | Superdata RobotAI">
+<meta name="twitter:description" content="机器人仿真平台、工具链与基础设施">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工具/平台 | Superdata RobotAI</title><meta name="description" content="机器人仿真平台、工具链与基础设施">
+<link rel="icon" type="image/png" href="/机器人.png">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var btn = document.getElementById('hamburgerBtn');
+  var menu = document.getElementById('navMenu');
+  if(btn && menu){
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ btn.classList.remove('open'); menu.classList.remove('open'); });
+    });
+  }
+
+  // Auto card view on mobile for datasets/standards
+  if(window.innerWidth <= 768){
+    if(typeof state !== 'undefined' && state && 'view' in state){ state.view = 'card';
+      if(typeof update === 'function') update();
+    }
+  }
+});
+</script>
+
+</head>
+<body>
+<nav class="navbar">
+  <a href="/" class="nav-logo">
+    <img src="/学生bot.png" alt="Logo">
+    <span class="nav-logo-text">Superdata RobotAI</span>
+  </a>
+  <div class="nav-menu" id="navMenu">
+    <a href="/" class="nav-link ">首页</a>
+    <a href="/datasets/" class="nav-link ">数据集</a>
+    <a href="/standards/" class="nav-link ">数据标准</a>
+    <a href="/benchmarks/" class="nav-link ">排行榜</a>
+    <a href="/tools/" class="nav-link active">工具/平台</a>
+    <a href="/blog/" class="nav-link ">技术博客</a>
+  </div>
+  <div class="nav-lang">
+    <a href="/" class="nav-lang-link active" title="中文">中</a>
+    <span class="nav-lang-sep">/</span>
+    <a href="/en/" class="nav-lang-link" title="English">EN</a>
+  </div>
+  <div class="nav-cta">
+    <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="btn btn-ghost">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+  <button class="hamburger-btn" id="hamburgerBtn" aria-label="菜单">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-content">
+    <h1 class="page-hero-title">工具/平台</h1>
+    <p class="page-hero-subtitle">机器人仿真环境、数据处理工具链与基础设施</p>
+  </div>
+</section>
+
+<section class="tools-section">
+  <div class="tools-layout">
+    <aside class="filter-sidebar">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" class="search-input" placeholder="搜索工具/平台名称、机构..." id="searchInput" oninput="handleSearch()">
+      </div>
+      <div class="filter-toolbar">
+        <h3 id="filterHeading">筛选</h3>
+        <button class="clear-filters" onclick="clearFilters()" id="clearFiltersBtn">清除</button>
+      </div>
+      <span class="filter-result-count" id="resultCount"></span>
+      <div class="filter-card">
+        <div class="filter-card-header"><span id="labelToolType">工具类型</span></div>
+        <div class="filter-chips" id="toolTypeFilters"></div>
+      </div>
+      <div class="filter-card">
+        <div class="filter-card-header"><span id="labelOpenness">开放程度</span></div>
+        <div class="filter-chips" id="opennessFilters"></div>
+      </div>
+      <div class="filter-card">
+        <div class="filter-card-header"><span id="labelTags">热门标签</span></div>
+        <div class="filter-chips" id="tagFilters"></div>
+      </div>
+    </aside>
+    <div class="tools-main" id="toolsList"></div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="/学生bot.png" alt="Logo">
+        Superdata RobotAI
+      </div>
+      <p class="footer-desc">专注收录全球具身智能、人形机器人、机械臂、移动机器人数据集情报。只做一件事：信息汇总 & 申请导航，助力算法研发。</p>
+      <div class="footer-social">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="social-link" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="mailto:embodisets@163.com" class="social-link" title="邮箱">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>快速链接</h4>
+      <div class="footer-links">
+        <a href="/" class="footer-link">首页</a>
+        <a href="/datasets/" class="footer-link">全部数据集</a>
+        <a href="/standards/" class="footer-link">数据标准</a>
+        <a href="/submit/" class="footer-link">提交数据集</a>
+        <a href="/blog/" class="footer-link">技术博客</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>资源</h4>
+      <div class="footer-links">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="footer-link">GitHub 仓库</a>
+        <a href="mailto:embodisets@163.com" class="footer-link">提交反馈</a>
+        <a href="/blog/" class="footer-link">技术博客</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>联系我们</h4>
+      <div class="footer-links">
+        <span class="footer-link">embodisets@163.com</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copyright">Copyright © 2026 Superdata RobotAI · <a href="https://github.com/locusinger159/embodiedai-datasets" style="color:inherit">CC BY-NC-SA 4.0</a></div>
+    <div class="footer-disclaimer">声明：本网站仅做信息导航，不提供任何数据集下载。数据集版权归原机构/作者所有。数据内容未经授权禁止商业使用。</div>
+  </div>
+</footer>
+<button class="back-to-top" id="backToTop" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+<script>
+(function(){
+  var backToTop = document.getElementById('backToTop');
+  if(!backToTop) return;
+  function onScroll(){
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    if(y > 500) backToTop.classList.add('visible');
+    else backToTop.classList.remove('visible');
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  backToTop.addEventListener('click', function(){ window.scrollTo({ top:0, behavior:'smooth' }); });
+  // Fade-in scroll animations with stagger
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold:0.1, rootMargin:'0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in, .scroll-animate').forEach(function(el){ obs.observe(el); });
+  } else {
+    document.querySelectorAll('.fade-in, .scroll-animate').forEach(function(el){ el.classList.add('visible'); });
+  }
+})();
+</script>
+
+
+<script>
+var TOOLS = [{"id":"robosuite","name":"RoboSuite","institution":"加州大学伯克利分校 (UC Berkeley)","description":"**RoboSuite** 是由 Stanford Vision and Learning Lab 最初开发，现由 **ARISE Initiative（Stanford / UT Austin / NVIDIA GEAR）**联合维护的模块化机器人仿真框架。\n\n基于 **MuJoCo** 物理引擎，提供标准化的机器人学习基准环境。\n\n**v1.5（2024.10）更新亮点**：\n- 支持人形机器人等多种新型机器人形态\n- 自定义机器人组合（程序化组装新机器人设计）\n- 复合控制器（IK + 操作空间 + 关节空间全身控制）\n- 集成 NVIDIA Isaac Sim 实现照片级渲染\n\n**核心特性**：9+ 标准化操作任务（Lift、Stack、Nut Assembly、Door 等），7 种机械臂 + 8 种夹爪模型，多模态传感器（RGB、深度、本体状态），Gymnasium API 兼容。配套 sister project **robomimic** 用于人类演示数据采集与模仿学习。","toolType":"训练框架","type":"open","openness":"open","links":{"site":"https://robosuite.ai","paper":"https://arxiv.org/abs/2009.12293"},"modality":["仿真状态","视觉"],"license":"MIT","scale":"多个仿真环境","dataFormat":"详见官方链接 — episode → step → observation → action","tags":[],"notes":"Stanford/UT Austin/NVIDIA 维护的模块化机器人仿真框架，基于 MuJoCo 引擎。v1.5（2024）支持人形机器人、自定义组合机器人、全身控制器、Isaac Sim 渲染。9+ 标准操作任务，7 种机械臂模型，Gymnasium API 兼容。","citation":{"bibtex":null,"year":2020,"venue":"arXiv"},"changelog":[]},{"id":"isaac-sim-dataset","name":"Isaac Sim","institution":"NVIDIA","description":"**NVIDIA Isaac Sim** 是构建在 **Omniverse** 平台上的高性能机器人仿真工具包。\n\n基于 **OpenUSD** 构建仿真数据管线，支持大规模并行场景生成、域随机化、物理级传感器仿真（RGB-D、LiDAR、IMU 等）和强化学习/模仿学习策略训练。\n\n是 NVIDIA **GR00T** 系列人形机器人基础模型的核心仿真数据生成与训练验证平台。与 Isaac Lab（原 Isaac Gym）深度集成，支持 GPU 加速的大规模并行仿真。","toolType":"仿真器","type":"partial","openness":"partial","links":{"site":"https://developer.nvidia.com/isaac-sim"},"modality":["视觉","点云","深度"],"license":"NVIDIA 专有（免费用于开发/研究）","dataFormat":"详见官方链接 — episode → step → observation → action","tags":[],"notes":"NVIDIA Omniverse 平台上的机器人仿真工具包。基于 OpenUSD 构建仿真数据管线，支持大规模并行场景生成、域随机化、传感器仿真和策略训练。GR00T 系列模型的核心仿真平台。","citation":{"bibtex":null,"year":2023,"venue":null},"changelog":[]},{"id":"habitat","name":"Habitat","institution":"Meta AI","description":"**Habitat** 是 Meta AI（原 Facebook AI）提出的高性能具身导航与交互仿真平台。\n\n**Habitat 3.0（2023）** 引入人机协作任务、高精度人体化身仿真（关节骨骼 + 表面渲染）、人机回环（VR/键鼠实时交互），以及社交导航（Social Navigation）和社交重排（Social Rearrangement）两类核心协作任务。\n\n**架构**：Habitat-Sim（高性能 3D 仿真器，支持 HM3D、MatterPort3D、Gibson、Replica 等场景数据集）+ Habitat-Lab（模块化任务定义与训练库）+ Habitat Challenge（CVPR Embodied AI Workshop 年度基准评测）。Fetch 机器人可达 8,000+ 步/秒。","toolType":"仿真器","type":"open","openness":"open","links":{"site":"https://aihabitat.org","paper":"https://arxiv.org/abs/2310.13724"},"modality":["视觉","深度"],"license":"MIT","dataFormat":"详见官方链接 — episode → step → observation → action","tags":[],"notes":"Meta AI 具身导航与交互仿真平台。Habitat 3.0（2023）支持人机协作任务、VR 人机回环、社交导航与重排。适配 HM3D、MatterPort3D、Replica 等数据集，年度 Habitat Challenge 基准评测。","citation":{"bibtex":null,"year":2023,"venue":"arXiv"},"changelog":[]},{"id":"igibson","name":"iGibson","institution":"斯坦福大学 (Stanford University)","description":"**iGibson（Interactive Gibson）**是 Stanford Vision and Learning Lab 开发的交互式 3D 家居仿真环境。\n\n基于 **Bullet** 物理引擎，提供 15 个完整的交互式家居场景（门、抽屉、开关、家具等可交互物体），支持机器人导航、操作和交互任务。\n\n**v2.2（2024）** 新增 Tiago 机器人支持、ROS 集成、物体中心动作原语、原语动作接口。\n\n**后继项目**：**OmniGibson**（基于 NVIDIA Omniverse）是该团队当前重点开发的新一代平台，支持更高质量的渲染和物理仿真。","toolType":"仿真器","type":"open","openness":"open","links":{"site":"https://stanfordvl.github.io/iGibson","paper":"https://arxiv.org/abs/2012.02924"},"modality":["视觉","深度","物理"],"license":"MIT","dataFormat":"详见官方链接 — episode → step → observation → action","tags":[],"notes":"StanfordVL 交互式 3D 家居仿真环境（Bullet 物理引擎）。15 个完整交互式家居场景，支持物体操作（门、抽屉、开关等）。v2.2（2024）支持 Tiago 机器人、ROS 集成。后继项目 OmniGibson（NVIDIA Omniverse 版）。","citation":{"bibtex":null,"year":2021,"venue":"IROS"},"changelog":[]},{"id":"sapien","name":"SAPIEN","institution":"斯坦福大学、上海交通大学","description":"**SAPIEN** 是 UCSD Hao Su Lab 开发的交互式 3D 部件级仿真平台，其上的 **ManiSkill** 是目前最先进的 GPU 并行化机器人仿真与基准框架。\n\n**ManiSkill3（RSS 2025）核心特性**：\n- GPU 并行仿真 + 渲染达 **30,000+ FPS**（RGB-D + 分割）\n- GPU 内存使用 2-3 倍优于 Isaac Lab（128 并行环境：4.4GB vs 14.1GB）\n- 12 类环境、**20+ 种机器人**（人形、移动操作臂、四足、灵巧手等）\n- 内置 ReplicaCAD、AI2THOR 场景，支持异构并行仿真\n- 提供 RL（PPO/SAC/TD-MPC2）、模仿学习（BC/Diffusion Policy）、VLA（Octo/RDT/RT-x）基线\n\nSAPIEN 3.0 引擎提供 2,000+ 个带部件级关节信息的高质量 3D 模型。安装：pip install --upgrade mani_skill。","toolType":"仿真器","type":"open","openness":"open","links":{"site":"https://maniskill.ai/","paper":"https://arxiv.org/abs/2410.00425"},"modality":["视觉","点云"],"license":"MIT","dataFormat":"详见官方链接 — episode → step → observation → action","tags":[],"notes":"UCSD Hao Su Lab 的 GPU 并行化机器人仿真与渲染平台。ManiSkill3（RSS 2025）达 30,000+ FPS，20+ 种机器人形态。SAPIEN 3.0 引擎支持异构大规模并行仿真。pip install mani_skill。","citation":{"bibtex":null,"year":2024,"venue":"RSS 2025"},"changelog":[]},{"id":"coppeliasim","name":"CoppeliaSim","institution":"Coppelia Robotics","description":"**CoppeliaSim**（原 V-REP）是跨平台通用机器人仿真环境，由 Coppelia Robotics 公司开发维护。\n\n**最新版本 V4.10.0（2025.05）**，集成 MuJoCo V3.2.6 实现 **2-10 倍仿真速度提升**，新增 adhesion 功能。\n\n**核心特性**：支持多种物理引擎（Bullet、ODE、Vortex、Newton、MuJoCo），丰富的机器人模型库和传感器仿真（视觉、深度、力控、IMU 等），Python/C/C++/MATLAB/ROS 多语言 API。是 **RLBench** 等基准的底层仿真平台，广泛应用于机器人学习和控制研究。","toolType":"仿真器","type":"open","openness":"open","links":{"site":"https://www.coppeliarobotics.com/"},"modality":["视觉"],"license":"CoppeliaSim Edu 免费 / Commercial 付费","dataFormat":"详见官方链接 — episode → step → observation → action","tags":[],"notes":"跨平台机器人仿真环境（原 V-REP）。V4.10.0（2025.05），集成 MuJoCo V3.2.6 实现 2-10x 仿真加速。支持 Bullet/ODE/Vortex/Newton 多引擎，含丰富机器人模型库与传感器仿真。RLBench 底层平台。","citation":{"bibtex":null,"year":2013,"venue":null},"changelog":[]},{"id":"pytouch","name":"PyTouch","institution":"Meta AI（Facebook Research）","description":"**PyTouch** 是 Meta AI（Facebook Research）推出的首个专用于触觉处理的机器学习库。\n\n基于 **PyTorch** 构建，提供以下预训练模型：\n- 触觉接触检测（Touch/Contact Detection）\n- 滑移检测（Slip Detection）\n- 物体姿态估计（Object Pose Estimation）\n- 接触面积估计（Contact Area Estimation）\n\n支持 **DIGIT、OmniTact、GelSight** 等主流光学触觉传感器。配套 TACTO 触觉仿真器可生成合成触觉数据用于模型训练。\n安装：pip install pytouch。","toolType":"触觉模拟","type":"open","openness":"open","links":{"site":"https://facebookresearch.github.io/PyTouch/","paper":"https://arxiv.org/abs/2105.12791"},"modality":["触觉"],"license":"MIT","dataFormat":"PyTorch 模型 + Python 库 — sensor input → ML model → prediction","tags":[],"notes":"Meta AI 推出的首个触觉处理 ML 库。基于 PyTorch，提供触觉检测、滑移检测、物体姿态估计、接触面积估计等预训练模型。支持 DIGIT、OmniTact、GelSight 传感器。pip install pytouch。","citation":{"bibtex":null,"year":2021,"venue":"ICRA"},"changelog":[]},{"id":"gibson","name":"Gibson","institution":"斯坦福大学 (Stanford University)","description":"**Gibson Environment（GibsonEnv）**是 Stanford Vision and Learning Lab 开发的真实 3D 场景仿真平台。\n\n基于真实 3D 扫描数据重建室内场景，提供 RGB、深度、语义分割等传感器仿真。配套 **Matterport3D** 数据集使用，是具身导航领域的经典仿真环境。\n\n**后继版本**：**iGibson**（增加物理交互 + 物体操作能力）和 **OmniGibson**（基于 NVIDIA Omniverse 的新一代平台）。MIT 协议开源。","toolType":"仿真器","type":"open","openness":"open","links":{"site":"https://github.com/StanfordVL/GibsonEnv","paper":"https://arxiv.org/abs/1808.10654"},"modality":["视觉","深度"],"license":"MIT","dataFormat":"详见官方链接 — episode → step → observation → action","tags":[],"notes":"StanfordVL 真实 3D 场景仿真环境。从真实 3D 扫描重建室内场景，支持导航、感知与交互研究。配套 Matterport3D 使用。iGibson 为其交互式后继版本。MIT 协议。","citation":{"bibtex":null,"year":2018,"venue":"CVPR"},"changelog":[]},{"id":"robomimic","name":"robomimic","institution":"ARISE Initiative（Stanford / 德克萨斯大学奥斯汀分校 (UT Austin) / NVIDIA GEAR）","description":"**robomimic** 是 ARISE Initiative 维护的机器人模仿学习数据处理与训练框架，是具身智能数据生态中最核心的数据处理工具之一。\n\n**数据处理管线**（原始数据 → 训练就绪）：\n1. 采集人类演示（robosuite 的 collect_human_demonstrations.py）\n2. 格式转换（convert_robosuite.py → robomimic 兼容 HDF5）\n3. 观测提取（dataset_states_to_obs.py，从 MuJoCo 状态回放生成图像观测）\n4. 数据集切分（split_train_val.py，90-10 划分）\n5. 训练（train.py，支持 BC/BC-RNN/BC-Transformer/Diffusion Policy/IQL 等算法）\n\n**HDF5 标准结构**：demo_N → states/actions/rewards/dones/obs/next_obs，动作归一化至 [-1, 1]，图像为 uint8 channel-last (H, W, C)。\n\n**v0.5.0（2025.06）**：新增 Diffusion Policy、多数据集联合训练、语言条件策略支持。\nv0.4.0（2025.03）：robosuite v1.5 兼容，数据集迁移至 HuggingFace。\n\n下载：pip install robomimic\nGitHub：https://github.com/ARISE-Initiative/robomimic","toolType":"训练框架","type":"open","openness":"open","links":{"site":"https://robomimic.github.io","paper":"https://arxiv.org/abs/2108.03298"},"modality":["视觉","动作","本体状态"],"license":"MIT","dataFormat":"HDF5（robomimic 兼容格式） — demo_N → states/actions/rewards/dones/obs/next_obs → low_dim + rgb","tags":[],"notes":"模仿学习数据处理框架。原始机器人数据 → 标准化 HDF5，含数据集转换/观测提取/切分/下载管理。v0.5.0（2025.06）支持 Diffusion Policy、多数据集联合训练、语言条件策略。BridgeData V2、RoboTurk 的标准格式。","citation":{"bibtex":null,"year":2021,"venue":"CoRL"},"changelog":[]},{"id":"tacto","name":"TACTO","institution":"Meta AI（Facebook Research）","description":"**TACTO** 是 Meta AI（Facebook Research）开发的开源光学触觉传感器仿真器，发表于 IEEE RA-L 2022。\n\n**核心能力**：\n- 高速渲染：**>100 FPS** 生成高分辨率触觉图像（RGB + 深度）\n- 多传感器支持：**DIGIT、OmniTact、GelSight** 三种主流光学触觉传感器\n- 物理引擎集成：原生支持 **PyBullet**，可对接其他引擎\n- 模块化设计：可配置传感器几何参数（尺寸、分辨率、光照）\n\n**与 PyTouch 的关系**：TACTO 生成合成触觉训练数据 → PyTouch 处理真实触觉数据，二者形成完整的触觉感知工具链。\n\n安装：pip install tacto\n社区：touch-sensing.org #TACTO 频道","toolType":"触觉模拟","type":"open","openness":"open","links":{"site":"https://github.com/facebookresearch/tacto","paper":"https://arxiv.org/abs/2012.08456"},"modality":["触觉","RGB","深度"],"license":"MIT","dataFormat":"Python 库（PyBullet 渲染） — sensor config → PyBullet simulation → RGB + depth tactile images","tags":[],"notes":"Meta AI 光学触觉传感器仿真器。为 DIGIT、OmniTact、GelSight 生成合成触觉数据（RGB+深度，>100FPS）。基于 PyBullet，PyTouch 的配套仿真器。pip install tacto。","citation":{"bibtex":null,"year":2022,"venue":"IEEE RA-L"},"changelog":[]},{"id":"foxglove","name":"Foxglove / Lichtblick","institution":"Foxglove（商业）/ BMW（开源 fork）","description":"**Foxglove** 是领先的机器人数据可视化与调试平台，原生支持 **MCAP** 格式（ROS 2 Iron+ 默认存储格式）的录制、播放和分析。\n\n**功能**：3D 场景可视化、时序绘图、多文件合并播放、H.264/H.265 视频解码、Jupyter Notebook 集成。支持 ROS 1/2 bag 转 MCAP。\n\n**协议状态**：2024 年 2 月（v1.87.0）后转为 **BUSL-1.1 商业许可**，不再开源。免费套餐提供基础查看功能，专业版 $20/月起。\n\n**开源后继**：\n- **Lichtblick**（BMW 维护）：GitHub 692⭐，Apache 2.0，最活跃的开源 fork。支持桌面 + 浏览器，兼容 Foxglove bridge 协议。\n  下载：https://github.com/Lichtblick-Suite/lichtblick\n- **Trillium**（Robotnik Automation）：MPL 2.0，体积小 40%，资源更友好。\n  下载：https://github.com/RobotnikAutomation/trillium\n\nMCAP CLI 工具仍为 Apache 2.0 开源：https://github.com/foxglove/mcap","toolType":"可视化","type":"partial","openness":"partial","links":{"site":"https://foxglove.dev"},"modality":["视觉","深度","LiDAR","本体状态"],"license":"BUSL-1.1（商业闭源）/ Lichtblick: Apache 2.0（开源）","tags":[],"notes":"机器人数据可视化与调试平台。支持 MCAP/rosbag 播放、3D 场景、时序绘图。2024.02 后商业闭源（BUSL-1.1），开源社区 fork：Lichtblick（BMW，Apache 2.0）。MCAP 格式为 ROS 2 默认存储格式。","citation":{"bibtex":null,"year":2022,"venue":null},"changelog":[]},{"id":"pybullet","name":"PyBullet","institution":"Erwin Coumans / Google","description":"**PyBullet** 是 Bullet Physics SDK 的 Python 接口，由 Erwin Coumans（Bullet 创始人，前 Google Robotics）维护。\n\n**核心特性**：\n- **零配置安装**：`pip install pybullet` 即可，跨平台（Win/Mac/Linux）\n- **100+ 内置示例**：涵盖刚体、软体、铰接、碰撞检测等\n- **URDF/SDF 支持**：直接加载标准机器人模型\n- **VR 遥操作**：支持 HTC Vive、Oculus 等 VR 头显\n- **zlib 许可证**：极宽松，可商用\n\n**应用场景**：强化学习环境（Gymnasium API 兼容）、机器人运动规划、多体动力学仿真。\n\n**局限**：单线程 CPU 仿真，大规模并行训练受限（推荐迁移到 MuJoCo MJX 或 Isaac Lab）。\n\n**协议**：zlib（等同于 MIT）。","toolType":"物理引擎","type":"open","openness":"open","links":{"site":"https://pybullet.org/","github":"https://github.com/bulletphysics/bullet3"},"modality":["仿真状态","RGB"],"license":"zlib","dataFormat":"详见官方链接","tags":["仿真","RL","Sim-to-Real"],"notes":"PyBullet 是 Bullet 物理引擎的 Python 封装，`pip install pybullet` 即装即用。广泛用于强化学习研究（MetaWorld、CALVIN、RLBench 均基于或兼容 PyBullet）。支持 URDF 导入、VR 遥操作、实时可视化，是 RL 快速原型开发的首选物理引擎。","citation":{"bibtex":null,"year":2016,"venue":null},"changelog":[]},{"id":"mujoco","name":"MuJoCo","institution":"Google DeepMind","description":"**MuJoCo** 原为 Roboti LLC 开发，2021 年被 Google DeepMind 收购并完全免费开源（Apache 2.0）。\n\n**核心特性**：\n- **GPU 加速（MJX）**：基于 JAX/XLA 的并行物理仿真，单 GPU 可并行 100 环境\n- **MuJoCo Playground**：RSS 2025 Outstanding Demo Award，分分钟级训练收敛\n- **高保真接触力学**：凸 Gauss 原理 + 隐式积分，比 Bullet 更稳定\n- **丰富的机器人模型库**：MuJoCo Menagerie 提供 50+ 高质量 URDF/MJCF 模型\n- **Gemini Robotics SDK 集成**：直接对接 Google VLA 模型训练\n\n**协议**：Apache 2.0。\n\n**注意**：NVIDIA 与 DeepMind、Disney 正联合开发下一代 Newton 物理引擎（基于 MuJoCo-Warp），兼容 Isaac Lab。","toolType":"物理引擎","type":"open","openness":"open","links":{"site":"https://mujoco.org/","github":"https://github.com/google-deepmind/mujoco"},"modality":["仿真状态","RGB","深度"],"license":"Apache-2.0","licenseNotes":"Apache 2.0","dataFormat":"详见官方链接","tags":["仿真","RL","Sim-to-Real","VLA","人形"],"notes":"MuJoCo（Multi-Joint dynamics with Contact）是 Google DeepMind 的旗舰物理引擎，Apache 2.0 开源。MJX 版本在 GPU 上实现并行加速，Playground 获 RSS 2025 杰出 Demo 奖。MetaWorld、robosuite、DM Control、SKRL 等生态基于 MuJoCo。月下载量 38 万+。","citation":{"bibtex":null,"year":2021,"venue":null},"changelog":[]},{"id":"webots","name":"Webots","institution":"Cyberbotics (EPFL spin-off)","description":"**Webots** 是 Cyberbotics 自 1998 年起持续开发的商业化机器人仿真器，2018 年完全开源（Apache 2.0）。\n\n**核心特性**：\n- **40+ 预置机器人模型**：含 NAO、Pepper、UR、Franka、KUKA、Boston Dynamics 等\n- **ROS 2 深度集成**：webots_ros2 包支持 MoveIt2、ros2_control、topic 桥接\n- **多语言 API**：C、C++、Python、Java、MATLAB、ROS\n- **云端仿真**：Webots.cloud 支持浏览器中运行仿真（WebGL/WebSocket）\n- **物理引擎可换**：内置 ODE，可选 Bullet\n- **OpenStreetMap 导入**：直接加载真实地图\n\n**协议**：Apache 2.0（核心），部分资产模型另有许可。","toolType":"仿真器","type":"open","openness":"open","links":{"site":"https://cyberbotics.com/","github":"https://github.com/cyberbotics/webots"},"modality":["仿真状态","RGB","深度","LiDAR"],"license":"Apache-2.0","licenseNotes":"Apache 2.0","dataFormat":"详见官方链接","tags":["仿真","Sim-to-Real","ROS"],"notes":"Webots 是 Cyberbotics（EPFL 衍生公司）开发的跨平台机器人仿真器，Apache 2.0 开源。支持 40+ 机器人模型、ROS 2 集成、云端 Webots.cloud 运行、C/C++/Python/Java/MATLAB 多语言 API。2025 年发布 R2025a 版本。","citation":{"bibtex":null,"year":2025,"venue":null},"changelog":[]},{"id":"isaac-lab","name":"Isaac Lab","institution":"NVIDIA","description":"**Isaac Lab**（前身 Orbit）是 NVIDIA 于 2025 年正式发布的 GPU 加速机器人学习框架，基于 Isaac Sim 构建。\n\n**核心特性**：\n- **GPU 并行 RL**：单 GPU 并行数千环境，MJX 和 Newton 双物理后端\n- **Newton 物理引擎（Beta）**：与 DeepMind/Disney 联合开发，开源 GPU 加速，支持可微物理\n- **SkillGen 数据生成**：GPU 加速的无碰撞运动规划，结合人类输入生成演示数据\n- **GR00T VLA 集成**：直接对接 GR00T N1.6 模型训练和 Sim-to-Real 部署\n- **全身控制**：Pink IK 求解器、人形机器人躯干旋转、双臂协调\n- **Arena 基准框架**：大规模 GPU 并行策略评测\n\n**与 Isaac Sim 的区别**：Isaac Sim 是通用仿真/渲染平台（已有条目），Isaac Lab 是在其上的 RL/IL 专用训练框架。\n\n**协议**：BSD-3-Clause。","toolType":"训练框架","type":"open","openness":"open","links":{"site":"https://isaac-sim.github.io/IsaacLab/","github":"https://github.com/isaac-sim/IsaacLab"},"modality":["仿真状态","RGB","深度","触觉","视觉"],"license":"BSD-3-Clause","dataFormat":"详见官方链接","tags":["仿真","RL","Sim-to-Real","VLA","人形","数据生成","大规模"],"notes":"NVIDIA Isaac Lab 是 GPU 加速的机器人学习框架，v2.3 GA（2025 Q4），基于 Isaac Sim 5.1。集成 Newton 物理引擎、GR00T VLA 模型、SkillGen 数据生成。支持 Boston Dynamics Atlas、Figure AI 等多家人形机器人。与已有的 Isaac Sim 条目互补（Isaac Sim 为底层仿真平台，Isaac Lab 为上层 RL 训练框架）。","citation":{"bibtex":null,"year":2025,"venue":"arXiv"},"changelog":[]},{"id":"gazebo","name":"Gazebo Sim","institution":"Open Robotics / Intrinsic","description":"**Gazebo Sim**（原名 Ignition Gazebo，2023 年 rebrand）是 Open Robotics 开发的现代化机器人仿真平台，取代已退役的 Gazebo Classic。\n\n**版本与生命周期**：\n- **Harmonic（LTS）**：2023 年发布，支持至 2028 年 9 月，ROS 2 Humble/Jazzy 推荐\n- **Ionic**：2024 年发布，非 LTS，最新功能尝鲜\n- **Jetty（LTS）**：2025 年发布，新 LTS，支持至 2030 年\n\n**核心特性**：\n- **模块化架构**：物理/渲染/传感器/GUI 各自独立，可替换\n- **多物理引擎**：DART（默认）、Bullet、TPE\n- **ROS 2 深度集成**：ros_gz 桥接包，完全替代 Classic 时代的 ros_control 方案\n- **GPU 传感器渲染**：支持 RGB-D、LiDAR、热成像等\n- **SDFormat（SDF）**：下一代机器人描述格式，替代 URDF\n\n**注意**：Gazebo Classic 已停止维护，新项目应使用 Gazebo Sim (Harmonic/Jetty)。\n\n**协议**：Apache 2.0。","toolType":"仿真器","type":"open","openness":"open","links":{"site":"https://gazebosim.org/","github":"https://github.com/gazebosim/gz-sim"},"modality":["仿真状态","RGB","深度","LiDAR","视觉"],"license":"Apache-2.0","licenseNotes":"Apache 2.0","dataFormat":"详见官方链接","tags":["仿真","Sim-to-Real","ROS"],"notes":"Gazebo 是 ROS 生态标配机器人仿真器。Gazebo Classic 已 2025 年 1 月 EOL，现为 rebrand 后的 Gazebo Sim（Harmonic LTS 至 2028，Jetty LTS 至 2030）。原名 Ignition Gazebo。支持 ROS 2 Jazzy 官方集成，是机器人仿真的事实标准。","citation":{"bibtex":null,"year":2023,"venue":null},"changelog":[]},{"id":"rerun","name":"Rerun","institution":"Rerun AB (Stockholm)","description":"**Rerun** 由前 Meta/Google 工程师创立（Stockholm），是面向 Physical AI 的开源可视化与数据基础设施。\n\n**核心特性**：\n- **多模态流式可视化**：RGB、深度、3D 点云、Tensor、文本同一时间轴内展示\n- **Python/C++/Rust SDK**：代码驱动，`rr.log()` 即可记录任意数据\n- **LeRobot 原生支持**（v0.22+）：HuggingFace 官方 LeRobot 默认 viewer\n- **MCAP 支持**（实验性）：直接拖放 ROS 2 bag 文件查看\n- **ECS 数据模型**（Entity Component System）：比 ROS topic/message 模型更灵活\n- **开源核心 + 商业云**：Apache 2.0 / MIT 双许可\n\n**与 Foxglove 的区别**：Foxglove 重平台化（Web 仪表盘、团队协作、数据管理），Rerun 重 SDK 驱动（代码即可视化，适合研究和开发调试）。两者互补。\n\n**协议**：Apache 2.0 / MIT。","toolType":"可视化","type":"open","openness":"open","links":{"site":"https://rerun.io/","github":"https://github.com/rerun-io/rerun"},"modality":["RGB","深度","3D点云","视觉"],"license":"Apache 2.0 / MIT","dataFormat":"详见官方链接","tags":["可视化","LeRobot","ROS","多模态"],"notes":"Rerun 是 Physical AI 时代的开源可视化数据栈，Rust 构建，Python/C++/Rust SDK。2025 年融 $17M，原生支持 LeRobot 数据集和 MCAP 格式。HuggingFace LeRobot 默认可视化工具，Meta/Google/Unitree 采用。与已有 Foxglove 互补。","citation":{"bibtex":null,"year":2024,"venue":null},"changelog":[]},{"id":"rviz","name":"RViz (RViz2)","institution":"Open Robotics","description":"**RViz（RViz2）**是 ROS/ROS 2 的标准 3D 可视化工具，由 Open Robotics 维护，BSD 开源。\n\n**核心特性**：\n- **丰富的显示类型**：PointCloud2、LaserScan、TF 坐标帧、RobotModel（URDF）、Camera 图像、Marker、Interactive Marker、Map 等\n- **可交互控件**：Interactive Marker 支持拖拽/旋转/点击操作，常用于标定和任务设定\n- **插件架构**：C++ 插件接口，可扩展自定义显示类型\n- **QoS 兼容**：支持 ROS 2 的 QoS 配置（reliable/best_effort 等）\n- **主题录制与回放**：配合 ros2 bag 使用\n\n**局限**：仅桌面端（需完整 ROS 环境），不支持 Web 浏览器，不支持多文件对比。\n\n**与 Foxglove/Rerun 的关系**：RViz 是经典 ROS 调试工具（深度集成），Foxglove 偏现代化平台（Web/协作），Rerun 偏 SDK 驱动（研究/开发）。三者互补覆盖不同场景。\n\n**协议**：BSD。","toolType":"可视化","type":"open","openness":"open","links":{"site":"https://github.com/ros2/rviz","github":"https://github.com/ros2/rviz"},"modality":["RGB","深度","3D点云","视觉","LiDAR"],"license":"BSD","dataFormat":"详见官方链接","tags":["可视化","ROS","多模态"],"notes":"RViz 是 ROS 生态的经典 3D 可视化工具，ROS 2 版本为 RViz2（BSD 开源）。支持 PointCloud、TF、RobotModel、Camera、LaserScan 等核心显示类型。2025 年持续维护（Jazzy v14 / Kilted v15），是 ROS 开发者不可或缺的调试工具。","citation":{"bibtex":null,"year":2014,"venue":null},"changelog":[]}];
+var I = window.I18N || {};
+var tL = I.typeLabels || {open:'开源',partial:'部分开源',apply:'可申请',closed:'闭源'};
+var ttL = I.toolTypeLabels || {};
+var cL = {open:'type-open',partial:'type-partial',apply:'type-partial',closed:'type-closed'};
+
+document.addEventListener('DOMContentLoaded',function(){
+  var a=document.getElementById('labelToolType');if(a)a.textContent=I.toolType||a.textContent;
+  var b=document.getElementById('labelOpenness');if(b)b.textContent=I.openness||b.textContent;
+  var c=document.getElementById('searchInput');if(c)c.placeholder=I.searchPlaceholder||c.placeholder;
+  var d=document.getElementById('clearFiltersBtn');if(d)d.textContent=I.clearFilters||d.textContent;
+});
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+var ICONS = {
+  '仿真器':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+  '物理引擎':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>',
+  '训练框架':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>',
+  '可视化':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="8" y="14" width="7" height="7" rx="1"/></svg>',
+  '触觉模拟':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
+  'default':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>'
+};
+
+function getIcon(tool){var tt=tool.toolType||'';return ICONS[tt]||ICONS['default']}
+
+function getSubtitle(tool){var parts=[];if(tool.institution)parts.push(tool.institution);parts.push(ttL[tool.toolType]||tool.toolType||'');return parts.join(' · ')}
+
+var state = {search:'', toolType:[], type:[], tags:[]};
+
+function buildFilters(){
+  var tts=[...new Set(TOOLS.map(function(d){return d.toolType||'其他'}))].sort();
+  var tps=[...new Set(TOOLS.map(function(d){return d.type}))];
+  var tagCount={};TOOLS.forEach(function(d){(d.tags||[]).forEach(function(t){tagCount[t]=(tagCount[t]||0)+1})});
+  var allTags=[...new Set(TOOLS.flatMap(function(d){return d.tags||[]}))].filter(function(t){return tagCount[t]>=1}).sort();
+  function cnt(field,val){return TOOLS.filter(function(d){return d[field]===val}).length}
+  document.getElementById('toolTypeFilters').innerHTML=tts.map(function(tt){var n=TOOLS.filter(function(d){return d.toolType===tt}).length;return '<button class="filter-chip'+(state.toolType.includes(tt)?' active':'')+'" data-f="toolType" data-v="'+tt+'">'+(ttL[tt]||tt)+'<span class="chip-count">'+n+'</span></button>'}).join('');
+  document.getElementById('opennessFilters').innerHTML=tps.map(function(t){var n=TOOLS.filter(function(d){return d.type===t}).length;return '<button class="filter-chip'+(state.type.includes(t)?' active':'')+'" data-f="type" data-v="'+t+'">'+(tL[t]||t)+'<span class="chip-count">'+n+'</span></button>'}).join('');
+  document.getElementById('tagFilters').innerHTML=allTags.map(function(t){var n=TOOLS.filter(function(d){return (d.tags||[]).indexOf(t)>-1}).length;return '<button class="filter-chip'+(state.tags.includes(t)?' active':'')+'" data-f="tags" data-v="'+t+'">'+t+(n?'<span class="chip-count">'+n+'</span>':'')+'</button>'}).join('');
+  bindFilterChips();
+}
+
+function bindFilterChips(){
+  document.querySelectorAll('.filter-chip').forEach(function(c){
+    c.onclick=function(){var f=this.dataset.f,v=this.dataset.v;var arr=state[f];var i=arr.indexOf(v);if(i>-1)arr.splice(i,1);else arr.push(v);update()}
+  });
+}
+
+function filterData(){
+  var r=TOOLS;
+  if(state.search){var q=state.search.toLowerCase();r=r.filter(function(d){return d.name.toLowerCase().indexOf(q)>-1||(d.institution||'').toLowerCase().indexOf(q)>-1||(d.notes||'').toLowerCase().indexOf(q)>-1})}
+  if(state.toolType.length)r=r.filter(function(d){return state.toolType.indexOf(d.toolType||'其他')>-1});
+  if(state.type.length)r=r.filter(function(d){return state.type.indexOf(d.type)>-1});
+  if(state.tags.length)r=r.filter(function(d){return state.tags.some(function(v){return (d.tags||[]).indexOf(v)>-1})});
+  return r;
+}
+
+function render(){
+  var data = filterData();
+  var h = data.map(function(tool){
+    return '<a href="/tools/' + tool.id + '/" class="tool-card">'
+      + '<div class="tool-card-top">'
+      + '<div class="tool-card-icon">' + getIcon(tool) + '</div>'
+      + '<div class="tool-card-header">'
+      + '<div class="tool-card-name">' + tool.name + '</div>'
+      + '<div class="tool-card-meta">' + getSubtitle(tool) + '</div>'
+      + '</div></div>'
+      + '<div class="tool-card-desc">' + esc(tool.notes || '') + '</div>'
+      + '<div class="tool-card-footer">'
+      + '<span class="type-badge ' + (cL[tool.type]||'') + ' tool-card-type">' + (tL[tool.type]||tool.type) + '</span>'
+      + '<span class="tool-card-arrow">详情 →</span>'
+      + '</div></a>';
+  }).join('');
+  document.getElementById('toolsList').innerHTML = '<div class="tools-grid">' + h + '</div>';
+  document.getElementById('resultCount').textContent = (I.resultCount||'找到') + ' ' + data.length + ' ' + (data.length===1?'工具':'个工具');
+}
+
+function handleSearch(){state.search=document.getElementById('searchInput').value;update()}
+function clearFilters(){state.search='';state.toolType=[];state.type=[];state.tags=[];document.getElementById('searchInput').value='';update()}
+
+function update(){buildFilters();render()}
+
+update();
+</script>
+<!-- AI Search Widget — quiet toolbar + search/chat panel -->
+
+
+<div class="search-widget-btns">
+  <button class="search-widget-btn ai-btn" id="aiChatBtn" title="AI assistant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span id="aiChatBtnLabel">AI 助手</span>
+  </button>
+  <button class="search-widget-btn search-btn" id="aiSearchBtn" title="Semantic search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <span id="aiSearchBtnLabel">搜索</span>
+  </button>
+</div>
+
+<div class="search-widget-overlay" id="aiSearchOverlay">
+  <div class="search-widget-panel">
+    <div class="search-panel-header">
+      <span class="search-panel-title" id="panelTitle">AI 助手</span>
+      <button class="search-panel-close" id="aiSearchClose" aria-label="Close">×</button>
+    </div>
+    <div class="search-panel-input">
+      <input type="text" id="aiSearchInput" placeholder="描述你的需求，如：人形机器人双臂操作数据集..." />
+      <select id="aiModelSelect">
+        <option value="deepseek-v4-flash">DeepSeek V4 Flash</option>
+        <option value="deepseek-chat">DeepSeek V3</option>
+        <option value="deepseek-reasoner">DeepSeek R1</option>
+      </select>
+      <button id="aiSearchSubmit">搜索</button>
+    </div>
+    <div class="search-panel-body" id="aiSearchBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const SEARCH_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/search';
+  const CHAT_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/assistant';
+  const isEn = (document.documentElement.lang || 'zh').toLowerCase().startsWith('en');
+  const L = isEn ? {
+    chat: 'AI assistant', search: 'Search', ask: 'Ask', panelChat: 'AI assistant', panelSearch: 'Semantic search',
+    chatPlaceholder: 'Ask about a dataset, e.g. what should I use for tabletop grasping?',
+    searchPlaceholder: 'Describe what you need, e.g. humanoid dual-arm manipulation datasets...',
+    chatEmpty: 'Ask a question to get dataset recommendations. Multi-turn context is kept.',
+    searchEmpty: 'Search across every dataset, standard, and tool in the index.',
+    datasets: 'Datasets', standards: 'Standards', tools: 'Tools',
+    user: 'You', loadingChat: 'Thinking...', loadingSearch: 'Searching...',
+    noResults: 'No matches. Try a different description.', minChars: 'Enter at least 2 characters.',
+    failed: 'Request failed', retry: 'Check your connection and try again.',
+    srcDataset: 'Dataset', srcStandard: 'Standard', srcTool: 'Tool'
+  } : {
+    chat: 'AI 助手', search: '搜索', ask: '提问', panelChat: 'AI 助手', panelSearch: '语义搜索',
+    chatPlaceholder: '向 AI 助手提问，如：我的机械臂要做桌面抓取，推荐什么数据集？',
+    searchPlaceholder: '描述你的需求，如：人形机器人双臂操作数据集...',
+    chatEmpty: '向 AI 助手提问，获取个性化数据集推荐。支持多轮对话，上下文自动关联。',
+    searchEmpty: '在全部数据集、标准与工具中检索。',
+    datasets: '数据集', standards: '标准', tools: '工具',
+    user: '你', loadingChat: 'AI 正在分析...', loadingSearch: '正在搜索...',
+    noResults: '未找到匹配结果，试试换一种描述？', minChars: '请输入至少 2 个字符',
+    failed: '请求失败', retry: '请检查网络连接，或稍后重试',
+    srcDataset: '数据集', srcStandard: '标准', srcTool: '工具'
+  };
+
+  var chatBtn = document.getElementById('aiChatBtn');
+  var searchBtn = document.getElementById('aiSearchBtn');
+  var overlay = document.getElementById('aiSearchOverlay');
+  var closeBtn = document.getElementById('aiSearchClose');
+  var input = document.getElementById('aiSearchInput');
+  var submit = document.getElementById('aiSearchSubmit');
+  var body = document.getElementById('aiSearchBody');
+  var panelTitle = document.getElementById('panelTitle');
+  var mode = 'chat';
+  var chatHistory = [];
+
+  document.getElementById('aiChatBtnLabel').textContent = L.chat;
+  document.getElementById('aiSearchBtnLabel').textContent = L.search;
+
+  function open(m) {
+    mode = m;
+    chatHistory = [];
+    overlay.classList.add('open');
+    panelTitle.textContent = m === 'chat' ? L.panelChat : L.panelSearch;
+    submit.textContent = m === 'chat' ? L.ask : L.search;
+    input.placeholder = m === 'chat' ? L.chatPlaceholder : L.searchPlaceholder;
+    body.innerHTML = '<div class="search-empty">' + (m === 'chat' ? L.chatEmpty : L.searchEmpty) + '</div>';
+    setTimeout(function() { input.focus(); }, 200);
+  }
+  function close() { overlay.classList.remove('open'); }
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  chatBtn.addEventListener('click', function() { open('chat'); });
+  searchBtn.addEventListener('click', function() { open('search'); });
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+    if (e.key === 'k' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); open('search'); }
+  });
+
+  function renderSearch(data) {
+    var h = '';
+    if (data.datasets && data.datasets.length) {
+      h += '<div class="search-result-section"><h3>' + L.datasets + '</h3>';
+      data.datasets.forEach(function(d) {
+        var tags = (d.robotType || []).concat(d.task || []).slice(0, 3);
+        h += '<a href="' + (isEn ? '/en' : '') + '/datasets/' + d.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + d.score + '%</div>'
+          + '<div class="search-result-body">'
+          + '<div class="search-result-name">' + esc(d.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(d.notes || '') + '</div>'
+          + '<div class="search-result-tags">' + tags.map(function(t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>'
+          + '</div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.standards && data.standards.length) {
+      h += '<div class="search-result-section"><h3>' + L.standards + '</h3>';
+      data.standards.forEach(function(s) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/standards/' + s.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + s.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(s.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(s.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.tools && data.tools.length) {
+      h += '<div class="search-result-section"><h3>' + L.tools + '</h3>';
+      data.tools.forEach(function(t) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/tools/' + t.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + t.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(t.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(t.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (!h) h = '<div class="search-empty">' + L.noResults + '</div>';
+    body.innerHTML = h;
+  }
+
+  function renderChatHistory() {
+    var h = '';
+    chatHistory.forEach(function(msg) {
+      if (msg.role === 'user') {
+        h += '<div class="chat-message user"><strong>' + L.user + '</strong><br>' + esc(msg.content) + '</div>';
+      } else {
+        h += '<div class="chat-message assistant">' + (msg.reply || '') + '</div>';
+        if (msg.sources && msg.sources.length) {
+          h += '<div class="chat-sources">';
+          msg.sources.forEach(function(s) {
+            var kind = s.type === 'tool' ? 'tools' : s.type === 'standard' ? 'standards' : 'datasets';
+            var label = s.type === 'tool' ? L.srcTool : s.type === 'standard' ? L.srcStandard : L.srcDataset;
+            var url = (isEn ? '/en' : '') + '/' + kind + '/' + s.id + '/';
+            h += '<a href="' + url + '" class="chat-source" target="_blank"><span class="chat-source-type">' + label + '</span>' + esc(s.name) + ' <span class="chat-source-score">' + s.score + '%</span></a>';
+          });
+          h += '</div>';
+        }
+      }
+    });
+    if (!h) h = '<div class="search-empty">' + L.chatEmpty + '</div>';
+    body.innerHTML = h;
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function simpleMarkdown(text) {
+    return esc(text)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n- /g, '\n<li>')
+      .replace(/\n(\d+)\. /g, '\n<li>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+  }
+
+  async function doSubmit() {
+    var q = input.value.trim();
+    if (q.length < 2) { body.innerHTML = '<div class="search-empty">' + L.minChars + '</div>'; return; }
+    submit.disabled = true;
+    body.innerHTML = '<div class="loading"><div class="spinner"></div><div style="margin-top:12px">' + (mode === 'chat' ? L.loadingChat : L.loadingSearch) + '</div></div>';
+
+    try {
+      if (mode === 'search') {
+        var res = await fetch(SEARCH_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, lang: isEn ? 'en' : 'zh' })
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        var data = await res.json();
+        if (data.error) throw new Error(data.error);
+        renderSearch(data);
+      } else {
+        chatHistory.push({ role: 'user', content: q });
+        var cres = await fetch(CHAT_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, history: chatHistory.slice(0, -1), model: document.getElementById('aiModelSelect').value })
+        });
+        if (!cres.ok) throw new Error('HTTP ' + cres.status);
+        var cdata = await cres.json();
+        if (cdata.error) throw new Error(cdata.error);
+        chatHistory.push({ role: 'assistant', reply: simpleMarkdown(cdata.reply), sources: cdata.sources });
+        renderChatHistory();
+        input.value = '';
+      }
+    } catch (err) {
+      console.error('[Search] error:', err);
+      body.innerHTML = '<div class="search-error">' + L.failed + '：' + esc(err.message) + '<br><small>' + L.retry + '</small></div>';
+    }
+    submit.disabled = false;
+    setTimeout(function() { input.focus(); }, 100);
+  }
+
+  submit.addEventListener('click', doSubmit);
+  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doSubmit(); });
+})();
+</script>
+
+</body>
+</html>

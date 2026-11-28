@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="canonical" href="https://superdata-robotai.com/en/blog/embodied-ai-three-pillars/">
+<link rel="alternate" hreflang="zh-CN" href="https://superdata-robotai.com/blog/embodied-ai-three-pillars/">
+<link rel="alternate" hreflang="en" href="https://superdata-robotai.com/en/blog/embodied-ai-three-pillars/">
+<link rel="alternate" hreflang="x-default" href="https://superdata-robotai.com/blog/embodied-ai-three-pillars/">
+<meta property="og:url" content="https://superdata-robotai.com/en/blog/embodied-ai-three-pillars/">
+<meta property="og:site_name" content="Superdata RobotAI">
+<meta property="og:image" content="https://superdata-robotai.com/%E5%AD%A6%E7%94%9Fbot.png">
+<meta name="twitter:card" content="summary">
+<meta property="og:title" content="Why Embodied AI Projects Fail to Land — It's Not the Model, It's That You're Only Looking at the Model | Superdata RobotAI">
+<meta property="og:description" content="Most embodied AI projects fail to land because teams fixate on model sophistication while neglecting data pipelines and robot hardware. This article proposes a ">
+<meta property="og:type" content="website">
+<meta name="twitter:title" content="Why Embodied AI Projects Fail to Land — It's Not the Model, It's That You're Only Looking at the Model | Superdata RobotAI">
+<meta name="twitter:description" content="Most embodied AI projects fail to land because teams fixate on model sophistication while neglecting data pipelines and robot hardware. This article proposes a ">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Embodied AI Projects Fail to Land — It's Not the Model, It's That You're Only Looking at the Model | Superdata RobotAI</title><meta name="description" content="Most embodied AI projects fail to land because teams fixate on model sophistication while neglecting data pipelines and robot hardware. This article proposes a "><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Why Embodied AI Projects Fail to Land — It's Not the Model, It's That You're Only Looking at the Model","description":"Most embodied AI projects fail to land because teams fixate on model sophistication while neglecting data pipelines and robot hardware. This article proposes a four-step methodology: define hardware and task boundaries first, build data pipelines before large models, prioritize iterability over arch","datePublished":"2026-07-13","url":"https://superdata-robotai.com/en/blog/embodied-ai-three-pillars/","inLanguage":"en","author":{"@type":"Organization","name":"Superdata RobotAI"}}</script>
+<link rel="icon" type="image/png" href="/机器人.png">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var btn = document.getElementById('hamburgerBtn');
+  var menu = document.getElementById('navMenu');
+  if(btn && menu){
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ btn.classList.remove('open'); menu.classList.remove('open'); });
+    });
+  }
+
+  // Auto card view on mobile for datasets/standards
+  if(window.innerWidth <= 768){
+    if(typeof state !== 'undefined' && state && 'view' in state){ state.view = 'card';
+      if(typeof update === 'function') update();
+    }
+  }
+});
+</script>
+
+</head>
+<body>
+<nav class="navbar">
+  <a href="/en/" class="nav-logo">
+    <img src="/学生bot.png" alt="Logo">
+    <span class="nav-logo-text">Superdata RobotAI</span>
+  </a>
+  <div class="nav-menu" id="navMenu">
+    <a href="/en/" class="nav-link ">Home</a>
+    <a href="/en/datasets/" class="nav-link ">Datasets</a>
+    <a href="/en/standards/" class="nav-link ">Standards</a>
+    <a href="/en/benchmarks/" class="nav-link ">Leaderboards</a>
+    <a href="/en/tools/" class="nav-link ">Tools</a>
+    <a href="/en/blog/" class="nav-link active">Blog</a>
+  </div>
+  <div class="nav-lang">
+    <a href="/" class="nav-lang-link" title="中文">中</a>
+    <span class="nav-lang-sep">/</span>
+    <a href="/en/" class="nav-lang-link active" title="English">EN</a>
+  </div>
+  <div class="nav-cta">
+    <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="btn btn-ghost">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+  <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main class="detail-main">
+  <a href="/en/blog/" class="back-link">← Back to Blog</a>
+  <div class="blog-detail">
+    <div class="blog-detail-header">
+      <h1 class="blog-detail-title">Why Embodied AI Projects Fail to Land — It's Not the Model, It's That You're Only Looking at the Model</h1>
+      <div class="blog-detail-meta">
+        <span>2026-07-13</span>
+        <span>By Superdata RobotAI</span>
+      </div>
+      <div class="blog-detail-tags"><span class="blog-tag">Embodied AI</span><span class="blog-tag">Production Deployment</span><span class="blog-tag">VLA</span><span class="blog-tag">Datasets</span><span class="blog-tag">Robot Hardware</span><span class="blog-tag">Teleoperation</span><span class="blog-tag">Technical Methodology</span></div>
+    </div>
+    <div class="blog-detail-content"><h2>A Lesson That Keeps Repeating</h2>
+
+<p>VLA, world models, robot foundation models, reinforcement learning policies — these terms have dominated the conversation in embodied AI for the past two years. There's a natural impulse in the industry: if the model is strong enough, the robot will work like a human.</p>
+
+<p>But the reality is that <strong>embodied AI is not just about connecting a large model to a robot arm.</strong> When you actually get to a deployment site, the question shifts from "how capable is the model?" to a chain of concrete engineering problems: Can the robot understand instructions? Can it generate executable motions? Can it complete tasks reliably under real physical contact?</p>
+
+<p>Many teams have swapped out seven or eight model versions, and the robot still can only complete a demo under fixed angles, fixed objects, and fixed lighting — because the upstream and downstream of the model were never connected.</p>
+
+<h2>A Three-Legged Table — Miss One, and It Won't Stand</h2>
+
+<p>Any embodied AI project built from scratch must hold onto three things simultaneously: <strong>models, data, and hardware.</strong></p>
+
+<ul>
+<li><strong>Models</strong> determine how the robot understands tasks and generates actions.</li>
+<li><strong>Data</strong> determines where the model gets its experience and how much real-world variation it has seen.</li>
+<li><strong>Hardware</strong> determines whether those actions can be executed reliably in the physical world.</li>
+</ul>
+
+<p>In more engineering-oriented terms, the core pipeline of embodied AI is:</p>
+
+<blockquote><strong>Perception → Model Understanding & Decision → Action Generation → Hardware Execution → Environment Feedback → Data Loopback</strong></blockquote>
+
+<p>In this pipeline, <strong>any weak link will ultimately manifest as "the robot is unreliable."</strong></p>
+
+<ul>
+<li>The strongest model will fail in the field if the data is messy.</li>
+<li>Mountains of data will produce dirty signals if the hardware has drifting sensors, loose grippers, or jittery control.</li>
+<li>The most advanced hardware can only execute a limited set of fixed actions if the model cannot understand the task.</li>
+</ul>
+
+<p>A three-legged table — miss one, and it won't stand. That's why swapping models alone never solves the problem.</p>
+
+<h2>Don't Start by Asking "Which Large Model Should I Use?"</h2>
+
+<p>When planning a project from scratch, start with a more grounded question: <strong>in what environment should this robot reliably complete which categories of tasks?</strong></p>
+
+<p>Tabletop organization, shelf pick-and-place, lab inspection, simple assembly, household object transport — the clearer the task boundary, the easier it is to align models, data, and hardware. Task generalization comes at a cost: the wider the generalization radius, the more data, hardware complexity, and model difficulty increase — often exponentially. The greatest risk for early-stage projects isn't insufficient technical sophistication; it's trying to do everything and doing nothing reliably.</p>
+
+<h2>Step 1: Define Hardware and Task Boundaries First</h2>
+
+<p><strong>Hardware is the foundation of the entire system. You cannot patch it in later.</strong></p>
+
+<p>If the task is primarily tabletop grasping, a stable robot arm, a reliable two-finger gripper, and a fixed or wrist-mounted camera will often be more robust than chasing dexterous hands from day one. Get hand-eye calibration, end-effector positioning, gripper closure, trajectory smoothing, and emergency-stop chains working first — only then does the project have a foundation for iteration.</p>
+
+<p>If the task requires moving between locations, you need to work out base positioning, obstacle avoidance, docking precision, and the arm's workspace first. Many mobile manipulator problems don't originate in the grasping algorithm — the base is off by a few centimeters, and every subsequent arm action becomes harder.</p>
+
+<p>Humanoid robots and dexterous hands have enormous potential, but in the early stages they amplify control, maintenance, data collection, and safety challenges simultaneously. Unless the task explicitly requires bipedal locomotion, dual-arm coordination, or complex in-hand manipulation, the more reliable path is to <strong>first close the task loop with a less flashy but dependable hardware platform.</strong></p>
+
+<p>When evaluating hardware, don't fixate on spec sheets. Focus on whether key metrics support the task: Is the end-effector suited to the target objects? Are the degrees of freedom sufficient? Can the controller's compute handle vision and motion control? Are the sensors precise enough? Is the low-level motion control smooth and reliable?</p>
+
+<h2>Step 2: Build the Data Pipeline Before Chasing Large Models</h2>
+
+<p>Data is the most underestimated part of embodied AI.</p>
+
+<p>Regular vision models can work with images and labels. Language models can work with text. Robot data is more demanding — because it must place sensors, robot state, task, action, and outcome on a single shared timeline. A single valuable robot data point typically contains: images, depth, joint angles, end-effector pose, gripper state, control commands, task text, timestamps, and execution outcome.</p>
+
+<p>Here's a classic lesson: <strong>garbage in, garbage out.</strong> If the data is wrong, messy, or temporally misaligned, even the best model will only learn confused experience.</p>
+
+<p>In the zero-to-one stage, the most important thing is to stand up a teleoperation system as early as possible. Even if it's rough at first, it must allow a human to reliably control the real robot to complete tasks while recording images, states, actions, and outcomes. Teleoperation data is naturally aligned with the target hardware platform — it's especially well-suited for training robots to imitate actions.</p>
+
+<p>Autonomous execution logs from deployment sites, scripted policy rollouts, kinesthetic teaching, and evaluation data should all be preserved. Egocentric first-person video, internet video, and simulation data are also valuable, but serve different purposes:</p>
+
+<ul>
+<li><strong>Egocentric and internet video</strong> are good for supplementing task common sense — how humans observe, sequence steps, and handle objects.</li>
+<li><strong>Simulation data</strong> is good for generating scene variations at scale with low risk — especially useful for reinforcement learning and dangerous-action testing.</li>
+</ul>
+
+<p>But all of this data ultimately needs to be calibrated back to the target hardware platform. It cannot directly replace real-robot data.</p>
+
+<p>The most underestimated part of a data pipeline is <strong>cleaning and labeling</strong>. Should all successful samples be kept? How should failure samples be categorized? Should operator-hesitant actions be retained? What state describes a gripper that touched the object but didn't secure it? These decisions directly shape what the model learns. If nobody owns data quality, every subsequent training run will carry the same flaws.</p>
+
+<h2>Step 3: Prioritize Iterability in Models</h2>
+
+<p>Model strategy can be organized in layers:</p>
+
+<ul>
+<li><strong>High-level models</strong> handle language, visual, and goal understanding. The common approach is VLA (Vision-Language-Action models), which output action sequences, end-effector poses, joint targets, or action tokens.</li>
+<li><strong>World models</strong> focus on "what happens after an action" — useful for prediction and plan selection.</li>
+<li><strong>Reinforcement learning</strong> is better suited for legged locomotion, dexterous hands, dynamic balance, and complex contact-rich tasks.</li>
+</ul>
+
+<p>But in the early stages of deployment, <strong>don't bet everything on a single end-to-end large model.</strong> A more practical approach is to first get a layered architecture working: a high-level model handles instruction understanding and task decomposition, low-level policies handle skills like grasping, moving, and placing, and traditional planning and control modules handle safety constraints, trajectory generation, and hardware execution.</p>
+
+<p>This isn't as cool, but it's debuggable. Robot grabs the wrong object? Check vision and task understanding. Grabbed the right object but couldn't hold it? Check grasp pose, end-effector, and force control. Trajectory looks correct but the robot shakes? Check control frequency, actuators, and mechanical structure. With an end-to-end black box, you wouldn't even know where to start looking.</p>
+
+<h3>Stage Your Training, Match Compute to Need</h3>
+
+<p>Single-task policies or small-model fine-tuning can start with tens to hundreds of high-quality demonstration trajectories. A single RTX 4090, RTX 6000 Ada, L40S, or A6000-class GPU can already handle plenty of ACT, Diffusion Policy, or small-scale policy experiments.</p>
+
+<p>Multi-task VLA fine-tuning consumes significantly more data and VRAM, typically requiring A100 or H100-class training GPUs. Parameter-efficient methods like LoRA can lower the barrier, but full-weight training or large-batch training quickly scales to multi-node multi-GPU setups.</p>
+
+<p>Robot foundation model pretraining is yet another order of magnitude — often requiring near-million-scale robot trajectories, plus video, simulation, and multi-embodiment data, running on even larger GPU clusters.</p>
+
+<p><strong>For most zero-to-one projects, the real goal early on isn't training a general-purpose foundation model — it's making one specific task more stable every single day.</strong></p>
+
+<h2>Step 4: Replace Demo Success Rates with Closed-Loop Metrics</h2>
+
+<p>Embodied AI projects cannot be judged by whether a single demo succeeds.</p>
+
+<p>Demo videos can preserve only the successful moments, but real-world applications must face every failure. More valuable metrics are:</p>
+
+<ul>
+<li>How many successes in 100 consecutive attempts?</li>
+<li>Which step do failures concentrate at?</li>
+<li>Can the system auto-recover after a failure?</li>
+<li>How many human interventions are needed?</li>
+<li>How much does the success rate drop when objects are swapped?</li>
+<li>What is the average time per task?</li>
+</ul>
+
+<p>These are the real tests of deployment readiness. A single impressive demo only proves the system can work under certain conditions; a set of closed-loop metrics proves it can be relied upon amid real-world variation.</p>
+
+<h2>Real-World Challenges Across All Three Dimensions</h2>
+
+<p>The current major challenges can also be viewed through the lens of models, data, and hardware:</p>
+
+<h3>Models: Action Representation and Failure Recovery</h3>
+
+<p>Outputting end-effector poses requires solving inverse kinematics, collision checking, and control. Outputting joint actions ties the model to a specific embodiment. Outputting action tokens looks unified, but mapping them to different robots remains cumbersome. Even harder is failure recovery — a robot can't just execute a procedure from a standard initial state; it must know where it has deviated and what the next corrective step should be.</p>
+
+<h3>Data: Expensive, Fragmented, and Noisy</h3>
+
+<p>Real-robot data collection requires equipment, people, and time. Teleoperation continuously occupies skilled operators. Data from different robots, different labs, and different formats is hard to unify. Real-world data also contains jitter, latency, occlusions, failures, and incomplete annotations.</p>
+
+<h3>Hardware: Stability and Maintenance Costs</h3>
+
+<p>Cable tugging, calibration drift, actuator heating — these seemingly minor issues can drag a project into an undeliverable quagmire. A robot that needs repairs every day will break the rhythm of both the model and data teams.</p>
+
+<h2>What You Really Need to Watch</h2>
+
+<p>For an embodied AI project built from scratch, the core question is whether these three pieces connect to each other:</p>
+
+<ul>
+<li><strong>The actions the model outputs</strong> must be recordable and reproducible in the data.</li>
+<li><strong>The failures exposed in the data</strong> must be correctable by the hardware.</li>
+<li><strong>The capability boundaries of the hardware</strong> must be known to the model so it doesn't exceed them.</li>
+</ul>
+
+<p><strong>If a project can collect failure samples every week, update the data, adjust the policy, and make the robot slightly more stable on the same task — it is moving toward real deployment.</strong></p>
+
+<p>Conversely, if model after model is swapped in and the robot still can only complete a single demo under fixed angles, fixed objects, and fixed lighting — it's still far from real-world readiness.</p>
+
+<p>Embodied AI, in the end, isn't won by a single impressive motion. It's won by <strong>whether the robot can repeatedly get things done amid real-world variation.</strong></p>
+
+<hr>
+<p style="color:var(--text-light);font-size:13px;margin-top:32px">Author: Superdata RobotAI. Superdata RobotAI is a bilingual (zh/en) embodied AI dataset navigator indexing 135+ datasets, 38 benchmarks, and 18 development tools, featuring AI semantic search and an intelligent assistant. Visit <a href="https://superdata-robotai.com">superdata-robotai.com</a>.</p></div>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="/学生bot.png" alt="Logo">
+        Superdata RobotAI
+      </div>
+      <p class="footer-desc">A global intelligence hub for embodied AI, humanoid robots, robotic arms, and mobile robot datasets. We do one thing: information aggregation & access navigation, empowering algorithm R&D.</p>
+      <div class="footer-social">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="social-link" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="mailto:embodisets@163.com" class="social-link" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <div class="footer-links">
+        <a href="/en/" class="footer-link">Home</a>
+        <a href="/en/datasets/" class="footer-link">Datasets</a>
+        <a href="/en/standards/" class="footer-link">Standards</a>
+        <a href="/en/submit/" class="footer-link">Submit</a>
+        <a href="/en/blog/" class="footer-link">Blog</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>Resources</h4>
+      <div class="footer-links">
+        <a href="https://github.com/locusinger159/embodiedai-datasets" target="_blank" rel="noopener" class="footer-link">GitHub Repo</a>
+        <a href="mailto:embodisets@163.com" class="footer-link">Feedback</a>
+        <a href="/en/blog/" class="footer-link">Blog</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>Contact</h4>
+      <div class="footer-links">
+        <span class="footer-link">embodisets@163.com</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copyright">Copyright © 2026 Superdata RobotAI · <a href="https://github.com/locusinger159/embodiedai-datasets" style="color:inherit">CC BY-NC-SA 4.0</a></div>
+    <div class="footer-disclaimer">Disclaimer: This site provides information navigation only. No dataset downloads are offered. Dataset copyrights belong to their respective owners/authors. Unauthorized commercial use of metadata is prohibited.</div>
+  </div>
+</footer>
+
+<!-- AI Search Widget — quiet toolbar + search/chat panel -->
+
+
+<div class="search-widget-btns">
+  <button class="search-widget-btn ai-btn" id="aiChatBtn" title="AI assistant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span id="aiChatBtnLabel">AI 助手</span>
+  </button>
+  <button class="search-widget-btn search-btn" id="aiSearchBtn" title="Semantic search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <span id="aiSearchBtnLabel">搜索</span>
+  </button>
+</div>
+
+<div class="search-widget-overlay" id="aiSearchOverlay">
+  <div class="search-widget-panel">
+    <div class="search-panel-header">
+      <span class="search-panel-title" id="panelTitle">AI 助手</span>
+      <button class="search-panel-close" id="aiSearchClose" aria-label="Close">×</button>
+    </div>
+    <div class="search-panel-input">
+      <input type="text" id="aiSearchInput" placeholder="描述你的需求，如：人形机器人双臂操作数据集..." />
+      <select id="aiModelSelect">
+        <option value="deepseek-v4-flash">DeepSeek V4 Flash</option>
+        <option value="deepseek-chat">DeepSeek V3</option>
+        <option value="deepseek-reasoner">DeepSeek R1</option>
+      </select>
+      <button id="aiSearchSubmit">搜索</button>
+    </div>
+    <div class="search-panel-body" id="aiSearchBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const SEARCH_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/search';
+  const CHAT_API = 'https://superdaa-search-kuccdqlnpa.cn-hangzhou.fcapp.run/api/assistant';
+  const isEn = (document.documentElement.lang || 'zh').toLowerCase().startsWith('en');
+  const L = isEn ? {
+    chat: 'AI assistant', search: 'Search', ask: 'Ask', panelChat: 'AI assistant', panelSearch: 'Semantic search',
+    chatPlaceholder: 'Ask about a dataset, e.g. what should I use for tabletop grasping?',
+    searchPlaceholder: 'Describe what you need, e.g. humanoid dual-arm manipulation datasets...',
+    chatEmpty: 'Ask a question to get dataset recommendations. Multi-turn context is kept.',
+    searchEmpty: 'Search across every dataset, standard, and tool in the index.',
+    datasets: 'Datasets', standards: 'Standards', tools: 'Tools',
+    user: 'You', loadingChat: 'Thinking...', loadingSearch: 'Searching...',
+    noResults: 'No matches. Try a different description.', minChars: 'Enter at least 2 characters.',
+    failed: 'Request failed', retry: 'Check your connection and try again.',
+    srcDataset: 'Dataset', srcStandard: 'Standard', srcTool: 'Tool'
+  } : {
+    chat: 'AI 助手', search: '搜索', ask: '提问', panelChat: 'AI 助手', panelSearch: '语义搜索',
+    chatPlaceholder: '向 AI 助手提问，如：我的机械臂要做桌面抓取，推荐什么数据集？',
+    searchPlaceholder: '描述你的需求，如：人形机器人双臂操作数据集...',
+    chatEmpty: '向 AI 助手提问，获取个性化数据集推荐。支持多轮对话，上下文自动关联。',
+    searchEmpty: '在全部数据集、标准与工具中检索。',
+    datasets: '数据集', standards: '标准', tools: '工具',
+    user: '你', loadingChat: 'AI 正在分析...', loadingSearch: '正在搜索...',
+    noResults: '未找到匹配结果，试试换一种描述？', minChars: '请输入至少 2 个字符',
+    failed: '请求失败', retry: '请检查网络连接，或稍后重试',
+    srcDataset: '数据集', srcStandard: '标准', srcTool: '工具'
+  };
+
+  var chatBtn = document.getElementById('aiChatBtn');
+  var searchBtn = document.getElementById('aiSearchBtn');
+  var overlay = document.getElementById('aiSearchOverlay');
+  var closeBtn = document.getElementById('aiSearchClose');
+  var input = document.getElementById('aiSearchInput');
+  var submit = document.getElementById('aiSearchSubmit');
+  var body = document.getElementById('aiSearchBody');
+  var panelTitle = document.getElementById('panelTitle');
+  var mode = 'chat';
+  var chatHistory = [];
+
+  document.getElementById('aiChatBtnLabel').textContent = L.chat;
+  document.getElementById('aiSearchBtnLabel').textContent = L.search;
+
+  function open(m) {
+    mode = m;
+    chatHistory = [];
+    overlay.classList.add('open');
+    panelTitle.textContent = m === 'chat' ? L.panelChat : L.panelSearch;
+    submit.textContent = m === 'chat' ? L.ask : L.search;
+    input.placeholder = m === 'chat' ? L.chatPlaceholder : L.searchPlaceholder;
+    body.innerHTML = '<div class="search-empty">' + (m === 'chat' ? L.chatEmpty : L.searchEmpty) + '</div>';
+    setTimeout(function() { input.focus(); }, 200);
+  }
+  function close() { overlay.classList.remove('open'); }
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  chatBtn.addEventListener('click', function() { open('chat'); });
+  searchBtn.addEventListener('click', function() { open('search'); });
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+    if (e.key === 'k' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); open('search'); }
+  });
+
+  function renderSearch(data) {
+    var h = '';
+    if (data.datasets && data.datasets.length) {
+      h += '<div class="search-result-section"><h3>' + L.datasets + '</h3>';
+      data.datasets.forEach(function(d) {
+        var tags = (d.robotType || []).concat(d.task || []).slice(0, 3);
+        h += '<a href="' + (isEn ? '/en' : '') + '/datasets/' + d.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + d.score + '%</div>'
+          + '<div class="search-result-body">'
+          + '<div class="search-result-name">' + esc(d.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(d.notes || '') + '</div>'
+          + '<div class="search-result-tags">' + tags.map(function(t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>'
+          + '</div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.standards && data.standards.length) {
+      h += '<div class="search-result-section"><h3>' + L.standards + '</h3>';
+      data.standards.forEach(function(s) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/standards/' + s.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + s.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(s.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(s.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (data.tools && data.tools.length) {
+      h += '<div class="search-result-section"><h3>' + L.tools + '</h3>';
+      data.tools.forEach(function(t) {
+        h += '<a href="' + (isEn ? '/en' : '') + '/tools/' + t.id + '/" class="search-result-item" target="_blank">'
+          + '<div class="search-result-score">' + t.score + '%</div>'
+          + '<div class="search-result-body"><div class="search-result-name">' + esc(t.name) + '</div>'
+          + '<div class="search-result-desc">' + esc(t.notes || '') + '</div></div></a>';
+      });
+      h += '</div>';
+    }
+    if (!h) h = '<div class="search-empty">' + L.noResults + '</div>';
+    body.innerHTML = h;
+  }
+
+  function renderChatHistory() {
+    var h = '';
+    chatHistory.forEach(function(msg) {
+      if (msg.role === 'user') {
+        h += '<div class="chat-message user"><strong>' + L.user + '</strong><br>' + esc(msg.content) + '</div>';
+      } else {
+        h += '<div class="chat-message assistant">' + (msg.reply || '') + '</div>';
+        if (msg.sources && msg.sources.length) {
+          h += '<div class="chat-sources">';
+          msg.sources.forEach(function(s) {
+            var kind = s.type === 'tool' ? 'tools' : s.type === 'standard' ? 'standards' : 'datasets';
+            var label = s.type === 'tool' ? L.srcTool : s.type === 'standard' ? L.srcStandard : L.srcDataset;
+            var url = (isEn ? '/en' : '') + '/' + kind + '/' + s.id + '/';
+            h += '<a href="' + url + '" class="chat-source" target="_blank"><span class="chat-source-type">' + label + '</span>' + esc(s.name) + ' <span class="chat-source-score">' + s.score + '%</span></a>';
+          });
+          h += '</div>';
+        }
+      }
+    });
+    if (!h) h = '<div class="search-empty">' + L.chatEmpty + '</div>';
+    body.innerHTML = h;
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function simpleMarkdown(text) {
+    return esc(text)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n- /g, '\n<li>')
+      .replace(/\n(\d+)\. /g, '\n<li>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+  }
+
+  async function doSubmit() {
+    var q = input.value.trim();
+    if (q.length < 2) { body.innerHTML = '<div class="search-empty">' + L.minChars + '</div>'; return; }
+    submit.disabled = true;
+    body.innerHTML = '<div class="loading"><div class="spinner"></div><div style="margin-top:12px">' + (mode === 'chat' ? L.loadingChat : L.loadingSearch) + '</div></div>';
+
+    try {
+      if (mode === 'search') {
+        var res = await fetch(SEARCH_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, lang: isEn ? 'en' : 'zh' })
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        var data = await res.json();
+        if (data.error) throw new Error(data.error);
+        renderSearch(data);
+      } else {
+        chatHistory.push({ role: 'user', content: q });
+        var cres = await fetch(CHAT_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, history: chatHistory.slice(0, -1), model: document.getElementById('aiModelSelect').value })
+        });
+        if (!cres.ok) throw new Error('HTTP ' + cres.status);
+        var cdata = await cres.json();
+        if (cdata.error) throw new Error(cdata.error);
+        chatHistory.push({ role: 'assistant', reply: simpleMarkdown(cdata.reply), sources: cdata.sources });
+        renderChatHistory();
+        input.value = '';
+      }
+    } catch (err) {
+      console.error('[Search] error:', err);
+      body.innerHTML = '<div class="search-error">' + L.failed + '：' + esc(err.message) + '<br><small>' + L.retry + '</small></div>';
+    }
+    submit.disabled = false;
+    setTimeout(function() { input.focus(); }, 100);
+  }
+
+  submit.addEventListener('click', doSubmit);
+  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doSubmit(); });
+})();
+</script>
+
+</body>
+</html>
