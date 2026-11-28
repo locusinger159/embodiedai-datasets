@@ -2,10 +2,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {{META}}
 <link rel="icon" type="image/png" href="/机器人.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+/* Self-hosted fonts (latin subset); Chinese falls back to system fonts */
+@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:400 600;font-display:swap;src:url('/fonts/ibm-plex-sans-var.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/ibm-plex-mono-400.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/ibm-plex-mono-500.woff2') format('woff2')}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --paper:#F6F7F8;--surface:#FFFFFF;--raised:#ECEEF1;
@@ -19,7 +20,7 @@
   --ease:cubic-bezier(.22,1,.36,1);--t-fast:140ms;--t-med:200ms;
   --maxw:1360px;
   --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-  --sans:'IBM Plex Sans','Noto Sans SC',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
   /* legacy aliases used by generated markup */
   --primary:var(--accent);--primary-dark:var(--accent-dark);--primary-light:#3455A8;--accent-warm:var(--warning);
   --dark-bg:var(--footer-bg);--dark-secondary:#1B1E23;--light-bg:var(--paper);
@@ -469,7 +470,7 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="search"]:focus,se
 /* ---------- Submit ---------- */
 .submit-section{padding:48px 32px 80px;max-width:1000px;margin:0 auto}
 .method-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:24px}
-.method-tab{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px;border:1px solid var(--hairline);border-radius:var(--radius-md);background:var(--surface);color:var(--ink-soft);font-size:14px;font-weight:500;cursor:pointer;transition:...}
+.method-tab{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px;border:1px solid var(--hairline);border-radius:var(--radius-md);background:var(--surface);color:var(--ink-soft);font-size:14px;font-weight:500;cursor:pointer;transition:background-color var(--t-fast) var(--ease),border-color var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}
 .method-tab.active{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .method-tab svg{width:16px;height:16px}
 .method-content{display:none}
@@ -520,7 +521,7 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="search"]:focus,se
 .rec-step-label{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;margin-bottom:10px}
 .rec-step-num{font-family:var(--mono);font-size:11px;color:var(--accent);border:1px solid var(--hairline);border-radius:var(--radius-xs);width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center}
 .rec-chips{display:flex;flex-wrap:wrap;gap:6px}
-.rec-chip{height:32px;padding:0 11px;border:1px solid var(--hairline);border-radius:var(--radius-sm);background:transparent;color:var(--ink-soft);font-size:12px;cursor:pointer;transition:...}
+.rec-chip{height:32px;padding:0 11px;border:1px solid var(--hairline);border-radius:var(--radius-sm);background:transparent;color:var(--ink-soft);font-size:12px;cursor:pointer;transition:background-color var(--t-fast) var(--ease),border-color var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}
 .rec-chip:hover{border-color:var(--ink-muted);color:var(--ink)}
 .rec-chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
 .rec-radio-group{display:flex;flex-wrap:wrap;gap:6px}

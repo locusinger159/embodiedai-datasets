@@ -1,16 +1,66 @@
 const fs = require('fs');
 const path = require('path');
 
+// Optional resource base for static assets (CSS/fonts/images). Empty for the
+// default site build; set RESOURCE_BASE when publishing assets under a
+// versioned mount (e.g. /_assets/<version>). Page navigation is unaffected.
+const RESOURCE_BASE = process.env.RESOURCE_BASE || '';
+function withResourceBase(html) {
+  if (!RESOURCE_BASE) return html;
+  return html
+    .replace('href="/机器人.png"', `href="${RESOURCE_BASE}/机器人.png"`)
+    .replace(/src="\/学生bot\.png"/g, `src="${RESOURCE_BASE}/学生bot.png"`);
+}
+
 // Read partials
-const head = fs.readFileSync('src/partials/head.html', 'utf8');
-const navbar = fs.readFileSync('src/partials/navbar.html', 'utf8');
-const footer = fs.readFileSync('src/partials/footer.html', 'utf8');
+const head = withResourceBase(fs.readFileSync('src/partials/head.html', 'utf8'));
+const navbar = withResourceBase(fs.readFileSync('src/partials/navbar.html', 'utf8'));
+const footer = withResourceBase(fs.readFileSync('src/partials/footer.html', 'utf8'));
 // Load search widget (optional — if file exists, it will be included via HEAD)
 let searchWidget = '';
 const searchWidgetPath = 'src/partials/search-widget.html';
 if (fs.existsSync(searchWidgetPath)) {
   searchWidget = fs.readFileSync(searchWidgetPath, 'utf8');
 }
+
+// ── Shared stylesheet ─────────────────────────────────────
+// Extract inline <style> blocks (head + search widget) into one cacheable
+// file (dist/assets/site.css) instead of duplicating ~34KB in every page.
+let sharedCss = '';
+let headHtml = head;
+const headStyle = headHtml.match(/<style>([\s\S]*?)<\/style>/);
+if (headStyle) {
+  sharedCss += headStyle[1].trim().replace(/url\('\/fonts\//g, `url('${RESOURCE_BASE}/fonts/`);
+  headHtml = headHtml.replace(headStyle[0], `<link rel="stylesheet" href="${RESOURCE_BASE}/assets/site.css">`);
+}
+if (searchWidget) {
+  const widgetStyle = searchWidget.match(/<style>([\s\S]*?)<\/style>/);
+  if (widgetStyle) {
+    sharedCss += '\n\n' + widgetStyle[1].trim();
+    searchWidget = searchWidget.replace(widgetStyle[0], '');
+  }
+}
+
+// ── SEO helpers ───────────────────────────────────────────
+const SITE_URL = 'https://superdata-robotai.com';
+function jsonLd(obj) {
+  return '<script type="application/ld+json">' + JSON.stringify(obj).replace(/</g, '\\u003c') + '</script>';
+}
+function plainText(s, max) {
+  return String(s || '').replace(/\*\*/g, '').replace(/\s+/g, ' ').trim().substring(0, max);
+}
+const LICENSE_URLS = {
+  'Apache-2.0': 'https://www.apache.org/licenses/LICENSE-2.0',
+  'MIT': 'https://opensource.org/license/mit',
+  'CC-BY-4.0': 'https://creativecommons.org/licenses/by/4.0/',
+  'CC BY 4.0': 'https://creativecommons.org/licenses/by/4.0/',
+  'CC-BY-NC-4.0': 'https://creativecommons.org/licenses/by-nc/4.0/',
+  'CC-BY-NC-SA-4.0': 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
+  'CC-BY-NC-ND-4.0': 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
+  'CC-BY-SA-4.0': 'https://creativecommons.org/licenses/by-sa/4.0/',
+  'BSD-3-Clause': 'https://opensource.org/license/bsd-3-clause',
+  'BSD-2-Clause': 'https://opensource.org/license/bsd-2-clause'
+};
 
 // Read data
 const datasets = JSON.parse(fs.readFileSync('docs/data/datasets.json', 'utf8'));
@@ -119,10 +169,10 @@ function buildAll(lang) {
     ? JSON.parse(fs.readFileSync('docs/data/tools.en.json', 'utf8'))
     : JSON.parse(fs.readFileSync('docs/data/tools.json', 'utf8'));
   const navPartial = isEn
-    ? fs.readFileSync('src/partials/navbar-en.html', 'utf8')
+    ? withResourceBase(fs.readFileSync('src/partials/navbar-en.html', 'utf8'))
     : navbar;
   const footerPartial = isEn
-    ? fs.readFileSync('src/partials/footer-en.html', 'utf8')
+    ? withResourceBase(fs.readFileSync('src/partials/footer-en.html', 'utf8'))
     : footer;
   const templateDir = 'src/pages/';  // same for both until en pages exist
   const outDir = isEn ? 'dist/en' : 'dist';
@@ -148,7 +198,7 @@ function buildAll(lang) {
 
   function buildPage(templateFile, replacements) {
     let html = fs.readFileSync(templateFile, 'utf8');
-    const headWithMeta = head.replace('{{META}}', replacements.meta || '');
+    const headWithMeta = headHtml.replace('{{META}}', replacements.meta || '');
     html = html.replace('{{HEAD}}', headWithMeta);
     html = html.replace('{{NAVBAR}}', replacements.nav || navPartial);
     html = html.replace('{{FOOTER}}', footerPartial);
@@ -410,8 +460,22 @@ function buildAll(lang) {
       samplesHTML += '</div></div>';
     }
 
+    const dsUrl = `${SITE_URL}${isEn ? '/en' : ''}/datasets/${ds.id}/`;
+    const dsLd = {
+      '@context': 'https://schema.org',
+      '@type': 'Dataset',
+      name: ds.name,
+      description: plainText(ds.notes || ds.description, 300),
+      url: dsUrl,
+      ...(LICENSE_URLS[ds.license] ? { license: LICENSE_URLS[ds.license] } : {}),
+      ...(ds.institution ? { creator: { '@type': 'Organization', name: displayInstitution(ds.institution) } } : {}),
+      ...(ds.year ? { datePublished: String(ds.year) } : {}),
+      ...((ds.tags || []).length || (ds.task || []).length ? { keywords: [...(ds.tags || []), ...(ds.task || [])].join(', ') } : {}),
+      ...(ds.links && ds.links.site ? { sameAs: ds.links.site } : {})
+    };
+
     return buildPage('src/pages/dataset-detail.html', {
-      meta: `<title>${esc(ds.name)} | Superdata RobotAI</title><meta name="description" content="${esc((ds.notes || ds.description || '').substring(0, 160))}">`,
+      meta: `<title>${esc(ds.name)} | Superdata RobotAI</title><meta name="description" content="${esc((ds.notes || ds.description || '').substring(0, 160))}">` + jsonLd(dsLd),
       nav: getActiveNav('datasets'),
       NAME: esc(ds.name),
       TYPE_LABEL: typeLabel[ds.type] || ds.type,
@@ -642,7 +706,15 @@ function buildAll(lang) {
 
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(`${outDir}/index.html`, buildPage(`${templateDir}${isEn ? 'index-en.html' : 'index.html'}`, {
-    meta: `<title>${ui.siteTitle}</title><meta name="description" content="${ui.siteDesc}"><meta name="keywords" content="具身智能,机器人数据集,人形机器人,机械臂,开源数据集,机器人学习"><meta property="og:title" content="${ui.siteTitle}"><meta property="og:description" content="${ui.siteDesc}"><meta property="og:type" content="website">`,
+    meta: `<title>${ui.siteTitle}</title><meta name="description" content="${ui.siteDesc}"><meta name="keywords" content="具身智能,机器人数据集,人形机器人,机械臂,开源数据集,机器人学习"><meta property="og:title" content="${ui.siteTitle}"><meta property="og:description" content="${ui.siteDesc}"><meta property="og:type" content="website">` + jsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Superdata RobotAI',
+      alternateName: isEn ? 'Robotics Dataset Navigator' : '具身智能数据集导航',
+      url: SITE_URL + (isEn ? '/en/' : '/'),
+      description: ui.siteDesc,
+      inLanguage: isEn ? 'en' : 'zh-CN'
+    }),
     nav: getActiveNav('home'),
     STAT_TOTAL: String(totalDatasets), STAT_ORGS: String(allOrgs.size), STAT_TYPES: String(allRobotTypes.size), STAT_STANDARDS: String(totalStandards),
     PARTNERS_MARQUEE: partnerNames.map(n => `<span class="partner-item">${n}</span>`).join('\n'),
@@ -1146,8 +1218,18 @@ function buildAll(lang) {
       const content = isEn ? (post.contentHtmlEn || post.contentHtml) : post.contentHtml;
       const tags = isEn ? (post.tagsEn || post.tags) : post.tags;
 
+      const postLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: title,
+        description: plainText(isEn ? (post.summaryEn || post.summary) : post.summary, 300),
+        datePublished: post.date,
+        url: SITE_URL + (isEn ? '/en' : '') + '/blog/' + post.id + '/',
+        inLanguage: isEn ? 'en' : 'zh-CN',
+        author: { '@type': 'Organization', name: post.author || 'Superdata RobotAI' }
+      };
       fs.writeFileSync(detailDir + '/index.html', buildPage('src/pages/blog-detail.html', {
-        meta: '<title>' + esc(title) + ' | Superdata RobotAI</title><meta name="description" content="' + esc((isEn ? (post.summaryEn || post.summary) : post.summary).substring(0, 160)) + '">',
+        meta: '<title>' + esc(title) + ' | Superdata RobotAI</title><meta name="description" content="' + esc((isEn ? (post.summaryEn || post.summary) : post.summary).substring(0, 160)) + '">' + jsonLd(postLd),
         nav: getActiveNav('blog'),
         BLOG_TITLE: esc(title),
         BLOG_DATE: esc(post.date),
@@ -1365,6 +1447,10 @@ function buildAll(lang) {
 fs.rmSync('dist', { recursive: true, force: true });
 fs.mkdirSync('dist', { recursive: true });
 
+// Shared stylesheet (extracted from head + search widget partials)
+fs.mkdirSync('dist/assets', { recursive: true });
+fs.writeFileSync('dist/assets/site.css', sharedCss + '\n');
+
 // Build Chinese
 buildAll('zh');
 
@@ -1372,30 +1458,85 @@ buildAll('zh');
 buildAll('en');
 
 // ── Copy static assets ───────────────────────────────────
+function copyRecursive(src, dest) {
+  fs.mkdirSync(dest, { recursive: true });
+  for (const f of fs.readdirSync(src)) {
+    const s = path.join(src, f);
+    if (fs.statSync(s).isDirectory()) copyRecursive(s, path.join(dest, f));
+    else fs.copyFileSync(s, path.join(dest, f));
+  }
+}
 const publicDir = 'docs/public';
 if (fs.existsSync(publicDir)) {
   for (const f of fs.readdirSync(publicDir)) {
-    fs.copyFileSync(path.join(publicDir, f), path.join('dist', f));
-    // Also copy to en/ (skip CNAME and .nojekyll which are site-level)
-    if (f !== 'CNAME' && f !== '.nojekyll') {
-      const enPublicDir = 'dist/en';
-      fs.mkdirSync(enPublicDir, { recursive: true });
-      fs.copyFileSync(path.join(publicDir, f), path.join(enPublicDir, f));
+    const s = path.join(publicDir, f);
+    if (fs.statSync(s).isDirectory()) {
+      // Site-level asset dirs (e.g. fonts/) are referenced by absolute path — no en/ duplicate
+      copyRecursive(s, path.join('dist', f));
+    } else {
+      fs.copyFileSync(s, path.join('dist', f));
+      // Also copy to en/ (skip CNAME and .nojekyll which are site-level)
+      if (f !== 'CNAME' && f !== '.nojekyll') {
+        fs.mkdirSync('dist/en', { recursive: true });
+        fs.copyFileSync(s, path.join('dist/en', f));
+      }
     }
   }
 }
 fs.writeFileSync('dist/.nojekyll', '');
 
-// Copy embeddings.json if exists (generated by scripts/embed.cjs, also kept in fc/ for deployment)
-const embSrc = fs.existsSync('fc/embeddings.json') ? 'fc/embeddings.json' : 'dist/embeddings.json';
-if (fs.existsSync(embSrc)) {
-  const embDest = path.join('dist', 'embeddings.json');
-  fs.copyFileSync(embSrc, embDest);
-  console.log('  embeddings.json copied (' + (fs.statSync(embDest).size / 1024).toFixed(1) + ' KB)');
+// ── SEO pass: canonical / hreflang / Open Graph + sitemap / robots ──
+const sitemapUrls = [];
+const lastmod = new Date().toISOString().slice(0, 10);
+function seoWalk(dir) {
+  for (const f of fs.readdirSync(dir)) {
+    const p = path.join(dir, f);
+    if (fs.statSync(p).isDirectory()) { seoWalk(p); continue; }
+    if (f !== 'index.html') continue;
+    let rel = '/' + path.relative('dist', path.dirname(p)).split(path.sep).join('/');
+    if (rel === '/.') rel = '/';
+    if (!rel.endsWith('/')) rel += '/';
+    const isEnPage = rel === '/en/' || rel.startsWith('/en/');
+    const zhPath = isEnPage ? (rel.replace(/^\/en/, '') || '/') : rel;
+    const enPath = zhPath === '/' ? '/en/' : '/en' + zhPath;
+
+    let html = fs.readFileSync(p, 'utf8');
+    if (!html.includes('rel="canonical"')) {
+      const title = (html.match(/<title>([\s\S]*?)<\/title>/) || [, ''])[1];
+      const desc = (html.match(/<meta name="description" content="([^"]*)"/) || [, ''])[1];
+      let tags = `<link rel="canonical" href="${SITE_URL}${rel}">`
+        + `\n<link rel="alternate" hreflang="zh-CN" href="${SITE_URL}${zhPath}">`
+        + `\n<link rel="alternate" hreflang="en" href="${SITE_URL}${enPath}">`
+        + `\n<link rel="alternate" hreflang="x-default" href="${SITE_URL}${zhPath}">`
+        + `\n<meta property="og:url" content="${SITE_URL}${rel}">`
+        + `\n<meta property="og:site_name" content="Superdata RobotAI">`
+        + `\n<meta property="og:image" content="${encodeURI(SITE_URL + '/学生bot.png')}">`
+        + `\n<meta name="twitter:card" content="summary">`;
+      if (!html.includes('property="og:title"')) {
+        tags += `\n<meta property="og:title" content="${title}">`
+          + `\n<meta property="og:description" content="${desc}">`
+          + `\n<meta property="og:type" content="website">`
+          + `\n<meta name="twitter:title" content="${title}">`
+          + `\n<meta name="twitter:description" content="${desc}">`;
+      }
+      html = html.replace('<head>', '<head>\n' + tags + '\n');
+      fs.writeFileSync(p, html);
+    }
+    sitemapUrls.push(SITE_URL + rel);
+  }
 }
+seoWalk('dist');
+
+const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+  + sitemapUrls.map(u => `<url><loc>${u}</loc><lastmod>${lastmod}</lastmod></url>`).join('\n')
+  + '\n</urlset>\n';
+fs.writeFileSync('dist/sitemap.xml', sitemap);
+fs.writeFileSync('dist/robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 
 console.log('Build complete: ' + datasets.length + ' datasets, ' + standards.length + ' standards, ' + allOrgs.size + ' orgs');
 console.log('  dist/       - Chinese');
 console.log('  dist/en/    - English');
 console.log('  dist/datasets/{id}/index.html x' + datasets.length);
+console.log('  dist/assets/site.css (' + (sharedCss.length / 1024).toFixed(1) + ' KB, shared)');
+console.log('  dist/sitemap.xml (' + sitemapUrls.length + ' URLs), robots.txt');
 console.log('\nPreview: npx serve dist');
